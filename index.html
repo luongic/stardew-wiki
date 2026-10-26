@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cẩm Nang Toàn Diện Stardew Valley | Công Thức Chế Biến & Hướng Dẫn Tất Cả Nhiệm Vụ</title>
+  <meta name="description" content="Tra cứu đầy đủ tất cả công thức nấu ăn, chế tạo đồ thủ công và hướng dẫn chi tiết mọi nhiệm vụ cốt truyện, nhiệm vụ ẩn, bí mật Đảo Gừng và tính năng mới 1.6 trong Stardew Valley.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌟</text></svg>">
+</head>
+<body data-season="spring">
+  <!-- Dynamic Seasonal Particle Canvas (Petals, Fireflies, Leaves, Snow) -->
+  <canvas id="seasonCanvas"></canvas>
+
+  <div class="app-container">
+    <!-- HERO HEADER WITH GENERATED STARDEW PIXEL ART BANNER -->
+    <header class="hero-header">
+      <div class="hero-banner-wrap">
+        <img src="assets/banner.jpg" alt="Stardew Valley Pelican Town Banner" class="hero-banner-img">
+        <div class="hero-overlay">
+          <div class="hero-title-area">
+            <div class="title-badge-group">
+              <svg class="junimo-mascot" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Cute Junimo SVG Pixel Art -->
+                <circle cx="32" cy="34" r="24" fill="#68d391" stroke="#22543d" stroke-width="3"/>
+                <!-- Cheeks -->
+                <ellipse cx="20" cy="38" rx="4" ry="2.5" fill="#fc8181" opacity="0.8"/>
+                <ellipse cx="44" cy="38" rx="4" ry="2.5" fill="#fc8181" opacity="0.8"/>
+                <!-- Eyes -->
+                <circle cx="24" cy="32" r="3.5" fill="#1a202c"/>
+                <circle cx="40" cy="32" r="3.5" fill="#1a202c"/>
+                <!-- Eye Sparkle -->
+                <circle cx="23" cy="31" r="1.2" fill="#fff"/>
+                <circle cx="39" cy="31" r="1.2" fill="#fff"/>
+                <!-- Smile -->
+                <path d="M 28 39 Q 32 44 36 39" stroke="#1a202c" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                <!-- Stem & Leaf -->
+                <path d="M 32 10 Q 34 2 40 4 Q 38 12 32 12" fill="#38a169" stroke="#22543d" stroke-width="2"/>
+                <path d="M 32 10 C 31 16 32 18 32 20" stroke="#22543d" stroke-width="3" stroke-linecap="round"/>
+                <!-- Little Feet -->
+                <ellipse cx="24" cy="57" rx="4.5" ry="3" fill="#2f855a"/>
+                <ellipse cx="40" cy="57" rx="4.5" ry="3" fill="#2f855a"/>
+              </svg>
+              <div>
+                <h1 class="hero-title">Cẩm Nang Stardew Valley</h1>
+                <p class="hero-subtitle">Tra Cứu Toàn Diện Công Thức Chế Biến & Hướng Dẫn Mọi Nhiệm Vụ (Bản 1.6+)</p>
+              </div>
+            </div>
+
+            <!-- Season and Audio Atmosphere Controls -->
+            <div class="top-controls">
+              <button class="season-btn active" data-season="spring" title="Không gian Mùa Xuân">🌸 Xuân</button>
+              <button class="season-btn" data-season="summer" title="Không gian Mùa Hạ">☀️ Hạ</button>
+              <button class="season-btn" data-season="fall" title="Không gian Mùa Thu">🍁 Thu</button>
+              <button class="season-btn" data-season="winter" title="Không gian Mùa Đông">❄️ Đông</button>
+              <button class="audio-toggle-btn" id="audioToggleBtn" title="Bật/Tắt hiệu ứng âm thanh">🔊 Âm Thanh: Bật</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- NAVIGATION TABS -->
+    <nav class="main-nav-bar" aria-label="Main Wiki Navigation">
+      <button class="nav-tab-btn active" data-tab="recipes" id="tabBtnRecipes">
+        🍳 <span>Công Thức Chế Biến</span>
+        <span class="tab-badge" id="recipeTabBadge">0/0</span>
+      </button>
+      <button class="nav-tab-btn" data-tab="items" id="tabBtnItems">
+        📦 <span>Từ Điển Vật Phẩm</span>
+        <span class="tab-badge" id="itemTabBadge">0</span>
+      </button>
+      <button class="nav-tab-btn" data-tab="quests" id="tabBtnQuests">
+        📜 <span>Hướng Dẫn Nhiệm Vụ</span>
+        <span class="tab-badge" id="questTabBadge">0/0</span>
+      </button>
+      <button class="nav-tab-btn" data-tab="planner" id="tabBtnPlanner">
+        🎒 <span>Kế Hoạch & Tính Nguyên Liệu</span>
+        <span class="tab-badge" id="plannerBadge">0</span>
+      </button>
+      <button class="nav-tab-btn" data-tab="tracker" id="tabBtnTracker">
+        ⭐ <span>Tiến Độ & Hoàn Thành</span>
+      </button>
+    </nav>
+
+    <!-- SEARCH & FILTERS TOOLBAR -->
+    <section class="toolbar-panel" id="toolbarPanel" aria-label="Search and Filter Controls">
+      <div class="search-row">
+        <div class="search-input-wrap">
+          <span class="search-icon">🔍</span>
+          <input 
+            type="text" 
+            id="searchInput" 
+            class="search-input" 
+            placeholder="Tìm theo tên món, vật phẩm, nông sản, cá, công cụ, NPC, từ khóa (VD: Rìu, Cá huyền thoại, Dâu tây, Kim cương, Pizza, 1.6...)"
+            autocomplete="off"
+          >
+        </div>
+
+        <!-- Recipe Category Filters -->
+        <div class="filter-actions" id="recipeFilters">
+          <button class="filter-chip-btn active" data-filter="all">Tất Cả Công Thức</button>
+          <button class="filter-chip-btn" data-filter="cooking">🍳 Món Ăn (Cooking)</button>
+          <button class="filter-chip-btn" data-filter="crafting">🔨 Đồ Chế Tạo (Crafting)</button>
+          <button class="filter-chip-btn" data-filter="smelting">🔥 Luyện Kim & Tạo Thỏi (Smelting)</button>
+          <button class="filter-chip-btn" data-filter="bait">🪱 Tạo Mồi & Đồ Nghề (Bait)</button>
+          <button class="filter-chip-btn" data-filter="farmhouse">🏡 Nâng Cấp Nhà (Farmhouse)</button>
+          <button class="filter-chip-btn" data-filter="buildings">🚜 Chuồng Trại & Công Trình (Buildings)</button>
+          <button class="filter-chip-btn" data-filter="magical_buildings">🧙‍♂️ Công Trình Ma Thuật (Magical)</button>
+          <button class="filter-chip-btn" data-filter="tools">⚒️ Nâng Cấp Dụng Cụ (Tools)</button>
+          <button class="filter-chip-btn" data-filter="weapons">⚔️ Lò Rèn & Vũ Khí Infinity</button>
+          <button class="filter-chip-btn" data-filter="version16">✨ Bản 1.6 Mới</button>
+        </div>
+
+        <!-- Item Category Filters (Divided by Title / Group) -->
+        <div class="filter-actions" id="itemFilters" style="display: none;">
+          <button class="filter-chip-btn active" data-filter="all">Tất Cả Vật Phẩm</button>
+          <button class="filter-chip-btn" data-filter="tools">🛠️ Công Cụ (Búa, Rìu, Cuốc, Xẻng...)</button>
+          <button class="filter-chip-btn" data-filter="crops">🌾 Cây Trồng & Nông Sản</button>
+          <button class="filter-chip-btn" data-filter="fruits">🍎 Trái Cây & Hoa Quả</button>
+          <button class="filter-chip-btn" data-filter="fish">🐟 Các Loại Cá & Thủy Sản</button>
+          <button class="filter-chip-btn" data-filter="minerals">💎 Khoáng Sản & Đá Quý</button>
+          <button class="filter-chip-btn" data-filter="animal_products">🥚 Sản Phẩm Chăn Nuôi</button>
+          <button class="filter-chip-btn" data-filter="forage">🍄 Thu Nhặt Hoang Dã</button>
+          <button class="filter-chip-btn" data-filter="artifacts">🏺 Cổ Vật & Di Vật</button>
+        </div>
+
+        <!-- Quest Category Filters -->
+        <div class="filter-actions" id="questFilters" style="display: none;">
+          <button class="filter-chip-btn active" data-filter="all">Tất Cả Nhiệm Vụ</button>
+          <button class="filter-chip-btn" data-filter="story">📖 Cốt Truyện (Story)</button>
+          <button class="filter-chip-btn" data-filter="secret_hidden">🔮 Nhiệm Vụ Ẩn & Bí Mật</button>
+          <button class="filter-chip-btn" data-filter="ginger_island">🌴 Đảo Gừng (Ginger Island)</button>
+          <button class="filter-chip-btn" data-filter="special_orders">📋 Đơn Hàng Lớn (Lewis & Qi)</button>
+          <button class="filter-chip-btn" data-filter="version16">🦝 Bản 1.6 (Gấu Mèo & Mastery)</button>
+        </div>
+      </div>
+
+      <!-- Quick Toggles -->
+      <div class="quick-toggles">
+        <label class="toggle-label">
+          <input type="checkbox" id="v16Toggle" class="toggle-checkbox">
+          <span>Chỉ hiện tính năng & vật phẩm <strong>Bản 1.6 Mới</strong></span>
+        </label>
+        <label class="toggle-label">
+          <input type="checkbox" id="unfinishedToggle" class="toggle-checkbox">
+          <span>Chỉ hiện mục <strong>Chưa Hoàn Thành</strong></span>
+        </label>
+        <label class="toggle-label">
+          <input type="checkbox" id="buffToggle" class="toggle-checkbox">
+          <span>Chỉ hiện món có <strong>Buff / Ăn Được</strong> (Speed, Luck, Energy...)</span>
+        </label>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TAB 1: CÔNG THỨC CHẾ BIẾN (RECIPES GRID)
+         ==================================================================== -->
+    <main id="tab-recipes" class="tab-content-section">
+      <div id="recipesGrid" class="content-grid" aria-live="polite">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </main>
+
+    <!-- ====================================================================
+         TAB 2: TỪ ĐIỂN VẬT PHẨM (ITEMS ENCYCLOPEDIA - GROUPED BY TITLE)
+         ==================================================================== -->
+    <section id="tab-items" class="tab-content-section" style="display: none;">
+      <div id="itemsContainer" class="items-container-wrap" aria-live="polite">
+        <!-- Rendered dynamically by app.js with Category Section Titles -->
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TAB 2: HƯỚNG DẪN NHIỆM VỤ (QUESTS GRID)
+         ==================================================================== -->
+    <section id="tab-quests" class="tab-content-section" style="display: none;">
+      <div id="questsGrid" class="content-grid" aria-live="polite">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TAB 3: KẾ HOẠCH & TÍNH NGUYÊN LIỆU (CRAFTING PLANNER)
+         ==================================================================== -->
+    <section id="tab-planner" class="tab-content-section" style="display: none;">
+      <div class="planner-layout">
+        <!-- Left Panel: Planned Items -->
+        <div class="planner-panel">
+          <div class="panel-header">
+            <h2 class="panel-title">
+              <span>🎒</span> Các Món Cần Chế Biến
+            </h2>
+            <button class="btn-secondary" id="clearPlannerBtn" style="color: #c0392b; border-color: #e74c3c;">
+              🗑️ Xóa hết
+            </button>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 14px;">
+            Thêm các món bạn dự định nấu hoặc chế tạo từ thẻ công thức. Bạn có thể điều chỉnh số lượng ở đây:
+          </p>
+          <div id="plannedItemsList" class="planned-items-list">
+            <!-- Rendered by calculator.js -->
+          </div>
+        </div>
+
+        <!-- Right Panel: Raw Materials Calculation Breakdown -->
+        <div class="planner-panel">
+          <div class="panel-header">
+            <h2 class="panel-title">
+              <span>📦</span> Tổng Hợp Nguyên Liệu Cần Gom
+            </h2>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 14px;">
+            Hệ thống tự động tính toán tổng số nguyên liệu thô cần chuẩn bị. Đánh dấu tick khi bạn đã gom đủ trong rương:
+          </p>
+          <div id="rawMaterialsGrid" class="raw-materials-grid">
+            <!-- Rendered by calculator.js -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TAB 4: TIẾN ĐỘ & HOÀN THÀNH (PROGRESS TRACKER)
+         ==================================================================== -->
+    <section id="tab-tracker" class="tab-content-section" style="display: none;">
+      <div class="stats-summary-grid">
+        <!-- Cooking Summary -->
+        <div class="stat-summary-card">
+          <div style="font-size: 2.2rem; margin-bottom: 4px;">🍳</div>
+          <div class="summary-val" id="cookingStat">0%</div>
+          <div class="summary-label">Món Ăn Đã Nấu Thành Công</div>
+          <div style="font-size: 0.85rem; color: var(--wood-light); font-weight: bold; margin-top: 4px;" id="cookingStat-sub">0 / 0 món</div>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill" id="cookingBar" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Crafting Summary -->
+        <div class="stat-summary-card">
+          <div style="font-size: 2.2rem; margin-bottom: 4px;">🔨</div>
+          <div class="summary-val" id="craftingStat">0%</div>
+          <div class="summary-label">Đồ Thủ Công Đã Chế Tạo</div>
+          <div style="font-size: 0.85rem; color: var(--wood-light); font-weight: bold; margin-top: 4px;" id="craftingStat-sub">0 / 0 đồ</div>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill" id="craftingBar" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Story Quests Summary -->
+        <div class="stat-summary-card">
+          <div style="font-size: 2.2rem; margin-bottom: 4px;">📖</div>
+          <div class="summary-val" id="storyStat">0%</div>
+          <div class="summary-label">Nhiệm Vụ Cốt Truyện Đã Xong</div>
+          <div style="font-size: 0.85rem; color: var(--wood-light); font-weight: bold; margin-top: 4px;" id="storyStat-sub">0 / 0 xong</div>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill" id="storyBar" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Hidden & Secret Quests Summary -->
+        <div class="stat-summary-card">
+          <div style="font-size: 2.2rem; margin-bottom: 4px;">🔮</div>
+          <div class="summary-val" id="hiddenStat">0%</div>
+          <div class="summary-label">Nhiệm Vụ Ẩn & Bí Mật Đã Khám Phá</div>
+          <div style="font-size: 0.85rem; color: var(--wood-light); font-weight: bold; margin-top: 4px;" id="hiddenStat-sub">0 / 0 xong</div>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill" id="hiddenBar" style="width: 0%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Backup and Manage Progress Panel -->
+      <div class="planner-panel" style="margin-top: 24px;">
+        <div class="panel-header">
+          <h2 class="panel-title">
+            <span>💾</span> Quản Lý & Lưu Trữ Tiến Độ Cá Nhân
+          </h2>
+        </div>
+        <p style="color: var(--text-main); font-size: 0.98rem; line-height: 1.6;">
+          Toàn bộ các dấu tích hoàn thành công thức và nhiệm vụ được tự động lưu trong trình duyệt của bạn (LocalStorage). 
+          Bạn có thể xuất file sao lưu JSON để tải sang thiết bị khác hoặc lưu trữ an toàn khi dọn dẹp trình duyệt.
+        </p>
+        <div style="display: flex; gap: 14px; margin-top: 18px; flex-wrap: wrap;">
+          <button class="btn-secondary" id="exportProgressBtn" style="background: var(--wood-med); color: #fff; padding: 10px 20px; font-size: 0.95rem;">
+            📥 Tải Xuống File Sao Lưu Tiến Độ (JSON)
+          </button>
+          <button class="btn-secondary" id="resetProgressBtn" style="color: #c0392b; border-color: #e74c3c; padding: 10px 20px; font-size: 0.95rem;">
+            ⚠️ Đặt Lại Toàn Bộ Tiến Độ (Reset)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="app-footer">
+      <p>
+        Stardew Valley Wiki Cẩm Nang Tiếng Việt • Dữ liệu chuẩn xác tổng hợp từ 
+        <a href="https://stardewvalleywiki.com/Stardew_Valley_Wiki" target="_blank" rel="noopener">Official Stardew Valley Wiki</a> & 
+        <a href="https://www.stardewvalley.net/" target="_blank" rel="noopener">ConcernedApe</a>.
+      </p>
+      <p style="margin-top: 6px; font-size: 0.82rem; opacity: 0.8;">
+        Hỗ trợ cập nhật đầy đủ phiên bản 1.6+ (Bait Maker, Fish Smoker, Dehydrator, Raccoon Quests, Mastery Cave...).
+      </p>
+    </footer>
+  </div>
+
+  <!-- DETAIL MODAL DIALOG -->
+  <div class="modal-backdrop" id="detailModal" role="dialog" aria-modal="true">
+    <div class="modal-content-box">
+      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Đóng cửa sổ">✕</button>
+      <div id="modalBody">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATIONS -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- MODULE SCRIPTS -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

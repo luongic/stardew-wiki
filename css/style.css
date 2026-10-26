@@ -1,0 +1,1305 @@
+/* ==========================================================================
+   STARDEW VALLEY WIKI - DESIGN SYSTEM & STYLESHEET
+   Aesthetic: Warm rustic wood, medieval parchment, pixel badges, seasonal ambiance
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Fredoka:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&family=VT323&display=swap');
+
+:root {
+  /* Common Palette */
+  --wood-dark: #3a1e0d;
+  --wood-med: #5d3419;
+  --wood-light: #8d5328;
+  --wood-border: #231207;
+  --gold-accent: #f7b731;
+  --gold-light: #fed330;
+  --gold-dark: #c48b14;
+  --parchment-bg: #f9f1d8;
+  --parchment-card: #fffaf0;
+  --parchment-border: #d4bc94;
+  --parchment-shadow: rgba(58, 30, 13, 0.15);
+  --text-main: #341f11;
+  --text-muted: #6e523b;
+  --text-light: #fefae0;
+  
+  /* Brand Accents */
+  --stardew-green: #388e3c;
+  --stardew-red: #c0392b;
+  --stardew-blue: #2980b9;
+  --stardew-purple: #8e44ad;
+  --stardew-orange: #d35400;
+
+  /* Theme: Spring (Default) */
+  --bg-gradient-top: #1b381e;
+  --bg-gradient-bottom: #2b5830;
+  --accent-season: #e84393;
+  --accent-season-glow: rgba(232, 67, 147, 0.3);
+  --border-radius-main: 14px;
+  --border-radius-sm: 8px;
+  --font-title: 'Cinzel', serif;
+  --font-pixel: 'VT323', monospace;
+  --font-heading: 'Fredoka', sans-serif;
+  --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Season Palettes */
+body[data-season="summer"] {
+  --bg-gradient-top: #194a28;
+  --bg-gradient-bottom: #1e6b36;
+  --accent-season: #f39c12;
+  --accent-season-glow: rgba(243, 156, 18, 0.35);
+}
+
+body[data-season="fall"] {
+  --bg-gradient-top: #3d1c06;
+  --bg-gradient-bottom: #6d330c;
+  --accent-season: #e67e22;
+  --accent-season-glow: rgba(230, 126, 34, 0.4);
+}
+
+body[data-season="winter"] {
+  --bg-gradient-top: #0f2027;
+  --bg-gradient-bottom: #203a43;
+  --accent-season: #74b9ff;
+  --accent-season-glow: rgba(116, 185, 255, 0.4);
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-main);
+  background: linear-gradient(180deg, var(--bg-gradient-top) 0%, var(--bg-gradient-bottom) 100%);
+  min-height: 100vh;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  transition: background 0.8s ease;
+}
+
+/* Seasonal Particle Canvas */
+#seasonCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Container */
+.app-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 16px 20px 60px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #2b180d;
+}
+::-webkit-scrollbar-thumb {
+  background: #8d5328;
+  border-radius: 5px;
+  border: 2px solid #2b180d;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #f7b731;
+}
+
+/* ==========================================================================
+   HEADER & HERO BANNER
+   ========================================================================== */
+.hero-header {
+  margin-bottom: 24px;
+  border-radius: var(--border-radius-main);
+  background: var(--wood-dark);
+  border: 4px solid var(--wood-light);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-banner-wrap {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+}
+
+.hero-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 38%;
+  filter: brightness(0.92) contrast(1.05);
+  transition: transform 10s ease;
+}
+
+.hero-header:hover .hero-banner-img {
+  transform: scale(1.03);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(35, 18, 7, 0.2) 0%, rgba(35, 18, 7, 0.85) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px 32px;
+}
+
+.hero-title-area {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.title-badge-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.junimo-mascot {
+  width: 58px;
+  height: 58px;
+  animation: bounceJunimo 2.4s infinite ease-in-out;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+}
+
+@keyframes bounceJunimo {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-8px) scale(1.05); }
+}
+
+.hero-title {
+  font-family: var(--font-title);
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: #fff9e6;
+  text-shadow: 2px 2px 0 #2b180d, 0 0 15px rgba(247, 183, 49, 0.6);
+  letter-spacing: 0.5px;
+}
+
+.hero-subtitle {
+  font-family: var(--font-heading);
+  color: #f7d794;
+  font-size: 1.05rem;
+  font-weight: 500;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+  margin-top: 4px;
+}
+
+/* Season & Audio Controls */
+.top-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(43, 24, 13, 0.8);
+  backdrop-filter: blur(8px);
+  padding: 6px 12px;
+  border-radius: 30px;
+  border: 2px solid var(--wood-light);
+}
+
+.season-btn, .audio-toggle-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.25rem;
+  padding: 6px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: #fefae0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+}
+
+.season-btn:hover, .audio-toggle-btn:hover {
+  background: rgba(247, 183, 49, 0.25);
+  transform: translateY(-2px);
+}
+
+.season-btn.active {
+  background: var(--gold-accent);
+  color: var(--wood-dark);
+  font-weight: 700;
+  box-shadow: 0 0 10px rgba(247, 183, 49, 0.5);
+}
+
+/* ==========================================================================
+   MAIN NAVIGATION TABS
+   ========================================================================== */
+.main-nav-bar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  background: var(--wood-dark);
+  padding: 10px;
+  border-radius: var(--border-radius-main);
+  border: 3px solid var(--wood-light);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  overflow-x: auto;
+}
+
+.nav-tab-btn {
+  flex: 1;
+  min-width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 20px;
+  background: linear-gradient(180deg, #703f1e 0%, #4a2811 100%);
+  color: #fceecb;
+  border: 2px solid #9c5c2d;
+  border-radius: var(--border-radius-sm);
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+  white-space: nowrap;
+}
+
+.nav-tab-btn:hover {
+  background: linear-gradient(180deg, #874e27 0%, #5a3116 100%);
+  border-color: var(--gold-accent);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.nav-tab-btn.active {
+  background: linear-gradient(180deg, #fed330 0%, #f7b731 100%);
+  color: #2b180d;
+  border-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(247, 183, 49, 0.5), inset 0 2px 2px rgba(255, 255, 255, 0.4);
+  font-weight: 700;
+  text-shadow: none;
+}
+
+.nav-tab-btn .tab-badge {
+  background: rgba(0, 0, 0, 0.25);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+}
+
+.nav-tab-btn.active .tab-badge {
+  background: #2b180d;
+  color: #fed330;
+}
+
+/* ==========================================================================
+   SEARCH & FILTER TOOLBAR
+   ========================================================================== */
+.toolbar-panel {
+  background: var(--parchment-bg);
+  border: 3px solid var(--wood-light);
+  border-radius: var(--border-radius-main);
+  padding: 18px 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.search-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.search-input-wrap {
+  flex: 1;
+  min-width: 280px;
+  position: relative;
+}
+
+.search-input-wrap .search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.15rem;
+  color: var(--text-muted);
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 18px 12px 46px;
+  border: 2px solid var(--parchment-border);
+  background: #fffdf7;
+  border-radius: 25px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-main);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.search-input:focus {
+  border-color: var(--wood-light);
+  box-shadow: 0 0 0 3px rgba(141, 83, 40, 0.25);
+}
+
+.filter-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filter-chip-btn {
+  background: #ebdcc0;
+  border: 1px solid #c7af85;
+  color: var(--text-main);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.filter-chip-btn:hover {
+  background: #dfcb9f;
+  border-color: var(--wood-light);
+}
+
+.filter-chip-btn.active {
+  background: var(--wood-med);
+  color: #fff9e6;
+  border-color: var(--wood-dark);
+  font-weight: 600;
+}
+
+.quick-toggles {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding-top: 12px;
+  border-top: 1px dashed var(--parchment-border);
+}
+
+.toggle-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.toggle-checkbox {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--wood-light);
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.15s ease;
+}
+
+.toggle-checkbox:checked {
+  background: var(--stardew-green);
+  border-color: var(--stardew-green);
+}
+
+.toggle-checkbox:checked::after {
+  content: '✓';
+  position: absolute;
+  color: white;
+  font-size: 13px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+}
+
+/* Version 1.6 Badge Accent */
+.v16-badge {
+  background: linear-gradient(135deg, #10ac84, #1dd1a1);
+  color: white;
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  box-shadow: 0 2px 4px rgba(16, 172, 132, 0.3);
+}
+
+/* ==========================================================================
+   RECIPES & QUESTS GRID
+   ========================================================================== */
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 22px;
+  margin-bottom: 40px;
+}
+
+/* Stardew Valley Rustic Card */
+.stardew-card {
+  background: var(--parchment-card);
+  border: 3px solid var(--wood-light);
+  border-radius: var(--border-radius-main);
+  box-shadow: 0 6px 16px var(--parchment-shadow);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  overflow: hidden;
+}
+
+.stardew-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  border-color: var(--gold-accent);
+}
+
+.stardew-card.completed {
+  opacity: 0.82;
+  border-color: #27ae60;
+  background: #f0faf3;
+}
+
+.card-header {
+  padding: 16px 18px 12px;
+  background: #faefe0;
+  border-bottom: 2px solid var(--parchment-border);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.card-icon-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.item-icon-box {
+  width: 52px;
+  height: 52px;
+  background: #fff;
+  border: 2px solid var(--parchment-border);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+  flex-shrink: 0;
+  overflow: hidden;
+  padding: 4px;
+}
+
+.pixel-art-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+  transition: transform 0.2s ease;
+}
+
+.stardew-card:hover .pixel-art-icon {
+  transform: scale(1.1);
+}
+
+.fallback-emoji {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-name-group .item-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--wood-dark);
+  line-height: 1.2;
+}
+
+.item-name-group .item-sub {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.card-actions-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.check-done-btn {
+  background: transparent;
+  border: 2px solid #bba179;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  color: transparent;
+}
+
+.check-done-btn:hover {
+  border-color: #27ae60;
+  color: #27ae60;
+  background: rgba(39, 174, 96, 0.1);
+}
+
+.stardew-card.completed .check-done-btn {
+  background: #27ae60;
+  border-color: #27ae60;
+  color: white;
+}
+
+/* Card Body */
+.card-body {
+  padding: 16px 18px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-desc {
+  font-size: 0.92rem;
+  color: #4a3423;
+  line-height: 1.5;
+}
+
+/* Ingredients Section */
+.ingredients-box {
+  background: #f5eedb;
+  border: 1px solid var(--parchment-border);
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+
+.section-label {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--wood-light);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ingredients-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ingredient-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.ing-count {
+  background: var(--wood-dark);
+  color: #f7d794;
+  padding: 1px 8px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* Buffs Section */
+.buffs-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.buff-pill {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.buff-pill.speed {
+  background: #fff8e1;
+  color: #f57f17;
+  border-color: #ffe082;
+}
+
+.buff-pill.luck {
+  background: #ede7f6;
+  color: #6a1b9a;
+  border-color: #d1c4e9;
+}
+
+.buff-pill.special {
+  background: #fce4ec;
+  color: #c2185b;
+  border-color: #f8bbd0;
+}
+
+/* Stats Row (Energy, Health, Price) */
+.stats-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  padding-top: 6px;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.stat-val {
+  font-weight: 700;
+  color: var(--wood-dark);
+}
+
+.source-tag {
+  background: #eef2f5;
+  border: 1px solid #d2dae2;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: #485460;
+  line-height: 1.4;
+}
+
+/* Card Footer Actions */
+.card-footer {
+  padding: 12px 18px;
+  background: #faefe0;
+  border-top: 1px solid var(--parchment-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.btn-secondary {
+  background: #fff;
+  border: 1.5px solid var(--parchment-border);
+  color: var(--wood-dark);
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-secondary:hover {
+  background: #f0e6d2;
+  border-color: var(--wood-light);
+}
+
+.btn-add-planner {
+  background: var(--wood-med);
+  color: #fff9e6;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-add-planner:hover {
+  background: var(--wood-light);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   QUESTS SPECIFIC CARDS
+   ========================================================================== */
+.quest-card .quest-steps-box {
+  background: #fffdf5;
+  border: 1px solid #ebd7b3;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 8px;
+}
+
+.quest-steps-list {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+.quest-steps-list li {
+  line-height: 1.45;
+}
+
+.quest-reward-banner {
+  background: #eafaf1;
+  border-left: 4px solid #2ecc71;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #27ae60;
+  margin-top: 4px;
+}
+
+.spoiler-toggle-btn {
+  background: #dfd3c3;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-family: var(--font-heading);
+  color: var(--wood-dark);
+}
+
+.spoiler-blurred {
+  filter: blur(5px);
+  user-select: none;
+  transition: filter 0.3s ease;
+}
+
+.spoiler-blurred.revealed {
+  filter: none;
+  user-select: auto;
+}
+
+/* ==========================================================================
+   PLANNER & MATERIAL CALCULATOR TAB
+   ========================================================================== */
+.planner-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 900px) {
+  .planner-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.planner-panel {
+  background: var(--parchment-bg);
+  border: 3px solid var(--wood-light);
+  border-radius: var(--border-radius-main);
+  padding: 24px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.panel-header {
+  border-bottom: 2px solid var(--parchment-border);
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.panel-title {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--wood-dark);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.planned-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.planned-item-row {
+  background: #fff;
+  border: 1px solid var(--parchment-border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qty-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  background: var(--wood-light);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.qty-num {
+  font-weight: 700;
+  min-width: 24px;
+  text-align: center;
+}
+
+.raw-materials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.material-card {
+  background: #fff;
+  border: 1.5px solid var(--parchment-border);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.material-card.gathered {
+  background: #e8f5e9;
+  border-color: #81c784;
+}
+
+/* ==========================================================================
+   PROGRESS & PERFECTION TRACKER TAB
+   ========================================================================== */
+.stats-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.stat-summary-card {
+  background: var(--parchment-bg);
+  border: 3px solid var(--wood-light);
+  border-radius: var(--border-radius-main);
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+.summary-val {
+  font-family: var(--font-title);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--wood-dark);
+}
+
+.summary-label {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.progress-bar-wrap {
+  width: 100%;
+  height: 12px;
+  background: #e0d0b6;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 12px;
+  border: 1px solid #c7b396;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #27ae60, #2ecc71);
+  border-radius: 6px;
+  transition: width 0.4s ease;
+}
+
+/* ==========================================================================
+   MODAL DIALOG
+   ========================================================================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 10, 5, 0.7);
+  backdrop-filter: blur(6px);
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-backdrop.open {
+  display: flex;
+  animation: fadeInModal 0.25s ease;
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.modal-content-box {
+  background: var(--parchment-bg);
+  border: 4px solid var(--wood-light);
+  border-radius: var(--border-radius-main);
+  max-width: 650px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+  position: relative;
+  padding: 28px;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: #e0cca9;
+  border: 1px solid var(--wood-light);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--wood-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close-btn:hover {
+  background: var(--stardew-red);
+  color: white;
+}
+
+/* ==========================================================================
+   TOAST NOTIFICATIONS
+   ========================================================================== */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.toast {
+  background: var(--wood-dark);
+  color: #fff9e6;
+  border: 2px solid var(--gold-accent);
+  padding: 12px 20px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: slideToastIn 0.3s ease, fadeToastOut 0.4s ease 2.6s forwards;
+  pointer-events: auto;
+}
+
+@keyframes slideToastIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeToastOut {
+  from { opacity: 1; }
+  to { opacity: 0; transform: translateY(10px); }
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.app-footer {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  padding: 30px 20px 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.app-footer a {
+  color: var(--gold-accent);
+  text-decoration: none;
+}
+
+.app-footer a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   ITEMS ENCYCLOPEDIA & TITLE GROUPS
+   ========================================================================== */
+.items-container-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  margin-bottom: 50px;
+}
+
+.item-group-section {
+  background: rgba(43, 24, 13, 0.4);
+  padding: 20px;
+  border-radius: calc(var(--border-radius-main) + 4px);
+  border: 2px solid rgba(247, 183, 49, 0.25);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.item-group-header {
+  background: linear-gradient(135deg, #faefe0 0%, #ecdcc3 100%);
+  border: 3px solid var(--wood-light);
+  border-radius: var(--border-radius-main);
+  padding: 16px 22px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.item-group-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.item-group-title-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.item-group-icon {
+  font-size: 2rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.item-group-heading {
+  font-family: var(--font-title);
+  font-size: 1.4rem;
+  color: var(--wood-dark);
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.item-group-badge {
+  background: var(--wood-dark);
+  color: var(--gold-light);
+  border: 1px solid var(--gold-accent);
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 700;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.item-group-desc {
+  color: var(--text-muted);
+  font-size: 0.94rem;
+  margin-top: 6px;
+  line-height: 1.45;
+}
+
+/* Item Card Custom Metadata */
+.item-meta-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.item-season-badge {
+  background: #dfe6e9;
+  color: #2d3436;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid #b2bec3;
+}
+
+.item-stat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.stat-price-pill {
+  background: #fef9e7;
+  color: #b7791f;
+  border: 1px solid #f6e05e;
+}
+
+.stat-energy-pill {
+  background: #e6fffa;
+  color: #234e52;
+  border: 1px solid #81e6d9;
+}
+
+.item-info-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: var(--text-main);
+  line-height: 1.45;
+  margin-top: 6px;
+}
+
+.item-info-row .row-icon {
+  font-size: 0.95rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.item-card-btn-row {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px dashed var(--parchment-border);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.item-detail-btn {
+  background: var(--wood-light);
+  color: #fff;
+  border: 1px solid var(--wood-dark);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.item-detail-btn:hover {
+  background: var(--gold-dark);
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .hero-banner-wrap {
+    height: 200px;
+  }
+  .hero-title {
+    font-size: 1.6rem;
+  }
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+  .main-nav-bar {
+    gap: 8px;
+  }
+  .nav-tab-btn {
+    min-width: 140px;
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+  .item-group-section {
+    padding: 12px;
+  }
+  .item-group-header {
+    padding: 12px 14px;
+  }
+  .item-group-heading {
+    font-size: 1.15rem;
+  }
+}
