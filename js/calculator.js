@@ -97,6 +97,7 @@ class CraftingCalculator {
           materials[key] = {
             name: ing.name,
             nameEn: ing.nameEn || '',
+            iconUrl: ing.iconUrl || 'assets/icons/ing_wood.png',
             count: 0,
             gathered: !!this.gatheredMaterials[key]
           };
@@ -194,11 +195,16 @@ class CraftingCalculator {
       const isDone = mat.gathered;
       return `
         <div class="material-card ${isDone ? 'gathered' : ''}" data-mat="${mat.name}">
-          <div>
-            <div style="font-weight: 600; font-size: 0.9rem; color: ${isDone ? '#27ae60' : 'var(--wood-dark)'}; ${isDone ? 'text-decoration: line-through;' : ''}">
-              ${mat.name}
+          <div style="display: flex; align-items: center; gap: 10px; min-width: 0;">
+            <div class="ing-icon-wrap" style="width: 32px; height: 32px;">
+              <img src="${mat.iconUrl || 'assets/icons/ing_wood.png'}" class="ing-icon" alt="${mat.name}" onerror="this.parentElement.style.display='none';">
             </div>
-            <div style="font-size: 0.78rem; color: var(--text-muted);">${mat.nameEn}</div>
+            <div>
+              <div style="font-weight: 600; font-size: 0.95rem; color: ${isDone ? '#27ae60' : 'var(--wood-dark)'}; ${isDone ? 'text-decoration: line-through;' : ''}">
+                ${mat.name}
+              </div>
+              ${mat.nameEn && !mat.name.toLowerCase().includes(mat.nameEn.toLowerCase()) ? `<div style="font-size: 0.8rem; color: var(--text-muted);">${mat.nameEn}</div>` : ''}
+            </div>
           </div>
           <div style="display: flex; align-items: center; gap: 8px;">
             <span class="ing-count" style="font-size: 0.95rem;">x${mat.count}</span>

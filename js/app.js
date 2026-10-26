@@ -531,7 +531,7 @@ class StardewWikiApp {
             <div class="card-icon-title">
               <div class="item-icon-box">
                 ${r.imageUrl ? `
-                  <img src="${r.imageUrl}" alt="${r.name}" class="pixel-art-icon" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                  <img src="${r.imageUrl}" alt="${r.name}" class="pixel-art-icon" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                   <span class="fallback-emoji" style="display: none;">${r.icon || '📦'}</span>
                 ` : `
                   <span class="fallback-emoji">${r.icon || '📦'}</span>
@@ -555,7 +555,15 @@ class StardewWikiApp {
               <ul class="ingredients-list">
                 ${r.ingredients.map(ing => `
                   <li class="ingredient-item">
-                    <span>${ing.name} <small style="color: #7d654c;">(${ing.nameEn || ''})</small></span>
+                    <div class="ing-left">
+                      <div class="ing-icon-wrap">
+                        <img src="${ing.iconUrl || 'assets/icons/ing_wood.png'}" alt="${ing.name}" class="ing-icon" onerror="this.parentElement.style.display='none';">
+                      </div>
+                      <span class="ing-name-text">
+                        ${ing.name}
+                        ${ing.nameEn && !ing.name.toLowerCase().includes(ing.nameEn.toLowerCase()) ? `<small class="ing-sub">(${ing.nameEn})</small>` : ''}
+                      </span>
+                    </div>
                     <span class="ing-count">x${ing.count}</span>
                   </li>
                 `).join('')}
@@ -762,7 +770,7 @@ class StardewWikiApp {
         <div class="card-header">
           <div class="card-icon-title">
             <div class="item-icon-box">
-              <img src="${it.imageUrl}" alt="${it.name}" class="pixel-art-icon" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📦</text></svg>';">
+              <img src="${it.imageUrl}" alt="${it.name}" class="pixel-art-icon" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📦</text></svg>';">
             </div>
             <div class="item-name-group">
               <div class="item-title">${it.name}</div>
@@ -992,12 +1000,20 @@ class StardewWikiApp {
         </p>
 
         <div style="background: #f7eed8; border: 1.5px solid var(--parchment-border); border-radius: 10px; padding: 16px; margin-bottom: 20px;">
-          <h4 style="font-family: var(--font-heading); color: var(--wood-light); font-size: 1rem; margin-bottom: 10px;">🌾 Danh sách nguyên liệu cần:</h4>
-          <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px;">
+          <h4 style="font-family: var(--font-heading); color: var(--wood-light); font-size: 1.15rem; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">🌾 Danh sách nguyên liệu cần:</h4>
+          <ul class="ingredients-list" style="gap: 8px;">
             ${r.ingredients.map(ing => `
-              <li style="display: flex; justify-content: space-between; font-weight: 500;">
-                <span>${ing.name} <small style="color: #6e523b;">(${ing.nameEn || ''})</small></span>
-                <span class="ing-count">x${ing.count}</span>
+              <li class="ingredient-item" style="padding: 4px 0; border-bottom: 1px dashed rgba(212, 188, 148, 0.4);">
+                <div class="ing-left">
+                  <div class="ing-icon-wrap" style="width: 28px; height: 28px;">
+                    <img src="${ing.iconUrl || 'assets/icons/ing_wood.png'}" alt="${ing.name}" class="ing-icon" onerror="this.parentElement.style.display='none';">
+                  </div>
+                  <span class="ing-name-text" style="font-size: 1.05rem;">
+                    ${ing.name}
+                    ${ing.nameEn && !ing.name.toLowerCase().includes(ing.nameEn.toLowerCase()) ? `<small class="ing-sub">(${ing.nameEn})</small>` : ''}
+                  </span>
+                </div>
+                <span class="ing-count" style="font-size: 0.95rem; padding: 2px 10px;">x${ing.count}</span>
               </li>
             `).join('')}
           </ul>
