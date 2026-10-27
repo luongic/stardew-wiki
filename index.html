@@ -240,10 +240,13 @@
               </div>
             </div>
 
-            <!-- Calendar: Day of Season (1-28) & Day of Week -->
+            <!-- Calendar: Stardew Valley 28-Day Grid (4x7) -->
             <div class="sim-control-box sim-calendar-box">
               <div class="sim-calendar-header">
-                <span class="sim-control-label">LỊCH NGÀY TRONG MÙA & THỨ:</span>
+                <div>
+                  <span class="sim-control-label">LỊCH 28 NGÀY TRONG MÙA (BẤM Ô ĐỂ CHỌN NGÀY):</span>
+                  <div class="sim-calendar-sub">Lịch thung lũng 4 hàng x 7 cột • Hiển thị Sinh nhật NPC & Lễ hội</div>
+                </div>
                 <div class="sim-date-badge" id="simDateDisplay">
                   <span id="simDayTitle">Ngày 6 (Thứ Bảy)</span>
                   <span class="sim-week-tag" id="simWeekTag">Tuần 1</span>
@@ -256,39 +259,20 @@
                 <span class="sim-event-text" id="simEventText">Lễ hội</span>
               </div>
 
-              <!-- Day of Week selector buttons -->
-              <div class="sim-weekdays-bar" id="simWeekdayBtns">
-                <button class="sim-weekday-btn" data-dow="0">Thứ 2</button>
-                <button class="sim-weekday-btn" data-dow="1">Thứ 3</button>
-                <button class="sim-weekday-btn" data-dow="2">Thứ 4</button>
-                <button class="sim-weekday-btn" data-dow="3">Thứ 5</button>
-                <button class="sim-weekday-btn" data-dow="4">Thứ 6</button>
-                <button class="sim-weekday-btn active" data-dow="5">Thứ 7</button>
-                <button class="sim-weekday-btn" data-dow="6">Chủ Nhật</button>
-              </div>
-
-              <!-- Day Slider & Stepper Row -->
-              <div class="sim-day-slider-row">
-                <button class="sim-step-btn" id="prevDayBtn" title="Lùi 1 ngày">◀</button>
-                <div class="sim-day-track">
-                  <input type="range" id="simDaySlider" min="1" max="28" value="6" step="1" class="sim-day-slider">
-                  <div class="sim-day-scale">
-                    <span>1</span>
-                    <span>7</span>
-                    <span>14</span>
-                    <span>21</span>
-                    <span>28</span>
-                  </div>
+              <!-- 4x7 Calendar Grid Container (Rendered dynamically by app.js) -->
+              <div class="stardew-calendar-wrap">
+                <div class="stardew-calendar-dow-header">
+                  <span>T2 (Mon)</span>
+                  <span>T3 (Tue)</span>
+                  <span>T4 (Wed)</span>
+                  <span>T5 (Thu)</span>
+                  <span>T6 (Fri)</span>
+                  <span>T7 (Sat)</span>
+                  <span>CN (Sun)</span>
                 </div>
-                <button class="sim-step-btn" id="nextDayBtn" title="Tiến 1 ngày">▶</button>
-              </div>
-
-              <!-- Quick Jump Weeks -->
-              <div class="sim-quick-weeks">
-                <button class="quick-week-btn active" data-week="1">Tuần 1 (1-7)</button>
-                <button class="quick-week-btn" data-week="2">Tuần 2 (8-14)</button>
-                <button class="quick-week-btn" data-week="3">Tuần 3 (15-21)</button>
-                <button class="quick-week-btn" data-week="4">Tuần 4 (22-28)</button>
+                <div class="stardew-calendar-grid" id="stardewCalendarGrid" role="grid" aria-label="Lịch 28 ngày Stardew Valley">
+                  <!-- 28 Day cells rendered by app.js -->
+                </div>
               </div>
             </div>
           </div>

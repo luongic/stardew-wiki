@@ -323,6 +323,7 @@ class StardewWikiApp {
         e.currentTarget.classList.add('active');
         this.simSeason = e.currentTarget.dataset.season;
         this.playTone('click');
+        this.renderCalendarGrid(true);
         this.updateSimDateDisplay();
         this.render();
       });
@@ -336,52 +337,6 @@ class StardewWikiApp {
         this.simWeather = e.currentTarget.dataset.weather;
         this.playTone('click');
         this.render();
-      });
-    });
-
-    // NPC Schedule Simulator: Day Slider
-    const simDaySlider = document.getElementById('simDaySlider');
-    if (simDaySlider) {
-      simDaySlider.addEventListener('input', (e) => {
-        this.setSimDay(parseInt(e.target.value, 10));
-      });
-    }
-
-    // NPC Schedule Simulator: Stepper Buttons (Prev / Next Day)
-    const prevDayBtn = document.getElementById('prevDayBtn');
-    if (prevDayBtn) {
-      prevDayBtn.addEventListener('click', () => {
-        this.setSimDay(this.simDay - 1);
-        this.playTone('click');
-      });
-    }
-    const nextDayBtn = document.getElementById('nextDayBtn');
-    if (nextDayBtn) {
-      nextDayBtn.addEventListener('click', () => {
-        this.setSimDay(this.simDay + 1);
-        this.playTone('click');
-      });
-    }
-
-    // NPC Schedule Simulator: Weekday Buttons (Thứ 2 -> Chủ Nhật)
-    document.querySelectorAll('#simWeekdayBtns .sim-weekday-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const targetDow = parseInt(e.currentTarget.dataset.dow, 10);
-        const currentWeek = Math.ceil(this.simDay / 7);
-        const targetDay = (currentWeek - 1) * 7 + 1 + targetDow;
-        this.setSimDay(targetDay);
-        this.playTone('click');
-      });
-    });
-
-    // NPC Schedule Simulator: Quick Week Jump Buttons
-    document.querySelectorAll('.quick-week-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const targetWeek = parseInt(e.currentTarget.dataset.week, 10);
-        const currentDow = this.getSimDayOfWeek(this.simDay);
-        const targetDay = (targetWeek - 1) * 7 + 1 + currentDow;
-        this.setSimDay(targetDay);
-        this.playTone('click');
       });
     });
 
@@ -1106,16 +1061,96 @@ class StardewWikiApp {
     return keys[this.getSimDayOfWeek(day)];
   }
 
+  renderCalendarGrid(force = false) {
+    const grid = document.getElementById('stardewCalendarGrid');
+    if (!grid) return;
+
+    // Fast-path: if already rendered for this season and not forced, only update active highlight
+    if (!force && grid.children.length === 28 && grid.dataset.season === this.simSeason) {
+      grid.querySelectorAll('.cal-day-cell').forEach(cell => {
+        const cellDay = parseInt(cell.dataset.day, 10);
+        cell.classList.toggle('active', cellDay === this.simDay);
+      });
+      return;
+    }
+
+    grid.dataset.season = this.simSeason;
+    let html = '';
+
+    for (let day = 1; day <= 28; day++) {
+      const dowName = this.getSimDayName(day);
+      const isActive = (day === this.simDay);
+
+      // Check NPC birthdays in this season
+      const bdayNpcs = this.npcs.filter(n => n.birthday && n.birthday.season === this.simSeason && n.birthday.day === day);
+
+      // Check festival event in this season
+      const evt = this.calendarEvents[this.simSeason]?.[day];
+      const isFest = evt && evt.type === 'festival';
+      const hasBday = bdayNpcs.length > 0;
+
+      const classes = ['cal-day-cell'];
+      if (isActive) classes.push('active');
+      if (hasBday) classes.push('has-bday');
+      if (isFest) classes.push('has-fest');
+
+      let tooltipParts = [`Ngày ${day} (${dowName})`];
+      if (hasBday) {
+        const names = bdayNpcs.map(n => `Sinh nhật ${n.name}`).join(', ');
+        tooltipParts.push(`🎂 ${names}`);
+      }
+      if (isFest) {
+        tooltipParts.push(`${evt.icon || '🎉'} ${evt.name}`);
+      }
+
+      let contentMarkup = '';
+      if (hasBday) {
+        bdayNpcs.forEach(n => {
+          contentMarkup += `
+            <div class="cal-bday-wrap" title="Sinh nhật ${n.name} (${n.nameEn || ''})">
+              <img src="${n.avatar}" alt="${n.name}" class="cal-avatar-img" loading="lazy" />
+              <span class="cal-cake-badge" title="Sinh nhật">🎂</span>
+            </div>
+          `;
+        });
+      }
+
+      if (isFest) {
+        contentMarkup += `<span class="cal-fest-badge" title="${evt.name}">${evt.icon || '🎉'}</span>`;
+      }
+
+      html += `
+        <button class="${classes.join(' ')}"
+                data-day="${day}"
+                type="button"
+                title="${tooltipParts.join(' • ')}"
+                aria-label="Ngày ${day} (${dowName})">
+          <span class="cal-day-num">${day}</span>
+          ${contentMarkup}
+        </button>
+      `;
+    }
+
+    grid.innerHTML = html;
+
+    // Attach click listeners to day cells
+    grid.querySelectorAll('.cal-day-cell').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const targetDay = parseInt(e.currentTarget.dataset.day, 10);
+        this.setSimDay(targetDay);
+        this.playTone('click');
+      });
+    });
+  }
+
   updateSimDateDisplay() {
     const simDayTitle = document.getElementById('simDayTitle');
     const simWeekTag = document.getElementById('simWeekTag');
-    const simDaySlider = document.getElementById('simDaySlider');
     const simEventBanner = document.getElementById('simEventBanner');
     const simEventIcon = document.getElementById('simEventIcon');
     const simEventText = document.getElementById('simEventText');
 
     const dowName = this.getSimDayName(this.simDay);
-    const dowIdx = this.getSimDayOfWeek(this.simDay);
     const weekNum = Math.ceil(this.simDay / 7);
 
     if (simDayTitle) {
@@ -1124,36 +1159,34 @@ class StardewWikiApp {
     if (simWeekTag) {
       simWeekTag.textContent = `Tuần ${weekNum}`;
     }
-    if (simDaySlider) {
-      simDaySlider.value = this.simDay;
-    }
 
-    // Update weekday buttons
-    document.querySelectorAll('#simWeekdayBtns .sim-weekday-btn').forEach(btn => {
-      const bDow = parseInt(btn.dataset.dow, 10);
-      btn.classList.toggle('active', bDow === dowIdx);
+    // Update active highlight on 4x7 calendar grid
+    document.querySelectorAll('#stardewCalendarGrid .cal-day-cell').forEach(cell => {
+      const cellDay = parseInt(cell.dataset.day, 10);
+      cell.classList.toggle('active', cellDay === this.simDay);
     });
 
-    // Update week buttons
-    document.querySelectorAll('.quick-week-btn').forEach(btn => {
-      const bWeek = parseInt(btn.dataset.week, 10);
-      btn.classList.toggle('active', bWeek === weekNum);
-    });
-
-    // Check calendar events
+    // Check calendar events and NPC birthdays for current simulated day
+    const bdayNpcs = this.npcs.filter(n => n.birthday && n.birthday.season === this.simSeason && n.birthday.day === this.simDay);
     const evt = this.calendarEvents[this.simSeason]?.[this.simDay];
-    if (evt && simEventBanner && simEventIcon && simEventText) {
-      simEventBanner.style.display = 'flex';
-      simEventIcon.textContent = evt.icon || '🎉';
-      if (evt.type === 'festival') {
-        simEventText.textContent = `${evt.name} - ${evt.time} (${evt.loc})`;
-      } else if (evt.type === 'birthday') {
+
+    if (simEventBanner && simEventIcon && simEventText) {
+      if (evt && evt.type === 'festival') {
+        simEventBanner.style.display = 'flex';
+        simEventIcon.textContent = evt.icon || '🎉';
+        simEventText.textContent = `${evt.name} - ${evt.time} (${evt.loc}) - ${evt.desc || ''}`;
+      } else if (bdayNpcs.length > 0) {
+        simEventBanner.style.display = 'flex';
+        simEventIcon.textContent = '🎂';
+        const names = bdayNpcs.map(n => n.name).join(' & ');
+        simEventText.textContent = `Hôm nay là Sinh nhật ${names}! (Tặng quà yêu thích x8 điểm tình bạn ❤️ - 640 điểm)`;
+      } else if (evt && evt.type === 'birthday') {
+        simEventBanner.style.display = 'flex';
+        simEventIcon.textContent = '🎂';
         simEventText.textContent = `Hôm nay là Sinh nhật ${evt.name}! (Tặng quà x8 điểm tình bạn ❤️)`;
       } else {
-        simEventText.textContent = evt.name || evt.title;
+        simEventBanner.style.display = 'none';
       }
-    } else if (simEventBanner) {
-      simEventBanner.style.display = 'none';
     }
   }
 
@@ -1241,6 +1274,7 @@ class StardewWikiApp {
     const grid = document.getElementById('npcsGrid');
     if (!grid) return;
 
+    this.renderCalendarGrid();
     this.updateSimDateDisplay();
 
     const currentHour = this.simTime;

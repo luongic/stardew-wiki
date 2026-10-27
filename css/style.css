@@ -1559,137 +1559,140 @@ button, input, select, textarea {
   font-size: 1.15rem;
 }
 
-/* Weekday Buttons */
-.sim-weekdays-bar {
+/* STARDEW VALLEY 4x7 CALENDAR GRID */
+.sim-calendar-sub {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.stardew-calendar-wrap {
+  background: #fdf6e6;
+  border: 2px solid var(--parchment-border);
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.stardew-calendar-dow-header {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 4px;
+  margin-bottom: 5px;
 }
 
-.sim-weekday-btn {
-  background: #f7eed8;
-  border: 1.5px solid var(--parchment-border);
-  color: var(--wood-dark);
-  border-radius: 6px;
-  padding: 5px 2px;
+.stardew-calendar-dow-header span {
+  text-align: center;
+  font-family: var(--font-heading);
   font-size: 0.82rem;
   font-weight: 700;
-  cursor: pointer;
-  text-align: center;
-  transition: all 0.15s ease;
-}
-
-.sim-weekday-btn:hover {
-  background: #eedcb7;
-}
-
-.sim-weekday-btn.active {
-  background: var(--gold-dark);
-  color: #fff;
-  border-color: var(--wood-dark);
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
-}
-
-/* Day Slider & Stepper */
-.sim-day-slider-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.sim-step-btn {
-  width: 28px;
-  height: 28px;
-  background: #f7eed8;
-  border: 1.5px solid var(--parchment-border);
   color: var(--wood-dark);
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.85rem;
-  font-weight: bold;
-  flex-shrink: 0;
-  transition: all 0.15s ease;
+  padding: 3px 0;
+  background: rgba(212, 188, 148, 0.35);
+  border-radius: 4px;
 }
 
-.sim-step-btn:hover {
-  background: var(--wood-dark);
-  color: #fff;
+.stardew-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
 }
 
-.sim-day-track {
-  flex: 1;
+.cal-day-cell {
+  background: #fff;
+  border: 1.5px solid var(--parchment-border);
+  border-radius: 6px;
+  min-height: 52px;
+  padding: 4px 3px;
   display: flex;
   flex-direction: column;
-  gap: 3px;
-}
-
-.sim-day-slider {
-  width: 100%;
-  -webkit-appearance: none;
-  appearance: none;
-  height: 8px;
-  background: #e8d8be;
-  border-radius: 4px;
-  outline: none;
-  border: 1px solid var(--parchment-border);
-}
-
-.sim-day-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  background: #e67e22;
-  border: 2px solid var(--wood-dark);
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.25);
-  transition: transform 0.1s;
-}
-
-.sim-day-slider::-webkit-slider-thumb:hover {
-  transform: scale(1.2);
-}
-
-.sim-day-scale {
-  display: flex;
+  align-items: center;
   justify-content: space-between;
-  font-size: 0.72rem;
-  color: var(--wood-light);
-  font-weight: 700;
-  padding: 0 4px;
-}
-
-/* Quick Jump Weeks */
-.sim-quick-weeks {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-
-.quick-week-btn {
-  background: #fdfaf4;
-  border: 1px solid var(--parchment-border);
-  color: var(--wood-light);
-  border-radius: 4px;
-  padding: 3px 8px;
-  font-size: 0.78rem;
-  font-weight: 600;
+  position: relative;
   cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
 }
 
-.quick-week-btn:hover {
-  background: #eedcb7;
+.cal-day-cell:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  border-color: var(--gold-dark);
+  background: #fffdf5;
+  z-index: 5;
+}
+
+.cal-day-cell.active {
+  background: #fff8e7;
+  border: 2.5px solid #d35400;
+  box-shadow: 0 0 10px rgba(211, 84, 0, 0.45), inset 0 0 4px rgba(243, 156, 18, 0.25);
+  transform: scale(1.04);
+  z-index: 6;
+}
+
+.cal-day-num {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
   color: var(--wood-dark);
+  align-self: flex-start;
+  line-height: 1;
 }
 
-.quick-week-btn.active {
-  background: var(--wood-light);
-  color: #fff;
-  border-color: var(--wood-dark);
+.cal-day-cell.active .cal-day-num {
+  color: #c0392b;
+}
+
+.cal-bday-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+
+.cal-avatar-img {
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  border: 1.5px solid #e67e22;
+  background: #fff;
+  object-fit: cover;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+.cal-cake-badge {
+  position: absolute;
+  bottom: -4px;
+  right: -5px;
+  font-size: 0.75rem;
+  line-height: 1;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+}
+
+.cal-fest-badge {
+  font-size: 1.15rem;
+  line-height: 1;
+  margin-top: 2px;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.2));
+  animation: pulseFest 2s infinite ease-in-out;
+}
+
+@keyframes pulseFest {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.cal-day-cell.has-fest {
+  background: #fffbf0;
+  border-color: #f39c12;
+}
+
+.cal-day-cell.has-bday {
+  background: #fff9f5;
+  border-color: #e67e22;
 }
 
 .sim-control-box {
