@@ -1445,16 +1445,222 @@ button, input, select, textarea {
 }
 
 .sim-controls-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sim-top-row {
   display: grid;
   grid-template-columns: auto auto 1fr;
-  gap: 18px;
+  gap: 16px;
   align-items: stretch;
 }
 
-@media (max-width: 900px) {
-  .sim-controls-grid {
+@media (max-width: 1024px) {
+  .sim-top-row {
     grid-template-columns: 1fr;
   }
+}
+
+.sim-calendar-box {
+  background: #fffdf9;
+  border: 2px solid var(--parchment-border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.sim-calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sim-date-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--wood-dark);
+  color: #f7d794;
+  padding: 3px 12px;
+  border-radius: 16px;
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  border: 1px solid var(--gold-dark);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+.sim-week-tag {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  font-size: 0.78rem;
+  padding: 1px 8px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Event Banner */
+.sim-event-banner {
+  background: linear-gradient(135deg, #fff8e7 0%, #fff1c5 100%);
+  border: 1.5px solid #f39c12;
+  border-radius: 8px;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #d35400;
+  animation: pulseGlow 2s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 rgba(243, 156, 18, 0); }
+  50% { box-shadow: 0 0 10px rgba(243, 156, 18, 0.35); }
+}
+
+.sim-event-icon {
+  font-size: 1.15rem;
+}
+
+/* Weekday Buttons */
+.sim-weekdays-bar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.sim-weekday-btn {
+  background: #f7eed8;
+  border: 1.5px solid var(--parchment-border);
+  color: var(--wood-dark);
+  border-radius: 6px;
+  padding: 5px 2px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s ease;
+}
+
+.sim-weekday-btn:hover {
+  background: #eedcb7;
+}
+
+.sim-weekday-btn.active {
+  background: var(--gold-dark);
+  color: #fff;
+  border-color: var(--wood-dark);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Day Slider & Stepper */
+.sim-day-slider-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sim-step-btn {
+  width: 28px;
+  height: 28px;
+  background: #f7eed8;
+  border: 1.5px solid var(--parchment-border);
+  color: var(--wood-dark);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: bold;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+
+.sim-step-btn:hover {
+  background: var(--wood-dark);
+  color: #fff;
+}
+
+.sim-day-track {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.sim-day-slider {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  background: #e8d8be;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid var(--parchment-border);
+}
+
+.sim-day-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #e67e22;
+  border: 2px solid var(--wood-dark);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+  transition: transform 0.1s;
+}
+
+.sim-day-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.sim-day-scale {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--wood-light);
+  font-weight: 700;
+  padding: 0 4px;
+}
+
+/* Quick Jump Weeks */
+.sim-quick-weeks {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.quick-week-btn {
+  background: #fdfaf4;
+  border: 1px solid var(--parchment-border);
+  color: var(--wood-light);
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.quick-week-btn:hover {
+  background: #eedcb7;
+  color: var(--wood-dark);
+}
+
+.quick-week-btn.active {
+  background: var(--wood-light);
+  color: #fff;
+  border-color: var(--wood-dark);
 }
 
 .sim-control-box {
@@ -1669,6 +1875,26 @@ button, input, select, textarea {
   display: inline-flex;
   align-items: center;
   gap: 4px;
+}
+
+.birthday-live-badge {
+  background: linear-gradient(135deg, #ff7675 0%, #d63031 100%);
+  color: #fff;
+  border: 1.5px solid #ffeaa7;
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(214, 48, 49, 0.4);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  animation: bounceBirthday 1.6s infinite ease-in-out;
+}
+
+@keyframes bounceBirthday {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
 }
 
 .npc-live-loc-banner {

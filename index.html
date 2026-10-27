@@ -212,27 +212,82 @@
         </div>
 
         <div class="sim-controls-grid">
-          <!-- Season Selector -->
-          <div class="sim-control-box">
-            <div class="sim-control-label">MÙA TRONG NĂM:</div>
-            <div class="sim-btn-group" id="simSeasonBtns">
-              <button class="sim-btn active" data-season="spring">🌸 Xuân</button>
-              <button class="sim-btn" data-season="summer">☀️ Hạ</button>
-              <button class="sim-btn" data-season="fall">🍂 Thu</button>
-              <button class="sim-btn" data-season="winter">❄️ Đông</button>
+          <!-- Top Row: Season, Weather, Calendar Day & Weekday -->
+          <div class="sim-top-row">
+            <!-- Season Selector -->
+            <div class="sim-control-box sim-season-box">
+              <div class="sim-control-label">MÙA TRONG NĂM:</div>
+              <div class="sim-btn-group" id="simSeasonBtns">
+                <button class="sim-btn active" data-season="spring">🌸 Xuân</button>
+                <button class="sim-btn" data-season="summer">☀️ Hạ</button>
+                <button class="sim-btn" data-season="fall">🍂 Thu</button>
+                <button class="sim-btn" data-season="winter">❄️ Đông</button>
+              </div>
+            </div>
+
+            <!-- Weather Selector -->
+            <div class="sim-control-box sim-weather-box">
+              <div class="sim-control-label">THỜI TIẾT:</div>
+              <div class="sim-btn-group" id="simWeatherBtns">
+                <button class="sim-btn active" data-weather="sunny">☀️ Nắng Đẹp</button>
+                <button class="sim-btn" data-weather="rainy">🌧️ Trời Mưa</button>
+              </div>
+            </div>
+
+            <!-- Calendar: Day of Season (1-28) & Day of Week -->
+            <div class="sim-control-box sim-calendar-box">
+              <div class="sim-calendar-header">
+                <span class="sim-control-label">LỊCH NGÀY TRONG MÙA & THỨ:</span>
+                <div class="sim-date-badge" id="simDateDisplay">
+                  <span id="simDayTitle">Ngày 6 (Thứ Bảy)</span>
+                  <span class="sim-week-tag" id="simWeekTag">Tuần 1</span>
+                </div>
+              </div>
+
+              <!-- Special Event / Festival / Birthday Alert Banner -->
+              <div class="sim-event-banner" id="simEventBanner" style="display: none;">
+                <span class="sim-event-icon" id="simEventIcon">🎉</span>
+                <span class="sim-event-text" id="simEventText">Lễ hội</span>
+              </div>
+
+              <!-- Day of Week selector buttons -->
+              <div class="sim-weekdays-bar" id="simWeekdayBtns">
+                <button class="sim-weekday-btn" data-dow="0">Thứ 2</button>
+                <button class="sim-weekday-btn" data-dow="1">Thứ 3</button>
+                <button class="sim-weekday-btn" data-dow="2">Thứ 4</button>
+                <button class="sim-weekday-btn" data-dow="3">Thứ 5</button>
+                <button class="sim-weekday-btn" data-dow="4">Thứ 6</button>
+                <button class="sim-weekday-btn active" data-dow="5">Thứ 7</button>
+                <button class="sim-weekday-btn" data-dow="6">Chủ Nhật</button>
+              </div>
+
+              <!-- Day Slider & Stepper Row -->
+              <div class="sim-day-slider-row">
+                <button class="sim-step-btn" id="prevDayBtn" title="Lùi 1 ngày">◀</button>
+                <div class="sim-day-track">
+                  <input type="range" id="simDaySlider" min="1" max="28" value="6" step="1" class="sim-day-slider">
+                  <div class="sim-day-scale">
+                    <span>1</span>
+                    <span>7</span>
+                    <span>14</span>
+                    <span>21</span>
+                    <span>28</span>
+                  </div>
+                </div>
+                <button class="sim-step-btn" id="nextDayBtn" title="Tiến 1 ngày">▶</button>
+              </div>
+
+              <!-- Quick Jump Weeks -->
+              <div class="sim-quick-weeks">
+                <button class="quick-week-btn active" data-week="1">Tuần 1 (1-7)</button>
+                <button class="quick-week-btn" data-week="2">Tuần 2 (8-14)</button>
+                <button class="quick-week-btn" data-week="3">Tuần 3 (15-21)</button>
+                <button class="quick-week-btn" data-week="4">Tuần 4 (22-28)</button>
+              </div>
             </div>
           </div>
 
-          <!-- Weather Selector -->
-          <div class="sim-control-box">
-            <div class="sim-control-label">THỜI TIẾT:</div>
-            <div class="sim-btn-group" id="simWeatherBtns">
-              <button class="sim-btn active" data-weather="sunny">☀️ Nắng Đẹp</button>
-              <button class="sim-btn" data-weather="rainy">🌧️ Trời Mưa</button>
-            </div>
-          </div>
-
-          <!-- Time Controller -->
+          <!-- Bottom Row: Time Controller -->
           <div class="sim-control-box sim-time-box">
             <div class="sim-time-header">
               <span class="sim-control-label">THỜI GIAN TRONG NGÀY:</span>
@@ -244,11 +299,12 @@
               <span class="slider-boundary">02:00 AM</span>
             </div>
             <div class="sim-quick-times">
+              <button class="quick-time-btn" data-time="6">06:00 AM</button>
               <button class="quick-time-btn" data-time="9">09:00 AM</button>
               <button class="quick-time-btn active" data-time="12">12:00 PM</button>
-              <button class="quick-time-btn" data-time="15.5">03:30 PM</button>
+              <button class="quick-time-btn" data-time="16.5">04:30 PM</button>
               <button class="quick-time-btn" data-time="19">07:00 PM</button>
-              <button class="quick-time-btn" data-time="22">10:00 PM</button>
+              <button class="quick-time-btn" data-time="23">11:00 PM</button>
               <button class="sim-play-btn" id="simPlayBtn" title="Tự động tua dòng thời gian">▶️ Chạy Tự Động</button>
             </div>
           </div>

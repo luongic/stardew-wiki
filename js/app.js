@@ -5,7 +5,7 @@
 import { RECIPES_DATA } from '../data/recipes-data.js';
 import { QUESTS_DATA } from '../data/quests-data.js';
 import { ITEMS_DATA } from '../data/items-data.js';
-import { NPCS_DATA } from '../data/npcs-data.js';
+import { NPCS_DATA, CALENDAR_EVENTS } from '../data/npcs-data.js';
 import { calculator } from './calculator.js';
 
 class StardewWikiApp {
@@ -14,6 +14,7 @@ class StardewWikiApp {
     this.quests = QUESTS_DATA;
     this.items = ITEMS_DATA;
     this.npcs = NPCS_DATA;
+    this.calendarEvents = CALENDAR_EVENTS || {};
     
     this.currentTab = 'recipes';
     this.recipeFilter = 'all';
@@ -23,6 +24,7 @@ class StardewWikiApp {
     this.simTime = 12; // 12:00 PM default
     this.simSeason = 'spring';
     this.simWeather = 'sunny';
+    this.simDay = 6; // Default to Day 6 (Saturday / Thứ Bảy)
     this.simPlaying = false;
     this.simInterval = null;
     this.searchQuery = '';
@@ -321,6 +323,7 @@ class StardewWikiApp {
         e.currentTarget.classList.add('active');
         this.simSeason = e.currentTarget.dataset.season;
         this.playTone('click');
+        this.updateSimDateDisplay();
         this.render();
       });
     });
@@ -333,6 +336,52 @@ class StardewWikiApp {
         this.simWeather = e.currentTarget.dataset.weather;
         this.playTone('click');
         this.render();
+      });
+    });
+
+    // NPC Schedule Simulator: Day Slider
+    const simDaySlider = document.getElementById('simDaySlider');
+    if (simDaySlider) {
+      simDaySlider.addEventListener('input', (e) => {
+        this.setSimDay(parseInt(e.target.value, 10));
+      });
+    }
+
+    // NPC Schedule Simulator: Stepper Buttons (Prev / Next Day)
+    const prevDayBtn = document.getElementById('prevDayBtn');
+    if (prevDayBtn) {
+      prevDayBtn.addEventListener('click', () => {
+        this.setSimDay(this.simDay - 1);
+        this.playTone('click');
+      });
+    }
+    const nextDayBtn = document.getElementById('nextDayBtn');
+    if (nextDayBtn) {
+      nextDayBtn.addEventListener('click', () => {
+        this.setSimDay(this.simDay + 1);
+        this.playTone('click');
+      });
+    }
+
+    // NPC Schedule Simulator: Weekday Buttons (Thứ 2 -> Chủ Nhật)
+    document.querySelectorAll('#simWeekdayBtns .sim-weekday-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const targetDow = parseInt(e.currentTarget.dataset.dow, 10);
+        const currentWeek = Math.ceil(this.simDay / 7);
+        const targetDay = (currentWeek - 1) * 7 + 1 + targetDow;
+        this.setSimDay(targetDay);
+        this.playTone('click');
+      });
+    });
+
+    // NPC Schedule Simulator: Quick Week Jump Buttons
+    document.querySelectorAll('.quick-week-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const targetWeek = parseInt(e.currentTarget.dataset.week, 10);
+        const currentDow = this.getSimDayOfWeek(this.simDay);
+        const targetDay = (targetWeek - 1) * 7 + 1 + currentDow;
+        this.setSimDay(targetDay);
+        this.playTone('click');
       });
     });
 
@@ -1003,10 +1052,89 @@ class StardewWikiApp {
     return `${h12Str}:${minStr} ${period} (${phase})`;
   }
 
-  getNpcLocationAt(npc, targetHour, weather = 'sunny') {
-    const scheduleList = (weather === 'rainy' && npc.schedule.rainy && npc.schedule.rainy.length > 0)
-      ? npc.schedule.rainy
-      : (npc.schedule.sunny || []);
+  setSimDay(day) {
+    day = Math.max(1, Math.min(28, day));
+    this.simDay = day;
+    this.updateSimDateDisplay();
+    this.render();
+  }
+
+  getSimDayOfWeek(day = this.simDay) {
+    return (day - 1) % 7; // 0: Thứ Hai, ..., 5: Thứ Bảy, 6: Chủ Nhật
+  }
+
+  getSimDayName(day = this.simDay) {
+    const names = ['Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy', 'Chủ Nhật'];
+    return names[this.getSimDayOfWeek(day)];
+  }
+
+  getSimDayKey(day = this.simDay) {
+    const keys = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+    return keys[this.getSimDayOfWeek(day)];
+  }
+
+  updateSimDateDisplay() {
+    const simDayTitle = document.getElementById('simDayTitle');
+    const simWeekTag = document.getElementById('simWeekTag');
+    const simDaySlider = document.getElementById('simDaySlider');
+    const simEventBanner = document.getElementById('simEventBanner');
+    const simEventIcon = document.getElementById('simEventIcon');
+    const simEventText = document.getElementById('simEventText');
+
+    const dowName = this.getSimDayName(this.simDay);
+    const dowIdx = this.getSimDayOfWeek(this.simDay);
+    const weekNum = Math.ceil(this.simDay / 7);
+
+    if (simDayTitle) {
+      simDayTitle.textContent = `Ngày ${this.simDay} (${dowName})`;
+    }
+    if (simWeekTag) {
+      simWeekTag.textContent = `Tuần ${weekNum}`;
+    }
+    if (simDaySlider) {
+      simDaySlider.value = this.simDay;
+    }
+
+    // Update weekday buttons
+    document.querySelectorAll('#simWeekdayBtns .sim-weekday-btn').forEach(btn => {
+      const bDow = parseInt(btn.dataset.dow, 10);
+      btn.classList.toggle('active', bDow === dowIdx);
+    });
+
+    // Update week buttons
+    document.querySelectorAll('.quick-week-btn').forEach(btn => {
+      const bWeek = parseInt(btn.dataset.week, 10);
+      btn.classList.toggle('active', bWeek === weekNum);
+    });
+
+    // Check calendar events
+    const evt = this.calendarEvents[this.simSeason]?.[this.simDay];
+    if (evt && simEventBanner && simEventIcon && simEventText) {
+      simEventBanner.style.display = 'flex';
+      simEventIcon.textContent = evt.icon || '🎉';
+      if (evt.type === 'festival') {
+        simEventText.textContent = `${evt.name} - ${evt.time} (${evt.loc})`;
+      } else if (evt.type === 'birthday') {
+        simEventText.textContent = `Hôm nay là Sinh nhật ${evt.name}! (Tặng quà x8 điểm tình bạn ❤️)`;
+      } else {
+        simEventText.textContent = evt.name || evt.title;
+      }
+    } else if (simEventBanner) {
+      simEventBanner.style.display = 'none';
+    }
+  }
+
+  getNpcLocationAt(npc, targetHour, weather = 'sunny', season = this.simSeason, day = this.simDay) {
+    const dayKey = this.getSimDayKey(day);
+
+    let scheduleList = null;
+    if (weather === 'rainy' && npc.schedule.rainy && npc.schedule.rainy.length > 0) {
+      scheduleList = npc.schedule.rainy;
+    } else if (npc.schedule[dayKey] && npc.schedule[dayKey].length > 0) {
+      scheduleList = npc.schedule[dayKey];
+    } else {
+      scheduleList = npc.schedule.sunny || [];
+    }
       
     if (!scheduleList || scheduleList.length === 0) {
       return {
@@ -1080,6 +1208,8 @@ class StardewWikiApp {
     const grid = document.getElementById('npcsGrid');
     if (!grid) return;
 
+    this.updateSimDateDisplay();
+
     const currentHour = this.simTime;
     const weather = this.simWeather;
     const season = this.simSeason;
@@ -1133,13 +1263,16 @@ class StardewWikiApp {
   }
 
   createNpcCardHtml(npc, currentHour, weather, season) {
-    const curLoc = this.getNpcLocationAt(npc, currentHour, weather);
+    const curLoc = this.getNpcLocationAt(npc, currentHour, weather, season, this.simDay);
     const categoryLabels = {
       bachelorette: '💍 Độc Thân Nữ',
       bachelor: '🎩 Độc Thân Nam',
       town: '🏡 Dân Làng Pelican',
       special: '✨ Đặc Biệt'
     };
+
+    const isBdayToday = (npc.birthday.season === this.simSeason && npc.birthday.day === this.simDay);
+    const dowName = this.getSimDayName(this.simDay);
 
     return `
       <div class="stardew-card npc-card" data-id="${npc.id}" style="cursor: pointer;">
@@ -1159,10 +1292,16 @@ class StardewWikiApp {
         </div>
 
         <div class="card-body">
-          <div class="item-meta-badges" style="margin-bottom: 10px;">
-            <span class="npc-bday-badge">
-              🎂 ${npc.birthday.seasonText} Ngày ${npc.birthday.day}
-            </span>
+          <div class="item-meta-badges" style="margin-bottom: 10px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center;">
+            ${isBdayToday ? `
+              <span class="birthday-live-badge">
+                🎂 HÔM NAY SINH NHẬT! (+x8 Tim)
+              </span>
+            ` : `
+              <span class="npc-bday-badge">
+                🎂 ${npc.birthday.seasonText} Ngày ${npc.birthday.day}
+              </span>
+            `}
             <span class="recipe-sub-pill" style="background: #eef2f7; color: #2c3e50; border-color: #cbd5e0;">
               📍 ${npc.residence.split('(')[0].trim()}
             </span>
@@ -1172,7 +1311,7 @@ class StardewWikiApp {
           <div class="npc-live-loc-banner">
             <div class="live-dot-pulse"></div>
             <div class="live-loc-content">
-              <div class="live-time-tag">VỊ TRÍ HIỆN TẠI: ${curLoc.locationShort}</div>
+              <div class="live-time-tag">${dowName} • ${curLoc.time} (${curLoc.locationShort}):</div>
               <div class="live-loc-desc">${curLoc.location}</div>
             </div>
           </div>
@@ -1554,7 +1693,8 @@ class StardewWikiApp {
         special: '✨ Nhân Vật Đặc Biệt'
       };
 
-      const curLoc = this.getNpcLocationAt(npc, this.simTime, this.simWeather);
+      const dowName = this.getSimDayName(this.simDay);
+      const curLoc = this.getNpcLocationAt(npc, this.simTime, this.simWeather, this.simSeason, this.simDay);
 
       modalBody.innerHTML = `
         <div style="display: flex; align-items: center; gap: 18px; margin-bottom: 20px;">
@@ -1604,7 +1744,7 @@ class StardewWikiApp {
         <div style="background: #fdfaf3; border: 2px solid #27ae60; border-radius: 10px; padding: 12px 16px; margin-bottom: 20px;">
           <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
             <div class="live-dot-pulse"></div>
-            <strong style="color: #1e8449; font-size: 0.95rem;">VỊ TRÍ THEO MỐC GIỜ ĐANG CHỌN (${this.formatSimHour(this.simTime)}):</strong>
+            <strong style="color: #1e8449; font-size: 0.95rem;">VỊ TRÍ THEO THỜI ĐIỂM CHỌN (${dowName}, Ngày ${this.simDay} - ${this.formatSimHour(this.simTime)}):</strong>
           </div>
           <div style="font-size: 1rem; color: var(--text-main); font-weight: bold;">
             📍 ${curLoc.locationShort}
@@ -1716,6 +1856,30 @@ class StardewWikiApp {
                 `).join('')}
               </ul>
             </div>
+
+            <!-- Day of Week Specific Schedules (Saturday, Sunday, Friday, Tuesday, etc.) -->
+            ${[
+              { key: 'saturday', title: '🎣 Lịch Trình Thứ Bảy (Cuối Tuần)', bg: '#fef9e7', border: '#f9e79f', text: '#b7950b' },
+              { key: 'sunday', title: '☀️ Lịch Trình Chủ Nhật', bg: '#fefde8', border: '#fef08a', text: '#a16207' },
+              { key: 'friday', title: '🍻 Lịch Trình Tối Thứ Sáu (Saloon Night)', bg: '#f5f3ff', border: '#ddd6fe', text: '#6d28d9' },
+              { key: 'tuesday', title: '🏃‍♀️ Lịch Trình Thứ Ba (Lớp Aerobic / Bác Sĩ)', bg: '#ecfdf5', border: '#a7f3d0', text: '#047857' },
+              { key: 'wednesday', title: '📚 Lịch Trình Thứ Tư (Tiệm Nghỉ / Thư Viện)', bg: '#fff7ed', border: '#fed7aa', text: '#c2410c' },
+              { key: 'thursday', title: '🩺 Lịch Trình Thứ Năm', bg: '#f0fdfa', border: '#99f6e4', text: '#0f766e' },
+              { key: 'monday', title: '🛍️ Lịch Trình Thứ Hai', bg: '#f8fafc', border: '#e2e8f0', text: '#475569' }
+            ].filter(d => npc.schedule[d.key] && npc.schedule[d.key].length > 0).map(d => `
+              <div style="background: ${d.bg}; border: 1px solid ${d.border}; border-radius: 8px; padding: 12px;">
+                <div style="font-weight: 700; color: ${d.text}; font-size: 0.95rem; margin-bottom: 8px;">
+                  ${d.title}
+                </div>
+                <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.9rem;">
+                  ${npc.schedule[d.key].map(s => `
+                    <li style="border-bottom: 1px dashed rgba(0,0,0,0.1); padding-bottom: 6px;">
+                      <strong style="color: var(--wood-dark);">${s.time}:</strong> ${s.location}
+                    </li>
+                  `).join('')}
+                </ul>
+              </div>
+            `).join('')}
           </div>
 
           <!-- Special Schedules -->
