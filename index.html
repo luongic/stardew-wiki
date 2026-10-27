@@ -57,12 +57,19 @@
           </div>
         </div>
 
+        <div class="hero__bar">
         <div class="hero__controls">
           <button class="seg-btn" type="button" data-action="set-season" data-season="spring" title="Không gian Mùa Xuân">🌸 Xuân</button>
           <button class="seg-btn" type="button" data-action="set-season" data-season="summer" title="Không gian Mùa Hạ">☀️ Hạ</button>
           <button class="seg-btn" type="button" data-action="set-season" data-season="fall" title="Không gian Mùa Thu">🍁 Thu</button>
           <button class="seg-btn" type="button" data-action="set-season" data-season="winter" title="Không gian Mùa Đông">❄️ Đông</button>
           <button class="seg-btn" type="button" id="audioToggleBtn" data-action="toggle-audio" title="Bật/Tắt hiệu ứng âm thanh">🔊 Âm Thanh: Bật</button>
+        </div>
+
+        <button class="btn btn--coffee" type="button" data-action="open-modal" data-modal="coffeeModal">
+          <img src="assets/icons/coffee.png" alt="" class="coffee-cup pixel-img">
+          <span>Buy me a coffee</span>
+        </button>
         </div>
       </div>
     </header>
@@ -363,6 +370,8 @@
         <a href="https://www.stardewvalley.net/" target="_blank" rel="noopener">ConcernedApe</a>.
       </p>
       <p class="footer__small">Hỗ trợ cập nhật đầy đủ phiên bản 1.6+ (Bait Maker, Fish Smoker, Dehydrator, Raccoon Quests, Mastery Cave...).</p>
+      <p class="footer__share">Nếu thấy Cẩm Nang hữu ích, hãy chia sẻ cho bạn bè và cùng <a href="https://github.com/luongic/stardew-wiki/issues" target="_blank" rel="noopener">đóng góp</a> với mình nhé!</p>
+      <p class="footer__love">from <a href="https://luongic.github.io/mever/" target="_blank" rel="noopener">luongic</a> with love <img src="assets/pixel-heart.svg" alt="" class="pixel-heart"></p>
     </footer>
   </div>
 
@@ -514,6 +523,30 @@
       <div class="modal__foot">
         <button class="btn btn--purple btn--lg" type="button" data-close-modal>Đã Hiểu, Đóng Cửa Sổ!</button>
       </div>
+    </div>
+  </div>
+
+  <!-- ======= BUY ME A COFFEE ======= -->
+  <div class="modal" id="coffeeModal" hidden>
+    <div class="modal__box modal__box--coffee" role="dialog" aria-modal="true" aria-labelledby="coffeeModalTitle">
+      <button class="modal-close-btn" type="button" data-close-modal aria-label="Đóng cửa sổ">✕</button>
+      <h2 class="coffee-title" id="coffeeModalTitle">
+        <img src="assets/icons/coffee.png" alt="" class="pixel-img">
+        Buy me a coffee
+        <img src="assets/icons/triple_shot_espresso.png" alt="" class="pixel-img">
+      </h2>
+      <!-- Decorations sit on the wooden frame and the centre badge only; the white
+           quiet zone around the code is left untouched so it still scans. -->
+      <div class="qr-frame">
+        <img src="assets/donate-qr.svg" alt="Mã QR chuyển khoản ủng hộ" class="qr-frame__code pixel-img">
+        <span class="qr-frame__badge"><img src="assets/icons/coffee.png" alt="" class="pixel-img"></span>
+        <img src="assets/icons/cookie.png" alt="" class="qr-frame__corner qr-frame__corner--tl pixel-img">
+        <img src="assets/icons/pink_cake.png" alt="" class="qr-frame__corner qr-frame__corner--tr pixel-img">
+        <img src="assets/icons/stardrop.png" alt="" class="qr-frame__corner qr-frame__corner--bl pixel-img">
+        <img src="assets/icons/chocolate_cake.png" alt="" class="qr-frame__corner qr-frame__corner--br pixel-img">
+      </div>
+      <p class="coffee-hint">Quét mã bằng ứng dụng ngân hàng hoặc MoMo</p>
+      <p class="coffee-thanks">Cảm ơn bạn đã ủng hộ Cẩm Nang! <img src="assets/pixel-heart.svg" alt="" class="pixel-heart"></p>
     </div>
   </div>
 

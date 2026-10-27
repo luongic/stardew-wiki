@@ -446,6 +446,16 @@ code {
   font-size: 1.05rem;
   text-shadow: 2px 2px 0 var(--ink);
 }
+/* Season/audio group on the left, the coffee button pinned to the right */
+.hero__bar {
+  flex-basis: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
 .hero__controls {
   display: flex;
   flex-wrap: wrap;
@@ -455,6 +465,76 @@ code {
   box-shadow: var(--frame);
 }
 .hero__controls .seg-btn { font-size: 0.95rem; }
+
+.btn--coffee {
+  --btn-bg: var(--orange);
+  --btn-fg: var(--ink);
+  padding: 7px 14px;
+  font-size: 1.05rem;
+}
+.coffee-cup { width: 28px; height: 28px; margin: -4px 0; }
+
+/* ==========================================================================
+   BUY ME A COFFEE POPUP
+   ========================================================================== */
+
+.modal__box--coffee {
+  width: min(380px, 100%);
+  text-align: center;
+}
+.coffee-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 1.7rem;
+  color: var(--wood-900);
+  margin: 4px 0 22px;
+}
+.coffee-title img { width: 36px; height: 36px; }
+
+.qr-frame {
+  --qr: 305px; /* 61 modules incl. quiet zone x 5px: whole pixels keep modules crisp */
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+  background: #fff;
+  border: var(--px) solid var(--wood-500);
+  box-shadow: var(--frame), var(--drop);
+}
+.qr-frame__code { display: block; width: var(--qr); height: var(--qr); }
+
+/* Centre badge: covers ~11x11 of the 53x53 data modules (about 4%),
+   well inside what error-correction level Q can recover */
+.qr-frame__badge {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--qr) * 11 / 61);
+  height: calc(var(--qr) * 11 / 61);
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  background: #fff;
+  border: var(--px) solid var(--wood-500);
+  box-shadow: 0 0 0 2px var(--ink);
+}
+.qr-frame__badge img { width: 78%; height: 78%; }
+
+/* Corner treats hang off the wooden frame, outside the quiet zone */
+.qr-frame__corner {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  filter: drop-shadow(2px 2px 0 rgba(43, 20, 8, 0.45));
+}
+.qr-frame__corner--tl { left: -22px; top: -22px; transform: rotate(-12deg); }
+.qr-frame__corner--tr { right: -22px; top: -22px; transform: rotate(10deg); }
+.qr-frame__corner--bl { left: -22px; bottom: -22px; transform: rotate(8deg); }
+.qr-frame__corner--br { right: -22px; bottom: -22px; transform: rotate(-10deg); }
+
+.coffee-hint { margin-top: 20px; font-size: 0.95rem; color: var(--text-muted); }
+.coffee-thanks { margin-top: 4px; font-size: 1rem; color: var(--green-dark); }
 
 /* ==========================================================================
    TABS
@@ -1596,6 +1676,17 @@ code {
 }
 .footer a { color: var(--gold); }
 .footer__small { font-size: 0.82rem; opacity: 0.85; margin-top: 4px; }
+.footer__share { margin-top: 14px; font-size: 1rem; }
+.footer__love { margin-top: 4px; font-size: 1.05rem; }
+
+/* 7x6 pixel heart, scaled by whole pixels (x3) so it stays crisp */
+.pixel-heart {
+  display: inline-block;
+  width: 21px;
+  height: 18px;
+  vertical-align: -3px;
+  image-rendering: pixelated;
+}
 
 /* ==========================================================================
    ANIMATION (stepped, like sprite frames)
@@ -1651,8 +1742,14 @@ code {
 @media (max-width: 600px) {
   html { font-size: 19px; }
   .app { padding: 12px 12px 40px; }
-  .hero { height: 300px; }
-  .hero__overlay { padding: 14px; }
+  .qr-frame { --qr: 244px; } /* 4px per module on narrow screens */
+  .qr-frame__corner { width: 28px; height: 28px; }
+  .coffee-title { font-size: 1.35rem; gap: 6px; white-space: nowrap; }
+  .coffee-title img { width: 28px; height: 28px; }
+  /* Let the hero grow with its wrapped controls instead of clipping them */
+  .hero { height: auto; }
+  .hero__img { position: absolute; inset: 0; }
+  .hero__overlay { position: relative; min-height: 300px; padding: 14px; }
   .hero__title { font-size: 1.9rem; }
   .junimo { width: 48px; height: 48px; }
   .content-grid { grid-template-columns: 1fr; }
