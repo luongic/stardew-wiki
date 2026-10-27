@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 📖 Hướng dẫn đóng góp
+    url: https://github.com/luongic/stardew-wiki/blob/main/CONTRIBUTING.md
+    about: Cách chạy trang, quy ước dữ liệu và cách gửi Pull Request

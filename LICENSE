@@ -1,0 +1,44 @@
+MIT License
+
+Copyright (c) 2026 luongic
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+--------------------------------------------------------------------------------
+SCOPE OF THIS LICENSE / PHẠM VI GIẤY PHÉP
+
+The MIT License above covers the source code of this project only: HTML, CSS,
+JavaScript, and the original artwork drawn for this project (assets/favicon.svg,
+assets/favicon-32.png, assets/apple-touch-icon.png, assets/pixel-heart.svg and
+the pixel Junimo/bundle sprites embedded in the code).
+
+It does NOT cover:
+
+- Stardew Valley game art: item icons in assets/icons/ and villager portraits
+  in assets/portraits/ are the property of ConcernedApe, obtained from the
+  Official Stardew Valley Wiki (https://stardewvalleywiki.com/). They are used
+  here for a non-commercial fan guide and are not relicensed by this project.
+- Stardew Valley names, game data and trademarks, which belong to ConcernedApe.
+- assets/donate-qr.svg, which is the maintainer's personal payment code and
+  must not be reused in other projects.
+
+Giấy phép MIT chỉ áp dụng cho mã nguồn và hình vẽ do dự án tự tạo. Icon vật
+phẩm, chân dung NPC và mọi nội dung thuộc trò chơi Stardew Valley là tài sản
+của ConcernedApe. Mã QR ủng hộ là thông tin cá nhân của người duy trì dự án,
+không được dùng lại.

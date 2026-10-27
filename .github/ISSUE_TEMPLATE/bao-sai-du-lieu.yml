@@ -1,0 +1,39 @@
+name: 🐛 Báo sai dữ liệu
+description: Giá bán, năng lượng, sở thích quà, lịch trình, gói Nhà Cộng Đồng... không đúng với game
+labels: ["dữ liệu"]
+body:
+  - type: dropdown
+    id: tab
+    attributes:
+      label: Tab nào?
+      options:
+        - Công Thức Chế Biến
+        - Từ Điển Vật Phẩm
+        - Dân Làng & NPC
+        - Hướng Dẫn Nhiệm Vụ
+        - Nhà Cộng Đồng
+        - Bảo Tàng
+        - Khác
+    validations:
+      required: true
+  - type: input
+    id: item
+    attributes:
+      label: Mục bị sai
+      placeholder: "VD: Cá Hồi (Salmon), Abigail, Gói Hải Sản..."
+    validations:
+      required: true
+  - type: textarea
+    id: wrong
+    attributes:
+      label: Trang đang ghi gì, đúng phải là gì?
+      placeholder: "VD: Giá bán ghi 100g, đúng là 75g"
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Link nguồn trên Official Stardew Valley Wiki
+      placeholder: https://stardewvalleywiki.com/...
+    validations:
+      required: true

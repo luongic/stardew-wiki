@@ -1,0 +1,19 @@
+name: ✨ Đề xuất tính năng
+description: Ý tưởng tab mới, công cụ mới hoặc cải thiện giao diện
+labels: ["đề xuất"]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Bạn muốn có gì?
+      placeholder: "VD: Tab lịch thu hoạch cây trồng theo mùa"
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Nó giúp gì khi chơi?
+  - type: textarea
+    id: more
+    attributes:
+      label: Hình ảnh, ví dụ hoặc ghi chú thêm

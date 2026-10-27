@@ -1,6 +1,8 @@
 # Cẩm Nang Stardew Valley (Tiếng Việt)
 
-Trang tra cứu tĩnh cho Stardew Valley 1.6: công thức chế biến, từ điển vật phẩm, dân làng và lịch trình NPC, hướng dẫn nhiệm vụ, kế hoạch nguyên liệu và theo dõi tiến độ. Toàn bộ dữ liệu được lưu trong trình duyệt bằng localStorage; không có backend.
+Trang tra cứu tĩnh cho Stardew Valley 1.6: công thức chế biến, từ điển vật phẩm, dân làng và lịch trình NPC, hướng dẫn nhiệm vụ, gói Nhà Cộng Đồng, bảo tàng, kế hoạch nguyên liệu và theo dõi tiến độ. Toàn bộ dữ liệu được lưu trong trình duyệt bằng localStorage; không có backend.
+
+**Xem trang:** https://luongic.github.io/stardew-wiki/
 
 ## Chạy
 
@@ -33,6 +35,14 @@ Markup gọi hành động bằng `data-action="ten-hanh-dong"` cùng các `data
 
 Thứ tự ưu tiên lịch trình (`js/tabs/npcs.js`): lễ hội của thị trấn > ngày mưa > lịch theo thứ > lịch ngày nắng. Lễ hội có `"passive": true` trong `CALENDAR_EVENTS` (Trout Derby, SquidFest, Night Market) không thay đổi lịch của dân làng. Mùa Đông có tuyết thay cho mưa, và ngày lễ hội luôn nắng. Lịch trình trong dữ liệu là bản rút gọn, nên vị trí chỉ mang tính tham khảo.
 
+## Đóng góp
+
+Thấy số liệu sai hay có ý tưởng mới? Mở [Issue](https://github.com/luongic/stardew-wiki/issues) hoặc gửi Pull Request. Cách chạy trang, quy ước dữ liệu và quy trình gửi thay đổi có trong [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## Nguồn dữ liệu
 
-Số liệu (giá bán, năng lượng, sở thích quà, sinh nhật) được đối chiếu với [Official Stardew Valley Wiki](https://stardewvalleywiki.com/). Stardew Valley là tài sản của ConcernedApe.
+Số liệu (giá bán, năng lượng, sở thích quà, sinh nhật) được đối chiếu với [Official Stardew Valley Wiki](https://stardewvalleywiki.com/).
+
+## Giấy phép
+
+Mã nguồn phát hành theo [giấy phép MIT](LICENSE). Icon vật phẩm, chân dung NPC và mọi nội dung thuộc trò chơi Stardew Valley là tài sản của ConcernedApe, không nằm trong giấy phép này. Đây là dự án của người hâm mộ, không liên kết với ConcernedApe.
