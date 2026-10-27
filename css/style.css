@@ -314,6 +314,7 @@ code {
 .badge { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; }
 .badge--v16 { background: var(--teal); }
 .badge--gold { background: var(--gold); }
+.badge--green { background: var(--green); }
 .badge--purple { background: var(--purple); color: #fff; }
 .badge--heart { background: var(--red); color: #fff; }
 .badge--bday {
@@ -982,7 +983,7 @@ code {
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 24px;
   margin-bottom: 28px;
 }
@@ -1130,6 +1131,437 @@ code {
 .luck--bad { background: #fff6dc; border-left-color: var(--gold-dark); }
 .luck--worst { background: #ffe5e0; border-left-color: var(--red); }
 
+/* Shown only when the JS module graph failed to load */
+.load-error {
+  position: fixed;
+  left: 50%;
+  top: 20px;
+  z-index: 300;
+  width: min(640px, calc(100% - 40px));
+  transform: translateX(-50%);
+  padding: 14px 18px;
+  background: #ffe5e0;
+  border: var(--px) solid var(--red);
+  box-shadow: var(--frame), var(--drop);
+}
+.load-error p { margin-top: 6px; font-size: 0.95rem; }
+
+/* ==========================================================================
+   COMMUNITY CENTER: BRANCH MAP
+   Root node -> horizontal rail -> one column per room -> stem of bags.
+   Connectors are plain blocks of wood colour, one "pixel" pair thick.
+   ========================================================================== */
+
+.cc-tree {
+  --branch: calc(var(--px) * 2);
+  --branch-c: var(--wood-700);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cc-root {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 18px;
+  margin-bottom: 30px;
+  background: var(--gold);
+  box-shadow: var(--frame), var(--lift);
+}
+.cc-root::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: calc(100% + var(--px));
+  width: var(--branch);
+  height: 27px;
+  transform: translateX(-50%);
+  background: var(--branch-c);
+}
+.cc-root__icon { font-size: 2rem; }
+.cc-root__title { font-size: 1.4rem; }
+.cc-root__sub { font-size: 0.9rem; color: var(--wood-900); }
+
+.cc-branches {
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.cc-room {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 150px;
+  padding: 26px 6px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* Rail segment across the column; trimmed to the centre on the outer ends */
+.cc-room::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--branch);
+  background: var(--branch-c);
+}
+.cc-room:first-child::before { left: 50%; }
+.cc-room:last-child::before { right: 50%; }
+/* Drop from the rail to the room node */
+.cc-room::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: var(--branch);
+  height: 26px;
+  transform: translateX(-50%);
+  background: var(--branch-c);
+}
+
+.cc-room__node {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 100%;
+  max-width: 170px;
+  padding: 8px 6px;
+  color: var(--text-light);
+  background: var(--wood-700);
+  border: var(--px) solid var(--wood-500);
+  box-shadow: var(--frame), var(--lift);
+  margin-bottom: calc(var(--px) * 2);
+  transition: transform var(--t);
+}
+.cc-room__node:hover { background: var(--wood-500); }
+.cc-room__node:active { transform: translateY(var(--px)); box-shadow: var(--frame), 0 var(--px) 0 0 var(--ink); }
+.cc-room__icon { font-size: 1.6rem; line-height: 1; }
+.cc-room__name { font-size: 1rem; text-align: center; line-height: 1.1; }
+.cc-room__count { font-size: 0.8rem; padding: 0 6px; background: var(--ink); color: var(--gold); }
+.cc-room.is-selected .cc-room__node { background: var(--gold); color: var(--ink); border-color: var(--gold-dark); }
+.cc-room.is-done .cc-room__node { background: var(--green); color: var(--ink); border-color: var(--green-dark); }
+.cc-room.is-done .cc-room__count { color: var(--green); }
+
+/* Stem running down through the bags */
+.cc-room__bundles {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  margin-top: 18px;
+}
+.cc-room__bundles::before {
+  content: '';
+  position: absolute;
+  top: -21px;
+  bottom: 24px;
+  left: 50%;
+  width: var(--branch);
+  transform: translateX(-50%);
+  background: var(--branch-c);
+}
+
+.cc-bag {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 100%;
+  max-width: 150px;
+  padding: 6px 4px 4px;
+  background: var(--parch-50);
+  border: 2px solid var(--parch-300);
+  box-shadow: var(--frame);
+  transition: transform var(--t);
+}
+.cc-bag:hover { transform: translateY(-2px); border-color: var(--wood-500); }
+.cc-bag .bag { width: 40px; height: 40px; }
+.cc-bag__name { font-size: 0.8rem; text-align: center; line-height: 1.05; }
+.cc-bag__count { font-size: 0.75rem; padding: 0 5px; background: var(--parch-200); }
+.cc-bag.is-done { background: #e3f6d6; border-color: var(--green-dark); }
+.cc-bag.is-done .cc-bag__count { background: var(--green); }
+.cc-bag.is-done::after {
+  content: '★';
+  position: absolute;
+  top: 2px;
+  right: 6px;
+  color: var(--gold-dark);
+  font-size: 1.1rem;
+  text-shadow: 1px 1px 0 var(--ink);
+}
+
+.bag { image-rendering: pixelated; flex-shrink: 0; }
+
+/* ==========================================================================
+   COMMUNITY CENTER: ROOMS & BUNDLE SLOTS
+   ========================================================================== */
+
+.room { margin-bottom: 30px; }
+.room-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-bottom: 18px;
+  padding: 10px 16px;
+  color: var(--text-light);
+  background: var(--wood-700);
+  border: var(--px) solid var(--wood-500);
+  box-shadow: var(--frame), var(--drop);
+}
+.room-head.is-done { background: var(--green-dark); border-color: var(--green); }
+.room-head__title { font-size: 1.5rem; text-shadow: 2px 2px 0 var(--ink); }
+.room-head__title .muted { color: var(--parch-200); }
+.room-head__reward { font-size: 0.92rem; color: var(--parch-100); }
+
+.bundle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 26px 24px;
+}
+
+.bundle {
+  display: flex;
+  flex-direction: column;
+  background: var(--parch-50);
+  border: var(--px) solid var(--wood-500);
+  box-shadow: var(--frame), var(--drop), var(--bevel);
+}
+.bundle.is-done { border-color: var(--green-dark); background: #f0fae8; }
+.bundle.is-flash { animation: flash 0.3s steps(2, end) 3; }
+
+.bundle__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: var(--parch-200);
+  border-bottom: var(--px) solid var(--parch-300);
+}
+.bundle.is-done .bundle__head { background: #cfeeb4; }
+.bundle__head .bag { width: 48px; height: 48px; }
+.bundle__titles { flex: 1; min-width: 0; }
+.bundle__title { font-size: 1.25rem; color: var(--wood-900); }
+.bundle__progress { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; text-align: right; }
+
+.bundle__slots {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 12px 8px;
+  padding: 14px;
+}
+
+/* Inventory-style slot: the item sits ghosted until it is ticked */
+.slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+.slot__frame {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  background: var(--parch-200);
+  border: var(--px) solid var(--wood-500);
+  box-shadow: inset var(--px) var(--px) 0 0 rgba(43, 20, 8, 0.18), 0 0 0 2px var(--ink);
+  transition: transform var(--t);
+}
+.slot__frame img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  opacity: 0.4;
+  filter: grayscale(0.7);
+}
+.slot__frame.is-broken img { display: none; }
+.slot:hover .slot__frame { transform: translateY(-2px); background: var(--parch-100); }
+.slot.is-done .slot__frame { background: #cfeeb4; border-color: var(--green-dark); }
+.slot.is-done .slot__frame img { opacity: 1; filter: none; }
+.slot.is-hit .slot__frame { box-shadow: 0 0 0 2px var(--ink), 0 0 0 5px var(--gold); }
+
+.slot__count {
+  position: absolute;
+  right: 2px;
+  bottom: -2px;
+  font-size: 1rem;
+  color: #fff;
+  text-shadow: 1px 0 0 var(--ink), -1px 0 0 var(--ink), 0 1px 0 var(--ink), 0 -1px 0 var(--ink);
+}
+.slot__quality {
+  position: absolute;
+  left: 2px;
+  bottom: -2px;
+  font-size: 1rem;
+  text-shadow: 1px 1px 0 var(--ink);
+}
+.q-silver { color: #d9e2ec; }
+.q-gold { color: var(--gold); }
+.q-iridium { color: #c77dff; }
+.slot__tick {
+  display: none;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  font-size: 0.85rem;
+  background: var(--green);
+  box-shadow: 0 0 0 2px var(--ink);
+}
+.slot.is-done .slot__tick { display: grid; }
+.slot__name { font-size: 0.85rem; line-height: 1.1; }
+.slot__source { font-size: 0.7rem; line-height: 1.15; color: var(--text-muted); }
+
+.bundle__reward {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding: 8px 14px;
+  font-size: 0.92rem;
+  border-top: var(--px) dashed var(--parch-300);
+}
+.bundle__reward-label { color: var(--wood-700); }
+
+/* ==========================================================================
+   MUSEUM
+   ========================================================================== */
+
+.museum-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+  gap: 24px;
+  align-items: start;
+}
+.museum-summary { display: flex; flex-direction: column; gap: 14px; }
+.museum-meter__head { display: flex; justify-content: space-between; font-size: 1rem; margin-bottom: 4px; }
+.museum-meter--main .museum-meter__head { font-size: 1.2rem; }
+.museum-meter--main .progress { height: 24px; }
+
+.reward-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 340px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.reward {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  background: var(--parch-100);
+  border: 2px solid var(--parch-300);
+}
+.reward.is-done { background: #e3f6d6; border-color: var(--green-dark); }
+.reward__state { width: 22px; text-align: center; }
+.reward.is-done .reward__state { color: var(--green-dark); }
+.reward__text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.reward__text strong { font-weight: 400; font-size: 1rem; }
+
+.case { margin-bottom: 30px; }
+.case__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 10px 16px;
+  color: var(--text-light);
+  background: var(--wood-900);
+  border: var(--px) solid var(--wood-700);
+  box-shadow: var(--frame), var(--drop);
+}
+.case__title { font-size: 1.5rem; text-shadow: 2px 2px 0 var(--ink); }
+
+/* Display case: dark wood cabinet, glass-blue pedestal for each piece */
+.case__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 14px;
+  padding: 16px;
+  background: var(--wood-700);
+  border: var(--px) solid var(--wood-500);
+  box-shadow: var(--frame), var(--drop), inset 0 0 0 var(--px) var(--wood-900);
+}
+.case-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 6px;
+  text-align: center;
+  background: var(--parch-50);
+  box-shadow: var(--frame);
+  transition: transform var(--t);
+}
+.case-tile:hover { transform: translateY(-2px); }
+.case-tile__pedestal {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  background: #cfe3ee;
+  border: var(--px) solid #6f8fa3;
+  box-shadow: inset var(--px) var(--px) 0 0 rgba(255, 255, 255, 0.6);
+}
+/* Not yet donated: an empty spot showing only the item's silhouette */
+.case-tile__pedestal img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  filter: brightness(0);
+  opacity: 0.3;
+}
+.case-tile__pedestal.is-broken img { display: none; }
+.case-tile.is-donated { background: #fff3cf; }
+.case-tile.is-donated .case-tile__pedestal { background: #fff8de; border-color: var(--gold-dark); }
+.case-tile.is-donated .case-tile__pedestal img { filter: none; opacity: 1; }
+.case-tile__tick {
+  display: none;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  font-size: 0.85rem;
+  background: var(--green);
+  box-shadow: 0 0 0 2px var(--ink);
+}
+.case-tile.is-donated .case-tile__tick { display: grid; }
+.case-tile__name { font-size: 0.9rem; line-height: 1.1; }
+.case-tile__source {
+  font-size: 0.7rem;
+  line-height: 1.15;
+  color: var(--text-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 /* ==========================================================================
    TOASTS & FOOTER
    ========================================================================== */
@@ -1173,6 +1605,9 @@ code {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-6px); }
 }
+@keyframes flash {
+  50% { box-shadow: var(--frame), 0 0 0 calc(var(--px) * 3) var(--gold); }
+}
 @keyframes blink {
   50% { opacity: 0.45; }
 }
@@ -1203,6 +1638,11 @@ code {
   .sim__top { grid-template-columns: 1fr; }
 }
 
+@media (max-width: 1100px) {
+  .stats-grid { grid-template-columns: repeat(3, 1fr); }
+  .museum-top { grid-template-columns: 1fr; }
+}
+
 @media (max-width: 900px) {
   .planner { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1217,6 +1657,8 @@ code {
   .junimo { width: 48px; height: 48px; }
   .content-grid { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: 1fr; }
+  .bundle-grid { grid-template-columns: 1fr; }
+  .case__grid { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); padding: 10px; }
   .tab { font-size: 0.95rem; padding: 6px 10px; }
   .cal__dow span { font-size: 0.6rem; }
   .cal-cell { min-height: 46px; }

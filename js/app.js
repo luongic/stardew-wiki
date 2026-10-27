@@ -19,6 +19,8 @@ import recipesTab from './tabs/recipes.js';
 import itemsTab from './tabs/items.js';
 import npcsTab from './tabs/npcs.js';
 import questsTab from './tabs/quests.js';
+import bundlesTab from './tabs/bundles.js';
+import museumTab from './tabs/museum.js';
 import plannerTab from './tabs/planner.js';
 import trackerTab from './tabs/tracker.js';
 
@@ -27,7 +29,7 @@ const SEARCH_DEBOUNCE_MS = 150;
 
 export class StardewWikiApp {
   constructor() {
-    this.tabs = [recipesTab, itemsTab, npcsTab, questsTab, plannerTab, trackerTab];
+    this.tabs = [recipesTab, itemsTab, npcsTab, questsTab, bundlesTab, museumTab, plannerTab, trackerTab];
     this.tabById = new Map(this.tabs.map(t => [t.id, t]));
     this.tabByDetailType = new Map(this.tabs.filter(t => t.detailType).map(t => [t.detailType, t]));
 

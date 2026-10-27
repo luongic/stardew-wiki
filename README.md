@@ -9,7 +9,7 @@ npm install
 npm run dev   # http://localhost:3000
 ```
 
-Trang dùng ES modules nên phải mở qua HTTP, không mở trực tiếp `index.html` bằng `file://`.
+Trang dùng ES modules nên phải mở qua HTTP, không mở trực tiếp `index.html` bằng `file://`. Không nên dùng `python3 -m http.server`: server này chỉ giữ 5 kết nối chờ, nên khi trình duyệt tải song song hơn chục module, một vài request bị rớt và trang hiện trống. Khi đó trang sẽ hiện thông báo lỗi.
 
 ## Cấu trúc
 
@@ -19,8 +19,8 @@ css/style.css         Hệ thiết kế pixel (token ở :root)
 js/main.js            Điểm khởi động
 js/app.js             Controller: tab, tìm kiếm, bộ lọc, event delegation
 js/lib/               storage, audio, particles, ui (toast/modal), templates
-js/tabs/              Mỗi tab một module: recipes, items, npcs, quests, planner, tracker
-data/*.js             Dữ liệu công thức, vật phẩm, NPC + lịch sự kiện, nhiệm vụ
+js/tabs/              Mỗi tab một module: recipes, items, npcs, quests, bundles, museum, planner, tracker
+data/*.js             Dữ liệu công thức, vật phẩm, NPC + lịch sự kiện, nhiệm vụ, gói Nhà Cộng Đồng, bảo tàng
 assets/icons/         Icon vật phẩm (48x48 PNG từ Official Wiki)
 assets/portraits/     Chân dung NPC
 ```

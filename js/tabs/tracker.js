@@ -5,8 +5,10 @@
 import { RECIPES_DATA } from '../../data/recipes-data.js';
 import { QUESTS_DATA } from '../../data/quests-data.js';
 import { planner } from './planner.js';
+import { bundleProgress } from './bundles.js';
+import { museumProgress } from './museum.js';
 
-const BACKUP_VERSION = 2;
+const BACKUP_VERSION = 3;
 
 // Every recipe and quest falls into exactly one card, so the cards add up to
 // the tab badges.
@@ -22,21 +24,30 @@ const GROUPS = [
   { icon: '🔮', label: 'Nhiệm Vụ Ẩn & Bí Mật Đã Khám Phá', unit: 'xong', kind: 'quest',
     test: q => q.category === 'secret_hidden' },
   { icon: '🌴', label: 'Đảo Gừng, Đơn Hàng Lớn & Bản 1.6', unit: 'xong', kind: 'quest',
-    test: q => q.category !== 'story' && q.category !== 'secret_hidden' }
+    test: q => q.category !== 'story' && q.category !== 'secret_hidden' },
+  { icon: '🎁', label: 'Gói Nhà Cộng Đồng Đã Hoàn Thành', unit: 'gói',
+    measure: () => bundleProgress.totals() },
+  { icon: '🏛️', label: 'Món Đã Quyên Góp Cho Bảo Tàng', unit: 'món',
+    measure: () => museumProgress.totals() }
 ];
 
-function statCard(app, g) {
+function measure(app, g) {
+  if (g.measure) return g.measure();
   const source = g.kind === 'recipe' ? RECIPES_DATA : QUESTS_DATA;
   const doneSet = g.kind === 'recipe' ? app.completedRecipes : app.completedQuests;
   const all = source.filter(g.test);
-  const done = all.filter(x => doneSet.has(x.id)).length;
-  const pct = all.length ? Math.round((done / all.length) * 100) : 0;
+  return { done: all.filter(x => doneSet.has(x.id)).length, total: all.length };
+}
+
+function statCard(app, g) {
+  const { done, total } = measure(app, g);
+  const pct = total ? Math.round((done / total) * 100) : 0;
   return `
     <div class="stat-card">
       <div class="stat-card__icon" aria-hidden="true">${g.icon}</div>
       <div class="stat-card__value">${pct}%</div>
       <div class="stat-card__label">${g.label}</div>
-      <div class="stat-card__sub">${done} / ${all.length} ${g.unit}</div>
+      <div class="stat-card__sub">${done} / ${total} ${g.unit}</div>
       <div class="progress" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100" aria-label="${g.label}">
         <div class="progress__fill" style="--pct: ${pct}%"></div>
       </div>
@@ -50,7 +61,9 @@ function exportProgress(app) {
     completedRecipes: Array.from(app.completedRecipes),
     completedQuests: Array.from(app.completedQuests),
     plannedItems: planner.items,
-    gatheredMaterials: planner.gathered
+    gatheredMaterials: planner.gathered,
+    bundleSlots: Array.from(bundleProgress.done),
+    museumDonated: Array.from(museumProgress.donated)
   };
   const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
@@ -62,7 +75,8 @@ function exportProgress(app) {
   app.showToast('Đã tải xuống file sao lưu tiến độ!');
 }
 
-// Accepts both this version and the v1 export (which had no gatheredMaterials).
+// Accepts this version and older exports (v1 had no gatheredMaterials, v2 no
+// bundles/museum); missing sections are restored as empty.
 // Unknown ids are dropped so a stale backup can't inflate the counts.
 async function importProgress(app, file) {
   let data;
@@ -89,6 +103,9 @@ async function importProgress(app, file) {
   app.completedQuests = new Set(quests);
   app.saveProgress();
   planner.restore(data.plannedItems || {}, data.gatheredMaterials || {});
+  bundleProgress.restore(Array.isArray(data.bundleSlots) ? data.bundleSlots : []);
+  museumProgress.restore(Array.isArray(data.museumDonated) ? data.museumDonated : []);
+  app.refreshBadges();
   app.render();
   app.sfx.play('complete');
   app.showToast('📤 Đã khôi phục tiến độ từ file sao lưu!');
@@ -114,6 +131,8 @@ export default {
       if (!confirm('CẢNH BÁO: Thao tác này sẽ đặt lại toàn bộ tiến độ đã hoàn thành về 0. Bạn có chắc không?')) return;
       app.completedRecipes.clear();
       app.completedQuests.clear();
+      bundleProgress.restore([]);
+      museumProgress.restore([]);
       app.saveProgress();
       app.render();
       app.showToast('Đã xóa dữ liệu tiến độ');

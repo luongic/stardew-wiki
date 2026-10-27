@@ -77,6 +77,12 @@
       <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="quests">
         📜 <span>Hướng Dẫn Nhiệm Vụ</span> <span class="tab__badge" id="questTabBadge">0/0</span>
       </button>
+      <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="bundles">
+        🎁 <span>Nhà Cộng Đồng</span> <span class="tab__badge" id="bundleTabBadge">0/0</span>
+      </button>
+      <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="museum">
+        🏛️ <span>Bảo Tàng</span> <span class="tab__badge" id="museumTabBadge">0/0</span>
+      </button>
       <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="planner">
         🎒 <span>Kế Hoạch & Tính Nguyên Liệu</span> <span class="tab__badge" id="plannerBadge">0</span>
       </button>
@@ -139,6 +145,15 @@
         <button class="chip" type="button" data-action="filter" data-value="summer">☀️ Sinh Nhật Mùa Hạ</button>
         <button class="chip" type="button" data-action="filter" data-value="fall">🍂 Sinh Nhật Mùa Thu</button>
         <button class="chip" type="button" data-action="filter" data-value="winter">❄️ Sinh Nhật Mùa Đông</button>
+      </div>
+
+      <!-- Room chips are generated from the bundle data -->
+      <div class="chip-group" data-filter-group="bundles" id="bundleRoomChips" hidden></div>
+
+      <div class="chip-group" data-filter-group="museum" hidden>
+        <button class="chip is-active" type="button" data-action="filter" data-value="all">Tất Cả Hiện Vật</button>
+        <button class="chip" type="button" data-action="filter" data-value="artifact">🏺 Cổ Vật (Artifacts)</button>
+        <button class="chip" type="button" data-action="filter" data-value="mineral">💎 Khoáng Sản (Minerals)</button>
       </div>
 
       <!-- Each toggle only shows on the tabs whose data it can filter -->
@@ -259,6 +274,38 @@
       <!-- ======= TAB: QUESTS ======= -->
       <section id="tab-quests" class="tab-panel" role="tabpanel" hidden>
         <div id="questsGrid" class="content-grid" aria-live="polite"></div>
+      </section>
+
+      <!-- ======= TAB: COMMUNITY CENTER BUNDLES ======= -->
+      <section id="tab-bundles" class="tab-panel" role="tabpanel" hidden>
+        <div class="panel">
+          <div class="panel__head">
+            <h2 class="panel__title">🎁 Bản Đồ Gói Quà Nhà Cộng Đồng (Community Center)</h2>
+          </div>
+          <p class="panel__hint">Bấm vào một phòng hoặc một túi Junimo để xem các món cần nộp. Bấm vào ô vật phẩm để đánh dấu đã nộp; gói hoàn thành khi đủ số món yêu cầu.</p>
+          <div id="ccTree"></div>
+        </div>
+        <div id="ccRooms"></div>
+      </section>
+
+      <!-- ======= TAB: MUSEUM ======= -->
+      <section id="tab-museum" class="tab-panel" role="tabpanel" hidden>
+        <div class="museum-top">
+          <div class="panel">
+            <div class="panel__head">
+              <h2 class="panel__title">🏛️ Bảo Tàng & Thư Viện Pelican</h2>
+            </div>
+            <p class="panel__hint">Mang Cổ vật và Khoáng sản tới Gunther để quyên góp. Bấm vào ô trưng bày để đánh dấu đã quyên góp.</p>
+            <div id="museumSummary" class="museum-summary"></div>
+          </div>
+          <div class="panel">
+            <div class="panel__head">
+              <h2 class="panel__title">🎖️ Phần Thưởng Của Gunther</h2>
+            </div>
+            <ul id="museumRewards" class="reward-list"></ul>
+          </div>
+        </div>
+        <div id="museumCases"></div>
       </section>
 
       <!-- ======= TAB: CRAFTING PLANNER ======= -->
@@ -468,6 +515,19 @@
 
   <div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
+  <div class="load-error" id="loadError" role="alert" hidden>
+    <strong>⚠️ Không tải được mã JavaScript của trang.</strong>
+    <p>Một số file bị lỗi khi tải nên danh sách công thức, nhiệm vụ... không hiển thị. Hãy tải lại trang (Cmd/Ctrl + Shift + R).
+       Nếu vẫn lỗi, chạy trang bằng <code>npm run dev</code> thay vì <code>python3 -m http.server</code> (server này hay làm rớt request khi tải nhiều file cùng lúc).</p>
+  </div>
+
   <script type="module" src="js/main.js"></script>
+  <script>
+    // A module that fails to load aborts the whole graph silently; show why
+    // instead of leaving empty grids. main.js sets window.app before `load`.
+    window.addEventListener('load', function () {
+      if (!window.app) document.getElementById('loadError').hidden = false;
+    });
+  </script>
 </body>
 </html>

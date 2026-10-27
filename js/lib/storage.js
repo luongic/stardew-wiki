@@ -10,7 +10,9 @@ export const KEYS = {
   season: 'stardew_wiki_season',
   audio: 'stardew_wiki_audio_enabled',
   planner: 'stardew_wiki_planner',
-  gathered: 'stardew_wiki_gathered_materials'
+  gathered: 'stardew_wiki_gathered_materials',
+  bundles: 'stardew_wiki_bundles',
+  museum: 'stardew_wiki_museum'
 };
 
 export function loadJSON(key, fallback) {

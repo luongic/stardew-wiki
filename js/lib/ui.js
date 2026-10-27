@@ -2,9 +2,13 @@
 // SHARED UI: toasts, modal dialogs and broken-image fallbacks
 // ==========================================================================
 
+const MAX_TOASTS = 3;
+
 export function showToast(message) {
   const container = document.getElementById('toastContainer');
   if (!container) return;
+  // Rapid clicks would stack toasts over the content; keep only the newest few
+  while (container.children.length >= MAX_TOASTS) container.firstElementChild.remove();
   const toast = document.createElement('div');
   toast.className = 'toast';
   toast.innerHTML = `<span aria-hidden="true">✨</span><span>${message}</span>`;
