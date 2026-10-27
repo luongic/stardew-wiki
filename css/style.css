@@ -1422,6 +1422,35 @@ button, input, select, textarea {
   font-size: 0.95rem;
 }
 
+.sim-header-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.btn-oracle-faq {
+  background: linear-gradient(135deg, #4a148c 0%, #6a1b9a 50%, #8e24aa 100%);
+  color: #f3e5f5;
+  border: 2px solid #ce93d8;
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 3px 10px rgba(106, 27, 154, 0.35);
+  transition: all 0.2s ease;
+}
+
+.btn-oracle-faq:hover {
+  transform: translateY(-2px);
+  color: #fff;
+  box-shadow: 0 5px 15px rgba(206, 147, 216, 0.5);
+}
+
 .btn-steam-faq {
   background: linear-gradient(135deg, #171a21 0%, #1b2838 50%, #2a475e 100%);
   color: #c7d5e0;

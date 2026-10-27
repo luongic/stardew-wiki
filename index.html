@@ -205,10 +205,16 @@
               <div class="sim-subtitle">Kéo thanh thời gian hoặc chọn Mùa / Thời tiết để xem vị trí chính xác của từng NPC tại thời điểm đó!</div>
             </div>
           </div>
-          <button class="btn-steam-faq" id="openSteamFaqBtn" title="Kiểm tra thông tin tích hợp Steam">
-            <span style="font-size: 1.25rem;">🎮</span>
-            <span>Xem Vị Trí Qua Steam?</span>
-          </button>
+          <div class="sim-header-actions">
+            <button class="btn-oracle-faq" id="openWeatherLuckBtn" title="Tra cứu quy luật Mưa/Nắng & Kênh Tiên Tri Vận May">
+              <span style="font-size: 1.25rem;">🔮</span>
+              <span>Quy Luật Mưa/Nắng & Vận May?</span>
+            </button>
+            <button class="btn-steam-faq" id="openSteamFaqBtn" title="Kiểm tra thông tin tích hợp Steam">
+              <span style="font-size: 1.25rem;">🎮</span>
+              <span>Xem Vị Trí Qua Steam?</span>
+            </button>
+          </div>
         </div>
 
         <div class="sim-controls-grid">
@@ -523,6 +529,146 @@
 
       <div class="modal-footer" style="margin-top: 18px; text-align: right;">
         <button class="btn-primary" id="gotItSteamBtn" style="padding: 10px 24px; font-size: 1.15rem;">Đã Hiểu, Quay Lại Cẩm Nang!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEATHER & DAILY LUCK EXPLANATION MODAL -->
+  <div class="modal-backdrop" id="weatherLuckModal" role="dialog" aria-modal="true" style="display: none;">
+    <div class="modal-content-box steam-modal-box" style="border-color: #8e24aa;">
+      <button class="modal-close-btn" id="closeWeatherLuckModalBtn" aria-label="Đóng cửa sổ">✕</button>
+      <div class="steam-modal-header" style="border-color: #ce93d8;">
+        <div class="steam-modal-icon" style="background: linear-gradient(135deg, #4a148c 0%, #7b1fa2 100%); border-color: #ba68c8;">🔮</div>
+        <div>
+          <h2 class="steam-modal-title" style="color: #4a148c;">Quy Luật Thời Tiết (Mưa/Nắng) & Vận May (Daily Luck)</h2>
+          <div class="steam-modal-sub">Giải mã chi tiết cơ chế mã nguồn Stardew Valley: Ngày cố định, thuật toán ngẫu nhiên & Kênh Bói Toán TV</div>
+        </div>
+      </div>
+
+      <div class="steam-modal-body">
+        <!-- Q&A Intro -->
+        <div class="steam-q-card" style="border-color: #9c27b0; background: #faf5ff;">
+          <div class="steam-q-label" style="color: #6a1b9a;">❓ CÂU HỎI:</div>
+          <div class="steam-q-text">
+            "Dựa vào một ngày cụ thể có biết ngày hôm đó là ngày mưa hay nắng không? Có biết hôm đó có phải ngày may mắn hay không?"
+          </div>
+        </div>
+
+        <!-- Direct Answer Summary -->
+        <div class="steam-ans-card" style="border-color: #8e24aa; background: #fdf4ff;">
+          <div class="steam-ans-badge" style="color: #7b1fa2;">💡 CÂU TRẢ LỜI NGẮN GỌN & KHOA HỌC:</div>
+          <div class="steam-ans-text" style="line-height: 1.6;">
+            • <strong>Về Thời Tiết:</strong> Có những ngày <strong>CỐ ĐỊNH 100%</strong> (Mọi người chơi đều giống nhau). Các ngày còn lại được sinh ngẫu nhiên theo <em>Game Seed</em> của từng file save.<br>
+            • <strong>Về Vận May (Daily Luck):</strong> Không thể biết trước một ngày ngẫu nhiên nếu <em>không có file Save</em>, nhưng <strong>hoàn toàn biết trước 100%</strong> nếu bạn trích xuất được <em>Game Seed</em> từ file save game của mình!
+          </div>
+        </div>
+
+        <!-- SECTION 1: WEATHER RULES -->
+        <div style="margin-top: 18px; margin-bottom: 22px;">
+          <h3 style="font-family: var(--font-heading); color: #1565c0; font-size: 1.25rem; display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+            <span>🌧️</span> 1. QUY LUẬT THỜI TIẾT (MƯA / NẮNG / BÃO SẤM SÉT)
+          </h3>
+
+          <div style="background: #e3f2fd; border: 1.5px solid #90caf9; border-radius: 8px; padding: 14px; margin-bottom: 12px;">
+            <div style="font-weight: 700; color: #0d47a1; font-size: 0.98rem; margin-bottom: 8px;">
+              📌 CÁC NGÀY CỐ ĐỊNH 100% (Mọi thế giới và mọi người chơi đều như nhau):
+            </div>
+            <ul style="padding-left: 20px; font-size: 0.92rem; color: #1e3a8a; line-height: 1.6;">
+              <li><strong>Xuân Ngày 1 & 2 (Năm 1):</strong> Luôn luôn <strong>NẮNG ĐẸP ☀️</strong> (Ngày mở đầu game).</li>
+              <li><strong>Xuân Ngày 3 (Năm 1):</strong> Luôn luôn <strong>MƯA TO 🌧️</strong> (Ngày mưa đầu tiên ConcernedApe tạo sẵn để người chơi không phải tưới nước và câu cá Da Trơn Catfish).</li>
+              <li><strong>TẤT CẢ CÁC NGÀY LỄ HỘI (Festivals):</strong> 100% luôn luôn <strong>NẮNG ☀️</strong>! Mã nguồn game khóa chặt không bao giờ cho mưa vào các ngày lễ hội (Trứng 13 Xuân, Khiêu Vũ 24 Xuân, Luau 11 Hạ, Hội Chợ 16 Thu, Băng 8 Đông...).</li>
+              <li><strong>Hạ Ngày 13 & Ngày 26 (Năm 1):</strong> Luôn luôn có <strong>BÃO SẤM SÉT ⛈️</strong> (Stormy) để người chơi cắm Cột thu lôi sạc Pin Battery Pack.</li>
+              <li><strong>Toàn bộ Mùa Đông (Winter):</strong> Không bao giờ có mưa thường (trừ khi dùng Bùa Rain Totem), chỉ có <strong>Tuyết Rơi ❄️</strong> hoặc Nắng lạnh.</li>
+              <li><strong>Sự kiện Mưa Xanh (Green Rain - v1.6):</strong> Xảy ra đúng 1 ngày ngẫu nhiên trong Mùa Hạ mỗi năm (rêu phủ kín thị trấn, cây cối biến dị, dân làng tụ tập ở Saloon).</li>
+            </ul>
+          </div>
+
+          <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px; font-size: 0.92rem; color: #334155; line-height: 1.5;">
+            <strong>🎲 Các ngày còn lại được tính như thế nào?</strong><br>
+            Game dùng bộ sinh số ngẫu nhiên theo công thức xác suất của từng mùa (Xuân ~18.3%, Hạ ~12.5%, Thu ~18.3%, Mùa đông tuyết ~20% đầu mùa và ~63% cuối mùa).<br>
+            • <em>Cách xem trước:</em> Bật TV kênh <strong>Dự Báo Thời Tiết (Weather Report)</strong> vào buổi sáng để biết trước 100% thời tiết ngày mai.<br>
+            • <em>Cách ép thời tiết:</em> Chế tạo và dùng <strong>Bùa Gọi Mưa (Rain Totem)</strong> để ép ngày mai chắc chắn phải mưa!
+          </div>
+        </div>
+
+        <!-- SECTION 2: DAILY LUCK RULES -->
+        <div>
+          <h3 style="font-family: var(--font-heading); color: #6a1b9a; font-size: 1.25rem; display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+            <span>🍀</span> 2. CHỈ SỐ MAY MẮN (DAILY LUCK & KÊNH BÓI TOÁN WELWICK)
+          </h3>
+
+          <div style="background: #fff8e7; border: 1.5px solid #f59e0b; border-radius: 8px; padding: 12px; margin-bottom: 12px; font-size: 0.92rem; color: #78350f;">
+            <strong>💡 Bản chất trong mã nguồn game:</strong><br>
+            Mỗi sáng khi thức dậy, game tự động tính toán biến <code>Game1.dailyLuck</code> ngẫu nhiên từ <strong>-0.10 đến +0.10</strong> (số thực). Kênh TV <strong>The Fortune Teller</strong> của bà Welwick sẽ dịch con số này thành 5 thông điệp:
+          </div>
+
+          <!-- 5 Luck Tiers Table -->
+          <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px;">
+            <div style="background: #f0fdf4; border: 1.5px solid #4ade80; border-radius: 8px; padding: 10px 14px;">
+              <div style="font-weight: 700; color: #166534; font-size: 0.95rem;">
+                🌟 RẤT MAY MẮN (Best Luck / Stardrop): Điểm > +0.07
+              </div>
+              <div style="font-size: 0.88rem; color: #15803d; margin-top: 2px;">
+                <em>"Các linh hồn đang rất vui vẻ! Họ sẽ ban phước lành cho mọi người hôm nay."</em><br>
+                ➔ <strong>Lời khuyên:</strong> Ngày vàng để xuống mỏ Skull Cavern! Cực dễ ra cầu thang/hố sâu, rơi nhiều quặng Iridium, kho báu câu cá hiếm, nhặt nhiều vật phẩm chất lượng cao.
+              </div>
+            </div>
+
+            <div style="background: #f0f9ff; border: 1.5px solid #7dd3fc; border-radius: 8px; padding: 10px 14px;">
+              <div style="font-weight: 700; color: #0369a1; font-size: 0.95rem;">
+                ✨ HƠI MAY MẮN (Good Luck): Điểm từ +0.02 đến +0.07
+              </div>
+              <div style="font-size: 0.88rem; color: #0284c7; margin-top: 2px;">
+                <em>"Các linh hồn đang có tâm trạng tốt. Vận may nhỏ bé đang mỉm cười với bạn."</em><br>
+                ➔ <strong>Lời khuyên:</strong> Thích hợp cho việc đi mỏ thông thường, nâng cấp công cụ, mở Geode.
+              </div>
+            </div>
+
+            <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 10px 14px;">
+              <div style="font-weight: 700; color: #475569; font-size: 0.95rem;">
+                ⚖️ TRUNG LẬP (Neutral): Điểm từ -0.02 đến +0.02
+              </div>
+              <div style="font-size: 0.88rem; color: #64748b; margin-top: 2px;">
+                <em>"Các linh hồn hôm nay hoàn toàn trung lập. Cuộc sống nằm trong tay chính bạn."</em><br>
+                ➔ <strong>Lời khuyên:</strong> Tỉ lệ rơi vật phẩm ở mức chuẩn mực.
+              </div>
+            </div>
+
+            <div style="background: #fffbeb; border: 1.5px solid #fcd34d; border-radius: 8px; padding: 10px 14px;">
+              <div style="font-weight: 700; color: #b45309; font-size: 0.95rem;">
+                🌧️ HƠI XUI XẺO (Bad Luck): Điểm từ -0.07 đến -0.02
+              </div>
+              <div style="font-size: 0.88rem; color: #d97706; margin-top: 2px;">
+                <em>"Đây không phải ngày tốt lành. Các linh hồn có vẻ hơi buồn phiền."</em><br>
+                ➔ <strong>Lời khuyên:</strong> Cầu thang trong mỏ ít xuất hiện hơn, quái vật hung hãn hơn.
+              </div>
+            </div>
+
+            <div style="background: #fef2f2; border: 1.5px solid #f87171; border-radius: 8px; padding: 10px 14px;">
+              <div style="font-weight: 700; color: #991b1b; font-size: 0.95rem;">
+                💀 RẤT XUI XẺO (Worst Luck / Dơi Đỏ): Điểm < -0.07
+              </div>
+              <div style="font-size: 0.88rem; color: #b91c1c; margin-top: 2px;">
+                <em>"Các linh hồn vô cùng giận dữ hôm nay! Họ sẽ gây khó khăn cho bạn trên mọi bước đường."</em><br>
+                ➔ <strong>Lời khuyên:</strong> TUYỆT ĐỐI KHÔNG đi Skull Cavern! Quái vật đông và cắn đau, cầu thang cực hiếm. Nên ở nhà chăm sóc gia súc, chặt gỗ, làm đồ thủ công hoặc đi tặng quà dân làng.
+              </div>
+            </div>
+          </div>
+
+          <!-- How to Predict & Buff Luck -->
+          <div style="background: #fdf2f8; border: 1.5px solid #f472b6; border-radius: 8px; padding: 12px; font-size: 0.92rem; color: #831843; line-height: 1.5;">
+            <strong>🔮 LÀM SAO ĐỂ BIẾT TRƯỚC VÀ THAY ĐỔI VẬN MAY?</strong>
+            <ul style="padding-left: 20px; margin-top: 6px;">
+              <li><strong>Dự đoán tương lai bằng File Save:</strong> Nếu bạn tải file save lên các công cụ soi hạt giống (như <em>MouseyPounds Stardew Predictor</em>), nó đọc <code>Game Seed</code> và giải mã chính xác <strong>100%</strong> từng ngày may mắn, thời tiết, mỏ quặng trong suốt 100 năm chơi của bạn!</li>
+              <li><strong>Bùa May Mắn Vĩnh Viễn (Special Charm):</strong> Hoàn thành Ghi Chú Bí Mật #20 (Secret Note #20) đổi <em>Bàn Chân Thỏ (Rabbit's Foot)</em> cho tài xế xe tải bên hông siêu thị JojaMart ➔ Tăng vĩnh viễn <strong>+0.025 Daily Luck</strong> cho MỌI ngày sau đó!</li>
+              <li><strong>Thức ăn tăng Luck (Buffs):</strong> Ăn <em>Magic Rock Candy (+5 Luck)</em>, <em>Lucky Lunch (+3 Luck)</em>, <em>Pumpkin Soup (+2 Luck)</em>, hoặc <em>Spicy Eel (+1 Luck)</em> kết hợp uống <em>Ginger Ale (+1 Luck)</em> để cộng dồn vận may tối đa!</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer" style="margin-top: 18px; text-align: right;">
+        <button class="btn-primary" id="gotItWeatherLuckBtn" style="padding: 10px 24px; font-size: 1.15rem; background: #6a1b9a; border-color: #4a148c;">Đã Hiểu, Đóng Cửa Sổ!</button>
       </div>
     </div>
   </div>

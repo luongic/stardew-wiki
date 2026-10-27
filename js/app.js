@@ -453,6 +453,37 @@ class StardewWikiApp {
       });
     }
 
+    // Weather & Luck Modal Listeners
+    const openWeatherLuckBtn = document.getElementById('openWeatherLuckBtn');
+    const weatherLuckModal = document.getElementById('weatherLuckModal');
+    const closeWeatherLuckModalBtn = document.getElementById('closeWeatherLuckModalBtn');
+    const gotItWeatherLuckBtn = document.getElementById('gotItWeatherLuckBtn');
+
+    if (openWeatherLuckBtn && weatherLuckModal) {
+      openWeatherLuckBtn.addEventListener('click', () => {
+        weatherLuckModal.style.display = 'flex';
+        this.playTone('click');
+      });
+    }
+    if (closeWeatherLuckModalBtn && weatherLuckModal) {
+      closeWeatherLuckModalBtn.addEventListener('click', () => {
+        weatherLuckModal.style.display = 'none';
+      });
+    }
+    if (gotItWeatherLuckBtn && weatherLuckModal) {
+      gotItWeatherLuckBtn.addEventListener('click', () => {
+        weatherLuckModal.style.display = 'none';
+        this.playTone('click');
+      });
+    }
+    if (weatherLuckModal) {
+      weatherLuckModal.addEventListener('click', (e) => {
+        if (e.target === weatherLuckModal) {
+          weatherLuckModal.style.display = 'none';
+        }
+      });
+    }
+
     // Quick Toggles
     const v16Toggle = document.getElementById('v16Toggle');
     if (v16Toggle) {
@@ -511,6 +542,8 @@ class StardewWikiApp {
         if (detailModal) detailModal.classList.remove('open');
         const steamModal = document.getElementById('steamModal');
         if (steamModal) steamModal.style.display = 'none';
+        const weatherLuckModal = document.getElementById('weatherLuckModal');
+        if (weatherLuckModal) weatherLuckModal.style.display = 'none';
       }
     });
 
