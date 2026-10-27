@@ -793,9 +793,7 @@ export const ITEMS_DATA = [
     "energy": 125,
     "health": 56,
     "buffs": [],
-    "lovedBy": [
-      "Kent"
-    ],
+    "lovedBy": [],
     "usedIn": [
       "Rượu Vang Khế (Starfruit Wine - 2,250g đến 6,300g)",
       "Xây Junimo Hut"
@@ -896,13 +894,13 @@ export const ITEMS_DATA = [
     "season": "Mùa Thu",
     "location": "Trồng từ hạt giống Pumpkin (14 ngày)",
     "sellPrice": 320,
-    "energy": 0,
-    "health": 0,
+    "energy": null,
+    "health": null,
     "buffs": [],
     "lovedBy": [
       "Abigail",
-      "Krobus",
-      "Willy"
+      "Willy",
+      "Krobus"
     ],
     "usedIn": [
       "Pumpkin Soup (+2 Defense, +2 Luck)",
@@ -953,8 +951,8 @@ export const ITEMS_DATA = [
     "season": "Mùa Thu",
     "location": "Trồng từ Hạt Giống Hiếm (Rare Seed mua từ Xe Đẩy Du Mục 1,000g, 24 ngày)",
     "sellPrice": 3000,
-    "energy": 0,
-    "health": 0,
+    "energy": null,
+    "health": null,
     "buffs": [],
     "lovedBy": [],
     "usedIn": [
@@ -1002,8 +1000,8 @@ export const ITEMS_DATA = [
     "season": "Xuân, Hạ, Thu / Nhà Kính quanh năm",
     "location": "Gieo từ Hạt Giống Cổ Đại (28 ngày, sau đó thu hoạch mỗi 7 ngày)",
     "sellPrice": 550,
-    "energy": 0,
-    "health": 0,
+    "energy": null,
+    "health": null,
     "buffs": [],
     "lovedBy": [],
     "usedIn": [
@@ -1234,8 +1232,8 @@ export const ITEMS_DATA = [
     "season": "Mùa Hạ",
     "location": "Bến tàu phía đông Bãi Biển (qua cây cầu 300 gỗ), Level 5 Câu Cá",
     "sellPrice": 1500,
-    "energy": 380,
-    "health": 171,
+    "energy": 38,
+    "health": 17,
     "buffs": [],
     "lovedBy": [],
     "usedIn": [
@@ -1258,8 +1256,8 @@ export const ITEMS_DATA = [
     "season": "Mùa Thu",
     "location": "Cây cầu gỗ bắc qua sông phía bắc thị trấn (gần Nhà Joja), Level 3 Câu Cá",
     "sellPrice": 900,
-    "energy": 250,
-    "health": 112,
+    "energy": 25,
+    "health": 11,
     "buffs": [],
     "lovedBy": [],
     "usedIn": [
@@ -1282,8 +1280,8 @@ export const ITEMS_DATA = [
     "season": "Mùa Đông",
     "location": "Mũi đảo cực nam Rừng Cindersap (nơi 2 dòng sông gặp nhau), Level 6 Câu Cá",
     "sellPrice": 1000,
-    "energy": 250,
-    "health": 112,
+    "energy": 25,
+    "health": 11,
     "buffs": [],
     "lovedBy": [],
     "usedIn": [
@@ -1306,8 +1304,8 @@ export const ITEMS_DATA = [
     "season": "Quanh năm",
     "location": "Dưới Cống Ngầm (The Sewers) bên cạnh Krobus",
     "sellPrice": 1000,
-    "energy": 250,
-    "health": 112,
+    "energy": 25,
+    "health": 11,
     "buffs": [],
     "lovedBy": [],
     "usedIn": [
@@ -1330,10 +1328,12 @@ export const ITEMS_DATA = [
     "season": "Quanh năm",
     "location": "Tầng 100 Hầm Mỏ (Mines) hoặc Đỉnh Núi Lửa Đảo Gừng",
     "sellPrice": 700,
-    "energy": 125,
-    "health": 56,
+    "energy": 50,
+    "health": 22,
     "buffs": [],
-    "lovedBy": [],
+    "lovedBy": [
+      "Dwarf"
+    ],
     "usedIn": [
       "Nuôi Ao Cá (Fish Pond) cho Trứng Cá đắt giá nhất game và đổi màu nước ao thành Đỏ rực!"
     ],
@@ -1354,10 +1354,12 @@ export const ITEMS_DATA = [
     "season": "Mùa Hạ & Mùa Đông",
     "location": "Hồ Núi (Mountain Lake) từ 6h sáng đến 7h tối",
     "sellPrice": 200,
-    "energy": 75,
-    "health": 33,
+    "energy": 25,
+    "health": 11,
     "buffs": [],
-    "lovedBy": [],
+    "lovedBy": [
+      "Willy"
+    ],
     "usedIn": [
       "Trứng Cá Tầm ủ hũ Preserves Jar tạo ra Trứng Cá Muối (Caviar) cao cấp!",
       "Gói Lake Fish Bundle"
@@ -1379,10 +1381,12 @@ export const ITEMS_DATA = [
     "season": "Mùa Xuân & Mùa Thu (Trời Mưa)",
     "location": "Sông trong Thị trấn hoặc Rừng Cindersap (quanh năm tại Rừng Bí Mật)",
     "sellPrice": 200,
-    "energy": 125,
-    "health": 56,
+    "energy": 50,
+    "health": 22,
     "buffs": [],
-    "lovedBy": [],
+    "lovedBy": [
+      "Willy"
+    ],
     "usedIn": [
       "Gói River Fish Bundle",
       "Thử thách tay nghề câu cá đầu game"
@@ -1407,7 +1411,9 @@ export const ITEMS_DATA = [
     "energy": -100,
     "health": 0,
     "buffs": [],
-    "lovedBy": [],
+    "lovedBy": [
+      "Abigail"
+    ],
     "usedIn": [
       "Gói Specialty Fish Bundle",
       "Nhiệm vụ Aquatic Research của Demetrius"
@@ -1429,8 +1435,8 @@ export const ITEMS_DATA = [
     "season": "Quanh năm",
     "location": "Dưới chân Thác Nước Rừng Cindersap (Cực nam bản đồ)",
     "sellPrice": 150,
-    "energy": 38,
-    "health": 17,
+    "energy": -62,
+    "health": 0,
     "buffs": [],
     "lovedBy": [],
     "usedIn": [
@@ -1457,7 +1463,7 @@ export const ITEMS_DATA = [
     "health": null,
     "buffs": [],
     "lovedBy": [
-      "Mọi dân làng trong thung lũng (TRỪ Haley ghét)"
+      "Tất cả dân làng (Quà yêu thích chung)"
     ],
     "usedIn": [
       "Đổi lấy Kiếm Thiên Hà (Galaxy Sword)",
@@ -1486,14 +1492,14 @@ export const ITEMS_DATA = [
     "health": null,
     "buffs": [],
     "lovedBy": [
-      "Evelyn",
-      "Gus",
-      "Jodi",
-      "Krobus",
-      "Marnie",
       "Maru",
       "Penny",
-      "Willy"
+      "Marnie",
+      "Gus",
+      "Willy",
+      "Krobus",
+      "Evelyn",
+      "Jodi"
     ],
     "usedIn": [
       "Ring of Yoba",
@@ -1522,7 +1528,8 @@ export const ITEMS_DATA = [
     "buffs": [],
     "lovedBy": [
       "Emily",
-      "Clint"
+      "Clint",
+      "Dwarf"
     ],
     "usedIn": [
       "Đổi lấy Lươn Cay (Spicy Eel) tại Thương nhân Sa Mạc!",
@@ -1549,7 +1556,9 @@ export const ITEMS_DATA = [
     "health": null,
     "buffs": [],
     "lovedBy": [
-      "Emily"
+      "Emily",
+      "Clint",
+      "Dwarf"
     ],
     "usedIn": [
       "ĐỔI LẤY CẦU THANG (STAIRCASE) TẠI THƯƠNG NHÂN SA MẠC VÀO CHỦ NHẬT!",
@@ -1575,10 +1584,7 @@ export const ITEMS_DATA = [
     "energy": null,
     "health": null,
     "buffs": [],
-    "lovedBy": [
-      "Clint",
-      "Maru"
-    ],
+    "lovedBy": [],
     "usedIn": [
       "Nấu 5 Quặng + 1 Than ra Thỏi Iridium",
       "Chế tạo Vòi Phun Tự Động Iridium Sprinkler"
@@ -1625,12 +1631,12 @@ export const ITEMS_DATA = [
     "season": "Quanh năm",
     "location": "Sự kiện Phù thủy bay qua chuồng đêm hoặc mua từ Krobus (5,000g)",
     "sellPrice": 65,
-    "energy": 50,
-    "health": 22,
+    "energy": -92,
+    "health": 0,
     "buffs": [],
     "lovedBy": [
-      "Krobus",
-      "Sebastian"
+      "Sebastian",
+      "Krobus"
     ],
     "usedIn": [
       "Ấp ra Gà Hư Vô (Void Chicken)",
@@ -1734,7 +1740,7 @@ export const ITEMS_DATA = [
     "health": null,
     "buffs": [],
     "lovedBy": [
-      "MỌI DÂN LÀNG trong Pelican Town (Trừ Penny ghét)"
+      "Tất cả dân làng (Quà yêu thích chung)"
     ],
     "usedIn": [
       "Đổi lấy Bùa May Mắn (Special Charm) từ Tài xế Xe tải Joja",
@@ -1839,7 +1845,7 @@ export const ITEMS_DATA = [
     "health": 56,
     "buffs": [],
     "lovedBy": [
-      "Phù Thủy Wizard"
+      "Wizard"
     ],
     "usedIn": [
       "Chế Thuốc Tiên Life Elixir",
@@ -1866,7 +1872,9 @@ export const ITEMS_DATA = [
     "energy": null,
     "health": null,
     "buffs": [],
-    "lovedBy": [],
+    "lovedBy": [
+      "Jas"
+    ],
     "usedIn": [
       "Hiến tặng Bảo Tàng Gunther",
       "Ném xuống Hồ Dung Nham Tầng 100 để triệu hồi Mảnh Đá Ma Thuật!"
@@ -1916,9 +1924,7 @@ export const ITEMS_DATA = [
     "energy": null,
     "health": null,
     "buffs": [],
-    "lovedBy": [
-      "Dwarf"
-    ],
+    "lovedBy": [],
     "usedIn": [
       "Hiến tặng Bảo Tàng Gunther",
       "Món quà yêu thích của Người Lùn Dwarf"
@@ -2134,12 +2140,12 @@ export const ITEMS_DATA = [
   {
     "id": "item_wooden_club",
     "name": "Búa Gỗ / Chùy Gỗ",
-    "nameEn": "Wooden Club",
+    "nameEn": "Wood Club",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
     "subCategory": "Vũ Khí Chiến Đấu",
     "season": "Quanh năm",
-    "location": "Rương tầng 20 Hầm Mỏ hoặc mua tại Hội Thám Hiểm",
+    "location": "Đập thùng/hộp gỗ hoặc quái vật rơi ở tầng 1-39 Hầm Mỏ (có thể nằm trong rương tầng 20). Không bán tại Hội Thám Hiểm.",
     "sellPrice": 100,
     "energy": null,
     "health": null,
@@ -2152,7 +2158,7 @@ export const ITEMS_DATA = [
     "version16": false,
     "desc": "Khúc gỗ sồi đẽo thành chiếc chùy chắc nịch giúp đẩy lùi lũ bọ cánh cứng trong mỏ.",
     "tips": "Đòn phụ chuột phải nện xuống đất gây choáng quái vật xung quanh.",
-    "wikiFile": "Wooden_Club.png",
+    "wikiFile": "Wood_Club.png",
     "imageUrl": "assets/icons/item_wooden_club.png",
     "localImageUrl": "assets/icons/item_wooden_club.png"
   },
@@ -2390,9 +2396,7 @@ export const ITEMS_DATA = [
     "energy": 38,
     "health": 17,
     "buffs": [],
-    "lovedBy": [
-      "Emily"
-    ],
+    "lovedBy": [],
     "usedIn": [
       "Fruit Salad",
       "Gói Artisan Bundle"
@@ -2414,8 +2418,8 @@ export const ITEMS_DATA = [
     "season": "Quanh năm",
     "location": "Rung rặng dừa ở Sa Mạc Calico hoặc Đảo Gừng",
     "sellPrice": 100,
-    "energy": 0,
-    "health": 0,
+    "energy": null,
+    "health": null,
     "buffs": [],
     "lovedBy": [
       "Haley",
@@ -2495,9 +2499,9 @@ export const ITEMS_DATA = [
     "health": 33,
     "buffs": [],
     "lovedBy": [
+      "Sam",
       "Linus",
-      "Pam",
-      "Sam"
+      "Pam"
     ],
     "usedIn": [
       "Gói Exotic Foraging Bundle",
@@ -2672,10 +2676,12 @@ export const ITEMS_DATA = [
     "season": "Mùa Hạ",
     "location": "Bãi Biển từ 6h sáng đến 1h chiều",
     "sellPrice": 150,
-    "energy": -100,
-    "health": 0,
+    "energy": null,
+    "health": null,
     "buffs": [],
-    "lovedBy": [],
+    "lovedBy": [
+      "Willy"
+    ],
     "usedIn": [
       "Nuôi Ao Cá cho ra Búp Bê Omni Geode"
     ],
@@ -2721,8 +2727,8 @@ export const ITEMS_DATA = [
     "season": "Mùa Đông (Ngày 15-17 Chợ Đêm)",
     "location": "Câu trên Chuyến Tàu Ngầm Thám Hiểm Đáy Biển ở Chợ Đêm Night Market",
     "sellPrice": 500,
-    "energy": 0,
-    "health": 0,
+    "energy": 38,
+    "health": 17,
     "buffs": [],
     "lovedBy": [],
     "usedIn": [
@@ -2745,12 +2751,11 @@ export const ITEMS_DATA = [
     "season": "Quanh năm",
     "location": "Thả Bẫy Lồng (Crab Pot) gắn mồi ở Bãi Biển",
     "sellPrice": 120,
-    "energy": 0,
-    "health": 0,
+    "energy": null,
+    "health": null,
     "buffs": [],
     "lovedBy": [
-      "Elliott",
-      "Gus"
+      "Elliott"
     ],
     "usedIn": [
       "Lobster Bisque (+3 Fishing, +50 Max Energy)",
@@ -2762,6 +2767,1255 @@ export const ITEMS_DATA = [
     "wikiFile": "Lobster.png",
     "imageUrl": "assets/icons/item_lobster.png",
     "localImageUrl": "assets/icons/item_lobster.png"
+  },
+  {
+    "id": "item_anchovy",
+    "name": "Cá Cơm Biển (Anchovy)",
+    "nameEn": "Anchovy",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Biển",
+    "season": "Mùa Xuân & Mùa Thu",
+    "location": "Biển (Ocean) bất cứ giờ nào",
+    "sellPrice": 30,
+    "energy": 13,
+    "health": 5,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Sashimi / Maki Roll (nguyên liệu cá bất kỳ)"
+    ],
+    "version16": false,
+    "desc": "Chú cá nhỏ màu bạc sống ngoài biển khơi.",
+    "tips": "Ở cấp Câu Cá cao, quăng cần không hết đà (gần bờ hơn) sẽ tăng cơ hội dính Cá Cơm.",
+    "wikiFile": "Anchovy.png",
+    "imageUrl": "assets/icons/item_anchovy.png",
+    "localImageUrl": "assets/icons/item_anchovy.png"
+  },
+  {
+    "id": "item_bream",
+    "name": "Cá Vền Sông (Bream)",
+    "nameEn": "Bream",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Sông Đêm",
+    "season": "Quanh năm",
+    "location": "Sông trong Thị trấn và Rừng Cindersap từ 6h tối đến 2h sáng",
+    "sellPrice": 45,
+    "energy": 13,
+    "health": 5,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Baked Fish",
+      "Gói Night Fish Bundle"
+    ],
+    "version16": false,
+    "desc": "Loài cá sông khá phổ biến, chỉ bắt đầu hoạt động khi màn đêm buông xuống.",
+    "tips": "Ứng viên dễ nhất cho Night Fish Bundle: mùa nào cũng có, cứ ra sông sau 6h tối là câu được.",
+    "wikiFile": "Bream.png",
+    "imageUrl": "assets/icons/item_bream.png",
+    "localImageUrl": "assets/icons/item_bream.png"
+  },
+  {
+    "id": "item_smallmouth_bass",
+    "name": "Cá Vược Miệng Nhỏ (Smallmouth Bass)",
+    "nameEn": "Smallmouth Bass",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Sông & Ao Rừng",
+    "season": "Mùa Xuân & Mùa Thu",
+    "location": "Sông trong Thị trấn và Ao Rừng Cindersap (bất cứ giờ nào)",
+    "sellPrice": 50,
+    "energy": 25,
+    "health": 11,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Sashimi / Maki Roll (nguyên liệu cá bất kỳ)"
+    ],
+    "version16": false,
+    "desc": "Cá nước ngọt cực kỳ nhạy cảm với ô nhiễm môi trường.",
+    "tips": "Độ khó thấp (28), rất hợp để luyện tay câu cá vào những ngày đầu Mùa Xuân.",
+    "wikiFile": "Smallmouth_Bass.png",
+    "imageUrl": "assets/icons/item_smallmouth_bass.png",
+    "localImageUrl": "assets/icons/item_smallmouth_bass.png"
+  },
+  {
+    "id": "item_walleye",
+    "name": "Cá Vược Mắt Kính (Walleye)",
+    "nameEn": "Walleye",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Sông & Hồ Ngày Mưa",
+    "season": "Mùa Thu (Trời Mưa), Mùa Đông nếu dùng Rain Totem",
+    "location": "Sông, Hồ Núi và Ao Rừng Cindersap từ 12h trưa đến 2h sáng",
+    "sellPrice": 105,
+    "energy": 30,
+    "health": 13,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Gói Night Fish Bundle",
+      "Gói Quality Fish Bundle (chất lượng Vàng)"
+    ],
+    "version16": false,
+    "desc": "Loài cá nước ngọt thường bị câu lên vào ban đêm.",
+    "tips": "Ao Rừng Cindersap ngày mưa Mùa Thu có tỉ lệ dính Walleye cao nhất (~32% mỗi lần quăng).",
+    "wikiFile": "Walleye.png",
+    "imageUrl": "assets/icons/item_walleye.png",
+    "localImageUrl": "assets/icons/item_walleye.png"
+  },
+  {
+    "id": "item_perch",
+    "name": "Cá Rô Mùa Đông (Perch)",
+    "nameEn": "Perch",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Sông & Hồ Núi",
+    "season": "Mùa Đông",
+    "location": "Sông, Hồ Núi và Ao Rừng Cindersap (bất cứ giờ nào)",
+    "sellPrice": 55,
+    "energy": 25,
+    "health": 11,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Sashimi / Maki Roll (nguyên liệu cá bất kỳ)"
+    ],
+    "version16": false,
+    "desc": "Loài cá nước ngọt đặc trưng của mùa đông.",
+    "tips": "Đôi khi có thể mua 1 con tại gian hàng của Pierre ở Lễ Hội Ngôi Sao Mùa Đông (500g).",
+    "wikiFile": "Perch.png",
+    "imageUrl": "assets/icons/item_perch.png",
+    "localImageUrl": "assets/icons/item_perch.png"
+  },
+  {
+    "id": "item_pike",
+    "name": "Cá Chó (Pike)",
+    "nameEn": "Pike",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Sông & Ao Rừng",
+    "season": "Mùa Hạ & Mùa Đông",
+    "location": "Sông trong Thị trấn, Rừng Cindersap và Ao Rừng (bất cứ giờ nào)",
+    "sellPrice": 100,
+    "energy": 38,
+    "health": 17,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Sashimi / Maki Roll (nguyên liệu cá bất kỳ)"
+    ],
+    "version16": false,
+    "desc": "Cá nước ngọt nổi tiếng khó câu.",
+    "tips": "Kiểu bơi dart (độ khó 60) giật lên xuống thất thường — người mới nên dùng phao Trap Bobber.",
+    "wikiFile": "Pike.png",
+    "imageUrl": "assets/icons/item_pike.png",
+    "localImageUrl": "assets/icons/item_pike.png"
+  },
+  {
+    "id": "item_sunfish",
+    "name": "Cá Thái Dương (Sunfish)",
+    "nameEn": "Sunfish",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Sông",
+    "season": "Mùa Xuân & Mùa Hạ (Trời Nắng)",
+    "location": "Sông trong Thị trấn và Rừng Cindersap từ 6h sáng đến 7h tối",
+    "sellPrice": 30,
+    "energy": 13,
+    "health": 5,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Baked Fish",
+      "Gói River Fish Bundle"
+    ],
+    "version16": false,
+    "desc": "Loài cá sông phổ biến.",
+    "tips": "Là con cá xuất hiện trong lượt câu hướng dẫn đầu tiên khi cá thật không hợp lệ. Rất dễ bắt (độ khó 30).",
+    "wikiFile": "Sunfish.png",
+    "imageUrl": "assets/icons/item_sunfish.png",
+    "localImageUrl": "assets/icons/item_sunfish.png"
+  },
+  {
+    "id": "item_red_mullet",
+    "name": "Cá Phèn Đỏ (Red Mullet)",
+    "nameEn": "Red Mullet",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Biển",
+    "season": "Mùa Hạ & Mùa Đông",
+    "location": "Biển (Ocean) từ 6h sáng đến 7h tối",
+    "sellPrice": 75,
+    "energy": 25,
+    "health": 11,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Sashimi / Maki Roll (nguyên liệu cá bất kỳ)"
+    ],
+    "version16": false,
+    "desc": "Từ rất lâu về trước, loài cá này từng được nuôi làm thú cưng.",
+    "tips": "Kiểu bơi mượt (smooth), độ khó 55 — khá dễ đoán hướng.",
+    "wikiFile": "Red_Mullet.png",
+    "imageUrl": "assets/icons/item_red_mullet.png",
+    "localImageUrl": "assets/icons/item_red_mullet.png"
+  },
+  {
+    "id": "item_herring",
+    "name": "Cá Trích (Herring)",
+    "nameEn": "Herring",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Biển",
+    "season": "Mùa Xuân & Mùa Đông",
+    "location": "Biển (Ocean) bất cứ giờ nào",
+    "sellPrice": 30,
+    "energy": 13,
+    "health": 5,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Sashimi / Maki Roll (nguyên liệu cá bất kỳ)"
+    ],
+    "version16": false,
+    "desc": "Loài cá biển phổ biến.",
+    "tips": "Cá rẻ tiền — nên làm Sashimi hoặc bỏ vào Bait Maker để làm mồi câu.",
+    "wikiFile": "Herring.png",
+    "imageUrl": "assets/icons/item_herring.png",
+    "localImageUrl": "assets/icons/item_herring.png"
+  },
+  {
+    "id": "item_eel",
+    "name": "Cá Chình Biển (Eel)",
+    "nameEn": "Eel",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Biển Đêm",
+    "season": "Mùa Xuân & Mùa Thu (Trời Mưa)",
+    "location": "Biển (Ocean) từ 4h chiều đến 2h sáng",
+    "sellPrice": 85,
+    "energy": 30,
+    "health": 13,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Fried Eel",
+      "Spicy Eel (+1 May mắn, +1 Tốc độ)",
+      "Gói Night Fish Bundle"
+    ],
+    "version16": false,
+    "desc": "Chú cá dài và trơn tuột.",
+    "tips": "Nguyên liệu nấu Spicy Eel tăng May mắn và Tốc độ — món ăn đi mỏ rất được ưa chuộng.",
+    "wikiFile": "Eel.png",
+    "imageUrl": "assets/icons/item_eel.png",
+    "localImageUrl": "assets/icons/item_eel.png"
+  },
+  {
+    "id": "item_red_snapper",
+    "name": "Cá Hồng Đỏ (Red Snapper)",
+    "nameEn": "Red Snapper",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Biển",
+    "season": "Mùa Hạ & Mùa Thu (Trời Mưa), Mùa Đông nếu dùng Rain Totem",
+    "location": "Biển (Ocean) từ 6h sáng đến 7h tối",
+    "sellPrice": 50,
+    "energy": 25,
+    "health": 11,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Gói Ocean Fish Bundle"
+    ],
+    "version16": false,
+    "desc": "Loài cá được ưa chuộng nhờ màu đỏ tuyệt đẹp.",
+    "tips": "Tranh thủ ra biển vào ngày mưa Mùa Hạ/Mùa Thu để hoàn thành Ocean Fish Bundle.",
+    "wikiFile": "Red_Snapper.png",
+    "imageUrl": "assets/icons/item_red_snapper.png",
+    "localImageUrl": "assets/icons/item_red_snapper.png"
+  },
+  {
+    "id": "item_sea_cucumber",
+    "name": "Hải Sâm (Sea Cucumber)",
+    "nameEn": "Sea Cucumber",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Biển",
+    "season": "Mùa Thu & Mùa Đông",
+    "location": "Biển (Ocean) từ 6h sáng đến 7h tối; Tàu Ngầm Chợ Đêm (Đông 15-17)",
+    "sellPrice": 75,
+    "energy": -25,
+    "health": 0,
+    "buffs": [],
+    "lovedBy": [
+      "Willy"
+    ],
+    "usedIn": [
+      "Lucky Lunch (+3 May mắn)"
+    ],
+    "version16": false,
+    "desc": "Sinh vật trơn nhớt sống dưới đáy đại dương.",
+    "tips": "Đừng ăn sống (mất 25 Năng lượng)! Đem tặng Willy — ông ấy rất thích.",
+    "wikiFile": "Sea_Cucumber.png",
+    "imageUrl": "assets/icons/item_sea_cucumber.png",
+    "localImageUrl": "assets/icons/item_sea_cucumber.png"
+  },
+  {
+    "id": "item_super_cucumber",
+    "name": "Hải Sâm Tím Khổng Lồ (Super Cucumber)",
+    "nameEn": "Super Cucumber",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Biển Đêm",
+    "season": "Mùa Hạ & Mùa Thu (quanh năm tại Đảo Gừng)",
+    "location": "Biển (Ocean) từ 6h tối đến 2h sáng; biển Đảo Gừng; Tàu Ngầm Chợ Đêm (Đông 15-17)",
+    "sellPrice": 250,
+    "energy": 125,
+    "health": 56,
+    "buffs": [],
+    "lovedBy": [
+      "Wizard"
+    ],
+    "usedIn": [
+      "Món quà yêu thích của Pháp Sư (Wizard)"
+    ],
+    "version16": false,
+    "desc": "Biến thể hiếm màu tím của loài hải sâm.",
+    "tips": "Một trong số ít món quà Wizard yêu thích. Câu đêm ở biển Đảo Gừng để có quanh năm.",
+    "wikiFile": "Super_Cucumber.png",
+    "imageUrl": "assets/icons/item_super_cucumber.png",
+    "localImageUrl": "assets/icons/item_super_cucumber.png"
+  },
+  {
+    "id": "item_ghostfish",
+    "name": "Cá Ma Mù (Ghostfish)",
+    "nameEn": "Ghostfish",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Hang Sâu",
+    "season": "Quanh năm",
+    "location": "Hầm Mỏ (Mines) tầng 20 và 60; rơi ra từ quái Ghost",
+    "sellPrice": 45,
+    "energy": 38,
+    "health": 17,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Gói Specialty Fish Bundle"
+    ],
+    "version16": false,
+    "desc": "Loài cá trắng nhợt, mù lòa, sống trong các hồ nước ngầm.",
+    "tips": "Hạ quái Ghost trong mỏ cũng có 8% rơi ra Ghostfish — không cần câu.",
+    "wikiFile": "Ghostfish.png",
+    "imageUrl": "assets/icons/item_ghostfish.png",
+    "localImageUrl": "assets/icons/item_ghostfish.png"
+  },
+  {
+    "id": "item_stonefish",
+    "name": "Cá Đá (Stonefish)",
+    "nameEn": "Stonefish",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Hang Sâu",
+    "season": "Quanh năm",
+    "location": "Hầm Mỏ (Mines) tầng 20",
+    "sellPrice": 300,
+    "energy": null,
+    "health": null,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Sashimi / Maki Roll (nguyên liệu cá bất kỳ)"
+    ],
+    "version16": false,
+    "desc": "Loài cá kỳ dị có hình dạng như một viên gạch.",
+    "tips": "Không ăn được. Quăng cần thật xa bờ, dùng Curiosity Lure hoặc Mồi Stonefish để tăng tỉ lệ dính.",
+    "wikiFile": "Stonefish.png",
+    "imageUrl": "assets/icons/item_stonefish.png",
+    "localImageUrl": "assets/icons/item_stonefish.png"
+  },
+  {
+    "id": "item_ice_pip",
+    "name": "Cá Băng Pip (Ice Pip)",
+    "nameEn": "Ice Pip",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Hang Sâu",
+    "season": "Quanh năm",
+    "location": "Hầm Mỏ (Mines) tầng 60",
+    "sellPrice": 500,
+    "energy": 38,
+    "health": 17,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Sashimi / Maki Roll (nguyên liệu cá bất kỳ)"
+    ],
+    "version16": false,
+    "desc": "Loài cá hiếm sinh trưởng mạnh trong điều kiện cực lạnh.",
+    "tips": "Bán 500g nhưng độ khó 85 (dart). Quăng xa bờ + Curiosity Lure hoặc Mồi Ice Pip để tăng tỉ lệ.",
+    "wikiFile": "Ice_Pip.png",
+    "imageUrl": "assets/icons/item_ice_pip.png",
+    "localImageUrl": "assets/icons/item_ice_pip.png"
+  },
+  {
+    "id": "item_sandfish",
+    "name": "Cá Cát (Sandfish)",
+    "nameEn": "Sandfish",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Sa Mạc",
+    "season": "Quanh năm",
+    "location": "Ao nước Sa Mạc Calico (The Desert) từ 6h sáng đến 8h tối",
+    "sellPrice": 75,
+    "energy": 13,
+    "health": 5,
+    "buffs": [],
+    "lovedBy": [
+      "Penny"
+    ],
+    "usedIn": [
+      "Gói Specialty Fish Bundle",
+      "Món quà yêu thích của Penny"
+    ],
+    "version16": false,
+    "desc": "Nó cố gắng ẩn mình bằng lớp ngụy trang màu cát.",
+    "tips": "Món quà Penny yêu thích — câu vài con mỗi lần ghé Sa Mạc để tặng dần.",
+    "wikiFile": "Sandfish.png",
+    "imageUrl": "assets/icons/item_sandfish.png",
+    "localImageUrl": "assets/icons/item_sandfish.png"
+  },
+  {
+    "id": "item_scorpion_carp",
+    "name": "Cá Chép Bọ Cạp (Scorpion Carp)",
+    "nameEn": "Scorpion Carp",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Sa Mạc",
+    "season": "Quanh năm",
+    "location": "Ao nước Sa Mạc Calico từ 6h sáng đến 8h tối, Level 4 Câu Cá",
+    "sellPrice": 150,
+    "energy": -125,
+    "health": 0,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Gói Master Fisher's Bundle (bản Remix)"
+    ],
+    "version16": false,
+    "desc": "Giống cá chép thường nhưng mang thêm một chiếc ngòi sắc nhọn.",
+    "tips": "Độ khó 90 (dart), cần Kỹ năng Câu Cá cấp 4. Đừng ăn — mất tận 125 Năng lượng!",
+    "wikiFile": "Scorpion_Carp.png",
+    "imageUrl": "assets/icons/item_scorpion_carp.png",
+    "localImageUrl": "assets/icons/item_scorpion_carp.png"
+  },
+  {
+    "id": "item_flounder",
+    "name": "Cá Bơn (Flounder)",
+    "nameEn": "Flounder",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Biển",
+    "season": "Mùa Xuân & Mùa Hạ (quanh năm tại Đảo Gừng)",
+    "location": "Biển (Ocean) và biển Đảo Gừng từ 6h sáng đến 8h tối",
+    "sellPrice": 100,
+    "energy": 38,
+    "health": 17,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Seafoam Pudding (+4 Câu Cá)"
+    ],
+    "version16": false,
+    "desc": "Sống dưới đáy biển nên cả hai mắt đều nằm trên đỉnh đầu.",
+    "tips": "Kết hợp với Midnight Carp nấu Seafoam Pudding (+4 Fishing) để đi săn cá huyền thoại.",
+    "wikiFile": "Flounder.png",
+    "imageUrl": "assets/icons/item_flounder.png",
+    "localImageUrl": "assets/icons/item_flounder.png"
+  },
+  {
+    "id": "item_midnight_carp",
+    "name": "Cá Chép Nửa Đêm (Midnight Carp)",
+    "nameEn": "Midnight Carp",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Hồ Núi & Ao Rừng Đêm",
+    "season": "Mùa Thu & Mùa Đông (quanh năm tại Đảo Gừng)",
+    "location": "Hồ Núi, Ao Rừng Cindersap và sông Đảo Gừng từ 10h tối đến 2h sáng",
+    "sellPrice": 150,
+    "energy": 50,
+    "health": 22,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Seafoam Pudding (+4 Câu Cá)"
+    ],
+    "version16": false,
+    "desc": "Loài cá nhút nhát chỉ thấy thoải mái vào ban đêm.",
+    "tips": "Chỉ cắn câu từ 10h tối — chuẩn bị đồ ăn hồi năng lượng để thức khuya.",
+    "wikiFile": "Midnight_Carp.png",
+    "imageUrl": "assets/icons/item_midnight_carp.png",
+    "localImageUrl": "assets/icons/item_midnight_carp.png"
+  },
+  {
+    "id": "item_tiger_trout",
+    "name": "Cá Hồi Vằn Hổ (Tiger Trout)",
+    "nameEn": "Tiger Trout",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Sông",
+    "season": "Mùa Thu & Mùa Đông",
+    "location": "Sông trong Thị trấn và Rừng Cindersap từ 6h sáng đến 7h tối",
+    "sellPrice": 150,
+    "energy": 25,
+    "health": 11,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Gói River Fish Bundle"
+    ],
+    "version16": false,
+    "desc": "Giống cá hồi lai hiếm hoi, không thể tự sinh sản.",
+    "tips": "Nếu lỡ mùa, Krobus đôi khi bán vào Thứ Tư (200g).",
+    "wikiFile": "Tiger_Trout.png",
+    "imageUrl": "assets/icons/item_tiger_trout.png",
+    "localImageUrl": "assets/icons/item_tiger_trout.png"
+  },
+  {
+    "id": "item_bullhead",
+    "name": "Cá Trê Đầu Bò (Bullhead)",
+    "nameEn": "Bullhead",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Hồ Núi",
+    "season": "Quanh năm",
+    "location": "Hồ Núi (Mountain Lake) bất cứ giờ nào",
+    "sellPrice": 75,
+    "energy": 25,
+    "health": 11,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Gói Lake Fish Bundle"
+    ],
+    "version16": false,
+    "desc": "Họ hàng của cá trê, ăn tạp đủ thứ dưới đáy hồ.",
+    "tips": "Câu được quanh năm, mọi giờ, mọi thời tiết — mảnh ghép dễ nhất của Lake Fish Bundle.",
+    "wikiFile": "Bullhead.png",
+    "imageUrl": "assets/icons/item_bullhead.png",
+    "localImageUrl": "assets/icons/item_bullhead.png"
+  },
+  {
+    "id": "item_tilapia",
+    "name": "Cá Rô Phi (Tilapia)",
+    "nameEn": "Tilapia",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Biển",
+    "season": "Mùa Hạ & Mùa Thu (quanh năm tại Đảo Gừng)",
+    "location": "Biển (Ocean) từ 6h sáng đến 2h chiều; sông Đảo Gừng",
+    "sellPrice": 75,
+    "energy": 25,
+    "health": 11,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Gói Ocean Fish Bundle"
+    ],
+    "version16": false,
+    "desc": "Loài cá chủ yếu ăn thực vật, ưa vùng nước ấm.",
+    "tips": "Chỉ cắn câu đến 2h chiều ở biển — nhớ ra sớm.",
+    "wikiFile": "Tilapia.png",
+    "imageUrl": "assets/icons/item_tilapia.png",
+    "localImageUrl": "assets/icons/item_tilapia.png"
+  },
+  {
+    "id": "item_chub",
+    "name": "Cá Chày (Chub)",
+    "nameEn": "Chub",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Sông & Hồ Núi",
+    "season": "Quanh năm",
+    "location": "Hồ Núi và Sông Rừng Cindersap (không có ở sông Thị trấn), bất cứ giờ nào",
+    "sellPrice": 50,
+    "energy": 25,
+    "health": 11,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Gói Field Research Bundle (bản Remix)"
+    ],
+    "version16": false,
+    "desc": "Loài cá nước ngọt phổ biến, nổi tiếng háu ăn.",
+    "tips": "Câu được quanh năm ở Hồ Núi — nguồn cá rẻ để làm Sashimi.",
+    "wikiFile": "Chub.png",
+    "imageUrl": "assets/icons/item_chub.png",
+    "localImageUrl": "assets/icons/item_chub.png"
+  },
+  {
+    "id": "item_dorado",
+    "name": "Cá Dorado Vàng (Dorado)",
+    "nameEn": "Dorado",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Sông Rừng",
+    "season": "Mùa Hạ",
+    "location": "Sông Rừng Cindersap từ 6h sáng đến 7h tối",
+    "sellPrice": 100,
+    "energy": 25,
+    "health": 11,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Sashimi / Maki Roll (nguyên liệu cá bất kỳ)"
+    ],
+    "version16": false,
+    "desc": "Kẻ săn mồi hung dữ với lớp vảy cam rực rỡ.",
+    "tips": "Chỉ có ở sông Rừng Cindersap, không có ở sông Thị trấn. Độ khó 78.",
+    "wikiFile": "Dorado.png",
+    "imageUrl": "assets/icons/item_dorado.png",
+    "localImageUrl": "assets/icons/item_dorado.png"
+  },
+  {
+    "id": "item_albacore",
+    "name": "Cá Ngừ Vây Dài (Albacore)",
+    "nameEn": "Albacore",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Biển",
+    "season": "Mùa Thu & Mùa Đông",
+    "location": "Biển (Ocean) từ 6h đến 11h sáng và từ 6h tối đến 2h sáng",
+    "sellPrice": 75,
+    "energy": 25,
+    "health": 11,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Nhiệm vụ bảng tin \"Fish Stew\""
+    ],
+    "version16": false,
+    "desc": "Ưa những vùng \"ranh giới nhiệt độ\" nơi nước lạnh và nước ấm gặp nhau.",
+    "tips": "Chỉ cắn câu sáng sớm hoặc buổi tối — giữa trưa sẽ không gặp.",
+    "wikiFile": "Albacore.png",
+    "imageUrl": "assets/icons/item_albacore.png",
+    "localImageUrl": "assets/icons/item_albacore.png"
+  },
+  {
+    "id": "item_shad",
+    "name": "Cá Trích Sông (Shad)",
+    "nameEn": "Shad",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Sông",
+    "season": "Xuân, Hạ, Thu (Trời Mưa)",
+    "location": "Sông trong Thị trấn và Rừng Cindersap từ 9h sáng đến 2h sáng",
+    "sellPrice": 60,
+    "energy": 25,
+    "health": 11,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Gói River Fish Bundle",
+      "Gói Quality Fish Bundle (chất lượng Vàng)"
+    ],
+    "version16": false,
+    "desc": "Sống thành đàn ngoài biển nhưng quay về sông để sinh sản.",
+    "tips": "Giữ lại 1 con chất lượng Vàng cho Quality Fish Bundle.",
+    "wikiFile": "Shad.png",
+    "imageUrl": "assets/icons/item_shad.png",
+    "localImageUrl": "assets/icons/item_shad.png"
+  },
+  {
+    "id": "item_lingcod",
+    "name": "Cá Mú Lingcod (Lingcod)",
+    "nameEn": "Lingcod",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Sông & Hồ Núi",
+    "season": "Mùa Đông",
+    "location": "Sông và Hồ Núi (bất cứ giờ nào)",
+    "sellPrice": 120,
+    "energy": 25,
+    "health": 11,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Nhiệm vụ \"Catch a Lingcod\" của Willy"
+    ],
+    "version16": false,
+    "desc": "Kẻ săn mồi đáng sợ, nhét được gì vào miệng là ăn nấy.",
+    "tips": "Độ khó 85 — chuẩn bị cần tốt trước khi nhận nhiệm vụ của Willy vào mùa đông.",
+    "wikiFile": "Lingcod.png",
+    "imageUrl": "assets/icons/item_lingcod.png",
+    "localImageUrl": "assets/icons/item_lingcod.png"
+  },
+  {
+    "id": "item_halibut",
+    "name": "Cá Bơn Halibut (Halibut)",
+    "nameEn": "Halibut",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Biển",
+    "season": "Xuân, Hạ, Đông",
+    "location": "Biển (Ocean) từ 6h đến 11h sáng và từ 7h tối đến 2h sáng",
+    "sellPrice": 80,
+    "energy": 25,
+    "health": 11,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Sashimi / Maki Roll (nguyên liệu cá bất kỳ)"
+    ],
+    "version16": false,
+    "desc": "Loài cá dẹt sống ở đáy đại dương.",
+    "tips": "Kiểu bơi sinker (lao xuống nhanh) — giữ thanh câu thấp.",
+    "wikiFile": "Halibut.png",
+    "imageUrl": "assets/icons/item_halibut.png",
+    "localImageUrl": "assets/icons/item_halibut.png"
+  },
+  {
+    "id": "item_woodskip",
+    "name": "Cá Rừng Woodskip (Woodskip)",
+    "nameEn": "Woodskip",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Ao Rừng Bí Mật",
+    "season": "Quanh năm",
+    "location": "Ao Rừng Bí Mật (Secret Woods) và Nông trại Rừng (Forest Farm), bất cứ giờ nào",
+    "sellPrice": 75,
+    "energy": 25,
+    "health": 11,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Gói Specialty Fish Bundle"
+    ],
+    "version16": false,
+    "desc": "Loài cá rất nhạy cảm, chỉ sống được trong những hồ nước sâu giữa rừng.",
+    "tips": "Quăng cần cách bờ ít nhất 3 ô; ngày không mưa dễ dính hơn.",
+    "wikiFile": "Woodskip.png",
+    "imageUrl": "assets/icons/item_woodskip.png",
+    "localImageUrl": "assets/icons/item_woodskip.png"
+  },
+  {
+    "id": "item_void_salmon",
+    "name": "Cá Hồi Hư Không (Void Salmon)",
+    "nameEn": "Void Salmon",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Đầm Lầy Phù Thủy",
+    "season": "Quanh năm",
+    "location": "Đầm Lầy Phù Thủy (Witch's Swamp), bất cứ giờ nào",
+    "sellPrice": 150,
+    "energy": 63,
+    "health": 28,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Gói Missing Bundle (bản Remix)"
+    ],
+    "version16": false,
+    "desc": "Cá hồi bị năng lượng hư không bóp méo. Thịt tươi đen kịt nhưng nhanh chóng ngả hồng khi gặp không khí.",
+    "tips": "Cần hoàn thành nhiệm vụ Goblin Problem để vào được Đầm Lầy Phù Thủy.",
+    "wikiFile": "Void_Salmon.png",
+    "imageUrl": "assets/icons/item_void_salmon.png",
+    "localImageUrl": "assets/icons/item_void_salmon.png"
+  },
+  {
+    "id": "item_slimejack",
+    "name": "Cá Nhớt Slimejack (Slimejack)",
+    "nameEn": "Slimejack",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Hang Bọ Đột Biến",
+    "season": "Quanh năm",
+    "location": "Hang Bọ Đột Biến (Mutant Bug Lair) trong Cống Ngầm, bất cứ giờ nào",
+    "sellPrice": 100,
+    "energy": 38,
+    "health": 17,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Sashimi / Maki Roll (nguyên liệu cá bất kỳ)"
+    ],
+    "version16": false,
+    "desc": "Nó được phủ một lớp nhớt cực dày, cứ tuột khỏi tay bạn mãi!",
+    "tips": "Mutant Bug Lair mở ra sau nhiệm vụ Dark Talisman.",
+    "wikiFile": "Slimejack.png",
+    "imageUrl": "assets/icons/item_slimejack.png",
+    "localImageUrl": "assets/icons/item_slimejack.png"
+  },
+  {
+    "id": "item_stingray",
+    "name": "Cá Đuối Gai Độc (Stingray)",
+    "nameEn": "Stingray",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Đảo Gừng",
+    "season": "Quanh năm",
+    "location": "Hang Hải Tặc (Pirate Cove) ở Đảo Gừng, bất cứ giờ nào",
+    "sellPrice": 180,
+    "energy": 38,
+    "health": 17,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Đổi Hạt Gỗ Gụ (Mahogany Seed) tại Island Trader"
+    ],
+    "version16": false,
+    "desc": "Dù có ngòi độc, loài cá này rất nhút nhát và luôn tránh xa con người.",
+    "tips": "Mỗi con đổi được 1 Hạt Gỗ Gụ tại Island Trader.",
+    "wikiFile": "Stingray.png",
+    "imageUrl": "assets/icons/item_stingray.png",
+    "localImageUrl": "assets/icons/item_stingray.png"
+  },
+  {
+    "id": "item_lionfish",
+    "name": "Cá Mao Tiên (Lionfish)",
+    "nameEn": "Lionfish",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Đảo Gừng",
+    "season": "Quanh năm",
+    "location": "Biển Đảo Gừng (phía Tây, Nam, Đông Nam), bất cứ giờ nào",
+    "sellPrice": 100,
+    "energy": 38,
+    "health": 17,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Đổi Ghế Nhiệt Đới (Tropical Chair) tại Island Trader"
+    ],
+    "version16": false,
+    "desc": "Loài cá săn mồi hung hăng với những chiếc gai tẩm độc.",
+    "tips": "Island Trader đổi Ghế Nhiệt Đới lấy 1 Lionfish vào các ngày chẵn.",
+    "wikiFile": "Lionfish.png",
+    "imageUrl": "assets/icons/item_lionfish.png",
+    "localImageUrl": "assets/icons/item_lionfish.png"
+  },
+  {
+    "id": "item_blue_discus",
+    "name": "Cá Đĩa Xanh (Blue Discus)",
+    "nameEn": "Blue Discus",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Đảo Gừng",
+    "season": "Quanh năm",
+    "location": "Sông nước ngọt Đảo Gừng (phía Bắc và phía Tây), bất cứ giờ nào",
+    "sellPrice": 120,
+    "energy": 38,
+    "health": 17,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Đổi Thảm Đại Dương (Oceanic Rug) tại Island Trader"
+    ],
+    "version16": false,
+    "desc": "Loài cá nhiệt đới sặc sỡ, rất được ưa chuộng trong bể cá cảnh.",
+    "tips": "Island Trader đổi Thảm Đại Dương lấy 3 Blue Discus vào Thứ Bảy.",
+    "wikiFile": "Blue_Discus.png",
+    "imageUrl": "assets/icons/item_blue_discus.png",
+    "localImageUrl": "assets/icons/item_blue_discus.png"
+  },
+  {
+    "id": "item_midnight_squid",
+    "name": "Mực Nửa Đêm (Midnight Squid)",
+    "nameEn": "Midnight Squid",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Chợ Đêm Tàu Ngầm",
+    "season": "Mùa Đông (Ngày 15-17 Chợ Đêm)",
+    "location": "Câu trên Chuyến Tàu Ngầm ở Chợ Đêm Night Market (5h chiều - 2h sáng)",
+    "sellPrice": 100,
+    "energy": 38,
+    "health": 17,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Nuôi Ao Cá cho ra Mực Đen (Squid Ink) thay vì Trứng Cá"
+    ],
+    "version16": false,
+    "desc": "Cư dân bí ẩn của vùng nước chạng vạng sâu thẳm dưới đại dương.",
+    "tips": "Tỉ lệ dính trên tàu ngầm khoảng 21%. Ngoài Chợ Đêm có thể câu bằng Magic Bait ở góc tây nam Bãi Biển (tỉ lệ rất thấp).",
+    "wikiFile": "Midnight_Squid.png",
+    "imageUrl": "assets/icons/item_midnight_squid.png",
+    "localImageUrl": "assets/icons/item_midnight_squid.png"
+  },
+  {
+    "id": "item_spook_fish",
+    "name": "Cá Ma Mắt Lồi (Spook Fish)",
+    "nameEn": "Spook Fish",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Chợ Đêm Tàu Ngầm",
+    "season": "Mùa Đông (Ngày 15-17 Chợ Đêm)",
+    "location": "Câu trên Chuyến Tàu Ngầm ở Chợ Đêm Night Market (5h chiều - 2h sáng)",
+    "sellPrice": 220,
+    "energy": 38,
+    "health": 17,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Sashimi / Maki Roll (nguyên liệu cá bất kỳ)"
+    ],
+    "version16": false,
+    "desc": "Đôi mắt khổng lồ có thể phát hiện bóng dáng mờ nhạt của con mồi.",
+    "tips": "Tỉ lệ dính trên tàu ngầm khoảng 16%. Ngoài Chợ Đêm có thể câu bằng Magic Bait ở góc tây nam Bãi Biển (tỉ lệ rất thấp).",
+    "wikiFile": "Spook_Fish.png",
+    "imageUrl": "assets/icons/item_spook_fish.png",
+    "localImageUrl": "assets/icons/item_spook_fish.png"
+  },
+  {
+    "id": "item_son_of_crimsonfish",
+    "name": "Con Trai Cá Đỏ Thẫm (Son of Crimsonfish)",
+    "nameEn": "Son of Crimsonfish",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Huyền Thoại II (Extended Family)",
+    "season": "Quanh năm (khi nhiệm vụ đang kích hoạt)",
+    "location": "Bến tàu phía đông Bãi Biển, Level 5 Câu Cá",
+    "sellPrice": 1500,
+    "energy": 38,
+    "health": 17,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Nhiệm vụ Extended Family của Mr. Qi"
+    ],
+    "version16": false,
+    "desc": "Nó nở ra trong làn nước hè ấm áp và tiếp bước người cha của mình.",
+    "tips": "Chỉ câu được khi nhiệm vụ Extended Family (Mr. Qi) đang kích hoạt; có thể câu nhiều con.",
+    "wikiFile": "Son_of_Crimsonfish.png",
+    "imageUrl": "assets/icons/item_son_of_crimsonfish.png",
+    "localImageUrl": "assets/icons/item_son_of_crimsonfish.png"
+  },
+  {
+    "id": "item_ms_angler",
+    "name": "Cô Cá Lồng Đèn (Ms. Angler)",
+    "nameEn": "Ms. Angler",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Huyền Thoại II (Extended Family)",
+    "season": "Quanh năm (khi nhiệm vụ đang kích hoạt)",
+    "location": "Gần thác nước phía bắc JojaMart, Level 3 Câu Cá",
+    "sellPrice": 900,
+    "energy": 25,
+    "health": 11,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Nhiệm vụ Extended Family của Mr. Qi"
+    ],
+    "version16": false,
+    "desc": "Dùng chiếc đèn lân tinh lủng lẳng để dụ con mồi.",
+    "tips": "Chỉ câu được khi nhiệm vụ Extended Family (Mr. Qi) đang kích hoạt; có thể câu nhiều con.",
+    "wikiFile": "Ms._Angler.png",
+    "imageUrl": "assets/icons/item_ms_angler.png",
+    "localImageUrl": "assets/icons/item_ms_angler.png"
+  },
+  {
+    "id": "item_legend_ii",
+    "name": "Cá Huyền Thoại II (Legend II)",
+    "nameEn": "Legend II",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Huyền Thoại II (Extended Family)",
+    "season": "Quanh năm (khi nhiệm vụ đang kích hoạt)",
+    "location": "Hồ Núi gần khúc gỗ chìm, Level 10 Câu Cá",
+    "sellPrice": 5000,
+    "energy": 500,
+    "health": 225,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Nhiệm vụ Extended Family của Mr. Qi"
+    ],
+    "version16": false,
+    "desc": "Người kế vị của Cá Huyền Thoại nguyên bản.",
+    "tips": "Độ khó 110 như bản gốc nhưng không cần trời mưa hay Mùa Xuân khi nhiệm vụ đang kích hoạt.",
+    "wikiFile": "Legend_II.png",
+    "imageUrl": "assets/icons/item_legend_ii.png",
+    "localImageUrl": "assets/icons/item_legend_ii.png"
+  },
+  {
+    "id": "item_glacierfish_jr",
+    "name": "Cá Băng Giá Con (Glacierfish Jr.)",
+    "nameEn": "Glacierfish Jr.",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Huyền Thoại II (Extended Family)",
+    "season": "Quanh năm (khi nhiệm vụ đang kích hoạt)",
+    "location": "Mũi nam Đảo Mũi Tên (Arrowhead Island) ở Rừng Cindersap, Level 6 Câu Cá",
+    "sellPrice": 1000,
+    "energy": 25,
+    "health": 11,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Nhiệm vụ Extended Family của Mr. Qi"
+    ],
+    "version16": false,
+    "desc": "Cá Băng Giá nguyên bản đã có một cậu con trai...",
+    "tips": "Chỉ câu được khi nhiệm vụ Extended Family (Mr. Qi) đang kích hoạt; có thể câu nhiều con.",
+    "wikiFile": "Glacierfish_Jr..png",
+    "imageUrl": "assets/icons/item_glacierfish_jr.png",
+    "localImageUrl": "assets/icons/item_glacierfish_jr.png"
+  },
+  {
+    "id": "item_radioactive_carp",
+    "name": "Cá Chép Phóng Xạ (Radioactive Carp)",
+    "nameEn": "Radioactive Carp",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Cá Huyền Thoại II (Extended Family)",
+    "season": "Quanh năm (khi nhiệm vụ đang kích hoạt)",
+    "location": "Cống Ngầm (The Sewers)",
+    "sellPrice": 1000,
+    "energy": 25,
+    "health": 11,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Nhiệm vụ Extended Family của Mr. Qi"
+    ],
+    "version16": false,
+    "desc": "Con cá chép đã ngâm mình quá nhiều năm trong bùn độc.",
+    "tips": "Chỉ câu được khi nhiệm vụ Extended Family (Mr. Qi) đang kích hoạt; có thể câu nhiều con.",
+    "wikiFile": "Radioactive_Carp.png",
+    "imageUrl": "assets/icons/item_radioactive_carp.png",
+    "localImageUrl": "assets/icons/item_radioactive_carp.png"
+  },
+  {
+    "id": "item_clam",
+    "name": "Nghêu Biển (Clam)",
+    "nameEn": "Clam",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Động Vật Bẫy Lồng (Crab Pot)",
+    "season": "Quanh năm",
+    "location": "Thả Bẫy Lồng (Crab Pot) gắn mồi ở vùng nước mặn (Bãi Biển, biển Đảo Gừng); nhặt trên Bãi Biển",
+    "sellPrice": 50,
+    "energy": null,
+    "health": null,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Chowder",
+      "Gói Crab Pot Bundle"
+    ],
+    "version16": false,
+    "desc": "Bên trong có một anh bạn nhỏ dai dai...",
+    "tips": "Không ăn sống được — chỉ dùng nấu ăn hoặc hun khói. Chọn nghề Mariner (cấp 10 Câu Cá) để Bẫy Lồng không bao giờ ra rác.",
+    "wikiFile": "Clam.png",
+    "imageUrl": "assets/icons/item_clam.png",
+    "localImageUrl": "assets/icons/item_clam.png"
+  },
+  {
+    "id": "item_crayfish",
+    "name": "Tôm Càng Nước Ngọt (Crayfish)",
+    "nameEn": "Crayfish",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Động Vật Bẫy Lồng (Crab Pot)",
+    "season": "Quanh năm",
+    "location": "Thả Bẫy Lồng (Crab Pot) gắn mồi ở vùng nước ngọt (sông, hồ, ao)",
+    "sellPrice": 75,
+    "energy": null,
+    "health": null,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Fish Stew",
+      "Gói Crab Pot Bundle"
+    ],
+    "version16": false,
+    "desc": "Họ hàng nước ngọt bé nhỏ của tôm hùm.",
+    "tips": "Không ăn sống được — chỉ dùng nấu ăn hoặc hun khói. Chọn nghề Mariner (cấp 10 Câu Cá) để Bẫy Lồng không bao giờ ra rác.",
+    "wikiFile": "Crayfish.png",
+    "imageUrl": "assets/icons/item_crayfish.png",
+    "localImageUrl": "assets/icons/item_crayfish.png"
+  },
+  {
+    "id": "item_crab",
+    "name": "Cua Biển (Crab)",
+    "nameEn": "Crab",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Động Vật Bẫy Lồng (Crab Pot)",
+    "season": "Quanh năm",
+    "location": "Thả Bẫy Lồng (Crab Pot) gắn mồi ở vùng nước mặn (Bãi Biển, biển Đảo Gừng); rơi ra từ quái Rock Crab / Lava Crab",
+    "sellPrice": 100,
+    "energy": null,
+    "health": null,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Crab Cakes",
+      "Gói Crab Pot Bundle"
+    ],
+    "version16": false,
+    "desc": "Loài giáp xác biển với hai chiếc càng khỏe mạnh.",
+    "tips": "Không ăn sống được — chỉ dùng nấu ăn hoặc hun khói. Chọn nghề Mariner (cấp 10 Câu Cá) để Bẫy Lồng không bao giờ ra rác.",
+    "wikiFile": "Crab.png",
+    "imageUrl": "assets/icons/item_crab.png",
+    "localImageUrl": "assets/icons/item_crab.png"
+  },
+  {
+    "id": "item_cockle",
+    "name": "Sò Huyết (Cockle)",
+    "nameEn": "Cockle",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Động Vật Bẫy Lồng (Crab Pot)",
+    "season": "Quanh năm",
+    "location": "Thả Bẫy Lồng (Crab Pot) gắn mồi ở vùng nước mặn (Bãi Biển, biển Đảo Gừng); nhặt trên Bãi Biển",
+    "sellPrice": 50,
+    "energy": null,
+    "health": null,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Gói Crab Pot Bundle"
+    ],
+    "version16": false,
+    "desc": "Một loài nghêu nước mặn phổ biến.",
+    "tips": "Không ăn sống được — chỉ dùng nấu ăn hoặc hun khói. Chọn nghề Mariner (cấp 10 Câu Cá) để Bẫy Lồng không bao giờ ra rác.",
+    "wikiFile": "Cockle.png",
+    "imageUrl": "assets/icons/item_cockle.png",
+    "localImageUrl": "assets/icons/item_cockle.png"
+  },
+  {
+    "id": "item_mussel",
+    "name": "Vẹm Xanh (Mussel)",
+    "nameEn": "Mussel",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Động Vật Bẫy Lồng (Crab Pot)",
+    "season": "Quanh năm",
+    "location": "Thả Bẫy Lồng (Crab Pot) gắn mồi ở vùng nước mặn (Bãi Biển, biển Đảo Gừng); nhặt trên Bãi Biển; đập Mỏ Vẹm ở Đảo Gừng",
+    "sellPrice": 30,
+    "energy": null,
+    "health": null,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Fish Stew",
+      "Gói Crab Pot Bundle",
+      "Đổi Cây Xoài Non (Mango Sapling) tại Island Trader (75 con)"
+    ],
+    "version16": false,
+    "desc": "Loài hai mảnh vỏ phổ biến, thường sống thành cụm.",
+    "tips": "Không ăn sống được — chỉ dùng nấu ăn hoặc hun khói. Chọn nghề Mariner (cấp 10 Câu Cá) để Bẫy Lồng không bao giờ ra rác.",
+    "wikiFile": "Mussel.png",
+    "imageUrl": "assets/icons/item_mussel.png",
+    "localImageUrl": "assets/icons/item_mussel.png"
+  },
+  {
+    "id": "item_shrimp",
+    "name": "Tôm Biển (Shrimp)",
+    "nameEn": "Shrimp",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Động Vật Bẫy Lồng (Crab Pot)",
+    "season": "Quanh năm",
+    "location": "Thả Bẫy Lồng (Crab Pot) gắn mồi ở vùng nước mặn (Bãi Biển, biển Đảo Gừng)",
+    "sellPrice": 60,
+    "energy": null,
+    "health": null,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Tom Kha Soup",
+      "Shrimp Cocktail",
+      "Gói Crab Pot Bundle"
+    ],
+    "version16": false,
+    "desc": "Loài ăn xác vụn dưới đáy biển, thịt được đánh giá rất cao.",
+    "tips": "Không ăn sống được — chỉ dùng nấu ăn hoặc hun khói. Chọn nghề Mariner (cấp 10 Câu Cá) để Bẫy Lồng không bao giờ ra rác.",
+    "wikiFile": "Shrimp.png",
+    "imageUrl": "assets/icons/item_shrimp.png",
+    "localImageUrl": "assets/icons/item_shrimp.png"
+  },
+  {
+    "id": "item_snail",
+    "name": "Ốc Sên Nước (Snail)",
+    "nameEn": "Snail",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Động Vật Bẫy Lồng (Crab Pot)",
+    "season": "Quanh năm",
+    "location": "Thả Bẫy Lồng (Crab Pot) gắn mồi ở vùng nước ngọt (sông, hồ, ao)",
+    "sellPrice": 65,
+    "energy": null,
+    "health": null,
+    "buffs": [],
+    "lovedBy": [
+      "Vincent"
+    ],
+    "usedIn": [
+      "Escargot",
+      "Gói Crab Pot Bundle"
+    ],
+    "version16": false,
+    "desc": "Loài thân mềm sống khắp nơi trong chiếc vỏ xoắn ốc.",
+    "tips": "Món quà Vincent yêu thích! Không ăn sống được — chỉ dùng nấu ăn hoặc hun khói. Chọn nghề Mariner (cấp 10 Câu Cá) để Bẫy Lồng không bao giờ ra rác.",
+    "wikiFile": "Snail.png",
+    "imageUrl": "assets/icons/item_snail.png",
+    "localImageUrl": "assets/icons/item_snail.png"
+  },
+  {
+    "id": "item_periwinkle",
+    "name": "Ốc Gạo Xanh (Periwinkle)",
+    "nameEn": "Periwinkle",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Động Vật Bẫy Lồng (Crab Pot)",
+    "season": "Quanh năm",
+    "location": "Thả Bẫy Lồng (Crab Pot) gắn mồi ở vùng nước ngọt (sông, hồ, ao)",
+    "sellPrice": 20,
+    "energy": null,
+    "health": null,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Strange Bun",
+      "Fish Stew",
+      "Gói Crab Pot Bundle"
+    ],
+    "version16": false,
+    "desc": "Ốc nước ngọt tí hon sống trong chiếc vỏ màu xanh lam.",
+    "tips": "Không ăn sống được — chỉ dùng nấu ăn hoặc hun khói. Chọn nghề Mariner (cấp 10 Câu Cá) để Bẫy Lồng không bao giờ ra rác.",
+    "wikiFile": "Periwinkle.png",
+    "imageUrl": "assets/icons/item_periwinkle.png",
+    "localImageUrl": "assets/icons/item_periwinkle.png"
+  },
+  {
+    "id": "item_oyster",
+    "name": "Hàu Biển (Oyster)",
+    "nameEn": "Oyster",
+    "category": "fish",
+    "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
+    "subCategory": "Động Vật Bẫy Lồng (Crab Pot)",
+    "season": "Quanh năm",
+    "location": "Thả Bẫy Lồng (Crab Pot) gắn mồi ở vùng nước mặn (Bãi Biển, biển Đảo Gừng); nhặt trên Bãi Biển",
+    "sellPrice": 40,
+    "energy": null,
+    "health": null,
+    "buffs": [],
+    "lovedBy": [],
+    "usedIn": [
+      "Gói Crab Pot Bundle"
+    ],
+    "version16": false,
+    "desc": "Liên tục lọc nước để tìm thức ăn, qua đó loại bỏ độc tố nguy hiểm khỏi môi trường.",
+    "tips": "Không ăn sống được — chỉ dùng nấu ăn hoặc hun khói. Chọn nghề Mariner (cấp 10 Câu Cá) để Bẫy Lồng không bao giờ ra rác.",
+    "wikiFile": "Oyster.png",
+    "imageUrl": "assets/icons/item_oyster.png",
+    "localImageUrl": "assets/icons/item_oyster.png"
   },
   {
     "id": "item_emerald",
@@ -2778,7 +4032,9 @@ export const ITEMS_DATA = [
     "buffs": [],
     "lovedBy": [
       "Emily",
-      "Penny"
+      "Penny",
+      "Clint",
+      "Dwarf"
     ],
     "usedIn": [
       "Ép tăng Tốc độ vung vũ khí tại Lò rèn núi lửa",
@@ -2807,7 +4063,8 @@ export const ITEMS_DATA = [
     "lovedBy": [
       "Abigail",
       "Emily",
-      "Clint"
+      "Clint",
+      "Dwarf"
     ],
     "usedIn": [
       "MÓN ĂN 'KHOÁI KHẨU' CỦA ABIGAIL!",
@@ -3011,7 +4268,9 @@ export const ITEMS_DATA = [
     "energy": null,
     "health": null,
     "buffs": [],
-    "lovedBy": [],
+    "lovedBy": [
+      "Emily"
+    ],
     "usedIn": [
       "Cho vào Máy Dệt (Loom) để dệt thành Vải May Mặc (Cloth)",
       "Gói Animal Bundle"
@@ -3033,8 +4292,8 @@ export const ITEMS_DATA = [
     "season": "Quanh năm",
     "location": "Mua tại Marnie (100,000g) hoặc nhận từ Mr. Qi sau khi đạt 100% Hoàn Hảo (Perfection)",
     "sellPrice": 500,
-    "energy": 50,
-    "health": 22,
+    "energy": 25,
+    "health": 11,
     "buffs": [],
     "lovedBy": [],
     "usedIn": [

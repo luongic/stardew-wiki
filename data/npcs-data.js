@@ -119,6 +119,7 @@ export const CALENDAR_EVENTS = {
     "20": {
       "type": "festival",
       "name": "Trận Đấu Cá Hồi Trout Derby (Ngày 1)",
+      "passive": true,
       "time": "06:10 AM - 02:00 AM",
       "loc": "Rừng Cindersap",
       "icon": "🎣",
@@ -127,6 +128,7 @@ export const CALENDAR_EVENTS = {
     "21": {
       "type": "festival",
       "name": "Trận Đấu Cá Hồi Trout Derby (Ngày 2)",
+      "passive": true,
       "time": "06:10 AM - 02:00 AM",
       "loc": "Rừng Cindersap",
       "icon": "🎣",
@@ -261,6 +263,7 @@ export const CALENDAR_EVENTS = {
     "12": {
       "type": "festival",
       "name": "Lễ Hội Mực Ống SquidFest (Ngày 1)",
+      "passive": true,
       "time": "06:10 AM - 02:00 AM",
       "loc": "Bãi Biển Pelican",
       "icon": "🦑",
@@ -269,6 +272,7 @@ export const CALENDAR_EVENTS = {
     "13": {
       "type": "festival",
       "name": "Lễ Hội Mực Ống SquidFest (Ngày 2)",
+      "passive": true,
       "time": "06:10 AM - 02:00 AM",
       "loc": "Bãi Biển Pelican",
       "icon": "🦑",
@@ -283,6 +287,7 @@ export const CALENDAR_EVENTS = {
     "15": {
       "type": "festival",
       "name": "Chợ Đêm Cầu Cảng (Night Market - Ngày 1)",
+      "passive": true,
       "time": "05:00 PM - 02:00 AM",
       "loc": "Bãi Biển Pelican",
       "icon": "⛵",
@@ -291,6 +296,7 @@ export const CALENDAR_EVENTS = {
     "16": {
       "type": "festival",
       "name": "Chợ Đêm Cầu Cảng (Night Market - Ngày 2)",
+      "passive": true,
       "time": "05:00 PM - 02:00 AM",
       "loc": "Bãi Biển Pelican",
       "icon": "⛵",
@@ -350,61 +356,99 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Thạch anh tím (Amethyst)",
-          "icon": "assets/icons/ing_amethyst.png"
+          "name": "Thạch Anh Tím (Amethyst)",
+          "icon": "assets/icons/item_amethyst.png"
         },
         {
-          "name": "Bánh bí ngô (Pumpkin)",
-          "icon": "assets/icons/item_pumpkin.png"
+          "name": "Pudding Chuối Kem Tươi (Banana Pudding)",
+          "icon": "assets/icons/banana_pudding.png"
         },
         {
-          "name": "Món xào quả mọng (Blackberry Cobbler)",
+          "name": "Bánh Nướng Dâu Đen (Blackberry Cobbler)",
           "icon": "assets/icons/blackberry_cobbler.png"
         },
         {
-          "name": "Bánh socola (Chocolate Cake)",
+          "name": "Bánh Gato Sô-cô-la (Chocolate Cake)",
           "icon": "assets/icons/chocolate_cake.png"
         },
         {
-          "name": "Lươn cay (Spicy Eel)",
-          "icon": "assets/icons/spicy_eel.png"
+          "name": "Bách khoa Quái vật (Monster Compendium)",
+          "icon": "assets/icons/monster_compendium.png"
         },
         {
-          "name": "Cá nóc (Pufferfish)",
+          "name": "Cá Nóc Phồng (Pufferfish)",
           "icon": "assets/icons/item_pufferfish.png"
         },
         {
-          "name": "Mảnh lăng kính (Prismatic Shard)",
-          "icon": "assets/icons/item_prismatic_shard.png"
+          "name": "Bí Ngô (Pumpkin)",
+          "icon": "assets/icons/item_pumpkin.png"
         },
         {
-          "name": "Bao ngọc (Rabbit's Foot)",
-          "icon": "assets/icons/ing_rabbits_foot.png"
+          "name": "Lươn Biển Sốt Ớt Cay (Spicy Eel)",
+          "icon": "assets/icons/spicy_eel.png"
+        },
+        {
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Thạch anh (Quartz)",
-          "icon": "assets/icons/ing_quartz.png"
+          "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ rau củ)"
         },
         {
-          "name": "Tất cả các loại Đá quý & Hoa dại mùa"
+          "name": "Kiếm cổ (Ancient Sword)",
+          "icon": "assets/icons/ancient_sword.png"
+        },
+        {
+          "name": "Vuốt Basilisk (Basilisk Paw)",
+          "icon": "assets/icons/basilisk_paw.png"
+        },
+        {
+          "name": "Sáo xương (Bone Flute)",
+          "icon": "assets/icons/bone_flute.png"
+        },
+        {
+          "name": "Tạp chí Chiến đấu Hàng quý (Combat Quarterly)",
+          "icon": "assets/icons/combat_quarterly.png"
+        },
+        {
+          "name": "Thạch anh (Quartz)",
+          "icon": "assets/icons/ing_quartz.png"
         }
       ],
       "disliked": [
         {
-          "name": "Tất cả các loại Trứng gia cầm"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ Ancient Sword, Basilisk Paw, Bone Flute, Clay & Pufferfish)"
         },
         {
-          "name": "Rau củ trồng (Crops/Vegetables) trừ Bí ngô"
+          "name": "Tất cả Trứng"
+        },
+        {
+          "name": "Tất cả Trái cây (trừ trái cây từ cây ăn quả)"
+        },
+        {
+          "name": "Tất cả Rau củ (trừ Hops, Pumpkin, Tea Leaves & Wheat)"
+        },
+        {
+          "name": "Đường tinh luyện (Sugar)",
+          "icon": "assets/icons/ing_sugar.png"
+        },
+        {
+          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "icon": "assets/icons/item_wild_horseradish.png"
         }
       ],
       "hated": [
         {
-          "name": "Đất sét (Clay)"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates) (trừ Sugar)"
         },
         {
-          "name": "Tảo xanh (Green Algae)"
+          "name": "Đất sét (Clay)",
+          "icon": "assets/icons/ing_clay.png"
+        },
+        {
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
         }
       ]
     },
@@ -560,66 +604,110 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Thạch anh tím (Amethyst)",
-          "icon": "assets/icons/ing_amethyst.png"
+          "name": "Thạch Anh Tím (Amethyst)",
+          "icon": "assets/icons/item_amethyst.png"
         },
         {
           "name": "Ngọc xanh biển (Aquamarine)",
           "icon": "assets/icons/ing_aquamarine.png"
         },
         {
-          "name": "Hồng ngọc (Ruby)",
-          "icon": "assets/icons/ing_ruby.png"
-        },
-        {
-          "name": "Ngọc bích (Emerald)",
-          "icon": "assets/icons/ing_emerald.png"
-        },
-        {
-          "name": "Ngọc bích Topaz (Topaz)",
-          "icon": "assets/icons/ing_topaz.png"
-        },
-        {
-          "name": "Đá bùa sống Jade",
-          "icon": "assets/icons/ing_jade.png"
-        },
-        {
           "name": "Vải dệt (Cloth)",
           "icon": "assets/icons/ing_cloth.png"
         },
         {
-          "name": "Lông cừu (Wool)",
+          "name": "Ngọc Lục Bảo (Emerald)",
+          "icon": "assets/icons/item_emerald.png"
+        },
+        {
+          "name": "Ngọc Bích (Jade)",
+          "icon": "assets/icons/item_jade.png"
+        },
+        {
+          "name": "Trứng vẹt (Parrot Egg)",
+          "icon": "assets/icons/parrot_egg.png"
+        },
+        {
+          "name": "Hồng Ngọc (Ruby)",
+          "icon": "assets/icons/item_ruby.png"
+        },
+        {
+          "name": "Burger Sinh Tồn Thợ Rừng (Survival Burger)",
+          "icon": "assets/icons/survival_burger.png"
+        },
+        {
+          "name": "Hoàng ngọc (Topaz)",
+          "icon": "assets/icons/ing_topaz.png"
+        },
+        {
+          "name": "Len (Wool)",
           "icon": "assets/icons/item_wool.png"
         },
         {
-          "name": "Bánh mì kẹp Burger sống sót (Survival Burger)",
-          "icon": "assets/icons/survival_burger.png"
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Thạch anh (Quartz)",
-          "icon": "assets/icons/ing_quartz.png"
+          "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ Fish Taco, Fried Eel, Ice Cream, Maki Roll, Rice Pudding, Salmon Dinner, Spicy Eel & Sashimi)"
         },
         {
-          "name": "Tất cả các loại Hoa và Trái cây hái lượm"
+          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "icon": "assets/icons/ing_daffodil.png"
+        },
+        {
+          "name": "Thạch anh (Quartz)",
+          "icon": "assets/icons/ing_quartz.png"
         }
       ],
       "disliked": [
         {
-          "name": "Món xào bơ tỏi",
-          "icon": "assets/icons/ing_wood.png"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ Parrot Egg)"
+        },
+        {
+          "name": "Lươn Biển Áp Chảo (Fried Eel)",
+          "icon": "assets/icons/fried_eel.png"
+        },
+        {
+          "name": "Kem Tươi Ốc Quế (Ice Cream)",
+          "icon": "assets/icons/ice_cream.png"
+        },
+        {
+          "name": "Pudding Gạo Sữa Ngọt Ngào (Rice Pudding)",
+          "icon": "assets/icons/rice_pudding.png"
+        },
+        {
+          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "icon": "assets/icons/item_salmonberry.png"
+        },
+        {
+          "name": "Lươn Biển Sốt Ớt Cay (Spicy Eel)",
+          "icon": "assets/icons/spicy_eel.png"
         }
       ],
       "hated": [
         {
-          "name": "Thức ăn gia súc (Hay)"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates)"
         },
         {
-          "name": "Cá chép (Carp)"
+          "name": "Bánh Kẹp Taco Cá (Fish Taco)",
+          "icon": "assets/icons/fish_taco.png"
         },
         {
-          "name": "Cá hồi (Salmon)"
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
+        },
+        {
+          "name": "Cuộn Cơm Rong Biển Maki (Maki Roll)",
+          "icon": "assets/icons/maki_roll.png"
+        },
+        {
+          "name": "Cơm Cá Hồi Áp Chảo (Salmon Dinner)",
+          "icon": "assets/icons/salmon_dinner.png"
+        },
+        {
+          "name": "Gỏi Cá Sống Sashimi (Sashimi)",
+          "icon": "assets/icons/sashimi.png"
         }
       ]
     },
@@ -721,48 +809,125 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
+          "name": "Quả dừa (Coconut)",
+          "icon": "assets/icons/item_coconut.png"
+        },
+        {
+          "name": "Salad Trái Cây Nhiệt Đới (Fruit Salad)",
+          "icon": "assets/icons/fruit_salad.png"
+        },
+        {
+          "name": "Bánh Kem Dâu Tây Hồng (Pink Cake)",
+          "icon": "assets/icons/pink_cake.png"
+        },
+        {
           "name": "Hoa hướng dương (Sunflower)",
           "icon": "assets/icons/ing_sunflower.png"
         },
         {
-          "name": "Bánh kem hồng (Pink Cake)",
-          "icon": "assets/icons/pink_cake.png"
-        },
-        {
-          "name": "Salad trái cây (Fruit Salad)",
-          "icon": "assets/icons/fruit_salad.png"
-        },
-        {
-          "name": "Dừa khô sa mạc (Coconut)",
-          "icon": "assets/icons/ing_coconut.png"
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves) (trừ Prismatic Shard)"
         }
       ],
       "liked": [
         {
-          "name": "Hoa thủy tiên vàng (Daffodil)",
-          "icon": "assets/icons/ing_daffodil.png"
+          "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ rau củ)"
         },
         {
-          "name": "Tất cả các loại Đá quý (trừ Mảnh lăng kính)"
+          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "icon": "assets/icons/ing_daffodil.png"
         }
       ],
       "disliked": [
         {
-          "name": "Tất cả các loại Cá và Hải sản"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ Clay & cá)"
         },
         {
-          "name": "Tất cả các loại Rau củ quả trồng"
+          "name": "Tất cả Trứng"
+        },
+        {
+          "name": "Tất cả Trái cây (trừ Coconut & trái cây từ cây ăn quả)"
+        },
+        {
+          "name": "Tất cả Sữa"
+        },
+        {
+          "name": "Tất cả Rau củ (trừ Hops, Tea Leaves & Wheat)"
+        },
+        {
+          "name": "Nấm mỡ gà (Chanterelle)",
+          "icon": "assets/icons/ing_chanterelle.png"
+        },
+        {
+          "name": "Nấm thường (Common Mushroom)",
+          "icon": "assets/icons/ing_common_mushroom.png"
+        },
+        {
+          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "icon": "assets/icons/item_dandelion.png"
+        },
+        {
+          "name": "Củ gừng (Ginger)",
+          "icon": "assets/icons/ing_ginger.png"
+        },
+        {
+          "name": "Hạt phỉ (Hazelnut)",
+          "icon": "assets/icons/ing_hazelnut.png"
+        },
+        {
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
+        },
+        {
+          "name": "Tỏi tây (Leek)",
+          "icon": "assets/icons/item_leek.png"
+        },
+        {
+          "name": "Nấm dung nham (Magma Cap)",
+          "icon": "assets/icons/magma_cap.png"
+        },
+        {
+          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "icon": "assets/icons/item_morel.png"
+        },
+        {
+          "name": "Siro thần bí (Mystic Syrup)",
+          "icon": "assets/icons/mystic_syrup.png"
+        },
+        {
+          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "icon": "assets/icons/item_purple_mushroom.png"
+        },
+        {
+          "name": "Thạch anh (Quartz)",
+          "icon": "assets/icons/ing_quartz.png"
+        },
+        {
+          "name": "Khoai tuyết (Snow Yam)",
+          "icon": "assets/icons/snow_yam.png"
+        },
+        {
+          "name": "Củ mùa đông (Winter Root)",
+          "icon": "assets/icons/winter_root.png"
         }
       ],
       "hated": [
         {
-          "name": "Đất sét (Clay)"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates)"
         },
         {
-          "name": "Mảnh lăng kính (Prismatic Shard) - NPC DUY NHẤT GHÉT MẢNH LĂNG KÍNH!"
+          "name": "Tất cả Cá"
         },
         {
-          "name": "Cải ngựa dại (Wild Horseradish)"
+          "name": "Đất sét (Clay)",
+          "icon": "assets/icons/ing_clay.png"
+        },
+        {
+          "name": "Mảnh Lăng Kính (Prismatic Shard)",
+          "icon": "assets/icons/item_prismatic_shard.png"
+        },
+        {
+          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "icon": "assets/icons/item_wild_horseradish.png"
         }
       ]
     },
@@ -881,60 +1046,185 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Salad tươi (Salad)",
+          "name": "Phô mai dê (Goat Cheese)",
+          "icon": "assets/icons/goat_cheese.png"
+        },
+        {
+          "name": "Bánh Muffin Hạt Anh Túc (Poppyseed Muffin)",
+          "icon": "assets/icons/poppyseed_muffin.png"
+        },
+        {
+          "name": "Salad Rau Vườn (Salad)",
           "icon": "assets/icons/salad.png"
+        },
+        {
+          "name": "Món Xào Ngũ Sắc (Stir Fry)",
+          "icon": "assets/icons/stir_fry.png"
+        },
+        {
+          "name": "Nấm Cục Truffle (Truffle)",
+          "icon": "assets/icons/item_truffle.png"
+        },
+        {
+          "name": "Món Rau Xào Thập Cẩm (Vegetable Medley)",
+          "icon": "assets/icons/vegetable_medley.png"
         },
         {
           "name": "Rượu vang (Wine)",
           "icon": "assets/icons/wine.png"
         },
         {
-          "name": "Cà phê dê (Goat Cheese)",
-          "icon": "assets/icons/goat_cheese.png"
-        },
-        {
-          "name": "Món xào nấm (Stir Fry)",
-          "icon": "assets/icons/stir_fry.png"
-        },
-        {
-          "name": "Món xào rau rừng hoang dã (Vegetable Medley)",
-          "icon": "assets/icons/vegetable_medley.png"
-        },
-        {
-          "name": "Quả mọng Truffle (Truffle)",
-          "icon": "assets/icons/item_truffle.png"
-        },
-        {
-          "name": "Bánh xốp hạt dẻ (Poppyseed Muffin)",
-          "icon": "assets/icons/poppyseed_muffin.png"
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Gỗ mục Hardwood",
-          "icon": "assets/icons/ing_hardwood.png"
+          "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ khoáng sản nhặt được ngoài Earth Crystal, đá quý ngoài Diamond & Prismatic Shard, Carp Surprise, Cookie, Hashbrowns, Ice Cream, Pancakes, Pink Cake, Pizza, Rice Pudding, Survival Burger & Tortilla)"
         },
         {
-          "name": "Tất cả các loại Nấm & Hoa hoang dã hái lượm"
+          "name": "Tất cả Trứng (trừ Void Egg)"
         },
         {
-          "name": "Trứng gà vịt"
+          "name": "Tất cả Trái cây"
+        },
+        {
+          "name": "Tất cả Sữa"
+        },
+        {
+          "name": "Nấm mỡ gà (Chanterelle)",
+          "icon": "assets/icons/ing_chanterelle.png"
+        },
+        {
+          "name": "Nấm thường (Common Mushroom)",
+          "icon": "assets/icons/ing_common_mushroom.png"
+        },
+        {
+          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "icon": "assets/icons/ing_daffodil.png"
+        },
+        {
+          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "icon": "assets/icons/item_dandelion.png"
+        },
+        {
+          "name": "Gỗ trôi dạt (Driftwood)",
+          "icon": "assets/icons/driftwood.png"
+        },
+        {
+          "name": "Củ gừng (Ginger)",
+          "icon": "assets/icons/ing_ginger.png"
+        },
+        {
+          "name": "Hạt phỉ (Hazelnut)",
+          "icon": "assets/icons/ing_hazelnut.png"
+        },
+        {
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
+        },
+        {
+          "name": "Tỏi tây (Leek)",
+          "icon": "assets/icons/item_leek.png"
+        },
+        {
+          "name": "Nấm dung nham (Magma Cap)",
+          "icon": "assets/icons/magma_cap.png"
+        },
+        {
+          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "icon": "assets/icons/item_morel.png"
+        },
+        {
+          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "icon": "assets/icons/item_purple_mushroom.png"
+        },
+        {
+          "name": "Khoai tuyết (Snow Yam)",
+          "icon": "assets/icons/snow_yam.png"
+        },
+        {
+          "name": "Hành lá (Spring Onion)",
+          "icon": "assets/icons/spring_onion.png"
+        },
+        {
+          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "icon": "assets/icons/item_wild_horseradish.png"
+        },
+        {
+          "name": "Củ mùa đông (Winter Root)",
+          "icon": "assets/icons/winter_root.png"
         }
       ],
       "disliked": [
         {
-          "name": "Tất cả các loại Khoáng sản & Đá thỏi"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ Driftwood, Spring Onion & Void Egg)"
+        },
+        {
+          "name": "Tất cả Khoáng sản nhặt được (trừ Earth Crystal)"
+        },
+        {
+          "name": "Tất cả Đá quý (trừ Diamond & Prismatic Shard)"
+        },
+        {
+          "name": "Bất Ngờ Cá Chép (Carp Surprise)",
+          "icon": "assets/icons/carp_surprise.png"
+        },
+        {
+          "name": "Bánh quy (Cookie)",
+          "icon": "assets/icons/cookie.png"
+        },
+        {
+          "name": "Trứng Chiên (Fried Egg)",
+          "icon": "assets/icons/fried_egg.png"
+        },
+        {
+          "name": "Kem Tươi Ốc Quế (Ice Cream)",
+          "icon": "assets/icons/ice_cream.png"
+        },
+        {
+          "name": "Bánh Kem Dâu Tây Hồng (Pink Cake)",
+          "icon": "assets/icons/pink_cake.png"
+        },
+        {
+          "name": "Pudding Gạo Sữa Ngọt Ngào (Rice Pudding)",
+          "icon": "assets/icons/rice_pudding.png"
+        },
+        {
+          "name": "Rong biển (Seaweed)",
+          "icon": "assets/icons/ing_seaweed.png"
+        },
+        {
+          "name": "Burger Sinh Tồn Thợ Rừng (Survival Burger)",
+          "icon": "assets/icons/survival_burger.png"
+        },
+        {
+          "name": "Bánh Tráng Ngô Tortilla (Tortilla)",
+          "icon": "assets/icons/tortilla.png"
         }
       ],
       "hated": [
         {
-          "name": "Bánh mì (Bread)"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates) (trừ Seaweed)"
         },
         {
-          "name": "Bánh pizza (Pizza)"
+          "name": "Bánh Mì Nướng Baguette (Bread)",
+          "icon": "assets/icons/bread.png"
         },
         {
-          "name": "Bánh kếp (Pancakes)"
+          "name": "Khoai Tây Bào Chiên Giòn (Hashbrowns)",
+          "icon": "assets/icons/hashbrowns.png"
+        },
+        {
+          "name": "Bánh Kếp Bơ Mật Ong (Pancakes)",
+          "icon": "assets/icons/pancakes.png"
+        },
+        {
+          "name": "Bánh Pizza Ý (Pizza)",
+          "icon": "assets/icons/pizza.png"
+        },
+        {
+          "name": "Trứng Gà Hư Vô (Void Egg)",
+          "icon": "assets/icons/item_void_egg.png"
         }
       ]
     },
@@ -1072,55 +1362,146 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_battery_pack.png"
         },
         {
+          "name": "Súp Lơ Trắng (Cauliflower)",
+          "icon": "assets/icons/item_cauliflower.png"
+        },
+        {
+          "name": "Súp Lơ Đút Lò Phô Mai (Cheese Cauliflower)",
+          "icon": "assets/icons/cheese_cauliflower.png"
+        },
+        {
+          "name": "Kim Cương Tinh Khiết (Diamond)",
+          "icon": "assets/icons/item_diamond.png"
+        },
+        {
+          "name": "Thiết bị người lùn (Dwarf Gadget)",
+          "icon": "assets/icons/dwarf_gadget.png"
+        },
+        {
           "name": "Thỏi vàng (Gold Bar)",
-          "icon": "assets/icons/ing_gold_bar.png"
+          "icon": "assets/icons/smelt_gold_bar.png"
         },
         {
-          "name": "Thỏi Iridium (Iridium Bar)",
-          "icon": "assets/icons/ing_iridium_bar.png"
+          "name": "Thỏi iridium (Iridium Bar)",
+          "icon": "assets/icons/smelt_iridium_bar.png"
         },
         {
-          "name": "Kim cương (Diamond)",
-          "icon": "assets/icons/diamond.png"
+          "name": "Món Ngon Thợ Mỏ (Miner's Treat)",
+          "icon": "assets/icons/miners_treat.png"
         },
         {
-          "name": "Dâu tây (Strawberry)",
+          "name": "Ớt Cay Nhồi Phô Mai Nướng (Pepper Poppers)",
+          "icon": "assets/icons/pepper_poppers.png"
+        },
+        {
+          "name": "Thỏi phóng xạ (Radioactive Bar)",
+          "icon": "assets/icons/smelt_radioactive_bar.png"
+        },
+        {
+          "name": "Bánh Nướng Đại Hoàng (Rhubarb Pie)",
+          "icon": "assets/icons/rhubarb_pie.png"
+        },
+        {
+          "name": "Dâu Tây (Strawberry)",
           "icon": "assets/icons/item_strawberry.png"
         },
         {
-          "name": "Súp súp lơ (Cauliflower Soup)",
-          "icon": "assets/icons/cauliflower.png"
-        },
-        {
-          "name": "Món xào tiêu Pepper Poppers",
-          "icon": "assets/icons/pepper_poppers.png"
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
+          "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ Honey, Maple Syrup & Pickles)"
+        },
+        {
+          "name": "Nấm mỡ gà (Chanterelle)",
+          "icon": "assets/icons/ing_chanterelle.png"
+        },
+        {
           "name": "Thỏi đồng (Copper Bar)",
-          "icon": "assets/icons/ing_copper_bar.png"
+          "icon": "assets/icons/smelt_copper_bar.png"
         },
         {
           "name": "Thỏi sắt (Iron Bar)",
-          "icon": "assets/icons/ing_iron_bar.png"
+          "icon": "assets/icons/smelt_iron_bar.png"
+        },
+        {
+          "name": "Nấm dung nham (Magma Cap)",
+          "icon": "assets/icons/magma_cap.png"
+        },
+        {
+          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "icon": "assets/icons/item_morel.png"
+        },
+        {
+          "name": "Nhựa cây sồi (Oak Resin)",
+          "icon": "assets/icons/ing_oak_resin.png"
+        },
+        {
+          "name": "Nhựa thông (Pine Tar)",
+          "icon": "assets/icons/ing_pine_tar.png"
+        },
+        {
+          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "icon": "assets/icons/item_purple_mushroom.png"
         },
         {
           "name": "Thạch anh (Quartz)",
           "icon": "assets/icons/ing_quartz.png"
+        },
+        {
+          "name": "Quặng phóng xạ (Radioactive Ore)",
+          "icon": "assets/icons/ing_radioactive_ore.png"
         }
       ],
       "disliked": [
         {
-          "name": "Tất cả các loại Nấm rừng hoang dã"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ Battery Pack, Copper Bar, Dwarf Gadget, Gold Bar, Iridium Bar, Iron Bar, Oak Resin & Pine Tar)"
+        },
+        {
+          "name": "Mâm Xôi Đen (Blackberry)",
+          "icon": "assets/icons/item_blackberry.png"
+        },
+        {
+          "name": "Nấm thường (Common Mushroom)",
+          "icon": "assets/icons/ing_common_mushroom.png"
+        },
+        {
+          "name": "Quả pha lê (Crystal Fruit)",
+          "icon": "assets/icons/crystal_fruit.png"
+        },
+        {
+          "name": "Siro cây phong (Maple Syrup)",
+          "icon": "assets/icons/ing_maple_syrup.png"
+        },
+        {
+          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "icon": "assets/icons/item_salmonberry.png"
         }
       ],
       "hated": [
         {
-          "name": "Mật ong thông thường (Honey)"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates) (trừ Radioactive Bar & Radioactive Ore)"
         },
         {
-          "name": "Món dưa muối muối chua"
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
+        },
+        {
+          "name": "Mật ong (Honey)",
+          "icon": "assets/icons/honey.png"
+        },
+        {
+          "name": "Dưa muối (Pickles)",
+          "icon": "assets/icons/pickles.png"
+        },
+        {
+          "name": "Khoai tuyết (Snow Yam)",
+          "icon": "assets/icons/snow_yam.png"
+        },
+        {
+          "name": "Nấm Cục Truffle (Truffle)",
+          "icon": "assets/icons/item_truffle.png"
         }
       ]
     },
@@ -1252,57 +1633,143 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Kim cương (Diamond)",
-          "icon": "assets/icons/diamond.png"
+          "name": "Kim Cương Tinh Khiết (Diamond)",
+          "icon": "assets/icons/item_diamond.png"
         },
         {
-          "name": "Ngọc lục bảo (Emerald)",
-          "icon": "assets/icons/ing_emerald.png"
+          "name": "Ngọc Lục Bảo (Emerald)",
+          "icon": "assets/icons/item_emerald.png"
         },
         {
-          "name": "Dưa hấu (Melon)",
+          "name": "Dưa Gang (Melon)",
           "icon": "assets/icons/item_melon.png"
         },
         {
-          "name": "Hoa anh túc (Poppy)",
+          "name": "Hoa Anh Túc (Poppy)",
           "icon": "assets/icons/ing_poppy.png"
         },
         {
-          "name": "Bánh xốp hạt anh túc (Poppyseed Muffin)",
+          "name": "Bánh Muffin Hạt Anh Túc (Poppyseed Muffin)",
           "icon": "assets/icons/poppyseed_muffin.png"
         },
         {
-          "name": "Cá chép biến dị (Sandfish)",
-          "icon": "assets/icons/sandfish.png"
+          "name": "Đĩa Rau Đỏ Bổ Dưỡng (Red Plate)",
+          "icon": "assets/icons/red_plate.png"
         },
         {
-          "name": "Rễ khoai sọ nhiệt đới (Roots Platter)",
+          "name": "Đĩa Củ Quả Luộc Mùa Đông (Roots Platter)",
           "icon": "assets/icons/roots_platter.png"
         },
         {
-          "name": "Món hầm Tom Kha Soup",
+          "name": "Cá Cát (Sandfish)",
+          "icon": "assets/icons/item_sandfish.png"
+        },
+        {
+          "name": "Súp Tom Kha Nước Cốt Dừa (Tom Kha Soup)",
           "icon": "assets/icons/tom_kha_soup.png"
+        },
+        {
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves) (trừ Rabbit's Foot)"
+        },
+        {
+          "name": "Tất cả Sách"
         }
       ],
       "liked": [
         {
-          "name": "Tất cả các loại Sữa động vật"
+          "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ Algae Soup, Beer, Mead, Pale Ale, Pale Broth, Piña Colada & Wine)"
         },
         {
-          "name": "Tất cả các loại Bồ công anh & Bông hoa mùa xuân"
+          "name": "Tất cả Cổ vật"
+        },
+        {
+          "name": "Tất cả Sữa"
+        },
+        {
+          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "icon": "assets/icons/item_dandelion.png"
+        },
+        {
+          "name": "Tỏi tây (Leek)",
+          "icon": "assets/icons/item_leek.png"
         }
       ],
       "disliked": [
         {
-          "name": "Rượu vang & Tất cả các loại đồ uống có cồn"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ cổ vật, Price Catalogue & Sandfish)"
+        },
+        {
+          "name": "Súp Tảo Lục Thanh Nhiệt (Algae Soup)",
+          "icon": "assets/icons/algae_soup.png"
+        },
+        {
+          "name": "Lông Vịt Xanh Biếc (Duck Feather)",
+          "icon": "assets/icons/item_duck_feather.png"
+        },
+        {
+          "name": "Nước Dùng Rêu Trắng (Pale Broth)",
+          "icon": "assets/icons/pale_broth.png"
+        },
+        {
+          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "icon": "assets/icons/item_purple_mushroom.png"
+        },
+        {
+          "name": "Thạch anh (Quartz)",
+          "icon": "assets/icons/ing_quartz.png"
+        },
+        {
+          "name": "Nấm đỏ (Red Mushroom)",
+          "icon": "assets/icons/red_mushroom.png"
+        },
+        {
+          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "icon": "assets/icons/item_salmonberry.png"
+        },
+        {
+          "name": "Len (Wool)",
+          "icon": "assets/icons/item_wool.png"
         }
       ],
       "hated": [
         {
-          "name": "Bia & Rượu Pale Ale (Do ám ảnh từ mẹ Pam)"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates) (trừ Poppy & Red Mushroom)"
         },
         {
-          "name": "Nho (Grape)"
+          "name": "Bia (Beer)",
+          "icon": "assets/icons/beer.png"
+        },
+        {
+          "name": "Nho (Grape)",
+          "icon": "assets/icons/item_grape.png"
+        },
+        {
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
+        },
+        {
+          "name": "Hoa bia (Hops)",
+          "icon": "assets/icons/ing_hops.png"
+        },
+        {
+          "name": "Rượu mật ong (Mead)",
+          "icon": "assets/icons/mead.png"
+        },
+        {
+          "name": "Bia nhạt (Pale Ale)",
+          "icon": "assets/icons/pale_ale.png"
+        },
+        {
+          "name": "Cocktail dứa dừa (Piña Colada)",
+          "icon": "assets/icons/pina_colada.png"
+        },
+        {
+          "name": "Chân Thỏ May Mắn (Rabbit's Foot)",
+          "icon": "assets/icons/item_rabbits_foot.png"
+        },
+        {
+          "name": "Rượu vang (Wine)",
+          "icon": "assets/icons/wine.png"
         }
       ]
     },
@@ -1484,44 +1951,68 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Bữa sáng đầy đủ (Complete Breakfast)",
+          "name": "Bữa Sáng Hoàn Hảo (Complete Breakfast)",
           "icon": "assets/icons/complete_breakfast.png"
         },
         {
-          "name": "Món cá hồi hấp (Salmon Dinner)",
+          "name": "Sách Jack Nhanh Nhẹn (Jack Be Nimble, Jack Be Thick)",
+          "icon": "assets/icons/jack_be_nimble_jack_be_thick.png"
+        },
+        {
+          "name": "Cơm Cá Hồi Áp Chảo (Salmon Dinner)",
           "icon": "assets/icons/salmon_dinner.png"
         },
         {
-          "name": "Mảnh lăng kính (Prismatic Shard)",
-          "icon": "assets/icons/item_prismatic_shard.png"
-        },
-        {
-          "name": "Bao ngọc Rabbit's Foot",
-          "icon": "assets/icons/ing_rabbits_foot.png"
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Tất cả các loại Trứng gia cầm"
+          "name": "Tất cả Quà Thích Chung (Universal Likes)"
         },
         {
-          "name": "Tất cả các loại Thịt nguội & Xúc xích"
+          "name": "Tất cả Trứng (trừ Void Egg)"
+        },
+        {
+          "name": "Trứng Khủng Long Cổ Đại (Dinosaur Egg)",
+          "icon": "assets/icons/item_dinosaur_egg.png"
+        },
+        {
+          "name": "Đồ ăn vặt dã ngoại (Field Snack)",
+          "icon": "assets/icons/field_snack.png"
+        },
+        {
+          "name": "Trứng vẹt (Parrot Egg)",
+          "icon": "assets/icons/parrot_egg.png"
         }
       ],
       "disliked": [
         {
-          "name": "Tất cả các loại Cá hái lượm"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ Dinosaur Egg, Field Snack, Frog Egg & Parrot Egg)"
         },
         {
-          "name": "Thạch anh (Quartz)"
+          "name": "Tất cả Sách (trừ Jack Be Nimble, Jack Be Thick)"
+        },
+        {
+          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "icon": "assets/icons/item_salmonberry.png"
+        },
+        {
+          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "icon": "assets/icons/item_wild_horseradish.png"
         }
       ],
       "hated": [
         {
-          "name": "Hoa anh túc (Poppy)"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates)"
         },
         {
-          "name": "Đất sét (Clay)"
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
+        },
+        {
+          "name": "Thạch anh (Quartz)",
+          "icon": "assets/icons/ing_quartz.png"
         }
       ]
     },
@@ -1619,52 +2110,143 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Tôm hùm biển (Lobster)",
-          "icon": "assets/icons/item_lobster.png"
-        },
-        {
-          "name": "Súp tôm hùm (Lobster Bisque)",
-          "icon": "assets/icons/lobster_bisque.png"
-        },
-        {
-          "name": "Càng cua hoàng đế (Crab Cakes)",
+          "name": "Chả Cua Biển Áp Chảo (Crab Cakes)",
           "icon": "assets/icons/crab_cakes.png"
         },
         {
-          "name": "Quả lựu đỏ (Pomegranate)",
-          "icon": "assets/icons/item_pomegranate.png"
-        },
-        {
-          "name": "Lông vịt xanh (Duck Feather)",
+          "name": "Lông Vịt Xanh Biếc (Duck Feather)",
           "icon": "assets/icons/item_duck_feather.png"
         },
         {
-          "name": "Mực ống đại dương (Squid Ink)",
+          "name": "Tôm Hùm Biển (Lobster)",
+          "icon": "assets/icons/item_lobster.png"
+        },
+        {
+          "name": "Lựu Đỏ (Pomegranate)",
+          "icon": "assets/icons/item_pomegranate.png"
+        },
+        {
+          "name": "Mực đen (Squid Ink)",
           "icon": "assets/icons/ing_squid_ink.png"
+        },
+        {
+          "name": "Súp Tom Kha Nước Cốt Dừa (Tom Kha Soup)",
+          "icon": "assets/icons/tom_kha_soup.png"
+        },
+        {
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Tất cả các loại Trái cây trồng cây ăn quả"
+          "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ Amaranth, Pizza & Rainbow Shell)"
         },
         {
-          "name": "Bạch tuộc & Mực biển"
+          "name": "Tất cả Sách"
+        },
+        {
+          "name": "Tất cả Trái cây (trừ Pomegranate & Salmonberry)"
+        },
+        {
+          "name": "Bạch Tuộc Biển (Octopus)",
+          "icon": "assets/icons/item_octopus.png"
+        },
+        {
+          "name": "Mực Ống Đại Dương (Squid)",
+          "icon": "assets/icons/item_squid.png"
         }
       ],
       "disliked": [
         {
-          "name": "Tất cả các loại Sữa động vật"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ cá)"
         },
         {
-          "name": "Pizza"
+          "name": "Tất cả Sữa"
+        },
+        {
+          "name": "Nấm mỡ gà (Chanterelle)",
+          "icon": "assets/icons/ing_chanterelle.png"
+        },
+        {
+          "name": "Nấm thường (Common Mushroom)",
+          "icon": "assets/icons/ing_common_mushroom.png"
+        },
+        {
+          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "icon": "assets/icons/ing_daffodil.png"
+        },
+        {
+          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "icon": "assets/icons/item_dandelion.png"
+        },
+        {
+          "name": "Củ gừng (Ginger)",
+          "icon": "assets/icons/ing_ginger.png"
+        },
+        {
+          "name": "Hạt phỉ (Hazelnut)",
+          "icon": "assets/icons/ing_hazelnut.png"
+        },
+        {
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
+        },
+        {
+          "name": "Tỏi tây (Leek)",
+          "icon": "assets/icons/item_leek.png"
+        },
+        {
+          "name": "Nấm dung nham (Magma Cap)",
+          "icon": "assets/icons/magma_cap.png"
+        },
+        {
+          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "icon": "assets/icons/item_morel.png"
+        },
+        {
+          "name": "Bánh Pizza Ý (Pizza)",
+          "icon": "assets/icons/pizza.png"
+        },
+        {
+          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "icon": "assets/icons/item_purple_mushroom.png"
+        },
+        {
+          "name": "Khoai tuyết (Snow Yam)",
+          "icon": "assets/icons/snow_yam.png"
+        },
+        {
+          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "icon": "assets/icons/item_wild_horseradish.png"
+        },
+        {
+          "name": "Củ mùa đông (Winter Root)",
+          "icon": "assets/icons/winter_root.png"
         }
       ],
       "hated": [
         {
-          "name": "Hải sâm đen (Sea Cucumber)"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates) (trừ Sea Urchin)"
         },
         {
-          "name": "Thạch anh (Quartz)"
+          "name": "Rau dền (Amaranth)",
+          "icon": "assets/icons/amaranth.png"
+        },
+        {
+          "name": "Thạch anh (Quartz)",
+          "icon": "assets/icons/ing_quartz.png"
+        },
+        {
+          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "icon": "assets/icons/item_salmonberry.png"
+        },
+        {
+          "name": "Hải Sâm (Sea Cucumber)",
+          "icon": "assets/icons/item_sea_cucumber.png"
+        },
+        {
+          "name": "Hải Sâm Tím Khổng Lồ (Super Cucumber)",
+          "icon": "assets/icons/item_super_cucumber.png"
         }
       ]
     },
@@ -1774,48 +2356,209 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Cà phê đen (Coffee)",
+          "name": "Cà phê (Coffee)",
           "icon": "assets/icons/coffee.png"
         },
         {
-          "name": "Dưa muối chua (Pickles)",
+          "name": "Dưa muối (Pickles)",
           "icon": "assets/icons/pickles.png"
         },
         {
-          "name": "Món xào tiêu Pepper Poppers",
-          "icon": "assets/icons/pepper_poppers.png"
+          "name": "Bữa Ăn Siêu Cấp (Super Meal)",
+          "icon": "assets/icons/super_meal.png"
         },
         {
-          "name": "Rượu vang chất lượng (Wine)",
+          "name": "Dầu nấm Truffle (Truffle Oil)",
+          "icon": "assets/icons/truffle_oil.png"
+        },
+        {
+          "name": "Rượu vang (Wine)",
           "icon": "assets/icons/wine.png"
         },
         {
-          "name": "Dầu ăn nấm Truffle Oil",
-          "icon": "assets/icons/truffle_oil.png"
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Bồ công anh & Hoa thủy tiên mùa xuân"
+          "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ Cheese, Goat Cheese, Rainbow Shell và các món: Blueberry Tart, Chocolate Cake, Cookie, Cranberry Sauce, Fried Mushroom, Glazed Yams, Hashbrowns, Ice Cream, Pancakes, Pink Cake, Pizza, Rhubarb Pie & Rice Pudding)"
         },
         {
-          "name": "Tất cả các loại Trái cây trồng"
+          "name": "Tất cả Trái cây (trừ Salmonberry & Spice Berry)"
+        },
+        {
+          "name": "Nấm mỡ gà (Chanterelle)",
+          "icon": "assets/icons/ing_chanterelle.png"
+        },
+        {
+          "name": "Nấm thường (Common Mushroom)",
+          "icon": "assets/icons/ing_common_mushroom.png"
+        },
+        {
+          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "icon": "assets/icons/ing_daffodil.png"
+        },
+        {
+          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "icon": "assets/icons/item_dandelion.png"
+        },
+        {
+          "name": "Trứng Vịt Đồng Cỏ (Duck Egg)",
+          "icon": "assets/icons/item_duck_egg.png"
+        },
+        {
+          "name": "Lông Vịt Xanh Biếc (Duck Feather)",
+          "icon": "assets/icons/item_duck_feather.png"
+        },
+        {
+          "name": "Củ gừng (Ginger)",
+          "icon": "assets/icons/ing_ginger.png"
+        },
+        {
+          "name": "Sữa dê (Goat Milk)",
+          "icon": "assets/icons/goat_milk.png"
+        },
+        {
+          "name": "Hạt phỉ (Hazelnut)",
+          "icon": "assets/icons/ing_hazelnut.png"
+        },
+        {
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
+        },
+        {
+          "name": "Sữa dê lớn (Large Goat Milk)",
+          "icon": "assets/icons/large_goat_milk.png"
+        },
+        {
+          "name": "Tỏi tây (Leek)",
+          "icon": "assets/icons/item_leek.png"
+        },
+        {
+          "name": "Nấm dung nham (Magma Cap)",
+          "icon": "assets/icons/magma_cap.png"
+        },
+        {
+          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "icon": "assets/icons/item_morel.png"
+        },
+        {
+          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "icon": "assets/icons/item_purple_mushroom.png"
+        },
+        {
+          "name": "Thạch anh (Quartz)",
+          "icon": "assets/icons/ing_quartz.png"
+        },
+        {
+          "name": "Khoai tuyết (Snow Yam)",
+          "icon": "assets/icons/snow_yam.png"
+        },
+        {
+          "name": "Hành lá (Spring Onion)",
+          "icon": "assets/icons/spring_onion.png"
+        },
+        {
+          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "icon": "assets/icons/item_wild_horseradish.png"
+        },
+        {
+          "name": "Củ mùa đông (Winter Root)",
+          "icon": "assets/icons/winter_root.png"
         }
       ],
       "disliked": [
         {
-          "name": "Bánh mì phô mai nướng"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ Spring Onion)"
         },
         {
-          "name": "Pizza"
+          "name": "Bánh Tart Việt Quất (Blueberry Tart)",
+          "icon": "assets/icons/blueberry_tart.png"
+        },
+        {
+          "name": "Bánh Mì Nướng Baguette (Bread)",
+          "icon": "assets/icons/bread.png"
+        },
+        {
+          "name": "Phô mai (Cheese)",
+          "icon": "assets/icons/cheese.png"
+        },
+        {
+          "name": "Bánh Gato Sô-cô-la (Chocolate Cake)",
+          "icon": "assets/icons/chocolate_cake.png"
+        },
+        {
+          "name": "Bánh quy (Cookie)",
+          "icon": "assets/icons/cookie.png"
+        },
+        {
+          "name": "Sốt Nam Việt Quất Cay Ngọt (Cranberry Sauce)",
+          "icon": "assets/icons/cranberry_sauce.png"
+        },
+        {
+          "name": "Nấm Rừng Xào Tỏi (Fried Mushroom)",
+          "icon": "assets/icons/fried_mushroom.png"
+        },
+        {
+          "name": "Khoai Lang Ngào Đường (Glazed Yams)",
+          "icon": "assets/icons/glazed_yams.png"
+        },
+        {
+          "name": "Phô mai dê (Goat Cheese)",
+          "icon": "assets/icons/goat_cheese.png"
+        },
+        {
+          "name": "Khoai Tây Bào Chiên Giòn (Hashbrowns)",
+          "icon": "assets/icons/hashbrowns.png"
+        },
+        {
+          "name": "Kem Tươi Ốc Quế (Ice Cream)",
+          "icon": "assets/icons/ice_cream.png"
+        },
+        {
+          "name": "Bánh Kếp Bơ Mật Ong (Pancakes)",
+          "icon": "assets/icons/pancakes.png"
+        },
+        {
+          "name": "Bánh Kem Dâu Tây Hồng (Pink Cake)",
+          "icon": "assets/icons/pink_cake.png"
+        },
+        {
+          "name": "Bánh Pizza Ý (Pizza)",
+          "icon": "assets/icons/pizza.png"
+        },
+        {
+          "name": "Bánh Nướng Đại Hoàng (Rhubarb Pie)",
+          "icon": "assets/icons/rhubarb_pie.png"
+        },
+        {
+          "name": "Pudding Gạo Sữa Ngọt Ngào (Rice Pudding)",
+          "icon": "assets/icons/rice_pudding.png"
         }
       ],
       "hated": [
         {
-          "name": "Kẹo ngọt cao su (Chewing Gum)"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates)"
         },
         {
-          "name": "San hô đỏ (Coral)"
+          "name": "San Hô Biển Hồng (Coral)",
+          "icon": "assets/icons/item_coral.png"
+        },
+        {
+          "name": "Vỏ ốc anh vũ (Nautilus Shell)",
+          "icon": "assets/icons/nautilus_shell.png"
+        },
+        {
+          "name": "Vỏ sò cầu vồng (Rainbow Shell)",
+          "icon": "assets/icons/rainbow_shell.png"
+        },
+        {
+          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "icon": "assets/icons/item_salmonberry.png"
+        },
+        {
+          "name": "Quả mọng cay (Spice Berry)",
+          "icon": "assets/icons/spice_berry.png"
         }
       ]
     },
@@ -1966,41 +2709,164 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Bánh Pizza (Pizza)",
-          "icon": "assets/icons/pizza.png"
-        },
-        {
-          "name": "Cương phong bão Cactus Fruit",
+          "name": "Quả Xương Rồng Sa Mạc (Cactus Fruit)",
           "icon": "assets/icons/item_cactus_fruit.png"
         },
         {
-          "name": "Món xào quả mọng phong Maple Bar",
+          "name": "Bánh Quẩy Nhựa Phong (Maple Bar)",
           "icon": "assets/icons/maple_bar.png"
         },
         {
-          "name": "Mắt hổ đá Tigerseye",
-          "icon": "assets/icons/ing_stone.png"
+          "name": "Đá mắt hổ (Tigerseye)",
+          "icon": "assets/icons/tigerseye.png"
+        },
+        {
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Tất cả các loại Trứng gia cầm"
+          "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ Duck Mayonnaise, Mayonnaise, Pickles & rau củ)"
         },
         {
-          "name": "Thỏi sắt & Thỏi đồng"
+          "name": "Tất cả Trứng (trừ Void Egg)"
+        },
+        {
+          "name": "Nước ngọt Joja (Joja Cola)",
+          "icon": "assets/icons/joja_cola.png"
         }
       ],
       "disliked": [
         {
-          "name": "Tất cả các loại Rong biển & Tảo"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ Bone Fragment, Cinder Shard, Coal, Copper Bar, Gold Bar, Gold Ore, Iridium Bar, Iridium Ore, Iron Bar, Refined Quartz & Tigerseye)"
+        },
+        {
+          "name": "Tất cả Rau củ (trừ Hops, Tea Leaves & Wheat)"
+        },
+        {
+          "name": "Nấm mỡ gà (Chanterelle)",
+          "icon": "assets/icons/ing_chanterelle.png"
+        },
+        {
+          "name": "Nấm thường (Common Mushroom)",
+          "icon": "assets/icons/ing_common_mushroom.png"
+        },
+        {
+          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "icon": "assets/icons/ing_daffodil.png"
+        },
+        {
+          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "icon": "assets/icons/item_dandelion.png"
+        },
+        {
+          "name": "Củ gừng (Ginger)",
+          "icon": "assets/icons/ing_ginger.png"
+        },
+        {
+          "name": "Hạt phỉ (Hazelnut)",
+          "icon": "assets/icons/ing_hazelnut.png"
+        },
+        {
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
+        },
+        {
+          "name": "Tỏi tây (Leek)",
+          "icon": "assets/icons/item_leek.png"
+        },
+        {
+          "name": "Nấm dung nham (Magma Cap)",
+          "icon": "assets/icons/magma_cap.png"
+        },
+        {
+          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "icon": "assets/icons/item_morel.png"
+        },
+        {
+          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "icon": "assets/icons/item_purple_mushroom.png"
+        },
+        {
+          "name": "Thạch anh (Quartz)",
+          "icon": "assets/icons/ing_quartz.png"
+        },
+        {
+          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "icon": "assets/icons/item_salmonberry.png"
+        },
+        {
+          "name": "Rong biển (Seaweed)",
+          "icon": "assets/icons/ing_seaweed.png"
+        },
+        {
+          "name": "Khoai tuyết (Snow Yam)",
+          "icon": "assets/icons/snow_yam.png"
+        },
+        {
+          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "icon": "assets/icons/item_wild_horseradish.png"
+        },
+        {
+          "name": "Củ mùa đông (Winter Root)",
+          "icon": "assets/icons/winter_root.png"
         }
       ],
       "hated": [
         {
-          "name": "Quặng đồng (Copper Ore)"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates) (trừ Joja Cola & Seaweed)"
         },
         {
-          "name": "Rễ củ cải tuyết (Snow Yam)"
+          "name": "Mảnh xương (Bone Fragment)",
+          "icon": "assets/icons/ing_bone_fragment.png"
+        },
+        {
+          "name": "Mảnh Than Hồng (Cinder Shard)",
+          "icon": "assets/icons/item_cinder_shard.png"
+        },
+        {
+          "name": "Than Đá (Coal)",
+          "icon": "assets/icons/item_coal.png"
+        },
+        {
+          "name": "Thỏi đồng (Copper Bar)",
+          "icon": "assets/icons/smelt_copper_bar.png"
+        },
+        {
+          "name": "Sốt mayonnaise vịt (Duck Mayonnaise)",
+          "icon": "assets/icons/duck_mayonnaise.png"
+        },
+        {
+          "name": "Thỏi vàng (Gold Bar)",
+          "icon": "assets/icons/smelt_gold_bar.png"
+        },
+        {
+          "name": "Quặng Vàng (Gold Ore)",
+          "icon": "assets/icons/item_gold_ore.png"
+        },
+        {
+          "name": "Thỏi iridium (Iridium Bar)",
+          "icon": "assets/icons/smelt_iridium_bar.png"
+        },
+        {
+          "name": "Quặng Iridium (Iridium Ore)",
+          "icon": "assets/icons/item_iridium_ore.png"
+        },
+        {
+          "name": "Thỏi sắt (Iron Bar)",
+          "icon": "assets/icons/smelt_iron_bar.png"
+        },
+        {
+          "name": "Sốt Mayonnaise (Mayonnaise)",
+          "icon": "assets/icons/mayonnaise.png"
+        },
+        {
+          "name": "Dưa muối (Pickles)",
+          "icon": "assets/icons/pickles.png"
+        },
+        {
+          "name": "Thạch anh tinh luyện (Refined Quartz)",
+          "icon": "assets/icons/smelt_refined_quartz.png"
         }
       ]
     },
@@ -2129,30 +2995,48 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Viên đá sương mù Void Egg",
-          "icon": "assets/icons/item_void_egg.png"
+          "name": "Trứng ếch (Frog Egg)",
+          "icon": "assets/icons/frog_egg.png"
         },
         {
-          "name": "Món súp bí ngô (Pumpkin Soup)",
+          "name": "Nước mắt băng (Frozen Tear)",
+          "icon": "assets/icons/frozen_tear.png"
+        },
+        {
+          "name": "Đá vỏ chai (Obsidian)",
+          "icon": "assets/icons/obsidian.png"
+        },
+        {
+          "name": "Súp Bí Ngô Hoàng Gia (Pumpkin Soup)",
           "icon": "assets/icons/pumpkin_soup.png"
         },
         {
-          "name": "Món cá sống Sashimi (Sashimi)",
+          "name": "Gỏi Cá Sống Sashimi (Sashimi)",
           "icon": "assets/icons/sashimi.png"
         },
         {
-          "name": "Đá giọt lửa Obsidian",
-          "icon": "assets/icons/ing_stone.png"
+          "name": "Trứng Gà Hư Vô (Void Egg)",
+          "icon": "assets/icons/item_void_egg.png"
         },
         {
-          "name": "Cá chép nước sâu (Frozen Tear)",
-          "icon": "assets/icons/frozen_tear.png"
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Cà phê đen (Coffee)",
-          "icon": "assets/icons/coffee.png"
+          "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ hoa, Complete Breakfast, Farmer's Lunch, Omelet, Piña Colada & sản phẩm thủ công ngoài Coffee, Green Tea & Oil)"
+        },
+        {
+          "name": "Tạp chí Chiến đấu Hàng quý (Combat Quarterly)",
+          "icon": "assets/icons/combat_quarterly.png"
+        },
+        {
+          "name": "Cá Bơn (Flounder)",
+          "icon": "assets/icons/item_flounder.png"
+        },
+        {
+          "name": "Bách khoa Quái vật (Monster Compendium)",
+          "icon": "assets/icons/monster_compendium.png"
         },
         {
           "name": "Thạch anh (Quartz)",
@@ -2161,18 +3045,101 @@ export const NPCS_DATA = [
       ],
       "disliked": [
         {
-          "name": "Tất cả các loại Hoa mùa thu"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ Clay, cá, Frog Egg, Obsidian & Void Egg)"
         },
         {
-          "name": "Bánh mì (Bread)"
+          "name": "Tất cả Hoa (trừ Poppy)"
+        },
+        {
+          "name": "Nấm mỡ gà (Chanterelle)",
+          "icon": "assets/icons/ing_chanterelle.png"
+        },
+        {
+          "name": "Nấm thường (Common Mushroom)",
+          "icon": "assets/icons/ing_common_mushroom.png"
+        },
+        {
+          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "icon": "assets/icons/ing_daffodil.png"
+        },
+        {
+          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "icon": "assets/icons/item_dandelion.png"
+        },
+        {
+          "name": "Củ gừng (Ginger)",
+          "icon": "assets/icons/ing_ginger.png"
+        },
+        {
+          "name": "Hạt phỉ (Hazelnut)",
+          "icon": "assets/icons/ing_hazelnut.png"
+        },
+        {
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
+        },
+        {
+          "name": "Tỏi tây (Leek)",
+          "icon": "assets/icons/item_leek.png"
+        },
+        {
+          "name": "Nấm dung nham (Magma Cap)",
+          "icon": "assets/icons/magma_cap.png"
+        },
+        {
+          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "icon": "assets/icons/item_morel.png"
+        },
+        {
+          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "icon": "assets/icons/item_purple_mushroom.png"
+        },
+        {
+          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "icon": "assets/icons/item_salmonberry.png"
+        },
+        {
+          "name": "Khoai tuyết (Snow Yam)",
+          "icon": "assets/icons/snow_yam.png"
+        },
+        {
+          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "icon": "assets/icons/item_wild_horseradish.png"
+        },
+        {
+          "name": "Củ mùa đông (Winter Root)",
+          "icon": "assets/icons/winter_root.png"
         }
       ],
       "hated": [
         {
-          "name": "Đất sét (Clay)"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates)"
         },
         {
-          "name": "Trứng tráng Omelet"
+          "name": "Tất cả Sản phẩm thủ công (trừ Coffee, Green Tea & Oil)"
+        },
+        {
+          "name": "Tất cả Trứng (trừ Void Egg)"
+        },
+        {
+          "name": "Đất sét (Clay)",
+          "icon": "assets/icons/ing_clay.png"
+        },
+        {
+          "name": "Bữa Sáng Hoàn Hảo (Complete Breakfast)",
+          "icon": "assets/icons/complete_breakfast.png"
+        },
+        {
+          "name": "Bữa Trưa Bác Nông Dân (Farmer's Lunch)",
+          "icon": "assets/icons/farmers_lunch.png"
+        },
+        {
+          "name": "Trứng Cuộn Phô Mai (Omelet)",
+          "icon": "assets/icons/omelet.png"
+        },
+        {
+          "name": "Cocktail dứa dừa (Piña Colada)",
+          "icon": "assets/icons/pina_colada.png"
         }
       ]
     },
@@ -2335,41 +3302,112 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Bia tươi (Beer)",
+          "name": "Bia (Beer)",
           "icon": "assets/icons/beer.png"
         },
         {
-          "name": "Bánh Pizza (Pizza)",
-          "icon": "assets/icons/pizza.png"
+          "name": "Ớt Cay Đỏ (Hot Pepper)",
+          "icon": "assets/icons/item_hot_pepper.png"
         },
         {
-          "name": "Món xào ớt Pepper Poppers",
+          "name": "Ớt Cay Nhồi Phô Mai Nướng (Pepper Poppers)",
           "icon": "assets/icons/pepper_poppers.png"
         },
         {
-          "name": "Quả ớt cay đỏ Hot Pepper",
-          "icon": "assets/icons/item_hot_pepper.png"
+          "name": "Bánh Pizza Ý (Pizza)",
+          "icon": "assets/icons/pizza.png"
+        },
+        {
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Tất cả các loại Trứng gà & Trứng vịt"
+          "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ Pickles)"
         },
         {
-          "name": "Tất cả các loại Trái cây hái lượm"
+          "name": "Tất cả Trứng (trừ Void Egg)"
+        },
+        {
+          "name": "Tất cả Trái cây (trừ Hot Pepper)"
         }
       ],
       "disliked": [
         {
-          "name": "Nấm dại & Tảo xanh"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes)"
+        },
+        {
+          "name": "Nấm mỡ gà (Chanterelle)",
+          "icon": "assets/icons/ing_chanterelle.png"
+        },
+        {
+          "name": "Nấm thường (Common Mushroom)",
+          "icon": "assets/icons/ing_common_mushroom.png"
+        },
+        {
+          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "icon": "assets/icons/ing_daffodil.png"
+        },
+        {
+          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "icon": "assets/icons/item_dandelion.png"
+        },
+        {
+          "name": "Củ gừng (Ginger)",
+          "icon": "assets/icons/ing_ginger.png"
+        },
+        {
+          "name": "Hạt phỉ (Hazelnut)",
+          "icon": "assets/icons/ing_hazelnut.png"
+        },
+        {
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
+        },
+        {
+          "name": "Tỏi tây (Leek)",
+          "icon": "assets/icons/item_leek.png"
+        },
+        {
+          "name": "Nấm dung nham (Magma Cap)",
+          "icon": "assets/icons/magma_cap.png"
+        },
+        {
+          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "icon": "assets/icons/item_morel.png"
+        },
+        {
+          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "icon": "assets/icons/item_purple_mushroom.png"
+        },
+        {
+          "name": "Rong biển (Seaweed)",
+          "icon": "assets/icons/ing_seaweed.png"
+        },
+        {
+          "name": "Khoai tuyết (Snow Yam)",
+          "icon": "assets/icons/snow_yam.png"
+        },
+        {
+          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "icon": "assets/icons/item_wild_horseradish.png"
+        },
+        {
+          "name": "Củ mùa đông (Winter Root)",
+          "icon": "assets/icons/winter_root.png"
         }
       ],
       "hated": [
         {
-          "name": "Dưa chua (Pickles)"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates) (trừ Seaweed & Strange Bun)"
         },
         {
-          "name": "Thạch anh (Quartz)"
+          "name": "Dưa muối (Pickles)",
+          "icon": "assets/icons/pickles.png"
+        },
+        {
+          "name": "Thạch anh (Quartz)",
+          "icon": "assets/icons/ing_quartz.png"
         }
       ]
     },
@@ -2507,38 +3545,60 @@ export const NPCS_DATA = [
           "icon": "assets/icons/goat_cheese.png"
         },
         {
-          "name": "Mì Ý Spaghetti (Spaghetti)",
+          "name": "Đào Tiên Hồng (Peach)",
+          "icon": "assets/icons/item_peach.png"
+        },
+        {
+          "name": "Mì Ý Sốt Bò Băm Cà Chua (Spaghetti)",
           "icon": "assets/icons/spaghetti.png"
         },
         {
-          "name": "Gỗ mục Hardwood",
-          "icon": "assets/icons/ing_hardwood.png"
+          "name": "Sách Bí mật của Woody (Woody's Secret)",
+          "icon": "assets/icons/woodys_secret.png"
         },
         {
-          "name": "Món đào hầm ngọt ngào (Peach)",
-          "icon": "assets/icons/item_peach.png"
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Gỗ thông thường (Wood)",
-          "icon": "assets/icons/ing_wood.png"
+          "name": "Tất cả Quà Thích Chung (Universal Likes)"
         },
         {
-          "name": "Tất cả các loại Thạch anh & Khoáng thỏi"
+          "name": "Tất cả Trái cây (trừ Peach)"
+        },
+        {
+          "name": "Tất cả Sữa"
+        },
+        {
+          "name": "Gỗ cứng (Hardwood)",
+          "icon": "assets/icons/ing_hardwood.png"
+        },
+        {
+          "name": "Thạch anh (Quartz)",
+          "icon": "assets/icons/ing_quartz.png"
+        },
+        {
+          "name": "Tuần báo Tiều phu (Woodcutter's Weekly)",
+          "icon": "assets/icons/woodcutters_weekly.png"
         }
       ],
       "disliked": [
         {
-          "name": "Rau cần tây dại"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ Hardwood)"
+        },
+        {
+          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "icon": "assets/icons/item_wild_horseradish.png"
         }
       ],
       "hated": [
         {
-          "name": "Đất sét (Clay)"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates)"
         },
         {
-          "name": "Bao ngọc hư hại"
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
         }
       ]
     },
@@ -2671,38 +3731,60 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Món đậu hũ xào nấm (Bean Hotpot)",
+          "name": "Lẩu Đậu Que Hầm (Bean Hotpot)",
           "icon": "assets/icons/bean_hotpot.png"
         },
         {
-          "name": "Cơm chiên gạo lứt (Rice Pudding)",
-          "icon": "assets/icons/rice_pudding.png"
-        },
-        {
-          "name": "Kem dâu tươi (Ice Cream)",
+          "name": "Kem Tươi Ốc Quế (Ice Cream)",
           "icon": "assets/icons/ice_cream.png"
         },
         {
-          "name": "Dâu tây (Strawberry)",
+          "name": "Pudding Gạo Sữa Ngọt Ngào (Rice Pudding)",
+          "icon": "assets/icons/rice_pudding.png"
+        },
+        {
+          "name": "Dâu Tây (Strawberry)",
           "icon": "assets/icons/item_strawberry.png"
+        },
+        {
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Tất cả các loại Trứng gia cầm"
+          "name": "Tất cả Quà Thích Chung (Universal Likes)"
         },
         {
-          "name": "Tất cả các loại Quả mọng hái lượm"
+          "name": "Tất cả Trứng (trừ Void Egg)"
+        },
+        {
+          "name": "Tất cả Trái cây (trừ Strawberry)"
+        },
+        {
+          "name": "Trứng Khủng Long Cổ Đại (Dinosaur Egg)",
+          "icon": "assets/icons/item_dinosaur_egg.png"
+        },
+        {
+          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "icon": "assets/icons/item_purple_mushroom.png"
         }
       ],
       "disliked": [
         {
-          "name": "Tất cả các loại Đá thô"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ Dinosaur Egg & cá)"
+        },
+        {
+          "name": "Thạch anh (Quartz)",
+          "icon": "assets/icons/ing_quartz.png"
         }
       ],
       "hated": [
         {
-          "name": "Hoa anh túc (Poppy)"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates)"
+        },
+        {
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
         }
       ]
     },
@@ -2792,50 +3874,97 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
+          "name": "Thạch Anh Tím (Amethyst)",
+          "icon": "assets/icons/item_amethyst.png"
+        },
+        {
+          "name": "Ngọc xanh biển (Aquamarine)",
+          "icon": "assets/icons/ing_aquamarine.png"
+        },
+        {
+          "name": "Sốt Atiso Béo Ngậy (Artichoke Dip)",
+          "icon": "assets/icons/artichoke_dip.png"
+        },
+        {
+          "name": "Ngọc Lục Bảo (Emerald)",
+          "icon": "assets/icons/item_emerald.png"
+        },
+        {
+          "name": "Cơm Ý Dương Xỉ Non (Fiddlehead Risotto)",
+          "icon": "assets/icons/fiddlehead_risotto.png"
+        },
+        {
           "name": "Thỏi vàng (Gold Bar)",
-          "icon": "assets/icons/ing_gold_bar.png"
+          "icon": "assets/icons/smelt_gold_bar.png"
         },
         {
-          "name": "Thỏi Iridium (Iridium Bar)",
-          "icon": "assets/icons/ing_iridium_bar.png"
+          "name": "Thỏi iridium (Iridium Bar)",
+          "icon": "assets/icons/smelt_iridium_bar.png"
         },
         {
-          "name": "Đá quý Ruby",
-          "icon": "assets/icons/ing_ruby.png"
+          "name": "Ngọc Bích (Jade)",
+          "icon": "assets/icons/item_jade.png"
         },
         {
-          "name": "Đá quý Topaz",
+          "name": "Geode Vạn năng (Omni Geode)",
+          "icon": "assets/icons/omni_geode.png"
+        },
+        {
+          "name": "Hồng Ngọc (Ruby)",
+          "icon": "assets/icons/item_ruby.png"
+        },
+        {
+          "name": "Hoàng ngọc (Topaz)",
           "icon": "assets/icons/ing_topaz.png"
         },
         {
-          "name": "Thạch anh tím (Amethyst)",
-          "icon": "assets/icons/ing_amethyst.png"
-        },
-        {
-          "name": "Ngọc bích (Emerald)",
-          "icon": "assets/icons/ing_emerald.png"
-        },
-        {
-          "name": "Món xào hoa Atiso (Artichoke Dip)",
-          "icon": "assets/icons/artichoke_dip.png"
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Thỏi sắt & Thỏi đồng"
+          "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ hoa)"
         },
         {
-          "name": "Tất cả các loại Quặng mỏ"
+          "name": "Thỏi đồng (Copper Bar)",
+          "icon": "assets/icons/smelt_copper_bar.png"
+        },
+        {
+          "name": "Thỏi sắt (Iron Bar)",
+          "icon": "assets/icons/smelt_iron_bar.png"
+        },
+        {
+          "name": "Nguyệt san Khai mỏ (Mining Monthly)",
+          "icon": "assets/icons/mining_monthly.png"
         }
       ],
       "disliked": [
         {
-          "name": "Tất cả các loại Hoa dại"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ Coal, Copper Bar, Gold Bar, Gold Ore, Iridium Bar, Iridium Ore, Iron Bar, Omni Geode & Refined Quartz)"
+        },
+        {
+          "name": "Tất cả Hoa (trừ Poppy)"
+        },
+        {
+          "name": "Thạch anh (Quartz)",
+          "icon": "assets/icons/ing_quartz.png"
+        },
+        {
+          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "icon": "assets/icons/item_salmonberry.png"
+        },
+        {
+          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "icon": "assets/icons/item_wild_horseradish.png"
         }
       ],
       "hated": [
         {
-          "name": "Đồng tiền rách"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates)"
+        },
+        {
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
         }
       ]
     },
@@ -2930,41 +4059,73 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Ớt chuông đỏ cay (Hot Pepper)",
-          "icon": "assets/icons/item_hot_pepper.png"
+          "name": "Món Quà Mùa Thu (Autumn's Bounty)",
+          "icon": "assets/icons/autumns_bounty.png"
         },
         {
-          "name": "Trà xanh mùa thu (Green Tea)",
+          "name": "Khoai Lang Ngào Đường (Glazed Yams)",
+          "icon": "assets/icons/glazed_yams.png"
+        },
+        {
+          "name": "Trà xanh (Green Tea)",
           "icon": "assets/icons/green_tea.png"
         },
         {
-          "name": "Món xào rau rừng (Vegetable Medley)",
+          "name": "Ớt Cay Đỏ (Hot Pepper)",
+          "icon": "assets/icons/item_hot_pepper.png"
+        },
+        {
+          "name": "Món Rau Xào Thập Cẩm (Vegetable Medley)",
           "icon": "assets/icons/vegetable_medley.png"
         },
         {
-          "name": "Món đĩa mùa thu (Autumn's Bounty)",
-          "icon": "assets/icons/autumns_bounty.png"
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Dừa khô & Trái cây mùa vụ"
+          "name": "Tất cả Quà Thích Chung (Universal Likes)"
         },
         {
-          "name": "Tất cả các loại Đá thỏi kim loại"
+          "name": "Việt Quất Mùa Hè (Blueberry)",
+          "icon": "assets/icons/item_blueberry.png"
+        },
+        {
+          "name": "Quả Xương Rồng Sa Mạc (Cactus Fruit)",
+          "icon": "assets/icons/item_cactus_fruit.png"
+        },
+        {
+          "name": "Quả dừa (Coconut)",
+          "icon": "assets/icons/item_coconut.png"
         }
       ],
       "disliked": [
         {
-          "name": "Sữa bò"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes)"
+        },
+        {
+          "name": "Tất cả Sữa"
+        },
+        {
+          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "icon": "assets/icons/item_salmonberry.png"
+        },
+        {
+          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "icon": "assets/icons/item_wild_horseradish.png"
         }
       ],
       "hated": [
         {
-          "name": "Rác thải cá mộc"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates)"
         },
         {
-          "name": "Chiếc quần đùi may mắn màu tím (Lucky Purple Shorts)"
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
+        },
+        {
+          "name": "Thạch anh (Quartz)",
+          "icon": "assets/icons/ing_quartz.png"
         }
       ]
     },
@@ -3043,38 +4204,72 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Kim cương (Diamond)",
-          "icon": "assets/icons/diamond.png"
+          "name": "Kim Cương Tinh Khiết (Diamond)",
+          "icon": "assets/icons/item_diamond.png"
         },
         {
-          "name": "Bánh bí ngô nướng (Pumpkin Pie)",
-          "icon": "assets/icons/pumpkin_pie.png"
-        },
-        {
-          "name": "Trứng cá hồi hấp dẫn (Farmer's Lunch)",
+          "name": "Bữa Trưa Bác Nông Dân (Farmer's Lunch)",
           "icon": "assets/icons/farmers_lunch.png"
         },
         {
-          "name": "Món xào màu hồng Pink Cake",
+          "name": "Bánh Kem Dâu Tây Hồng (Pink Cake)",
           "icon": "assets/icons/pink_cake.png"
+        },
+        {
+          "name": "Bánh Nướng Bí Ngô (Pumpkin Pie)",
+          "icon": "assets/icons/pumpkin_pie.png"
+        },
+        {
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Tất cả các loại Trứng gia cầm"
+          "name": "Tất cả Quà Thích Chung (Universal Likes)"
         },
         {
-          "name": "Tất cả các loại Sữa động vật"
+          "name": "Tất cả Trứng (trừ Void Egg)"
+        },
+        {
+          "name": "Tất cả Sữa"
+        },
+        {
+          "name": "Niên giám Stardew Valley (Stardew Valley Almanac)",
+          "icon": "assets/icons/stardew_valley_almanac.png"
+        },
+        {
+          "name": "Thạch anh (Quartz)",
+          "icon": "assets/icons/ing_quartz.png"
         }
       ],
       "disliked": [
         {
-          "name": "Rong biển hoang dã"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ Clay)"
+        },
+        {
+          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "icon": "assets/icons/item_salmonberry.png"
+        },
+        {
+          "name": "Rong biển (Seaweed)",
+          "icon": "assets/icons/ing_seaweed.png"
+        },
+        {
+          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "icon": "assets/icons/item_wild_horseradish.png"
         }
       ],
       "hated": [
         {
-          "name": "Đất sét (Clay)"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates) (trừ Seaweed)"
+        },
+        {
+          "name": "Đất sét (Clay)",
+          "icon": "assets/icons/ing_clay.png"
+        },
+        {
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
         }
       ]
     },
@@ -3202,45 +4397,125 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Món xào khoai sọ (Dish O' The Sea)",
-          "icon": "assets/icons/dish_o_the_sea.png"
+          "name": "Bánh Tart Việt Quất (Blueberry Tart)",
+          "icon": "assets/icons/blueberry_tart.png"
         },
         {
-          "name": "Cương phong bão Cactus Fruit",
+          "name": "Quả Xương Rồng Sa Mạc (Cactus Fruit)",
           "icon": "assets/icons/item_cactus_fruit.png"
         },
         {
-          "name": "Dừa khô (Coconut)",
-          "icon": "assets/icons/ing_coconut.png"
+          "name": "Quả dừa (Coconut)",
+          "icon": "assets/icons/item_coconut.png"
         },
         {
-          "name": "Khoai lang nướng (Yam)",
+          "name": "Đại Tiệc Hải Sản (Dish O' The Sea)",
+          "icon": "assets/icons/dish_o_the_sea.png"
+        },
+        {
+          "name": "Sách Tiệc buffet ngõ hẻm (The Alleyway Buffet)",
+          "icon": "assets/icons/the_alleyway_buffet.png"
+        },
+        {
+          "name": "Khoai lang (Yam)",
           "icon": "assets/icons/yam.png"
         },
         {
-          "name": "Bánh nướng việt quất Blueberry Tart",
-          "icon": "assets/icons/blueberry_tart.png"
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Tất cả các loại Quả mọng & Nấm rừng hái lượm"
+          "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ Treasure Chest, khoáng sản nhặt được & đá quý ngoài Diamond & Prismatic Shard)"
         },
         {
-          "name": "Tất cả các loại Trứng gia cầm"
+          "name": "Tất cả Trứng (trừ Void Egg)"
+        },
+        {
+          "name": "Tất cả Trái cây (trừ Cactus Fruit & Coconut)"
+        },
+        {
+          "name": "Tất cả Sữa"
+        },
+        {
+          "name": "Nấm mỡ gà (Chanterelle)",
+          "icon": "assets/icons/ing_chanterelle.png"
+        },
+        {
+          "name": "Nấm thường (Common Mushroom)",
+          "icon": "assets/icons/ing_common_mushroom.png"
+        },
+        {
+          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "icon": "assets/icons/ing_daffodil.png"
+        },
+        {
+          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "icon": "assets/icons/item_dandelion.png"
+        },
+        {
+          "name": "Củ gừng (Ginger)",
+          "icon": "assets/icons/ing_ginger.png"
+        },
+        {
+          "name": "Hạt phỉ (Hazelnut)",
+          "icon": "assets/icons/ing_hazelnut.png"
+        },
+        {
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
+        },
+        {
+          "name": "Tỏi tây (Leek)",
+          "icon": "assets/icons/item_leek.png"
+        },
+        {
+          "name": "Nấm dung nham (Magma Cap)",
+          "icon": "assets/icons/magma_cap.png"
+        },
+        {
+          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "icon": "assets/icons/item_morel.png"
+        },
+        {
+          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "icon": "assets/icons/item_purple_mushroom.png"
+        },
+        {
+          "name": "Khoai tuyết (Snow Yam)",
+          "icon": "assets/icons/snow_yam.png"
+        },
+        {
+          "name": "Hành lá (Spring Onion)",
+          "icon": "assets/icons/spring_onion.png"
+        },
+        {
+          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "icon": "assets/icons/item_wild_horseradish.png"
+        },
+        {
+          "name": "Củ mùa đông (Winter Root)",
+          "icon": "assets/icons/winter_root.png"
         }
       ],
       "disliked": [
         {
-          "name": "Tất cả các loại Khoáng sản quý giá"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ cá & Spring Onion)"
+        },
+        {
+          "name": "Tất cả Khoáng sản nhặt được"
+        },
+        {
+          "name": "Tất cả Đá quý (trừ Diamond & Prismatic Shard)"
+        },
+        {
+          "name": "Rương kho báu (Treasure Chest)",
+          "icon": "assets/icons/treasure_chest.png"
         }
       ],
       "hated": [
         {
-          "name": "Rác thải rỗng"
-        },
-        {
-          "name": "Đất sét (Clay)"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates) (trừ Carp & Wild Bait)"
         }
       ]
     },
@@ -3329,29 +4604,121 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Món cá chiên mực giòn (Fried Calamari)",
-          "icon": "assets/icons/fried_calamari.png"
+          "name": "Mực Ống Chiên Giòn (Fried Calamari)",
+          "icon": "assets/icons/fried_squid.png"
+        },
+        {
+          "name": "Sách Danh mục giá (Price Catalogue)",
+          "icon": "assets/icons/price_catalogue.png"
+        },
+        {
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Tất cả các loại Trứng gia cầm"
+          "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ Corn, Garlic, khoáng sản nhặt được, đá quý ngoài Diamond & Prismatic Shard, Parsnip Soup & Tortilla)"
         },
         {
-          "name": "Tất cả các loại Bông hoa trồng"
+          "name": "Tất cả Trứng (trừ Void Egg)"
+        },
+        {
+          "name": "Tất cả Sữa"
+        },
+        {
+          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "icon": "assets/icons/ing_daffodil.png"
+        },
+        {
+          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "icon": "assets/icons/item_dandelion.png"
         }
       ],
       "disliked": [
         {
-          "name": "Tất cả các loại Cá hái lượm"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ cá & Price Catalogue)"
+        },
+        {
+          "name": "Tất cả Khoáng sản nhặt được"
+        },
+        {
+          "name": "Tất cả Đá quý (trừ Diamond & Prismatic Shard)"
+        },
+        {
+          "name": "Nấm mỡ gà (Chanterelle)",
+          "icon": "assets/icons/ing_chanterelle.png"
+        },
+        {
+          "name": "Nấm thường (Common Mushroom)",
+          "icon": "assets/icons/ing_common_mushroom.png"
+        },
+        {
+          "name": "Củ gừng (Ginger)",
+          "icon": "assets/icons/ing_ginger.png"
+        },
+        {
+          "name": "Hạt phỉ (Hazelnut)",
+          "icon": "assets/icons/ing_hazelnut.png"
+        },
+        {
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
+        },
+        {
+          "name": "Tỏi tây (Leek)",
+          "icon": "assets/icons/item_leek.png"
+        },
+        {
+          "name": "Nấm dung nham (Magma Cap)",
+          "icon": "assets/icons/magma_cap.png"
+        },
+        {
+          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "icon": "assets/icons/item_morel.png"
+        },
+        {
+          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "icon": "assets/icons/item_salmonberry.png"
+        },
+        {
+          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "icon": "assets/icons/item_purple_mushroom.png"
+        },
+        {
+          "name": "Khoai tuyết (Snow Yam)",
+          "icon": "assets/icons/snow_yam.png"
+        },
+        {
+          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "icon": "assets/icons/item_wild_horseradish.png"
+        },
+        {
+          "name": "Củ mùa đông (Winter Root)",
+          "icon": "assets/icons/winter_root.png"
         }
       ],
       "hated": [
         {
-          "name": "Món cá mòi nướng"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates)"
         },
         {
-          "name": "Táo hỏng"
+          "name": "Tất cả Cá"
+        },
+        {
+          "name": "Bắp Ngô (Corn)",
+          "icon": "assets/icons/item_corn.png"
+        },
+        {
+          "name": "Tỏi (Garlic)",
+          "icon": "assets/icons/garlic.png"
+        },
+        {
+          "name": "Súp Củ Cải Vàng (Parsnip Soup)",
+          "icon": "assets/icons/parsnip_soup.png"
+        },
+        {
+          "name": "Bánh Tráng Ngô Tortilla (Tortilla)",
+          "icon": "assets/icons/tortilla.png"
         }
       ]
     },
@@ -3463,38 +4830,70 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Kim cương (Diamond)",
-          "icon": "assets/icons/diamond.png"
+          "name": "Kim Cương Tinh Khiết (Diamond)",
+          "icon": "assets/icons/item_diamond.png"
         },
         {
-          "name": "Bánh cam ngọt Escargot",
+          "name": "Ốc Sên Xào Bơ Tỏi Kiểu Pháp (Escargot)",
           "icon": "assets/icons/escargot.png"
         },
         {
-          "name": "Món cá chiên giòn Fish Taco",
+          "name": "Bánh Kẹp Taco Cá (Fish Taco)",
           "icon": "assets/icons/fish_taco.png"
         },
         {
-          "name": "Món cam tươi nhiệt đới (Orange)",
+          "name": "Cam Ngọt (Orange)",
           "icon": "assets/icons/item_orange.png"
+        },
+        {
+          "name": "Cà Ri Thơm Nhiệt Đới (Tropical Curry)",
+          "icon": "assets/icons/tropical_curry.png"
+        },
+        {
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Tất cả các loại Rượu vang & Bia"
+          "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ Coleslaw)"
         },
         {
-          "name": "Tất cả các loại Nấm rừng"
+          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "icon": "assets/icons/ing_daffodil.png"
+        },
+        {
+          "name": "Nấm Cục Truffle (Truffle)",
+          "icon": "assets/icons/item_truffle.png"
         }
       ],
       "disliked": [
         {
-          "name": "Rong biển hoang dã"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes)"
+        },
+        {
+          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "icon": "assets/icons/item_salmonberry.png"
+        },
+        {
+          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "icon": "assets/icons/item_wild_horseradish.png"
         }
       ],
       "hated": [
         {
-          "name": "Bao ngọc hư hại"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates)"
+        },
+        {
+          "name": "Salad Bắp Cải Trộn Sốt (Coleslaw)",
+          "icon": "assets/icons/coleslaw.png"
+        },
+        {
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
+        },
+        {
+          "name": "Thạch anh (Quartz)",
+          "icon": "assets/icons/ing_quartz.png"
         }
       ]
     },
@@ -3562,50 +4961,205 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Cá tầm đại dương (Sturgeon)",
-          "icon": "assets/icons/item_sturgeon.png"
-        },
-        {
-          "name": "Món súp hải sản (Seafoam Pudding)",
-          "icon": "assets/icons/seafoam_pudding.png"
-        },
-        {
-          "name": "Cá nóc gai độc (Pufferfish)",
-          "icon": "assets/icons/item_pufferfish.png"
-        },
-        {
-          "name": "Bạch tuộc biển (Octopus)",
-          "icon": "assets/icons/item_octopus.png"
-        },
-        {
-          "name": "Món xào bí ngô cá biển (Catfish)",
+          "name": "Cá Trê Gai (Catfish)",
           "icon": "assets/icons/item_catfish.png"
         },
         {
-          "name": "Kim cương (Diamond)",
-          "icon": "assets/icons/diamond.png"
+          "name": "Kim Cương Tinh Khiết (Diamond)",
+          "icon": "assets/icons/item_diamond.png"
         },
         {
-          "name": "Thỏi Iridium Bar",
-          "icon": "assets/icons/ing_iridium_bar.png"
+          "name": "Thỏi vàng (Gold Bar)",
+          "icon": "assets/icons/smelt_gold_bar.png"
+        },
+        {
+          "name": "Thỏi iridium (Iridium Bar)",
+          "icon": "assets/icons/smelt_iridium_bar.png"
+        },
+        {
+          "name": "Sách Châu báu của biển (Jewels Of The Sea)",
+          "icon": "assets/icons/jewels_of_the_sea.png"
+        },
+        {
+          "name": "Rượu mật ong (Mead)",
+          "icon": "assets/icons/mead.png"
+        },
+        {
+          "name": "Bạch Tuộc Biển (Octopus)",
+          "icon": "assets/icons/item_octopus.png"
+        },
+        {
+          "name": "Bí Ngô (Pumpkin)",
+          "icon": "assets/icons/item_pumpkin.png"
+        },
+        {
+          "name": "Hải Sâm (Sea Cucumber)",
+          "icon": "assets/icons/item_sea_cucumber.png"
+        },
+        {
+          "name": "Cá Tầm Hoàng Gia (Sturgeon)",
+          "icon": "assets/icons/item_sturgeon.png"
+        },
+        {
+          "name": "Sách Nghệ thuật bắt cua (The Art O' Crabbing)",
+          "icon": "assets/icons/the_art_o_crabbing.png"
+        },
+        {
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Tất cả các loại Cá và Hải sản câu được"
+          "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ Life Elixir và mọi Món nấu ăn, ngoại trừ các món cá)"
         },
         {
-          "name": "Tất cả các loại Thỏi sắt & Đồng"
+          "name": "Tạp chí Mồi & Phao câu (Bait And Bobber)",
+          "icon": "assets/icons/bait_and_bobber.png"
+        },
+        {
+          "name": "Cá Nướng Thảo Mộc (Baked Fish)",
+          "icon": "assets/icons/baked_fish.png"
+        },
+        {
+          "name": "Bất Ngờ Cá Chép (Carp Surprise)",
+          "icon": "assets/icons/carp_surprise.png"
+        },
+        {
+          "name": "Súp Hải Sản Ngao Sò Chowder (Chowder)",
+          "icon": "assets/icons/chowder.png"
+        },
+        {
+          "name": "Chả Cua Biển Áp Chảo (Crab Cakes)",
+          "icon": "assets/icons/crab_cakes.png"
+        },
+        {
+          "name": "Cá Vược Chiên Giòn (Crispy Bass)",
+          "icon": "assets/icons/crispy_bass.png"
+        },
+        {
+          "name": "Ốc Sên Xào Bơ Tỏi Kiểu Pháp (Escargot)",
+          "icon": "assets/icons/escargot.png"
+        },
+        {
+          "name": "Lẩu Hải Sản Hầm Củ Quả (Fish Stew)",
+          "icon": "assets/icons/fish_stew.png"
+        },
+        {
+          "name": "Bánh Kẹp Taco Cá (Fish Taco)",
+          "icon": "assets/icons/fish_taco.png"
+        },
+        {
+          "name": "Mực Ống Chiên Giòn (Fried Calamari)",
+          "icon": "assets/icons/fried_squid.png"
+        },
+        {
+          "name": "Lươn Biển Áp Chảo (Fried Eel)",
+          "icon": "assets/icons/fried_eel.png"
+        },
+        {
+          "name": "Cá Mú Lingcod (Lingcod)",
+          "icon": "assets/icons/item_lingcod.png"
+        },
+        {
+          "name": "Súp Kem Tôm Hùm Hoàng Gia (Lobster Bisque)",
+          "icon": "assets/icons/lobster_bisque.png"
+        },
+        {
+          "name": "Thạch anh (Quartz)",
+          "icon": "assets/icons/ing_quartz.png"
+        },
+        {
+          "name": "Cơm Cá Hồi Áp Chảo (Salmon Dinner)",
+          "icon": "assets/icons/salmon_dinner.png"
+        },
+        {
+          "name": "Pudding Bọt Biển Thần Thánh (Seafoam Pudding)",
+          "icon": "assets/icons/seafoam_pudding.png"
+        },
+        {
+          "name": "Cá Hồi Vằn Hổ (Tiger Trout)",
+          "icon": "assets/icons/item_tiger_trout.png"
+        },
+        {
+          "name": "Súp Cá Hồi Cầu Vồng (Trout Soup)",
+          "icon": "assets/icons/trout_soup.png"
         }
       ],
       "disliked": [
         {
-          "name": "Tất cả các loại Hoa mùa thu"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ cá, Gold Bar & Iridium Bar)"
+        },
+        {
+          "name": "Tất cả Món nấu ăn (trừ Baked Fish, Bread, Carp Surprise, Chowder, Crab Cakes, Crispy Bass, Dish O' The Sea, Escargot, Fish Stew, Fish Taco, Fried Calamari, Fried Eel, Fried Egg, Lobster Bisque, Maki Roll, Salmon Dinner, Sashimi, Seafoam Pudding, Strange Bun & Trout Soup)"
+        },
+        {
+          "name": "Nấm mỡ gà (Chanterelle)",
+          "icon": "assets/icons/ing_chanterelle.png"
+        },
+        {
+          "name": "Nấm thường (Common Mushroom)",
+          "icon": "assets/icons/ing_common_mushroom.png"
+        },
+        {
+          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "icon": "assets/icons/ing_daffodil.png"
+        },
+        {
+          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "icon": "assets/icons/item_dandelion.png"
+        },
+        {
+          "name": "Củ gừng (Ginger)",
+          "icon": "assets/icons/ing_ginger.png"
+        },
+        {
+          "name": "Hạt phỉ (Hazelnut)",
+          "icon": "assets/icons/ing_hazelnut.png"
+        },
+        {
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
+        },
+        {
+          "name": "Tỏi tây (Leek)",
+          "icon": "assets/icons/item_leek.png"
+        },
+        {
+          "name": "Thần dược sinh mệnh (Life Elixir)",
+          "icon": "assets/icons/life_elixir.png"
+        },
+        {
+          "name": "Nấm dung nham (Magma Cap)",
+          "icon": "assets/icons/magma_cap.png"
+        },
+        {
+          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "icon": "assets/icons/item_morel.png"
+        },
+        {
+          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "icon": "assets/icons/item_purple_mushroom.png"
+        },
+        {
+          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "icon": "assets/icons/item_salmonberry.png"
+        },
+        {
+          "name": "Khoai tuyết (Snow Yam)",
+          "icon": "assets/icons/snow_yam.png"
+        },
+        {
+          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "icon": "assets/icons/item_wild_horseradish.png"
+        },
+        {
+          "name": "Củ mùa đông (Winter Root)",
+          "icon": "assets/icons/winter_root.png"
         }
       ],
       "hated": [
         {
-          "name": "Đất sét (Clay)"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates) (trừ Seafoam Pudding)"
         }
       ]
     },
@@ -3779,43 +5333,122 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Mảnh lăng kính (Prismatic Shard)",
-          "icon": "assets/icons/item_prismatic_shard.png"
+          "name": "Sách Bí ẩn (Book of Mysteries)",
+          "icon": "assets/icons/book_of_mysteries.png"
         },
         {
-          "name": "Đá mặt trời (Solar Essence)",
+          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "icon": "assets/icons/item_purple_mushroom.png"
+        },
+        {
+          "name": "Tinh chất mặt trời (Solar Essence)",
           "icon": "assets/icons/ing_solar_essence.png"
         },
         {
-          "name": "Đá hư vô (Void Essence)",
+          "name": "Hải Sâm Tím Khổng Lồ (Super Cucumber)",
+          "icon": "assets/icons/item_super_cucumber.png"
+        },
+        {
+          "name": "Tinh chất hư vô (Void Essence)",
           "icon": "assets/icons/ing_void_essence.png"
         },
         {
-          "name": "Mực ống tím (Squid Ink)",
-          "icon": "assets/icons/ing_squid_ink.png"
-        },
-        {
-          "name": "Nấm ma quái tím Super Cucumber",
-          "icon": "assets/icons/super_cucumber.png"
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Thạch anh (Quartz)",
-          "icon": "assets/icons/ing_quartz.png"
+          "name": "Tất cả Quà Thích Chung (Universal Likes)"
         },
         {
-          "name": "Tất cả các loại Đá quý"
+          "name": "Tất cả Khoáng sản từ Geode"
+        },
+        {
+          "name": "Tất cả Trinket (bùa trang bị)"
+        },
+        {
+          "name": "Thỏi iridium (Iridium Bar)",
+          "icon": "assets/icons/smelt_iridium_bar.png"
+        },
+        {
+          "name": "Thạch anh (Quartz)",
+          "icon": "assets/icons/ing_quartz.png"
         }
       ],
       "disliked": [
         {
-          "name": "Tất cả các loại Trứng & Sữa"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ khoáng sản từ Geode, Iridium Bar, Solar Essence, Super Cucumber, trinket & Void Essence)"
+        },
+        {
+          "name": "Tất cả Trứng"
+        },
+        {
+          "name": "Tất cả Sữa"
+        },
+        {
+          "name": "Nấm mỡ gà (Chanterelle)",
+          "icon": "assets/icons/ing_chanterelle.png"
+        },
+        {
+          "name": "Nấm thường (Common Mushroom)",
+          "icon": "assets/icons/ing_common_mushroom.png"
+        },
+        {
+          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "icon": "assets/icons/ing_daffodil.png"
+        },
+        {
+          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "icon": "assets/icons/item_dandelion.png"
+        },
+        {
+          "name": "Củ gừng (Ginger)",
+          "icon": "assets/icons/ing_ginger.png"
+        },
+        {
+          "name": "Hạt phỉ (Hazelnut)",
+          "icon": "assets/icons/ing_hazelnut.png"
+        },
+        {
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
+        },
+        {
+          "name": "Tỏi tây (Leek)",
+          "icon": "assets/icons/item_leek.png"
+        },
+        {
+          "name": "Nấm dung nham (Magma Cap)",
+          "icon": "assets/icons/magma_cap.png"
+        },
+        {
+          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "icon": "assets/icons/item_morel.png"
+        },
+        {
+          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "icon": "assets/icons/item_salmonberry.png"
+        },
+        {
+          "name": "Chất nhờn (Slime)",
+          "icon": "assets/icons/ing_slime.png"
+        },
+        {
+          "name": "Khoai tuyết (Snow Yam)",
+          "icon": "assets/icons/snow_yam.png"
+        },
+        {
+          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "icon": "assets/icons/item_wild_horseradish.png"
+        },
+        {
+          "name": "Củ mùa đông (Winter Root)",
+          "icon": "assets/icons/winter_root.png"
         }
       ],
       "hated": [
         {
-          "name": "Đất sét (Clay)"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates) (trừ Slime)"
         }
       ]
     },
@@ -3882,55 +5515,133 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Viên kim cương đen Void Egg",
+          "name": "Kim Cương Tinh Khiết (Diamond)",
+          "icon": "assets/icons/item_diamond.png"
+        },
+        {
+          "name": "Thỏi iridium (Iridium Bar)",
+          "icon": "assets/icons/smelt_iridium_bar.png"
+        },
+        {
+          "name": "Bách khoa Quái vật (Monster Compendium)",
+          "icon": "assets/icons/monster_compendium.png"
+        },
+        {
+          "name": "Nước Hoa Dụ Quái Vật (Monster Musk)",
+          "icon": "assets/icons/monster_musk.png"
+        },
+        {
+          "name": "Bí Ngô (Pumpkin)",
+          "icon": "assets/icons/item_pumpkin.png"
+        },
+        {
+          "name": "Trứng Gà Hư Vô (Void Egg)",
           "icon": "assets/icons/item_void_egg.png"
         },
         {
-          "name": "Món xào sốt mực đen Squid Ink",
-          "icon": "assets/icons/ing_squid_ink.png"
-        },
-        {
-          "name": "Cá chép nước sâu Void Mayonnaise",
+          "name": "Sốt Mayonnaise hư vô (Void Mayonnaise)",
           "icon": "assets/icons/void_mayonnaise.png"
         },
         {
-          "name": "Kim cương (Diamond)",
-          "icon": "assets/icons/diamond.png"
+          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "icon": "assets/icons/item_wild_horseradish.png"
         },
         {
-          "name": "Mảnh lăng kính (Prismatic Shard)",
-          "icon": "assets/icons/item_prismatic_shard.png"
-        },
-        {
-          "name": "Bánh bí ngô nướng Pumpkin",
-          "icon": "assets/icons/item_pumpkin.png"
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Thỏi vàng (Gold Bar)",
-          "icon": "assets/icons/ing_gold_bar.png"
+          "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ Life Elixir và mọi Món nấu ăn ngoài Seafoam Pudding & Strange Bun)"
         },
         {
-          "name": "Thỏi Iridium Bar",
-          "icon": "assets/icons/ing_iridium_bar.png"
+          "name": "Thỏi vàng (Gold Bar)",
+          "icon": "assets/icons/smelt_gold_bar.png"
         },
         {
           "name": "Thạch anh (Quartz)",
           "icon": "assets/icons/ing_quartz.png"
+        },
+        {
+          "name": "Pudding Bọt Biển Thần Thánh (Seafoam Pudding)",
+          "icon": "assets/icons/seafoam_pudding.png"
+        },
+        {
+          "name": "Bánh Bao Kỳ Dị (Strange Bun)",
+          "icon": "assets/icons/strange_bun.png"
         }
       ],
       "disliked": [
         {
-          "name": "Tất cả các loại Bông hoa"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ Gold Bar, Iridium Bar & Void Egg)"
+        },
+        {
+          "name": "Tất cả Món nấu ăn (trừ Bread, Fried Egg, Seafoam Pudding & Strange Bun)"
+        },
+        {
+          "name": "Nấm mỡ gà (Chanterelle)",
+          "icon": "assets/icons/ing_chanterelle.png"
+        },
+        {
+          "name": "Nấm thường (Common Mushroom)",
+          "icon": "assets/icons/ing_common_mushroom.png"
+        },
+        {
+          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "icon": "assets/icons/ing_daffodil.png"
+        },
+        {
+          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "icon": "assets/icons/item_dandelion.png"
+        },
+        {
+          "name": "Củ gừng (Ginger)",
+          "icon": "assets/icons/ing_ginger.png"
+        },
+        {
+          "name": "Hạt phỉ (Hazelnut)",
+          "icon": "assets/icons/ing_hazelnut.png"
+        },
+        {
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
+        },
+        {
+          "name": "Tỏi tây (Leek)",
+          "icon": "assets/icons/item_leek.png"
+        },
+        {
+          "name": "Thần dược sinh mệnh (Life Elixir)",
+          "icon": "assets/icons/life_elixir.png"
+        },
+        {
+          "name": "Nấm dung nham (Magma Cap)",
+          "icon": "assets/icons/magma_cap.png"
+        },
+        {
+          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "icon": "assets/icons/item_morel.png"
+        },
+        {
+          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "icon": "assets/icons/item_purple_mushroom.png"
+        },
+        {
+          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "icon": "assets/icons/item_salmonberry.png"
+        },
+        {
+          "name": "Khoai tuyết (Snow Yam)",
+          "icon": "assets/icons/snow_yam.png"
+        },
+        {
+          "name": "Củ mùa đông (Winter Root)",
+          "icon": "assets/icons/winter_root.png"
         }
       ],
       "hated": [
         {
-          "name": "Đất sét (Clay)"
-        },
-        {
-          "name": "Cần câu cũ rách"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates) (trừ Monster Musk, Seafoam Pudding, Strange Bun & Void Mayonnaise)"
         }
       ]
     },
@@ -3988,39 +5699,173 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Xoài chín cây (Mango)",
+          "name": "Lông Vịt Xanh Biếc (Duck Feather)",
+          "icon": "assets/icons/item_duck_feather.png"
+        },
+        {
+          "name": "Xoài Nhiệt Đới (Mango)",
           "icon": "assets/icons/item_mango.png"
         },
         {
-          "name": "Món xôi xoài nước cốt dừa (Mango Sticky Rice)",
-          "icon": "assets/icons/mango_sticky_rice.png"
+          "name": "Trứng đà điểu (Ostrich Egg)",
+          "icon": "assets/icons/ostrich_egg.png"
         },
         {
-          "name": "Món mút khoai môn Poi",
+          "name": "Trứng vẹt (Parrot Egg)",
+          "icon": "assets/icons/parrot_egg.png"
+        },
+        {
+          "name": "Món Khoai Môn Nghiền Poi (Poi)",
           "icon": "assets/icons/poi.png"
         },
         {
-          "name": "Lông vũ chim đà điểu (Duck Feather)",
-          "icon": "assets/icons/item_duck_feather.png"
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Món xào quả dứa dại (Pineapple)",
-          "icon": "assets/icons/item_pineapple.png"
+          "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ Beer, Coffee, Life Elixir, Mead, Pale Ale, Pickles, Piña Colada, Wine và các Món nấu ăn ngoài Bread, Fried Egg, Poi, Mango Sticky Rice & Triple Shot Espresso)"
         },
         {
-          "name": "Tất cả các loại Trứng gia cầm"
+          "name": "Răng rồng (Dragon Tooth)",
+          "icon": "assets/icons/ing_dragon_tooth.png"
+        },
+        {
+          "name": "Xôi Xoài Nước Cốt Dừa (Mango Sticky Rice)",
+          "icon": "assets/icons/mango_sticky_rice.png"
+        },
+        {
+          "name": "Vỏ ốc anh vũ (Nautilus Shell)",
+          "icon": "assets/icons/nautilus_shell.png"
+        },
+        {
+          "name": "Thạch anh (Quartz)",
+          "icon": "assets/icons/ing_quartz.png"
+        },
+        {
+          "name": "Nhum Biển (Sea Urchin)",
+          "icon": "assets/icons/item_sea_urchin.png"
+        },
+        {
+          "name": "Quả mọng cay (Spice Berry)",
+          "icon": "assets/icons/spice_berry.png"
         }
       ],
       "disliked": [
         {
-          "name": "Bia & Rượu đồ uống có cồn"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ Oil, Parrot Egg, Unmilled Rice & cá)"
+        },
+        {
+          "name": "Tất cả Món nấu ăn (trừ Bread, Fried Egg, Mango Sticky Rice, Poi & Triple Shot Espresso)"
+        },
+        {
+          "name": "Nấm mỡ gà (Chanterelle)",
+          "icon": "assets/icons/ing_chanterelle.png"
+        },
+        {
+          "name": "Nấm thường (Common Mushroom)",
+          "icon": "assets/icons/ing_common_mushroom.png"
+        },
+        {
+          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "icon": "assets/icons/ing_daffodil.png"
+        },
+        {
+          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "icon": "assets/icons/item_dandelion.png"
+        },
+        {
+          "name": "Củ gừng (Ginger)",
+          "icon": "assets/icons/ing_ginger.png"
+        },
+        {
+          "name": "Hạt phỉ (Hazelnut)",
+          "icon": "assets/icons/ing_hazelnut.png"
+        },
+        {
+          "name": "Tỏi tây (Leek)",
+          "icon": "assets/icons/item_leek.png"
+        },
+        {
+          "name": "Thần dược sinh mệnh (Life Elixir)",
+          "icon": "assets/icons/life_elixir.png"
+        },
+        {
+          "name": "Nấm dung nham (Magma Cap)",
+          "icon": "assets/icons/magma_cap.png"
+        },
+        {
+          "name": "Dưa muối (Pickles)",
+          "icon": "assets/icons/pickles.png"
+        },
+        {
+          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "icon": "assets/icons/item_purple_mushroom.png"
+        },
+        {
+          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "icon": "assets/icons/item_salmonberry.png"
+        },
+        {
+          "name": "Khoai tuyết (Snow Yam)",
+          "icon": "assets/icons/snow_yam.png"
+        },
+        {
+          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "icon": "assets/icons/item_wild_horseradish.png"
+        },
+        {
+          "name": "Củ mùa đông (Winter Root)",
+          "icon": "assets/icons/winter_root.png"
         }
       ],
       "hated": [
         {
-          "name": "Bia Joja Cola"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates) (trừ Dragon Tooth & Sea Urchin)"
+        },
+        {
+          "name": "Bia (Beer)",
+          "icon": "assets/icons/beer.png"
+        },
+        {
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
+        },
+        {
+          "name": "Hoa bia (Hops)",
+          "icon": "assets/icons/ing_hops.png"
+        },
+        {
+          "name": "Rượu mật ong (Mead)",
+          "icon": "assets/icons/mead.png"
+        },
+        {
+          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "icon": "assets/icons/item_morel.png"
+        },
+        {
+          "name": "Dầu ăn (Oil)",
+          "icon": "assets/icons/ing_oil.png"
+        },
+        {
+          "name": "Bia nhạt (Pale Ale)",
+          "icon": "assets/icons/pale_ale.png"
+        },
+        {
+          "name": "Cocktail dứa dừa (Piña Colada)",
+          "icon": "assets/icons/pina_colada.png"
+        },
+        {
+          "name": "Cà Phê Espresso Đậm Đặc (Triple Shot Espresso)",
+          "icon": "assets/icons/triple_shot_espresso.png"
+        },
+        {
+          "name": "Lúa chưa xay (Unmilled Rice)",
+          "icon": "assets/icons/unmilled_rice.png"
+        },
+        {
+          "name": "Rượu vang (Wine)",
+          "icon": "assets/icons/wine.png"
         }
       ]
     },
@@ -4088,38 +5933,61 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Bông hoa hồng ngọt (Sweet Pea)",
-          "icon": "assets/icons/ing_sweet_pea.png"
-        },
-        {
-          "name": "Hoa nghệ tây vàng Crocus",
+          "name": "Hoa nghệ tây (Crocus)",
           "icon": "assets/icons/ing_crocus.png"
         },
         {
-          "name": "Hoa thủy tiên vàng Daffodil",
+          "name": "Hoa thủy tiên vàng (Daffodil)",
           "icon": "assets/icons/ing_daffodil.png"
         },
         {
-          "name": "Món xào quả xoài tươi",
-          "icon": "assets/icons/item_mango.png"
+          "name": "Xôi Xoài Nước Cốt Dừa (Mango Sticky Rice)",
+          "icon": "assets/icons/mango_sticky_rice.png"
+        },
+        {
+          "name": "Hoa đậu thơm (Sweet Pea)",
+          "icon": "assets/icons/ing_sweet_pea.png"
+        },
+        {
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Tất cả các loại Đá quý"
+          "name": "Tất cả Quà Thích Chung (Universal Likes)"
         },
         {
-          "name": "Sữa dê (Goat Milk)"
+          "name": "Tất cả Trái cây"
+        },
+        {
+          "name": "Sữa dê (Goat Milk)",
+          "icon": "assets/icons/goat_milk.png"
+        },
+        {
+          "name": "Sữa dê lớn (Large Goat Milk)",
+          "icon": "assets/icons/large_goat_milk.png"
+        },
+        {
+          "name": "Thạch anh (Quartz)",
+          "icon": "assets/icons/ing_quartz.png"
+        },
+        {
+          "name": "Len (Wool)",
+          "icon": "assets/icons/item_wool.png"
         }
       ],
       "disliked": [
         {
-          "name": "Đá vôi thô"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes)"
         }
       ],
       "hated": [
         {
-          "name": "Rác thải rỗng"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates)"
+        },
+        {
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
         }
       ]
     },
@@ -4178,37 +6046,118 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Cá chép sốt chanh (Fish Taco)",
+          "name": "Bánh Kẹp Taco Cá (Fish Taco)",
           "icon": "assets/icons/fish_taco.png"
         },
         {
-          "name": "Trà xanh mùa thu (Green Tea)",
+          "name": "Trà xanh (Green Tea)",
           "icon": "assets/icons/green_tea.png"
         },
         {
-          "name": "Bánh bông lan mùa hè (Summer Spangle)",
+          "name": "Hoa lấp lánh mùa hè (Summer Spangle)",
           "icon": "assets/icons/summer_spangle.png"
+        },
+        {
+          "name": "Cà Ri Thơm Nhiệt Đới (Tropical Curry)",
+          "icon": "assets/icons/tropical_curry.png"
+        },
+        {
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Tất cả các loại Hoa dại"
+          "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ Amaranth, Duck Mayonnaise & Mayonnaise)"
         },
         {
-          "name": "Tất cả các loại Bông cải & Rau củ"
+          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "icon": "assets/icons/ing_daffodil.png"
+        },
+        {
+          "name": "Lá trà (Tea Leaves)",
+          "icon": "assets/icons/tea_leaves.png"
+        },
+        {
+          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "icon": "assets/icons/item_wild_horseradish.png"
         }
       ],
       "disliked": [
         {
-          "name": "Rong biển hoang dã"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes)"
+        },
+        {
+          "name": "Rau dền (Amaranth)",
+          "icon": "assets/icons/amaranth.png"
+        },
+        {
+          "name": "Nấm mỡ gà (Chanterelle)",
+          "icon": "assets/icons/ing_chanterelle.png"
+        },
+        {
+          "name": "Nấm thường (Common Mushroom)",
+          "icon": "assets/icons/ing_common_mushroom.png"
+        },
+        {
+          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "icon": "assets/icons/item_dandelion.png"
+        },
+        {
+          "name": "Sốt mayonnaise vịt (Duck Mayonnaise)",
+          "icon": "assets/icons/duck_mayonnaise.png"
+        },
+        {
+          "name": "Củ gừng (Ginger)",
+          "icon": "assets/icons/ing_ginger.png"
+        },
+        {
+          "name": "Hạt phỉ (Hazelnut)",
+          "icon": "assets/icons/ing_hazelnut.png"
+        },
+        {
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
+        },
+        {
+          "name": "Tỏi tây (Leek)",
+          "icon": "assets/icons/item_leek.png"
+        },
+        {
+          "name": "Nấm dung nham (Magma Cap)",
+          "icon": "assets/icons/magma_cap.png"
+        },
+        {
+          "name": "Sốt Mayonnaise (Mayonnaise)",
+          "icon": "assets/icons/mayonnaise.png"
+        },
+        {
+          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "icon": "assets/icons/item_morel.png"
+        },
+        {
+          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "icon": "assets/icons/item_purple_mushroom.png"
+        },
+        {
+          "name": "Khoai tuyết (Snow Yam)",
+          "icon": "assets/icons/snow_yam.png"
+        },
+        {
+          "name": "Củ mùa đông (Winter Root)",
+          "icon": "assets/icons/winter_root.png"
         }
       ],
       "hated": [
         {
-          "name": "Đất sét (Clay)"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates)"
         },
         {
-          "name": "Cá hồi nướng"
+          "name": "Thạch anh (Quartz)",
+          "icon": "assets/icons/ing_quartz.png"
+        },
+        {
+          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "icon": "assets/icons/item_salmonberry.png"
         }
       ]
     },
@@ -4321,30 +6270,61 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Củ tỏi tây nướng mỡ (Leek)",
+          "name": "Nấm Rừng Xào Tỏi (Fried Mushroom)",
+          "icon": "assets/icons/fried_mushroom.png"
+        },
+        {
+          "name": "Tỏi tây (Leek)",
           "icon": "assets/icons/item_leek.png"
         },
         {
-          "name": "Món xào nấm xốp (Fried Mushroom)",
-          "icon": "assets/icons/fried_mushroom.png"
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Tất cả các loại Hoa thủy tiên vàng Daffodil"
+          "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ hoa)"
+        },
+        {
+          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "icon": "assets/icons/ing_daffodil.png"
         }
       ],
       "disliked": [
         {
-          "name": "Tất cả các loại Bồ công anh dại"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ Clay)"
+        },
+        {
+          "name": "Tất cả Hoa (trừ Poppy)"
+        },
+        {
+          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "icon": "assets/icons/item_salmonberry.png"
+        },
+        {
+          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "icon": "assets/icons/item_wild_horseradish.png"
         }
       ],
       "hated": [
         {
-          "name": "Đất sét (Clay)"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates)"
         },
         {
-          "name": "Bồ công anh"
+          "name": "Đất sét (Clay)",
+          "icon": "assets/icons/ing_clay.png"
+        },
+        {
+          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "icon": "assets/icons/item_dandelion.png"
+        },
+        {
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
+        },
+        {
+          "name": "Thạch anh (Quartz)",
+          "icon": "assets/icons/ing_quartz.png"
         }
       ]
     },
@@ -4418,45 +6398,140 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Củ dền đỏ ngọt ngào (Beet)",
+          "name": "Củ dền (Beet)",
           "icon": "assets/icons/ing_beet.png"
         },
         {
-          "name": "Bánh quy bơ giòn (Cookie)",
-          "icon": "assets/icons/cookie.png"
+          "name": "Bánh Gato Sô-cô-la (Chocolate Cake)",
+          "icon": "assets/icons/chocolate_cake.png"
         },
         {
-          "name": "Bông hoa hồng sô cô la Fairy Rose",
+          "name": "Kim Cương Tinh Khiết (Diamond)",
+          "icon": "assets/icons/item_diamond.png"
+        },
+        {
+          "name": "Hoa hồng tiên (Fairy Rose)",
           "icon": "assets/icons/ing_fairy_rose.png"
         },
         {
-          "name": "Kim cương (Diamond)",
-          "icon": "assets/icons/diamond.png"
+          "name": "Nho khô (Raisins)",
+          "icon": "assets/icons/raisins.png"
         },
         {
-          "name": "Bông hoa Tulip nở sớm",
+          "name": "Món Nhồi Ngũ Vị (Stuffing)",
+          "icon": "assets/icons/stuffing.png"
+        },
+        {
+          "name": "Hoa tulip (Tulip)",
           "icon": "assets/icons/ing_tulip.png"
+        },
+        {
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Tất cả các loại Bông hoa trồng mùa xuân & hạ"
+          "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ Fried Eel, Garlic, Maki Roll, Sashimi, Spicy Eel & Trout Soup)"
         },
         {
-          "name": "Tất cả các loại Sữa bò"
+          "name": "Tất cả Sữa"
+        },
+        {
+          "name": "Kính vỡ (Broken Glasses)",
+          "icon": "assets/icons/broken_glasses.png"
+        },
+        {
+          "name": "Nghêu Biển (Clam)",
+          "icon": "assets/icons/item_clam.png"
+        },
+        {
+          "name": "Sò Huyết (Cockle)",
+          "icon": "assets/icons/item_cockle.png"
+        },
+        {
+          "name": "San Hô Biển Hồng (Coral)",
+          "icon": "assets/icons/item_coral.png"
+        },
+        {
+          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "icon": "assets/icons/ing_daffodil.png"
+        },
+        {
+          "name": "Vẹm Xanh (Mussel)",
+          "icon": "assets/icons/item_mussel.png"
+        },
+        {
+          "name": "Vỏ ốc anh vũ (Nautilus Shell)",
+          "icon": "assets/icons/nautilus_shell.png"
+        },
+        {
+          "name": "Hàu Biển (Oyster)",
+          "icon": "assets/icons/item_oyster.png"
+        },
+        {
+          "name": "Nhum Biển (Sea Urchin)",
+          "icon": "assets/icons/item_sea_urchin.png"
         }
       ],
       "disliked": [
         {
-          "name": "Tỏi tây hoang dã"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ Clay & cá)"
+        },
+        {
+          "name": "Thạch anh (Quartz)",
+          "icon": "assets/icons/ing_quartz.png"
+        },
+        {
+          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "icon": "assets/icons/item_wild_horseradish.png"
         }
       ],
       "hated": [
         {
-          "name": "Rác thải rỗng"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates) (trừ Broken Glasses & Sea Urchin)"
         },
         {
-          "name": "Hải sâm đen"
+          "name": "Tất cả Cá (trừ Clam, Cockle, Mussel & Oyster)"
+        },
+        {
+          "name": "Đất sét (Clay)",
+          "icon": "assets/icons/ing_clay.png"
+        },
+        {
+          "name": "Lươn Biển Áp Chảo (Fried Eel)",
+          "icon": "assets/icons/fried_eel.png"
+        },
+        {
+          "name": "Tỏi (Garlic)",
+          "icon": "assets/icons/garlic.png"
+        },
+        {
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
+        },
+        {
+          "name": "Cuộn Cơm Rong Biển Maki (Maki Roll)",
+          "icon": "assets/icons/maki_roll.png"
+        },
+        {
+          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "icon": "assets/icons/item_salmonberry.png"
+        },
+        {
+          "name": "Gỏi Cá Sống Sashimi (Sashimi)",
+          "icon": "assets/icons/sashimi.png"
+        },
+        {
+          "name": "Quả mọng cay (Spice Berry)",
+          "icon": "assets/icons/spice_berry.png"
+        },
+        {
+          "name": "Lươn Biển Sốt Ớt Cay (Spicy Eel)",
+          "icon": "assets/icons/spicy_eel.png"
+        },
+        {
+          "name": "Súp Cá Hồi Cầu Vồng (Trout Soup)",
+          "icon": "assets/icons/trout_soup.png"
         }
       ]
     },
@@ -4531,39 +6606,131 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Kim cương (Diamond)",
-          "icon": "assets/icons/diamond.png"
-        },
-        {
-          "name": "Bánh bông lan sô cô la Chocolate Cake",
+          "name": "Bánh Gato Sô-cô-la (Chocolate Cake)",
           "icon": "assets/icons/chocolate_cake.png"
         },
         {
-          "name": "Món xào bí ngô cá biển Bass",
+          "name": "Cá Vược Chiên Giòn (Crispy Bass)",
           "icon": "assets/icons/crispy_bass.png"
         },
         {
-          "name": "Món cà tím sốt phô mai Eggplant Parmesan",
+          "name": "Kim Cương Tinh Khiết (Diamond)",
+          "icon": "assets/icons/item_diamond.png"
+        },
+        {
+          "name": "Cà Tím Bỏ Lò Phô Mai (Eggplant Parmesan)",
           "icon": "assets/icons/eggplant_parmesan.png"
         },
         {
-          "name": "Bánh kếp vàng ươm Pancakes",
+          "name": "Lươn Biển Áp Chảo (Fried Eel)",
+          "icon": "assets/icons/fried_eel.png"
+        },
+        {
+          "name": "Bánh Kếp Bơ Mật Ong (Pancakes)",
           "icon": "assets/icons/pancakes.png"
+        },
+        {
+          "name": "Bánh Nướng Đại Hoàng (Rhubarb Pie)",
+          "icon": "assets/icons/rhubarb_pie.png"
+        },
+        {
+          "name": "Món Rau Xào Thập Cẩm (Vegetable Medley)",
+          "icon": "assets/icons/vegetable_medley.png"
+        },
+        {
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Tất cả các loại Trứng & Sữa"
+          "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ Garlic)"
+        },
+        {
+          "name": "Tất cả Trứng (trừ Void Egg)"
+        },
+        {
+          "name": "Tất cả Trái cây (trừ Spice Berry)"
+        },
+        {
+          "name": "Tất cả Sữa"
         }
       ],
       "disliked": [
         {
-          "name": "Tỏi tây dại"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes)"
+        },
+        {
+          "name": "Nấm mỡ gà (Chanterelle)",
+          "icon": "assets/icons/ing_chanterelle.png"
+        },
+        {
+          "name": "Nấm thường (Common Mushroom)",
+          "icon": "assets/icons/ing_common_mushroom.png"
+        },
+        {
+          "name": "Tỏi (Garlic)",
+          "icon": "assets/icons/garlic.png"
+        },
+        {
+          "name": "Củ gừng (Ginger)",
+          "icon": "assets/icons/ing_ginger.png"
+        },
+        {
+          "name": "Hạt phỉ (Hazelnut)",
+          "icon": "assets/icons/ing_hazelnut.png"
+        },
+        {
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
+        },
+        {
+          "name": "Tỏi tây (Leek)",
+          "icon": "assets/icons/item_leek.png"
+        },
+        {
+          "name": "Nấm dung nham (Magma Cap)",
+          "icon": "assets/icons/magma_cap.png"
+        },
+        {
+          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "icon": "assets/icons/item_morel.png"
+        },
+        {
+          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "icon": "assets/icons/item_purple_mushroom.png"
+        },
+        {
+          "name": "Thạch anh (Quartz)",
+          "icon": "assets/icons/ing_quartz.png"
+        },
+        {
+          "name": "Khoai tuyết (Snow Yam)",
+          "icon": "assets/icons/snow_yam.png"
+        },
+        {
+          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "icon": "assets/icons/item_wild_horseradish.png"
+        },
+        {
+          "name": "Củ mùa đông (Winter Root)",
+          "icon": "assets/icons/winter_root.png"
         }
       ],
       "hated": [
         {
-          "name": "Bồ công anh dại"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates)"
+        },
+        {
+          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "icon": "assets/icons/ing_daffodil.png"
+        },
+        {
+          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "icon": "assets/icons/item_dandelion.png"
+        },
+        {
+          "name": "Quả mọng cay (Spice Berry)",
+          "icon": "assets/icons/spice_berry.png"
         }
       ]
     },
@@ -4677,33 +6844,75 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Hạt phỉ nướng thơm lừng (Roasted Hazelnuts)",
+          "name": "Cơm Ý Dương Xỉ Non (Fiddlehead Risotto)",
+          "icon": "assets/icons/fiddlehead_risotto.png"
+        },
+        {
+          "name": "Hạt Dẻ Rang Muối Bơ (Roasted Hazelnuts)",
           "icon": "assets/icons/roasted_hazelnuts.png"
         },
         {
-          "name": "Món xào quả vả biển Fiddlehead Risotto",
-          "icon": "assets/icons/fiddlehead_risotto.png"
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Tất cả các loại Trứng & Sữa"
+          "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ Algae Soup, Piña Colada, Sashimi & Tortilla)"
         },
         {
-          "name": "Tất cả các loại Trái cây trồng"
+          "name": "Tất cả Trứng (trừ Void Egg)"
+        },
+        {
+          "name": "Tất cả Trái cây"
+        },
+        {
+          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "icon": "assets/icons/ing_daffodil.png"
+        },
+        {
+          "name": "Sổ tay an toàn người lùn (Dwarvish Safety Manual)",
+          "icon": "assets/icons/dwarvish_safety_manual.png"
         }
       ],
       "disliked": [
         {
-          "name": "Bánh mì (Bread)"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes)"
+        },
+        {
+          "name": "Cocktail dứa dừa (Piña Colada)",
+          "icon": "assets/icons/pina_colada.png"
+        },
+        {
+          "name": "Thạch anh (Quartz)",
+          "icon": "assets/icons/ing_quartz.png"
+        },
+        {
+          "name": "Khoai tuyết (Snow Yam)",
+          "icon": "assets/icons/snow_yam.png"
         }
       ],
       "hated": [
         {
-          "name": "Bỏng ngô (Popcorn - Tiếng nổ gợi nhớ bom đạn chiến trường)"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates)"
         },
         {
-          "name": "Sữa đậu nành"
+          "name": "Tất cả Sữa"
+        },
+        {
+          "name": "Súp Tảo Lục Thanh Nhiệt (Algae Soup)",
+          "icon": "assets/icons/algae_soup.png"
+        },
+        {
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
+        },
+        {
+          "name": "Gỏi Cá Sống Sashimi (Sashimi)",
+          "icon": "assets/icons/sashimi.png"
+        },
+        {
+          "name": "Bánh Tráng Ngô Tortilla (Tortilla)",
+          "icon": "assets/icons/tortilla.png"
         }
       ]
     },
@@ -4776,42 +6985,87 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Bia tươi Pale Ale",
-          "icon": "assets/icons/pale_ale.png"
-        },
-        {
-          "name": "Bia thường (Beer)",
+          "name": "Bia (Beer)",
           "icon": "assets/icons/beer.png"
         },
         {
-          "name": "Món súp củ cải vàng Parsnip Soup",
-          "icon": "assets/icons/parsnip_soup.png"
+          "name": "Quả Xương Rồng Sa Mạc (Cactus Fruit)",
+          "icon": "assets/icons/item_cactus_fruit.png"
         },
         {
-          "name": "Củ cải trắng (Parsnip)",
+          "name": "Khoai Lang Ngào Đường (Glazed Yams)",
+          "icon": "assets/icons/glazed_yams.png"
+        },
+        {
+          "name": "Rượu mật ong (Mead)",
+          "icon": "assets/icons/mead.png"
+        },
+        {
+          "name": "Bia nhạt (Pale Ale)",
+          "icon": "assets/icons/pale_ale.png"
+        },
+        {
+          "name": "Củ Cải Vàng (Parsnip)",
           "icon": "assets/icons/item_parsnip.png"
         },
         {
-          "name": "Cương phong Cactus Fruit",
-          "icon": "assets/icons/item_cactus_fruit.png"
+          "name": "Súp Củ Cải Vàng (Parsnip Soup)",
+          "icon": "assets/icons/parsnip_soup.png"
+        },
+        {
+          "name": "Cocktail dứa dừa (Piña Colada)",
+          "icon": "assets/icons/pina_colada.png"
+        },
+        {
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Tất cả các loại Trái cây hái lượm"
+          "name": "Tất cả Quà Thích Chung (Universal Likes)"
         },
         {
-          "name": "Sữa bò tươi"
+          "name": "Tất cả Trái cây (trừ Cactus Fruit)"
+        },
+        {
+          "name": "Tất cả Sữa"
+        },
+        {
+          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "icon": "assets/icons/ing_daffodil.png"
         }
       ],
       "disliked": [
         {
-          "name": "Bạch tuộc"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ cá)"
+        },
+        {
+          "name": "Tất cả Trứng"
+        },
+        {
+          "name": "Thạch anh (Quartz)",
+          "icon": "assets/icons/ing_quartz.png"
+        },
+        {
+          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "icon": "assets/icons/item_wild_horseradish.png"
         }
       ],
       "hated": [
         {
-          "name": "Bạch tuộc nướng"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates) (trừ Joja Cola)"
+        },
+        {
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
+        },
+        {
+          "name": "Bạch Tuộc Biển (Octopus)",
+          "icon": "assets/icons/item_octopus.png"
+        },
+        {
+          "name": "Mực Ống Đại Dương (Squid)",
+          "icon": "assets/icons/item_squid.png"
         }
       ]
     },
@@ -4885,34 +7139,141 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Bánh mận pudding dại Plum Pudding",
-          "icon": "assets/icons/plum_pudding.png"
+          "name": "Búp Bê Cổ Đại (Ancient Doll)",
+          "icon": "assets/icons/item_ancient_doll.png"
         },
         {
-          "name": "Bánh kem hồng (Pink Cake)",
+          "name": "Hộp tiên (Fairy Box)",
+          "icon": "assets/icons/fairy_box.png"
+        },
+        {
+          "name": "Hoa hồng tiên (Fairy Rose)",
+          "icon": "assets/icons/ing_fairy_rose.png"
+        },
+        {
+          "name": "Bánh Kem Dâu Tây Hồng (Pink Cake)",
           "icon": "assets/icons/pink_cake.png"
         },
         {
-          "name": "Bông hoa hồng sô cô la Fairy Rose",
-          "icon": "assets/icons/ing_fairy_rose.png"
+          "name": "Pudding Mận Rừng (Plum Pudding)",
+          "icon": "assets/icons/plum_pudding.png"
+        },
+        {
+          "name": "Búp bê kỳ lạ xanh lá (Strange Doll (green))",
+          "icon": "assets/icons/strange_doll_green.png"
+        },
+        {
+          "name": "Búp bê kỳ lạ vàng (Strange Doll (yellow))",
+          "icon": "assets/icons/strange_doll_yellow.png"
+        },
+        {
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Tất cả các loại Dừa & Bông hoa mùa xuân"
+          "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ Piña Colada, Triple Shot Espresso, rau củ & sản phẩm thủ công ngoài Honey, Jelly & Oil)"
+        },
+        {
+          "name": "Tất cả Sữa"
+        },
+        {
+          "name": "Quả dừa (Coconut)",
+          "icon": "assets/icons/item_coconut.png"
+        },
+        {
+          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "icon": "assets/icons/ing_daffodil.png"
         }
       ],
       "disliked": [
         {
-          "name": "Tất cả các loại Rau củ quả trồng"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ Ancient Doll, Clay, Fairy Box, Strange Doll xanh lá & vàng)"
+        },
+        {
+          "name": "Tất cả Trứng"
+        },
+        {
+          "name": "Tất cả Trái cây (trừ Coconut & trái cây từ cây ăn quả)"
+        },
+        {
+          "name": "Tất cả Rau củ (trừ Hops & Wheat)"
+        },
+        {
+          "name": "Nấm mỡ gà (Chanterelle)",
+          "icon": "assets/icons/ing_chanterelle.png"
+        },
+        {
+          "name": "Nấm thường (Common Mushroom)",
+          "icon": "assets/icons/ing_common_mushroom.png"
+        },
+        {
+          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "icon": "assets/icons/item_dandelion.png"
+        },
+        {
+          "name": "Củ gừng (Ginger)",
+          "icon": "assets/icons/ing_ginger.png"
+        },
+        {
+          "name": "Hạt phỉ (Hazelnut)",
+          "icon": "assets/icons/ing_hazelnut.png"
+        },
+        {
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
+        },
+        {
+          "name": "Tỏi tây (Leek)",
+          "icon": "assets/icons/item_leek.png"
+        },
+        {
+          "name": "Nấm dung nham (Magma Cap)",
+          "icon": "assets/icons/magma_cap.png"
+        },
+        {
+          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "icon": "assets/icons/item_morel.png"
+        },
+        {
+          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "icon": "assets/icons/item_purple_mushroom.png"
+        },
+        {
+          "name": "Thạch anh (Quartz)",
+          "icon": "assets/icons/ing_quartz.png"
+        },
+        {
+          "name": "Khoai tuyết (Snow Yam)",
+          "icon": "assets/icons/snow_yam.png"
+        },
+        {
+          "name": "Củ mùa đông (Winter Root)",
+          "icon": "assets/icons/winter_root.png"
         }
       ],
       "hated": [
         {
-          "name": "Đất sét (Clay)"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates)"
         },
         {
-          "name": "Bia & Rượu"
+          "name": "Tất cả Sản phẩm thủ công (trừ Honey, Jelly & Oil)"
+        },
+        {
+          "name": "Đất sét (Clay)",
+          "icon": "assets/icons/ing_clay.png"
+        },
+        {
+          "name": "Cocktail dứa dừa (Piña Colada)",
+          "icon": "assets/icons/pina_colada.png"
+        },
+        {
+          "name": "Cà Phê Espresso Đậm Đặc (Triple Shot Espresso)",
+          "icon": "assets/icons/triple_shot_espresso.png"
+        },
+        {
+          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "icon": "assets/icons/item_wild_horseradish.png"
         }
       ]
     },
@@ -4982,38 +7343,137 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Con ốc sên (Snail)",
-          "icon": "assets/icons/ing_snail.png"
-        },
-        {
-          "name": "Kẹo mút quả mọng Cranberry Candy",
+          "name": "Kẹo Dẻo Nam Việt Quất (Cranberry Candy)",
           "icon": "assets/icons/cranberry_candy.png"
         },
         {
-          "name": "Bánh kem hồng Pink Cake",
+          "name": "Trứng ếch (Frog Egg)",
+          "icon": "assets/icons/frog_egg.png"
+        },
+        {
+          "name": "Bia Gừng Sủi Bọt Sa Mạc (Ginger Ale)",
+          "icon": "assets/icons/ginger_ale.png"
+        },
+        {
+          "name": "Nho (Grape)",
+          "icon": "assets/icons/item_grape.png"
+        },
+        {
+          "name": "Bánh Kem Dâu Tây Hồng (Pink Cake)",
           "icon": "assets/icons/pink_cake.png"
         },
         {
-          "name": "Nho ngọt ngào (Grape)",
-          "icon": "assets/icons/item_grape.png"
+          "name": "Ốc Sên Nước (Snail)",
+          "icon": "assets/icons/item_snail.png"
+        },
+        {
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Bánh mì bơ tỏi"
+          "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ Piña Colada, Triple Shot Espresso, rau củ & sản phẩm thủ công ngoài Honey, Jelly & Oil)"
+        },
+        {
+          "name": "Tất cả Sữa"
+        },
+        {
+          "name": "Quả dừa (Coconut)",
+          "icon": "assets/icons/item_coconut.png"
+        },
+        {
+          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "icon": "assets/icons/ing_daffodil.png"
         }
       ],
       "disliked": [
         {
-          "name": "Tất cả các loại Rau củ quả"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ Clay & Frog Egg)"
+        },
+        {
+          "name": "Tất cả Trứng"
+        },
+        {
+          "name": "Tất cả Trái cây (trừ Coconut, Grape & trái cây từ cây ăn quả)"
+        },
+        {
+          "name": "Tất cả Rau củ (trừ Hops, Tea Leaves & Wheat)"
+        },
+        {
+          "name": "Nấm mỡ gà (Chanterelle)",
+          "icon": "assets/icons/ing_chanterelle.png"
+        },
+        {
+          "name": "Nấm thường (Common Mushroom)",
+          "icon": "assets/icons/ing_common_mushroom.png"
+        },
+        {
+          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "icon": "assets/icons/item_dandelion.png"
+        },
+        {
+          "name": "Củ gừng (Ginger)",
+          "icon": "assets/icons/ing_ginger.png"
+        },
+        {
+          "name": "Hạt phỉ (Hazelnut)",
+          "icon": "assets/icons/ing_hazelnut.png"
+        },
+        {
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
+        },
+        {
+          "name": "Tỏi tây (Leek)",
+          "icon": "assets/icons/item_leek.png"
+        },
+        {
+          "name": "Nấm dung nham (Magma Cap)",
+          "icon": "assets/icons/magma_cap.png"
+        },
+        {
+          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "icon": "assets/icons/item_morel.png"
+        },
+        {
+          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "icon": "assets/icons/item_purple_mushroom.png"
+        },
+        {
+          "name": "Thạch anh (Quartz)",
+          "icon": "assets/icons/ing_quartz.png"
+        },
+        {
+          "name": "Khoai tuyết (Snow Yam)",
+          "icon": "assets/icons/snow_yam.png"
+        },
+        {
+          "name": "Củ mùa đông (Winter Root)",
+          "icon": "assets/icons/winter_root.png"
         }
       ],
       "hated": [
         {
-          "name": "Đất sét (Clay)"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates) (trừ Snail)"
         },
         {
-          "name": "Bia rượu"
+          "name": "Tất cả Sản phẩm thủ công (trừ Honey, Jelly & Oil)"
+        },
+        {
+          "name": "Đất sét (Clay)",
+          "icon": "assets/icons/ing_clay.png"
+        },
+        {
+          "name": "Cocktail dứa dừa (Piña Colada)",
+          "icon": "assets/icons/pina_colada.png"
+        },
+        {
+          "name": "Cà Phê Espresso Đậm Đặc (Triple Shot Espresso)",
+          "icon": "assets/icons/triple_shot_espresso.png"
+        },
+        {
+          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "icon": "assets/icons/item_wild_horseradish.png"
         }
       ]
     },
@@ -5081,47 +7541,132 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Ngọc đỏ Ruby",
-          "icon": "assets/icons/ing_ruby.png"
+          "name": "Thạch Anh Tím (Amethyst)",
+          "icon": "assets/icons/item_amethyst.png"
         },
         {
-          "name": "Ngọc bích Emerald",
-          "icon": "assets/icons/ing_emerald.png"
-        },
-        {
-          "name": "Thạch anh tím Amethyst",
-          "icon": "assets/icons/ing_amethyst.png"
-        },
-        {
-          "name": "Ngọc lam Aquamarine",
+          "name": "Ngọc xanh biển (Aquamarine)",
           "icon": "assets/icons/ing_aquamarine.png"
         },
         {
-          "name": "Ngọc Topaz",
+          "name": "Ngọc Lục Bảo (Emerald)",
+          "icon": "assets/icons/item_emerald.png"
+        },
+        {
+          "name": "Ngọc Bích (Jade)",
+          "icon": "assets/icons/item_jade.png"
+        },
+        {
+          "name": "Lươn Dung Nham (Lava Eel)",
+          "icon": "assets/icons/item_lava_eel.png"
+        },
+        {
+          "name": "Đá chanh (Lemon Stone)",
+          "icon": "assets/icons/lemon_stone.png"
+        },
+        {
+          "name": "Geode Vạn năng (Omni Geode)",
+          "icon": "assets/icons/omni_geode.png"
+        },
+        {
+          "name": "Hồng Ngọc (Ruby)",
+          "icon": "assets/icons/item_ruby.png"
+        },
+        {
+          "name": "Hoàng ngọc (Topaz)",
           "icon": "assets/icons/ing_topaz.png"
         },
         {
-          "name": "Đá bùa Jade",
-          "icon": "assets/icons/ing_jade.png"
-        },
-        {
-          "name": "Món xào quả mọng Omnigeode",
-          "icon": "assets/icons/omni_geode.png"
+          "name": "Tất cả Quà Yêu Thích Chung (Universal Loves)"
         }
       ],
       "liked": [
         {
-          "name": "Thỏi vàng, sắt, đồng"
+          "name": "Tất cả Quà Thích Chung (Universal Likes)"
+        },
+        {
+          "name": "Tất cả Cổ vật"
+        },
+        {
+          "name": "Cà rốt hang động (Cave Carrot)",
+          "icon": "assets/icons/cave_carrot.png"
+        },
+        {
+          "name": "Thạch anh (Quartz)",
+          "icon": "assets/icons/ing_quartz.png"
         }
       ],
       "disliked": [
         {
-          "name": "Tất cả các loại Bông hoa"
+          "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ cổ vật, Cave Carrot, Lava Eel, Lemon Stone, Omni Geode, Solar Essence & Void Essence)"
+        },
+        {
+          "name": "Tất cả Trứng"
+        },
+        {
+          "name": "Nấm mỡ gà (Chanterelle)",
+          "icon": "assets/icons/ing_chanterelle.png"
+        },
+        {
+          "name": "Nấm thường (Common Mushroom)",
+          "icon": "assets/icons/ing_common_mushroom.png"
+        },
+        {
+          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "icon": "assets/icons/ing_daffodil.png"
+        },
+        {
+          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "icon": "assets/icons/item_dandelion.png"
+        },
+        {
+          "name": "Củ gừng (Ginger)",
+          "icon": "assets/icons/ing_ginger.png"
+        },
+        {
+          "name": "Hạt phỉ (Hazelnut)",
+          "icon": "assets/icons/ing_hazelnut.png"
+        },
+        {
+          "name": "Cây nhựa ruồi (Holly)",
+          "icon": "assets/icons/holly.png"
+        },
+        {
+          "name": "Tỏi tây (Leek)",
+          "icon": "assets/icons/item_leek.png"
+        },
+        {
+          "name": "Nấm dung nham (Magma Cap)",
+          "icon": "assets/icons/magma_cap.png"
+        },
+        {
+          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "icon": "assets/icons/item_morel.png"
+        },
+        {
+          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "icon": "assets/icons/item_purple_mushroom.png"
+        },
+        {
+          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "icon": "assets/icons/item_salmonberry.png"
+        },
+        {
+          "name": "Khoai tuyết (Snow Yam)",
+          "icon": "assets/icons/snow_yam.png"
+        },
+        {
+          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "icon": "assets/icons/item_wild_horseradish.png"
+        },
+        {
+          "name": "Củ mùa đông (Winter Root)",
+          "icon": "assets/icons/winter_root.png"
         }
       ],
       "hated": [
         {
-          "name": "Rỉ sét kim loại"
+          "name": "Tất cả Quà Ghét Chung (Universal Hates)"
         }
       ]
     },
@@ -5165,11 +7710,7 @@ export const NPCS_DATA = [
     "categoryTitle": "Nhân Vật Đặc Biệt",
     "gender": "Nam",
     "marriageable": false,
-    "birthday": {
-      "season": "winter",
-      "seasonText": "Mùa Đông",
-      "day": 1
-    },
+    "birthday": null,
     "residence": "Bảo tàng & Thư viện Pelican",
     "family": [
       "Độc thân"
@@ -5220,11 +7761,7 @@ export const NPCS_DATA = [
     "categoryTitle": "Hội Thám Hiểm",
     "gender": "Nam",
     "marriageable": false,
-    "birthday": {
-      "season": "winter",
-      "seasonText": "Mùa Đông",
-      "day": 1
-    },
+    "birthday": null,
     "residence": "Hội Thám Hiểm (Adventurer's Guild cạnh cửa hầm mỏ)",
     "family": [
       "Gil (Bạn chiến hữu lâu năm)"
@@ -5275,11 +7812,7 @@ export const NPCS_DATA = [
     "categoryTitle": "Nhân Vật Bí Ẩn Tối Thượng",
     "gender": "Nam",
     "marriageable": false,
-    "birthday": {
-      "season": "spring",
-      "seasonText": "Mùa Xuân",
-      "day": 1
-    },
+    "birthday": null,
     "residence": "Phòng Hạt Nhân Walnut Room (Đảo Gừng) & Sòng bạc Casino (Sa mạc)",
     "family": [
       "Bí ẩn"
@@ -5330,11 +7863,7 @@ export const NPCS_DATA = [
     "categoryTitle": "Cư Dân Đảo Gừng",
     "gender": "Nam",
     "marriageable": false,
-    "birthday": {
-      "season": "summer",
-      "seasonText": "Mùa Hạ",
-      "day": 1
-    },
+    "birthday": null,
     "residence": "Lều khảo cổ Đảo Gừng (Island Field Office)",
     "family": [
       "Độc thân"
@@ -5385,11 +7914,7 @@ export const NPCS_DATA = [
     "categoryTitle": "Cư Dân Đảo Gừng",
     "gender": "Nữ",
     "marriageable": false,
-    "birthday": {
-      "season": "fall",
-      "seasonText": "Mùa Thu",
-      "day": 1
-    },
+    "birthday": null,
     "residence": "Chòi gỗ bên Bờ biển Tây Đảo Gừng",
     "family": [
       "Góa phụ của vị thuyền trưởng thủy thủ quá cố"

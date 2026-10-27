@@ -177,8 +177,8 @@ export const RECIPES_DATA = [
     "category": "cooking",
     "subCategory": "Súp & Canh nóng",
     "icon": "🥣",
-    "energy": 138,
-    "health": 62,
+    "energy": 85,
+    "health": 38,
     "sellPrice": 120,
     "source": "Thư từ Caroline khi đạt 3 Tim tình bạn",
     "ingredients": [
@@ -249,7 +249,7 @@ export const RECIPES_DATA = [
     "icon": "🥞",
     "energy": 200,
     "health": 90,
-    "sellPrice": 465,
+    "sellPrice": 350,
     "source": "Kênh The Queen of Sauce (Ngày 21 Mùa Xuân, Năm 2)",
     "ingredients": [
       {
@@ -298,13 +298,13 @@ export const RECIPES_DATA = [
   {
     "id": "fried_squid",
     "name": "Mực Ống Chiên Giòn",
-    "nameEn": "Fried Squid",
+    "nameEn": "Fried Calamari",
     "category": "cooking",
     "subCategory": "Hải sản chiên",
     "icon": "🦑",
     "energy": 80,
     "health": 36,
-    "sellPrice": 400,
+    "sellPrice": 150,
     "source": "Thư từ Willy khi đạt 3 Tim tình bạn",
     "ingredients": [
       {
@@ -2140,8 +2140,8 @@ export const RECIPES_DATA = [
     "category": "cooking",
     "subCategory": "Món xào chay",
     "icon": "🥘",
-    "energy": 135,
-    "health": 60,
+    "energy": 200,
+    "health": 90,
     "sellPrice": 335,
     "source": "Kênh The Queen of Sauce (Ngày 7 Mùa Xuân, Năm 1)",
     "ingredients": [
@@ -2885,8 +2885,8 @@ export const RECIPES_DATA = [
     "category": "cooking",
     "subCategory": "Đồ uống Đảo Gừng",
     "icon": "🍺",
-    "energy": 25,
-    "health": 11,
+    "energy": 63,
+    "health": 28,
     "sellPrice": 200,
     "source": "Mua từ Dwarf ở Volcano Dungeon (Đảo Gừng - 1,000g)",
     "ingredients": [
@@ -3021,8 +3021,8 @@ export const RECIPES_DATA = [
     "category": "cooking",
     "subCategory": "Đặc sản Đảo Gừng",
     "icon": "🥣",
-    "energy": 175,
-    "health": 78,
+    "energy": 75,
+    "health": 33,
     "sellPrice": 400,
     "source": "Thư từ cậu bé Leo khi đạt 3 Tim tình bạn",
     "ingredients": [
@@ -3141,9 +3141,9 @@ export const RECIPES_DATA = [
     "subCategory": "Món Mới Bản 1.6",
     "icon": "🥣",
     "version16": true,
-    "energy": 300,
-    "health": 135,
-    "sellPrice": 100,
+    "energy": 70,
+    "health": 31,
+    "sellPrice": 80,
     "source": "Đạt cấp độ Hái Lượm (Foraging) Cấp 3",
     "ingredients": [
       {

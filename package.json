@@ -15,6 +15,9 @@
     "quests",
     "stardew-1.6"
   ],
-  "author": "Antigravity",
-  "license": "MIT"
+  "author": "luongic",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
 }
