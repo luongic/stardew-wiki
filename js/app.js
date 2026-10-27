@@ -5,6 +5,7 @@
 import { RECIPES_DATA } from '../data/recipes-data.js';
 import { QUESTS_DATA } from '../data/quests-data.js';
 import { ITEMS_DATA } from '../data/items-data.js';
+import { NPCS_DATA } from '../data/npcs-data.js';
 import { calculator } from './calculator.js';
 
 class StardewWikiApp {
@@ -12,11 +13,18 @@ class StardewWikiApp {
     this.recipes = RECIPES_DATA;
     this.quests = QUESTS_DATA;
     this.items = ITEMS_DATA;
+    this.npcs = NPCS_DATA;
     
     this.currentTab = 'recipes';
     this.recipeFilter = 'all';
     this.questFilter = 'all';
     this.itemFilter = 'all';
+    this.npcFilter = 'all';
+    this.simTime = 12; // 12:00 PM default
+    this.simSeason = 'spring';
+    this.simWeather = 'sunny';
+    this.simPlaying = false;
+    this.simInterval = null;
     this.searchQuery = '';
     this.showOnlyV16 = false;
     this.showOnlyUnfinished = false;
@@ -295,6 +303,107 @@ class StardewWikiApp {
       });
     });
 
+    // Filter Chips for NPCs
+    document.querySelectorAll('#npcFilters .filter-chip-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        document.querySelectorAll('#npcFilters .filter-chip-btn').forEach(b => b.classList.remove('active'));
+        e.currentTarget.classList.add('active');
+        this.npcFilter = e.currentTarget.dataset.filter;
+        this.playTone('click');
+        this.render();
+      });
+    });
+
+    // NPC Schedule Simulator: Season Buttons
+    document.querySelectorAll('#simSeasonBtns .sim-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        document.querySelectorAll('#simSeasonBtns .sim-btn').forEach(b => b.classList.remove('active'));
+        e.currentTarget.classList.add('active');
+        this.simSeason = e.currentTarget.dataset.season;
+        this.playTone('click');
+        this.render();
+      });
+    });
+
+    // NPC Schedule Simulator: Weather Buttons
+    document.querySelectorAll('#simWeatherBtns .sim-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        document.querySelectorAll('#simWeatherBtns .sim-btn').forEach(b => b.classList.remove('active'));
+        e.currentTarget.classList.add('active');
+        this.simWeather = e.currentTarget.dataset.weather;
+        this.playTone('click');
+        this.render();
+      });
+    });
+
+    // NPC Schedule Simulator: Time Slider
+    const simTimeSlider = document.getElementById('simTimeSlider');
+    const simTimeDisplay = document.getElementById('simTimeDisplay');
+    if (simTimeSlider) {
+      simTimeSlider.addEventListener('input', (e) => {
+        this.simTime = parseFloat(e.target.value);
+        if (simTimeDisplay) {
+          simTimeDisplay.textContent = this.formatSimHour(this.simTime);
+        }
+        document.querySelectorAll('.quick-time-btn').forEach(b => {
+          b.classList.toggle('active', Math.abs(parseFloat(b.dataset.time) - this.simTime) < 0.25);
+        });
+        this.render();
+      });
+    }
+
+    // NPC Schedule Simulator: Quick Time Buttons
+    document.querySelectorAll('.quick-time-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        document.querySelectorAll('.quick-time-btn').forEach(b => b.classList.remove('active'));
+        e.currentTarget.classList.add('active');
+        this.simTime = parseFloat(e.currentTarget.dataset.time);
+        if (simTimeSlider) simTimeSlider.value = this.simTime;
+        if (simTimeDisplay) simTimeDisplay.textContent = this.formatSimHour(this.simTime);
+        this.playTone('click');
+        this.render();
+      });
+    });
+
+    // NPC Schedule Simulator: Play/Pause Button
+    const simPlayBtn = document.getElementById('simPlayBtn');
+    if (simPlayBtn) {
+      simPlayBtn.addEventListener('click', () => {
+        this.toggleSimPlay();
+      });
+    }
+
+    // Steam FAQ Modal
+    const openSteamFaqBtn = document.getElementById('openSteamFaqBtn');
+    const steamModal = document.getElementById('steamModal');
+    const closeSteamModalBtn = document.getElementById('closeSteamModalBtn');
+    const gotItSteamBtn = document.getElementById('gotItSteamBtn');
+
+    if (openSteamFaqBtn && steamModal) {
+      openSteamFaqBtn.addEventListener('click', () => {
+        steamModal.style.display = 'flex';
+        this.playTone('click');
+      });
+    }
+    if (closeSteamModalBtn && steamModal) {
+      closeSteamModalBtn.addEventListener('click', () => {
+        steamModal.style.display = 'none';
+      });
+    }
+    if (gotItSteamBtn && steamModal) {
+      gotItSteamBtn.addEventListener('click', () => {
+        steamModal.style.display = 'none';
+        this.playTone('click');
+      });
+    }
+    if (steamModal) {
+      steamModal.addEventListener('click', (e) => {
+        if (e.target === steamModal) {
+          steamModal.style.display = 'none';
+        }
+      });
+    }
+
     // Quick Toggles
     const v16Toggle = document.getElementById('v16Toggle');
     if (v16Toggle) {
@@ -346,6 +455,16 @@ class StardewWikiApp {
       });
     }
 
+    // Global ESC key to close any active modal
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const detailModal = document.getElementById('detailModal');
+        if (detailModal) detailModal.classList.remove('open');
+        const steamModal = document.getElementById('steamModal');
+        if (steamModal) steamModal.style.display = 'none';
+      }
+    });
+
     // Export & Reset Progress Buttons in Tracker
     const exportBtn = document.getElementById('exportProgressBtn');
     if (exportBtn) {
@@ -390,6 +509,7 @@ class StardewWikiApp {
     const recipeFilters = document.getElementById('recipeFilters');
     const itemFilters = document.getElementById('itemFilters');
     const questFilters = document.getElementById('questFilters');
+    const npcFilters = document.getElementById('npcFilters');
     const toolbar = document.getElementById('toolbarPanel');
 
     if (tab === 'recipes') {
@@ -397,16 +517,25 @@ class StardewWikiApp {
       if (recipeFilters) recipeFilters.style.display = 'flex';
       if (itemFilters) itemFilters.style.display = 'none';
       if (questFilters) questFilters.style.display = 'none';
+      if (npcFilters) npcFilters.style.display = 'none';
     } else if (tab === 'items') {
       if (toolbar) toolbar.style.display = 'block';
       if (recipeFilters) recipeFilters.style.display = 'none';
       if (itemFilters) itemFilters.style.display = 'flex';
       if (questFilters) questFilters.style.display = 'none';
+      if (npcFilters) npcFilters.style.display = 'none';
+    } else if (tab === 'npcs') {
+      if (toolbar) toolbar.style.display = 'block';
+      if (recipeFilters) recipeFilters.style.display = 'none';
+      if (itemFilters) itemFilters.style.display = 'none';
+      if (questFilters) questFilters.style.display = 'none';
+      if (npcFilters) npcFilters.style.display = 'flex';
     } else if (tab === 'quests') {
       if (toolbar) toolbar.style.display = 'block';
       if (recipeFilters) recipeFilters.style.display = 'none';
       if (itemFilters) itemFilters.style.display = 'none';
       if (questFilters) questFilters.style.display = 'flex';
+      if (npcFilters) npcFilters.style.display = 'none';
     } else {
       if (toolbar) toolbar.style.display = 'none';
     }
@@ -468,6 +597,8 @@ class StardewWikiApp {
       this.renderRecipes();
     } else if (this.currentTab === 'items') {
       this.renderItems();
+    } else if (this.currentTab === 'npcs') {
+      this.renderNpcs();
     } else if (this.currentTab === 'quests') {
       this.renderQuests();
     }
@@ -829,6 +960,258 @@ class StardewWikiApp {
     `;
   }
 
+  // ==========================================
+  // NPC RENDERING & REALTIME SIMULATOR
+  // ==========================================
+  parseScheduleTime(timeStr) {
+    if (!timeStr) return 0;
+    const match = timeStr.trim().match(/(\d+):?(\d*)\s*(AM|PM)/i);
+    if (!match) return 0;
+    let hour = parseInt(match[1], 10);
+    const min = match[2] ? parseInt(match[2], 10) / 60 : 0;
+    const isPM = match[3].toUpperCase() === 'PM';
+    if (isPM && hour < 12) hour += 12;
+    if (!isPM && hour === 12) hour = 0;
+    if (hour < 6) hour += 24; // Handle 12am-2am late night
+    return hour + min;
+  }
+
+  formatSimHour(hour) {
+    let displayHour = Math.floor(hour);
+    let min = Math.round((hour - displayHour) * 60);
+    let minStr = min < 10 ? '0' + min : '' + min;
+
+    let period = 'AM';
+    let h12 = displayHour;
+    if (h12 >= 24) {
+      h12 -= 24;
+      period = 'AM';
+    } else if (h12 >= 12) {
+      if (h12 > 12) h12 -= 12;
+      period = 'PM';
+    }
+    let h12Str = h12 < 10 ? '0' + h12 : '' + h12;
+    if (h12 === 0) h12Str = '12';
+
+    let phase = '';
+    if (hour < 12) phase = 'Buổi Sáng';
+    else if (hour < 14) phase = 'Buổi Trưa';
+    else if (hour < 18) phase = 'Buổi Chiều';
+    else if (hour < 22) phase = 'Buổi Tối';
+    else phase = 'Đêm Muộn';
+
+    return `${h12Str}:${minStr} ${period} (${phase})`;
+  }
+
+  getNpcLocationAt(npc, targetHour, weather = 'sunny') {
+    const scheduleList = (weather === 'rainy' && npc.schedule.rainy && npc.schedule.rainy.length > 0)
+      ? npc.schedule.rainy
+      : (npc.schedule.sunny || []);
+      
+    if (!scheduleList || scheduleList.length === 0) {
+      return {
+        time: 'Cả ngày',
+        location: npc.schedule.overview || npc.residence,
+        locationShort: npc.residence
+      };
+    }
+
+    const parsed = scheduleList.map(item => ({
+      ...item,
+      h: this.parseScheduleTime(item.time)
+    })).sort((a, b) => a.h - b.h);
+
+    if (targetHour < parsed[0].h) {
+      return {
+        time: 'Sáng sớm',
+        location: `Ở tại phòng ngủ nghỉ ngơi (${npc.residence})`,
+        locationShort: 'Phòng ngủ / Nhà riêng'
+      };
+    }
+
+    let current = parsed[0];
+    for (const item of parsed) {
+      if (item.h <= targetHour) {
+        current = item;
+      } else {
+        break;
+      }
+    }
+
+    return {
+      time: current.time,
+      location: current.location,
+      locationShort: current.locationShort || current.location
+    };
+  }
+
+  toggleSimPlay() {
+    const playBtn = document.getElementById('simPlayBtn');
+    const simTimeSlider = document.getElementById('simTimeSlider');
+    const simTimeDisplay = document.getElementById('simTimeDisplay');
+
+    if (this.simPlaying) {
+      clearInterval(this.simInterval);
+      this.simPlaying = false;
+      if (playBtn) {
+        playBtn.textContent = '▶️ Chạy Tự Động';
+        playBtn.classList.remove('playing');
+      }
+    } else {
+      this.simPlaying = true;
+      if (playBtn) {
+        playBtn.textContent = '⏸️ Tạm Dừng';
+        playBtn.classList.add('playing');
+      }
+      this.simInterval = setInterval(() => {
+        this.simTime += 0.5;
+        if (this.simTime > 26) this.simTime = 6;
+        if (simTimeSlider) simTimeSlider.value = this.simTime;
+        if (simTimeDisplay) simTimeDisplay.textContent = this.formatSimHour(this.simTime);
+        document.querySelectorAll('.quick-time-btn').forEach(b => {
+          b.classList.toggle('active', Math.abs(parseFloat(b.dataset.time) - this.simTime) < 0.25);
+        });
+        this.renderNpcs();
+      }, 1000);
+    }
+  }
+
+  renderNpcs() {
+    const grid = document.getElementById('npcsGrid');
+    if (!grid) return;
+
+    const currentHour = this.simTime;
+    const weather = this.simWeather;
+    const season = this.simSeason;
+
+    let filtered = this.npcs.filter(npc => {
+      // Filter by category or birthday season
+      if (this.npcFilter !== 'all') {
+        if (this.npcFilter === 'bachelorette' && npc.category !== 'bachelorette') return false;
+        if (this.npcFilter === 'bachelor' && npc.category !== 'bachelor') return false;
+        if (this.npcFilter === 'town' && npc.category !== 'town') return false;
+        if (this.npcFilter === 'special' && npc.category !== 'special') return false;
+        if (this.npcFilter === 'spring' && npc.birthday.season !== 'spring') return false;
+        if (this.npcFilter === 'summer' && npc.birthday.season !== 'summer') return false;
+        if (this.npcFilter === 'fall' && npc.birthday.season !== 'fall') return false;
+        if (this.npcFilter === 'winter' && npc.birthday.season !== 'winter') return false;
+      }
+
+      // Filter by Search Query
+      if (this.searchQuery) {
+        const q = this.searchQuery;
+        const matchName = npc.name.toLowerCase().includes(q) || npc.nameEn.toLowerCase().includes(q);
+        const matchGifts = npc.gifts.loved.some(g => g.name.toLowerCase().includes(q));
+        const matchLoc = npc.residence.toLowerCase().includes(q) || npc.occupation.toLowerCase().includes(q);
+        const matchBday = `${npc.birthday.seasonText} ${npc.birthday.day}`.toLowerCase().includes(q);
+        return matchName || matchGifts || matchLoc || matchBday;
+      }
+
+      return true;
+    });
+
+    if (filtered.length === 0) {
+      grid.innerHTML = `
+        <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: #fff;">
+          <div style="font-size: 3rem; margin-bottom: 12px;">🔍</div>
+          <h3 style="font-family: var(--font-heading); font-size: 1.4rem;">Không tìm thấy Dân Làng / NPC nào phù hợp!</h3>
+          <p style="color: #f7edd2; margin-top: 6px;">Hãy thử tìm từ khóa khác hoặc bấm nút 'Tất Cả Dân Làng'.</p>
+        </div>
+      `;
+      return;
+    }
+
+    grid.innerHTML = filtered.map(npc => this.createNpcCardHtml(npc, currentHour, weather, season)).join('');
+
+    // Attach click events
+    grid.querySelectorAll('.npc-card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        const npcId = e.currentTarget.dataset.id;
+        this.openDetailModal(npcId, 'npc');
+      });
+    });
+  }
+
+  createNpcCardHtml(npc, currentHour, weather, season) {
+    const curLoc = this.getNpcLocationAt(npc, currentHour, weather);
+    const categoryLabels = {
+      bachelorette: '💍 Độc Thân Nữ',
+      bachelor: '🎩 Độc Thân Nam',
+      town: '🏡 Dân Làng Pelican',
+      special: '✨ Đặc Biệt'
+    };
+
+    return `
+      <div class="stardew-card npc-card" data-id="${npc.id}" style="cursor: pointer;">
+        <div class="card-header">
+          <div class="card-icon-title">
+            <div class="npc-portrait-box">
+              <img src="${npc.avatar}" alt="${npc.name}" class="npc-portrait-img" onerror="this.src='assets/portraits/abigail.png';">
+            </div>
+            <div class="item-name-group">
+              <div class="item-title" style="font-size: 1.35rem;">${npc.name}</div>
+              <div class="item-sub" style="font-size: 0.95rem;">
+                ${npc.nameEn}
+                <span class="recipe-sub-pill" style="margin-left: 6px; font-size: 0.75rem;">${categoryLabels[npc.category] || npc.categoryTitle}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="item-meta-badges" style="margin-bottom: 10px;">
+            <span class="npc-bday-badge">
+              🎂 ${npc.birthday.seasonText} Ngày ${npc.birthday.day}
+            </span>
+            <span class="recipe-sub-pill" style="background: #eef2f7; color: #2c3e50; border-color: #cbd5e0;">
+              📍 ${npc.residence.split('(')[0].trim()}
+            </span>
+          </div>
+
+          <!-- Live Realtime Location -->
+          <div class="npc-live-loc-banner">
+            <div class="live-dot-pulse"></div>
+            <div class="live-loc-content">
+              <div class="live-time-tag">VỊ TRÍ HIỆN TẠI: ${curLoc.locationShort}</div>
+              <div class="live-loc-desc">${curLoc.location}</div>
+            </div>
+          </div>
+
+          <!-- Loved Gifts Preview -->
+          <div class="npc-gifts-section">
+            <div class="npc-gift-header">
+              <span style="color: #c0392b;">❤️ Quà Cực Thích (+80đ):</span>
+            </div>
+            <div class="gift-pills-list">
+              ${npc.gifts.loved.slice(0, 4).map(g => `
+                <span class="gift-pill" title="${g.name}">
+                  ${g.icon ? `<img src="${g.icon}" class="gift-pill-icon" alt="" onerror="this.style.display='none';">` : '🎁'}
+                  <span>${g.name.split('(')[0].trim()}</span>
+                </span>
+              `).join('')}
+              ${npc.gifts.loved.length > 4 ? `
+                <span class="gift-pill" style="color: var(--wood-light); font-weight: bold;">+${npc.gifts.loved.length - 4}</span>
+              ` : ''}
+            </div>
+          </div>
+
+          <p class="recipe-desc" style="font-size: 0.92rem; line-height: 1.45; margin-top: 6px; margin-bottom: 0;">
+            ${npc.desc}
+          </p>
+        </div>
+
+        <div class="card-footer" style="margin-top: auto; padding: 10px 16px; border-top: 1px dashed var(--parchment-border); display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 0.85rem; color: var(--wood-light); font-weight: bold;">
+            ${npc.marriageable ? '💍 Có Thể Kết Hôn' : '🤝 Bạn Bè'}
+          </span>
+          <button class="view-detail-btn" data-id="${npc.id}" style="padding: 4px 12px; font-size: 0.9rem;">
+            📜 Lịch Trình & Sự Kiện
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
   renderQuests() {
     const grid = document.getElementById('questsGrid');
     if (!grid) return;
@@ -1157,6 +1540,220 @@ class StardewWikiApp {
           <div style="background: #fff8e1; border-left: 4px solid #f39c12; padding: 14px 16px; border-radius: 6px; font-size: 0.95rem; color: #5d4037;">
             💡 <strong>Mẹo chuyên gia & Chiến lược khai thác:</strong>
             <p style="margin-top: 4px; line-height: 1.5;">${it.tips}</p>
+          </div>
+        ` : ''}
+      `;
+    } else if (type === 'npc') {
+      const npc = this.npcs.find(item => item.id === id);
+      if (!npc) return;
+
+      const categoryLabels = {
+        bachelorette: '💍 Độc Thân Nữ (Có thể kết hôn)',
+        bachelor: '🎩 Độc Thân Nam (Có thể kết hôn)',
+        town: '🏡 Dân Làng Pelican',
+        special: '✨ Nhân Vật Đặc Biệt'
+      };
+
+      const curLoc = this.getNpcLocationAt(npc, this.simTime, this.simWeather);
+
+      modalBody.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 18px; margin-bottom: 20px;">
+          <div class="npc-portrait-box" style="width: 84px; height: 84px; border-width: 3px;">
+            <img src="${npc.avatar}" alt="${npc.name}" class="npc-portrait-img" onerror="this.src='assets/portraits/abigail.png';">
+          </div>
+          <div>
+            <h2 style="font-family: var(--font-heading); color: var(--wood-dark); font-size: 1.85rem; line-height: 1.2;">
+              ${npc.name}
+            </h2>
+            <div style="color: var(--text-muted); font-size: 1.05rem; margin-top: 2px;">
+              ${npc.nameEn} • <span class="recipe-sub-pill">${categoryLabels[npc.category] || npc.categoryTitle}</span>
+            </div>
+            <a href="https://stardewvalleywiki.com/${encodeURIComponent(npc.nameEn.split('(')[0].trim().replace(/\s+/g, '_'))}" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.85rem; color: #2980b9; text-decoration: underline; margin-top: 4px; font-weight: 500;">
+              🌐 Xem trang bách khoa chính thức trên Official Wiki ↗
+            </a>
+          </div>
+        </div>
+
+        <p style="font-size: 1.05rem; line-height: 1.6; color: #3d2714; margin-bottom: 18px;">
+          ${npc.desc}
+        </p>
+
+        <!-- Profile Quick Grid -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 18px;">
+          <div style="background: #fff8e1; border: 1.5px solid #f39c12; border-radius: 8px; padding: 10px 14px;">
+            <div style="font-size: 0.8rem; color: #d35400; font-weight: 700;">🎂 SINH NHẬT</div>
+            <div style="font-size: 1.05rem; font-weight: bold; color: var(--wood-dark); margin-top: 2px;">
+              ${npc.birthday.seasonText} Ngày ${npc.birthday.day}
+            </div>
+          </div>
+          <div style="background: #eef2f7; border: 1.5px solid #cbd5e0; border-radius: 8px; padding: 10px 14px;">
+            <div style="font-size: 0.8rem; color: #2c3e50; font-weight: 700;">🏡 NƠI CƯ NGỤ</div>
+            <div style="font-size: 1rem; font-weight: bold; color: var(--wood-dark); margin-top: 2px;">
+              ${npc.residence}
+            </div>
+          </div>
+          <div style="background: #f0fff4; border: 1.5px solid #9ae6b4; border-radius: 8px; padding: 10px 14px;">
+            <div style="font-size: 0.8rem; color: #22543d; font-weight: 700;">💼 NGHỀ NGHIỆP / VAI TRÒ</div>
+            <div style="font-size: 0.95rem; font-weight: bold; color: #276749; margin-top: 2px;">
+              ${npc.occupation}
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Status Right Now -->
+        <div style="background: #fdfaf3; border: 2px solid #27ae60; border-radius: 10px; padding: 12px 16px; margin-bottom: 20px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+            <div class="live-dot-pulse"></div>
+            <strong style="color: #1e8449; font-size: 0.95rem;">VỊ TRÍ THEO MỐC GIỜ ĐANG CHỌN (${this.formatSimHour(this.simTime)}):</strong>
+          </div>
+          <div style="font-size: 1rem; color: var(--text-main); font-weight: bold;">
+            📍 ${curLoc.locationShort}
+          </div>
+          <div style="font-size: 0.92rem; color: #555; margin-top: 2px;">
+            ${curLoc.location}
+          </div>
+        </div>
+
+        <!-- Gift Preferences Section -->
+        <div style="background: #fdf6e2; border: 1.5px solid var(--parchment-border); border-radius: 10px; padding: 16px; margin-bottom: 20px;">
+          <h3 style="font-family: var(--font-heading); color: var(--wood-dark); font-size: 1.2rem; margin-bottom: 12px;">🎁 Sở Thích Tặng Quà & Điểm Tình Bạn:</h3>
+
+          <!-- Loved Gifts -->
+          <div style="margin-bottom: 12px;">
+            <div style="font-weight: 700; color: #c0392b; font-size: 0.95rem; margin-bottom: 6px;">
+              ❤️ Cực kỳ yêu thích (+80 điểm tình bạn):
+            </div>
+            <div class="gift-pills-list">
+              ${npc.gifts.loved.map(g => `
+                <span class="gift-pill" style="border-color: #f5b7b1;">
+                  ${g.icon ? `<img src="${g.icon}" class="gift-pill-icon" alt="" onerror="this.style.display='none';">` : '🎁'}
+                  <span>${g.name}</span>
+                </span>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Liked Gifts -->
+          ${npc.gifts.liked && npc.gifts.liked.length > 0 ? `
+            <div style="margin-bottom: 12px;">
+              <div style="font-weight: 700; color: #27ae60; font-size: 0.95rem; margin-bottom: 6px;">
+                👍 Thích (+45 điểm tình bạn):
+              </div>
+              <div class="gift-pills-list">
+                ${npc.gifts.liked.map(g => `
+                  <span class="gift-pill" style="border-color: #a9dfbf;">
+                    ${g.icon ? `<img src="${g.icon}" class="gift-pill-icon" alt="" onerror="this.style.display='none';">` : '👍'}
+                    <span>${g.name}</span>
+                  </span>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+
+          <!-- Disliked Gifts -->
+          ${npc.gifts.disliked && npc.gifts.disliked.length > 0 ? `
+            <div style="margin-bottom: 10px;">
+              <div style="font-weight: 700; color: #d35400; font-size: 0.95rem; margin-bottom: 6px;">
+                👎 Không thích (-20 điểm tình bạn):
+              </div>
+              <div class="gift-pills-list">
+                ${npc.gifts.disliked.map(g => `
+                  <span class="gift-pill" style="background: #fef9e7; color: #7f8c8d;">
+                    <span>${g.name}</span>
+                  </span>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+
+          <!-- Hated Gifts -->
+          ${npc.gifts.hated && npc.gifts.hated.length > 0 ? `
+            <div>
+              <div style="font-weight: 700; color: #7f1d1d; font-size: 0.95rem; margin-bottom: 6px;">
+                ❌ Ghét cay ghét đắng (-40 điểm tình bạn - Tuyệt đối không tặng!):
+              </div>
+              <div class="gift-pills-list">
+                ${npc.gifts.hated.map(g => `
+                  <span class="gift-pill" style="background: #fee2e2; color: #991b1b; border-color: #fca5a5;">
+                    <span>${g.name}</span>
+                  </span>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+        </div>
+
+        <!-- Full Daily Schedule -->
+        <div style="background: #fff; border: 1.5px solid var(--parchment-border); border-radius: 10px; padding: 16px; margin-bottom: 20px;">
+          <h3 style="font-family: var(--font-heading); color: var(--wood-dark); font-size: 1.2rem; margin-bottom: 6px;">⏰ Lịch Trình Di Chuyển Cụ Thể (Daily Schedule):</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 14px;">${npc.schedule.overview || 'Lịch trình di chuyển theo từng mốc thời gian trong ngày:'}</p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+            <!-- Sunny Schedule -->
+            <div style="background: #fffdf9; border: 1px solid var(--parchment-border); border-radius: 8px; padding: 12px;">
+              <div style="font-weight: 700; color: #b7791f; font-size: 0.95rem; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+                <span>☀️</span> Lịch Trình Ngày Thường (Trời Nắng)
+              </div>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.9rem;">
+                ${(npc.schedule.sunny || []).map(s => `
+                  <li style="border-bottom: 1px dashed rgba(212, 188, 148, 0.4); padding-bottom: 6px;">
+                    <strong style="color: var(--wood-dark);">${s.time}:</strong> ${s.location}
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+
+            <!-- Rainy Schedule -->
+            <div style="background: #f0f7ff; border: 1px solid #c3dafe; border-radius: 8px; padding: 12px;">
+              <div style="font-weight: 700; color: #2b6cb0; font-size: 0.95rem; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+                <span>🌧️</span> Lịch Trình Ngày Mưa (Rainy Days)
+              </div>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.9rem;">
+                ${(npc.schedule.rainy || []).map(s => `
+                  <li style="border-bottom: 1px dashed #bee3f8; padding-bottom: 6px;">
+                    <strong style="color: #2c5282;">${s.time}:</strong> ${s.location}
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+          </div>
+
+          <!-- Special Schedules -->
+          ${npc.schedule.special && npc.schedule.special.length > 0 ? `
+            <div style="margin-top: 14px; background: #faf5ff; border: 1px solid #e9d8fd; border-radius: 8px; padding: 12px;">
+              <div style="font-weight: 700; color: #6b46c1; font-size: 0.95rem; margin-bottom: 6px;">
+                🌟 Các Ngày Đặc Biệt & Ngoại Lệ:
+              </div>
+              <ul style="padding-left: 20px; font-size: 0.9rem; color: #553c9a; line-height: 1.5;">
+                ${npc.schedule.special.map(sp => `
+                  <li><strong>${sp.condition}:</strong> ${sp.desc}</li>
+                `).join('')}
+              </ul>
+            </div>
+          ` : ''}
+        </div>
+
+        <!-- Heart Events Timeline -->
+        ${npc.heartEvents && npc.heartEvents.length > 0 ? `
+          <div style="background: #fff5f5; border: 1.5px solid #feb2b2; border-radius: 10px; padding: 16px;">
+            <h3 style="font-family: var(--font-heading); color: #c53030; font-size: 1.2rem; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+              <span>💖</span> Chuỗi Sự Kiện Tim Tình Bạn (Heart Events):
+            </h3>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              ${npc.heartEvents.map(he => `
+                <div style="background: #fff; border: 1px solid #fecaca; border-radius: 8px; padding: 10px 14px;">
+                  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                    <span style="background: #e11d48; color: #fff; font-weight: 700; font-size: 0.8rem; padding: 2px 8px; border-radius: 12px;">
+                      ${he.hearts} TIM
+                    </span>
+                    <strong style="color: var(--wood-dark); font-size: 0.95rem;">📍 ${he.location}</strong>
+                  </div>
+                  <p style="font-size: 0.92rem; color: #4a5568; line-height: 1.45; margin: 0;">
+                    ${he.desc}
+                  </p>
+                </div>
+              `).join('')}
+            </div>
           </div>
         ` : ''}
       `;

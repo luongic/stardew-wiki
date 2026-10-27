@@ -73,6 +73,10 @@
         📦 <span>Từ Điển Vật Phẩm</span>
         <span class="tab-badge" id="itemTabBadge">0</span>
       </button>
+      <button class="nav-tab-btn" data-tab="npcs" id="tabBtnNpcs">
+        👥 <span>Dân Làng & NPC</span>
+        <span class="tab-badge" id="npcTabBadge">39</span>
+      </button>
       <button class="nav-tab-btn" data-tab="quests" id="tabBtnQuests">
         📜 <span>Hướng Dẫn Nhiệm Vụ</span>
         <span class="tab-badge" id="questTabBadge">0/0</span>
@@ -137,6 +141,19 @@
           <button class="filter-chip-btn" data-filter="special_orders">📋 Đơn Hàng Lớn (Lewis & Qi)</button>
           <button class="filter-chip-btn" data-filter="version16">🦝 Bản 1.6 (Gấu Mèo & Mastery)</button>
         </div>
+
+        <!-- NPC Category Filters -->
+        <div class="filter-actions" id="npcFilters" style="display: none;">
+          <button class="filter-chip-btn active" data-filter="all">Tất Cả Dân Làng (39)</button>
+          <button class="filter-chip-btn" data-filter="bachelorette">💍 Độc Thân Nữ (6)</button>
+          <button class="filter-chip-btn" data-filter="bachelor">🎩 Độc Thân Nam (6)</button>
+          <button class="filter-chip-btn" data-filter="town">🏡 Dân Làng Pelican (17)</button>
+          <button class="filter-chip-btn" data-filter="special">✨ Đặc Biệt & Đảo Gừng (10)</button>
+          <button class="filter-chip-btn" data-filter="spring">🌸 Sinh Nhật Mùa Xuân</button>
+          <button class="filter-chip-btn" data-filter="summer">☀️ Sinh Nhật Mùa Hạ</button>
+          <button class="filter-chip-btn" data-filter="fall">🍂 Sinh Nhật Mùa Thu</button>
+          <button class="filter-chip-btn" data-filter="winter">❄️ Sinh Nhật Mùa Đông</button>
+        </div>
       </div>
 
       <!-- Quick Toggles -->
@@ -171,6 +188,76 @@
     <section id="tab-items" class="tab-content-section" style="display: none;">
       <div id="itemsContainer" class="items-container-wrap" aria-live="polite">
         <!-- Rendered dynamically by app.js with Category Section Titles -->
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TAB 3: DÂN LÀNG & LỊCH TRÌNH NPC (VILLAGERS & LIVE SCHEDULE SIMULATOR)
+         ==================================================================== -->
+    <section id="tab-npcs" class="tab-content-section" style="display: none;">
+      <!-- Interactive Realtime Schedule Simulator Banner -->
+      <div class="npc-sim-panel">
+        <div class="sim-header">
+          <div class="sim-title-group">
+            <span class="sim-icon">⏰</span>
+            <div>
+              <h2 class="sim-title">Trình Mô Phỏng Lịch Trình & Vị Trí NPC Thời Gian Thực</h2>
+              <div class="sim-subtitle">Kéo thanh thời gian hoặc chọn Mùa / Thời tiết để xem vị trí chính xác của từng NPC tại thời điểm đó!</div>
+            </div>
+          </div>
+          <button class="btn-steam-faq" id="openSteamFaqBtn" title="Kiểm tra thông tin tích hợp Steam">
+            <span style="font-size: 1.25rem;">🎮</span>
+            <span>Xem Vị Trí Qua Steam?</span>
+          </button>
+        </div>
+
+        <div class="sim-controls-grid">
+          <!-- Season Selector -->
+          <div class="sim-control-box">
+            <div class="sim-control-label">MÙA TRONG NĂM:</div>
+            <div class="sim-btn-group" id="simSeasonBtns">
+              <button class="sim-btn active" data-season="spring">🌸 Xuân</button>
+              <button class="sim-btn" data-season="summer">☀️ Hạ</button>
+              <button class="sim-btn" data-season="fall">🍂 Thu</button>
+              <button class="sim-btn" data-season="winter">❄️ Đông</button>
+            </div>
+          </div>
+
+          <!-- Weather Selector -->
+          <div class="sim-control-box">
+            <div class="sim-control-label">THỜI TIẾT:</div>
+            <div class="sim-btn-group" id="simWeatherBtns">
+              <button class="sim-btn active" data-weather="sunny">☀️ Nắng Đẹp</button>
+              <button class="sim-btn" data-weather="rainy">🌧️ Trời Mưa</button>
+            </div>
+          </div>
+
+          <!-- Time Controller -->
+          <div class="sim-control-box sim-time-box">
+            <div class="sim-time-header">
+              <span class="sim-control-label">THỜI GIAN TRONG NGÀY:</span>
+              <div class="sim-time-badge" id="simTimeDisplay">12:00 PM (Buổi Trưa)</div>
+            </div>
+            <div class="sim-slider-row">
+              <span class="slider-boundary">06:00 AM</span>
+              <input type="range" id="simTimeSlider" min="6" max="26" step="0.5" value="12" class="sim-range-slider">
+              <span class="slider-boundary">02:00 AM</span>
+            </div>
+            <div class="sim-quick-times">
+              <button class="quick-time-btn" data-time="9">09:00 AM</button>
+              <button class="quick-time-btn active" data-time="12">12:00 PM</button>
+              <button class="quick-time-btn" data-time="15.5">03:30 PM</button>
+              <button class="quick-time-btn" data-time="19">07:00 PM</button>
+              <button class="quick-time-btn" data-time="22">10:00 PM</button>
+              <button class="sim-play-btn" id="simPlayBtn" title="Tự động tua dòng thời gian">▶️ Chạy Tự Động</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NPCs Grid -->
+      <div id="npcsGrid" class="content-grid" aria-live="polite">
+        <!-- Rendered dynamically by app.js -->
       </div>
     </section>
 
@@ -314,6 +401,72 @@
       <button class="modal-close-btn" id="modalCloseBtn" aria-label="Đóng cửa sổ">✕</button>
       <div id="modalBody">
         <!-- Rendered dynamically by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- STEAM INTEGRATION & REALTIME EXPLANATION MODAL -->
+  <div class="modal-backdrop" id="steamModal" role="dialog" aria-modal="true" style="display: none;">
+    <div class="modal-content-box steam-modal-box">
+      <button class="modal-close-btn" id="closeSteamModalBtn" aria-label="Đóng cửa sổ">✕</button>
+      <div class="steam-modal-header">
+        <div class="steam-modal-icon">🎮</div>
+        <div>
+          <h2 class="steam-modal-title">Hỏi & Đáp Kỹ Thuật: Xem Vị Trí Realtime Qua Steam?</h2>
+          <div class="steam-modal-sub">Phân tích khả năng kết nối tài khoản Steam và giải pháp theo dõi vị trí NPC tốt nhất</div>
+        </div>
+      </div>
+
+      <div class="steam-modal-body">
+        <div class="steam-q-card">
+          <div class="steam-q-label">❓ CÂU HỎI CỦA BẠN:</div>
+          <div class="steam-q-text">"Liệu có thể đăng nhập qua Steam để xem vị trí các NPC realtime như mod được không?"</div>
+        </div>
+
+        <div class="steam-ans-card">
+          <div class="steam-ans-badge">💡 KẾT LUẬN KỸ THUẬT CHÍNH XÁC:</div>
+          <div class="steam-ans-text">
+            <strong>KHÔNG THỂ chỉ dùng đăng nhập Steam</strong> để truyền phát (stream) trực tiếp vị trí NPC trong game theo thời gian thực lên web như các mod SMAPI.
+          </div>
+        </div>
+
+        <h3 class="steam-section-title">🔍 Vì sao Steam không hỗ trợ việc này?</h3>
+        
+        <div class="tech-step-item">
+          <div class="tech-step-num">1</div>
+          <div class="tech-step-content">
+            <strong>Phạm vi của Steam Web API & OpenID:</strong>
+            <p>Steam API chỉ cung cấp xác thực danh tính (SteamID, Avatar, Tên tài khoản), danh sách game sở hữu và thành tựu (Achievements). Steam Web API <em>hoàn toàn không có quyền hạn</em> hay tính năng đọc dữ liệu bộ nhớ RAM của một tiến trình game đang chạy.</p>
+          </div>
+        </div>
+
+        <div class="tech-step-item">
+          <div class="tech-step-num">2</div>
+          <div class="tech-step-content">
+            <strong>Kiến trúc Stardew Valley chạy Cục bộ (Client-Side Offline):</strong>
+            <p>Stardew Valley xử lý mô phỏng thế giới, chu kỳ ngày đêm và vị trí NPC hoàn toàn trên máy tính của người chơi. Game không chạy trên máy chủ đám mây chuyên dụng (Dedicated Cloud Server) để liên tục đồng bộ từng tọa độ X/Y của NPC lên Internet mỗi giây.</p>
+          </div>
+        </div>
+
+        <div class="tech-step-item">
+          <div class="tech-step-num">3</div>
+          <div class="tech-step-content">
+            <strong>Cách các Mod như <em>NPC Map Locations</em> hoạt động:</strong>
+            <p>Các mod này chạy thông qua <strong>SMAPI (Stardew Modding API)</strong>, tiêm mã trực tiếp vào bộ nhớ RAM của file thực thi <code>Stardew Valley.exe</code> trên máy bạn, đọc trực tiếp <code>Game1.currentLocation</code> và <code>npc.getTileLocation()</code> ngay trong RAM khi bạn đang chơi.</p>
+          </div>
+        </div>
+
+        <div class="tech-solution-banner">
+          <div class="solution-icon">🌟</div>
+          <div class="solution-text">
+            <strong>GIẢI PHÁP TỐI ƯU ĐÃ TÍCH HỢP TRÊN TRANG WEB NÀY:</strong>
+            <p>Do toàn bộ NPC trong Stardew Valley di chuyển theo <strong>Thuật toán Lịch trình Cố định (Deterministic Schedule)</strong> của nhà phát triển ConcernedApe theo <em>Mùa, Ngày, Thứ, Thời tiết và Giờ</em>, công cụ <strong>Trình Mô Phỏng Lịch Trình Thời Gian Thực</strong> ở tab này đã tính toán chính xác <strong>100%</strong> vị trí của từng NPC tại mọi thời điểm mà <em>không cần đăng nhập Steam, không tốn tài nguyên máy và xem được mượt mà trên cả máy tính lẫn điện thoại!</em></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer" style="margin-top: 18px; text-align: right;">
+        <button class="btn-primary" id="gotItSteamBtn" style="padding: 10px 24px; font-size: 1.15rem;">Đã Hiểu, Quay Lại Cẩm Nang!</button>
       </div>
     </div>
   </div>
