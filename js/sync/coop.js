@@ -60,15 +60,25 @@ class CoopRoom {
   get name() { return localStorage.getItem(NAME_KEY) || ''; }
   set name(v) { localStorage.setItem(NAME_KEY, v.trim().slice(0, 24)); }
   get savedCode() { return localStorage.getItem(ROOM_KEY); }
-  get isGoogle() { return !!this.user?.providerData?.some(p => p.providerId === 'google.com'); }
+  get googleProfile() { return this.user?.providerData?.find(p => p.providerId === 'google.com') || null; }
+  get isGoogle() { return !!this.googleProfile; }
 
   onChange(fn) { this.listeners.add(fn); }
   notify() { for (const fn of this.listeners) fn(this); }
   setStatus(s, error = '') { this.status = s; this.error = error; this.notify(); }
 
   // ---------- SDK & auth ----------
-  async load() {
-    if (this.fb) return this.fb;
+  // Memoised: opening the popup and clicking "create" in quick succession
+  // both call load(), and initialising Firebase twice breaks it.
+  load() {
+    this.loading ||= this.init().catch(e => {
+      this.loading = null; // allow a retry, e.g. after a network error
+      throw e;
+    });
+    return this.loading;
+  }
+
+  async init() {
     const [app, auth, fs] = await Promise.all([
       import(`${SDK}/firebase-app.js`),
       import(`${SDK}/firebase-auth.js`),
@@ -90,12 +100,26 @@ class CoopRoom {
     return this.fb;
   }
 
-  async ensureUser() {
+  // Also memoised while in flight, so parallel callers share one anonymous
+  // sign-in instead of each creating an account
+  ensureUser() {
+    this.signingIn ||= (async () => {
+      const fb = await this.load();
+      await fb.auth.authStateReady();
+      if (!fb.auth.currentUser) await fb.signInAnonymously(fb.auth);
+      this.user = fb.auth.currentUser;
+      return this.user;
+    })().finally(() => { this.signingIn = null; });
+    return this.signingIn;
+  }
+
+  // Show who is signed in without creating an anonymous account just for
+  // opening the popup.
+  async loadUser() {
     const fb = await this.load();
     await fb.auth.authStateReady();
-    if (!fb.auth.currentUser) await fb.signInAnonymously(fb.auth);
     this.user = fb.auth.currentUser;
-    return this.user;
+    this.notify();
   }
 
   // Link Google to the current (usually anonymous) account so the uid, and
@@ -105,19 +129,37 @@ class CoopRoom {
     const fb = await this.load();
     await this.ensureUser();
     const provider = new fb.GoogleAuthProvider();
+    // Always show the account chooser, otherwise Google silently reuses the
+    // last account and switching accounts is impossible
+    provider.setCustomParameters({ prompt: 'select_account' });
     try {
       const cred = await fb.linkWithPopup(fb.auth.currentUser, provider);
       this.user = cred.user;
     } catch (e) {
       if (e.code !== 'auth/credential-already-in-use') throw e;
+      // Reuse the credential from the error instead of opening a second
+      // popup, which browsers block because it no longer follows a click
+      const credential = fb.GoogleAuthProvider.credentialFromError(e);
+      if (!credential) throw e;
       const code = this.code;
       await this.stop();
-      const cred = await fb.signInWithPopup(fb.auth, provider);
+      const cred = await fb.signInWithCredential(fb.auth, credential);
       this.user = cred.user;
       if (code) await this.join(code, 'merge');
     }
     if (!this.name && this.user.displayName) this.name = this.user.displayName;
     if (this.code) await this.touchMember();
+    this.notify();
+  }
+
+  // Sign out to switch accounts. The room membership is kept in the room, so
+  // signing back in with the same Google account and entering the code
+  // rejoins; this device just disconnects and forgets the saved room.
+  async signOut() {
+    const fb = await this.load();
+    await this.stop();
+    await fb.signOut(fb.auth);
+    this.user = null;
     this.notify();
   }
 
@@ -335,10 +377,7 @@ class CoopRoom {
 
   fail(e) {
     console.error('[co-op]', e);
-    const msg = e?.code === 'permission-denied'
-      ? 'Không có quyền truy cập phòng này.'
-      : e?.code === 'auth/popup-closed-by-user' ? 'Đã đóng cửa sổ đăng nhập.' : (e?.message || String(e));
-    this.setStatus('error', msg);
+    this.setStatus('error', friendlyError(e));
   }
 
   // Latest changes across all domains, newest first, straight from the
@@ -352,6 +391,24 @@ class CoopRoom {
     }
     return out.sort((a, b) => b.at - a.at).slice(0, limit);
   }
+}
+
+// Player-facing messages; the raw error still goes to the console for the
+// site owner (e.g. operation-not-allowed = provider disabled in Firebase).
+const ERROR_MESSAGES = {
+  'permission-denied': 'Không có quyền truy cập phòng này.',
+  'unavailable': 'Không kết nối được máy chủ, hãy thử lại sau.',
+  'auth/operation-not-allowed': 'Đăng nhập Google hiện chưa được hỗ trợ trên trang này.',
+  'auth/admin-restricted-operation': 'Tính năng Co-op tạm thời chưa sẵn sàng.',
+  'auth/popup-closed-by-user': 'Bạn đã đóng cửa sổ đăng nhập.',
+  'auth/cancelled-popup-request': 'Bạn đã đóng cửa sổ đăng nhập.',
+  'auth/popup-blocked': 'Trình duyệt đã chặn cửa sổ đăng nhập. Hãy cho phép popup rồi thử lại.',
+  'auth/unauthorized-domain': 'Trang này chưa được phép đăng nhập.',
+  'auth/network-request-failed': 'Mất kết nối mạng, hãy thử lại.'
+};
+
+export function friendlyError(e) {
+  return ERROR_MESSAGES[e?.code] || e?.message || String(e);
 }
 
 function randomCode() {

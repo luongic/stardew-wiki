@@ -6,8 +6,9 @@
 // is never interrupted by a sync update; live parts update in place.
 // ==========================================================================
 
-import { coop, coopAvailable } from './coop.js';
+import { coop, coopAvailable, friendlyError } from './coop.js';
 import { openModal } from '../lib/ui.js';
+import { pixelIcon, gameIcon } from '../lib/templates.js';
 import { RECIPES_DATA } from '../../data/recipes-data.js';
 import { QUESTS_DATA } from '../../data/quests-data.js';
 import { CC_ROOMS } from '../../data/bundles-data.js';
@@ -67,12 +68,12 @@ function outsideShell() {
     </label>
     <div class="coop-split">
       <section class="coop-card">
-        <h3 class="coop-card__title">✨ Tạo phòng mới</h3>
+        <h3 class="coop-card__title">${gameIcon('farmhouse_upgrade_1')} Tạo phòng mới</h3>
         <p class="muted">Tiến độ hiện tại trên máy bạn sẽ là điểm bắt đầu của phòng.</p>
         <button class="btn btn--green" type="button" data-action="coop-create">Tạo phòng</button>
       </section>
       <section class="coop-card">
-        <h3 class="coop-card__title">🚪 Vào phòng</h3>
+        <h3 class="coop-card__title">${gameIcon('rusty_key')} Vào phòng</h3>
         <input id="coopCode" class="coop-input coop-input--code" maxlength="6" placeholder="MÃ PHÒNG" autocomplete="off" spellcheck="false">
         <label class="coop-radio"><input type="radio" name="coopMode" value="merge" checked> Gộp tiến độ của mình vào phòng</label>
         <label class="coop-radio"><input type="radio" name="coopMode" value="room"> Dùng tiến độ của phòng (bỏ tiến độ trên máy này)</label>
@@ -151,10 +152,17 @@ function renderActivity() {
 function renderGoogle() {
   const el = document.getElementById('coopGoogle');
   if (!el) return;
-  el.innerHTML = coop.isGoogle
-    ? `✅ Đã liên kết Google${coop.user?.email ? ` (${esc(coop.user.email)})` : ''}: dùng cùng phòng trên nhiều thiết bị.`
-    : `<button class="btn btn--ghost btn--sm" type="button" data-action="coop-google">🔗 Liên kết Google</button>
-       <span class="muted">Tuỳ chọn: để dùng cùng phòng trên điện thoại và máy tính.</span>`;
+  if (coop.isGoogle) {
+    const g = coop.googleProfile;
+    el.innerHTML = `
+      <span class="coop-account">${pixelIcon('check')} Đang dùng Google: <strong>${esc(g.email || g.displayName || 'tài khoản Google')}</strong></span>
+      <button class="btn btn--ghost btn--sm" type="button" data-action="coop-signout">↩️ Đăng xuất</button>`;
+  } else {
+    el.innerHTML = `
+      <span class="coop-account">👤 Đang dùng: <strong>Khách (ẩn danh)</strong></span>
+      <button class="btn btn--ghost btn--sm" type="button" data-action="coop-google">🔗 Đăng nhập Google</button>
+      <span class="muted">Tuỳ chọn: để dùng cùng phòng trên điện thoại và máy tính.</span>`;
+  }
 }
 
 function renderHeroButton() {
@@ -204,6 +212,19 @@ export const coopUi = {
     'coop-open': () => {
       render();
       openModal('coopModal');
+      coop.loadUser().catch(e => console.error('[co-op]', e));
+    },
+    'coop-signout': async (app) => {
+      const msg = coop.code
+        ? `Đăng xuất sẽ ngắt kết nối phòng ${coop.code} trên máy này. Bạn vẫn là thành viên: đăng nhập lại cùng tài khoản Google rồi nhập mã để vào lại. Tiếp tục?`
+        : 'Đăng xuất khỏi tài khoản Google?';
+      if (!confirm(msg)) return;
+      try {
+        await coop.signOut();
+        app.showToast('Đã đăng xuất');
+      } catch (e) {
+        app.showToast(`⚠️ ${friendlyError(e)}`);
+      }
     },
     'coop-create': async (app) => {
       if (!readName()) return app.showToast('Hãy nhập tên của bạn trước');
@@ -236,11 +257,14 @@ export const coopUi = {
       if (el.value.trim()) coop.rename(el.value);
     },
     'coop-google': async (app) => {
+      // A failed sign-in says so in a toast; it must not flip the room's sync
+      // status to "error", since syncing is unaffected.
       try {
         await coop.linkGoogle();
-        app.showToast('✅ Đã liên kết Google');
+        app.showToast(`${pixelIcon('check')} Đã đăng nhập Google`);
       } catch (e) {
-        coop.fail(e);
+        console.error('[co-op] Google link', e);
+        app.showToast(`⚠️ ${friendlyError(e)}`);
       }
     }
   }

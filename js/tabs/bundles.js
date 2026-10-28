@@ -7,7 +7,7 @@
 
 import { CC_ROOMS } from '../../data/bundles-data.js';
 import { progress } from '../lib/progress.js';
-import { emptyState, matches } from '../lib/templates.js';
+import { emptyState, matches, pixelIcon } from '../lib/templates.js';
 
 const BUNDLES = CC_ROOMS.flatMap(room => room.bundles.map(b => ({ ...b, roomId: room.id })));
 const bundleById = new Map(BUNDLES.map(b => [b.id, b]));
@@ -169,7 +169,7 @@ function roomHeader(room) {
   return `
     <header class="room-head ${done ? 'is-done' : ''}">
       <h3 class="room-head__title"><span aria-hidden="true">${room.icon}</span> ${room.name} <small class="muted">${room.nameEn}</small></h3>
-      <div class="room-head__reward">${done ? '✅' : '🔒'} <strong>Hoàn thành phòng:</strong> ${room.reward}</div>
+      <div class="room-head__reward">${done ? pixelIcon('check') : '🔒'} <strong>Hoàn thành phòng:</strong> ${room.reward}</div>
     </header>`;
 }
 

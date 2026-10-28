@@ -4,6 +4,13 @@
 
 export const FALLBACK_ICON = 'assets/icons/ing_wood.png';
 
+// Hand-drawn pixel icons in assets/ (pixel-check.svg, ...) used instead of
+// emoji where a glyph should match the pixel UI
+// In-game item art from assets/icons/, sized to sit inline with text
+export const gameIcon = name => `<img src="assets/icons/${name}.png" alt="" class="game-icon pixel-img">`;
+
+export const pixelIcon = name => `<img src="assets/pixel-${name}.svg" alt="" class="pixel-icon">`;
+
 export const signed = n => (n > 0 ? `+${n}` : `${n}`);
 
 export function v16Badge(on, label = '1.6 Mới') {
