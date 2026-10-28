@@ -59,11 +59,11 @@
 
         <div class="hero__bar">
         <div class="hero__controls">
-          <button class="seg-btn" type="button" data-action="set-season" data-season="spring" title="Không gian Mùa Xuân">🌸 Xuân</button>
-          <button class="seg-btn" type="button" data-action="set-season" data-season="summer" title="Không gian Mùa Hạ">☀️ Hạ</button>
-          <button class="seg-btn" type="button" data-action="set-season" data-season="fall" title="Không gian Mùa Thu">🍁 Thu</button>
-          <button class="seg-btn" type="button" data-action="set-season" data-season="winter" title="Không gian Mùa Đông">❄️ Đông</button>
-          <button class="seg-btn" type="button" id="audioToggleBtn" data-action="toggle-audio" title="Bật/Tắt hiệu ứng âm thanh">🔊 Âm Thanh: Bật</button>
+          <button class="seg-btn" type="button" data-action="set-season" data-season="spring" title="Không gian Mùa Xuân"><i data-icon="spring"></i> Xuân</button>
+          <button class="seg-btn" type="button" data-action="set-season" data-season="summer" title="Không gian Mùa Hạ"><i data-icon="summer"></i> Hạ</button>
+          <button class="seg-btn" type="button" data-action="set-season" data-season="fall" title="Không gian Mùa Thu"><i data-icon="fall"></i> Thu</button>
+          <button class="seg-btn" type="button" data-action="set-season" data-season="winter" title="Không gian Mùa Đông"><i data-icon="winter"></i> Đông</button>
+          <button class="seg-btn" type="button" id="audioToggleBtn" data-action="toggle-audio" title="Bật/Tắt hiệu ứng âm thanh"><i data-icon="sound"></i> Âm Thanh: Bật</button>
         </div>
 
         <div class="hero__extras">
@@ -85,35 +85,35 @@
     <!-- ======= NAVIGATION ======= -->
     <nav class="tabs" aria-label="Main Wiki Navigation" role="tablist">
       <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="recipes">
-        🍳 <span>Công Thức Chế Biến</span> <span class="tab__badge" id="recipeTabBadge">0/0</span>
+        <i data-icon="recipes"></i> <span>Công Thức Chế Biến</span> <span class="tab__badge" id="recipeTabBadge">0/0</span>
       </button>
       <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="items">
-        📦 <span>Từ Điển Vật Phẩm</span> <span class="tab__badge" id="itemTabBadge">0</span>
+        <i data-icon="items"></i> <span>Từ Điển Vật Phẩm</span> <span class="tab__badge" id="itemTabBadge">0</span>
       </button>
       <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="npcs">
-        👥 <span>Dân Làng & NPC</span> <span class="tab__badge" data-npc-count="all"></span>
+        <i data-icon="npcs"></i> <span>Dân Làng & NPC</span> <span class="tab__badge" data-npc-count="all"></span>
       </button>
       <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="quests">
-        📜 <span>Hướng Dẫn Nhiệm Vụ</span> <span class="tab__badge" id="questTabBadge">0/0</span>
+        <i data-icon="quests"></i> <span>Hướng Dẫn Nhiệm Vụ</span> <span class="tab__badge" id="questTabBadge">0/0</span>
       </button>
       <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="bundles">
-        🎁 <span>Nhà Cộng Đồng</span> <span class="tab__badge" id="bundleTabBadge">0/0</span>
+        <i data-icon="bundles"></i> <span>Nhà Cộng Đồng</span> <span class="tab__badge" id="bundleTabBadge">0/0</span>
       </button>
       <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="museum">
-        🏛️ <span>Bảo Tàng</span> <span class="tab__badge" id="museumTabBadge">0/0</span>
+        <i data-icon="museum"></i> <span>Bảo Tàng</span> <span class="tab__badge" id="museumTabBadge">0/0</span>
       </button>
       <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="planner">
-        🎒 <span>Kế Hoạch & Tính Nguyên Liệu</span> <span class="tab__badge" id="plannerBadge">0</span>
+        <i data-icon="planner"></i> <span>Kế Hoạch & Tính Nguyên Liệu</span> <span class="tab__badge" id="plannerBadge">0</span>
       </button>
       <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="tracker">
-        ⭐ <span>Tiến Độ & Hoàn Thành</span>
+        <i data-icon="tracker"></i> <span>Tiến Độ & Hoàn Thành</span>
       </button>
     </nav>
 
     <!-- ======= SEARCH & FILTERS ======= -->
     <section class="panel toolbar" id="toolbarPanel" aria-label="Search and Filter Controls">
       <label class="search">
-        <span class="search__icon" aria-hidden="true">🔍</span>
+        <span class="search__icon" aria-hidden="true"><i data-icon="search"></i></span>
         <input type="search" id="searchInput" class="search__input" autocomplete="off"
                aria-label="Tìm kiếm"
                placeholder="Tìm theo tên món, vật phẩm, nông sản, cá, công cụ, NPC, từ khóa (VD: Rìu, Cá huyền thoại, Dâu tây, Kim cương, Pizza, 1.6...)">
@@ -121,49 +121,49 @@
 
       <div class="chip-group" data-filter-group="recipes">
         <button class="chip is-active" type="button" data-action="filter" data-value="all">Tất Cả Công Thức</button>
-        <button class="chip" type="button" data-action="filter" data-value="cooking">🍳 Món Ăn (Cooking)</button>
-        <button class="chip" type="button" data-action="filter" data-value="crafting">🔨 Đồ Chế Tạo (Crafting)</button>
-        <button class="chip" type="button" data-action="filter" data-value="smelting">🔥 Luyện Kim & Tạo Thỏi (Smelting)</button>
-        <button class="chip" type="button" data-action="filter" data-value="bait">🪱 Tạo Mồi & Đồ Nghề (Bait)</button>
-        <button class="chip" type="button" data-action="filter" data-value="farmhouse">🏡 Nâng Cấp Nhà (Farmhouse)</button>
-        <button class="chip" type="button" data-action="filter" data-value="buildings">🚜 Chuồng Trại & Công Trình (Buildings)</button>
-        <button class="chip" type="button" data-action="filter" data-value="magical_buildings">🧙‍♂️ Công Trình Ma Thuật (Magical)</button>
-        <button class="chip" type="button" data-action="filter" data-value="tools">⚒️ Nâng Cấp Dụng Cụ (Tools)</button>
-        <button class="chip" type="button" data-action="filter" data-value="weapons">⚔️ Lò Rèn & Vũ Khí Infinity</button>
-        <button class="chip" type="button" data-action="filter" data-value="version16">✨ Bản 1.6 Mới</button>
+        <button class="chip" type="button" data-action="filter" data-value="cooking"><i data-icon="cooking"></i> Món Ăn (Cooking)</button>
+        <button class="chip" type="button" data-action="filter" data-value="crafting"><i data-icon="crafting"></i> Đồ Chế Tạo (Crafting)</button>
+        <button class="chip" type="button" data-action="filter" data-value="smelting"><i data-icon="smelting"></i> Luyện Kim & Tạo Thỏi (Smelting)</button>
+        <button class="chip" type="button" data-action="filter" data-value="bait"><i data-icon="bait"></i> Tạo Mồi & Đồ Nghề (Bait)</button>
+        <button class="chip" type="button" data-action="filter" data-value="farmhouse"><i data-icon="farmhouse"></i> Nâng Cấp Nhà (Farmhouse)</button>
+        <button class="chip" type="button" data-action="filter" data-value="buildings"><i data-icon="buildings"></i> Chuồng Trại & Công Trình (Buildings)</button>
+        <button class="chip" type="button" data-action="filter" data-value="magical_buildings"><i data-icon="magical"></i> Công Trình Ma Thuật (Magical)</button>
+        <button class="chip" type="button" data-action="filter" data-value="tools"><i data-icon="toolUpgrades"></i> Nâng Cấp Dụng Cụ (Tools)</button>
+        <button class="chip" type="button" data-action="filter" data-value="weapons"><i data-icon="weapons"></i> Lò Rèn & Vũ Khí Infinity</button>
+        <button class="chip" type="button" data-action="filter" data-value="version16"><i data-icon="v16"></i> Bản 1.6 Mới</button>
       </div>
 
       <div class="chip-group" data-filter-group="items" hidden>
         <button class="chip is-active" type="button" data-action="filter" data-value="all">Tất Cả Vật Phẩm</button>
-        <button class="chip" type="button" data-action="filter" data-value="tools">🛠️ Công Cụ (Búa, Rìu, Cuốc, Xẻng...)</button>
-        <button class="chip" type="button" data-action="filter" data-value="crops">🌾 Cây Trồng & Nông Sản</button>
-        <button class="chip" type="button" data-action="filter" data-value="fruits">🍎 Trái Cây & Hoa Quả</button>
-        <button class="chip" type="button" data-action="filter" data-value="fish">🐟 Các Loại Cá & Thủy Sản</button>
-        <button class="chip" type="button" data-action="filter" data-value="minerals">💎 Khoáng Sản & Đá Quý</button>
-        <button class="chip" type="button" data-action="filter" data-value="animal_products">🥚 Sản Phẩm Chăn Nuôi</button>
-        <button class="chip" type="button" data-action="filter" data-value="forage">🍄 Thu Nhặt Hoang Dã</button>
-        <button class="chip" type="button" data-action="filter" data-value="artifacts">🏺 Cổ Vật & Di Vật</button>
+        <button class="chip" type="button" data-action="filter" data-value="tools"><i data-icon="tools"></i> Công Cụ (Búa, Rìu, Cuốc, Xẻng...)</button>
+        <button class="chip" type="button" data-action="filter" data-value="crops"><i data-icon="crops"></i> Cây Trồng & Nông Sản</button>
+        <button class="chip" type="button" data-action="filter" data-value="fruits"><i data-icon="fruits"></i> Trái Cây & Hoa Quả</button>
+        <button class="chip" type="button" data-action="filter" data-value="fish"><i data-icon="fish"></i> Các Loại Cá & Thủy Sản</button>
+        <button class="chip" type="button" data-action="filter" data-value="minerals"><i data-icon="minerals"></i> Khoáng Sản & Đá Quý</button>
+        <button class="chip" type="button" data-action="filter" data-value="animal_products"><i data-icon="animal"></i> Sản Phẩm Chăn Nuôi</button>
+        <button class="chip" type="button" data-action="filter" data-value="forage"><i data-icon="forage"></i> Thu Nhặt Hoang Dã</button>
+        <button class="chip" type="button" data-action="filter" data-value="artifacts"><i data-icon="artifacts"></i> Cổ Vật & Di Vật</button>
       </div>
 
       <div class="chip-group" data-filter-group="quests" hidden>
         <button class="chip is-active" type="button" data-action="filter" data-value="all">Tất Cả Nhiệm Vụ</button>
-        <button class="chip" type="button" data-action="filter" data-value="story">📖 Cốt Truyện (Story)</button>
-        <button class="chip" type="button" data-action="filter" data-value="secret_hidden">🔮 Nhiệm Vụ Ẩn & Bí Mật</button>
-        <button class="chip" type="button" data-action="filter" data-value="ginger_island">🌴 Đảo Gừng (Ginger Island)</button>
-        <button class="chip" type="button" data-action="filter" data-value="special_orders">📋 Đơn Hàng Lớn (Lewis & Qi)</button>
-        <button class="chip" type="button" data-action="filter" data-value="version16">🦝 Bản 1.6 (Gấu Mèo & Mastery)</button>
+        <button class="chip" type="button" data-action="filter" data-value="story"><i data-icon="story"></i> Cốt Truyện (Story)</button>
+        <button class="chip" type="button" data-action="filter" data-value="secret_hidden"><i data-icon="secret"></i> Nhiệm Vụ Ẩn & Bí Mật</button>
+        <button class="chip" type="button" data-action="filter" data-value="ginger_island"><i data-icon="ginger"></i> Đảo Gừng (Ginger Island)</button>
+        <button class="chip" type="button" data-action="filter" data-value="special_orders"><i data-icon="specialOrders"></i> Đơn Hàng Lớn (Lewis & Qi)</button>
+        <button class="chip" type="button" data-action="filter" data-value="version16"><i data-icon="quests16"></i> Bản 1.6 (Gấu Mèo & Mastery)</button>
       </div>
 
       <div class="chip-group" data-filter-group="npcs" hidden>
         <button class="chip is-active" type="button" data-action="filter" data-value="all">Tất Cả Dân Làng <span data-npc-count="all"></span></button>
-        <button class="chip" type="button" data-action="filter" data-value="bachelorette">💍 Độc Thân Nữ <span data-npc-count="bachelorette"></span></button>
-        <button class="chip" type="button" data-action="filter" data-value="bachelor">🎩 Độc Thân Nam <span data-npc-count="bachelor"></span></button>
-        <button class="chip" type="button" data-action="filter" data-value="town">🏡 Dân Làng Pelican <span data-npc-count="town"></span></button>
-        <button class="chip" type="button" data-action="filter" data-value="special">✨ Đặc Biệt & Đảo Gừng <span data-npc-count="special"></span></button>
-        <button class="chip" type="button" data-action="filter" data-value="spring">🌸 Sinh Nhật Mùa Xuân</button>
-        <button class="chip" type="button" data-action="filter" data-value="summer">☀️ Sinh Nhật Mùa Hạ</button>
-        <button class="chip" type="button" data-action="filter" data-value="fall">🍂 Sinh Nhật Mùa Thu</button>
-        <button class="chip" type="button" data-action="filter" data-value="winter">❄️ Sinh Nhật Mùa Đông</button>
+        <button class="chip" type="button" data-action="filter" data-value="bachelorette"><i data-icon="bachelorette"></i> Độc Thân Nữ <span data-npc-count="bachelorette"></span></button>
+        <button class="chip" type="button" data-action="filter" data-value="bachelor"><i data-icon="bachelor"></i> Độc Thân Nam <span data-npc-count="bachelor"></span></button>
+        <button class="chip" type="button" data-action="filter" data-value="town"><i data-icon="town"></i> Dân Làng Pelican <span data-npc-count="town"></span></button>
+        <button class="chip" type="button" data-action="filter" data-value="special"><i data-icon="special"></i> Đặc Biệt & Đảo Gừng <span data-npc-count="special"></span></button>
+        <button class="chip" type="button" data-action="filter" data-value="spring"><i data-icon="spring"></i> Sinh Nhật Mùa Xuân</button>
+        <button class="chip" type="button" data-action="filter" data-value="summer"><i data-icon="summer"></i> Sinh Nhật Mùa Hạ</button>
+        <button class="chip" type="button" data-action="filter" data-value="fall"><i data-icon="fall"></i> Sinh Nhật Mùa Thu</button>
+        <button class="chip" type="button" data-action="filter" data-value="winter"><i data-icon="winter"></i> Sinh Nhật Mùa Đông</button>
       </div>
 
       <!-- Room chips are generated from the bundle data -->
@@ -171,8 +171,8 @@
 
       <div class="chip-group" data-filter-group="museum" hidden>
         <button class="chip is-active" type="button" data-action="filter" data-value="all">Tất Cả Hiện Vật</button>
-        <button class="chip" type="button" data-action="filter" data-value="artifact">🏺 Cổ Vật (Artifacts)</button>
-        <button class="chip" type="button" data-action="filter" data-value="mineral">💎 Khoáng Sản (Minerals)</button>
+        <button class="chip" type="button" data-action="filter" data-value="artifact"><i data-icon="artifacts"></i> Cổ Vật (Artifacts)</button>
+        <button class="chip" type="button" data-action="filter" data-value="mineral"><i data-icon="minerals"></i> Khoáng Sản (Minerals)</button>
       </div>
 
       <!-- Each toggle only shows on the tabs whose data it can filter -->
@@ -208,15 +208,15 @@
         <div class="panel sim">
           <div class="sim__head">
             <div class="sim__title-group">
-              <span class="sim__icon" aria-hidden="true">⏰</span>
+              <span class="sim__icon" aria-hidden="true"><i data-icon="clock"></i></span>
               <div>
                 <h2 class="sim__title">Trình Mô Phỏng Lịch Trình & Vị Trí NPC Thời Gian Thực</h2>
                 <p class="sim__subtitle">Kéo thanh thời gian hoặc chọn Mùa / Thời tiết để xem vị trí của từng NPC tại thời điểm đó!</p>
               </div>
             </div>
             <div class="sim__head-actions">
-              <button class="btn btn--purple" type="button" data-action="open-modal" data-modal="weatherLuckModal">🔮 Quy Luật Mưa/Nắng & Vận May?</button>
-              <button class="btn btn--blue" type="button" data-action="open-modal" data-modal="steamModal">🎮 Xem Vị Trí Qua Steam?</button>
+              <button class="btn btn--purple" type="button" data-action="open-modal" data-modal="weatherLuckModal"><i data-icon="oracle"></i> Quy Luật Mưa/Nắng & Vận May?</button>
+              <button class="btn btn--blue" type="button" data-action="open-modal" data-modal="steamModal"><i data-icon="steam"></i> Xem Vị Trí Qua Steam?</button>
             </div>
           </div>
 
@@ -224,17 +224,17 @@
             <div class="sim-box">
               <div class="sim-box__label">MÙA TRONG NĂM:</div>
               <div class="seg">
-                <button class="seg-btn" type="button" data-action="sim-season" data-season="spring">🌸 Xuân</button>
-                <button class="seg-btn" type="button" data-action="sim-season" data-season="summer">☀️ Hạ</button>
-                <button class="seg-btn" type="button" data-action="sim-season" data-season="fall">🍂 Thu</button>
-                <button class="seg-btn" type="button" data-action="sim-season" data-season="winter">❄️ Đông</button>
+                <button class="seg-btn" type="button" data-action="sim-season" data-season="spring"><i data-icon="spring"></i> Xuân</button>
+                <button class="seg-btn" type="button" data-action="sim-season" data-season="summer"><i data-icon="summer"></i> Hạ</button>
+                <button class="seg-btn" type="button" data-action="sim-season" data-season="fall"><i data-icon="fall"></i> Thu</button>
+                <button class="seg-btn" type="button" data-action="sim-season" data-season="winter"><i data-icon="winter"></i> Đông</button>
               </div>
             </div>
 
             <div class="sim-box">
               <div class="sim-box__label">THỜI TIẾT:</div>
               <div class="seg" id="simWeatherBtns"></div>
-              <p class="sim-box__note" id="simWeatherNote" hidden>🎪 Ngày lễ hội luôn luôn nắng</p>
+              <p class="sim-box__note" id="simWeatherNote" hidden><i data-icon="sunny"></i> Ngày lễ hội luôn luôn nắng</p>
             </div>
 
             <div class="sim-box sim-box--calendar">
@@ -282,7 +282,7 @@
               <button class="chip" type="button" data-action="sim-quick-time" data-time="16.5">04:30 PM</button>
               <button class="chip" type="button" data-action="sim-quick-time" data-time="19">07:00 PM</button>
               <button class="chip" type="button" data-action="sim-quick-time" data-time="23">11:00 PM</button>
-              <button class="btn btn--green" type="button" id="simPlayBtn" data-action="sim-play" title="Tự động tua dòng thời gian">▶️ Chạy Tự Động</button>
+              <button class="btn btn--green" type="button" id="simPlayBtn" data-action="sim-play" title="Tự động tua dòng thời gian"><i data-icon="play"></i> Chạy Tự Động</button>
             </div>
           </div>
         </div>
@@ -299,7 +299,7 @@
       <section id="tab-bundles" class="tab-panel" role="tabpanel" hidden>
         <div class="panel">
           <div class="panel__head">
-            <h2 class="panel__title">🎁 Bản Đồ Gói Quà Nhà Cộng Đồng (Community Center)</h2>
+            <h2 class="panel__title"><i data-icon="bundles"></i> Bản Đồ Gói Quà Nhà Cộng Đồng (Community Center)</h2>
           </div>
           <p class="panel__hint">Bấm vào một phòng hoặc một túi Junimo để xem các món cần nộp. Bấm vào ô vật phẩm để đánh dấu đã nộp; gói hoàn thành khi đủ số món yêu cầu.</p>
           <div id="ccTree"></div>
@@ -312,14 +312,14 @@
         <div class="museum-top">
           <div class="panel">
             <div class="panel__head">
-              <h2 class="panel__title">🏛️ Bảo Tàng & Thư Viện Pelican</h2>
+              <h2 class="panel__title"><i data-icon="museum"></i> Bảo Tàng & Thư Viện Pelican</h2>
             </div>
             <p class="panel__hint">Mang Cổ vật và Khoáng sản tới Gunther để quyên góp. Bấm vào ô trưng bày để đánh dấu đã quyên góp.</p>
             <div id="museumSummary" class="museum-summary"></div>
           </div>
           <div class="panel">
             <div class="panel__head">
-              <h2 class="panel__title">🎖️ Phần Thưởng Của Gunther</h2>
+              <h2 class="panel__title"><i data-icon="medal"></i> Phần Thưởng Của Gunther</h2>
             </div>
             <ul id="museumRewards" class="reward-list"></ul>
           </div>
@@ -332,8 +332,8 @@
         <div class="planner">
           <div class="panel">
             <div class="panel__head">
-              <h2 class="panel__title">🎒 Các Món Cần Chế Biến</h2>
-              <button class="btn btn--danger" type="button" data-action="planner-clear">🗑️ Xóa hết</button>
+              <h2 class="panel__title"><i data-icon="planner"></i> Các Món Cần Chế Biến</h2>
+              <button class="btn btn--danger" type="button" data-action="planner-clear"><i data-icon="trash"></i> Xóa hết</button>
             </div>
             <p class="panel__hint">Thêm các món bạn dự định nấu hoặc chế tạo từ thẻ công thức. Bạn có thể điều chỉnh số lượng ở đây:</p>
             <div id="plannedItemsList" class="planned-list"></div>
@@ -341,7 +341,7 @@
 
           <div class="panel">
             <div class="panel__head">
-              <h2 class="panel__title">📦 Tổng Hợp Nguyên Liệu Cần Gom</h2>
+              <h2 class="panel__title"><i data-icon="ingredients"></i> Tổng Hợp Nguyên Liệu Cần Gom</h2>
             </div>
             <p class="panel__hint">Hệ thống tự động tính toán tổng số nguyên liệu thô cần chuẩn bị. Đánh dấu tick khi bạn đã gom đủ trong rương:</p>
             <div id="rawMaterialsGrid" class="material-grid"></div>
@@ -355,16 +355,16 @@
 
         <div class="panel">
           <div class="panel__head">
-            <h2 class="panel__title">💾 Quản Lý & Lưu Trữ Tiến Độ Cá Nhân</h2>
+            <h2 class="panel__title"><i data-icon="save"></i> Quản Lý & Lưu Trữ Tiến Độ Cá Nhân</h2>
           </div>
           <p>
             Toàn bộ các dấu tích hoàn thành công thức, nhiệm vụ và kế hoạch chế tạo được tự động lưu trong trình duyệt của bạn (LocalStorage).
             Xuất file sao lưu JSON để mang sang thiết bị khác, rồi dùng nút Khôi Phục để nạp lại.
           </p>
           <div class="btn-row">
-            <button class="btn btn--wood btn--lg" type="button" data-action="export-progress">📥 Tải Xuống File Sao Lưu (JSON)</button>
-            <button class="btn btn--blue btn--lg" type="button" data-action="import-progress">📤 Khôi Phục Từ File Sao Lưu</button>
-            <button class="btn btn--danger btn--lg" type="button" data-action="reset-progress">⚠️ Đặt Lại Toàn Bộ Tiến Độ (Reset)</button>
+            <button class="btn btn--wood btn--lg" type="button" data-action="export-progress"><i data-icon="download"></i> Tải Xuống File Sao Lưu (JSON)</button>
+            <button class="btn btn--blue btn--lg" type="button" data-action="import-progress"><i data-icon="upload"></i> Khôi Phục Từ File Sao Lưu</button>
+            <button class="btn btn--danger btn--lg" type="button" data-action="reset-progress"><i data-icon="warn"></i> Đặt Lại Toàn Bộ Tiến Độ (Reset)</button>
             <input type="file" id="importFileInput" accept="application/json,.json" data-action="import-file" hidden>
           </div>
         </div>
@@ -396,7 +396,7 @@
     <div class="modal__box modal__box--faq" role="dialog" aria-modal="true" aria-labelledby="steamModalTitle">
       <button class="modal-close-btn" type="button" data-close-modal aria-label="Đóng cửa sổ">✕</button>
       <div class="faq-head">
-        <div class="faq-head__icon faq-head__icon--blue" aria-hidden="true">🎮</div>
+        <div class="faq-head__icon faq-head__icon--blue" aria-hidden="true"><i data-icon="steam"></i></div>
         <div>
           <h2 class="faq-head__title" id="steamModalTitle">Hỏi & Đáp Kỹ Thuật: Xem Vị Trí Realtime Qua Steam?</h2>
           <p class="muted">Phân tích khả năng kết nối tài khoản Steam và giải pháp theo dõi vị trí NPC tốt nhất</p>
@@ -404,16 +404,16 @@
       </div>
 
       <div class="faq-q">
-        <div class="faq-q__label">❓ CÂU HỎI CỦA BẠN:</div>
+        <div class="faq-q__label"><i data-icon="question"></i> CÂU HỎI CỦA BẠN:</div>
         <p class="faq-q__text">"Liệu có thể đăng nhập qua Steam để xem vị trí các NPC realtime như mod được không?"</p>
       </div>
 
       <div class="faq-a">
-        <div class="faq-a__label">💡 KẾT LUẬN KỸ THUẬT:</div>
+        <div class="faq-a__label"><i data-icon="tip"></i> KẾT LUẬN KỸ THUẬT:</div>
         <p><strong>KHÔNG THỂ chỉ dùng đăng nhập Steam</strong> để truyền phát (stream) trực tiếp vị trí NPC trong game theo thời gian thực lên web như các mod SMAPI.</p>
       </div>
 
-      <h3 class="faq-section">🔍 Vì sao Steam không hỗ trợ việc này?</h3>
+      <h3 class="faq-section"><i data-icon="search"></i> Vì sao Steam không hỗ trợ việc này?</h3>
       <ol class="tech-steps">
         <li>
           <strong>Phạm vi của Steam Web API & OpenID:</strong>
@@ -430,7 +430,7 @@
       </ol>
 
       <div class="callout callout--tip callout--row">
-        <span class="callout__big-icon" aria-hidden="true">🌟</span>
+        <span class="callout__big-icon" aria-hidden="true"><i data-icon="sparkle"></i></span>
         <div>
           <strong>GIẢI PHÁP ĐÃ TÍCH HỢP TRÊN TRANG WEB NÀY:</strong>
           <p>Do NPC trong Stardew Valley di chuyển theo <strong>Lịch trình Cố định (Deterministic Schedule)</strong> theo <em>Mùa, Ngày, Thứ, Thời tiết và Giờ</em>, <strong>Trình Mô Phỏng Lịch Trình</strong> ở tab này ước tính vị trí từng NPC tại mọi thời điểm <em>mà không cần đăng nhập Steam</em>. Đây là lịch trình rút gọn: các sự kiện cốt truyện, hôn nhân và mức tim có thể làm NPC đi khác.</p>
@@ -448,7 +448,7 @@
     <div class="modal__box modal__box--faq" role="dialog" aria-modal="true" aria-labelledby="weatherModalTitle">
       <button class="modal-close-btn" type="button" data-close-modal aria-label="Đóng cửa sổ">✕</button>
       <div class="faq-head">
-        <div class="faq-head__icon faq-head__icon--purple" aria-hidden="true">🔮</div>
+        <div class="faq-head__icon faq-head__icon--purple" aria-hidden="true"><i data-icon="oracle"></i></div>
         <div>
           <h2 class="faq-head__title" id="weatherModalTitle">Quy Luật Thời Tiết (Mưa/Nắng) & Vận May (Daily Luck)</h2>
           <p class="muted">Giải mã cơ chế Stardew Valley: Ngày cố định, thuật toán ngẫu nhiên & Kênh Bói Toán TV</p>
@@ -456,71 +456,71 @@
       </div>
 
       <div class="faq-q faq-q--purple">
-        <div class="faq-q__label">❓ CÂU HỎI:</div>
+        <div class="faq-q__label"><i data-icon="question"></i> CÂU HỎI:</div>
         <p class="faq-q__text">"Dựa vào một ngày cụ thể có biết ngày hôm đó là ngày mưa hay nắng không? Có biết hôm đó có phải ngày may mắn hay không?"</p>
       </div>
 
       <div class="faq-a faq-a--purple">
-        <div class="faq-a__label">💡 CÂU TRẢ LỜI NGẮN GỌN:</div>
+        <div class="faq-a__label"><i data-icon="tip"></i> CÂU TRẢ LỜI NGẮN GỌN:</div>
         <p>• <strong>Về Thời Tiết:</strong> Có những ngày <strong>CỐ ĐỊNH</strong> (Mọi người chơi đều giống nhau). Các ngày còn lại được sinh ngẫu nhiên theo <em>Game Seed</em> của từng file save.</p>
         <p>• <strong>Về Vận May (Daily Luck):</strong> Không thể biết trước một ngày ngẫu nhiên nếu <em>không có file Save</em>, nhưng <strong>có thể biết trước</strong> nếu bạn trích xuất được <em>Game Seed</em> từ file save game của mình!</p>
       </div>
 
-      <h3 class="faq-section faq-section--blue">🌧️ 1. QUY LUẬT THỜI TIẾT (MƯA / NẮNG / BÃO SẤM SÉT)</h3>
+      <h3 class="faq-section faq-section--blue"><i data-icon="rainy"></i> 1. QUY LUẬT THỜI TIẾT (MƯA / NẮNG / BÃO SẤM SÉT)</h3>
       <div class="callout callout--blue">
-        <h4 class="callout__title">📌 CÁC NGÀY CỐ ĐỊNH (Mọi thế giới và mọi người chơi đều như nhau):</h4>
+        <h4 class="callout__title"><i data-icon="pin"></i> CÁC NGÀY CỐ ĐỊNH (Mọi thế giới và mọi người chơi đều như nhau):</h4>
         <ul class="bullet-list">
-          <li><strong>Xuân Ngày 1, 2, 4 & 5 (Năm 1):</strong> Luôn luôn <strong>NẮNG ĐẸP ☀️</strong> (Những ngày mở đầu game).</li>
-          <li><strong>Xuân Ngày 3 (Năm 1):</strong> Luôn luôn <strong>MƯA TO 🌧️</strong> (Ngày mưa đầu tiên ConcernedApe tạo sẵn để người chơi không phải tưới nước và câu cá Da Trơn Catfish).</li>
-          <li><strong>TẤT CẢ CÁC NGÀY LỄ HỘI (Festivals):</strong> Luôn luôn <strong>NẮNG ☀️</strong>! Game không bao giờ cho mưa vào các ngày lễ hội (Trứng 13 Xuân, Khiêu Vũ 24 Xuân, Luau 11 Hạ, Hội Chợ 16 Thu, Băng 8 Đông...).</li>
-          <li><strong>Hạ Ngày 13 & Ngày 26 (Mọi năm):</strong> Luôn luôn có <strong>BÃO SẤM SÉT ⛈️</strong> (Stormy) để người chơi cắm Cột thu lôi sạc Pin Battery Pack. Lưu ý: TV dự báo không chính xác cho 2 ngày này.</li>
-          <li><strong>Toàn bộ Mùa Đông (Winter):</strong> Không có mưa, chỉ có <strong>Tuyết Rơi ❄️</strong> hoặc Nắng lạnh.</li>
+          <li><strong>Xuân Ngày 1, 2, 4 & 5 (Năm 1):</strong> Luôn luôn <strong>NẮNG ĐẸP <i data-icon="sunny"></i></strong> (Những ngày mở đầu game).</li>
+          <li><strong>Xuân Ngày 3 (Năm 1):</strong> Luôn luôn <strong>MƯA TO <i data-icon="rainy"></i></strong> (Ngày mưa đầu tiên ConcernedApe tạo sẵn để người chơi không phải tưới nước và câu cá Da Trơn Catfish).</li>
+          <li><strong>TẤT CẢ CÁC NGÀY LỄ HỘI (Festivals):</strong> Luôn luôn <strong>NẮNG <i data-icon="sunny"></i></strong>! Game không bao giờ cho mưa vào các ngày lễ hội (Trứng 13 Xuân, Khiêu Vũ 24 Xuân, Luau 11 Hạ, Hội Chợ 16 Thu, Băng 8 Đông...).</li>
+          <li><strong>Hạ Ngày 13 & Ngày 26 (Mọi năm):</strong> Luôn luôn có <strong>BÃO SẤM SÉT <i data-icon="storm"></i></strong> (Stormy) để người chơi cắm Cột thu lôi sạc Pin Battery Pack. Lưu ý: TV dự báo không chính xác cho 2 ngày này.</li>
+          <li><strong>Toàn bộ Mùa Đông (Winter):</strong> Không có mưa, chỉ có <strong>Tuyết Rơi <i data-icon="snowy"></i></strong> hoặc Nắng lạnh.</li>
           <li><strong>Sự kiện Mưa Xanh (Green Rain - v1.6):</strong> Xảy ra đúng 1 lần mỗi Mùa Hạ, ngẫu nhiên vào một trong các ngày <strong>5, 6, 7, 14, 15, 16, 18 hoặc 23</strong> (rêu phủ kín cây, cỏ dại mọc khắp thung lũng). Năm 1 không thể tặng quà trong ngày Mưa Xanh.</li>
         </ul>
       </div>
       <div class="callout callout--slate">
-        <strong>🎲 Các ngày còn lại được tính như thế nào?</strong>
+        <strong><i data-icon="dice"></i> Các ngày còn lại được tính như thế nào?</strong>
         <p>Game dùng bộ sinh số ngẫu nhiên với xác suất mưa/tuyết khác nhau theo từng mùa, dựa trên Game Seed của file save.</p>
         <p>• <em>Cách xem trước:</em> Bật TV kênh <strong>Dự Báo Thời Tiết (Weather Report)</strong> vào buổi sáng để biết trước thời tiết ngày mai.<br>
            • <em>Cách ép thời tiết:</em> Chế tạo và dùng <strong>Bùa Gọi Mưa (Rain Totem)</strong> để ép ngày mai mưa (không có tác dụng nếu ngày mai là lễ hội hoặc ngày đầu mùa).</p>
       </div>
 
-      <h3 class="faq-section faq-section--purple">🍀 2. CHỈ SỐ MAY MẮN (DAILY LUCK & KÊNH BÓI TOÁN WELWICK)</h3>
+      <h3 class="faq-section faq-section--purple"><i data-icon="luck"></i> 2. CHỈ SỐ MAY MẮN (DAILY LUCK & KÊNH BÓI TOÁN WELWICK)</h3>
       <div class="callout callout--tip">
-        <strong>💡 Bản chất trong mã nguồn game:</strong>
+        <strong><i data-icon="tip"></i> Bản chất trong mã nguồn game:</strong>
         <p>Mỗi sáng khi thức dậy, game tự động tính toán biến <code>Game1.dailyLuck</code> ngẫu nhiên từ <strong>-0.10 đến +0.10</strong> (số thực). Kênh TV <strong>The Fortune Teller</strong> của bà Welwick sẽ dịch con số này thành 5 thông điệp:</p>
       </div>
 
       <div class="luck-list">
         <div class="luck luck--best">
-          <div class="luck__title">🌟 RẤT MAY MẮN (Best Luck): Điểm > +0.07</div>
+          <div class="luck__title"><i data-icon="bestLuck"></i> RẤT MAY MẮN (Best Luck): Điểm > +0.07</div>
           <p><em>"Các linh hồn đang rất vui vẻ! Họ sẽ ban phước lành cho mọi người hôm nay."</em><br>
              ➔ <strong>Lời khuyên:</strong> Ngày vàng để xuống mỏ Skull Cavern! Cực dễ ra cầu thang/hố sâu, rơi nhiều quặng Iridium, kho báu câu cá hiếm, nhặt nhiều vật phẩm chất lượng cao.</p>
         </div>
         <div class="luck luck--good">
-          <div class="luck__title">✨ HƠI MAY MẮN (Good Luck): Điểm từ +0.02 đến +0.07</div>
+          <div class="luck__title"><i data-icon="sparkle"></i> HƠI MAY MẮN (Good Luck): Điểm từ +0.02 đến +0.07</div>
           <p><em>"Các linh hồn đang có tâm trạng tốt. Vận may nhỏ bé đang mỉm cười với bạn."</em><br>
              ➔ <strong>Lời khuyên:</strong> Thích hợp cho việc đi mỏ thông thường, nâng cấp công cụ, mở Geode.</p>
         </div>
         <div class="luck luck--neutral">
-          <div class="luck__title">⚖️ TRUNG LẬP (Neutral): Điểm từ -0.02 đến +0.02 (đúng bằng 0 sẽ có thông điệp "trung lập tuyệt đối" hiếm gặp)</div>
+          <div class="luck__title"><i data-icon="scale"></i> TRUNG LẬP (Neutral): Điểm từ -0.02 đến +0.02 (đúng bằng 0 sẽ có thông điệp "trung lập tuyệt đối" hiếm gặp)</div>
           <p><em>"Các linh hồn hôm nay hoàn toàn trung lập. Cuộc sống nằm trong tay chính bạn."</em><br>
              ➔ <strong>Lời khuyên:</strong> Tỉ lệ rơi vật phẩm ở mức chuẩn mực.</p>
         </div>
         <div class="luck luck--bad">
-          <div class="luck__title">🌧️ HƠI XUI XẺO (Bad Luck): Điểm từ -0.07 đến -0.02</div>
+          <div class="luck__title"><i data-icon="rainy"></i> HƠI XUI XẺO (Bad Luck): Điểm từ -0.07 đến -0.02</div>
           <p><em>"Đây không phải ngày tốt lành. Các linh hồn có vẻ hơi buồn phiền."</em><br>
              ➔ <strong>Lời khuyên:</strong> Cầu thang trong mỏ ít xuất hiện hơn, quái vật hung hãn hơn.</p>
         </div>
         <div class="luck luck--worst">
-          <div class="luck__title">💀 RẤT XUI XẺO (Worst Luck): Điểm &lt; -0.07</div>
+          <div class="luck__title"><i data-icon="skull"></i> RẤT XUI XẺO (Worst Luck): Điểm &lt; -0.07</div>
           <p><em>"Các linh hồn vô cùng giận dữ hôm nay! Họ sẽ gây khó khăn cho bạn trên mọi bước đường."</em><br>
              ➔ <strong>Lời khuyên:</strong> TUYỆT ĐỐI KHÔNG đi Skull Cavern! Quái vật đông và cắn đau, cầu thang cực hiếm. Nên ở nhà chăm sóc gia súc, chặt gỗ, làm đồ thủ công hoặc đi tặng quà dân làng.</p>
         </div>
       </div>
 
       <div class="callout callout--pink">
-        <h4 class="callout__title">🔮 LÀM SAO ĐỂ BIẾT TRƯỚC VÀ THAY ĐỔI VẬN MAY?</h4>
+        <h4 class="callout__title"><i data-icon="oracle"></i> LÀM SAO ĐỂ BIẾT TRƯỚC VÀ THAY ĐỔI VẬN MAY?</h4>
         <ul class="bullet-list">
           <li><strong>Dự đoán tương lai bằng File Save:</strong> Nếu bạn tải file save lên các công cụ soi hạt giống (như <em>MouseyPounds Stardew Predictor</em>), nó đọc <code>Game Seed</code> và giải mã từng ngày may mắn, thời tiết, mỏ quặng trong file save của bạn!</li>
           <li><strong>Bùa May Mắn Vĩnh Viễn (Special Charm):</strong> Hoàn thành Ghi Chú Bí Mật #20 (Secret Note #20) đổi <em>Bàn Chân Thỏ (Rabbit's Foot)</em> cho tài xế xe tải bên hông siêu thị JojaMart ➔ Tăng vĩnh viễn <strong>+0.025 Daily Luck</strong> cho MỌI ngày sau đó!</li>
@@ -570,7 +570,7 @@
   <div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
   <div class="load-error" id="loadError" role="alert" hidden>
-    <strong>⚠️ Không tải được mã JavaScript của trang.</strong>
+    <strong><img src="assets/pixel-warn.svg" alt="" class="pixel-icon pixel-img"> Không tải được mã JavaScript của trang.</strong>
     <p>Một số file bị lỗi khi tải nên danh sách công thức, nhiệm vụ... không hiển thị. Hãy tải lại trang (Cmd/Ctrl + Shift + R).
        Nếu vẫn lỗi, chạy trang bằng <code>npm run dev</code> thay vì <code>python3 -m http.server</code> (server này hay làm rớt request khi tải nhiều file cùng lúc).</p>
   </div>

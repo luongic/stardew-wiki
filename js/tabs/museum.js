@@ -7,6 +7,7 @@
 import { MUSEUM_ITEMS, MUSEUM_REWARDS } from '../../data/museum-data.js';
 import { progress } from '../lib/progress.js';
 import { emptyState, matches, pixelIcon } from '../lib/templates.js';
+import { ico } from '../lib/icons.js';
 
 const itemById = new Map(MUSEUM_ITEMS.map(it => [it.id, it]));
 const ARTIFACTS = MUSEUM_ITEMS.filter(it => it.type === 'artifact');
@@ -14,7 +15,7 @@ const MINERALS = MUSEUM_ITEMS.filter(it => it.type === 'mineral');
 
 // Display groups in shelf order; minerals split by the data's `group` label
 const GROUPS = [...new Set(MUSEUM_ITEMS.map(it => it.group))];
-const GROUP_ICONS = { 'Cổ vật': '🏺', 'Đá quý': '💎', 'Khoáng thạch': '🪨' };
+const GROUP_ICONS = { 'Cổ vật': 'artifacts', 'Đá quý': 'gems', 'Khoáng thạch': 'geodes' };
 
 export const museumProgress = {
   get donated() { return progress.set('museum'); },
@@ -48,11 +49,12 @@ function rewardCondition(r) {
 }
 
 function meter(label, done, total, mod = '') {
+  const plain = label.replace(/<[^>]+>/g, '').trim();
   const pct = total ? Math.round((done / total) * 100) : 0;
   return `
     <div class="museum-meter ${mod}">
       <div class="museum-meter__head"><span>${label}</span><strong>${done}/${total}</strong></div>
-      <div class="progress" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100" aria-label="${label}">
+      <div class="progress" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100" aria-label="${plain}">
         <div class="progress__fill" style="--pct: ${pct}%"></div>
       </div>
     </div>`;
@@ -79,9 +81,9 @@ const museumTab = {
   render(app) {
     const t = museumProgress.totals();
     document.getElementById('museumSummary').innerHTML = `
-      ${meter('🏛️ Tổng số món đã quyên góp', t.done, t.total, 'museum-meter--main')}
-      ${meter('🏺 Cổ vật', museumProgress.count(ARTIFACTS), ARTIFACTS.length)}
-      ${meter('💎 Khoáng sản', museumProgress.count(MINERALS), MINERALS.length)}`;
+      ${meter(`${ico('museum')} Tổng số món đã quyên góp`, t.done, t.total, 'museum-meter--main')}
+      ${meter(`${ico('artifacts')} Cổ vật`, museumProgress.count(ARTIFACTS), ARTIFACTS.length)}
+      ${meter(`${ico('gems')} Khoáng sản`, museumProgress.count(MINERALS), MINERALS.length)}`;
 
     document.getElementById('museumRewards').innerHTML = MUSEUM_REWARDS.map(r => {
       const { have, need, done: got } = rewardProgress(r);
@@ -114,13 +116,13 @@ const museumTab = {
         return `
           <section class="case">
             <header class="case__head">
-              <h3 class="case__title"><span aria-hidden="true">${GROUP_ICONS[g] || '📦'}</span> ${g}</h3>
+              <h3 class="case__title">${ico(GROUP_ICONS[g] || 'box')} ${g}</h3>
               <span class="badge badge--gold">${museumProgress.count(all)}/${all.length}</span>
             </header>
             <div class="case__grid">${items.map(tile).join('')}</div>
           </section>`;
       }).join('')
-      : emptyState('🏛️', 'Không có món nào khớp!', 'Thử từ khóa khác hoặc tắt bộ lọc "Chưa Hoàn Thành".');
+      : emptyState('museum', 'Không có món nào khớp!', 'Thử từ khóa khác hoặc tắt bộ lọc "Chưa Hoàn Thành".');
   },
 
   badge() {
@@ -133,7 +135,7 @@ const museumTab = {
       const id = el.dataset.id;
       if (progress.toggle('museum', id)) {
         app.sfx.play('complete');
-        app.showToast(`🏛️ Đã quyên góp ${itemById.get(id).name} cho Gunther!`);
+        app.showToast(`${ico('museum')} Đã quyên góp ${itemById.get(id).name} cho Gunther!`);
       } else {
         app.sfx.play('uncheck');
       }

@@ -25,8 +25,9 @@ import museumTab from './tabs/museum.js';
 import plannerTab from './tabs/planner.js';
 import trackerTab from './tabs/tracker.js';
 import { coopUi } from './sync/coop-ui.js';
+import { ico, hydrateIcons } from './lib/icons.js';
 
-const SEASON_NAMES = { spring: 'Mùa Xuân 🌸', summer: 'Mùa Hạ ☀️', fall: 'Mùa Thu 🍁', winter: 'Mùa Đông ❄️' };
+const SEASON_NAMES = { spring: 'Mùa Xuân', summer: 'Mùa Hạ', fall: 'Mùa Thu', winter: 'Mùa Đông' };
 const SEARCH_DEBOUNCE_MS = 150;
 
 export class StardewWikiApp {
@@ -51,6 +52,7 @@ export class StardewWikiApp {
   }
 
   init() {
+    hydrateIcons();
     initModals();
     initImageFallbacks();
     this.applySeason(this.season);
@@ -136,13 +138,13 @@ export class StardewWikiApp {
       'set-season': (app, el) => {
         app.applySeason(el.dataset.season);
         app.sfx.play('click');
-        showToast(`Đã chuyển sang không gian ${SEASON_NAMES[el.dataset.season]}!`);
+        showToast(`${ico(el.dataset.season)} Đã chuyển sang không gian ${SEASON_NAMES[el.dataset.season]}!`);
       },
       'toggle-audio': (app) => {
         app.sfx.setEnabled(!app.sfx.enabled);
         app.updateAudioButton();
         app.sfx.play('click');
-        showToast(app.sfx.enabled ? 'Đã bật hiệu ứng âm thanh' : 'Đã tắt âm thanh');
+        showToast(app.sfx.enabled ? `${ico('sound')} Đã bật hiệu ứng âm thanh` : `${ico('mute')} Đã tắt âm thanh`);
       },
       'filter': (app, el) => {
         const group = el.closest('[data-filter-group]');
@@ -220,7 +222,7 @@ export class StardewWikiApp {
     const on = progress.toggle(kind === 'recipe' ? 'recipes' : 'quests', id);
     if (on) {
       this.sfx.play('complete');
-      showToast(kind === 'recipe' ? '⭐ Đã đánh dấu hoàn thành công thức!' : '🏆 Đã hoàn thành nhiệm vụ!');
+      showToast(`${ico('check')} ${kind === 'recipe' ? 'Đã đánh dấu hoàn thành công thức!' : 'Đã hoàn thành nhiệm vụ!'}`);
     } else {
       this.sfx.play('uncheck');
     }
@@ -241,7 +243,7 @@ export class StardewWikiApp {
 
   updateAudioButton() {
     const btn = document.getElementById('audioToggleBtn');
-    if (btn) btn.textContent = this.sfx.enabled ? '🔊 Âm Thanh: Bật' : '🔇 Âm Thanh: Tắt';
+    if (btn) btn.innerHTML = this.sfx.enabled ? `${ico('sound')} Âm Thanh: Bật` : `${ico('mute')} Âm Thanh: Tắt`;
   }
 
   showToast(message) {

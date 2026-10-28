@@ -4,8 +4,27 @@
 
 import { QUESTS_DATA } from '../../data/quests-data.js';
 import { emptyState, v16Badge, modalHeader, matches, pixelIcon } from '../lib/templates.js';
+import { ico } from '../lib/icons.js';
 
 const questById = new Map(QUESTS_DATA.map(q => [q.id, q]));
+
+// Who (or what) hands out each quest: the villager's portrait when there is
+// one, otherwise the item the quest revolves around.
+const GIVER_ICONS = {
+  introductions: 'portrait:lewis', how_to_win_friends: 'letter', getting_started: 'item_parsnip',
+  raising_animals: 'portrait:robin', explore_the_mines: 'portrait:marlon', deeper_in_the_mines: 'item_pickaxe',
+  to_the_bottom: 'rusty_key', robins_lost_axe: 'item_axe', jodis_request: 'item_cauliflower',
+  mayors_shorts: 'portrait:lewis', blackberry_basket: 'item_blackberry', a_winter_mystery: 'search',
+  pam_is_thirsty: 'pale_ale', fish_casserole: 'portrait:jodi', dark_talisman: 'portrait:wizard',
+  goblin_problem: 'void_mayonnaise', the_mysterious_qi: 'portrait:mr_qi', qis_challenge: 'portrait:mr_qi',
+  cryptic_note_100: 'letter', pirates_wife: 'portrait:birdie', solid_gold_lewis: 'item_golden_relic',
+  secret_dolls_statues: 'strange_doll_green', special_charm_luck: 'ing_rabbits_foot', bears_knowledge: 'bear_statue',
+  mermaid_flute_puzzle: 'flute_block', gem_birds_shrine: 'parrot_egg', community_cleanup: 'portrait:linus',
+  prismatic_jelly: 'portrait:wizard', ectoplasm: 'ghost_crystal', the_strong_stuff: 'item_potato',
+  qis_crop: 'portrait:mr_qi', danger_in_the_mines: 'mega_bomb', raccoon_family_tree: 'mystic_tree_seed',
+  mastery_cave_pillars: 'statue_of_blessings'
+};
+const giverIcon = q => GIVER_ICONS[q.id] || 'quests';
 const revealed = new Set();
 
 const isV16 = q => !!q.version16 || q.category === 'version16';
@@ -17,7 +36,7 @@ function cardHtml(q, done) {
     <article class="card ${done ? 'is-done' : ''}">
       <header class="card__head">
         <div class="card__title-row">
-          <div class="icon-box is-broken"><span class="icon-box__emoji" aria-hidden="true">${q.giverIcon || '📜'}</span></div>
+          <div class="icon-box">${ico(giverIcon(q))}</div>
           <div>
             <h3 class="card__title">${q.name}</h3>
             <div class="card__sub">
@@ -33,23 +52,23 @@ function cardHtml(q, done) {
 
       <div class="card__body">
         <div class="split-row">
-          <span class="muted">👤 <strong>Giao bởi:</strong> ${q.giver}</span>
-          ${q.hidden ? `<button class="btn btn--purple btn--sm" type="button" data-action="toggle-spoiler" data-id="${q.id}">👁️ ${open ? 'Ẩn Spoilers' : 'Xem Spoilers'}</button>` : ''}
+          <span class="muted">${ico('giver')} <strong>Giao bởi:</strong> ${q.giver}</span>
+          ${q.hidden ? `<button class="btn btn--purple btn--sm" type="button" data-action="toggle-spoiler" data-id="${q.id}">${ico('eye')} ${open ? 'Ẩn Spoilers' : 'Xem Spoilers'}</button>` : ''}
         </div>
 
         <p class="card__desc ${blur}">${q.desc}</p>
 
         <div class="inset-box ${blur}">
-          <div class="section-label">👣 Hướng dẫn từng bước:</div>
+          <div class="section-label">${ico('steps')} Hướng dẫn từng bước:</div>
           <ol class="step-list">${q.steps.map(s => `<li>${s}</li>`).join('')}</ol>
         </div>
 
-        <div class="callout callout--green callout--compact">🎁 <strong>Phần thưởng:</strong> ${q.reward}</div>
-        <div class="source-tag"><strong>🔓 Điều kiện mở khóa:</strong> ${q.unlockCondition}</div>
+        <div class="callout callout--green callout--compact">${ico('gift')} <strong>Phần thưởng:</strong> ${q.reward}</div>
+        <div class="source-tag"><strong>${ico('unlock')} Điều kiện mở khóa:</strong> ${q.unlockCondition}</div>
       </div>
 
       <footer class="card__foot">
-        <button class="btn btn--ghost" type="button" data-action="open-detail" data-type="quest" data-id="${q.id}">🔍 Chi Tiết & Mẹo Độc</button>
+        <button class="btn btn--ghost" type="button" data-action="open-detail" data-type="quest" data-id="${q.id}">${ico('search')} Chi Tiết & Mẹo Độc</button>
         <span class="muted">${done ? `${pixelIcon('check')} Đã hoàn thành` : `${pixelIcon('hourglass')} Đang thực hiện`}</span>
       </footer>
     </article>`;
@@ -75,7 +94,7 @@ export default {
 
     grid.innerHTML = list.length
       ? list.map(q => cardHtml(q, app.completedQuests.has(q.id))).join('')
-      : emptyState('📜', 'Không tìm thấy nhiệm vụ nào!', 'Hãy kiểm tra từ khóa hoặc chuyển sang tab nhiệm vụ khác.');
+      : emptyState('quests', 'Không tìm thấy nhiệm vụ nào!', 'Hãy kiểm tra từ khóa hoặc chuyển sang tab nhiệm vụ khác.');
   },
 
   badge(app) {
@@ -88,17 +107,17 @@ export default {
     if (!q) return '';
     return `
       ${modalHeader({
-        icon: `<div class="icon-box icon-box--lg is-broken"><span class="icon-box__emoji" aria-hidden="true">${q.giverIcon || '📜'}</span></div>`,
+        icon: `<div class="icon-box icon-box--lg">${ico(giverIcon(q))}</div>`,
         title: q.name,
         sub: `${q.nameEn} • Giao bởi: ${q.giver}`
       })}
       <p class="detail-lead">${q.desc}</p>
       <div class="inset-box">
-        <h4 class="inset-box__title">👣 Hướng dẫn chi tiết từng bước:</h4>
+        <h4 class="inset-box__title">${ico('steps')} Hướng dẫn chi tiết từng bước:</h4>
         <ol class="step-list step-list--lg">${q.steps.map(s => `<li>${s}</li>`).join('')}</ol>
       </div>
-      <div class="callout callout--green">🎁 <strong>Phần thưởng:</strong> ${q.reward}</div>
-      ${q.tips ? `<div class="callout callout--tip">💡 <strong>Mẹo chuyên gia:</strong> ${q.tips}</div>` : ''}`;
+      <div class="callout callout--green">${ico('gift')} <strong>Phần thưởng:</strong> ${q.reward}</div>
+      ${q.tips ? `<div class="callout callout--tip">${ico('tip')} <strong>Mẹo chuyên gia:</strong> ${q.tips}</div>` : ''}`;
   },
 
   actions: {

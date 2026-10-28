@@ -9,19 +9,19 @@ export const CALENDAR_EVENTS = {
     "4": {
       "type": "birthday",
       "name": "Kent",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Kent"
     },
     "7": {
       "type": "birthday",
       "name": "Lewis",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Thị trưởng Lewis"
     },
     "10": {
       "type": "birthday",
       "name": "Vincent",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Vincent"
     },
     "13": {
@@ -29,25 +29,25 @@ export const CALENDAR_EVENTS = {
       "name": "Lễ Hội Trứng (Egg Festival)",
       "time": "09:00 AM - 02:00 PM",
       "loc": "Quảng Trường Thị Trấn",
-      "icon": "🥚",
+      "icon": "ing_egg",
       "desc": "Thi săn trứng Phục Sinh cùng dân làng và mua hạt giống Dâu Tây (Strawberry)!"
     },
     "14": {
       "type": "birthday",
       "name": "Haley",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Haley"
     },
     "18": {
       "type": "birthday",
       "name": "Pam",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Pam"
     },
     "20": {
       "type": "birthday",
       "name": "Shane",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Shane"
     },
     "24": {
@@ -55,19 +55,19 @@ export const CALENDAR_EVENTS = {
       "name": "Lễ Khiêu Vũ Hoa (Flower Dance)",
       "time": "09:00 AM - 02:00 PM",
       "loc": "Rừng Cindersap",
-      "icon": "🌸",
+      "icon": "ing_tulip",
       "desc": "Mời một cử nhân nhảy cùng để tăng 1 tim tình cảm (+250 điểm)!"
     },
     "26": {
       "type": "birthday",
       "name": "Pierre",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Pierre"
     },
     "27": {
       "type": "birthday",
       "name": "Emily",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Emily"
     }
   },
@@ -75,19 +75,19 @@ export const CALENDAR_EVENTS = {
     "4": {
       "type": "birthday",
       "name": "Jas",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Jas"
     },
     "8": {
       "type": "birthday",
       "name": "Gus",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Gus"
     },
     "10": {
       "type": "birthday",
       "name": "Maru",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Maru"
     },
     "11": {
@@ -95,25 +95,25 @@ export const CALENDAR_EVENTS = {
       "name": "Đại Tiệc Bãi Biển (Luau Festival)",
       "time": "09:00 AM - 02:00 PM",
       "loc": "Bãi Biển Pelican",
-      "icon": "🍲",
+      "icon": "chowder",
       "desc": "Bỏ nguyên liệu chất lượng cao vào nồi súp chung để làm Thống Đốc Governor hài lòng!"
     },
     "13": {
       "type": "birthday",
       "name": "Alex",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Alex"
     },
     "17": {
       "type": "birthday",
       "name": "Sam",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Sam"
     },
     "19": {
       "type": "birthday",
       "name": "Demetrius",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Demetrius"
     },
     "20": {
@@ -122,7 +122,7 @@ export const CALENDAR_EVENTS = {
       "passive": true,
       "time": "06:10 AM - 02:00 AM",
       "loc": "Rừng Cindersap",
-      "icon": "🎣",
+      "icon": "item_rainbow_trout",
       "desc": "Câu cá hồi cầu vồng (Rainbow Trout) đổi Golden Tag lấy phần thưởng hiếm!"
     },
     "21": {
@@ -131,25 +131,25 @@ export const CALENDAR_EVENTS = {
       "passive": true,
       "time": "06:10 AM - 02:00 AM",
       "loc": "Rừng Cindersap",
-      "icon": "🎣",
+      "icon": "item_rainbow_trout",
       "desc": "Câu cá hồi cầu vồng (Rainbow Trout) đổi Golden Tag lấy phần thưởng hiếm!"
     },
     "22": {
       "type": "birthday",
       "name": "Dwarf",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Người Lùn Dwarf"
     },
     "24": {
       "type": "birthday",
       "name": "Willy",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Willy"
     },
     "26": {
       "type": "birthday",
       "name": "Leo",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Leo"
     },
     "28": {
@@ -157,7 +157,7 @@ export const CALENDAR_EVENTS = {
       "name": "Vũ Điệu Sứa Mặt Trăng (Moonlight Jellies)",
       "time": "10:00 PM - 12:00 AM",
       "loc": "Bãi Biển Pelican",
-      "icon": "🌕",
+      "icon": "lunarite",
       "desc": "Ngắm đàn sứa phát quang tuyệt đẹp bơi qua bãi biển, khép lại mùa hè êm đềm."
     }
   },
@@ -165,31 +165,31 @@ export const CALENDAR_EVENTS = {
     "2": {
       "type": "birthday",
       "name": "Penny",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Penny"
     },
     "5": {
       "type": "birthday",
       "name": "Elliott",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Elliott"
     },
     "11": {
       "type": "birthday",
       "name": "Jodi",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Jodi"
     },
     "13": {
       "type": "birthday",
       "name": "Abigail",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Abigail"
     },
     "15": {
       "type": "birthday",
       "name": "Sandy",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Sandy"
     },
     "16": {
@@ -197,25 +197,25 @@ export const CALENDAR_EVENTS = {
       "name": "Hội Chợ Thung Lũng (Stardew Valley Fair)",
       "time": "09:00 AM - 03:00 PM",
       "loc": "Thị Trấn Pelican",
-      "icon": "🎪",
+      "icon": "star_shards",
       "desc": "Trưng bày 9 sản phẩm nông trại xuất sắc nhất để giành giải nhất (1000 Star Tokens) và mua Stardrop!"
     },
     "18": {
       "type": "birthday",
       "name": "Marnie",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Marnie"
     },
     "21": {
       "type": "birthday",
       "name": "Robin",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Robin"
     },
     "24": {
       "type": "birthday",
       "name": "George",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật George"
     },
     "27": {
@@ -223,7 +223,7 @@ export const CALENDAR_EVENTS = {
       "name": "Đêm Hội Linh Hồn (Spirit's Eve)",
       "time": "10:00 PM - 11:50 PM",
       "loc": "Thị Trấn Pelican",
-      "icon": "🎃",
+      "icon": "item_pumpkin",
       "desc": "Vượt qua mê cung ma quái của Pháp Sư để nhận Chiếc Rương Vàng (Golden Pumpkin)!"
     }
   },
@@ -231,19 +231,19 @@ export const CALENDAR_EVENTS = {
     "1": {
       "type": "birthday",
       "name": "Krobus",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Krobus"
     },
     "3": {
       "type": "birthday",
       "name": "Linus",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Linus"
     },
     "7": {
       "type": "birthday",
       "name": "Caroline",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Caroline"
     },
     "8": {
@@ -251,13 +251,13 @@ export const CALENDAR_EVENTS = {
       "name": "Lễ Hội Băng (Festival of Ice)",
       "time": "09:00 AM - 02:00 PM",
       "loc": "Rừng Cindersap",
-      "icon": "❄️",
+      "icon": "item_ice_pip",
       "desc": "Thi đục băng câu cá nhanh cùng Willy và Pam để giành Cần câu & Nón thủy thủ!"
     },
     "10": {
       "type": "birthday",
       "name": "Sebastian",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Sebastian"
     },
     "12": {
@@ -266,7 +266,7 @@ export const CALENDAR_EVENTS = {
       "passive": true,
       "time": "06:10 AM - 02:00 AM",
       "loc": "Bãi Biển Pelican",
-      "icon": "🦑",
+      "icon": "item_squid",
       "desc": "Câu mực ống đổi phần thưởng sách kỹ năng và mồi câu chuyên dụng!"
     },
     "13": {
@@ -275,13 +275,13 @@ export const CALENDAR_EVENTS = {
       "passive": true,
       "time": "06:10 AM - 02:00 AM",
       "loc": "Bãi Biển Pelican",
-      "icon": "🦑",
+      "icon": "item_squid",
       "desc": "Câu mực ống đổi phần thưởng sách kỹ năng và mồi câu chuyên dụng!"
     },
     "14": {
       "type": "birthday",
       "name": "Harvey",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Harvey"
     },
     "15": {
@@ -290,7 +290,7 @@ export const CALENDAR_EVENTS = {
       "passive": true,
       "time": "05:00 PM - 02:00 AM",
       "loc": "Bãi Biển Pelican",
-      "icon": "⛵",
+      "icon": "item_blobfish",
       "desc": "Đi tàu ngầm lặn sâu bắt cá hiếm đáy biển (Spook Fish, Blobfish) và xem hát nàng tiên cá!"
     },
     "16": {
@@ -299,19 +299,19 @@ export const CALENDAR_EVENTS = {
       "passive": true,
       "time": "05:00 PM - 02:00 AM",
       "loc": "Bãi Biển Pelican",
-      "icon": "⛵",
+      "icon": "item_blobfish",
       "desc": "Đi tàu ngầm lặn sâu bắt cá hiếm đáy biển (Spook Fish, Blobfish) và xem hát nàng tiên cá!"
     },
     "17": {
       "type": "birthday",
       "name": "Pháp Sư Rasmodius",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Pháp Sư Rasmodius"
     },
     "20": {
       "type": "birthday",
       "name": "Evelyn",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Evelyn"
     },
     "25": {
@@ -319,13 +319,13 @@ export const CALENDAR_EVENTS = {
       "name": "Đại Tiệc Sao Mùa Đông (Feast of the Winter Star)",
       "time": "09:00 AM - 02:00 PM",
       "loc": "Quảng Trường Thị Trấn",
-      "icon": "🎁",
+      "icon": "holly",
       "desc": "Trao quà Giáng Sinh bí mật cho người được phân công và nhận quà bất ngờ!"
     },
     "26": {
       "type": "birthday",
       "name": "Clint",
-      "icon": "🎂",
+      "icon": "pink_cake",
       "title": "Sinh nhật Clint"
     }
   }

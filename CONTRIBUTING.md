@@ -44,6 +44,7 @@ npm run dev   # mở http://localhost:3000
 - Mỗi tab là một module trong `js/tabs/`; hành vi gắn qua `data-action` (xem [README](README.md#thêm-hành-vi-mới)).
 - Không dùng `style=`, `onclick`, `onerror` trong markup; style đặt trong `css/style.css` và dùng token ở `:root`.
 - Giữ phong cách pixel: không bo góc (`border-radius`), viền và bóng đổ là bội số của `--px`.
+- Không dùng emoji. Mọi icon lấy từ `js/lib/icons.js`: `ico('tên')` trong JS, `<i data-icon="tên"></i>` trong HTML. Ưu tiên icon vật phẩm trong game (`assets/icons/`); ký hiệu trừu tượng dùng icon pixel 9×9 (`assets/pixel-*.svg`).
 - Kiểm tra trang không có lỗi trong Console (F12) ở các tab bạn đã sửa, trên cả màn hình rộng và điện thoại.
 
 ## Bản quyền

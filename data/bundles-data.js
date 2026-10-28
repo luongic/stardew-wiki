@@ -9,7 +9,7 @@ export const CC_ROOMS = [
     "id": "crafts_room",
     "name": "Phòng Thủ Công",
     "nameEn": "Crafts Room",
-    "icon": "🪵",
+    "icon": "ing_wood",
     "reward": "Sửa cây cầu dẫn tới Mỏ Đá (Quarry)",
     "rewardEn": "Bridge to the Quarry repaired",
     "bundles": [
@@ -327,7 +327,7 @@ export const CC_ROOMS = [
     "id": "pantry",
     "name": "Phòng Chứa Thức Ăn",
     "nameEn": "Pantry",
-    "icon": "🥕",
+    "icon": "item_parsnip",
     "reward": "Sửa Nhà Kính (Greenhouse) trên nông trại",
     "rewardEn": "Greenhouse restored",
     "bundles": [
@@ -693,7 +693,7 @@ export const CC_ROOMS = [
     "id": "fish_tank",
     "name": "Bể Cá",
     "nameEn": "Fish Tank",
-    "icon": "🐟",
+    "icon": "item_largemouth_bass",
     "reward": "Dọn tảng đá lấp lánh gần Mỏ; Willy tặng Chảo đãi đồng",
     "rewardEn": "Glittering Boulder removed (Copper Pan)",
     "bundles": [
@@ -1019,7 +1019,7 @@ export const CC_ROOMS = [
     "id": "boiler_room",
     "name": "Phòng Lò Hơi",
     "nameEn": "Boiler Room",
-    "icon": "🔥",
+    "icon": "furnace",
     "reward": "Sửa hệ thống Xe Goòng (Minecart) để di chuyển nhanh",
     "rewardEn": "Minecarts repaired",
     "bundles": [
@@ -1159,7 +1159,7 @@ export const CC_ROOMS = [
     "id": "bulletin_board",
     "name": "Bảng Tin",
     "nameEn": "Bulletin Board",
-    "icon": "📋",
+    "icon": "price_catalogue",
     "reward": "+2 tim với mọi dân làng không thể kết hôn",
     "rewardEn": "+2 hearts with all non-datable villagers",
     "bundles": [
@@ -1423,7 +1423,7 @@ export const CC_ROOMS = [
     "id": "vault",
     "name": "Kho Bạc",
     "nameEn": "Vault",
-    "icon": "💰",
+    "icon": "gold_coin",
     "reward": "Sửa Xe Buýt, mở đường tới Sa Mạc Calico",
     "rewardEn": "Bus repaired (Calico Desert access)",
     "bundles": [
@@ -1525,7 +1525,7 @@ export const CC_ROOMS = [
     "id": "abandoned_joja",
     "name": "JojaMart Bỏ Hoang",
     "nameEn": "Abandoned JojaMart",
-    "icon": "🎬",
+    "icon": "movie_ticket",
     "reward": "Xây Rạp Chiếu Phim (Movie Theater)",
     "rewardEn": "Movie Theater",
     "bundles": [

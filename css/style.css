@@ -1782,6 +1782,22 @@ code {
   image-rendering: pixelated;
 }
 
+/* Icon sizes per context (all icons come from js/lib/icons.js). Pixel
+   glyphs step in whole multiples of their 9px grid: 18, 27, 36, 45. */
+h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height: 27px; vertical-align: -5px; }
+.panel__title .game-icon, .group__title .game-icon, .room-head__title .game-icon,
+.case__title .game-icon, .sim__title .game-icon { width: 1.3em; height: 1.3em; }
+.empty-state__icon img, .panel-empty__icon img { width: 54px; height: 54px; }
+.stat-card__icon img { width: 45px; height: 45px; }
+.cc-root__icon img { width: 45px; height: 45px; }
+.cc-room__icon img { width: 32px; height: 32px; }
+.sim__icon img, .faq-head__icon img, .callout__big-icon img { width: 36px; height: 36px; }
+.event-banner__icon img { width: 28px; height: 28px; }
+.cal-cell__fest img { width: 24px; height: 24px; }
+.cal-cell__cake img { width: 14px; height: 14px; }
+.gift .pixel-icon { width: 18px; height: 18px; }
+.empty-state__icon img { filter: drop-shadow(2px 2px 0 var(--ink)); }
+
 .pixel-heart {
   display: inline-block;
   width: 21px;

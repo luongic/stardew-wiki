@@ -13,6 +13,7 @@ import { RECIPES_DATA } from '../../data/recipes-data.js';
 import { QUESTS_DATA } from '../../data/quests-data.js';
 import { CC_ROOMS } from '../../data/bundles-data.js';
 import { MUSEUM_ITEMS } from '../../data/museum-data.js';
+import { ico } from '../lib/icons.js';
 
 const recipeName = new Map(RECIPES_DATA.map(r => [r.id, r.name]));
 const questName = new Map(QUESTS_DATA.map(q => [q.id, q.name]));
@@ -223,13 +224,13 @@ export const coopUi = {
         await coop.signOut();
         app.showToast('Đã đăng xuất');
       } catch (e) {
-        app.showToast(`⚠️ ${friendlyError(e)}`);
+        app.showToast(`${ico('warn')} ${friendlyError(e)}`);
       }
     },
     'coop-create': async (app) => {
       if (!readName()) return app.showToast('Hãy nhập tên của bạn trước');
       await coop.create();
-      if (coop.code) app.showToast(`✨ Đã tạo phòng ${coop.code}`);
+      if (coop.code) app.showToast(`${ico('house')} Đã tạo phòng ${coop.code}`);
     },
     'coop-join': async (app) => {
       if (!readName()) return app.showToast('Hãy nhập tên của bạn trước');
@@ -238,7 +239,7 @@ export const coopUi = {
       if (!code || code.trim().length !== 6) return app.showToast('Mã phòng gồm 6 ký tự');
       if (mode === 'room' && !confirm('Tiến độ trên máy này sẽ được thay bằng tiến độ của phòng. Tiếp tục?')) return;
       await coop.join(code, mode);
-      if (coop.code) app.showToast(`🚪 Đã vào phòng ${coop.code}`);
+      if (coop.code) app.showToast(`${ico('key')} Đã vào phòng ${coop.code}`);
     },
     'coop-leave': async (app) => {
       if (!confirm('Rời phòng? Tiến độ đã đồng bộ vẫn được giữ trên máy này.')) return;
@@ -264,7 +265,7 @@ export const coopUi = {
         app.showToast(`${pixelIcon('check')} Đã đăng nhập Google`);
       } catch (e) {
         console.error('[co-op] Google link', e);
-        app.showToast(`⚠️ ${friendlyError(e)}`);
+        app.showToast(`${ico('warn')} ${friendlyError(e)}`);
       }
     }
   }

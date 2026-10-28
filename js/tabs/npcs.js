@@ -15,6 +15,7 @@
 
 import { NPCS_DATA, CALENDAR_EVENTS } from '../../data/npcs-data.js';
 import { emptyState, wikiLink, modalHeader, matches } from '../lib/templates.js';
+import { ico } from '../lib/icons.js';
 
 const npcById = new Map(NPCS_DATA.map(n => [n.id, n]));
 const DAY_NAMES = ['Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy', 'Chủ Nhật'];
@@ -22,20 +23,20 @@ const DAY_KEYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'satur
 const PORTRAIT_FALLBACK = 'assets/portraits/abigail.png';
 
 const CATEGORY_LABELS = {
-  bachelorette: '💍 Độc Thân Nữ',
-  bachelor: '🎩 Độc Thân Nam',
-  town: '🏡 Dân Làng Pelican',
-  special: '✨ Đặc Biệt'
+  bachelorette: `${ico('bachelorette')} Độc Thân Nữ`,
+  bachelor: `${ico('bachelor')} Độc Thân Nam`,
+  town: `${ico('town')} Dân Làng Pelican`,
+  special: `${ico('special')} Đặc Biệt`
 };
 
 const WEEKDAY_SCHEDULES = [
-  { key: 'saturday', title: '🎣 Lịch Trình Thứ Bảy (Cuối Tuần)' },
-  { key: 'sunday', title: '☀️ Lịch Trình Chủ Nhật' },
-  { key: 'friday', title: '🍻 Lịch Trình Tối Thứ Sáu (Saloon Night)' },
-  { key: 'tuesday', title: '🏃‍♀️ Lịch Trình Thứ Ba (Lớp Aerobic / Bác Sĩ)' },
-  { key: 'wednesday', title: '📚 Lịch Trình Thứ Tư (Tiệm Nghỉ / Thư Viện)' },
-  { key: 'thursday', title: '🩺 Lịch Trình Thứ Năm' },
-  { key: 'monday', title: '🛍️ Lịch Trình Thứ Hai' }
+  { key: 'saturday', title: `${ico('fishing')} Lịch Trình Thứ Bảy (Cuối Tuần)` },
+  { key: 'sunday', title: `${ico('sunny')} Lịch Trình Chủ Nhật` },
+  { key: 'friday', title: `${ico('saloon')} Lịch Trình Tối Thứ Sáu (Saloon Night)` },
+  { key: 'tuesday', title: `${ico('calendar')} Lịch Trình Thứ Ba (Lớp Aerobic / Bác Sĩ)` },
+  { key: 'wednesday', title: `${ico('calendar')} Lịch Trình Thứ Tư (Tiệm Nghỉ / Thư Viện)` },
+  { key: 'thursday', title: `${ico('calendar')} Lịch Trình Thứ Năm` },
+  { key: 'monday', title: `${ico('calendar')} Lịch Trình Thứ Hai` }
 ];
 
 // ==========================================
@@ -97,7 +98,7 @@ export function getNpcLocation(npc, { hour, weather, season, day }) {
     if (hour >= start && hour < end) {
       return {
         time: festival.time,
-        location: `${festival.icon} Đang tham dự ${festival.name} tại ${festival.loc}`,
+        location: `${ico(festival.icon || 'festival')} Đang tham dự ${festival.name} tại ${festival.loc}`,
         locationShort: festival.loc,
         festival: true
       };
@@ -171,11 +172,11 @@ function renderWeatherButtons() {
   const locked = !!townFestivalOn(sim.season, sim.day);
   const current = effectiveWeather();
   const wet = sim.season === 'winter'
-    ? { value: 'rainy', shown: 'snowy', label: '❄️ Tuyết Rơi' }
-    : { value: 'rainy', shown: 'rainy', label: '🌧️ Trời Mưa' };
+    ? { value: 'rainy', shown: 'snowy', label: `${ico('snowy')} Tuyết Rơi` }
+    : { value: 'rainy', shown: 'rainy', label: `${ico('rainy')} Trời Mưa` };
 
   wrap.innerHTML = `
-    <button class="seg-btn ${current === 'sunny' ? 'is-active' : ''}" type="button" data-action="sim-weather" data-weather="sunny">☀️ Nắng Đẹp</button>
+    <button class="seg-btn ${current === 'sunny' ? 'is-active' : ''}" type="button" data-action="sim-weather" data-weather="sunny">${ico('sunny')} Nắng Đẹp</button>
     <button class="seg-btn ${current === wet.shown ? 'is-active' : ''}" type="button" data-action="sim-weather" data-weather="${wet.value}"
             ${locked ? 'disabled title="Ngày lễ hội luôn luôn nắng"' : ''}>${wet.label}</button>`;
   document.getElementById('simWeatherNote').hidden = !locked;
@@ -191,8 +192,8 @@ function renderCalendar() {
     const fest = evt?.type === 'festival' ? evt : null;
 
     const tip = [`Ngày ${day} (${dow})`];
-    if (bdays.length) tip.push(`🎂 ${bdays.map(n => `Sinh nhật ${n.name}`).join(', ')}`);
-    if (fest) tip.push(`${fest.icon || '🎉'} ${fest.name}`);
+    if (bdays.length) tip.push(bdays.map(n => `Sinh nhật ${n.name}`).join(', '));
+    if (fest) tip.push(fest.name);
 
     const cls = ['cal-cell'];
     if (day === sim.day) cls.push('is-active');
@@ -206,9 +207,9 @@ function renderCalendar() {
         ${bdays.map(n => `
           <span class="cal-cell__bday">
             <img src="${n.avatar}" alt="" class="pixel-img" loading="lazy">
-            <span class="cal-cell__cake" aria-hidden="true">🎂</span>
+            <span class="cal-cell__cake" aria-hidden="true">${ico('birthday')}</span>
           </span>`).join('')}
-        ${fest ? `<span class="cal-cell__fest" aria-hidden="true">${fest.icon || '🎉'}</span>` : ''}
+        ${fest ? `<span class="cal-cell__fest" aria-hidden="true">${ico(fest.icon || 'festival')}</span>` : ''}
       </button>`;
   }
   grid.innerHTML = html;
@@ -224,15 +225,15 @@ function renderDateDisplay() {
   let icon = '';
   let text = '';
   if (evt?.type === 'festival') {
-    icon = evt.icon || '🎉';
+    icon = evt.icon || 'festival';
     text = `${evt.name} - ${evt.time} (${evt.loc}) - ${evt.desc || ''}`;
     if (evt.passive) text += ' • Dân làng vẫn sinh hoạt theo lịch thường.';
   } else if (bdays.length) {
-    icon = '🎂';
-    text = `Hôm nay là Sinh nhật ${bdays.map(n => n.name).join(' & ')}! (Tặng quà yêu thích x8 điểm tình bạn ❤️ - 640 điểm)`;
+    icon = 'birthday';
+    text = `Hôm nay là Sinh nhật ${bdays.map(n => n.name).join(' & ')}! (Tặng quà yêu thích x8 điểm tình bạn - 640 điểm)`;
   }
   banner.hidden = !text;
-  document.getElementById('simEventIcon').textContent = icon;
+  document.getElementById('simEventIcon').innerHTML = icon ? ico(icon) : '';
   document.getElementById('simEventText').textContent = text;
 }
 
@@ -248,7 +249,7 @@ function stopPlay() {
   clearInterval(sim.timer);
   sim.timer = null;
   const btn = document.getElementById('simPlayBtn');
-  btn.textContent = '▶️ Chạy Tự Động';
+  btn.innerHTML = `${ico('play')} Chạy Tự Động`;
   btn.classList.remove('is-playing');
 }
 
@@ -274,9 +275,9 @@ function cardHtml(npc) {
       <div class="card__body">
         <div class="pill-row">
           ${isBday
-            ? '<span class="badge badge--bday">🎂 HÔM NAY SINH NHẬT! (+x8 Tim)</span>'
-            : `<span class="tag tag--orange">🎂 ${birthdayText(npc)}</span>`}
-          <span class="tag tag--slate">📍 ${npc.residence.split('(')[0].trim()}</span>
+            ? `<span class="badge badge--bday">${ico('birthday')} HÔM NAY SINH NHẬT! (+x8 Tim)</span>`
+            : `<span class="tag tag--orange">${ico('birthday')} ${birthdayText(npc)}</span>`}
+          <span class="tag tag--slate">${ico('pin')} ${npc.residence.split('(')[0].trim()}</span>
         </div>
 
         <div class="live-loc ${loc.festival ? 'live-loc--fest' : ''}">
@@ -288,9 +289,9 @@ function cardHtml(npc) {
         </div>
 
         <div class="inset-box">
-          <div class="section-label section-label--red">❤️ Quà Cực Thích (+80đ):</div>
+          <div class="section-label section-label--red">${ico('loved')} Quà Cực Thích (+80đ):</div>
           <div class="pill-row">
-            ${npc.gifts.loved.slice(0, 4).map(g => giftPill(g, '🎁', g.name.split('(')[0].trim())).join('')}
+            ${npc.gifts.loved.slice(0, 4).map(g => giftPill(g, 'gift', g.name.split('(')[0].trim())).join('')}
             ${npc.gifts.loved.length > 4 ? `<span class="gift gift--more">+${npc.gifts.loved.length - 4}</span>` : ''}
           </div>
         </div>
@@ -299,8 +300,8 @@ function cardHtml(npc) {
       </div>
 
       <footer class="card__foot">
-        <span class="muted-strong">${npc.marriageable ? '💍 Có Thể Kết Hôn' : '🤝 Bạn Bè'}</span>
-        <span class="btn btn--ghost btn--sm" aria-hidden="true">📜 Lịch Trình & Sự Kiện</span>
+        <span class="muted-strong">${npc.marriageable ? `${ico('marriage')} Có Thể Kết Hôn` : `${ico('friend')} Bạn Bè`}</span>
+        <span class="btn btn--ghost btn--sm" aria-hidden="true">${ico('calendar')} Lịch Trình & Sự Kiện</span>
       </footer>
     </article>`;
 }
@@ -310,7 +311,7 @@ function giftPill(g, emoji, label = g.name, mod = '') {
     <span class="gift ${mod}" title="${g.name}">
       ${g.icon
         ? `<span class="gift__icon"><img src="${g.icon}" alt="" class="pixel-img" data-fallback="hide" loading="lazy"></span>`
-        : (emoji ? `<span aria-hidden="true">${emoji}</span>` : '')}
+        : (emoji ? ico(emoji) : '')}
       <span>${label}</span>
     </span>`;
 }
@@ -383,7 +384,7 @@ const npcsTab = {
 
     grid.innerHTML = list.length
       ? list.map(cardHtml).join('')
-      : emptyState('🔍', 'Không tìm thấy Dân Làng / NPC nào phù hợp!', "Hãy thử tìm từ khóa khác hoặc bấm nút 'Tất Cả Dân Làng'.");
+      : emptyState('search', 'Không tìm thấy Dân Làng / NPC nào phù hợp!', "Hãy thử tìm từ khóa khác hoặc bấm nút 'Tất Cả Dân Làng'.");
   },
 
   detail(app, id) {
@@ -402,52 +403,52 @@ const npcsTab = {
       <p class="detail-lead">${npc.desc}</p>
 
       <div class="spec-grid">
-        <div class="spec spec--gold"><div class="spec__label">🎂 SINH NHẬT</div><div class="spec__value">${birthdayText(npc)}</div></div>
-        <div class="spec spec--slate"><div class="spec__label">🏡 NƠI CƯ NGỤ</div><div class="spec__value">${npc.residence}</div></div>
-        <div class="spec spec--green"><div class="spec__label">💼 NGHỀ NGHIỆP / VAI TRÒ</div><div class="spec__value">${npc.occupation}</div></div>
+        <div class="spec spec--gold"><div class="spec__label">${ico('birthday')} SINH NHẬT</div><div class="spec__value">${birthdayText(npc)}</div></div>
+        <div class="spec spec--slate"><div class="spec__label">${ico('residence')} NƠI CƯ NGỤ</div><div class="spec__value">${npc.residence}</div></div>
+        <div class="spec spec--green"><div class="spec__label">${ico('job')} NGHỀ NGHIỆP / VAI TRÒ</div><div class="spec__value">${npc.occupation}</div></div>
       </div>
 
       <div class="live-loc live-loc--lg ${loc.festival ? 'live-loc--fest' : ''}">
         <span class="live-dot" aria-hidden="true"></span>
         <div>
           <div class="live-loc__time">VỊ TRÍ THEO THỜI ĐIỂM CHỌN (${DAY_NAMES[dayOfWeek(sim.day)]}, Ngày ${sim.day} - ${formatSimHour(sim.hour)}):</div>
-          <div class="live-loc__short">📍 ${loc.locationShort}</div>
+          <div class="live-loc__short">${ico('pin')} ${loc.locationShort}</div>
           <div class="live-loc__desc">${loc.location}</div>
         </div>
       </div>
 
       <div class="inset-box">
-        <h3 class="inset-box__title">🎁 Sở Thích Tặng Quà & Điểm Tình Bạn:</h3>
-        ${giftGroup('❤️ Cực kỳ yêu thích (+80 điểm tình bạn):', npc.gifts.loved, 'loved', '🎁')}
-        ${giftGroup('👍 Thích (+45 điểm tình bạn):', npc.gifts.liked, 'liked', '👍')}
-        ${giftGroup('👎 Không thích (-20 điểm tình bạn):', npc.gifts.disliked, 'disliked', '')}
-        ${giftGroup('❌ Ghét cay ghét đắng (-40 điểm tình bạn - Tuyệt đối không tặng!):', npc.gifts.hated, 'hated', '')}
+        <h3 class="inset-box__title">${ico('gift')} Sở Thích Tặng Quà & Điểm Tình Bạn:</h3>
+        ${giftGroup(`${ico('loved')} Cực kỳ yêu thích (+80 điểm tình bạn):`, npc.gifts.loved, 'loved', 'gift')}
+        ${giftGroup(`${ico('liked')} Thích (+45 điểm tình bạn):`, npc.gifts.liked, 'liked', 'liked')}
+        ${giftGroup(`${ico('disliked')} Không thích (-20 điểm tình bạn):`, npc.gifts.disliked, 'disliked', '')}
+        ${giftGroup(`${ico('hated')} Ghét cay ghét đắng (-40 điểm tình bạn - Tuyệt đối không tặng!):`, npc.gifts.hated, 'hated', '')}
       </div>
 
       <div class="inset-box inset-box--plain">
-        <h3 class="inset-box__title">⏰ Lịch Trình Di Chuyển Cụ Thể (Daily Schedule):</h3>
+        <h3 class="inset-box__title">${ico('clock')} Lịch Trình Di Chuyển Cụ Thể (Daily Schedule):</h3>
         <p class="muted">${s.overview || 'Lịch trình di chuyển theo từng mốc thời gian trong ngày:'}</p>
         <div class="sched-grid">
-          ${scheduleBox('☀️ Lịch Trình Ngày Thường (Trời Nắng)', s.sunny || [], 'sunny')}
-          ${scheduleBox('🌧️ Lịch Trình Ngày Mưa (Rainy Days)', s.rainy || [], 'rainy')}
+          ${scheduleBox(`${ico('sunny')} Lịch Trình Ngày Thường (Trời Nắng)`, s.sunny || [], 'sunny')}
+          ${scheduleBox(`${ico('rainy')} Lịch Trình Ngày Mưa (Rainy Days)`, s.rainy || [], 'rainy')}
           ${WEEKDAY_SCHEDULES.filter(d => s[d.key]?.length).map(d => scheduleBox(d.title, s[d.key], 'day')).join('')}
         </div>
         ${s.special?.length ? `
           <div class="callout callout--purple">
-            <h4 class="callout__title">🌟 Các Ngày Đặc Biệt & Ngoại Lệ:</h4>
+            <h4 class="callout__title">${ico('sparkle')} Các Ngày Đặc Biệt & Ngoại Lệ:</h4>
             <ul class="bullet-list">${s.special.map(sp => `<li><strong>${sp.condition}:</strong> ${sp.desc}</li>`).join('')}</ul>
           </div>` : ''}
       </div>
 
       ${npc.heartEvents?.length ? `
         <div class="callout callout--red">
-          <h3 class="callout__title">💖 Chuỗi Sự Kiện Tim Tình Bạn (Heart Events):</h3>
+          <h3 class="callout__title">${ico('hearts')} Chuỗi Sự Kiện Tim Tình Bạn (Heart Events):</h3>
           <div class="heart-list">
             ${npc.heartEvents.map(he => `
               <div class="heart-event">
                 <div class="heart-event__head">
                   <span class="badge badge--heart">${he.hearts} TIM</span>
-                  <strong>📍 ${he.location}</strong>
+                  <strong>${ico('pin')} ${he.location}</strong>
                 </div>
                 <p>${he.desc}</p>
               </div>`).join('')}
@@ -486,7 +487,7 @@ const npcsTab = {
         stopPlay();
         return;
       }
-      el.textContent = '⏸️ Tạm Dừng';
+      el.innerHTML = `${ico('pause')} Tạm Dừng`;
       el.classList.add('is-playing');
       sim.timer = setInterval(() => {
         sim.hour = sim.hour >= 26 ? 6 : sim.hour + 0.5;

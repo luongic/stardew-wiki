@@ -2,6 +2,8 @@
 // SHARED UI: toasts, modal dialogs and broken-image fallbacks
 // ==========================================================================
 
+import { ico } from './icons.js';
+
 const MAX_TOASTS = 3;
 
 export function showToast(message) {
@@ -11,7 +13,8 @@ export function showToast(message) {
   while (container.children.length >= MAX_TOASTS) container.firstElementChild.remove();
   const toast = document.createElement('div');
   toast.className = 'toast';
-  toast.innerHTML = `<span aria-hidden="true">✨</span><span>${message}</span>`;
+  // Messages that bring their own icon keep it; others get the sparkle
+  toast.innerHTML = message.trimStart().startsWith('<img') ? `<span>${message}</span>` : `${ico('sparkle')}<span>${message}</span>`;
   container.appendChild(toast);
   setTimeout(() => toast.remove(), 3000);
 }

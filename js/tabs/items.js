@@ -4,28 +4,30 @@
 
 import { ITEMS_DATA } from '../../data/items-data.js';
 import { emptyState, v16Badge, wikiLink, modalHeader, matches, signed } from '../lib/templates.js';
+import { ico } from '../lib/icons.js';
 
 const itemById = new Map(ITEMS_DATA.map(it => [it.id, it]));
-const PLACEHOLDER = 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📦</text></svg>';
+const PLACEHOLDER = 'assets/pixel-box.svg';
 
 const GROUPS = [
-  { category: 'tools', icon: '🛠️', title: 'Công Cụ Lao Động, Khai Thác & Vũ Khí',
+  { category: 'tools', icon: 'tools', title: 'Công Cụ Lao Động, Khai Thác & Vũ Khí',
     desc: 'Búa, rìu, cuốc đất, xẻng mỏ/cuốc chim, cần câu, bình tưới, liềm cắt cỏ, dụng cụ chăn nuôi và các thần binh huyền thoại.' },
-  { category: 'crops', icon: '🌾', title: 'Nông Sản & Cây Trồng Các Mùa',
+  { category: 'crops', icon: 'crops', title: 'Nông Sản & Cây Trồng Các Mùa',
     desc: 'Tất cả các loại rau củ quả gieo trồng 4 mùa Xuân, Hạ, Thu, Đông (1.6) và cây đa mùa trong Nhà Kính.' },
-  { category: 'fruits', icon: '🍎', title: 'Trái Cây & Vườn Cây Ăn Quả',
+  { category: 'fruits', icon: 'fruits', title: 'Trái Cây & Vườn Cây Ăn Quả',
     desc: 'Các loại quả ngọt mọng nước từ vườn cây ăn quả thung lũng, quả mọng hoang dã và trái cây nhiệt đới Đảo Gừng.' },
-  { category: 'fish', icon: '🐟', title: 'Các Loại Cá & Thủy Sản Toàn Diện',
+  { category: 'fish', icon: 'fish', title: 'Các Loại Cá & Thủy Sản Toàn Diện',
     desc: 'Cá biển đại dương, cá sông suối, cá hồ núi, cá hang sâu mỏ quặng, cá huyền thoại tối thượng và hải sản bẫy lồng.' },
-  { category: 'minerals', icon: '💎', title: 'Khoáng Sản, Đá Quý & Quặng Kim Loại',
+  { category: 'minerals', icon: 'minerals', title: 'Khoáng Sản, Đá Quý & Quặng Kim Loại',
     desc: 'Mảnh lăng kính Prismatic Shard, kim cương, hồng ngọc, ngọc bích, khoáng thạch hầm mỏ và các loại quặng luyện kim.' },
-  { category: 'animal_products', icon: '🥚', title: 'Sản Phẩm Động Vật & Chăn Nuôi',
+  { category: 'animal_products', icon: 'animal', title: 'Sản Phẩm Động Vật & Chăn Nuôi',
     desc: 'Các loại trứng gà, trứng vịt, trứng khủng long, sữa tươi, phô mai, lông cừu và nấm cục Truffle siêu đắt giá.' },
-  { category: 'forage', icon: '🍄', title: 'Thu Nhặt Hoang Dã & Thảo Dược Thiên Nhiên',
+  { category: 'forage', icon: 'forage', title: 'Thu Nhặt Hoang Dã & Thảo Dược Thiên Nhiên',
     desc: 'Rau rừng, nấm quý mộc hương, thảo mộc 4 mùa và các loại vỏ ốc, san hô dọc bờ biển triều cường.' },
-  { category: 'artifacts', icon: '🏺', title: 'Cổ Vật, Di Vật & Hóa Thạch Tiền Sử',
+  { category: 'artifacts', icon: 'artifacts', title: 'Cổ Vật, Di Vật & Hóa Thạch Tiền Sử',
     desc: 'Những món đồ khảo cổ kỳ bí được chôn vùi dưới lòng đất hàng triệu năm để hoàn thành bảo tàng Gunther.' }
 ];
+const groupByCat = new Map(GROUPS.map(g => [g.category, g]));
 
 const isEdible = it => it.energy !== null && it.energy > 0;
 // Negative-edibility items (Pufferfish, Goby...) can be eaten but drain energy
@@ -49,25 +51,25 @@ function cardHtml(it) {
       <div class="card__body">
         <div class="pill-row">
           <span class="tag">${it.subCategory}</span>
-          ${it.season ? `<span class="tag tag--blue">🗓️ ${it.season}</span>` : ''}
-          <span class="tag tag--gold">🪙 ${price(it)}</span>
-          ${isEdible(it) ? `<span class="tag tag--green">⚡ +${it.energy}</span>` : ''}
-          ${isHarmful(it) ? `<span class="tag tag--red">⚡ ${it.energy}</span>` : ''}
+          ${it.season ? `<span class="tag tag--blue">${ico('season')} ${it.season}</span>` : ''}
+          <span class="tag tag--gold">${ico('money')} ${price(it)}</span>
+          ${isEdible(it) ? `<span class="tag tag--green">${ico('energy')} +${it.energy}</span>` : ''}
+          ${isHarmful(it) ? `<span class="tag tag--red">${ico('energy')} ${it.energy}</span>` : ''}
         </div>
 
         <p class="card__desc">${it.desc}</p>
 
-        <div class="info-row"><span aria-hidden="true">📍</span><span><strong>Tìm thấy:</strong> ${it.location}</span></div>
+        <div class="info-row">${ico('pin')}<span><strong>Tìm thấy:</strong> ${it.location}</span></div>
         ${it.lovedBy?.length ? `
-          <div class="info-row info-row--red"><span aria-hidden="true">❤️</span>
+          <div class="info-row info-row--red">${ico('loved')}
             <span><strong>Thích:</strong> ${it.lovedBy.slice(0, 3).join(', ')}${it.lovedBy.length > 3 ? ` (+${it.lovedBy.length - 3})` : ''}</span>
           </div>` : ''}
         ${it.usedIn?.length ? `
-          <div class="info-row info-row--green"><span aria-hidden="true">🍳</span><span><strong>Dùng:</strong> ${it.usedIn[0]}</span></div>` : ''}
+          <div class="info-row info-row--green">${ico('uses')}<span><strong>Dùng:</strong> ${it.usedIn[0]}</span></div>` : ''}
       </div>
 
       <footer class="card__foot card__foot--end">
-        <span class="btn btn--ghost btn--sm" aria-hidden="true">🔍 Xem Chi Tiết</span>
+        <span class="btn btn--ghost btn--sm" aria-hidden="true">${ico('search')} Xem Chi Tiết</span>
       </footer>
     </article>`;
 }
@@ -91,7 +93,7 @@ export default {
     });
 
     if (!list.length) {
-      container.innerHTML = emptyState('🔍', 'Không tìm thấy vật phẩm nào khớp với tìm kiếm!',
+      container.innerHTML = emptyState('search', 'Không tìm thấy vật phẩm nào khớp với tìm kiếm!',
         'Hãy thử tìm từ khóa khác (VD: Rìu, Cuốc, Cá huyền thoại, Kim cương, Dâu tây, 1.6...)');
       return;
     }
@@ -103,7 +105,7 @@ export default {
         <section class="group" id="group-${grp.category}">
           <header class="group__head">
             <div class="group__title-row">
-              <h3 class="group__title"><span aria-hidden="true">${grp.icon}</span> ${grp.title}</h3>
+              <h3 class="group__title">${ico(grp.icon)} ${grp.title}</h3>
               <span class="badge badge--gold">${items.length} vật phẩm</span>
             </div>
             <p class="group__desc">${grp.desc}</p>
@@ -125,46 +127,46 @@ export default {
       ${modalHeader({
         icon: `<div class="icon-box icon-box--lg"><img src="${it.imageUrl}" alt="${it.name}" class="pixel-img" data-fallback="${PLACEHOLDER}"></div>`,
         title: `${it.name} ${v16Badge(it.version16, 'Bản 1.6 Mới')}`,
-        sub: `${it.nameEn} • ${it.categoryTitle} • <b>${it.subCategory}</b>`,
+        sub: `${it.nameEn} • ${groupByCat.get(it.category)?.title || ''} • <b>${it.subCategory}</b>`,
         extra: wikiLink(it.nameEn, 'Xem bài viết chi tiết trên Official Stardew Valley Wiki', page)
       })}
       <p class="detail-lead">${it.desc}</p>
 
       <div class="spec-grid">
         <div class="spec spec--gold">
-          <div class="spec__label">🪙 GIÁ BÁN CƠ BẢN</div>
+          <div class="spec__label">${ico('money')} GIÁ BÁN CƠ BẢN</div>
           <div class="spec__value">${it.sellPrice > 0 ? `${it.sellPrice.toLocaleString()}g` : 'Không thể bán'}</div>
         </div>
         <div class="spec spec--teal">
-          <div class="spec__label">⚡ PHỤC HỒI NĂNG LƯỢNG / MÁU</div>
-          <div class="spec__value">${it.energy !== null && it.energy !== 0 ? `⚡ ${signed(it.energy)} | ❤️ ${signed(it.health)}` : 'Không ăn được'}</div>
+          <div class="spec__label">${ico('energy')} PHỤC HỒI NĂNG LƯỢNG / MÁU</div>
+          <div class="spec__value">${it.energy !== null && it.energy !== 0 ? `${ico('energy')} ${signed(it.energy)} | ${ico('health')} ${signed(it.health)}` : 'Không ăn được'}</div>
         </div>
         <div class="spec spec--blue">
-          <div class="spec__label">🌸 MÙA VỤ XUẤT HIỆN</div>
+          <div class="spec__label">${ico('season')} MÙA VỤ XUẤT HIỆN</div>
           <div class="spec__value">${it.season || 'Quanh năm'}</div>
         </div>
       </div>
 
       <div class="inset-box">
-        <h4 class="inset-box__title">📍 Nơi tìm thấy & Cách thu hoạch:</h4>
+        <h4 class="inset-box__title">${ico('pin')} Nơi tìm thấy & Cách thu hoạch:</h4>
         <p>${it.location}</p>
       </div>
 
       ${it.lovedBy?.length ? `
         <div class="callout callout--red">
-          <h4 class="callout__title">❤️ Món quà yêu thích tuyệt đối của:</h4>
+          <h4 class="callout__title">${ico('loved')} Món quà yêu thích tuyệt đối của:</h4>
           <div class="pill-row">${it.lovedBy.map(n => `<span class="tag tag--red">${n}</span>`).join('')}</div>
         </div>` : ''}
 
       ${it.usedIn?.length ? `
         <div class="callout callout--green">
-          <h4 class="callout__title">🍳 Dùng trong công thức & Mục đích:</h4>
+          <h4 class="callout__title">${ico('uses')} Dùng trong công thức & Mục đích:</h4>
           <ul class="bullet-list">${it.usedIn.map(u => `<li>${u}</li>`).join('')}</ul>
         </div>` : ''}
 
       ${it.tips ? `
         <div class="callout callout--tip">
-          <strong>💡 Mẹo chuyên gia & Chiến lược khai thác:</strong>
+          <strong>${ico('tip')} Mẹo chuyên gia & Chiến lược khai thác:</strong>
           <p>${it.tips}</p>
         </div>` : ''}`;
   }

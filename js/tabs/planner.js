@@ -7,6 +7,7 @@
 import { RECIPES_DATA } from '../../data/recipes-data.js';
 import { progress } from '../lib/progress.js';
 import { iconBox, FALLBACK_ICON } from '../lib/templates.js';
+import { ico } from '../lib/icons.js';
 
 const recipeById = new Map(RECIPES_DATA.map(r => [r.id, r]));
 
@@ -69,7 +70,7 @@ function plannedRow(r, count) {
   return `
     <div class="planned-row">
       <div class="planned-row__info">
-        ${iconBox(r.imageUrl, r.icon, r.name, 'sm')}
+        ${iconBox(r.imageUrl, 'box', r.name, 'sm')}
         <div>
           <div class="planned-row__name">${r.name}</div>
           <div class="muted">${r.nameEn}</div>
@@ -118,7 +119,7 @@ export default {
     if (!ids.length) {
       listEl.innerHTML = `
         <div class="panel-empty">
-          <div class="panel-empty__icon" aria-hidden="true">🎒</div>
+          <div class="panel-empty__icon" aria-hidden="true">${ico('planner')}</div>
           <p><strong>Chưa có món nào trong Kế Hoạch Chế Tạo.</strong></p>
           <p>Hãy duyệt qua các công thức nấu ăn hoặc chế tạo và nhấn nút <strong>"+ Kế Hoạch Chế Tạo"</strong>!</p>
         </div>`;
@@ -145,7 +146,7 @@ export default {
       if (!confirm('Bạn có chắc muốn xóa toàn bộ kế hoạch chế biến hiện tại?')) return;
       planner.clear();
       app.sfx.play('click');
-      app.showToast('Đã dọn sạch Kế Hoạch Chế Tạo');
+      app.showToast(`${ico('trash')} Đã dọn sạch Kế Hoạch Chế Tạo`);
     }
   }
 };

@@ -8,6 +8,7 @@
 import { CC_ROOMS } from '../../data/bundles-data.js';
 import { progress } from '../lib/progress.js';
 import { emptyState, matches, pixelIcon } from '../lib/templates.js';
+import { ico } from '../lib/icons.js';
 
 const BUNDLES = CC_ROOMS.flatMap(room => room.bundles.map(b => ({ ...b, roomId: room.id })));
 const bundleById = new Map(BUNDLES.map(b => [b.id, b]));
@@ -79,7 +80,7 @@ function treeHtml(selected) {
   return `
     <div class="cc-tree">
       <div class="cc-root">
-        <span class="cc-root__icon" aria-hidden="true">🏚️</span>
+        <span class="cc-root__icon" aria-hidden="true">${ico('junimo')}</span>
         <div>
           <div class="cc-root__title">Nhà Cộng Đồng Pelican</div>
           <div class="cc-root__sub">${t.done}/${t.total} gói đã hoàn thành</div>
@@ -94,7 +95,7 @@ function treeHtml(selected) {
           return `
             <div class="${cls.join(' ')}">
               <button class="cc-room__node" type="button" data-action="cc-room" data-room="${room.id}">
-                <span class="cc-room__icon" aria-hidden="true">${room.icon}</span>
+                <span class="cc-room__icon" aria-hidden="true">${ico(room.icon)}</span>
                 <span class="cc-room__name">${room.name}</span>
                 <span class="cc-room__count">${doneBundles}/${room.bundles.length}</span>
               </button>
@@ -157,7 +158,7 @@ function bundleCard(b, query) {
       </div>
       ${b.reward ? `
         <footer class="bundle__reward">
-          <span class="bundle__reward-label">🎁 Phần thưởng:</span>
+          <span class="bundle__reward-label">${ico('gift')} Phần thưởng:</span>
           ${b.reward.icon ? `<span class="ing-icon"><img src="${b.reward.icon}" alt="" class="pixel-img" data-fallback="hide" loading="lazy"></span>` : ''}
           <span>${b.reward.name}${b.reward.count > 1 ? ` x${b.reward.count}` : ''}</span>
         </footer>` : ''}
@@ -168,7 +169,7 @@ function roomHeader(room) {
   const done = bundleProgress.isRoomDone(room);
   return `
     <header class="room-head ${done ? 'is-done' : ''}">
-      <h3 class="room-head__title"><span aria-hidden="true">${room.icon}</span> ${room.name} <small class="muted">${room.nameEn}</small></h3>
+      <h3 class="room-head__title">${ico(room.icon)} ${room.name} <small class="muted">${room.nameEn}</small></h3>
       <div class="room-head__reward">${pixelIcon(done ? 'check' : 'lock')} <strong>Hoàn thành phòng:</strong> ${room.reward}</div>
     </header>`;
 }
@@ -180,7 +181,7 @@ const bundlesTab = {
   init() {
     document.getElementById('bundleRoomChips').innerHTML = `
       <button class="chip" type="button" data-action="filter" data-value="all">Tất Cả Phòng</button>
-      ${CC_ROOMS.map(r => `<button class="chip" type="button" data-action="filter" data-value="${r.id}">${r.icon} ${r.name}</button>`).join('')}`;
+      ${CC_ROOMS.map(r => `<button class="chip" type="button" data-action="filter" data-value="${r.id}">${ico(r.icon)} ${r.name}</button>`).join('')}`;
   },
 
   render(app) {
@@ -203,7 +204,7 @@ const bundlesTab = {
     }).join('');
 
     document.getElementById('ccRooms').innerHTML = html
-      || emptyState('🎁', 'Không có gói nào khớp!', 'Thử từ khóa khác hoặc tắt bộ lọc "Chưa Hoàn Thành".');
+      || emptyState('bundles', 'Không có gói nào khớp!', 'Thử từ khóa khác hoặc tắt bộ lọc "Chưa Hoàn Thành".');
   },
 
   badge() {
@@ -234,7 +235,7 @@ const bundlesTab = {
       const key = slotKey(b.id, Number(el.dataset.idx));
       const wasDone = bundleProgress.isBundleDone(b);
       app.sfx.play(progress.toggle('bundles', key) ? 'complete' : 'uncheck');
-      if (!wasDone && bundleProgress.isBundleDone(b)) app.showToast(`🎁 Hoàn thành ${b.name}!`);
+      if (!wasDone && bundleProgress.isBundleDone(b)) app.showToast(`${ico('bundles')} Hoàn thành ${b.name}!`);
     }
   }
 };

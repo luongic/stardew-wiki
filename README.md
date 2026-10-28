@@ -20,7 +20,7 @@ index.html            Khung trang, toolbar, các modal tĩnh
 css/style.css         Hệ thiết kế pixel (token ở :root)
 js/main.js            Điểm khởi động
 js/app.js             Controller: tab, tìm kiếm, bộ lọc, event delegation
-js/lib/               storage, progress (kho tiến độ chung), audio, particles, ui (toast/modal), templates
+js/lib/               storage, progress (kho tiến độ chung), icons (bảng icon), audio, particles, ui (toast/modal), templates
 js/sync/              Phòng co-op: coop.js (Firebase), coop-ui.js (popup), firebase-config.js (sinh từ .env)
 scripts/              gen-firebase-config.mjs
 firestore.rules       Security Rules cho phòng co-op

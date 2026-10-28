@@ -8,27 +8,28 @@ import { planner } from './planner.js';
 import { progress } from '../lib/progress.js';
 import { bundleProgress } from './bundles.js';
 import { museumProgress } from './museum.js';
+import { ico } from '../lib/icons.js';
 
 const BACKUP_VERSION = 3;
 
 // Every recipe and quest falls into exactly one card, so the cards add up to
 // the tab badges.
 const GROUPS = [
-  { icon: '🍳', label: 'Món Ăn Đã Nấu Thành Công', unit: 'món', kind: 'recipe',
+  { icon: 'cooking', label: 'Món Ăn Đã Nấu Thành Công', unit: 'món', kind: 'recipe',
     test: r => r.category === 'cooking' },
-  { icon: '🔨', label: 'Đồ Thủ Công Đã Chế Tạo', unit: 'đồ', kind: 'recipe',
+  { icon: 'crafting', label: 'Đồ Thủ Công Đã Chế Tạo', unit: 'đồ', kind: 'recipe',
     test: r => r.category === 'crafting' },
-  { icon: '🏗️', label: 'Luyện Kim, Công Trình & Nâng Cấp', unit: 'mục', kind: 'recipe',
+  { icon: 'smelting', label: 'Luyện Kim, Công Trình & Nâng Cấp', unit: 'mục', kind: 'recipe',
     test: r => r.category !== 'cooking' && r.category !== 'crafting' },
-  { icon: '📖', label: 'Nhiệm Vụ Cốt Truyện Đã Xong', unit: 'xong', kind: 'quest',
+  { icon: 'story', label: 'Nhiệm Vụ Cốt Truyện Đã Xong', unit: 'xong', kind: 'quest',
     test: q => q.category === 'story' },
-  { icon: '🔮', label: 'Nhiệm Vụ Ẩn & Bí Mật Đã Khám Phá', unit: 'xong', kind: 'quest',
+  { icon: 'secret', label: 'Nhiệm Vụ Ẩn & Bí Mật Đã Khám Phá', unit: 'xong', kind: 'quest',
     test: q => q.category === 'secret_hidden' },
-  { icon: '🌴', label: 'Đảo Gừng, Đơn Hàng Lớn & Bản 1.6', unit: 'xong', kind: 'quest',
+  { icon: 'ginger', label: 'Đảo Gừng, Đơn Hàng Lớn & Bản 1.6', unit: 'xong', kind: 'quest',
     test: q => q.category !== 'story' && q.category !== 'secret_hidden' },
-  { icon: '🎁', label: 'Gói Nhà Cộng Đồng Đã Hoàn Thành', unit: 'gói',
+  { icon: 'bundles', label: 'Gói Nhà Cộng Đồng Đã Hoàn Thành', unit: 'gói',
     measure: () => bundleProgress.totals() },
-  { icon: '🏛️', label: 'Món Đã Quyên Góp Cho Bảo Tàng', unit: 'món',
+  { icon: 'museum', label: 'Món Đã Quyên Góp Cho Bảo Tàng', unit: 'món',
     measure: () => museumProgress.totals() }
 ];
 
@@ -45,7 +46,7 @@ function statCard(app, g) {
   const pct = total ? Math.round((done / total) * 100) : 0;
   return `
     <div class="stat-card">
-      <div class="stat-card__icon" aria-hidden="true">${g.icon}</div>
+      <div class="stat-card__icon" aria-hidden="true">${ico(g.icon)}</div>
       <div class="stat-card__value">${pct}%</div>
       <div class="stat-card__label">${g.label}</div>
       <div class="stat-card__sub">${done} / ${total} ${g.unit}</div>
@@ -73,7 +74,7 @@ function exportProgress(app) {
   a.download = `stardew_wiki_progress_backup_${backup.date.slice(0, 10)}.json`;
   a.click();
   URL.revokeObjectURL(url);
-  app.showToast('Đã tải xuống file sao lưu tiến độ!');
+  app.showToast(`${ico('download')} Đã tải xuống file sao lưu tiến độ!`);
 }
 
 // Accepts this version and older exports (v1 had no gatheredMaterials, v2 no
@@ -84,11 +85,11 @@ async function importProgress(app, file) {
   try {
     data = JSON.parse(await file.text());
   } catch (e) {
-    app.showToast('⚠️ File không phải JSON hợp lệ');
+    app.showToast(`${ico('warn')} File không phải JSON hợp lệ`);
     return;
   }
   if (!data || !Array.isArray(data.completedRecipes) || !Array.isArray(data.completedQuests)) {
-    app.showToast('⚠️ File không đúng định dạng sao lưu của Cẩm Nang');
+    app.showToast(`${ico('warn')} File không đúng định dạng sao lưu của Cẩm Nang`);
     return;
   }
 
@@ -107,7 +108,7 @@ async function importProgress(app, file) {
   progress.replace('bundles', bundleProgress.validKeys(Array.isArray(data.bundleSlots) ? data.bundleSlots : []));
   progress.replace('museum', museumProgress.validKeys(Array.isArray(data.museumDonated) ? data.museumDonated : []));
   app.sfx.play('complete');
-  app.showToast('📤 Đã khôi phục tiến độ từ file sao lưu!');
+  app.showToast(`${ico('upload')} Đã khôi phục tiến độ từ file sao lưu!`);
 }
 
 export default {

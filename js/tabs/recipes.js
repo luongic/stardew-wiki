@@ -5,6 +5,7 @@
 import { RECIPES_DATA } from '../../data/recipes-data.js';
 import { iconBox, ingredientList, emptyState, v16Badge, wikiLink, modalHeader, matches, signed } from '../lib/templates.js';
 import { planner } from './planner.js';
+import { ico } from '../lib/icons.js';
 
 const recipeById = new Map(RECIPES_DATA.map(r => [r.id, r]));
 
@@ -28,7 +29,7 @@ function cardHtml(r, done) {
     <article class="card ${done ? 'is-done' : ''}">
       <header class="card__head">
         <div class="card__title-row">
-          ${iconBox(r.imageUrl, r.icon, r.name)}
+          ${iconBox(r.imageUrl, 'box', r.name)}
           <div>
             <h3 class="card__title">${r.name}</h3>
             <div class="card__sub">${r.nameEn} ${v16Badge(r.version16)}</div>
@@ -42,29 +43,29 @@ function cardHtml(r, done) {
         <p class="card__desc">${r.desc}</p>
 
         <div class="inset-box">
-          <div class="section-label">🌾 Nguyên liệu cần:</div>
+          <div class="section-label">${ico('ingredients')} Nguyên liệu cần:</div>
           ${ingredientList(r.ingredients)}
         </div>
 
         ${r.buffs?.length ? `
           <div>
-            <div class="section-label">⚡ Chỉ số tăng cường (Buffs):</div>
+            <div class="section-label">${ico('energy')} Chỉ số tăng cường (Buffs):</div>
             <div class="pill-row">
               ${r.buffs.map(b => `<span class="buff ${buffClass(b.stat)}"><strong>${b.stat}:</strong> ${b.value} (${b.duration})</span>`).join('')}
             </div>
           </div>` : ''}
 
         <div class="stat-row">
-          ${r.sellPrice ? `<span class="stat">💰 Bán: <b>${r.sellPrice}g</b></span>` : ''}
-          ${r.energy ? `<span class="stat">⚡ Năng lượng: <b>${signed(r.energy)}</b></span>` : ''}
-          ${r.health ? `<span class="stat">❤️ Máu: <b>${signed(r.health)}</b></span>` : ''}
+          ${r.sellPrice ? `<span class="stat">${ico('money')} Bán: <b>${r.sellPrice}g</b></span>` : ''}
+          ${r.energy ? `<span class="stat">${ico('energy')} Năng lượng: <b>${signed(r.energy)}</b></span>` : ''}
+          ${r.health ? `<span class="stat">${ico('health')} Máu: <b>${signed(r.health)}</b></span>` : ''}
         </div>
 
-        <div class="source-tag"><strong>📖 Nguồn học:</strong> ${r.source}</div>
+        <div class="source-tag"><strong>${ico('source')} Nguồn học:</strong> ${r.source}</div>
       </div>
 
       <footer class="card__foot">
-        <button class="btn btn--ghost" type="button" data-action="open-detail" data-type="recipe" data-id="${r.id}">🔍 Chi tiết & Mẹo</button>
+        <button class="btn btn--ghost" type="button" data-action="open-detail" data-type="recipe" data-id="${r.id}">${ico('search')} Chi tiết & Mẹo</button>
         <button class="btn btn--green" type="button" data-action="planner-add" data-id="${r.id}">+ Kế Hoạch Chế Tạo</button>
       </footer>
     </article>`;
@@ -94,7 +95,7 @@ export default {
 
     grid.innerHTML = list.length
       ? list.map(r => cardHtml(r, app.completedRecipes.has(r.id))).join('')
-      : emptyState('🔍', 'Không tìm thấy công thức nào phù hợp!', 'Hãy thử tìm từ khóa khác hoặc tắt bớt các bộ lọc đang chọn.');
+      : emptyState('search', 'Không tìm thấy công thức nào phù hợp!', 'Hãy thử tìm từ khóa khác hoặc tắt bớt các bộ lọc đang chọn.');
   },
 
   // Counts every recipe category, so the badge moves for smelting, buildings,
@@ -109,19 +110,19 @@ export default {
     if (!r) return '';
     return `
       ${modalHeader({
-        icon: iconBox(r.imageUrl, r.icon, r.name, 'lg'),
+        icon: iconBox(r.imageUrl, 'box', r.name, 'lg'),
         title: r.name,
         sub: `${r.nameEn} • ${r.subCategory}`,
         extra: r.nameEn ? wikiLink(r.nameEn, 'Tra cứu ảnh gốc & Dữ liệu trên Official Wiki') : ''
       })}
       <p class="detail-lead">${r.desc}</p>
       <div class="inset-box">
-        <h4 class="inset-box__title">🌾 Danh sách nguyên liệu cần:</h4>
+        <h4 class="inset-box__title">${ico('ingredients')} Danh sách nguyên liệu cần:</h4>
         ${ingredientList(r.ingredients, 'ing-list--lg')}
       </div>
       ${r.tips ? `
         <div class="callout callout--tip">
-          <strong>💡 Mẹo chơi & Tác dụng đặc biệt:</strong>
+          <strong>${ico('tip')} Mẹo chơi & Tác dụng đặc biệt:</strong>
           <p>${r.tips}</p>
         </div>` : ''}
       <div class="detail-actions">
@@ -134,7 +135,7 @@ export default {
     'planner-add': (app, el) => {
       planner.add(el.dataset.id);
       app.sfx.play('click');
-      app.showToast('Đã thêm vào Kế Hoạch Chế Tạo 🎒');
+      app.showToast(`${ico('planner')} Đã thêm vào Kế Hoạch Chế Tạo`);
     }
   }
 };
