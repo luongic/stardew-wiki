@@ -91,12 +91,12 @@ function insideShell() {
         <div class="muted">Mã phòng: gửi cho bạn bè để cùng vào</div>
         <div class="coop-code" id="coopCodeView"></div>
       </div>
-      <button class="btn btn--ghost" type="button" data-action="coop-copy">📋 Sao chép mã</button>
+      <button class="btn btn--ghost" type="button" data-action="coop-copy">${pixelIcon('copy')} Sao chép mã</button>
     </div>
     <div class="coop-status" id="coopStatus"></div>
     <div class="coop-split">
       <section class="coop-card">
-        <h3 class="coop-card__title">👥 Thành viên</h3>
+        <h3 class="coop-card__title">${pixelIcon('members')} Thành viên</h3>
         <ul class="coop-members" id="coopMembers"></ul>
         <label class="coop-field coop-field--inline">
           <span>Tên của bạn</span>
@@ -104,7 +104,7 @@ function insideShell() {
         </label>
       </section>
       <section class="coop-card">
-        <h3 class="coop-card__title">🕒 Hoạt động gần đây</h3>
+        <h3 class="coop-card__title">${pixelIcon('clock')} Hoạt động gần đây</h3>
         <ul class="coop-activity" id="coopActivity"></ul>
       </section>
     </div>
@@ -130,7 +130,7 @@ function renderMembers() {
     .sort(([, a], [, b]) => (a.joinedAt?.toMillis?.() || 0) - (b.joinedAt?.toMillis?.() || 0));
   el.innerHTML = members.map(([uid, m]) => `
     <li class="coop-member">
-      <span>${uid === coop.room.host ? '👑' : '🧑‍🌾'} ${esc(m.name)}${uid === coop.user?.uid ? ' <span class="muted">(bạn)</span>' : ''}</span>
+      <span>${pixelIcon(uid === coop.room.host ? 'crown' : 'guest')} ${esc(m.name)}${uid === coop.user?.uid ? ' <span class="muted">(bạn)</span>' : ''}</span>
       <span class="muted">${timeAgo(m.lastSeen?.toMillis?.())}</span>
     </li>`).join('');
 }
@@ -156,11 +156,11 @@ function renderGoogle() {
     const g = coop.googleProfile;
     el.innerHTML = `
       <span class="coop-account">${pixelIcon('check')} Đang dùng Google: <strong>${esc(g.email || g.displayName || 'tài khoản Google')}</strong></span>
-      <button class="btn btn--ghost btn--sm" type="button" data-action="coop-signout">↩️ Đăng xuất</button>`;
+      <button class="btn btn--ghost btn--sm" type="button" data-action="coop-signout">${pixelIcon('signout')} Đăng xuất</button>`;
   } else {
     el.innerHTML = `
-      <span class="coop-account">👤 Đang dùng: <strong>Khách (ẩn danh)</strong></span>
-      <button class="btn btn--ghost btn--sm" type="button" data-action="coop-google">🔗 Đăng nhập Google</button>
+      <span class="coop-account">${pixelIcon('guest')} Đang dùng: <strong>Khách (ẩn danh)</strong></span>
+      <button class="btn btn--ghost btn--sm" type="button" data-action="coop-google">${pixelIcon('signin')} Đăng nhập Google</button>
       <span class="muted">Tuỳ chọn: để dùng cùng phòng trên điện thoại và máy tính.</span>`;
   }
 }
@@ -248,7 +248,7 @@ export const coopUi = {
     'coop-copy': async (app) => {
       try {
         await navigator.clipboard.writeText(coop.code);
-        app.showToast('📋 Đã sao chép mã phòng');
+        app.showToast(`${pixelIcon('copy')} Đã sao chép mã phòng`);
       } catch {
         app.showToast(`Mã phòng: ${coop.code}`);
       }

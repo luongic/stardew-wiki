@@ -6,7 +6,7 @@
 
 import { MUSEUM_ITEMS, MUSEUM_REWARDS } from '../../data/museum-data.js';
 import { progress } from '../lib/progress.js';
-import { emptyState, matches } from '../lib/templates.js';
+import { emptyState, matches, pixelIcon } from '../lib/templates.js';
 
 const itemById = new Map(MUSEUM_ITEMS.map(it => [it.id, it]));
 const ARTIFACTS = MUSEUM_ITEMS.filter(it => it.type === 'artifact');
@@ -87,7 +87,7 @@ const museumTab = {
       const { have, need, done: got } = rewardProgress(r);
       return `
         <li class="reward ${got ? 'is-done' : ''}">
-          <span class="reward__state" aria-hidden="true">${got ? '✓' : '🔒'}</span>
+          <span class="reward__state" aria-hidden="true">${pixelIcon(got ? 'check' : 'lock')}</span>
           ${r.icon ? `<span class="ing-icon ing-icon--md"><img src="${r.icon}" alt="" class="pixel-img" data-fallback="hide" loading="lazy"></span>` : ''}
           <span class="reward__text">
             <strong>${r.reward}</strong>

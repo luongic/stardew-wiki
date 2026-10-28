@@ -50,7 +50,7 @@ function cardHtml(q, done) {
 
       <footer class="card__foot">
         <button class="btn btn--ghost" type="button" data-action="open-detail" data-type="quest" data-id="${q.id}">🔍 Chi Tiết & Mẹo Độc</button>
-        <span class="muted">${done ? `${pixelIcon('check')} Đã hoàn thành` : '⏳ Đang thực hiện'}</span>
+        <span class="muted">${done ? `${pixelIcon('check')} Đã hoàn thành` : `${pixelIcon('hourglass')} Đang thực hiện`}</span>
       </footer>
     </article>`;
 }

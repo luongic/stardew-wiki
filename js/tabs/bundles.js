@@ -169,7 +169,7 @@ function roomHeader(room) {
   return `
     <header class="room-head ${done ? 'is-done' : ''}">
       <h3 class="room-head__title"><span aria-hidden="true">${room.icon}</span> ${room.name} <small class="muted">${room.nameEn}</small></h3>
-      <div class="room-head__reward">${done ? pixelIcon('check') : '🔒'} <strong>Hoàn thành phòng:</strong> ${room.reward}</div>
+      <div class="room-head__reward">${pixelIcon(done ? 'check' : 'lock')} <strong>Hoàn thành phòng:</strong> ${room.reward}</div>
     </header>`;
 }
 
