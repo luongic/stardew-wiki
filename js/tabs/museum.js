@@ -5,7 +5,7 @@
 // ==========================================================================
 
 import { MUSEUM_ITEMS, MUSEUM_REWARDS } from '../../data/museum-data.js';
-import { KEYS, loadSet, saveSet } from '../lib/storage.js';
+import { progress } from '../lib/progress.js';
 import { emptyState, matches } from '../lib/templates.js';
 
 const itemById = new Map(MUSEUM_ITEMS.map(it => [it.id, it]));
@@ -17,12 +17,8 @@ const GROUPS = [...new Set(MUSEUM_ITEMS.map(it => it.group))];
 const GROUP_ICONS = { 'Cổ vật': '🏺', 'Đá quý': '💎', 'Khoáng thạch': '🪨' };
 
 export const museumProgress = {
-  donated: loadSet(KEYS.museum),
-  save() { saveSet(KEYS.museum, this.donated); },
-  restore(ids) {
-    this.donated = new Set(ids.filter(id => itemById.has(id)));
-    this.save();
-  },
+  get donated() { return progress.set('museum'); },
+  validKeys(ids) { return ids.filter(id => itemById.has(id)); },
   count(list) { return list.filter(it => this.donated.has(it.id)).length; },
   totals() { return { done: this.count(MUSEUM_ITEMS), total: MUSEUM_ITEMS.length }; }
 };
@@ -135,17 +131,12 @@ const museumTab = {
   actions: {
     'museum-toggle': (app, el) => {
       const id = el.dataset.id;
-      if (museumProgress.donated.has(id)) {
-        museumProgress.donated.delete(id);
-        app.sfx.play('uncheck');
-      } else {
-        museumProgress.donated.add(id);
+      if (progress.toggle('museum', id)) {
         app.sfx.play('complete');
         app.showToast(`🏛️ Đã quyên góp ${itemById.get(id).name} cho Gunther!`);
+      } else {
+        app.sfx.play('uncheck');
       }
-      museumProgress.save();
-      app.refreshBadges();
-      app.render();
     }
   }
 };

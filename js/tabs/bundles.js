@@ -6,7 +6,7 @@
 // ==========================================================================
 
 import { CC_ROOMS } from '../../data/bundles-data.js';
-import { KEYS, loadSet, saveSet } from '../lib/storage.js';
+import { progress } from '../lib/progress.js';
 import { emptyState, matches } from '../lib/templates.js';
 
 const BUNDLES = CC_ROOMS.flatMap(room => room.bundles.map(b => ({ ...b, roomId: room.id })));
@@ -16,14 +16,12 @@ const roomById = new Map(CC_ROOMS.map(r => [r.id, r]));
 // Done slots are stored as "bundleId:itemIndex"
 const slotKey = (bundleId, idx) => `${bundleId}:${idx}`;
 
+const VALID_SLOTS = new Set(BUNDLES.flatMap(b => b.items.map((_, i) => slotKey(b.id, i))));
+
 export const bundleProgress = {
-  done: loadSet(KEYS.bundles),
-  save() { saveSet(KEYS.bundles, this.done); },
-  restore(keys) {
-    const valid = new Set(BUNDLES.flatMap(b => b.items.map((_, i) => slotKey(b.id, i))));
-    this.done = new Set(keys.filter(k => valid.has(k)));
-    this.save();
-  },
+  get done() { return progress.set('bundles'); },
+  // Drop slot keys that no longer exist (e.g. from an old backup)
+  validKeys(keys) { return keys.filter(k => VALID_SLOTS.has(k)); },
   doneCount(b) { return b.items.filter((_, i) => this.done.has(slotKey(b.id, i))).length; },
   isBundleDone(b) { return this.doneCount(b) >= b.required; },
   isRoomDone(room) { return room.bundles.every(b => this.isBundleDone(b)); },
@@ -235,17 +233,8 @@ const bundlesTab = {
       const b = bundleById.get(el.dataset.bundle);
       const key = slotKey(b.id, Number(el.dataset.idx));
       const wasDone = bundleProgress.isBundleDone(b);
-      if (bundleProgress.done.has(key)) {
-        bundleProgress.done.delete(key);
-        app.sfx.play('uncheck');
-      } else {
-        bundleProgress.done.add(key);
-        app.sfx.play('complete');
-      }
-      bundleProgress.save();
+      app.sfx.play(progress.toggle('bundles', key) ? 'complete' : 'uncheck');
       if (!wasDone && bundleProgress.isBundleDone(b)) app.showToast(`🎁 Hoàn thành ${b.name}!`);
-      app.refreshBadges();
-      app.render();
     }
   }
 };

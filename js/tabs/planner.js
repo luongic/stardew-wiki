@@ -5,71 +5,56 @@
 // ==========================================================================
 
 import { RECIPES_DATA } from '../../data/recipes-data.js';
-import { KEYS, loadJSON, saveJSON } from '../lib/storage.js';
+import { progress } from '../lib/progress.js';
 import { iconBox, FALLBACK_ICON } from '../lib/templates.js';
 
 const recipeById = new Map(RECIPES_DATA.map(r => [r.id, r]));
 
+// Thin view over the progress store: counts live in progress.planner and
+// gathered ingredients in progress.flags.gathered.
 class Planner {
-  constructor() {
-    this.items = loadJSON(KEYS.planner, {});
-    this.gathered = loadJSON(KEYS.gathered, {});
-  }
-
-  save() {
-    saveJSON(KEYS.planner, this.items);
-    saveJSON(KEYS.gathered, this.gathered);
-    this.onChange?.();
-  }
+  get items() { return Object.fromEntries(progress.plannedEntries()); }
+  get gathered() { return Object.fromEntries([...progress.set('gathered')].map(k => [k, true])); }
 
   add(id, count = 1) {
-    if (!recipeById.has(id)) return;
-    this.items[id] = (this.items[id] || 0) + count;
-    this.save();
+    if (recipeById.has(id)) progress.addCount(id, count);
   }
 
-  setCount(id, count) {
-    if (count <= 0) delete this.items[id];
-    else this.items[id] = count;
-    this.save();
-  }
+  step(id, delta) { progress.addCount(id, delta); }
+  remove(id) { progress.setCount(id, 0); }
 
   clear() {
-    this.items = {};
-    this.gathered = {};
-    this.save();
+    progress.replace('planner', {});
+    progress.replace('gathered', []);
   }
 
-  toggleGathered(name) {
-    this.gathered[name] = !this.gathered[name];
-    this.save();
-  }
+  toggleGathered(name) { progress.toggle('gathered', name); }
 
-  // Replace state from a backup; unknown recipe ids and bad counts are dropped
-  restore(items = {}, gathered = {}) {
-    this.items = Object.fromEntries(
+  // Sanitise backup data before it replaces the store
+  validItems(items = {}) {
+    return Object.fromEntries(
       Object.entries(items).filter(([id, n]) => recipeById.has(id) && Number.isInteger(n) && n > 0)
     );
-    this.gathered = Object.fromEntries(
-      Object.entries(gathered).filter(([, v]) => typeof v === 'boolean')
-    );
-    this.save();
+  }
+
+  validGathered(gathered = {}) {
+    return Object.keys(gathered).filter(k => gathered[k] === true);
   }
 
   total() {
-    return Object.values(this.items).reduce((a, b) => a + b, 0);
+    return progress.plannedEntries().reduce((a, [, n]) => a + n, 0);
   }
 
   materials() {
     const mats = {};
-    for (const [id, qty] of Object.entries(this.items)) {
+    for (const [id, qty] of progress.plannedEntries()) {
       for (const ing of recipeById.get(id)?.ingredients || []) {
         mats[ing.name] ??= {
           name: ing.name,
           nameEn: ing.nameEn || '',
           iconUrl: ing.iconUrl || FALLBACK_ICON,
           count: 0,
-          gathered: !!this.gathered[ing.name]
+          gathered: progress.has('gathered', ing.name)
         };
         mats[ing.name].count += ing.count * qty;
       }
@@ -121,13 +106,6 @@ export default {
   id: 'planner',
   toggles: [],
 
-  init(app) {
-    planner.onChange = () => {
-      this.badge(app);
-      if (app.currentTab === 'planner') this.render(app);
-    };
-  },
-
   badge() {
     document.getElementById('plannerBadge').textContent = planner.total();
   },
@@ -155,11 +133,11 @@ export default {
   actions: {
     'planner-step': (app, el) => {
       const id = el.dataset.id;
-      planner.setCount(id, (planner.items[id] || 0) + Number(el.dataset.step));
+      planner.step(id, Number(el.dataset.step));
       app.sfx.play('click');
     },
     'planner-remove': (app, el) => {
-      planner.setCount(el.dataset.id, 0);
+      planner.remove(el.dataset.id);
       app.sfx.play('uncheck');
     },
     'planner-gathered': (app, el) => planner.toggleGathered(el.dataset.mat),

@@ -10,7 +10,8 @@
 // Markup triggers an action with data-action="name" plus data-* arguments.
 // ==========================================================================
 
-import { KEYS, loadSet, saveSet } from './lib/storage.js';
+import { KEYS } from './lib/storage.js';
+import { progress } from './lib/progress.js';
 import { Sfx } from './lib/audio.js';
 import { startSeasonParticles } from './lib/particles.js';
 import { showToast, openModal, initModals, initImageFallbacks } from './lib/ui.js';
@@ -23,6 +24,7 @@ import bundlesTab from './tabs/bundles.js';
 import museumTab from './tabs/museum.js';
 import plannerTab from './tabs/planner.js';
 import trackerTab from './tabs/tracker.js';
+import { coopUi } from './sync/coop-ui.js';
 
 const SEASON_NAMES = { spring: 'Mùa Xuân 🌸', summer: 'Mùa Hạ ☀️', fall: 'Mùa Thu 🍁', winter: 'Mùa Đông ❄️' };
 const SEARCH_DEBOUNCE_MS = 150;
@@ -38,14 +40,13 @@ export class StardewWikiApp {
     this.filters = Object.fromEntries(this.tabs.map(t => [t.id, 'all']));
     this.toggles = { v16: false, unfinished: false, buffs: false };
 
-    this.completedRecipes = loadSet(KEYS.completedRecipes);
-    this.completedQuests = loadSet(KEYS.completedQuests);
     this.season = localStorage.getItem(KEYS.season) || 'spring';
     this.sfx = new Sfx();
 
     this.actions = {
       ...this.coreActions(),
-      ...Object.assign({}, ...this.tabs.map(t => t.actions || {}))
+      ...Object.assign({}, ...this.tabs.map(t => t.actions || {})),
+      ...coopUi.actions
     };
   }
 
@@ -57,9 +58,36 @@ export class StardewWikiApp {
     this.bindDelegates();
     this.updateAudioButton();
     this.tabs.forEach(t => t.init?.(this));
+    coopUi.init(this);
     this.switchTab(this.currentTab);
     this.refreshBadges();
+
+    // A user's own click re-renders right away, inside the click handler, as
+    // before. Bulk changes (import, reset) and a co-op teammate's updates can
+    // touch hundreds of items, so those are coalesced into one frame.
+    progress.subscribe((change, origin) => {
+      if (origin === 'local') this.refreshNow();
+      else this.scheduleRefresh();
+    });
   }
+
+  refreshNow() {
+    this.refreshBadges();
+    this.render();
+  }
+
+  scheduleRefresh() {
+    if (this.refreshQueued) return;
+    this.refreshQueued = true;
+    requestAnimationFrame(() => {
+      this.refreshQueued = false;
+      this.refreshNow();
+    });
+  }
+
+  // Read-only views kept for the tabs that filter by completion
+  get completedRecipes() { return progress.set('recipes'); }
+  get completedQuests() { return progress.set('quests'); }
 
   // ==========================================
   // DELEGATED EVENTS
@@ -189,23 +217,13 @@ export class StardewWikiApp {
   // SHARED STATE HELPERS
   // ==========================================
   toggleCompleted(kind, id) {
-    const set = kind === 'recipe' ? this.completedRecipes : this.completedQuests;
-    if (set.has(id)) {
-      set.delete(id);
-      this.sfx.play('uncheck');
-    } else {
-      set.add(id);
+    const on = progress.toggle(kind === 'recipe' ? 'recipes' : 'quests', id);
+    if (on) {
       this.sfx.play('complete');
       showToast(kind === 'recipe' ? '⭐ Đã đánh dấu hoàn thành công thức!' : '🏆 Đã hoàn thành nhiệm vụ!');
+    } else {
+      this.sfx.play('uncheck');
     }
-    this.saveProgress();
-    this.render();
-  }
-
-  saveProgress() {
-    saveSet(KEYS.completedRecipes, this.completedRecipes);
-    saveSet(KEYS.completedQuests, this.completedQuests);
-    this.refreshBadges();
   }
 
   refreshBadges() {

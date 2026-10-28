@@ -5,6 +5,7 @@
 import { RECIPES_DATA } from '../../data/recipes-data.js';
 import { QUESTS_DATA } from '../../data/quests-data.js';
 import { planner } from './planner.js';
+import { progress } from '../lib/progress.js';
 import { bundleProgress } from './bundles.js';
 import { museumProgress } from './museum.js';
 
@@ -99,14 +100,12 @@ async function importProgress(app, file) {
 
   if (!confirm(`Khôi phục bản sao lưu (${when})?\n• ${recipes.length} công thức • ${quests.length} nhiệm vụ\nTiến độ hiện tại sẽ bị thay thế.`)) return;
 
-  app.completedRecipes = new Set(recipes);
-  app.completedQuests = new Set(quests);
-  app.saveProgress();
-  planner.restore(data.plannedItems || {}, data.gatheredMaterials || {});
-  bundleProgress.restore(Array.isArray(data.bundleSlots) ? data.bundleSlots : []);
-  museumProgress.restore(Array.isArray(data.museumDonated) ? data.museumDonated : []);
-  app.refreshBadges();
-  app.render();
+  progress.replace('recipes', recipes);
+  progress.replace('quests', quests);
+  progress.replace('planner', planner.validItems(data.plannedItems));
+  progress.replace('gathered', planner.validGathered(data.gatheredMaterials));
+  progress.replace('bundles', bundleProgress.validKeys(Array.isArray(data.bundleSlots) ? data.bundleSlots : []));
+  progress.replace('museum', museumProgress.validKeys(Array.isArray(data.museumDonated) ? data.museumDonated : []));
   app.sfx.play('complete');
   app.showToast('📤 Đã khôi phục tiến độ từ file sao lưu!');
 }
@@ -129,12 +128,7 @@ export default {
     },
     'reset-progress': (app) => {
       if (!confirm('CẢNH BÁO: Thao tác này sẽ đặt lại toàn bộ tiến độ đã hoàn thành về 0. Bạn có chắc không?')) return;
-      app.completedRecipes.clear();
-      app.completedQuests.clear();
-      bundleProgress.restore([]);
-      museumProgress.restore([]);
-      app.saveProgress();
-      app.render();
+      for (const domain of ['recipes', 'quests', 'bundles', 'museum']) progress.replace(domain, []);
       app.showToast('Đã xóa dữ liệu tiến độ');
     }
   }
