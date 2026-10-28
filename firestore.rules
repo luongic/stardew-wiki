@@ -1,0 +1,58 @@
+rules_version = '2';
+
+// Co-op rooms for the Stardew Valley guide (see js/sync/coop.js).
+// The room code is the shared secret: anyone signed in who knows it can
+// join, but only members can read or write the room's progress, and each
+// person can only add, edit or remove their own member entry.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isMember(code) {
+      return signedIn()
+        && request.auth.uid in get(/databases/$(database)/documents/rooms/$(code)).data.members;
+    }
+
+    function validMember(m) {
+      return m.keys().hasOnly(['name', 'joinedAt', 'lastSeen'])
+        && m.name is string && m.name.size() > 0 && m.name.size() <= 24;
+    }
+
+    match /rooms/{code} {
+      // get by exact code only; listing rooms is never allowed
+      allow get: if signedIn();
+      allow list: if false;
+
+      allow create: if signedIn()
+        && code.matches('^[A-HJKMNP-Z2-9]{6}$')
+        && request.resource.data.keys().hasOnly(['host', 'createdAt', 'members'])
+        && request.resource.data.host == request.auth.uid
+        && request.resource.data.members.keys().hasOnly([request.auth.uid])
+        && validMember(request.resource.data.members[request.auth.uid]);
+
+      allow update: if signedIn()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['members'])
+        && request.resource.data.members.diff(resource.data.members).affectedKeys().hasOnly([request.auth.uid])
+        && (!(request.auth.uid in request.resource.data.members)
+            || validMember(request.resource.data.members[request.auth.uid]))
+        && request.resource.data.members.size() <= 8;
+
+      allow delete: if false;
+
+      match /progress/{domain} {
+        allow read: if isMember(code);
+        allow write: if isMember(code)
+          && domain in ['recipes', 'quests', 'bundles', 'museum', 'gathered', 'planner']
+          && request.resource.data.size() <= 600;
+      }
+    }
+
+    // Everything else is closed
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

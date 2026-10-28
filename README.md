@@ -1,6 +1,6 @@
 # Cẩm Nang Stardew Valley (Tiếng Việt)
 
-Trang tra cứu tĩnh cho Stardew Valley 1.6: công thức chế biến, từ điển vật phẩm, dân làng và lịch trình NPC, hướng dẫn nhiệm vụ, gói Nhà Cộng Đồng, bảo tàng, kế hoạch nguyên liệu và theo dõi tiến độ. Toàn bộ dữ liệu được lưu trong trình duyệt bằng localStorage; không có backend.
+Trang tra cứu tĩnh cho Stardew Valley 1.6: công thức chế biến, từ điển vật phẩm, dân làng và lịch trình NPC, hướng dẫn nhiệm vụ, gói Nhà Cộng Đồng, bảo tàng, kế hoạch nguyên liệu và theo dõi tiến độ. Tiến độ được lưu trong trình duyệt bằng localStorage; người chơi co-op có thể tạo phòng để đồng bộ tiến độ với nhau qua Firebase.
 
 **Xem trang:** https://luongic.github.io/stardew-wiki/
 
@@ -20,7 +20,10 @@ index.html            Khung trang, toolbar, các modal tĩnh
 css/style.css         Hệ thiết kế pixel (token ở :root)
 js/main.js            Điểm khởi động
 js/app.js             Controller: tab, tìm kiếm, bộ lọc, event delegation
-js/lib/               storage, audio, particles, ui (toast/modal), templates
+js/lib/               storage, progress (kho tiến độ chung), audio, particles, ui (toast/modal), templates
+js/sync/              Phòng co-op: coop.js (Firebase), coop-ui.js (popup), firebase-config.js (sinh từ .env)
+scripts/              gen-firebase-config.mjs
+firestore.rules       Security Rules cho phòng co-op
 js/tabs/              Mỗi tab một module: recipes, items, npcs, quests, bundles, museum, planner, tracker
 data/*.js             Dữ liệu công thức, vật phẩm, NPC + lịch sự kiện, nhiệm vụ, gói Nhà Cộng Đồng, bảo tàng
 assets/icons/         Icon vật phẩm (48x48 PNG từ Official Wiki)
@@ -34,6 +37,32 @@ Markup gọi hành động bằng `data-action="ten-hanh-dong"` cùng các `data
 ### Trình mô phỏng NPC
 
 Thứ tự ưu tiên lịch trình (`js/tabs/npcs.js`): lễ hội của thị trấn > ngày mưa > lịch theo thứ > lịch ngày nắng. Lễ hội có `"passive": true` trong `CALENDAR_EVENTS` (Trout Derby, SquidFest, Night Market) không thay đổi lịch của dân làng. Mùa Đông có tuyết thay cho mưa, và ngày lễ hội luôn nắng. Lịch trình trong dữ liệu là bản rút gọn, nên vị trí chỉ mang tính tham khảo.
+
+### Phòng Co-op
+
+Mọi thao tác tick/bỏ tick/kế hoạch đều đi qua `js/lib/progress.js`; `js/sync/coop.js` nghe kho này và đồng bộ với Firestore khi người dùng đang ở trong phòng.
+
+- Phòng chỉ lưu **trạng thái hiện tại của từng mục** (`{ v, t, by }`), không lưu lịch sử, nên dung lượng bị chặn ở khoảng 500 mục (~30 KB/phòng).
+- Gộp theo từng mục: hai người sửa hai mục khác nhau không bao giờ ghi đè nhau. Bỏ tick ghi `v: false` thay vì xoá. Số lượng kế hoạch dùng `increment()` nên bấm +1 cùng lúc vẫn cộng đủ.
+- Offline: bộ đệm IndexedDB của Firestore giữ thay đổi và tự gửi khi có mạng lại.
+- Firebase SDK chỉ được tải khi người dùng mở Co-op.
+
+**Cài đặt Firebase** (một lần):
+
+1. Sao chép `.env.example` thành `.env`, điền cấu hình web app, rồi chạy `npm run config` để sinh `js/sync/firebase-config.js` (file này được commit vì trang không có bước build; cấu hình web của Firebase không phải bí mật).
+2. Firebase Console → Authentication → Sign-in method: bật **Anonymous** (bắt buộc) và **Google** (tuỳ chọn).
+3. Authentication → Settings → Authorized domains: thêm `luongic.github.io`.
+4. Firestore Database → Create database (production mode).
+5. Firestore → Rules: dán nội dung `firestore.rules` rồi Publish, hoặc `npx firebase-tools deploy --only firestore:rules --project <project-id>`.
+
+**Thử trên máy với emulator** (cần Java 11+):
+
+```bash
+npm run emulators   # Auth + Firestore emulator, dùng firestore.rules của repo
+npm run dev         # rồi mở http://localhost:3000/?emulator
+```
+
+Với `?emulator`, trang kết nối tới emulator thay vì project thật; mở hai trình duyệt (hoặc một cửa sổ ẩn danh) để thử hai người chơi.
 
 ## Đóng góp
 

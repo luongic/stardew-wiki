@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "serve -l 3000 .",
-    "start": "serve -l 3000 ."
+    "start": "serve -l 3000 .",
+    "config": "node scripts/gen-firebase-config.mjs",
+    "emulators": "npx -y firebase-tools@13 emulators:start --only auth,firestore --project demo-stardew"
   },
   "keywords": [
     "stardew-valley",

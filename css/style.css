@@ -466,6 +466,15 @@ code {
 }
 .hero__controls .seg-btn { font-size: 0.95rem; }
 
+.hero__extras { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.btn--coop {
+  --btn-bg: var(--teal);
+  --btn-fg: var(--ink);
+  padding: 7px 14px;
+  font-size: 1.05rem;
+}
+
 .btn--coffee {
   --btn-bg: var(--orange);
   --btn-fg: var(--ink);
@@ -473,6 +482,77 @@ code {
   font-size: 1.05rem;
 }
 .coffee-cup { width: 28px; height: 28px; margin: -4px 0; }
+
+/* ==========================================================================
+   CO-OP ROOM POPUP
+   ========================================================================== */
+
+.modal__box--coop { width: min(860px, 100%); }
+.coop-title { font-size: 1.8rem; color: var(--wood-900); margin-bottom: 12px; }
+.coop-intro { margin-bottom: 14px; }
+
+.coop-field { display: flex; flex-direction: column; gap: 4px; margin-bottom: 16px; font-size: 0.95rem; }
+.coop-field--inline { margin: 12px 0 0; }
+.coop-input {
+  padding: 6px 10px;
+  font-size: 1.1rem;
+  background: #fff;
+  border: var(--px) solid var(--ink);
+  box-shadow: inset var(--px) var(--px) 0 0 rgba(43, 20, 8, 0.12);
+}
+.coop-input:focus { outline: none; border-color: var(--gold-dark); }
+.coop-input--code { font-size: 1.6rem; letter-spacing: 0.3em; text-transform: uppercase; text-align: center; }
+
+.coop-split { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 14px; }
+.coop-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--parch-100);
+  border: var(--px) solid var(--parch-300);
+}
+.coop-card__title { font-size: 1.2rem; color: var(--wood-700); }
+.coop-card .btn { align-self: flex-start; }
+.coop-radio { display: flex; gap: 8px; align-items: flex-start; font-size: 0.92rem; cursor: pointer; }
+.coop-radio input { margin-top: 4px; accent-color: var(--green-dark); }
+
+.coop-room {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  background: var(--wood-900);
+  color: var(--parch-100);
+  box-shadow: var(--frame);
+}
+.coop-room .muted { color: var(--parch-300); }
+.coop-code { font-size: 2.6rem; line-height: 1; letter-spacing: 0.25em; color: var(--gold); }
+
+.coop-status { display: flex; align-items: center; gap: 8px; min-height: 1.4em; margin-bottom: 12px; font-size: 0.95rem; }
+.coop-dot { display: inline-block; width: 10px; height: 10px; border: 2px solid var(--ink); flex-shrink: 0; }
+.coop-dot--ok { background: var(--green); }
+.coop-dot--pending { background: var(--gold); animation: blink 1s steps(2, end) infinite; }
+.coop-dot--offline { background: var(--orange); }
+.coop-dot--error { background: var(--red); }
+.coop-dot--idle { background: var(--parch-300); }
+
+.coop-members, .coop-activity { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.coop-activity { max-height: 260px; overflow-y: auto; }
+.coop-member, .coop-act {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 4px 0;
+  border-bottom: 2px dotted var(--parch-300);
+  font-size: 0.92rem;
+}
+.coop-act strong { font-weight: 400; color: var(--wood-900); }
+.coop-act .muted, .coop-member .muted { white-space: nowrap; }
+.coop-google { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 0.92rem; }
 
 /* ==========================================================================
    BUY ME A COFFEE POPUP
@@ -1743,6 +1823,8 @@ code {
   html { font-size: 19px; }
   .app { padding: 12px 12px 40px; }
   .qr-frame { --qr: 244px; } /* 4px per module on narrow screens */
+  .coop-split { grid-template-columns: 1fr; }
+  .coop-code { font-size: 2rem; }
   .qr-frame__corner { width: 28px; height: 28px; }
   .coffee-title { font-size: 1.35rem; gap: 6px; white-space: nowrap; }
   .coffee-title img { width: 28px; height: 28px; }
