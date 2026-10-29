@@ -33,6 +33,7 @@ export const ICONS = {
   tools: game('item_pickaxe'), crops: game('item_parsnip'), fruits: game('item_apple'), fish: game('item_sardine'),
   minerals: game('item_diamond'), animal: game('large_brown_egg'), forage: game('item_morel'),
   artifacts: game('item_ancient_doll'), gems: game('item_diamond'), geodes: game('omni_geode'),
+  seeds: game('item_parsnip_seeds'), artisan: game('wine'), resources: game('ing_wood'), rings: game('iridium_band'), books: game('price_catalogue'),
 
   // Quest categories
   story: game('dwarf_scroll_ii'), secret: game('book_of_mysteries'), ginger: game('parrot_egg'),

@@ -14,26 +14,36 @@ const GROUPS = [
   { category: 'tools', icon: 'tools', title: 'Công Cụ Lao Động, Khai Thác & Vũ Khí',
     desc: 'Búa, rìu, cuốc đất, xẻng mỏ/cuốc chim, cần câu, bình tưới, liềm cắt cỏ, dụng cụ chăn nuôi và các thần binh huyền thoại.' },
   { category: 'crops', icon: 'crops', title: 'Nông Sản & Cây Trồng Các Mùa',
-    desc: 'Tất cả các loại rau củ quả gieo trồng 4 mùa Xuân, Hạ, Thu, Đông (1.6) và cây đa mùa trong Nhà Kính.' },
+    desc: 'Tất cả các loại rau củ quả và hoa gieo trồng 4 mùa Xuân, Hạ, Thu, Đông (1.6) và cây đa mùa trong Nhà Kính.' },
+  { category: 'seeds', icon: 'seeds', title: 'Hạt Giống & Cây Non',
+    desc: 'Hạt giống từng mùa, hạt hỗn hợp, cây ăn quả non và hạt của các loại cây rừng.' },
   { category: 'fruits', icon: 'fruits', title: 'Trái Cây & Vườn Cây Ăn Quả',
     desc: 'Các loại quả ngọt mọng nước từ vườn cây ăn quả thung lũng, quả mọng hoang dã và trái cây nhiệt đới Đảo Gừng.' },
+  { category: 'forage', icon: 'forage', title: 'Thu Nhặt Hoang Dã & Thảo Dược Thiên Nhiên',
+    desc: 'Rau rừng, nấm, thảo mộc 4 mùa, tảo và các loại vỏ ốc, san hô dọc bờ biển.' },
   { category: 'fish', icon: 'fish', title: 'Các Loại Cá & Thủy Sản Toàn Diện',
     desc: 'Cá biển đại dương, cá sông suối, cá hồ núi, cá hang sâu mỏ quặng, cá huyền thoại tối thượng và hải sản bẫy lồng.' },
-  { category: 'minerals', icon: 'minerals', title: 'Khoáng Sản, Đá Quý & Quặng Kim Loại',
-    desc: 'Mảnh lăng kính Prismatic Shard, kim cương, hồng ngọc, ngọc bích, khoáng thạch hầm mỏ và các loại quặng luyện kim.' },
   { category: 'animal_products', icon: 'animal', title: 'Sản Phẩm Động Vật & Chăn Nuôi',
-    desc: 'Các loại trứng gà, trứng vịt, trứng khủng long, sữa tươi, phô mai, lông cừu và nấm cục Truffle siêu đắt giá.' },
-  { category: 'forage', icon: 'forage', title: 'Thu Nhặt Hoang Dã & Thảo Dược Thiên Nhiên',
-    desc: 'Rau rừng, nấm quý mộc hương, thảo mộc 4 mùa và các loại vỏ ốc, san hô dọc bờ biển triều cường.' },
+    desc: 'Các loại trứng, sữa, lông cừu, lông vịt, chân thỏ và nấm cục Truffle siêu đắt giá.' },
+  { category: 'artisan', icon: 'artisan', title: 'Hàng Thủ Công',
+    desc: 'Rượu, nước ép, mứt, dưa muối, phô mai, mật ong, vải và các sản phẩm từ máy móc trên nông trại.' },
+  { category: 'minerals', icon: 'minerals', title: 'Khoáng Sản, Đá Quý & Quặng Kim Loại',
+    desc: 'Đá quý, khoáng thạch trong hốc tinh (Geode), quặng luyện kim và các khoáng sản cho Bảo Tàng.' },
   { category: 'artifacts', icon: 'artifacts', title: 'Cổ Vật, Di Vật & Hóa Thạch Tiền Sử',
-    desc: 'Những món đồ khảo cổ kỳ bí được chôn vùi dưới lòng đất hàng triệu năm để hoàn thành bảo tàng Gunther.' }
+    desc: 'Những món đồ khảo cổ kỳ bí được chôn vùi dưới lòng đất hàng triệu năm để hoàn thành bảo tàng Gunther.' },
+  { category: 'resources', icon: 'resources', title: 'Tài Nguyên, Đồ Rơi & Rác',
+    desc: 'Gỗ, đá, đất sét, thỏi kim loại, tinh chất, đồ rơi từ quái vật và rác câu được.' },
+  { category: 'rings', icon: 'rings', title: 'Nhẫn',
+    desc: 'Nhẫn tăng chỉ số, hút đồ, phát sáng và nhẫn hiếm từ Hang Đầu Lâu.' },
+  { category: 'books', icon: 'books', title: 'Sách',
+    desc: 'Sách kỹ năng và sách mở khoá năng lực vĩnh viễn (bản 1.6), mua ở Người bán sách hoặc tìm thấy trong game.' }
 ];
 const groupByCat = new Map(GROUPS.map(g => [g.category, g]));
 
 const isEdible = it => it.energy !== null && it.energy > 0;
 // Negative-edibility items (Pufferfish, Goby...) can be eaten but drain energy
 const isHarmful = it => it.energy !== null && it.energy < 0;
-const price = it => (it.sellPrice > 0 ? `${it.sellPrice.toLocaleString()}g` : 'Không bán');
+const price = it => it.priceText || (it.sellPrice > 0 ? `${it.sellPrice.toLocaleString()}g` : 'Không bán');
 
 function cardHtml(it) {
   return `
@@ -128,7 +138,7 @@ export default {
       ${modalHeader({
         icon: `<div class="icon-box icon-box--lg"><img src="${it.imageUrl}" alt="${it.name}" class="pixel-img" data-fallback="${PLACEHOLDER}"></div>`,
         title: `${it.name} ${v16Badge(it.version16, 'Bản 1.6 Mới')}`,
-        sub: `${altName(it)} • ${groupByCat.get(it.category)?.title || ''} • <b>${it.subCategory}</b>`,
+        sub: `${altName(it)} • <span>${groupByCat.get(it.category)?.title || ''}</span> • <b>${it.subCategory}</b>`,
         extra: wikiLink(it.nameEn, 'Xem bài viết chi tiết trên Official Stardew Valley Wiki', page)
       })}
       <p class="detail-lead">${it.desc}</p>
@@ -136,7 +146,7 @@ export default {
       <div class="spec-grid">
         <div class="spec spec--gold">
           <div class="spec__label">${ico('money')} GIÁ BÁN CƠ BẢN</div>
-          <div class="spec__value">${it.sellPrice > 0 ? `${it.sellPrice.toLocaleString()}g` : 'Không thể bán'}</div>
+          <div class="spec__value">${it.priceText || (it.sellPrice > 0 ? `${it.sellPrice.toLocaleString()}g` : 'Không thể bán')}</div>
         </div>
         <div class="spec spec--teal">
           <div class="spec__label">${ico('energy')} PHỤC HỒI NĂNG LƯỢNG / MÁU</div>
