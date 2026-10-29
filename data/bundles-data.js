@@ -15,18 +15,18 @@ export const CC_ROOMS = [
     "bundles": [
       {
         "id": "spring_foraging",
-        "name": "Gói Hái Lượm Mùa Xuân",
+        "name": "Sản vật mùa Xuân",
         "nameEn": "Spring Foraging Bundle",
         "color": "green",
         "required": 4,
         "reward": {
-          "name": "Hạt giống Xuân hỗn hợp (Spring Seeds)",
+          "name": "Hạt giống mùa Xuân (Spring Seeds)",
           "count": 30,
           "icon": "assets/icons/spring_seeds.png"
         },
         "items": [
           {
-            "name": "Cải ngựa dại",
+            "name": "Cải ngựa Dại",
             "nameEn": "Wild Horseradish",
             "count": 1,
             "quality": null,
@@ -34,7 +34,7 @@ export const CC_ROOMS = [
             "source": "Hái lượm mùa Xuân"
           },
           {
-            "name": "Thủy tiên vàng",
+            "name": "Thủy tiên",
             "nameEn": "Daffodil",
             "count": 1,
             "quality": null,
@@ -61,12 +61,12 @@ export const CC_ROOMS = [
       },
       {
         "id": "summer_foraging",
-        "name": "Gói Hái Lượm Mùa Hè",
+        "name": "Sản vật mùa Hè",
         "nameEn": "Summer Foraging Bundle",
         "color": "yellow",
         "required": 3,
         "reward": {
-          "name": "Hạt giống Hè hỗn hợp (Summer Seeds)",
+          "name": "Hạt giống mùa Hè (Summer Seeds)",
           "count": 30,
           "icon": "assets/icons/summer_seeds.png"
         },
@@ -80,7 +80,7 @@ export const CC_ROOMS = [
             "source": "Hái lượm mùa Hè; trồng mùa Thu"
           },
           {
-            "name": "Quả mọng cay",
+            "name": "Thảo quả",
             "nameEn": "Spice Berry",
             "count": 1,
             "quality": null,
@@ -88,7 +88,7 @@ export const CC_ROOMS = [
             "source": "Hái lượm mùa Hè; Hang Nông Trại (dơi)"
           },
           {
-            "name": "Hoa đậu thơm",
+            "name": "Đậu thơm",
             "nameEn": "Sweet Pea",
             "count": 1,
             "quality": null,
@@ -99,12 +99,12 @@ export const CC_ROOMS = [
       },
       {
         "id": "fall_foraging",
-        "name": "Gói Hái Lượm Mùa Thu",
+        "name": "Sản vật mùa Thu",
         "nameEn": "Fall Foraging Bundle",
         "color": "orange",
         "required": 4,
         "reward": {
-          "name": "Hạt giống Thu hỗn hợp (Fall Seeds)",
+          "name": "Hạt giống mùa Thu (Fall Seeds)",
           "count": 30,
           "icon": "assets/icons/fall_seeds.png"
         },
@@ -118,7 +118,7 @@ export const CC_ROOMS = [
             "source": "Hái lượm mùa Thu; Rừng Bí Mật; Hang Nông Trại (nấm)"
           },
           {
-            "name": "Mận rừng",
+            "name": "Mận dại",
             "nameEn": "Wild Plum",
             "count": 1,
             "quality": null,
@@ -134,7 +134,7 @@ export const CC_ROOMS = [
             "source": "Hái lượm mùa Thu"
           },
           {
-            "name": "Mâm Xôi Đen",
+            "name": "Mâm xôi đen",
             "nameEn": "Blackberry",
             "count": 1,
             "quality": null,
@@ -145,18 +145,18 @@ export const CC_ROOMS = [
       },
       {
         "id": "winter_foraging",
-        "name": "Gói Hái Lượm Mùa Đông",
+        "name": "Sản vật mùa Đông",
         "nameEn": "Winter Foraging Bundle",
         "color": "teal",
         "required": 4,
         "reward": {
-          "name": "Hạt giống Đông hỗn hợp (Winter Seeds)",
+          "name": "Hạt giống mùa Đông (Winter Seeds)",
           "count": 30,
           "icon": "assets/icons/winter_seeds.png"
         },
         "items": [
           {
-            "name": "Củ mùa đông",
+            "name": "Củ mài",
             "nameEn": "Winter Root",
             "count": 1,
             "quality": null,
@@ -172,7 +172,7 @@ export const CC_ROOMS = [
             "source": "Hái lượm mùa Đông; Dust Sprite tầng 41–79"
           },
           {
-            "name": "Khoai tuyết",
+            "name": "Khoai lang Tuyết",
             "nameEn": "Snow Yam",
             "count": 1,
             "quality": null,
@@ -180,7 +180,7 @@ export const CC_ROOMS = [
             "source": "Cuốc đất / điểm cổ vật mùa Đông"
           },
           {
-            "name": "Hoa nghệ tây",
+            "name": "Nghệ tây",
             "nameEn": "Crocus",
             "count": 1,
             "quality": null,
@@ -191,12 +191,12 @@ export const CC_ROOMS = [
       },
       {
         "id": "construction",
-        "name": "Gói Xây Dựng",
+        "name": "Vật liệu Xây dựng",
         "nameEn": "Construction Bundle",
         "color": "red",
         "required": 4,
         "reward": {
-          "name": "Lò than (Charcoal Kiln)",
+          "name": "Lò Than (Charcoal Kiln)",
           "count": 1,
           "icon": "assets/icons/charcoal_kiln.png"
         },
@@ -226,7 +226,7 @@ export const CC_ROOMS = [
             "source": "Đập đá bằng Cuốc chim; mua ở tiệm Robin"
           },
           {
-            "name": "Gỗ cứng",
+            "name": "Gỗ Cứng",
             "nameEn": "Hardwood",
             "count": 10,
             "quality": null,
@@ -237,12 +237,12 @@ export const CC_ROOMS = [
       },
       {
         "id": "exotic_foraging",
-        "name": "Gói Hái Lượm Kỳ Lạ",
+        "name": "Sản vật Lạ",
         "nameEn": "Exotic Foraging Bundle",
         "color": "purple",
         "required": 5,
         "reward": {
-          "name": "Mùa Thu Bội Thu (Autumn's Bounty)",
+          "name": "Tặng phẩm Mùa thu (Autumn's Bounty)",
           "count": 5,
           "icon": "assets/icons/autumns_bounty.png"
         },
@@ -256,7 +256,7 @@ export const CC_ROOMS = [
             "source": "Hái lượm ở Sa Mạc; tiệm Oasis"
           },
           {
-            "name": "Quả xương rồng",
+            "name": "Quả Xương rồng",
             "nameEn": "Cactus Fruit",
             "count": 1,
             "quality": null,
@@ -264,7 +264,7 @@ export const CC_ROOMS = [
             "source": "Hái lượm ở Sa Mạc; tiệm Oasis"
           },
           {
-            "name": "Cà rốt hang",
+            "name": "Cà-rốt Hang",
             "nameEn": "Cave Carrot",
             "count": 1,
             "quality": null,
@@ -272,7 +272,7 @@ export const CC_ROOMS = [
             "source": "Mỏ: đập thùng hoặc cuốc đất"
           },
           {
-            "name": "Nấm đỏ",
+            "name": "Nấm Đỏ",
             "nameEn": "Red Mushroom",
             "count": 1,
             "quality": null,
@@ -280,7 +280,7 @@ export const CC_ROOMS = [
             "source": "Mỏ; Rừng Bí Mật (Hè/Thu); Hang Nông Trại (nấm)"
           },
           {
-            "name": "Nấm tím",
+            "name": "Nấm Tím",
             "nameEn": "Purple Mushroom",
             "count": 1,
             "quality": null,
@@ -288,7 +288,7 @@ export const CC_ROOMS = [
             "source": "Mỏ; Hang Nông Trại (nấm)"
           },
           {
-            "name": "Siro cây phong",
+            "name": "Si-rô nhựa Phong",
             "nameEn": "Maple Syrup",
             "count": 1,
             "quality": null,
@@ -296,7 +296,7 @@ export const CC_ROOMS = [
             "source": "Gắn Máy chiết nhựa vào cây Phong"
           },
           {
-            "name": "Nhựa cây sồi",
+            "name": "Nhựa Sồi",
             "nameEn": "Oak Resin",
             "count": 1,
             "quality": null,
@@ -312,7 +312,7 @@ export const CC_ROOMS = [
             "source": "Gắn Máy chiết nhựa vào cây Thông"
           },
           {
-            "name": "Nấm Morel",
+            "name": "Nấm Bụng dê",
             "nameEn": "Morel",
             "count": 1,
             "quality": null,
@@ -333,18 +333,18 @@ export const CC_ROOMS = [
     "bundles": [
       {
         "id": "spring_crops",
-        "name": "Gói Nông Sản Mùa Xuân",
+        "name": "Nông sản mùa Xuân",
         "nameEn": "Spring Crops Bundle",
         "color": "green",
         "required": 4,
         "reward": {
-          "name": "Phân tăng tốc (Speed-Gro)",
+          "name": "Phân bón Thúc (Speed-Gro)",
           "count": 20,
           "icon": "assets/icons/speed_gro.png"
         },
         "items": [
           {
-            "name": "Củ Cải Vàng",
+            "name": "Củ cải vàng",
             "nameEn": "Parsnip",
             "count": 1,
             "quality": null,
@@ -360,7 +360,7 @@ export const CC_ROOMS = [
             "source": "Trồng mùa Xuân"
           },
           {
-            "name": "Súp Lơ Trắng",
+            "name": "Bông cải trắng",
             "nameEn": "Cauliflower",
             "count": 1,
             "quality": null,
@@ -368,7 +368,7 @@ export const CC_ROOMS = [
             "source": "Trồng mùa Xuân"
           },
           {
-            "name": "Khoai Tây",
+            "name": "Khoai tây",
             "nameEn": "Potato",
             "count": 1,
             "quality": null,
@@ -379,18 +379,18 @@ export const CC_ROOMS = [
       },
       {
         "id": "summer_crops",
-        "name": "Gói Nông Sản Mùa Hè",
+        "name": "Nông sản mùa Hè",
         "nameEn": "Summer Crops Bundle",
         "color": "yellow",
         "required": 4,
         "reward": {
-          "name": "Bình tưới chất lượng (Quality Sprinkler)",
+          "name": "Vòi tưới Xịn (Quality Sprinkler)",
           "count": 1,
           "icon": "assets/icons/quality_sprinkler.png"
         },
         "items": [
           {
-            "name": "Cà Chua",
+            "name": "Cà chua",
             "nameEn": "Tomato",
             "count": 1,
             "quality": null,
@@ -398,7 +398,7 @@ export const CC_ROOMS = [
             "source": "Trồng mùa Hè"
           },
           {
-            "name": "Ớt Cay Đỏ",
+            "name": "Ớt hiểm",
             "nameEn": "Hot Pepper",
             "count": 1,
             "quality": null,
@@ -414,7 +414,7 @@ export const CC_ROOMS = [
             "source": "Trồng mùa Hè"
           },
           {
-            "name": "Dưa Gang",
+            "name": "Dưa",
             "nameEn": "Melon",
             "count": 1,
             "quality": null,
@@ -425,18 +425,18 @@ export const CC_ROOMS = [
       },
       {
         "id": "fall_crops",
-        "name": "Gói Nông Sản Mùa Thu",
+        "name": "Nông sản mùa Thu",
         "nameEn": "Fall Crops Bundle",
         "color": "orange",
         "required": 4,
         "reward": {
-          "name": "Nhà nuôi ong (Bee House)",
+          "name": "Nhà nuôi Ong (Bee House)",
           "count": 1,
           "icon": "assets/icons/bee_house.png"
         },
         "items": [
           {
-            "name": "Bắp Ngô",
+            "name": "Ngô",
             "nameEn": "Corn",
             "count": 1,
             "quality": null,
@@ -444,7 +444,7 @@ export const CC_ROOMS = [
             "source": "Trồng mùa Hè / Thu"
           },
           {
-            "name": "Cà Tím",
+            "name": "Cà tím",
             "nameEn": "Eggplant",
             "count": 1,
             "quality": null,
@@ -452,7 +452,7 @@ export const CC_ROOMS = [
             "source": "Trồng mùa Thu"
           },
           {
-            "name": "Bí Ngô",
+            "name": "Bí ngô",
             "nameEn": "Pumpkin",
             "count": 1,
             "quality": null,
@@ -471,18 +471,18 @@ export const CC_ROOMS = [
       },
       {
         "id": "quality_crops",
-        "name": "Gói Nông Sản Chất Lượng",
+        "name": "Nông sản Chất lượng",
         "nameEn": "Quality Crops Bundle",
         "color": "teal",
         "required": 3,
         "reward": {
-          "name": "Hũ ngâm (Preserves Jar)",
+          "name": "Vại Bảo quản (Preserves Jar)",
           "count": 1,
           "icon": "assets/icons/preserves_jar.png"
         },
         "items": [
           {
-            "name": "Củ Cải Vàng",
+            "name": "Củ cải vàng",
             "nameEn": "Parsnip",
             "count": 5,
             "quality": "gold",
@@ -490,7 +490,7 @@ export const CC_ROOMS = [
             "source": "Trồng mùa Xuân (chất lượng vàng)"
           },
           {
-            "name": "Dưa Gang",
+            "name": "Dưa",
             "nameEn": "Melon",
             "count": 5,
             "quality": "gold",
@@ -498,7 +498,7 @@ export const CC_ROOMS = [
             "source": "Trồng mùa Hè (chất lượng vàng)"
           },
           {
-            "name": "Bí Ngô",
+            "name": "Bí ngô",
             "nameEn": "Pumpkin",
             "count": 5,
             "quality": "gold",
@@ -506,7 +506,7 @@ export const CC_ROOMS = [
             "source": "Trồng mùa Thu (chất lượng vàng)"
           },
           {
-            "name": "Bắp Ngô",
+            "name": "Ngô",
             "nameEn": "Corn",
             "count": 5,
             "quality": "gold",
@@ -517,18 +517,18 @@ export const CC_ROOMS = [
       },
       {
         "id": "animal",
-        "name": "Gói Vật Nuôi",
+        "name": "Vật nuôi",
         "nameEn": "Animal Bundle",
         "color": "red",
         "required": 5,
         "reward": {
-          "name": "Máy ép phô mai (Cheese Press)",
+          "name": "Máy ép Phô mai (Cheese Press)",
           "count": 1,
           "icon": "assets/icons/cheese_press.png"
         },
         "items": [
           {
-            "name": "Sữa bò lớn",
+            "name": "Sữa Bò bình to",
             "nameEn": "Large Milk",
             "count": 1,
             "quality": null,
@@ -536,7 +536,7 @@ export const CC_ROOMS = [
             "source": "Bò (quan hệ cao)"
           },
           {
-            "name": "Trứng nâu lớn",
+            "name": "Trứng gà to (nâu)",
             "nameEn": "Large Brown Egg",
             "count": 1,
             "quality": null,
@@ -544,7 +544,7 @@ export const CC_ROOMS = [
             "source": "Gà nâu"
           },
           {
-            "name": "Trứng lớn",
+            "name": "Trứng gà to (trắng)",
             "nameEn": "Large Egg",
             "count": 1,
             "quality": null,
@@ -552,7 +552,7 @@ export const CC_ROOMS = [
             "source": "Gà trắng"
           },
           {
-            "name": "Sữa dê lớn",
+            "name": "Sữa Dê bình to",
             "nameEn": "Large Goat Milk",
             "count": 1,
             "quality": null,
@@ -568,7 +568,7 @@ export const CC_ROOMS = [
             "source": "Cừu, Thỏ"
           },
           {
-            "name": "Trứng vịt",
+            "name": "Trứng Vịt",
             "nameEn": "Duck Egg",
             "count": 1,
             "quality": null,
@@ -579,18 +579,18 @@ export const CC_ROOMS = [
       },
       {
         "id": "artisan",
-        "name": "Gói Thủ Công Nghệ Nhân",
+        "name": "Hàng thủ công",
         "nameEn": "Artisan Bundle",
         "color": "purple",
         "required": 6,
         "reward": {
-          "name": "Thùng ủ (Keg)",
+          "name": "Thùng chứa (Keg)",
           "count": 1,
           "icon": "assets/icons/keg.png"
         },
         "items": [
           {
-            "name": "Dầu nấm Truffle",
+            "name": "Dầu Nấm cục",
             "nameEn": "Truffle Oil",
             "count": 1,
             "quality": null,
@@ -598,7 +598,7 @@ export const CC_ROOMS = [
             "source": "Máy ép dầu + Nấm cục"
           },
           {
-            "name": "Vải dệt",
+            "name": "Vải",
             "nameEn": "Cloth",
             "count": 1,
             "quality": null,
@@ -606,7 +606,7 @@ export const CC_ROOMS = [
             "source": "Khung dệt; tái chế báo ướt; Thương nhân Sa Mạc"
           },
           {
-            "name": "Phô mai dê",
+            "name": "Phô mai sữa Dê",
             "nameEn": "Goat Cheese",
             "count": 1,
             "quality": null,
@@ -638,7 +638,7 @@ export const CC_ROOMS = [
             "source": "Hũ ngâm + trái cây"
           },
           {
-            "name": "Táo Đỏ",
+            "name": "Táo",
             "nameEn": "Apple",
             "count": 1,
             "quality": null,
@@ -646,7 +646,7 @@ export const CC_ROOMS = [
             "source": "Cây Táo (mùa Thu); Hang Nông Trại (dơi)"
           },
           {
-            "name": "Mơ Tây",
+            "name": "Mơ",
             "nameEn": "Apricot",
             "count": 1,
             "quality": null,
@@ -654,7 +654,7 @@ export const CC_ROOMS = [
             "source": "Cây Mơ (mùa Xuân)"
           },
           {
-            "name": "Cam Ngọt",
+            "name": "Cam",
             "nameEn": "Orange",
             "count": 1,
             "quality": null,
@@ -662,7 +662,7 @@ export const CC_ROOMS = [
             "source": "Cây Cam (mùa Hè)"
           },
           {
-            "name": "Đào Tiên Hồng",
+            "name": "Đào",
             "nameEn": "Peach",
             "count": 1,
             "quality": null,
@@ -670,7 +670,7 @@ export const CC_ROOMS = [
             "source": "Cây Đào (mùa Hè)"
           },
           {
-            "name": "Lựu Đỏ",
+            "name": "Lựu",
             "nameEn": "Pomegranate",
             "count": 1,
             "quality": null,
@@ -678,7 +678,7 @@ export const CC_ROOMS = [
             "source": "Cây Lựu (mùa Thu)"
           },
           {
-            "name": "Anh Đào",
+            "name": "Anh đào",
             "nameEn": "Cherry",
             "count": 1,
             "quality": null,
@@ -699,7 +699,7 @@ export const CC_ROOMS = [
     "bundles": [
       {
         "id": "river_fish",
-        "name": "Gói Cá Sông",
+        "name": "Cá Sông",
         "nameEn": "River Fish Bundle",
         "color": "teal",
         "required": 4,
@@ -710,7 +710,7 @@ export const CC_ROOMS = [
         },
         "items": [
           {
-            "name": "Cá Thái Dương",
+            "name": "Cá Thái dương",
             "nameEn": "Sunfish",
             "count": 1,
             "quality": null,
@@ -718,7 +718,7 @@ export const CC_ROOMS = [
             "source": "Sông, 6h–19h, Xuân/Hè, trời nắng"
           },
           {
-            "name": "Cá Trê Gai",
+            "name": "Cá Trê",
             "nameEn": "Catfish",
             "count": 1,
             "quality": null,
@@ -726,7 +726,7 @@ export const CC_ROOMS = [
             "source": "Sông, Xuân/Thu, trời mưa; Rừng Bí Mật"
           },
           {
-            "name": "Cá Trích Sông",
+            "name": "Cá trích Dày mình",
             "nameEn": "Shad",
             "count": 1,
             "quality": null,
@@ -734,7 +734,7 @@ export const CC_ROOMS = [
             "source": "Sông, 9h–2h, Xuân/Hè/Thu, trời mưa"
           },
           {
-            "name": "Cá hồi vằn",
+            "name": "Cá Hồi hổ",
             "nameEn": "Tiger Trout",
             "count": 1,
             "quality": null,
@@ -745,18 +745,18 @@ export const CC_ROOMS = [
       },
       {
         "id": "lake_fish",
-        "name": "Gói Cá Hồ",
+        "name": "Cá Hồ",
         "nameEn": "Lake Fish Bundle",
         "color": "green",
         "required": 4,
         "reward": {
-          "name": "Mồi xoay trang trí (Dressed Spinner)",
+          "name": "Phao xoay có Trang trí (Dressed Spinner)",
           "count": 1,
           "icon": "assets/icons/dressed_spinner.png"
         },
         "items": [
           {
-            "name": "Cá vược miệng rộng",
+            "name": "Cá Vược miệng rộng",
             "nameEn": "Largemouth Bass",
             "count": 1,
             "quality": null,
@@ -764,7 +764,7 @@ export const CC_ROOMS = [
             "source": "Hồ trên Núi, 6h–19h, mọi mùa"
           },
           {
-            "name": "Cá Chép Thường",
+            "name": "Cá Chép",
             "nameEn": "Carp",
             "count": 1,
             "quality": null,
@@ -772,7 +772,7 @@ export const CC_ROOMS = [
             "source": "Hồ trên Núi (Xuân/Hè/Thu); Rừng Bí Mật; Cống ngầm"
           },
           {
-            "name": "Cá trê đầu bò",
+            "name": "Cá Ngạnh",
             "nameEn": "Bullhead",
             "count": 1,
             "quality": null,
@@ -780,7 +780,7 @@ export const CC_ROOMS = [
             "source": "Hồ trên Núi, mọi lúc, mọi mùa"
           },
           {
-            "name": "Cá tầm",
+            "name": "Cá Tầm",
             "nameEn": "Sturgeon",
             "count": 1,
             "quality": null,
@@ -791,18 +791,18 @@ export const CC_ROOMS = [
       },
       {
         "id": "ocean_fish",
-        "name": "Gói Cá Biển",
+        "name": "Cá Biển",
         "nameEn": "Ocean Fish Bundle",
         "color": "blue",
         "required": 4,
         "reward": {
-          "name": "Vật tổ dịch chuyển: Bãi biển (Warp Totem: Beach)",
+          "name": "Cọc dịch chuyển: Biển (Warp Totem: Beach)",
           "count": 5,
           "icon": "assets/icons/warp_totem_beach.png"
         },
         "items": [
           {
-            "name": "Cá Mòi Biển",
+            "name": "Cá Mòi",
             "nameEn": "Sardine",
             "count": 1,
             "quality": null,
@@ -810,7 +810,7 @@ export const CC_ROOMS = [
             "source": "Biển, 6h–19h, Xuân/Thu/Đông"
           },
           {
-            "name": "Cá ngừ",
+            "name": "Cá Ngừ",
             "nameEn": "Tuna",
             "count": 1,
             "quality": null,
@@ -818,7 +818,7 @@ export const CC_ROOMS = [
             "source": "Biển, 6h–19h, Hè/Đông"
           },
           {
-            "name": "Cá Hồng Đỏ",
+            "name": "Cá Hồng",
             "nameEn": "Red Snapper",
             "count": 1,
             "quality": null,
@@ -826,7 +826,7 @@ export const CC_ROOMS = [
             "source": "Biển, 6h–19h, Hè/Thu, trời mưa"
           },
           {
-            "name": "Cá Rô Phi",
+            "name": "Cá Rô phi",
             "nameEn": "Tilapia",
             "count": 1,
             "quality": null,
@@ -837,18 +837,18 @@ export const CC_ROOMS = [
       },
       {
         "id": "night_fishing",
-        "name": "Gói Câu Cá Đêm",
+        "name": "Câu Đêm",
         "nameEn": "Night Fishing Bundle",
         "color": "purple",
         "required": 3,
         "reward": {
-          "name": "Nhẫn phát sáng (Glow Ring)",
+          "name": "Nhẫn Phát sáng (Glow Ring)",
           "count": 1,
           "icon": "assets/icons/glow_ring.png"
         },
         "items": [
           {
-            "name": "Cá vược mắt trắng",
+            "name": "Cá vược Mắt to",
             "nameEn": "Walleye",
             "count": 1,
             "quality": null,
@@ -856,7 +856,7 @@ export const CC_ROOMS = [
             "source": "Sông/Hồ/Ao rừng, 12h–2h, mùa Thu, trời mưa"
           },
           {
-            "name": "Cá Vền Sông",
+            "name": "Cá Vền",
             "nameEn": "Bream",
             "count": 1,
             "quality": null,
@@ -864,7 +864,7 @@ export const CC_ROOMS = [
             "source": "Sông, 18h–2h, mọi mùa"
           },
           {
-            "name": "Cá Chình Biển",
+            "name": "Lươn",
             "nameEn": "Eel",
             "count": 1,
             "quality": null,
@@ -875,18 +875,18 @@ export const CC_ROOMS = [
       },
       {
         "id": "crab_pot",
-        "name": "Gói Bẫy Cua",
+        "name": "Đặt Bẫy",
         "nameEn": "Crab Pot Bundle",
         "color": "purple",
         "required": 5,
         "reward": {
-          "name": "Bẫy cua (Crab Pot)",
+          "name": "Bẫy Cua (Crab Pot)",
           "count": 3,
           "icon": "assets/icons/crab_pot.png"
         },
         "items": [
           {
-            "name": "Tôm Hùm Biển",
+            "name": "Tôm Hùm",
             "nameEn": "Lobster",
             "count": 1,
             "quality": null,
@@ -894,7 +894,7 @@ export const CC_ROOMS = [
             "source": "Bẫy cua (biển)"
           },
           {
-            "name": "Tôm càng",
+            "name": "Tôm hùm đất",
             "nameEn": "Crayfish",
             "count": 1,
             "quality": null,
@@ -902,7 +902,7 @@ export const CC_ROOMS = [
             "source": "Bẫy cua (nước ngọt)"
           },
           {
-            "name": "Cua Biển",
+            "name": "Cua",
             "nameEn": "Crab",
             "count": 1,
             "quality": null,
@@ -910,7 +910,7 @@ export const CC_ROOMS = [
             "source": "Bẫy cua (biển); Cua đá trong Mỏ"
           },
           {
-            "name": "Sò Huyết",
+            "name": "Sò",
             "nameEn": "Cockle",
             "count": 1,
             "quality": null,
@@ -918,7 +918,7 @@ export const CC_ROOMS = [
             "source": "Bẫy cua (biển); nhặt ở Bãi biển"
           },
           {
-            "name": "Vẹm Xanh",
+            "name": "Trai",
             "nameEn": "Mussel",
             "count": 1,
             "quality": null,
@@ -926,7 +926,7 @@ export const CC_ROOMS = [
             "source": "Bẫy cua (biển); nhặt ở Bãi biển"
           },
           {
-            "name": "Tôm Biển",
+            "name": "Tôm",
             "nameEn": "Shrimp",
             "count": 1,
             "quality": null,
@@ -934,7 +934,7 @@ export const CC_ROOMS = [
             "source": "Bẫy cua (biển)"
           },
           {
-            "name": "Ốc Sên Nước",
+            "name": "Ốc",
             "nameEn": "Snail",
             "count": 1,
             "quality": null,
@@ -942,7 +942,7 @@ export const CC_ROOMS = [
             "source": "Bẫy cua (nước ngọt)"
           },
           {
-            "name": "Ốc Gạo Xanh",
+            "name": "Ốc mỡ",
             "nameEn": "Periwinkle",
             "count": 1,
             "quality": null,
@@ -950,7 +950,7 @@ export const CC_ROOMS = [
             "source": "Bẫy cua (nước ngọt)"
           },
           {
-            "name": "Hàu Biển",
+            "name": "Hàu",
             "nameEn": "Oyster",
             "count": 1,
             "quality": null,
@@ -958,7 +958,7 @@ export const CC_ROOMS = [
             "source": "Bẫy cua (biển); nhặt ở Bãi biển"
           },
           {
-            "name": "Nghêu Biển",
+            "name": "Nghêu",
             "nameEn": "Clam",
             "count": 1,
             "quality": null,
@@ -969,18 +969,18 @@ export const CC_ROOMS = [
       },
       {
         "id": "specialty_fish",
-        "name": "Gói Cá Đặc Biệt",
+        "name": "Cá Đặc sản",
         "nameEn": "Specialty Fish Bundle",
         "color": "red",
         "required": 4,
         "reward": {
-          "name": "Món Hải Sản (Dish O' The Sea)",
+          "name": "Suất đồ Biển (Dish O' The Sea)",
           "count": 5,
           "icon": "assets/icons/dish_o_the_sea.png"
         },
         "items": [
           {
-            "name": "Cá Nóc Phồng",
+            "name": "Cá Nóc",
             "nameEn": "Pufferfish",
             "count": 1,
             "quality": null,
@@ -988,7 +988,7 @@ export const CC_ROOMS = [
             "source": "Biển, 12h–16h, mùa Hè, trời nắng"
           },
           {
-            "name": "Cá Ma Mù",
+            "name": "Cá Ma",
             "nameEn": "Ghostfish",
             "count": 1,
             "quality": null,
@@ -1004,7 +1004,7 @@ export const CC_ROOMS = [
             "source": "Ao ở Sa Mạc, 6h–20h, mọi mùa"
           },
           {
-            "name": "Cá rừng",
+            "name": "Cá Leo cây",
             "nameEn": "Woodskip",
             "count": 1,
             "quality": null,
@@ -1025,7 +1025,7 @@ export const CC_ROOMS = [
     "bundles": [
       {
         "id": "blacksmith",
-        "name": "Gói Thợ Rèn",
+        "name": "Thợ rèn",
         "nameEn": "Blacksmith's Bundle",
         "color": "orange",
         "required": 3,
@@ -1036,7 +1036,7 @@ export const CC_ROOMS = [
         },
         "items": [
           {
-            "name": "Thỏi đồng",
+            "name": "Thỏi Đồng",
             "nameEn": "Copper Bar",
             "count": 1,
             "quality": null,
@@ -1044,7 +1044,7 @@ export const CC_ROOMS = [
             "source": "Nung Quặng Đồng trong Lò nung"
           },
           {
-            "name": "Thỏi sắt",
+            "name": "Thỏi Sắt",
             "nameEn": "Iron Bar",
             "count": 1,
             "quality": null,
@@ -1052,7 +1052,7 @@ export const CC_ROOMS = [
             "source": "Nung Quặng Sắt trong Lò nung"
           },
           {
-            "name": "Thỏi vàng",
+            "name": "Thỏi Vàng",
             "nameEn": "Gold Bar",
             "count": 1,
             "quality": null,
@@ -1063,12 +1063,12 @@ export const CC_ROOMS = [
       },
       {
         "id": "geologist",
-        "name": "Gói Nhà Địa Chất",
+        "name": "Địa chất",
         "nameEn": "Geologist's Bundle",
         "color": "purple",
         "required": 4,
         "reward": {
-          "name": "Geode Vạn năng (Omni Geode)",
+          "name": "Hốc tinh Toàn năng (Omni Geode)",
           "count": 5,
           "icon": "assets/icons/omni_geode.png"
         },
@@ -1082,7 +1082,7 @@ export const CC_ROOMS = [
             "source": "Nhặt trong Mỏ (mọi tầng)"
           },
           {
-            "name": "Tinh thể đất",
+            "name": "Tinh thể Đất",
             "nameEn": "Earth Crystal",
             "count": 1,
             "quality": null,
@@ -1090,7 +1090,7 @@ export const CC_ROOMS = [
             "source": "Mỏ tầng 1–39; Geode"
           },
           {
-            "name": "Nước mắt băng",
+            "name": "Băng giọt lệ",
             "nameEn": "Frozen Tear",
             "count": 1,
             "quality": null,
@@ -1098,7 +1098,7 @@ export const CC_ROOMS = [
             "source": "Mỏ tầng 41–79; Geode Băng"
           },
           {
-            "name": "Thạch anh lửa",
+            "name": "Thạch anh Lửa",
             "nameEn": "Fire Quartz",
             "count": 1,
             "quality": null,
@@ -1109,18 +1109,18 @@ export const CC_ROOMS = [
       },
       {
         "id": "adventurer",
-        "name": "Gói Nhà Thám Hiểm",
+        "name": "Thám hiểm",
         "nameEn": "Adventurer's Bundle",
         "color": "purple",
         "required": 2,
         "reward": {
-          "name": "Nhẫn nam châm nhỏ (Small Magnet Ring)",
+          "name": "Nhẫn Từ trường nhỏ (Small Magnet Ring)",
           "count": 1,
           "icon": "assets/icons/small_magnet_ring.png"
         },
         "items": [
           {
-            "name": "Chất nhờn",
+            "name": "Thạch Xà-lam",
             "nameEn": "Slime",
             "count": 99,
             "quality": null,
@@ -1128,7 +1128,7 @@ export const CC_ROOMS = [
             "source": "Đánh Slime"
           },
           {
-            "name": "Cánh dơi",
+            "name": "Cánh Dơi",
             "nameEn": "Bat Wing",
             "count": 10,
             "quality": null,
@@ -1136,7 +1136,7 @@ export const CC_ROOMS = [
             "source": "Dơi trong Mỏ / Hang Sọ"
           },
           {
-            "name": "Tinh chất mặt trời",
+            "name": "Tinh chất Mặt trời",
             "nameEn": "Solar Essence",
             "count": 1,
             "quality": null,
@@ -1144,7 +1144,7 @@ export const CC_ROOMS = [
             "source": "Ma, Squid Kid, Metal Head; mua ở Krobus"
           },
           {
-            "name": "Tinh chất hư không",
+            "name": "Tinh chất Hư không",
             "nameEn": "Void Essence",
             "count": 1,
             "quality": null,
@@ -1157,7 +1157,7 @@ export const CC_ROOMS = [
   },
   {
     "id": "bulletin_board",
-    "name": "Bảng Tin",
+    "name": "Bảng tin",
     "nameEn": "Bulletin Board",
     "icon": "price_catalogue",
     "reward": "+2 tim với mọi dân làng không thể kết hôn",
@@ -1165,18 +1165,18 @@ export const CC_ROOMS = [
     "bundles": [
       {
         "id": "chef",
-        "name": "Gói Đầu Bếp",
+        "name": "Bếp núc",
         "nameEn": "Chef's Bundle",
         "color": "red",
         "required": 6,
         "reward": {
-          "name": "Bánh hồng (Pink Cake)",
+          "name": "Bánh kem Hồng (Pink Cake)",
           "count": 3,
           "icon": "assets/icons/pink_cake.png"
         },
         "items": [
           {
-            "name": "Siro cây phong",
+            "name": "Si-rô nhựa Phong",
             "nameEn": "Maple Syrup",
             "count": 1,
             "quality": null,
@@ -1184,7 +1184,7 @@ export const CC_ROOMS = [
             "source": "Gắn Máy chiết nhựa vào cây Phong"
           },
           {
-            "name": "Rau Dớn Cuộn",
+            "name": "Rau Dớn",
             "nameEn": "Fiddlehead Fern",
             "count": 1,
             "quality": null,
@@ -1192,7 +1192,7 @@ export const CC_ROOMS = [
             "source": "Rừng Bí Mật mùa Hè"
           },
           {
-            "name": "Nấm cục",
+            "name": "Nấm Cục",
             "nameEn": "Truffle",
             "count": 1,
             "quality": null,
@@ -1200,7 +1200,7 @@ export const CC_ROOMS = [
             "source": "Heo đào được"
           },
           {
-            "name": "Hoa Anh Túc",
+            "name": "Hoa Anh túc",
             "nameEn": "Poppy",
             "count": 1,
             "quality": null,
@@ -1208,7 +1208,7 @@ export const CC_ROOMS = [
             "source": "Trồng mùa Hè"
           },
           {
-            "name": "Cơm cuộn Maki",
+            "name": "Cơm cuộn Rong biển",
             "nameEn": "Maki Roll",
             "count": 1,
             "quality": null,
@@ -1216,7 +1216,7 @@ export const CC_ROOMS = [
             "source": "Nấu ăn (công thức từ TV / Quán rượu)"
           },
           {
-            "name": "Trứng Chiên",
+            "name": "Trứng chiên",
             "nameEn": "Fried Egg",
             "count": 1,
             "quality": null,
@@ -1227,18 +1227,18 @@ export const CC_ROOMS = [
       },
       {
         "id": "dye",
-        "name": "Gói Thuốc Nhuộm",
+        "name": "Thuốc nhuộm",
         "nameEn": "Dye Bundle",
         "color": "teal",
         "required": 6,
         "reward": {
-          "name": "Máy tạo hạt giống (Seed Maker)",
+          "name": "Máy tạo Hạt giống (Seed Maker)",
           "count": 1,
           "icon": "assets/icons/seed_maker.png"
         },
         "items": [
           {
-            "name": "Nấm đỏ",
+            "name": "Nấm Đỏ",
             "nameEn": "Red Mushroom",
             "count": 1,
             "quality": null,
@@ -1246,7 +1246,7 @@ export const CC_ROOMS = [
             "source": "Mỏ; Rừng Bí Mật (Hè/Thu); Hang Nông Trại (nấm)"
           },
           {
-            "name": "Nhum Biển",
+            "name": "Nhím Biển",
             "nameEn": "Sea Urchin",
             "count": 1,
             "quality": null,
@@ -1254,7 +1254,7 @@ export const CC_ROOMS = [
             "source": "Bãi biển (sau khi sửa cầu)"
           },
           {
-            "name": "Hoa hướng dương",
+            "name": "Hoa Hướng dương",
             "nameEn": "Sunflower",
             "count": 1,
             "quality": null,
@@ -1262,7 +1262,7 @@ export const CC_ROOMS = [
             "source": "Trồng mùa Hè / Thu"
           },
           {
-            "name": "Lông vịt",
+            "name": "Lông Vịt",
             "nameEn": "Duck Feather",
             "count": 1,
             "quality": null,
@@ -1278,7 +1278,7 @@ export const CC_ROOMS = [
             "source": "Mỏ đá Aquamarine; rương câu cá"
           },
           {
-            "name": "Bắp Cải Tím",
+            "name": "Bắp cải Đỏ",
             "nameEn": "Red Cabbage",
             "count": 1,
             "quality": null,
@@ -1289,18 +1289,18 @@ export const CC_ROOMS = [
       },
       {
         "id": "field_research",
-        "name": "Gói Nghiên Cứu Thực Địa",
+        "name": "Nghiên cứu Thực địa",
         "nameEn": "Field Research Bundle",
         "color": "blue",
         "required": 4,
         "reward": {
-          "name": "Máy tái chế (Recycling Machine)",
+          "name": "Máy Tái chế (Recycling Machine)",
           "count": 1,
           "icon": "assets/icons/recycling_machine.png"
         },
         "items": [
           {
-            "name": "Nấm tím",
+            "name": "Nấm Tím",
             "nameEn": "Purple Mushroom",
             "count": 1,
             "quality": null,
@@ -1308,7 +1308,7 @@ export const CC_ROOMS = [
             "source": "Mỏ; Hang Nông Trại (nấm)"
           },
           {
-            "name": "Vỏ ốc anh vũ",
+            "name": "Vỏ ốc Anh vũ",
             "nameEn": "Nautilus Shell",
             "count": 1,
             "quality": null,
@@ -1316,7 +1316,7 @@ export const CC_ROOMS = [
             "source": "Bãi biển mùa Đông"
           },
           {
-            "name": "Cá Chày",
+            "name": "Cá Mương",
             "nameEn": "Chub",
             "count": 1,
             "quality": null,
@@ -1324,7 +1324,7 @@ export const CC_ROOMS = [
             "source": "Hồ trên Núi và sông, mọi mùa"
           },
           {
-            "name": "Geode băng",
+            "name": "Hốc tinh Băng",
             "nameEn": "Frozen Geode",
             "count": 1,
             "quality": null,
@@ -1335,7 +1335,7 @@ export const CC_ROOMS = [
       },
       {
         "id": "fodder",
-        "name": "Gói Thức Ăn Gia Súc",
+        "name": "Thức ăn Chăn nuôi",
         "nameEn": "Fodder Bundle",
         "color": "yellow",
         "required": 3,
@@ -1354,7 +1354,7 @@ export const CC_ROOMS = [
             "source": "Trồng mùa Hè / Thu"
           },
           {
-            "name": "Cỏ khô",
+            "name": "Rơm rạ",
             "nameEn": "Hay",
             "count": 10,
             "quality": null,
@@ -1362,7 +1362,7 @@ export const CC_ROOMS = [
             "source": "Mua ở trang trại Marnie; cắt cỏ có Silo"
           },
           {
-            "name": "Táo Đỏ",
+            "name": "Táo",
             "nameEn": "Apple",
             "count": 3,
             "quality": null,
@@ -1373,18 +1373,18 @@ export const CC_ROOMS = [
       },
       {
         "id": "enchanter",
-        "name": "Gói Pháp Sư",
+        "name": "Ma pháp",
         "nameEn": "Enchanter's Bundle",
         "color": "purple",
         "required": 4,
         "reward": {
-          "name": "Thỏi vàng (Gold Bar)",
+          "name": "Thỏi Vàng (Gold Bar)",
           "count": 5,
           "icon": "assets/icons/ing_gold_bar.png"
         },
         "items": [
           {
-            "name": "Nhựa cây sồi",
+            "name": "Nhựa Sồi",
             "nameEn": "Oak Resin",
             "count": 1,
             "quality": null,
@@ -1392,7 +1392,7 @@ export const CC_ROOMS = [
             "source": "Gắn Máy chiết nhựa vào cây Sồi"
           },
           {
-            "name": "Rượu vang",
+            "name": "Rượu",
             "nameEn": "Wine",
             "count": 1,
             "quality": null,
@@ -1400,7 +1400,7 @@ export const CC_ROOMS = [
             "source": "Thùng ủ + trái cây"
           },
           {
-            "name": "Chân thỏ",
+            "name": "Chân Thỏ",
             "nameEn": "Rabbit's Foot",
             "count": 1,
             "quality": null,
@@ -1408,7 +1408,7 @@ export const CC_ROOMS = [
             "source": "Thỏ (quan hệ cao); Serpent"
           },
           {
-            "name": "Lựu Đỏ",
+            "name": "Lựu",
             "nameEn": "Pomegranate",
             "count": 1,
             "quality": null,
@@ -1429,12 +1429,12 @@ export const CC_ROOMS = [
     "bundles": [
       {
         "id": "vault_2500",
-        "name": "Gói 2.500g",
+        "name": "2,500Đ",
         "nameEn": "2,500g Bundle",
         "color": "red",
         "required": 1,
         "reward": {
-          "name": "Bánh Gato Sô-cô-la (Chocolate Cake)",
+          "name": "Bánh Sô-cô-la (Chocolate Cake)",
           "count": 3,
           "icon": "assets/icons/chocolate_cake.png"
         },
@@ -1452,12 +1452,12 @@ export const CC_ROOMS = [
       },
       {
         "id": "vault_5000",
-        "name": "Gói 5.000g",
+        "name": "5,000Đ",
         "nameEn": "5,000g Bundle",
         "color": "orange",
         "required": 1,
         "reward": {
-          "name": "Phân bón chất lượng (Quality Fertilizer)",
+          "name": "Phân bón Chất lượng (Quality Fertilizer)",
           "count": 30,
           "icon": "assets/icons/quality_fertilizer.png"
         },
@@ -1475,7 +1475,7 @@ export const CC_ROOMS = [
       },
       {
         "id": "vault_10000",
-        "name": "Gói 10.000g",
+        "name": "10,000Đ",
         "nameEn": "10,000g Bundle",
         "color": "yellow",
         "required": 1,
@@ -1498,12 +1498,12 @@ export const CC_ROOMS = [
       },
       {
         "id": "vault_25000",
-        "name": "Gói 25.000g",
+        "name": "25,000Đ",
         "nameEn": "25,000g Bundle",
         "color": "purple",
         "required": 1,
         "reward": {
-          "name": "Máy nhân bản pha lê (Crystalarium)",
+          "name": "Máy Sao chép Ngọc (Crystalarium)",
           "count": 1,
           "icon": "assets/icons/crystalarium.png"
         },
@@ -1531,7 +1531,7 @@ export const CC_ROOMS = [
     "bundles": [
       {
         "id": "missing_bundle",
-        "name": "Gói Bị Thất Lạc",
+        "name": "Vật đáng nhớ",
         "nameEn": "The Missing Bundle",
         "color": "purple",
         "required": 5,
@@ -1542,7 +1542,7 @@ export const CC_ROOMS = [
         },
         "items": [
           {
-            "name": "Rượu vang",
+            "name": "Rượu",
             "nameEn": "Wine",
             "count": 1,
             "quality": "silver",
@@ -1550,7 +1550,7 @@ export const CC_ROOMS = [
             "source": "Rượu vang bạc trở lên: ủ trong Thùng gỗ sồi (Cask)"
           },
           {
-            "name": "Sốt mayonnaise khủng long",
+            "name": "Sốt Trứng khủng long",
             "nameEn": "Dinosaur Mayonnaise",
             "count": 1,
             "quality": null,
@@ -1558,7 +1558,7 @@ export const CC_ROOMS = [
             "source": "Máy làm sốt Mayonnaise + Trứng khủng long"
           },
           {
-            "name": "Mảnh Lăng Kính",
+            "name": "Mảnh Ngũ sắc",
             "nameEn": "Prismatic Shard",
             "count": 1,
             "quality": null,
@@ -1566,7 +1566,7 @@ export const CC_ROOMS = [
             "source": "Khai thác Mỏ / Hang Sọ, Geode Đa Năng"
           },
           {
-            "name": "Quả Cổ Đại",
+            "name": "Trái cây Cổ đại",
             "nameEn": "Ancient Fruit",
             "count": 5,
             "quality": "gold",
@@ -1574,7 +1574,7 @@ export const CC_ROOMS = [
             "source": "Trồng Hạt Cổ Đại (chất lượng vàng)"
           },
           {
-            "name": "Cá hồi hư không",
+            "name": "Cá hồi Hư không",
             "nameEn": "Void Salmon",
             "count": 1,
             "quality": "gold",
@@ -1582,7 +1582,7 @@ export const CC_ROOMS = [
             "source": "Câu ở Đầm Phù Thủy (chất lượng vàng)"
           },
           {
-            "name": "Trứng cá muối",
+            "name": "Trứng cá tầm muối",
             "nameEn": "Caviar",
             "count": 1,
             "quality": null,

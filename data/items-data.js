@@ -7,7 +7,7 @@
 export const ITEMS_DATA = [
   {
     "id": "item_axe",
-    "name": "Rìu Gỗ Cơ Bản",
+    "name": "Rìu",
     "nameEn": "Axe",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -57,7 +57,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_steel_axe",
-    "name": "Rìu Sắt (Thép)",
+    "name": "Rìu Thép",
     "nameEn": "Steel Axe",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -132,7 +132,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_pickaxe",
-    "name": "Cuốc Chim (Xẻng Mỏ) Cơ Bản",
+    "name": "Cuốc chim",
     "nameEn": "Pickaxe",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -157,7 +157,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_copper_pickaxe",
-    "name": "Cuốc Chim Đồng",
+    "name": "Cuốc chim Đồng",
     "nameEn": "Copper Pickaxe",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -182,7 +182,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_steel_pickaxe",
-    "name": "Cuốc Chim Sắt",
+    "name": "Cuốc chim Thép",
     "nameEn": "Steel Pickaxe",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -207,7 +207,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_gold_pickaxe",
-    "name": "Cuốc Chim Vàng",
+    "name": "Cuốc chim Vàng",
     "nameEn": "Gold Pickaxe",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -232,7 +232,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_iridium_pickaxe",
-    "name": "Cuốc Chim Iridium",
+    "name": "Cuốc chim Iridium",
     "nameEn": "Iridium Pickaxe",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -256,7 +256,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_hoe",
-    "name": "Cuốc Đất Cơ Bản",
+    "name": "Cuốc",
     "nameEn": "Hoe",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -281,7 +281,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_iridium_hoe",
-    "name": "Cuốc Đất Iridium",
+    "name": "Cuốc Iridium",
     "nameEn": "Iridium Hoe",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -305,7 +305,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_watering_can",
-    "name": "Bình Tưới Nước Cơ Bản",
+    "name": "Bình tưới",
     "nameEn": "Watering Can",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -330,7 +330,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_iridium_watering_can",
-    "name": "Bình Tưới Nước Iridium",
+    "name": "Bình tưới Iridium",
     "nameEn": "Iridium Watering Can",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -355,7 +355,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_scythe",
-    "name": "Liềm Cắt Cỏ Cơ Bản",
+    "name": "Liềm",
     "nameEn": "Scythe",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -380,7 +380,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_golden_scythe",
-    "name": "Liềm Vàng Cổ Đại",
+    "name": "Liềm Hoàng kim",
     "nameEn": "Golden Scythe",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -406,7 +406,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_iridium_scythe",
-    "name": "Liềm Iridium Thần Thánh (1.6)",
+    "name": "Liềm Iridium (1.6)",
     "nameEn": "Iridium Scythe",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -431,7 +431,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_fishing_rod_bamboo",
-    "name": "Cần Câu Tre Cơ Bản",
+    "name": "Cần Trúc",
     "nameEn": "Bamboo Pole",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -456,7 +456,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_fishing_rod_iridium",
-    "name": "Cần Câu Iridium",
+    "name": "Cần câu Iridium",
     "nameEn": "Iridium Rod",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -481,7 +481,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_advanced_iridium_rod",
-    "name": "Cần Câu Iridium Nâng Cấp (1.6)",
+    "name": "Cần câu Iridium Cao Cấp (1.6)",
     "nameEn": "Advanced Iridium Rod",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -506,7 +506,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_galaxy_sword",
-    "name": "Kiếm Thiên Hà (Galaxy Sword)",
+    "name": "Kiếm Ngân hà (Galaxy Sword)",
     "nameEn": "Galaxy Sword",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -536,7 +536,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_infinity_blade",
-    "name": "Lưỡi Kiếm Vô Cực (Infinity Blade)",
+    "name": "Kiếm Vô cực (Infinity Blade)",
     "nameEn": "Infinity Blade",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -570,7 +570,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_return_scepter",
-    "name": "Quyền Trượng Hồi Quy (Return Scepter)",
+    "name": "Trượng Hồi quy (Return Scepter)",
     "nameEn": "Return Scepter",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -594,7 +594,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_parsnip",
-    "name": "Củ Cải Vàng",
+    "name": "Củ cải vàng",
     "nameEn": "Parsnip",
     "category": "crops",
     "categoryTitle": "🌾 Nông Sản & Cây Trồng Các Mùa",
@@ -622,7 +622,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_cauliflower",
-    "name": "Súp Lơ Trắng (Bông Cải)",
+    "name": "Bông cải trắng",
     "nameEn": "Cauliflower",
     "category": "crops",
     "categoryTitle": "🌾 Nông Sản & Cây Trồng Các Mùa",
@@ -650,7 +650,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_potato",
-    "name": "Khoai Tây",
+    "name": "Khoai tây",
     "nameEn": "Potato",
     "category": "crops",
     "categoryTitle": "🌾 Nông Sản & Cây Trồng Các Mùa",
@@ -702,7 +702,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_carrot",
-    "name": "Cà Rốt Hoang Dã (1.6)",
+    "name": "Cà-rốt (1.6)",
     "nameEn": "Carrot",
     "category": "crops",
     "categoryTitle": "🌾 Nông Sản & Cây Trồng Các Mùa",
@@ -727,7 +727,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_blueberry",
-    "name": "Việt Quất Mùa Hè",
+    "name": "Việt quất",
     "nameEn": "Blueberry",
     "category": "crops",
     "categoryTitle": "🌾 Nông Sản & Cây Trồng Các Mùa",
@@ -753,7 +753,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_melon",
-    "name": "Dưa Gang (Dưa Lưới)",
+    "name": "Dưa",
     "nameEn": "Melon",
     "category": "crops",
     "categoryTitle": "🌾 Nông Sản & Cây Trồng Các Mùa",
@@ -782,7 +782,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_starfruit",
-    "name": "Khế Sao Hoàng Kim (Starfruit)",
+    "name": "Khế (Starfruit)",
     "nameEn": "Starfruit",
     "category": "crops",
     "categoryTitle": "🌾 Nông Sản & Cây Trồng Các Mùa",
@@ -807,7 +807,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_red_cabbage",
-    "name": "Bắp Cải Tím",
+    "name": "Bắp cải Đỏ",
     "nameEn": "Red Cabbage",
     "category": "crops",
     "categoryTitle": "🌾 Nông Sản & Cây Trồng Các Mùa",
@@ -833,7 +833,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_hot_pepper",
-    "name": "Ớt Cay Đỏ",
+    "name": "Ớt hiểm",
     "nameEn": "Hot Pepper",
     "category": "crops",
     "categoryTitle": "🌾 Nông Sản & Cây Trồng Các Mùa",
@@ -861,7 +861,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_summer_squash",
-    "name": "Bí Mùa Hè (1.6)",
+    "name": "Bí ngòi vàng (1.6)",
     "nameEn": "Summer Squash",
     "category": "crops",
     "categoryTitle": "🌾 Nông Sản & Cây Trồng Các Mùa",
@@ -886,7 +886,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_pumpkin",
-    "name": "Bí Ngô",
+    "name": "Bí ngô",
     "nameEn": "Pumpkin",
     "category": "crops",
     "categoryTitle": "🌾 Nông Sản & Cây Trồng Các Mùa",
@@ -917,7 +917,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_cranberries",
-    "name": "Nam Việt Quất (Cranberry)",
+    "name": "Nam việt quất (Cranberry)",
     "nameEn": "Cranberries",
     "category": "crops",
     "categoryTitle": "🌾 Nông Sản & Cây Trồng Các Mùa",
@@ -943,7 +943,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_sweet_gem_berry",
-    "name": "Quả Ngọt Quý Giá (Sweet Gem Berry)",
+    "name": "Dâu ngọc Ngọt ngào (Sweet Gem Berry)",
     "nameEn": "Sweet Gem Berry",
     "category": "crops",
     "categoryTitle": "🌾 Nông Sản & Cây Trồng Các Mùa",
@@ -967,7 +967,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_broccoli",
-    "name": "Súp Lơ Xanh / Bông Cải Xanh (1.6)",
+    "name": "Bông cải xanh (1.6)",
     "nameEn": "Broccoli",
     "category": "crops",
     "categoryTitle": "🌾 Nông Sản & Cây Trồng Các Mùa",
@@ -992,7 +992,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_ancient_fruit",
-    "name": "Quả Cổ Đại (Ancient Fruit)",
+    "name": "Trái cây Cổ đại (Ancient Fruit)",
     "nameEn": "Ancient Fruit",
     "category": "crops",
     "categoryTitle": "🌾 Nông Sản & Cây Trồng Các Mùa",
@@ -1017,7 +1017,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_powdermelon",
-    "name": "Dưa Hấu Tuyết (1.6)",
+    "name": "Dưa Tuyết (1.6)",
     "nameEn": "Powdermelon",
     "category": "crops",
     "categoryTitle": "🌾 Nông Sản & Cây Trồng Các Mùa",
@@ -1042,7 +1042,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_apple",
-    "name": "Táo Đỏ",
+    "name": "Táo",
     "nameEn": "Apple",
     "category": "fruits",
     "categoryTitle": "🍎 Trái Cây & Cây Ăn Quả",
@@ -1068,7 +1068,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_pomegranate",
-    "name": "Lựu Đỏ",
+    "name": "Lựu",
     "nameEn": "Pomegranate",
     "category": "fruits",
     "categoryTitle": "🍎 Trái Cây & Cây Ăn Quả",
@@ -1095,7 +1095,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_peach",
-    "name": "Đào Tiên Hồng",
+    "name": "Đào",
     "nameEn": "Peach",
     "category": "fruits",
     "categoryTitle": "🍎 Trái Cây & Cây Ăn Quả",
@@ -1122,7 +1122,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_cherry",
-    "name": "Anh Đào (Cherry)",
+    "name": "Anh đào (Cherry)",
     "nameEn": "Cherry",
     "category": "fruits",
     "categoryTitle": "🍎 Trái Cây & Cây Ăn Quả",
@@ -1147,7 +1147,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_banana",
-    "name": "Chuối Nhiệt Đới",
+    "name": "Chuối",
     "nameEn": "Banana",
     "category": "fruits",
     "categoryTitle": "🍎 Trái Cây & Cây Ăn Quả",
@@ -1172,7 +1172,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_mango",
-    "name": "Xoài Nhiệt Đới",
+    "name": "Xoài",
     "nameEn": "Mango",
     "category": "fruits",
     "categoryTitle": "🍎 Trái Cây & Cây Ăn Quả",
@@ -1199,7 +1199,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_legend",
-    "name": "Cá Huyền Thoại (Legend)",
+    "name": "Cá Huyền thoại (Legend)",
     "nameEn": "Legend",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -1224,7 +1224,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_crimsonfish",
-    "name": "Cá Đỏ Thẫm (Crimsonfish)",
+    "name": "Cá Phi Hồng (Crimsonfish)",
     "nameEn": "Crimsonfish",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -1248,7 +1248,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_angler",
-    "name": "Cá Lồng Đèn (Angler)",
+    "name": "Cá Lồng đèn (Angler)",
     "nameEn": "Angler",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -1272,7 +1272,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_glacierfish",
-    "name": "Cá Băng Giá (Glacierfish)",
+    "name": "Cá Băng hà (Glacierfish)",
     "nameEn": "Glacierfish",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -1296,7 +1296,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_mutant_carp",
-    "name": "Cá Chép Biến Dị (Mutant Carp)",
+    "name": "Cá chép Biến dị (Mutant Carp)",
     "nameEn": "Mutant Carp",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -1320,7 +1320,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_lava_eel",
-    "name": "Lươn Dung Nham (Lava Eel)",
+    "name": "Lươn Dung nham (Lava Eel)",
     "nameEn": "Lava Eel",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -1346,7 +1346,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_sturgeon",
-    "name": "Cá Tầm Hoàng Gia (Sturgeon)",
+    "name": "Cá Tầm (Sturgeon)",
     "nameEn": "Sturgeon",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -1373,7 +1373,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_catfish",
-    "name": "Cá Trê Gai (Catfish)",
+    "name": "Cá Trê (Catfish)",
     "nameEn": "Catfish",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -1400,7 +1400,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_pufferfish",
-    "name": "Cá Nóc Phồng (Pufferfish)",
+    "name": "Cá Nóc (Pufferfish)",
     "nameEn": "Pufferfish",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -1427,7 +1427,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_goby",
-    "name": "Cá Bống Thác Nước (Goby - 1.6)",
+    "name": "Cá Bống (Goby - 1.6)",
     "nameEn": "Goby",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -1451,7 +1451,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_prismatic_shard",
-    "name": "Mảnh Lăng Kính (Prismatic Shard)",
+    "name": "Mảnh Ngũ sắc (Prismatic Shard)",
     "nameEn": "Prismatic Shard",
     "category": "minerals",
     "categoryTitle": "💎 Khoáng Sản, Đá Quý & Quặng",
@@ -1480,7 +1480,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_diamond",
-    "name": "Kim Cương Tinh Khiết",
+    "name": "Kim cương",
     "nameEn": "Diamond",
     "category": "minerals",
     "categoryTitle": "💎 Khoáng Sản, Đá Quý & Quặng",
@@ -1515,7 +1515,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_ruby",
-    "name": "Hồng Ngọc (Ruby)",
+    "name": "Hồng ngọc (Ruby)",
     "nameEn": "Ruby",
     "category": "minerals",
     "categoryTitle": "💎 Khoáng Sản, Đá Quý & Quặng",
@@ -1598,7 +1598,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_large_egg",
-    "name": "Trứng Gà Thượng Hạng",
+    "name": "Trứng gà to",
     "nameEn": "Large Egg",
     "category": "animal_products",
     "categoryTitle": "🥚 Sản Phẩm Chăn Nuôi",
@@ -1623,7 +1623,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_void_egg",
-    "name": "Trứng Gà Hư Vô (Void Egg)",
+    "name": "Trứng Hư không (Void Egg)",
     "nameEn": "Void Egg",
     "category": "animal_products",
     "categoryTitle": "🥚 Sản Phẩm Chăn Nuôi",
@@ -1651,7 +1651,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_dinosaur_egg",
-    "name": "Trứng Khủng Long Cổ Đại",
+    "name": "Trứng Khủng long",
     "nameEn": "Dinosaur Egg",
     "category": "animal_products",
     "categoryTitle": "🥚 Sản Phẩm Chăn Nuôi",
@@ -1676,7 +1676,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_large_milk",
-    "name": "Sữa Bò Thượng Hạng",
+    "name": "Sữa Bò bình to",
     "nameEn": "Large Milk",
     "category": "animal_products",
     "categoryTitle": "🥚 Sản Phẩm Chăn Nuôi",
@@ -1701,7 +1701,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_truffle",
-    "name": "Nấm Cục Truffle",
+    "name": "Nấm Cục",
     "nameEn": "Truffle",
     "category": "animal_products",
     "categoryTitle": "🥚 Sản Phẩm Chăn Nuôi",
@@ -1728,7 +1728,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_rabbits_foot",
-    "name": "Chân Thỏ May Mắn (Rabbit's Foot)",
+    "name": "Chân Thỏ (Rabbit's Foot)",
     "nameEn": "Rabbit's Foot",
     "category": "animal_products",
     "categoryTitle": "🥚 Sản Phẩm Chăn Nuôi",
@@ -1756,7 +1756,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_wild_horseradish",
-    "name": "Cải Ngựa Hoang Dã",
+    "name": "Cải ngựa Dại",
     "nameEn": "Wild Horseradish",
     "category": "forage",
     "categoryTitle": "🍄 Thu Nhặt Hoang Dã & Thảo Dược",
@@ -1783,7 +1783,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_morel",
-    "name": "Nấm Morel Quý Hiếm",
+    "name": "Nấm Bụng dê",
     "nameEn": "Morel",
     "category": "forage",
     "categoryTitle": "🍄 Thu Nhặt Hoang Dã & Thảo Dược",
@@ -1808,7 +1808,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_fiddlehead_fern",
-    "name": "Rau Dớn Cuộn (Fiddlehead Fern)",
+    "name": "Rau Dớn (Fiddlehead Fern)",
     "nameEn": "Fiddlehead Fern",
     "category": "forage",
     "categoryTitle": "🍄 Thu Nhặt Hoang Dã & Thảo Dược",
@@ -1833,7 +1833,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_purple_mushroom",
-    "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+    "name": "Nấm Tím (Purple Mushroom)",
     "nameEn": "Purple Mushroom",
     "category": "forage",
     "categoryTitle": "🍄 Thu Nhặt Hoang Dã & Thảo Dược",
@@ -1861,7 +1861,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_ancient_doll",
-    "name": "Búp Bê Cổ Đại (Ancient Doll)",
+    "name": "Búp bê Cổ đại (Ancient Doll)",
     "nameEn": "Ancient Doll",
     "category": "artifacts",
     "categoryTitle": "🏺 Cổ Vật & Di Vật Bí Ẩn",
@@ -1888,7 +1888,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_elvish_jewelry",
-    "name": "Trang Sức Tiên Tộc (Elvish Jewelry)",
+    "name": "Trang sức Yêu tinh (Elvish Jewelry)",
     "nameEn": "Elvish Jewelry",
     "category": "artifacts",
     "categoryTitle": "🏺 Cổ Vật & Di Vật Bí Ẩn",
@@ -1913,7 +1913,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_dwarvish_helm",
-    "name": "Mũ Giáp Người Lùn (Dwarvish Helm)",
+    "name": "Mũ sắt Người lùn (Dwarvish Helm)",
     "nameEn": "Dwarvish Helm",
     "category": "artifacts",
     "categoryTitle": "🏺 Cổ Vật & Di Vật Bí Ẩn",
@@ -1938,7 +1938,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_golden_relic",
-    "name": "Di Vật Mạ Vàng Thần Thoại",
+    "name": "Cổ vật Hoàng kim",
     "nameEn": "Golden Relic",
     "category": "artifacts",
     "categoryTitle": "🏺 Cổ Vật & Di Vật Bí Ẩn",
@@ -1962,7 +1962,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_copper_hoe",
-    "name": "Cuốc Đất Đồng",
+    "name": "Cuốc Đồng",
     "nameEn": "Copper Hoe",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -1986,7 +1986,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_steel_hoe",
-    "name": "Cuốc Đất Sắt",
+    "name": "Cuốc Thép",
     "nameEn": "Steel Hoe",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -2010,7 +2010,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_gold_hoe",
-    "name": "Cuốc Đất Vàng",
+    "name": "Cuốc Vàng",
     "nameEn": "Gold Hoe",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -2034,7 +2034,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_copper_watering_can",
-    "name": "Bình Tưới Nước Đồng",
+    "name": "Bình tưới Đồng",
     "nameEn": "Copper Watering Can",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -2059,7 +2059,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_steel_watering_can",
-    "name": "Bình Tưới Nước Sắt",
+    "name": "Bình tưới Thép",
     "nameEn": "Steel Watering Can",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -2084,7 +2084,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_gold_watering_can",
-    "name": "Bình Tưới Nước Vàng",
+    "name": "Bình tưới Vàng",
     "nameEn": "Gold Watering Can",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -2109,7 +2109,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_galaxy_hammer",
-    "name": "Búa Thiên Hà (Galaxy Hammer)",
+    "name": "Búa Ngân hà (Galaxy Hammer)",
     "nameEn": "Galaxy Hammer",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -2139,7 +2139,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_wooden_club",
-    "name": "Búa Gỗ / Chùy Gỗ",
+    "name": "Gậy Gỗ",
     "nameEn": "Wood Club",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -2164,7 +2164,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_fiberglass_rod",
-    "name": "Cần Câu Sợi Thủy Tinh",
+    "name": "Cần câu Sợi thủy tinh",
     "nameEn": "Fiberglass Rod",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -2188,7 +2188,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_training_rod",
-    "name": "Cần Câu Tập Sự (Training Rod)",
+    "name": "Cần câu Tập sự (Training Rod)",
     "nameEn": "Training Rod",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -2213,7 +2213,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_copper_pan",
-    "name": "Chảo Đãi Quặng Bằng Đồng",
+    "name": "Sàng Đồng",
     "nameEn": "Copper Pan",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -2237,7 +2237,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_iridium_pan",
-    "name": "Chảo Đãi Quặng Iridium (1.6)",
+    "name": "Sàng Iridium (1.6)",
     "nameEn": "Iridium Pan",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -2262,7 +2262,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_shears",
-    "name": "Kéo Xén Lông Cừu",
+    "name": "Kéo xén lông",
     "nameEn": "Shears",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -2286,7 +2286,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_milk_pail",
-    "name": "Ống Vắt Sữa Bò & Dê",
+    "name": "Xô Vắt sữa",
     "nameEn": "Milk Pail",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -2310,7 +2310,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_auto_grabber",
-    "name": "Máy Thu Hoạch Tự Động (Auto-Grabber)",
+    "name": "Máy Thu gom Tự động (Auto-Grabber)",
     "nameEn": "Auto-Grabber",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -2334,7 +2334,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_horse_flute",
-    "name": "Sáo Triệu Hồi Ngựa (Horse Flute)",
+    "name": "Sáo gọi ngựa (Horse Flute)",
     "nameEn": "Horse Flute",
     "category": "tools",
     "categoryTitle": "🛠️ Công Cụ Lao Động & Khai Thác",
@@ -2358,7 +2358,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_orange",
-    "name": "Cam Ngọt",
+    "name": "Cam",
     "nameEn": "Orange",
     "category": "fruits",
     "categoryTitle": "🍎 Trái Cây & Cây Ăn Quả",
@@ -2385,7 +2385,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_apricot",
-    "name": "Mơ Tây (Apricot)",
+    "name": "Mơ (Apricot)",
     "nameEn": "Apricot",
     "category": "fruits",
     "categoryTitle": "🍎 Trái Cây & Cây Ăn Quả",
@@ -2410,7 +2410,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_coconut",
-    "name": "Quả Dừa Sa Mạc & Đảo Gừng",
+    "name": "Dừa",
     "nameEn": "Coconut",
     "category": "fruits",
     "categoryTitle": "🍎 Trái Cây & Cây Ăn Quả",
@@ -2438,7 +2438,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_blackberry",
-    "name": "Mâm Xôi Đen (Blackberry)",
+    "name": "Mâm xôi đen (Blackberry)",
     "nameEn": "Blackberry",
     "category": "fruits",
     "categoryTitle": "🍎 Trái Cây & Cây Ăn Quả",
@@ -2463,7 +2463,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_salmonberry",
-    "name": "Quả Mọng Cá Hồi (Salmonberry)",
+    "name": "Mâm xôi đỏ (Salmonberry)",
     "nameEn": "Salmonberry",
     "category": "fruits",
     "categoryTitle": "🍎 Trái Cây & Cây Ăn Quả",
@@ -2487,7 +2487,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_cactus_fruit",
-    "name": "Quả Xương Rồng Sa Mạc",
+    "name": "Quả Xương rồng",
     "nameEn": "Cactus Fruit",
     "category": "fruits",
     "categoryTitle": "🍎 Trái Cây & Cây Ăn Quả",
@@ -2516,7 +2516,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_tuna",
-    "name": "Cá Ngừ Đại Dương (Tuna)",
+    "name": "Cá Ngừ (Tuna)",
     "nameEn": "Tuna",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -2541,7 +2541,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_sardine",
-    "name": "Cá Mòi Biển (Sardine)",
+    "name": "Cá Mòi (Sardine)",
     "nameEn": "Sardine",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -2566,7 +2566,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_salmon",
-    "name": "Cá Hồi Đỏ (Salmon)",
+    "name": "Cá Hồi (Salmon)",
     "nameEn": "Salmon",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -2591,7 +2591,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_rainbow_trout",
-    "name": "Cá Hồi Vân (Rainbow Trout)",
+    "name": "Cá hồi Vân (Rainbow Trout)",
     "nameEn": "Rainbow Trout",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -2616,7 +2616,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_largemouth_bass",
-    "name": "Cá Vược Miệng Lớn (Largemouth Bass)",
+    "name": "Cá Vược miệng rộng (Largemouth Bass)",
     "nameEn": "Largemouth Bass",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -2642,7 +2642,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_carp",
-    "name": "Cá Chép Thường (Carp)",
+    "name": "Cá Chép (Carp)",
     "nameEn": "Carp",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -2668,7 +2668,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_octopus",
-    "name": "Bạch Tuộc Biển (Octopus)",
+    "name": "Bạch tuộc (Octopus)",
     "nameEn": "Octopus",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -2694,7 +2694,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_squid",
-    "name": "Mực Ống Đại Dương (Squid)",
+    "name": "Mực (Squid)",
     "nameEn": "Squid",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -2719,7 +2719,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_blobfish",
-    "name": "Cá Giọt Nước (Blobfish)",
+    "name": "Cá Giọt nước (Blobfish)",
     "nameEn": "Blobfish",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -2743,7 +2743,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_lobster",
-    "name": "Tôm Hùm Biển (Lobster)",
+    "name": "Tôm Hùm (Lobster)",
     "nameEn": "Lobster",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -2770,7 +2770,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_anchovy",
-    "name": "Cá Cơm Biển (Anchovy)",
+    "name": "Cá Cơm (Anchovy)",
     "nameEn": "Anchovy",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -2794,7 +2794,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_bream",
-    "name": "Cá Vền Sông (Bream)",
+    "name": "Cá Vền (Bream)",
     "nameEn": "Bream",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -2819,7 +2819,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_smallmouth_bass",
-    "name": "Cá Vược Miệng Nhỏ (Smallmouth Bass)",
+    "name": "Cá Vược miệng nhỏ (Smallmouth Bass)",
     "nameEn": "Smallmouth Bass",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -2843,7 +2843,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_walleye",
-    "name": "Cá Vược Mắt Kính (Walleye)",
+    "name": "Cá vược Mắt to (Walleye)",
     "nameEn": "Walleye",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -2868,7 +2868,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_perch",
-    "name": "Cá Rô Mùa Đông (Perch)",
+    "name": "Cá Rô (Perch)",
     "nameEn": "Perch",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -2916,7 +2916,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_sunfish",
-    "name": "Cá Thái Dương (Sunfish)",
+    "name": "Cá Thái dương (Sunfish)",
     "nameEn": "Sunfish",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -2941,7 +2941,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_red_mullet",
-    "name": "Cá Phèn Đỏ (Red Mullet)",
+    "name": "Cá Đối đỏ (Red Mullet)",
     "nameEn": "Red Mullet",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -2989,7 +2989,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_eel",
-    "name": "Cá Chình Biển (Eel)",
+    "name": "Lươn (Eel)",
     "nameEn": "Eel",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3015,7 +3015,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_red_snapper",
-    "name": "Cá Hồng Đỏ (Red Snapper)",
+    "name": "Cá Hồng (Red Snapper)",
     "nameEn": "Red Snapper",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3039,7 +3039,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_sea_cucumber",
-    "name": "Hải Sâm (Sea Cucumber)",
+    "name": "Hải sâm (Sea Cucumber)",
     "nameEn": "Sea Cucumber",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3065,7 +3065,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_super_cucumber",
-    "name": "Hải Sâm Tím Khổng Lồ (Super Cucumber)",
+    "name": "Siêu Hải sâm (Super Cucumber)",
     "nameEn": "Super Cucumber",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3091,7 +3091,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_ghostfish",
-    "name": "Cá Ma Mù (Ghostfish)",
+    "name": "Cá Ma (Ghostfish)",
     "nameEn": "Ghostfish",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3139,7 +3139,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_ice_pip",
-    "name": "Cá Băng Pip (Ice Pip)",
+    "name": "Cá Băng (Ice Pip)",
     "nameEn": "Ice Pip",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3190,7 +3190,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_scorpion_carp",
-    "name": "Cá Chép Bọ Cạp (Scorpion Carp)",
+    "name": "Cá chép Bò cạp (Scorpion Carp)",
     "nameEn": "Scorpion Carp",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3238,7 +3238,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_midnight_carp",
-    "name": "Cá Chép Nửa Đêm (Midnight Carp)",
+    "name": "Cá chép Nửa đêm (Midnight Carp)",
     "nameEn": "Midnight Carp",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3262,7 +3262,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_tiger_trout",
-    "name": "Cá Hồi Vằn Hổ (Tiger Trout)",
+    "name": "Cá Hồi hổ (Tiger Trout)",
     "nameEn": "Tiger Trout",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3286,7 +3286,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_bullhead",
-    "name": "Cá Trê Đầu Bò (Bullhead)",
+    "name": "Cá Ngạnh (Bullhead)",
     "nameEn": "Bullhead",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3310,7 +3310,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_tilapia",
-    "name": "Cá Rô Phi (Tilapia)",
+    "name": "Cá Rô phi (Tilapia)",
     "nameEn": "Tilapia",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3334,7 +3334,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_chub",
-    "name": "Cá Chày (Chub)",
+    "name": "Cá Mương (Chub)",
     "nameEn": "Chub",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3358,7 +3358,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_dorado",
-    "name": "Cá Dorado Vàng (Dorado)",
+    "name": "Cá hồi Vàng (Dorado)",
     "nameEn": "Dorado",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3382,7 +3382,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_albacore",
-    "name": "Cá Ngừ Vây Dài (Albacore)",
+    "name": "Cá Ngừ vây dài (Albacore)",
     "nameEn": "Albacore",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3406,7 +3406,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_shad",
-    "name": "Cá Trích Sông (Shad)",
+    "name": "Cá trích Dày mình (Shad)",
     "nameEn": "Shad",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3431,7 +3431,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_lingcod",
-    "name": "Cá Mú Lingcod (Lingcod)",
+    "name": "Cá Tuyết trâu (Lingcod)",
     "nameEn": "Lingcod",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3455,7 +3455,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_halibut",
-    "name": "Cá Bơn Halibut (Halibut)",
+    "name": "Cá Bơn lưỡi ngựa (Halibut)",
     "nameEn": "Halibut",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3479,7 +3479,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_woodskip",
-    "name": "Cá Rừng Woodskip (Woodskip)",
+    "name": "Cá Leo cây (Woodskip)",
     "nameEn": "Woodskip",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3503,7 +3503,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_void_salmon",
-    "name": "Cá Hồi Hư Không (Void Salmon)",
+    "name": "Cá hồi Hư không (Void Salmon)",
     "nameEn": "Void Salmon",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3527,7 +3527,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_slimejack",
-    "name": "Cá Nhớt Slimejack (Slimejack)",
+    "name": "Cá Nhờn (Slimejack)",
     "nameEn": "Slimejack",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3551,7 +3551,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_stingray",
-    "name": "Cá Đuối Gai Độc (Stingray)",
+    "name": "Cá Đuối (Stingray)",
     "nameEn": "Stingray",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3575,7 +3575,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_lionfish",
-    "name": "Cá Mao Tiên (Lionfish)",
+    "name": "Cá Sư tử (Lionfish)",
     "nameEn": "Lionfish",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3599,7 +3599,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_blue_discus",
-    "name": "Cá Đĩa Xanh (Blue Discus)",
+    "name": "Cá Đĩa xanh (Blue Discus)",
     "nameEn": "Blue Discus",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3623,7 +3623,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_midnight_squid",
-    "name": "Mực Nửa Đêm (Midnight Squid)",
+    "name": "Mực Nửa đêm (Midnight Squid)",
     "nameEn": "Midnight Squid",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3647,7 +3647,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_spook_fish",
-    "name": "Cá Ma Mắt Lồi (Spook Fish)",
+    "name": "Cá Mắt thùng (Spook Fish)",
     "nameEn": "Spook Fish",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3671,7 +3671,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_son_of_crimsonfish",
-    "name": "Con Trai Cá Đỏ Thẫm (Son of Crimsonfish)",
+    "name": "Cá Phi hồng con (Son of Crimsonfish)",
     "nameEn": "Son of Crimsonfish",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3695,7 +3695,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_ms_angler",
-    "name": "Cô Cá Lồng Đèn (Ms. Angler)",
+    "name": "Cá Lồng đèn cái (Ms. Angler)",
     "nameEn": "Ms. Angler",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3719,7 +3719,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_legend_ii",
-    "name": "Cá Huyền Thoại II (Legend II)",
+    "name": "Cá Huyền thoại đệ Nhị (Legend II)",
     "nameEn": "Legend II",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3743,7 +3743,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_glacierfish_jr",
-    "name": "Cá Băng Giá Con (Glacierfish Jr.)",
+    "name": "Hậu duệ Cá Băng hà (Glacierfish Jr.)",
     "nameEn": "Glacierfish Jr.",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3767,7 +3767,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_radioactive_carp",
-    "name": "Cá Chép Phóng Xạ (Radioactive Carp)",
+    "name": "Cá chép Phóng xạ (Radioactive Carp)",
     "nameEn": "Radioactive Carp",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3791,7 +3791,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_clam",
-    "name": "Nghêu Biển (Clam)",
+    "name": "Nghêu (Clam)",
     "nameEn": "Clam",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3816,7 +3816,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_crayfish",
-    "name": "Tôm Càng Nước Ngọt (Crayfish)",
+    "name": "Tôm hùm đất (Crayfish)",
     "nameEn": "Crayfish",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3841,7 +3841,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_crab",
-    "name": "Cua Biển (Crab)",
+    "name": "Cua (Crab)",
     "nameEn": "Crab",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3866,7 +3866,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_cockle",
-    "name": "Sò Huyết (Cockle)",
+    "name": "Sò (Cockle)",
     "nameEn": "Cockle",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3890,7 +3890,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_mussel",
-    "name": "Vẹm Xanh (Mussel)",
+    "name": "Trai (Mussel)",
     "nameEn": "Mussel",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3916,7 +3916,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_shrimp",
-    "name": "Tôm Biển (Shrimp)",
+    "name": "Tôm (Shrimp)",
     "nameEn": "Shrimp",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3942,7 +3942,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_snail",
-    "name": "Ốc Sên Nước (Snail)",
+    "name": "Ốc (Snail)",
     "nameEn": "Snail",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3969,7 +3969,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_periwinkle",
-    "name": "Ốc Gạo Xanh (Periwinkle)",
+    "name": "Ốc mỡ (Periwinkle)",
     "nameEn": "Periwinkle",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -3995,7 +3995,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_oyster",
-    "name": "Hàu Biển (Oyster)",
+    "name": "Hàu (Oyster)",
     "nameEn": "Oyster",
     "category": "fish",
     "categoryTitle": "🐟 Các Loại Cá & Thủy Sản",
@@ -4019,7 +4019,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_emerald",
-    "name": "Ngọc Lục Bảo (Emerald)",
+    "name": "Ngọc Lục bảo (Emerald)",
     "nameEn": "Emerald",
     "category": "minerals",
     "categoryTitle": "💎 Khoáng Sản, Đá Quý & Quặng",
@@ -4049,7 +4049,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_amethyst",
-    "name": "Thạch Anh Tím (Amethyst)",
+    "name": "Thạch anh Tím (Amethyst)",
     "nameEn": "Amethyst",
     "category": "minerals",
     "categoryTitle": "💎 Khoáng Sản, Đá Quý & Quặng",
@@ -4155,7 +4155,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_coal",
-    "name": "Than Đá (Coal)",
+    "name": "Than đá (Coal)",
     "nameEn": "Coal",
     "category": "minerals",
     "categoryTitle": "💎 Khoáng Sản, Đá Quý & Quặng",
@@ -4180,7 +4180,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_cinder_shard",
-    "name": "Mảnh Than Hồng (Cinder Shard)",
+    "name": "Mảnh Nham thạch (Cinder Shard)",
     "nameEn": "Cinder Shard",
     "category": "minerals",
     "categoryTitle": "💎 Khoáng Sản, Đá Quý & Quặng",
@@ -4204,7 +4204,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_duck_egg",
-    "name": "Trứng Vịt Đồng Cỏ",
+    "name": "Trứng Vịt",
     "nameEn": "Duck Egg",
     "category": "animal_products",
     "categoryTitle": "🥚 Sản Phẩm Chăn Nuôi",
@@ -4229,7 +4229,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_duck_feather",
-    "name": "Lông Vịt Xanh Biếc (Duck Feather)",
+    "name": "Lông Vịt (Duck Feather)",
     "nameEn": "Duck Feather",
     "category": "animal_products",
     "categoryTitle": "🥚 Sản Phẩm Chăn Nuôi",
@@ -4257,7 +4257,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_wool",
-    "name": "Len Cừu / Thỏ (Wool)",
+    "name": "Len (Wool)",
     "nameEn": "Wool",
     "category": "animal_products",
     "categoryTitle": "🥚 Sản Phẩm Chăn Nuôi",
@@ -4284,7 +4284,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_golden_egg",
-    "name": "Trứng Vàng Thần Thánh (Golden Egg)",
+    "name": "Trứng Hoàng kim (Golden Egg)",
     "nameEn": "Golden Egg",
     "category": "animal_products",
     "categoryTitle": "🥚 Sản Phẩm Chăn Nuôi",
@@ -4309,7 +4309,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_corn",
-    "name": "Bắp Ngô (Bắp)",
+    "name": "Ngô",
     "nameEn": "Corn",
     "category": "crops",
     "categoryTitle": "🌾 Nông Sản & Cây Trồng Các Mùa",
@@ -4335,7 +4335,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_tomato",
-    "name": "Cà Chua",
+    "name": "Cà chua",
     "nameEn": "Tomato",
     "category": "crops",
     "categoryTitle": "🌾 Nông Sản & Cây Trồng Các Mùa",
@@ -4362,7 +4362,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_eggplant",
-    "name": "Cà Tím",
+    "name": "Cà tím",
     "nameEn": "Eggplant",
     "category": "crops",
     "categoryTitle": "🌾 Nông Sản & Cây Trồng Các Mùa",
@@ -4387,7 +4387,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_dandelion",
-    "name": "Hoa Bồ Công Anh (Dandelion)",
+    "name": "Bồ công anh (Dandelion)",
     "nameEn": "Dandelion",
     "category": "forage",
     "categoryTitle": "🍄 Thu Nhặt Hoang Dã & Thảo Dược",
@@ -4412,7 +4412,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_coral",
-    "name": "San Hô Biển Hồng (Coral)",
+    "name": "San hô (Coral)",
     "nameEn": "Coral",
     "category": "forage",
     "categoryTitle": "🍄 Thu Nhặt Hoang Dã & Thảo Dược",
@@ -4437,7 +4437,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_sea_urchin",
-    "name": "Nhum Biển (Sea Urchin)",
+    "name": "Nhím Biển (Sea Urchin)",
     "nameEn": "Sea Urchin",
     "category": "forage",
     "categoryTitle": "🍄 Thu Nhặt Hoang Dã & Thảo Dược",
@@ -4462,7 +4462,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_prehistoric_handaxe",
-    "name": "Rìu Tay Thời Tiền Sử",
+    "name": "Rìu đá thời Tiền sử",
     "nameEn": "Prehistoric Handaxe",
     "category": "artifacts",
     "categoryTitle": "🏺 Cổ Vật & Di Vật Bí Ẩn",
@@ -4486,7 +4486,7 @@ export const ITEMS_DATA = [
   },
   {
     "id": "item_chewing_stick",
-    "name": "Que Đánh Răng Cổ Xưa",
+    "name": "Que nhai",
     "nameEn": "Chewing Stick",
     "category": "artifacts",
     "categoryTitle": "🏺 Cổ Vật & Di Vật Bí Ẩn",

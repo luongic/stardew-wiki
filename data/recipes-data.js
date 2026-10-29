@@ -6,7 +6,7 @@
 export const RECIPES_DATA = [
   {
     "id": "fried_egg",
-    "name": "Trứng Chiên",
+    "name": "Trứng chiên",
     "nameEn": "Fried Egg",
     "category": "cooking",
     "subCategory": "Món khai vị & Bữa sáng",
@@ -32,7 +32,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "omelet",
-    "name": "Trứng Cuộn Phô Mai",
+    "name": "Trứng Ốp-lết",
     "nameEn": "Omelet",
     "category": "cooking",
     "subCategory": "Món khai vị & Bữa sáng",
@@ -49,7 +49,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_egg.png"
       },
       {
-        "name": "Sữa tươi",
+        "name": "Sữa Bò",
         "nameEn": "Milk",
         "count": 1,
         "iconUrl": "assets/icons/ing_milk.png"
@@ -64,7 +64,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "salad",
-    "name": "Salad Rau Vườn",
+    "name": "Sa-lát",
     "nameEn": "Salad",
     "category": "cooking",
     "subCategory": "Món chay bổ dưỡng",
@@ -87,7 +87,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/item_dandelion.png"
       },
       {
-        "name": "Dấm",
+        "name": "Giấm",
         "nameEn": "Vinegar",
         "count": 1,
         "iconUrl": "assets/icons/ing_vinegar.png"
@@ -102,7 +102,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "cheese_cauliflower",
-    "name": "Súp Lơ Đút Lò Phô Mai",
+    "name": "Bông cải trắng nấu Phô mai",
     "nameEn": "Cheese Cauliflower",
     "category": "cooking",
     "subCategory": "Món nướng phô mai",
@@ -113,7 +113,7 @@ export const RECIPES_DATA = [
     "source": "Thư từ Pam khi đạt 3 Tim tình bạn",
     "ingredients": [
       {
-        "name": "Súp lơ trắng",
+        "name": "Bông cải trắng",
         "nameEn": "Cauliflower",
         "count": 1,
         "iconUrl": "assets/icons/item_cauliflower.png"
@@ -134,7 +134,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "baked_fish",
-    "name": "Cá Nướng Thảo Mộc",
+    "name": "Cá nướng",
     "nameEn": "Baked Fish",
     "category": "cooking",
     "subCategory": "Hải sản nướng",
@@ -145,7 +145,7 @@ export const RECIPES_DATA = [
     "source": "Kênh The Queen of Sauce (Ngày 7 Mùa Hè, Năm 1)",
     "ingredients": [
       {
-        "name": "Cá Thái Dương",
+        "name": "Cá Thái dương",
         "nameEn": "Sunfish",
         "count": 1,
         "iconUrl": "assets/icons/ing_sunfish.png"
@@ -172,7 +172,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "parsnip_soup",
-    "name": "Súp Củ Cải Vàng",
+    "name": "Súp Củ cải vàng",
     "nameEn": "Parsnip Soup",
     "category": "cooking",
     "subCategory": "Súp & Canh nóng",
@@ -189,13 +189,13 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/item_parsnip.png"
       },
       {
-        "name": "Sữa tươi",
+        "name": "Sữa Bò",
         "nameEn": "Milk",
         "count": 1,
         "iconUrl": "assets/icons/ing_milk.png"
       },
       {
-        "name": "Dấm",
+        "name": "Giấm",
         "nameEn": "Vinegar",
         "count": 1,
         "iconUrl": "assets/icons/ing_vinegar.png"
@@ -210,7 +210,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "vegetable_medley",
-    "name": "Món Rau Xào Thập Cẩm",
+    "name": "Rau củ Hầm",
     "nameEn": "Vegetable Medley",
     "category": "cooking",
     "subCategory": "Món xào thanh đạm",
@@ -227,7 +227,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/item_tomato.png"
       },
       {
-        "name": "Củ dền",
+        "name": "Củ cải đường",
         "nameEn": "Beet",
         "count": 1,
         "iconUrl": "assets/icons/ing_beet.png"
@@ -242,7 +242,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "complete_breakfast",
-    "name": "Bữa Sáng Hoàn Hảo",
+    "name": "Bữa sáng Đầy đủ",
     "nameEn": "Complete Breakfast",
     "category": "cooking",
     "subCategory": "Bữa sáng cao cấp",
@@ -259,19 +259,19 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/fried_egg.png"
       },
       {
-        "name": "Sữa tươi",
+        "name": "Sữa Bò",
         "nameEn": "Milk",
         "count": 1,
         "iconUrl": "assets/icons/ing_milk.png"
       },
       {
-        "name": "Khoai tây chiên giòn",
+        "name": "Khoai tây Chiên",
         "nameEn": "Hashbrowns",
         "count": 1,
         "iconUrl": "assets/icons/hashbrowns.png"
       },
       {
-        "name": "Bánh kếp",
+        "name": "Bánh Kếp",
         "nameEn": "Pancakes",
         "count": 1,
         "iconUrl": "assets/icons/pancakes.png"
@@ -297,7 +297,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "fried_squid",
-    "name": "Mực Ống Chiên Giòn",
+    "name": "Mực ống chiên giòn",
     "nameEn": "Fried Calamari",
     "category": "cooking",
     "subCategory": "Hải sản chiên",
@@ -308,7 +308,7 @@ export const RECIPES_DATA = [
     "source": "Thư từ Willy khi đạt 3 Tim tình bạn",
     "ingredients": [
       {
-        "name": "Mực ống",
+        "name": "Mực",
         "nameEn": "Squid",
         "count": 1,
         "iconUrl": "assets/icons/item_squid.png"
@@ -335,7 +335,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "strange_bun",
-    "name": "Bánh Bao Kỳ Dị",
+    "name": "Bánh bao Kỳ lạ",
     "nameEn": "Strange Bun",
     "category": "cooking",
     "subCategory": "Món ăn bí ẩn",
@@ -352,13 +352,13 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_wheat_flour.png"
       },
       {
-        "name": "Sốt Mayonnaise hư vô",
+        "name": "Sốt Trứng Hư không",
         "nameEn": "Void Mayonnaise",
         "count": 1,
         "iconUrl": "assets/icons/ing_stone.png"
       },
       {
-        "name": "Ốc Periwinkle",
+        "name": "Ốc mỡ",
         "nameEn": "Periwinkle",
         "count": 1,
         "iconUrl": "assets/icons/ing_periwinkle.png"
@@ -373,7 +373,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "lucky_lunch",
-    "name": "Bữa Trưa May Mắn",
+    "name": "Bữa trưa May mắn",
     "nameEn": "Lucky Lunch",
     "category": "cooking",
     "subCategory": "Món ăn Thần Thánh",
@@ -390,7 +390,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_sea_cucumber.png"
       },
       {
-        "name": "Bánh tráng ngô Tortilla",
+        "name": "Bánh tráng ngô",
         "nameEn": "Tortilla",
         "count": 1,
         "iconUrl": "assets/icons/tortilla.png"
@@ -417,7 +417,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "fried_mushroom",
-    "name": "Nấm Rừng Xào Tỏi",
+    "name": "Nấm chiên",
     "nameEn": "Fried Mushroom",
     "category": "cooking",
     "subCategory": "Món xào tăng công",
@@ -434,7 +434,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_common_mushroom.png"
       },
       {
-        "name": "Nấm Morel",
+        "name": "Nấm Bụng dê",
         "nameEn": "Morel",
         "count": 1,
         "iconUrl": "assets/icons/item_morel.png"
@@ -461,7 +461,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "pizza",
-    "name": "Bánh Pizza Ý",
+    "name": "Pizza",
     "nameEn": "Pizza",
     "category": "cooking",
     "subCategory": "Món nướng yêu thích",
@@ -499,7 +499,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "bean_hotpot",
-    "name": "Lẩu Đậu Que Hầm",
+    "name": "Lẩu Đậu",
     "nameEn": "Bean Hotpot",
     "category": "cooking",
     "subCategory": "Súp & Lẩu",
@@ -510,7 +510,7 @@ export const RECIPES_DATA = [
     "source": "Thư từ Clint khi đạt 7 Tim tình bạn",
     "ingredients": [
       {
-        "name": "Đậu cô ve xanh",
+        "name": "Đậu xanh",
         "nameEn": "Green Bean",
         "count": 2,
         "iconUrl": "assets/icons/ing_stone.png"
@@ -536,7 +536,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "glazed_yams",
-    "name": "Khoai Lang Ngào Đường",
+    "name": "Khoai lang bọc Đường",
     "nameEn": "Glazed Yams",
     "category": "cooking",
     "subCategory": "Tráng miệng ngọt",
@@ -553,7 +553,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_stone.png"
       },
       {
-        "name": "Đường tinh luyện",
+        "name": "Đường",
         "nameEn": "Sugar",
         "count": 1,
         "iconUrl": "assets/icons/ing_sugar.png"
@@ -568,7 +568,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "carp_surprise",
-    "name": "Bất Ngờ Cá Chép",
+    "name": "Cá chép Bất ngờ",
     "nameEn": "Carp Surprise",
     "category": "cooking",
     "subCategory": "Món cá độc đáo",
@@ -579,7 +579,7 @@ export const RECIPES_DATA = [
     "source": "Kênh The Queen of Sauce (Ngày 7 Mùa Hè, Năm 2)",
     "ingredients": [
       {
-        "name": "Cá chép",
+        "name": "Cá Chép",
         "nameEn": "Carp",
         "count": 4,
         "iconUrl": "assets/icons/item_carp.png"
@@ -594,7 +594,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "hashbrowns",
-    "name": "Khoai Tây Bào Chiên Giòn",
+    "name": "Khoai tây Chiên",
     "nameEn": "Hashbrowns",
     "category": "cooking",
     "subCategory": "Món ăn sáng",
@@ -626,7 +626,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "pancakes",
-    "name": "Bánh Kếp Bơ Mật Ong",
+    "name": "Bánh Kếp",
     "nameEn": "Pancakes",
     "category": "cooking",
     "subCategory": "Bánh ngọt điểm tâm",
@@ -664,7 +664,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "salmon_dinner",
-    "name": "Cơm Cá Hồi Áp Chảo",
+    "name": "Bữa tối Cá hồi",
     "nameEn": "Salmon Dinner",
     "category": "cooking",
     "subCategory": "Món chính bổ dưỡng",
@@ -675,7 +675,7 @@ export const RECIPES_DATA = [
     "source": "Thư từ Gus khi đạt 3 Tim tình bạn",
     "ingredients": [
       {
-        "name": "Cá hồi",
+        "name": "Cá Hồi",
         "nameEn": "Salmon",
         "count": 1,
         "iconUrl": "assets/icons/item_salmon.png"
@@ -702,7 +702,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "fish_taco",
-    "name": "Bánh Kẹp Taco Cá",
+    "name": "Bánh Taco nhân Cá",
     "nameEn": "Fish Taco",
     "category": "cooking",
     "subCategory": "Món ăn câu cá",
@@ -713,25 +713,25 @@ export const RECIPES_DATA = [
     "source": "Thư từ Linus khi đạt 7 Tim tình bạn",
     "ingredients": [
       {
-        "name": "Cá ngừ đại dương",
+        "name": "Cá Ngừ",
         "nameEn": "Tuna",
         "count": 1,
         "iconUrl": "assets/icons/item_tuna.png"
       },
       {
-        "name": "Bánh tráng ngô Tortilla",
+        "name": "Bánh tráng ngô",
         "nameEn": "Tortilla",
         "count": 1,
         "iconUrl": "assets/icons/tortilla.png"
       },
       {
-        "name": "Bắp cải đỏ",
+        "name": "Bắp cải Đỏ",
         "nameEn": "Red Cabbage",
         "count": 1,
         "iconUrl": "assets/icons/item_red_cabbage.png"
       },
       {
-        "name": "Sốt Mayonnaise",
+        "name": "Sốt trứng gà tươi",
         "nameEn": "Mayonnaise",
         "count": 1,
         "iconUrl": "assets/icons/ing_stone.png"
@@ -752,7 +752,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "crispy_bass",
-    "name": "Cá Vược Chiên Giòn",
+    "name": "Cá vược Chiên giòn",
     "nameEn": "Crispy Bass",
     "category": "cooking",
     "subCategory": "Món cá chiên",
@@ -763,7 +763,7 @@ export const RECIPES_DATA = [
     "source": "Thư từ Kent khi đạt 3 Tim tình bạn",
     "ingredients": [
       {
-        "name": "Cá vược miệng lớn",
+        "name": "Cá Vược miệng rộng",
         "nameEn": "Largemouth Bass",
         "count": 1,
         "iconUrl": "assets/icons/item_largemouth_bass.png"
@@ -796,7 +796,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "pepper_poppers",
-    "name": "Ớt Cay Nhồi Phô Mai Nướng",
+    "name": "Ớt bung",
     "nameEn": "Pepper Poppers",
     "category": "cooking",
     "subCategory": "Món ăn Tăng Tốc",
@@ -807,7 +807,7 @@ export const RECIPES_DATA = [
     "source": "Thư từ Shane khi đạt 3 Tim tình bạn",
     "ingredients": [
       {
-        "name": "Ớt cay",
+        "name": "Ớt hiểm",
         "nameEn": "Hot Pepper",
         "count": 1,
         "iconUrl": "assets/icons/item_hot_pepper.png"
@@ -839,7 +839,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "bread",
-    "name": "Bánh Mì Nướng Baguette",
+    "name": "Bánh mỳ",
     "nameEn": "Bread",
     "category": "cooking",
     "subCategory": "Bánh mì cơ bản",
@@ -865,7 +865,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "tom_kha_soup",
-    "name": "Súp Tom Kha Nước Cốt Dừa",
+    "name": "Súp tôm nước Dừa",
     "nameEn": "Tom Kha Soup",
     "category": "cooking",
     "subCategory": "Súp thảo mộc",
@@ -876,13 +876,13 @@ export const RECIPES_DATA = [
     "source": "Thư từ Sandy khi đạt 7 Tim tình bạn",
     "ingredients": [
       {
-        "name": "Dừa khô",
+        "name": "Dừa",
         "nameEn": "Coconut",
         "count": 1,
         "iconUrl": "assets/icons/item_coconut.png"
       },
       {
-        "name": "Tôm sú",
+        "name": "Tôm",
         "nameEn": "Shrimp",
         "count": 1,
         "iconUrl": "assets/icons/ing_shrimp.png"
@@ -914,7 +914,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "trout_soup",
-    "name": "Súp Cá Hồi Cầu Vồng",
+    "name": "Súp cá Hồi",
     "nameEn": "Trout Soup",
     "category": "cooking",
     "subCategory": "Súp cá",
@@ -925,7 +925,7 @@ export const RECIPES_DATA = [
     "source": "Kênh The Queen of Sauce (Ngày 14 Mùa Thu, Năm 1)",
     "ingredients": [
       {
-        "name": "Cá hồi cầu vồng",
+        "name": "Cá hồi Vân",
         "nameEn": "Rainbow Trout",
         "count": 1,
         "iconUrl": "assets/icons/item_rainbow_trout.png"
@@ -952,7 +952,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "chocolate_cake",
-    "name": "Bánh Gato Sô-cô-la",
+    "name": "Bánh Sô-cô-la",
     "nameEn": "Chocolate Cake",
     "category": "cooking",
     "subCategory": "Bánh sinh nhật & Ngọt",
@@ -990,7 +990,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "pink_cake",
-    "name": "Bánh Kem Dâu Tây Hồng",
+    "name": "Bánh kem Hồng",
     "nameEn": "Pink Cake",
     "category": "cooking",
     "subCategory": "Bánh kem lộng lẫy",
@@ -1001,7 +1001,7 @@ export const RECIPES_DATA = [
     "source": "Kênh The Queen of Sauce (Ngày 21 Mùa Hè, Năm 2)",
     "ingredients": [
       {
-        "name": "Dưa lưới Melon",
+        "name": "Dưa",
         "nameEn": "Melon",
         "count": 1,
         "iconUrl": "assets/icons/item_melon.png"
@@ -1034,7 +1034,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "rhubarb_pie",
-    "name": "Bánh Nướng Đại Hoàng",
+    "name": "Bánh nướng nhân Đại hoàng",
     "nameEn": "Rhubarb Pie",
     "category": "cooking",
     "subCategory": "Bánh nướng trái cây",
@@ -1045,7 +1045,7 @@ export const RECIPES_DATA = [
     "source": "Thư từ Marnie khi đạt 7 Tim tình bạn",
     "ingredients": [
       {
-        "name": "Đại hoàng",
+        "name": "Cải Đại hoàng",
         "nameEn": "Rhubarb",
         "count": 1,
         "iconUrl": "assets/icons/ing_rhubarb.png"
@@ -1072,7 +1072,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "cookies",
-    "name": "Bánh Quy Sô-cô-la Chip",
+    "name": "Bánh quy",
     "nameEn": "Cookies",
     "category": "cooking",
     "subCategory": "Bánh quy giòn",
@@ -1110,7 +1110,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "spaghetti",
-    "name": "Mì Ý Sốt Bò Băm Cà Chua",
+    "name": "Mỳ Ý",
     "nameEn": "Spaghetti",
     "category": "cooking",
     "subCategory": "Món mì Ý",
@@ -1142,7 +1142,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "fried_eel",
-    "name": "Lươn Biển Áp Chảo",
+    "name": "Lươn chiên giòn",
     "nameEn": "Fried Eel",
     "category": "cooking",
     "subCategory": "Món may mắn",
@@ -1153,7 +1153,7 @@ export const RECIPES_DATA = [
     "source": "Thư từ George khi đạt 3 Tim tình bạn",
     "ingredients": [
       {
-        "name": "Lươn biển",
+        "name": "Lươn",
         "nameEn": "Eel",
         "count": 1,
         "iconUrl": "assets/icons/ing_stone.png"
@@ -1180,7 +1180,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "spicy_eel",
-    "name": "Lươn Biển Sốt Ớt Cay",
+    "name": "Lươn Cay",
     "nameEn": "Spicy Eel",
     "category": "cooking",
     "subCategory": "Món Thần Thánh Skull Cavern",
@@ -1191,13 +1191,13 @@ export const RECIPES_DATA = [
     "source": "Thư từ George khi đạt 7 Tim tình bạn",
     "ingredients": [
       {
-        "name": "Lươn biển",
+        "name": "Lươn",
         "nameEn": "Eel",
         "count": 1,
         "iconUrl": "assets/icons/ing_stone.png"
       },
       {
-        "name": "Ớt cay",
+        "name": "Ớt hiểm",
         "nameEn": "Hot Pepper",
         "count": 1,
         "iconUrl": "assets/icons/item_hot_pepper.png"
@@ -1223,7 +1223,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "sashimi",
-    "name": "Gỏi Cá Sống Sashimi",
+    "name": "Gỏi cá tươi",
     "nameEn": "Sashimi",
     "category": "cooking",
     "subCategory": "Món ăn Nhật Bản",
@@ -1249,7 +1249,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "maki_roll",
-    "name": "Cuộn Cơm Rong Biển Maki",
+    "name": "Cơm cuộn Rong biển",
     "nameEn": "Maki Roll",
     "category": "cooking",
     "subCategory": "Món ăn Nhật Bản",
@@ -1287,7 +1287,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "tortilla",
-    "name": "Bánh Tráng Ngô Tortilla",
+    "name": "Bánh tráng ngô",
     "nameEn": "Tortilla",
     "category": "cooking",
     "subCategory": "Món phụ cơ bản",
@@ -1298,7 +1298,7 @@ export const RECIPES_DATA = [
     "source": "Kênh The Queen of Sauce (Ngày 7 Mùa Thu, Năm 1) hoặc Mua tại Saloon (100g)",
     "ingredients": [
       {
-        "name": "Bắp ngô",
+        "name": "Ngô",
         "nameEn": "Corn",
         "count": 1,
         "iconUrl": "assets/icons/item_corn.png"
@@ -1313,7 +1313,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "red_plate",
-    "name": "Đĩa Rau Đỏ Bổ Dưỡng",
+    "name": "Suất đồ ăn Đỏ",
     "nameEn": "Red Plate",
     "category": "cooking",
     "subCategory": "Món hồi phục năng lượng",
@@ -1324,13 +1324,13 @@ export const RECIPES_DATA = [
     "source": "Thư từ Emily khi đạt 7 Tim tình bạn",
     "ingredients": [
       {
-        "name": "Bắp cải đỏ",
+        "name": "Bắp cải Đỏ",
         "nameEn": "Red Cabbage",
         "count": 1,
         "iconUrl": "assets/icons/item_red_cabbage.png"
       },
       {
-        "name": "Củ cải đỏ",
+        "name": "Củ cải",
         "nameEn": "Radish",
         "count": 1,
         "iconUrl": "assets/icons/ing_radish.png"
@@ -1351,7 +1351,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "eggplant_parmesan",
-    "name": "Cà Tím Bỏ Lò Phô Mai",
+    "name": "Cà tím nướng Phô mai",
     "nameEn": "Eggplant Parmesan",
     "category": "cooking",
     "subCategory": "Món chay nướng",
@@ -1394,7 +1394,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "rice_pudding",
-    "name": "Pudding Gạo Sữa Ngọt Ngào",
+    "name": "Chè gạo",
     "nameEn": "Rice Pudding",
     "category": "cooking",
     "subCategory": "Tráng miệng",
@@ -1405,7 +1405,7 @@ export const RECIPES_DATA = [
     "source": "Kênh The Queen of Sauce (Ngày 7 Mùa Hạ, Năm 2)",
     "ingredients": [
       {
-        "name": "Sữa tươi",
+        "name": "Sữa Bò",
         "nameEn": "Milk",
         "count": 1,
         "iconUrl": "assets/icons/ing_milk.png"
@@ -1432,7 +1432,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "ice_cream",
-    "name": "Kem Tươi Ốc Quế",
+    "name": "Kem",
     "nameEn": "Ice Cream",
     "category": "cooking",
     "subCategory": "Kem lạnh",
@@ -1443,7 +1443,7 @@ export const RECIPES_DATA = [
     "source": "Thư từ Jodi khi đạt 7 Tim tình bạn",
     "ingredients": [
       {
-        "name": "Sữa tươi",
+        "name": "Sữa Bò",
         "nameEn": "Milk",
         "count": 1,
         "iconUrl": "assets/icons/ing_milk.png"
@@ -1464,7 +1464,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "blueberry_tart",
-    "name": "Bánh Tart Việt Quất",
+    "name": "Bánh Tart nhân Việt quất",
     "nameEn": "Blueberry Tart",
     "category": "cooking",
     "subCategory": "Bánh ngọt nướng",
@@ -1475,7 +1475,7 @@ export const RECIPES_DATA = [
     "source": "Thư từ Linus khi đạt 3 Tim tình bạn",
     "ingredients": [
       {
-        "name": "Quả việt quất",
+        "name": "Việt quất",
         "nameEn": "Blueberry",
         "count": 1,
         "iconUrl": "assets/icons/item_blueberry.png"
@@ -1508,7 +1508,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "autumns_bounty",
-    "name": "Món Quà Mùa Thu",
+    "name": "Tặng phẩm Mùa thu",
     "nameEn": "Autumn's Bounty",
     "category": "cooking",
     "subCategory": "Món hầm tăng giáp",
@@ -1551,7 +1551,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "pumpkin_soup",
-    "name": "Súp Bí Ngô Hoàng Gia",
+    "name": "Súp Bí ngô",
     "nameEn": "Pumpkin Soup",
     "category": "cooking",
     "subCategory": "Món Thần Thánh Mỏ",
@@ -1568,7 +1568,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/item_pumpkin.png"
       },
       {
-        "name": "Sữa tươi",
+        "name": "Sữa Bò",
         "nameEn": "Milk",
         "count": 1,
         "iconUrl": "assets/icons/ing_milk.png"
@@ -1594,7 +1594,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "super_meal",
-    "name": "Bữa Ăn Siêu Cấp",
+    "name": "Bữa ăn Thượng hạng",
     "nameEn": "Super Meal",
     "category": "cooking",
     "subCategory": "Món ăn Tăng Tốc",
@@ -1611,13 +1611,13 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_bok_choy.png"
       },
       {
-        "name": "Nam việt quất Cranberry",
+        "name": "Nam việt quất",
         "nameEn": "Cranberries",
         "count": 1,
         "iconUrl": "assets/icons/item_cranberries.png"
       },
       {
-        "name": "Bông Atiso",
+        "name": "A-ti-sô",
         "nameEn": "Artichoke",
         "count": 1,
         "iconUrl": "assets/icons/ing_stone.png"
@@ -1643,7 +1643,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "cranberry_sauce",
-    "name": "Sốt Nam Việt Quất Cay Ngọt",
+    "name": "Sốt Nam việt quất",
     "nameEn": "Cranberry Sauce",
     "category": "cooking",
     "subCategory": "Món sốt thợ mỏ",
@@ -1681,7 +1681,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "stuffing",
-    "name": "Món Nhồi Ngũ Vị",
+    "name": "Món đồ nhồi",
     "nameEn": "Stuffing",
     "category": "cooking",
     "subCategory": "Món ăn tăng giáp",
@@ -1692,7 +1692,7 @@ export const RECIPES_DATA = [
     "source": "Thư từ Pam khi đạt 7 Tim tình bạn",
     "ingredients": [
       {
-        "name": "Bánh mì Bread",
+        "name": "Bánh mỳ",
         "nameEn": "Bread",
         "count": 1,
         "iconUrl": "assets/icons/bread.png"
@@ -1725,7 +1725,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "farmers_lunch",
-    "name": "Bữa Trưa Bác Nông Dân",
+    "name": "Bữa trưa Nông dân",
     "nameEn": "Farmer's Lunch",
     "category": "cooking",
     "subCategory": "Món Canh Tác Đỉnh Cao",
@@ -1736,13 +1736,13 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Canh tác (Farming) Cấp 3",
     "ingredients": [
       {
-        "name": "Trứng cuộn Omelet",
+        "name": "Trứng Ốp-lết",
         "nameEn": "Omelet",
         "count": 1,
         "iconUrl": "assets/icons/omelet.png"
       },
       {
-        "name": "Củ cải vàng Parsnip",
+        "name": "Củ cải vàng",
         "nameEn": "Parsnip",
         "count": 1,
         "iconUrl": "assets/icons/item_parsnip.png"
@@ -1763,7 +1763,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "survival_burger",
-    "name": "Burger Sinh Tồn Thợ Rừng",
+    "name": "Bánh kẹp Sinh tồn",
     "nameEn": "Survival Burger",
     "category": "cooking",
     "subCategory": "Món Hái Lượm Đỉnh Cao",
@@ -1774,19 +1774,19 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Hái Lượm (Foraging) Cấp 2",
     "ingredients": [
       {
-        "name": "Bánh mì Bread",
+        "name": "Bánh mỳ",
         "nameEn": "Bread",
         "count": 1,
         "iconUrl": "assets/icons/bread.png"
       },
       {
-        "name": "Cà rốt trong hang Cave Carrot",
+        "name": "Cà-rốt Hang",
         "nameEn": "Cave Carrot",
         "count": 1,
         "iconUrl": "assets/icons/ing_stone.png"
       },
       {
-        "name": "Cà tím Eggplant",
+        "name": "Cà tím",
         "nameEn": "Eggplant",
         "count": 1,
         "iconUrl": "assets/icons/item_eggplant.png"
@@ -1807,7 +1807,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "dish_o_the_sea",
-    "name": "Đại Tiệc Hải Sản",
+    "name": "Suất đồ Biển",
     "nameEn": "Dish O' The Sea",
     "category": "cooking",
     "subCategory": "Món Câu Cá Đỉnh Cao",
@@ -1818,13 +1818,13 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Câu Cá (Fishing) Cấp 3",
     "ingredients": [
       {
-        "name": "Cá mòi Sardine",
+        "name": "Cá Mòi",
         "nameEn": "Sardine",
         "count": 2,
         "iconUrl": "assets/icons/item_sardine.png"
       },
       {
-        "name": "Khoai tây chiên Hashbrowns",
+        "name": "Khoai tây Chiên",
         "nameEn": "Hashbrowns",
         "count": 1,
         "iconUrl": "assets/icons/hashbrowns.png"
@@ -1845,7 +1845,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "miners_treat",
-    "name": "Món Ngon Thợ Mỏ",
+    "name": "Kẹo Thợ mỏ",
     "nameEn": "Miner's Treat",
     "category": "cooking",
     "subCategory": "Món Khai Khoáng Đỉnh Cao",
@@ -1856,19 +1856,19 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Khai Mỏ (Mining) Cấp 3",
     "ingredients": [
       {
-        "name": "Cà rốt trong hang",
+        "name": "Cà-rốt Hang",
         "nameEn": "Cave Carrot",
         "count": 2,
         "iconUrl": "assets/icons/ing_stone.png"
       },
       {
-        "name": "Đường tinh luyện",
+        "name": "Đường",
         "nameEn": "Sugar",
         "count": 1,
         "iconUrl": "assets/icons/ing_sugar.png"
       },
       {
-        "name": "Sữa tươi",
+        "name": "Sữa Bò",
         "nameEn": "Milk",
         "count": 1,
         "iconUrl": "assets/icons/ing_milk.png"
@@ -1899,7 +1899,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "roots_platter",
-    "name": "Đĩa Củ Quả Luộc Mùa Đông",
+    "name": "Củ dại luộc",
     "nameEn": "Roots Platter",
     "category": "cooking",
     "subCategory": "Món tăng công",
@@ -1910,13 +1910,13 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Chiến Đấu (Combat) Cấp 3",
     "ingredients": [
       {
-        "name": "Cà rốt trong hang",
+        "name": "Cà-rốt Hang",
         "nameEn": "Cave Carrot",
         "count": 1,
         "iconUrl": "assets/icons/ing_stone.png"
       },
       {
-        "name": "Củ mùa đông Winter Root",
+        "name": "Củ mài",
         "nameEn": "Winter Root",
         "count": 1,
         "iconUrl": "assets/icons/ing_stone.png"
@@ -1937,7 +1937,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "triple_shot_espresso",
-    "name": "Cà Phê Espresso Đậm Đặc",
+    "name": "Cà-phê đặc gấp Ba",
     "nameEn": "Triple Shot Espresso",
     "category": "cooking",
     "subCategory": "Nước Uống Thần Thánh",
@@ -1948,7 +1948,7 @@ export const RECIPES_DATA = [
     "source": "Mua công thức từ Gus tại The Stardrop Saloon (5,000g)",
     "ingredients": [
       {
-        "name": "Cà phê Coffee",
+        "name": "Cà-phê",
         "nameEn": "Coffee",
         "count": 3,
         "iconUrl": "assets/icons/ing_stone.png"
@@ -1969,7 +1969,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "seafoam_pudding",
-    "name": "Pudding Bọt Biển Thần Thánh",
+    "name": "Bánh Bọt biển",
     "nameEn": "Seafoam Pudding",
     "category": "cooking",
     "subCategory": "Vua Câu Cá Tối Thượng",
@@ -1980,19 +1980,19 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Câu Cá (Fishing) Cấp 9",
     "ingredients": [
       {
-        "name": "Cá bơn",
+        "name": "Cá Bơn",
         "nameEn": "Flounder",
         "count": 1,
         "iconUrl": "assets/icons/ing_flounder.png"
       },
       {
-        "name": "Cá chép đêm Midnight Carp",
+        "name": "Cá chép Nửa đêm",
         "nameEn": "Midnight Carp",
         "count": 1,
         "iconUrl": "assets/icons/ing_stone.png"
       },
       {
-        "name": "Mực đen",
+        "name": "Mực Mực",
         "nameEn": "Squid Ink",
         "count": 1,
         "iconUrl": "assets/icons/ing_squid_ink.png"
@@ -2013,7 +2013,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "algae_soup",
-    "name": "Súp Tảo Lục Thanh Nhiệt",
+    "name": "Súp Tảo biển",
     "nameEn": "Algae Soup",
     "category": "cooking",
     "subCategory": "Súp hầm",
@@ -2039,7 +2039,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "pale_broth",
-    "name": "Nước Dùng Rêu Trắng",
+    "name": "Nước canh suông",
     "nameEn": "Pale Broth",
     "category": "cooking",
     "subCategory": "Súp hầm",
@@ -2050,7 +2050,7 @@ export const RECIPES_DATA = [
     "source": "Thư từ Marnie khi đạt 3 Tim tình bạn",
     "ingredients": [
       {
-        "name": "Tảo trắng",
+        "name": "Tảo Bạch",
         "nameEn": "White Algae",
         "count": 2,
         "iconUrl": "assets/icons/ing_white_algae.png"
@@ -2065,7 +2065,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "plum_pudding",
-    "name": "Pudding Mận Rừng",
+    "name": "Bánh Mận",
     "nameEn": "Plum Pudding",
     "category": "cooking",
     "subCategory": "Tráng miệng",
@@ -2076,7 +2076,7 @@ export const RECIPES_DATA = [
     "source": "Kênh The Queen of Sauce (Ngày 7 Mùa Đông, Năm 1)",
     "ingredients": [
       {
-        "name": "Mận rừng",
+        "name": "Mận dại",
         "nameEn": "Wild Plum",
         "count": 2,
         "iconUrl": "assets/icons/ing_wild_plum.png"
@@ -2103,7 +2103,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "artichoke_dip",
-    "name": "Sốt Atiso Béo Ngậy",
+    "name": "A-ti-sô dầm Sữa",
     "nameEn": "Artichoke Dip",
     "category": "cooking",
     "subCategory": "Món sốt chấm",
@@ -2114,13 +2114,13 @@ export const RECIPES_DATA = [
     "source": "Kênh The Queen of Sauce (Ngày 28 Mùa Thu, Năm 1)",
     "ingredients": [
       {
-        "name": "Bông Atiso",
+        "name": "A-ti-sô",
         "nameEn": "Artichoke",
         "count": 1,
         "iconUrl": "assets/icons/ing_stone.png"
       },
       {
-        "name": "Sữa tươi",
+        "name": "Sữa Bò",
         "nameEn": "Milk",
         "count": 1,
         "iconUrl": "assets/icons/ing_milk.png"
@@ -2135,7 +2135,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "stir_fry",
-    "name": "Món Xào Ngũ Sắc",
+    "name": "Rau củ xào",
     "nameEn": "Stir Fry",
     "category": "cooking",
     "subCategory": "Món xào chay",
@@ -2146,7 +2146,7 @@ export const RECIPES_DATA = [
     "source": "Kênh The Queen of Sauce (Ngày 7 Mùa Xuân, Năm 1)",
     "ingredients": [
       {
-        "name": "Cà rốt trong hang",
+        "name": "Cà-rốt Hang",
         "nameEn": "Cave Carrot",
         "count": 1,
         "iconUrl": "assets/icons/ing_stone.png"
@@ -2179,7 +2179,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "roasted_hazelnuts",
-    "name": "Hạt Dẻ Rang Muối Bơ",
+    "name": "Hạt phỉ Nướng",
     "nameEn": "Roasted Hazelnuts",
     "category": "cooking",
     "subCategory": "Món ăn nhẹ",
@@ -2205,7 +2205,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "pumpkin_pie",
-    "name": "Bánh Nướng Bí Ngô",
+    "name": "Bánh Bí ngô",
     "nameEn": "Pumpkin Pie",
     "category": "cooking",
     "subCategory": "Bánh nướng mùa thu",
@@ -2216,7 +2216,7 @@ export const RECIPES_DATA = [
     "source": "Kênh The Queen of Sauce (Ngày 21 Mùa Đông, Năm 1)",
     "ingredients": [
       {
-        "name": "Bí ngô Pumpkin",
+        "name": "Bí ngô",
         "nameEn": "Pumpkin",
         "count": 1,
         "iconUrl": "assets/icons/item_pumpkin.png"
@@ -2228,7 +2228,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_wheat_flour.png"
       },
       {
-        "name": "Sữa tươi",
+        "name": "Sữa Bò",
         "nameEn": "Milk",
         "count": 1,
         "iconUrl": "assets/icons/ing_milk.png"
@@ -2249,7 +2249,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "radish_salad",
-    "name": "Salad Củ Cải Cay Giòn",
+    "name": "Sa-lát Củ cải",
     "nameEn": "Radish Salad",
     "category": "cooking",
     "subCategory": "Món khai vị",
@@ -2266,13 +2266,13 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_oil.png"
       },
       {
-        "name": "Dấm",
+        "name": "Giấm",
         "nameEn": "Vinegar",
         "count": 1,
         "iconUrl": "assets/icons/ing_vinegar.png"
       },
       {
-        "name": "Củ cải đỏ",
+        "name": "Củ cải",
         "nameEn": "Radish",
         "count": 1,
         "iconUrl": "assets/icons/ing_radish.png"
@@ -2287,7 +2287,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "fruit_salad",
-    "name": "Salad Trái Cây Nhiệt Đới",
+    "name": "Sa-lát Trái cây",
     "nameEn": "Fruit Salad",
     "category": "cooking",
     "subCategory": "Tráng miệng trái cây",
@@ -2298,19 +2298,19 @@ export const RECIPES_DATA = [
     "source": "Kênh The Queen of Sauce (Ngày 7 Mùa Thu, Năm 2)",
     "ingredients": [
       {
-        "name": "Quả việt quất Blueberry",
+        "name": "Việt quất",
         "nameEn": "Blueberry",
         "count": 1,
         "iconUrl": "assets/icons/item_blueberry.png"
       },
       {
-        "name": "Dưa lưới Melon",
+        "name": "Dưa",
         "nameEn": "Melon",
         "count": 1,
         "iconUrl": "assets/icons/item_melon.png"
       },
       {
-        "name": "Quả mơ Apricot",
+        "name": "Mơ",
         "nameEn": "Apricot",
         "count": 1,
         "iconUrl": "assets/icons/item_apricot.png"
@@ -2325,7 +2325,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "blackberry_cobbler",
-    "name": "Bánh Nướng Dâu Đen",
+    "name": "Bánh Mâm xôi đen",
     "nameEn": "Blackberry Cobbler",
     "category": "cooking",
     "subCategory": "Bánh nướng trái cây",
@@ -2336,7 +2336,7 @@ export const RECIPES_DATA = [
     "source": "Kênh The Queen of Sauce (Ngày 14 Mùa Thu, Năm 2)",
     "ingredients": [
       {
-        "name": "Quả dâu đen Blackberry",
+        "name": "Mâm xôi đen",
         "nameEn": "Blackberry",
         "count": 2,
         "iconUrl": "assets/icons/item_blackberry.png"
@@ -2363,7 +2363,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "cranberry_candy",
-    "name": "Kẹo Dẻo Nam Việt Quất",
+    "name": "Nam việt quất ngâm đường",
     "nameEn": "Cranberry Candy",
     "category": "cooking",
     "subCategory": "Kẹo ngọt",
@@ -2374,13 +2374,13 @@ export const RECIPES_DATA = [
     "source": "Kênh The Queen of Sauce (Ngày 28 Mùa Đông, Năm 1)",
     "ingredients": [
       {
-        "name": "Nam việt quất Cranberries",
+        "name": "Nam việt quất",
         "nameEn": "Cranberries",
         "count": 1,
         "iconUrl": "assets/icons/item_cranberries.png"
       },
       {
-        "name": "Quả táo Apple",
+        "name": "Táo",
         "nameEn": "Apple",
         "count": 1,
         "iconUrl": "assets/icons/item_apple.png"
@@ -2401,7 +2401,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "bruschetta",
-    "name": "Bánh Mì Nướng Bơ Tỏi Cà Chua",
+    "name": "Bánh mì cà chua",
     "nameEn": "Bruschetta",
     "category": "cooking",
     "subCategory": "Món khai vị Ý",
@@ -2412,7 +2412,7 @@ export const RECIPES_DATA = [
     "source": "Kênh The Queen of Sauce (Ngày 21 Mùa Đông, Năm 2)",
     "ingredients": [
       {
-        "name": "Bánh mì Bread",
+        "name": "Bánh mỳ",
         "nameEn": "Bread",
         "count": 1,
         "iconUrl": "assets/icons/bread.png"
@@ -2424,7 +2424,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_oil.png"
       },
       {
-        "name": "Cà chua Tomato",
+        "name": "Cà chua",
         "nameEn": "Tomato",
         "count": 1,
         "iconUrl": "assets/icons/item_tomato.png"
@@ -2439,7 +2439,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "coleslaw",
-    "name": "Salad Bắp Cải Trộn Sốt",
+    "name": "Sa-lát Bắp cải",
     "nameEn": "Coleslaw",
     "category": "cooking",
     "subCategory": "Salad trộn",
@@ -2450,19 +2450,19 @@ export const RECIPES_DATA = [
     "source": "Kênh The Queen of Sauce (Ngày 14 Mùa Xuân, Năm 1)",
     "ingredients": [
       {
-        "name": "Bắp cải đỏ Red Cabbage",
+        "name": "Bắp cải Đỏ",
         "nameEn": "Red Cabbage",
         "count": 1,
         "iconUrl": "assets/icons/item_red_cabbage.png"
       },
       {
-        "name": "Dấm",
+        "name": "Giấm",
         "nameEn": "Vinegar",
         "count": 1,
         "iconUrl": "assets/icons/ing_vinegar.png"
       },
       {
-        "name": "Sốt Mayonnaise",
+        "name": "Sốt trứng gà tươi",
         "nameEn": "Mayonnaise",
         "count": 1,
         "iconUrl": "assets/icons/ing_stone.png"
@@ -2477,7 +2477,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "fiddlehead_risotto",
-    "name": "Cơm Ý Dương Xỉ Non",
+    "name": "Cơm Rau dớn",
     "nameEn": "Fiddlehead Risotto",
     "category": "cooking",
     "subCategory": "Món cơm cao cấp",
@@ -2488,13 +2488,13 @@ export const RECIPES_DATA = [
     "source": "Kênh The Queen of Sauce (Ngày 28 Mùa Thu, Năm 2)",
     "ingredients": [
       {
-        "name": "Đọt dương xỉ non Fiddlehead Fern",
+        "name": "Rau Dớn",
         "nameEn": "Fiddlehead Fern",
         "count": 1,
         "iconUrl": "assets/icons/item_fiddlehead_fern.png"
       },
       {
-        "name": "Tỏi Garlic",
+        "name": "Tỏi",
         "nameEn": "Garlic",
         "count": 1,
         "iconUrl": "assets/icons/ing_stone.png"
@@ -2515,7 +2515,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "poppyseed_muffin",
-    "name": "Bánh Muffin Hạt Anh Túc",
+    "name": "Bánh xốp nhân Anh túc",
     "nameEn": "Poppyseed Muffin",
     "category": "cooking",
     "subCategory": "Bánh ngọt nướng",
@@ -2526,7 +2526,7 @@ export const RECIPES_DATA = [
     "source": "Kênh The Queen of Sauce (Ngày 7 Mùa Đông, Năm 2)",
     "ingredients": [
       {
-        "name": "Hoa Anh Túc",
+        "name": "Hoa Anh túc",
         "nameEn": "Poppy",
         "count": 1,
         "iconUrl": "assets/icons/ing_poppy.png"
@@ -2553,7 +2553,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "chowder",
-    "name": "Súp Hải Sản Ngao Sò Chowder",
+    "name": "Súp nghêu",
     "nameEn": "Chowder",
     "category": "cooking",
     "subCategory": "Súp hải sản",
@@ -2570,7 +2570,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_clam.png"
       },
       {
-        "name": "Sữa tươi",
+        "name": "Sữa Bò",
         "nameEn": "Milk",
         "count": 1,
         "iconUrl": "assets/icons/ing_milk.png"
@@ -2591,7 +2591,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "fish_stew",
-    "name": "Lẩu Hải Sản Hầm Củ Quả",
+    "name": "Hải sản hầm",
     "nameEn": "Fish Stew",
     "category": "cooking",
     "subCategory": "Lẩu hải sản",
@@ -2602,25 +2602,25 @@ export const RECIPES_DATA = [
     "source": "Thư từ Willy khi đạt 7 Tim tình bạn",
     "ingredients": [
       {
-        "name": "Tôm sông",
+        "name": "Tôm hùm đất",
         "nameEn": "Crayfish",
         "count": 1,
         "iconUrl": "assets/icons/ing_crayfish.png"
       },
       {
-        "name": "Vẹm",
+        "name": "Trai",
         "nameEn": "Mussel",
         "count": 1,
         "iconUrl": "assets/icons/ing_mussel.png"
       },
       {
-        "name": "Ốc Periwinkle",
+        "name": "Ốc mỡ",
         "nameEn": "Periwinkle",
         "count": 1,
         "iconUrl": "assets/icons/ing_periwinkle.png"
       },
       {
-        "name": "Cà chua Tomato",
+        "name": "Cà chua",
         "nameEn": "Tomato",
         "count": 1,
         "iconUrl": "assets/icons/item_tomato.png"
@@ -2641,7 +2641,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "escargot",
-    "name": "Ốc Sên Xào Bơ Tỏi Kiểu Pháp",
+    "name": "Ốc nấu bơ tỏi",
     "nameEn": "Escargot",
     "category": "cooking",
     "subCategory": "Món Pháp cao cấp",
@@ -2652,13 +2652,13 @@ export const RECIPES_DATA = [
     "source": "Thư từ Willy khi đạt 5 Tim tình bạn",
     "ingredients": [
       {
-        "name": "Ốc sên",
+        "name": "Ốc",
         "nameEn": "Snail",
         "count": 1,
         "iconUrl": "assets/icons/ing_snail.png"
       },
       {
-        "name": "Tỏi Garlic",
+        "name": "Tỏi",
         "nameEn": "Garlic",
         "count": 1,
         "iconUrl": "assets/icons/ing_stone.png"
@@ -2679,7 +2679,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "lobster_bisque",
-    "name": "Súp Kem Tôm Hùm Hoàng Gia",
+    "name": "Súp Tôm hùm",
     "nameEn": "Lobster Bisque",
     "category": "cooking",
     "subCategory": "Món Thần Thánh Câu Cá",
@@ -2690,13 +2690,13 @@ export const RECIPES_DATA = [
     "source": "Kênh The Queen of Sauce (Ngày 14 Mùa Đông, Năm 2) hoặc Thư từ Willy",
     "ingredients": [
       {
-        "name": "Tôm hùm Lobster",
+        "name": "Tôm Hùm",
         "nameEn": "Lobster",
         "count": 1,
         "iconUrl": "assets/icons/item_lobster.png"
       },
       {
-        "name": "Sữa tươi",
+        "name": "Sữa Bò",
         "nameEn": "Milk",
         "count": 1,
         "iconUrl": "assets/icons/ing_milk.png"
@@ -2722,7 +2722,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "maple_bar",
-    "name": "Bánh Quẩy Nhựa Phong",
+    "name": "Bánh mật cây Phong",
     "nameEn": "Maple Bar",
     "category": "cooking",
     "subCategory": "Bánh ngọt đa năng",
@@ -2733,7 +2733,7 @@ export const RECIPES_DATA = [
     "source": "Kênh The Queen of Sauce (Ngày 14 Mùa Hè, Năm 2)",
     "ingredients": [
       {
-        "name": "Siro cây phong",
+        "name": "Si-rô nhựa Phong",
         "nameEn": "Maple Syrup",
         "count": 1,
         "iconUrl": "assets/icons/ing_maple_syrup.png"
@@ -2776,7 +2776,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "crab_cakes",
-    "name": "Chả Cua Biển Áp Chảo",
+    "name": "Bánh Cua",
     "nameEn": "Crab Cakes",
     "category": "cooking",
     "subCategory": "Vua Tốc Độ Cả Ngày",
@@ -2831,7 +2831,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "shrimp_cocktail",
-    "name": "Cocktail Tôm Sốt Cay",
+    "name": "Cốc-tai Tôm",
     "nameEn": "Shrimp Cocktail",
     "category": "cooking",
     "subCategory": "Khai vị cao cấp",
@@ -2842,19 +2842,19 @@ export const RECIPES_DATA = [
     "source": "Kênh The Queen of Sauce (Ngày 28 Mùa Đông, Năm 2)",
     "ingredients": [
       {
-        "name": "Cà chua Tomato",
+        "name": "Cà chua",
         "nameEn": "Tomato",
         "count": 1,
         "iconUrl": "assets/icons/item_tomato.png"
       },
       {
-        "name": "Tôm sú",
+        "name": "Tôm",
         "nameEn": "Shrimp",
         "count": 1,
         "iconUrl": "assets/icons/ing_shrimp.png"
       },
       {
-        "name": "Cải ngựa hoang dã Wild Horseradish",
+        "name": "Cải ngựa Dại",
         "nameEn": "Wild Horseradish",
         "count": 1,
         "iconUrl": "assets/icons/item_wild_horseradish.png"
@@ -2880,7 +2880,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "ginger_ale",
-    "name": "Bia Gừng Sủi Bọt Sa Mạc",
+    "name": "Bia gừng",
     "nameEn": "Ginger Ale",
     "category": "cooking",
     "subCategory": "Đồ uống Đảo Gừng",
@@ -2891,7 +2891,7 @@ export const RECIPES_DATA = [
     "source": "Mua từ Dwarf ở Volcano Dungeon (Đảo Gừng - 1,000g)",
     "ingredients": [
       {
-        "name": "Củ gừng",
+        "name": "Gừng",
         "nameEn": "Ginger",
         "count": 3,
         "iconUrl": "assets/icons/ing_ginger.png"
@@ -2918,7 +2918,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "banana_pudding",
-    "name": "Pudding Chuối Kem Tươi",
+    "name": "Bánh pudding Chuối",
     "nameEn": "Banana Pudding",
     "category": "cooking",
     "subCategory": "Món tráng miệng Đảo Gừng",
@@ -2929,13 +2929,13 @@ export const RECIPES_DATA = [
     "source": "Mua từ Island Trader (Đổi 30 Bone Fragments)",
     "ingredients": [
       {
-        "name": "Quả chuối Banana",
+        "name": "Chuối",
         "nameEn": "Banana",
         "count": 1,
         "iconUrl": "assets/icons/item_banana.png"
       },
       {
-        "name": "Sữa tươi",
+        "name": "Sữa Bò",
         "nameEn": "Milk",
         "count": 1,
         "iconUrl": "assets/icons/ing_milk.png"
@@ -2972,7 +2972,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "mango_sticky_rice",
-    "name": "Xôi Xoài Nước Cốt Dừa",
+    "name": "Xôi Xoài",
     "nameEn": "Mango Sticky Rice",
     "category": "cooking",
     "subCategory": "Món ngọt Đảo Gừng",
@@ -2983,13 +2983,13 @@ export const RECIPES_DATA = [
     "source": "Thư từ cậu bé rừng xanh Leo khi đạt 7 Tim tình bạn",
     "ingredients": [
       {
-        "name": "Xoài chín Mango",
+        "name": "Xoài",
         "nameEn": "Mango",
         "count": 1,
         "iconUrl": "assets/icons/item_mango.png"
       },
       {
-        "name": "Quả dừa Coconut",
+        "name": "Dừa",
         "nameEn": "Coconut",
         "count": 1,
         "iconUrl": "assets/icons/item_coconut.png"
@@ -3016,7 +3016,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "poi",
-    "name": "Món Khoai Môn Nghiền Poi",
+    "name": "Sốt khoai môn",
     "nameEn": "Poi",
     "category": "cooking",
     "subCategory": "Đặc sản Đảo Gừng",
@@ -3042,7 +3042,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "tropical_curry",
-    "name": "Cà Ri Thơm Nhiệt Đới",
+    "name": "Cà-ri nhiệt đới",
     "nameEn": "Tropical Curry",
     "category": "cooking",
     "subCategory": "Đặc sản Đảo Gừng",
@@ -3053,19 +3053,19 @@ export const RECIPES_DATA = [
     "source": "Mua từ Quán bar của Gus trên Island Resort (2,000g)",
     "ingredients": [
       {
-        "name": "Quả dừa Coconut",
+        "name": "Dừa",
         "nameEn": "Coconut",
         "count": 1,
         "iconUrl": "assets/icons/item_coconut.png"
       },
       {
-        "name": "Dứa nhiệt đới",
+        "name": "Dứa",
         "nameEn": "Pineapple",
         "count": 1,
         "iconUrl": "assets/icons/ing_pineapple.png"
       },
       {
-        "name": "Ớt cay Hot Pepper",
+        "name": "Ớt hiểm",
         "nameEn": "Hot Pepper",
         "count": 1,
         "iconUrl": "assets/icons/item_hot_pepper.png"
@@ -3086,7 +3086,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "squid_ink_ravioli",
-    "name": "Mì Ý Mực Đen Thượng Hạng",
+    "name": "Bánh bao Ý nhồi mực Mực",
     "nameEn": "Squid Ink Ravioli",
     "category": "cooking",
     "subCategory": "Món Độc Nhất Vô Nhị",
@@ -3097,7 +3097,7 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Khai Mỏ (Mining) Cấp 9",
     "ingredients": [
       {
-        "name": "Mực đen",
+        "name": "Mực Mực",
         "nameEn": "Squid Ink",
         "count": 1,
         "iconUrl": "assets/icons/ing_squid_ink.png"
@@ -3109,7 +3109,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_wheat_flour.png"
       },
       {
-        "name": "Cà chua Tomato",
+        "name": "Cà chua",
         "nameEn": "Tomato",
         "count": 1,
         "iconUrl": "assets/icons/item_tomato.png"
@@ -3135,7 +3135,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "moss_soup",
-    "name": "Súp Rêu Xanh Cổ Thụ (Mới 1.6)",
+    "name": "Súp Rêu",
     "nameEn": "Moss Soup",
     "category": "cooking",
     "subCategory": "Món Mới Bản 1.6",
@@ -3147,7 +3147,7 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Hái Lượm (Foraging) Cấp 3",
     "ingredients": [
       {
-        "name": "Rêu tươi",
+        "name": "Rêu",
         "nameEn": "Moss",
         "count": 20,
         "iconUrl": "assets/icons/ing_moss.png"
@@ -3162,7 +3162,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "sprinkler",
-    "name": "Bình Phun Nước Cơ Bản",
+    "name": "Vòi tưới nước",
     "nameEn": "Sprinkler",
     "category": "crafting",
     "subCategory": "Hệ thống tưới tự động",
@@ -3170,13 +3170,13 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Canh tác (Farming) Cấp 2",
     "ingredients": [
       {
-        "name": "Thỏi đồng",
+        "name": "Thỏi Đồng",
         "count": 1,
         "nameEn": "Copper Bar",
         "iconUrl": "assets/icons/ing_copper_bar.png"
       },
       {
-        "name": "Thỏi sắt",
+        "name": "Thỏi Sắt",
         "count": 1,
         "nameEn": "Iron Bar",
         "iconUrl": "assets/icons/ing_iron_bar.png"
@@ -3190,7 +3190,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "quality_sprinkler",
-    "name": "Bình Phun Nước Chất Lượng Cao",
+    "name": "Vòi tưới Xịn",
     "nameEn": "Quality Sprinkler",
     "category": "crafting",
     "subCategory": "Hệ thống tưới tự động",
@@ -3198,19 +3198,19 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Canh tác (Farming) Cấp 6",
     "ingredients": [
       {
-        "name": "Thỏi sắt",
+        "name": "Thỏi Sắt",
         "count": 1,
         "nameEn": "Iron Bar",
         "iconUrl": "assets/icons/ing_iron_bar.png"
       },
       {
-        "name": "Thỏi vàng",
+        "name": "Thỏi Vàng",
         "count": 1,
         "nameEn": "Gold Bar",
         "iconUrl": "assets/icons/ing_gold_bar.png"
       },
       {
-        "name": "Thạch anh tinh luyện",
+        "name": "Thạch anh Tinh luyện",
         "count": 1,
         "nameEn": "Refined Quartz",
         "iconUrl": "assets/icons/ing_refined_quartz.png"
@@ -3224,7 +3224,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "iridium_sprinkler",
-    "name": "Bình Phun Nước Iridium Tối Thượng",
+    "name": "Vòi tưới Iridium",
     "nameEn": "Iridium Sprinkler",
     "category": "crafting",
     "subCategory": "Hệ thống tưới tự động",
@@ -3232,7 +3232,7 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Canh tác (Farming) Cấp 9",
     "ingredients": [
       {
-        "name": "Thỏi vàng",
+        "name": "Thỏi Vàng",
         "count": 1,
         "nameEn": "Gold Bar",
         "iconUrl": "assets/icons/ing_gold_bar.png"
@@ -3244,7 +3244,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_iridium_bar.png"
       },
       {
-        "name": "Pin năng lượng",
+        "name": "Cục Pin",
         "count": 1,
         "nameEn": "Battery Pack",
         "iconUrl": "assets/icons/ing_battery_pack.png"
@@ -3258,7 +3258,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "scarecrow",
-    "name": "Bù Nhìn Rơm Cơ Bản",
+    "name": "Bù nhìn",
     "nameEn": "Scarecrow",
     "category": "crafting",
     "subCategory": "Bảo vệ mùa màng",
@@ -3278,7 +3278,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_coal.png"
       },
       {
-        "name": "Sợi gai",
+        "name": "Sợi",
         "count": 20,
         "nameEn": "Fiber",
         "iconUrl": "assets/icons/ing_fiber.png"
@@ -3292,7 +3292,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "deluxe_scarecrow",
-    "name": "Đại Bù Nhìn Rơm Hoàng Gia",
+    "name": "Bù nhìn Cao cấp",
     "nameEn": "Deluxe Scarecrow",
     "category": "crafting",
     "subCategory": "Bảo vệ mùa màng",
@@ -3312,7 +3312,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/item_iridium_ore.png"
       },
       {
-        "name": "Sợi gai",
+        "name": "Sợi",
         "count": 40,
         "nameEn": "Fiber",
         "iconUrl": "assets/icons/ing_fiber.png"
@@ -3326,7 +3326,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "mayonnaise_machine",
-    "name": "Máy Làm Sốt Mayonnaise",
+    "name": "Máy làm sốt trứng",
     "nameEn": "Mayonnaise Machine",
     "category": "crafting",
     "subCategory": "Máy chế biến nông sản",
@@ -3346,13 +3346,13 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_stone.png"
       },
       {
-        "name": "Tinh thể đất",
+        "name": "Tinh thể Đất",
         "count": 1,
         "nameEn": "Earth Crystal",
         "iconUrl": "assets/icons/ing_stone.png"
       },
       {
-        "name": "Thỏi đồng",
+        "name": "Thỏi Đồng",
         "count": 1,
         "nameEn": "Copper Bar",
         "iconUrl": "assets/icons/ing_copper_bar.png"
@@ -3366,7 +3366,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "bee_house",
-    "name": "Thùng Nuôi Ong Lấy Mật",
+    "name": "Nhà nuôi Ong",
     "nameEn": "Bee House",
     "category": "crafting",
     "subCategory": "Máy chế biến nông sản",
@@ -3386,13 +3386,13 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_coal.png"
       },
       {
-        "name": "Thỏi sắt",
+        "name": "Thỏi Sắt",
         "count": 1,
         "nameEn": "Iron Bar",
         "iconUrl": "assets/icons/ing_iron_bar.png"
       },
       {
-        "name": "Siro cây phong",
+        "name": "Si-rô nhựa Phong",
         "count": 1,
         "nameEn": "Maple Syrup",
         "iconUrl": "assets/icons/ing_maple_syrup.png"
@@ -3406,7 +3406,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "preserves_jar",
-    "name": "Hũ Ngâm Chua & Làm Mứt",
+    "name": "Vại Bảo quản",
     "nameEn": "Preserves Jar",
     "category": "crafting",
     "subCategory": "Máy chế biến nông sản",
@@ -3440,7 +3440,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "cheese_press",
-    "name": "Máy Ép Phô Mai",
+    "name": "Máy ép Phô mai",
     "nameEn": "Cheese Press",
     "category": "crafting",
     "subCategory": "Máy chế biến nông sản",
@@ -3460,13 +3460,13 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_stone.png"
       },
       {
-        "name": "Gỗ cứng",
+        "name": "Gỗ Cứng",
         "count": 10,
         "nameEn": "Hardwood",
         "iconUrl": "assets/icons/ing_hardwood.png"
       },
       {
-        "name": "Thỏi đồng",
+        "name": "Thỏi Đồng",
         "count": 1,
         "nameEn": "Copper Bar",
         "iconUrl": "assets/icons/ing_copper_bar.png"
@@ -3480,7 +3480,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "keg",
-    "name": "Thùng Ủ Rượu Lên Men (Keg)",
+    "name": "Thùng chứa (Keg)",
     "nameEn": "Keg",
     "category": "crafting",
     "subCategory": "Vua Kiếm Tiền Thung Lũng",
@@ -3500,19 +3500,19 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_clay.png"
       },
       {
-        "name": "Thỏi đồng",
+        "name": "Thỏi Đồng",
         "count": 1,
         "nameEn": "Copper Bar",
         "iconUrl": "assets/icons/ing_copper_bar.png"
       },
       {
-        "name": "Thỏi sắt",
+        "name": "Thỏi Sắt",
         "count": 1,
         "nameEn": "Iron Bar",
         "iconUrl": "assets/icons/ing_iron_bar.png"
       },
       {
-        "name": "Nhựa cây sồi",
+        "name": "Nhựa Sồi",
         "count": 1,
         "nameEn": "Oak Resin",
         "iconUrl": "assets/icons/ing_oak_resin.png"
@@ -3526,7 +3526,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "loom",
-    "name": "Khung Dệt Vải Thủ Công",
+    "name": "Khung cửi",
     "nameEn": "Loom",
     "category": "crafting",
     "subCategory": "Máy chế biến dệt",
@@ -3540,7 +3540,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_wood.png"
       },
       {
-        "name": "Sợi gai",
+        "name": "Sợi",
         "count": 30,
         "nameEn": "Fiber",
         "iconUrl": "assets/icons/ing_fiber.png"
@@ -3560,7 +3560,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "oil_maker",
-    "name": "Máy Ép Dầu Tự Động",
+    "name": "Máy ép dầu",
     "nameEn": "Oil Maker",
     "category": "crafting",
     "subCategory": "Máy chế biến",
@@ -3568,19 +3568,19 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Canh tác (Farming) Cấp 8",
     "ingredients": [
       {
-        "name": "Chất nhờn",
+        "name": "Thạch Xà-lam",
         "count": 50,
         "nameEn": "Slime",
         "iconUrl": "assets/icons/ing_slime.png"
       },
       {
-        "name": "Gỗ cứng",
+        "name": "Gỗ Cứng",
         "count": 20,
         "nameEn": "Hardwood",
         "iconUrl": "assets/icons/ing_hardwood.png"
       },
       {
-        "name": "Thỏi vàng",
+        "name": "Thỏi Vàng",
         "count": 1,
         "nameEn": "Gold Bar",
         "iconUrl": "assets/icons/ing_gold_bar.png"
@@ -3594,7 +3594,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "cask",
-    "name": "Thùng Gỗ Sồi Ủ Rượu Tăng Sao (Cask)",
+    "name": "Thùng Tô nô (Cask)",
     "nameEn": "Cask",
     "category": "crafting",
     "subCategory": "Hầm rượu gia truyền",
@@ -3608,7 +3608,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_wood.png"
       },
       {
-        "name": "Gỗ cứng",
+        "name": "Gỗ Cứng",
         "count": 1,
         "nameEn": "Hardwood",
         "iconUrl": "assets/icons/ing_hardwood.png"
@@ -3622,7 +3622,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "fish_smoker",
-    "name": "Máy Hun Khói Cá (Mới 1.6)",
+    "name": "Lò hun cá",
     "nameEn": "Fish Smoker",
     "category": "crafting",
     "subCategory": "Đồ Mới Bản 1.6",
@@ -3631,7 +3631,7 @@ export const RECIPES_DATA = [
     "source": "Mua công thức từ Willy tại Fish Shop (10,000g)",
     "ingredients": [
       {
-        "name": "Gỗ cứng",
+        "name": "Gỗ Cứng",
         "count": 10,
         "nameEn": "Hardwood",
         "iconUrl": "assets/icons/ing_hardwood.png"
@@ -3643,7 +3643,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_coal.png"
       },
       {
-        "name": "Thạch anh lửa",
+        "name": "Thạch anh Lửa",
         "count": 1,
         "nameEn": "Fire Quartz",
         "iconUrl": "assets/icons/ing_stone.png"
@@ -3657,7 +3657,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "dehydrator",
-    "name": "Máy Sấy Khô Hoa Quả & Nấm (Mới 1.6)",
+    "name": "Máy sấy Thực phẩm",
     "nameEn": "Dehydrator",
     "category": "crafting",
     "subCategory": "Đồ Mới Bản 1.6",
@@ -3678,7 +3678,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_clay.png"
       },
       {
-        "name": "Thạch anh lửa",
+        "name": "Thạch anh Lửa",
         "count": 1,
         "nameEn": "Fire Quartz",
         "iconUrl": "assets/icons/ing_stone.png"
@@ -3692,7 +3692,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "bait_maker",
-    "name": "Máy Chế Mồi Câu Đặc Chủng (Mới 1.6)",
+    "name": "Máy tạo Mồi chuyên biệt",
     "nameEn": "Bait Maker",
     "category": "crafting",
     "subCategory": "Đồ Mới Bản 1.6",
@@ -3707,7 +3707,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_wood.png"
       },
       {
-        "name": "Thỏi sắt",
+        "name": "Thỏi Sắt",
         "count": 1,
         "nameEn": "Iron Bar",
         "iconUrl": "assets/icons/ing_iron_bar.png"
@@ -3719,7 +3719,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/item_coral.png"
       },
       {
-        "name": "Nhím biển",
+        "name": "Nhím Biển",
         "count": 3,
         "nameEn": "Sea Urchin",
         "iconUrl": "assets/icons/item_sea_urchin.png"
@@ -3733,7 +3733,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "mushroom_log",
-    "name": "Khúc Gỗ Cấy Nấm Rừng (Mới 1.6)",
+    "name": "Gốc Nấm",
     "nameEn": "Mushroom Log",
     "category": "crafting",
     "subCategory": "Đồ Mới Bản 1.6",
@@ -3742,13 +3742,13 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Hái Lượm (Foraging) Cấp 4",
     "ingredients": [
       {
-        "name": "Gỗ cứng",
+        "name": "Gỗ Cứng",
         "count": 45,
         "nameEn": "Hardwood",
         "iconUrl": "assets/icons/ing_hardwood.png"
       },
       {
-        "name": "Rêu tươi",
+        "name": "Rêu",
         "count": 10,
         "nameEn": "Moss",
         "iconUrl": "assets/icons/ing_moss.png"
@@ -3762,7 +3762,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "heavy_tapper",
-    "name": "Ống Chiết Nhựa Siêu Tốc (Heavy Tapper)",
+    "name": "Phễu hứng nhựa cây (Heavy Tapper)",
     "nameEn": "Heavy Tapper",
     "category": "crafting",
     "subCategory": "Ống chiết tăng tốc",
@@ -3770,13 +3770,13 @@ export const RECIPES_DATA = [
     "source": "Mua công thức trong Qi's Walnut Room (20 Qi Gems)",
     "ingredients": [
       {
-        "name": "Gỗ cứng",
+        "name": "Gỗ Cứng",
         "count": 30,
         "nameEn": "Hardwood",
         "iconUrl": "assets/icons/ing_hardwood.png"
       },
       {
-        "name": "Thỏi phóng xạ",
+        "name": "Thỏi Phóng xạ",
         "count": 1,
         "nameEn": "Radioactive Bar",
         "iconUrl": "assets/icons/smelt_radioactive_bar.png"
@@ -3790,7 +3790,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "tapper",
-    "name": "Ống Chiết Nhựa Cây Thông Thường",
+    "name": "Chén hứng Nhựa cây",
     "nameEn": "Tapper",
     "category": "crafting",
     "subCategory": "Dụng cụ chiết",
@@ -3804,7 +3804,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_wood.png"
       },
       {
-        "name": "Thỏi đồng",
+        "name": "Thỏi Đồng",
         "count": 2,
         "nameEn": "Copper Bar",
         "iconUrl": "assets/icons/ing_copper_bar.png"
@@ -3818,7 +3818,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "cherry_bomb",
-    "name": "Bom Anh Đào Mini",
+    "name": "Bom Anh đào",
     "nameEn": "Cherry Bomb",
     "category": "crafting",
     "subCategory": "Chất nổ phá mỏ",
@@ -3826,7 +3826,7 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Khai Mỏ (Mining) Cấp 1",
     "ingredients": [
       {
-        "name": "Quặng đồng",
+        "name": "Quặng Đồng",
         "count": 4,
         "nameEn": "Copper Ore",
         "iconUrl": "assets/icons/ing_copper_ore.png"
@@ -3846,7 +3846,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "bomb",
-    "name": "Bom Tiêu Chuẩn",
+    "name": "Bom",
     "nameEn": "Bomb",
     "category": "crafting",
     "subCategory": "Chất nổ phá mỏ",
@@ -3854,7 +3854,7 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Khai Mỏ (Mining) Cấp 6",
     "ingredients": [
       {
-        "name": "Quặng sắt",
+        "name": "Quặng Sắt",
         "count": 4,
         "nameEn": "Iron Ore",
         "iconUrl": "assets/icons/ing_iron_ore.png"
@@ -3874,7 +3874,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "mega_bomb",
-    "name": "Đại Siêu Bom Hạt Nhân",
+    "name": "Bom tấn",
     "nameEn": "Mega Bomb",
     "category": "crafting",
     "subCategory": "Chất nổ phá mỏ",
@@ -3882,19 +3882,19 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Khai Mỏ (Mining) Cấp 8",
     "ingredients": [
       {
-        "name": "Quặng vàng",
+        "name": "Quặng Vàng",
         "count": 4,
         "nameEn": "Gold Ore",
         "iconUrl": "assets/icons/ing_gold_ore.png"
       },
       {
-        "name": "Tinh chất mặt trời",
+        "name": "Tinh chất Mặt trời",
         "count": 1,
         "nameEn": "Solar Essence",
         "iconUrl": "assets/icons/ing_solar_essence.png"
       },
       {
-        "name": "Tinh chất hư vô",
+        "name": "Tinh chất Hư không",
         "count": 1,
         "nameEn": "Void Essence",
         "iconUrl": "assets/icons/ing_void_essence.png"
@@ -3908,7 +3908,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "furnace",
-    "name": "Lò Luyện Kim Cơ Bản",
+    "name": "Lò nung",
     "nameEn": "Furnace",
     "category": "crafting",
     "subCategory": "Luyện kim",
@@ -3916,7 +3916,7 @@ export const RECIPES_DATA = [
     "source": "Sự kiện Clint ghé thăm nông trại sau khi đào được quặng đầu tiên",
     "ingredients": [
       {
-        "name": "Quặng đồng",
+        "name": "Quặng Đồng",
         "count": 20,
         "nameEn": "Copper Ore",
         "iconUrl": "assets/icons/ing_copper_ore.png"
@@ -3936,7 +3936,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "heavy_furnace",
-    "name": "Đại Lò Luyện Công Nghiệp (Mới 1.6)",
+    "name": "Lò nung năng suất",
     "nameEn": "Heavy Furnace",
     "category": "crafting",
     "subCategory": "Đồ Mới Bản 1.6",
@@ -3945,13 +3945,13 @@ export const RECIPES_DATA = [
     "source": "Mở khóa cột mốc Mining Mastery tại Căn Hang Bậc Thầy (Mastery Cave)",
     "ingredients": [
       {
-        "name": "Lò nung thường",
+        "name": "Lò nung",
         "count": 2,
         "nameEn": "Furnace",
         "iconUrl": "assets/icons/furnace.png"
       },
       {
-        "name": "Thỏi sắt",
+        "name": "Thỏi Sắt",
         "count": 3,
         "nameEn": "Iron Bar",
         "iconUrl": "assets/icons/ing_iron_bar.png"
@@ -3971,7 +3971,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "anvil",
-    "name": "Đe Rèn Thần Kỳ (Mới 1.6)",
+    "name": "Đe",
     "nameEn": "Anvil",
     "category": "crafting",
     "subCategory": "Đồ Mới Bản 1.6",
@@ -3980,7 +3980,7 @@ export const RECIPES_DATA = [
     "source": "Mở khóa Combat Mastery tại Hang Bậc Thầy",
     "ingredients": [
       {
-        "name": "Thỏi sắt",
+        "name": "Thỏi Sắt",
         "count": 50,
         "nameEn": "Iron Bar",
         "iconUrl": "assets/icons/ing_iron_bar.png"
@@ -3994,7 +3994,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "mini_forge",
-    "name": "Lò Rèn Mini Cầm Tay (Mới 1.6)",
+    "name": "Lò rèn cỡ nhỏ",
     "nameEn": "Mini-Forge",
     "category": "crafting",
     "subCategory": "Lò rèn di động",
@@ -4003,7 +4003,7 @@ export const RECIPES_DATA = [
     "source": "Mở khóa Mining Mastery tại Căn Hang Bậc Thầy",
     "ingredients": [
       {
-        "name": "Thỏi sắt",
+        "name": "Thỏi Sắt",
         "count": 10,
         "nameEn": "Iron Bar",
         "iconUrl": "assets/icons/ing_iron_bar.png"
@@ -4022,7 +4022,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "staircase",
-    "name": "Cầu Thang Đá Xuống Mỏ",
+    "name": "Cầu thang",
     "nameEn": "Staircase",
     "category": "crafting",
     "subCategory": "Vật phẩm thám hiểm",
@@ -4044,7 +4044,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "geode_crusher",
-    "name": "Máy Đập Trứng Thạch Anh Tự Động",
+    "name": "Máy phá hốc tinh",
     "nameEn": "Geode Crusher",
     "category": "crafting",
     "subCategory": "Máy chế biến mỏ",
@@ -4052,7 +4052,7 @@ export const RECIPES_DATA = [
     "source": "Phần thưởng hoàn thành nhiệm vụ Cave Patrol của Clint",
     "ingredients": [
       {
-        "name": "Thỏi vàng",
+        "name": "Thỏi Vàng",
         "count": 2,
         "nameEn": "Gold Bar",
         "iconUrl": "assets/icons/ing_gold_bar.png"
@@ -4078,7 +4078,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "chest",
-    "name": "Rương Gỗ Đựng Đồ Tiêu Chuẩn",
+    "name": "Rương",
     "nameEn": "Chest",
     "category": "crafting",
     "subCategory": "Kho chứa đồ",
@@ -4100,7 +4100,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "big_chest",
-    "name": "Đại Rương Gỗ 70 Ô (Mới 1.6)",
+    "name": "Rương lớn",
     "nameEn": "Big Chest",
     "category": "crafting",
     "subCategory": "Đồ Mới Bản 1.6",
@@ -4115,7 +4115,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_wood.png"
       },
       {
-        "name": "Thỏi đồng",
+        "name": "Thỏi Đồng",
         "count": 2,
         "nameEn": "Copper Bar",
         "iconUrl": "assets/icons/ing_copper_bar.png"
@@ -4129,7 +4129,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "stone_chest",
-    "name": "Rương Đá Mỹ Nghệ",
+    "name": "Rương Đá",
     "nameEn": "Stone Chest",
     "category": "crafting",
     "subCategory": "Kho chứa đồ",
@@ -4151,7 +4151,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "big_stone_chest",
-    "name": "Đại Rương Đá 70 Ô (Mới 1.6)",
+    "name": "Rương đá lớn",
     "nameEn": "Big Stone Chest",
     "category": "crafting",
     "subCategory": "Đồ Mới Bản 1.6",
@@ -4174,10 +4174,10 @@ export const RECIPES_DATA = [
   },
   {
     "id": "seed_maker",
-    "name": "Máy Nhân Bản Hạt Giống",
+    "name": "Máy tạo Hạt giống",
     "nameEn": "Seed Maker",
     "category": "crafting",
-    "subCategory": "Máy tạo hạt giống",
+    "subCategory": "Máy tạo Hạt giống",
     "icon": "🌱",
     "source": "Đạt cấp độ Canh tác (Farming) Cấp 9",
     "ingredients": [
@@ -4194,7 +4194,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_coal.png"
       },
       {
-        "name": "Thỏi vàng",
+        "name": "Thỏi Vàng",
         "count": 1,
         "nameEn": "Gold Bar",
         "iconUrl": "assets/icons/ing_gold_bar.png"
@@ -4208,7 +4208,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "lightning_rod",
-    "name": "Cột Thu Lôi Hút Sét",
+    "name": "Cột thu lôi",
     "nameEn": "Lightning Rod",
     "category": "crafting",
     "subCategory": "Năng lượng & Bảo vệ",
@@ -4216,19 +4216,19 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Canh tác (Farming) Cấp 6",
     "ingredients": [
       {
-        "name": "Thỏi sắt",
+        "name": "Thỏi Sắt",
         "count": 1,
         "nameEn": "Iron Bar",
         "iconUrl": "assets/icons/ing_iron_bar.png"
       },
       {
-        "name": "Thạch anh tinh luyện",
+        "name": "Thạch anh Tinh luyện",
         "count": 1,
         "nameEn": "Refined Quartz",
         "iconUrl": "assets/icons/ing_refined_quartz.png"
       },
       {
-        "name": "Cánh dơi",
+        "name": "Cánh Dơi",
         "count": 5,
         "nameEn": "Bat Wing",
         "iconUrl": "assets/icons/ing_bat_wing.png"
@@ -4242,7 +4242,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "crystalarium",
-    "name": "Máy Nhân Bản Đá Quý Tự Động",
+    "name": "Máy Sao chép Ngọc",
     "nameEn": "Crystalarium",
     "category": "crafting",
     "subCategory": "Cỗ máy kỳ diệu",
@@ -4256,7 +4256,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_stone.png"
       },
       {
-        "name": "Thỏi vàng",
+        "name": "Thỏi Vàng",
         "count": 5,
         "nameEn": "Gold Bar",
         "iconUrl": "assets/icons/ing_gold_bar.png"
@@ -4268,7 +4268,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_iridium_bar.png"
       },
       {
-        "name": "Pin năng lượng",
+        "name": "Cục Pin",
         "count": 1,
         "nameEn": "Battery Pack",
         "iconUrl": "assets/icons/ing_battery_pack.png"
@@ -4282,7 +4282,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "mini_obelisk",
-    "name": "Cặp Tháp Dịch Chuyển Tức Thời Mini",
+    "name": "Trụ dịch chuyển cỡ nhỏ",
     "nameEn": "Mini-Obelisk",
     "category": "crafting",
     "subCategory": "Phù phép di chuyển",
@@ -4290,19 +4290,19 @@ export const RECIPES_DATA = [
     "source": "Phần thưởng hoàn thành nhiệm vụ A Curious Substance của Pháp sư Rasmodius",
     "ingredients": [
       {
-        "name": "Gỗ cứng",
+        "name": "Gỗ Cứng",
         "count": 30,
         "nameEn": "Hardwood",
         "iconUrl": "assets/icons/ing_hardwood.png"
       },
       {
-        "name": "Tinh chất mặt trời",
+        "name": "Tinh chất Mặt trời",
         "count": 20,
         "nameEn": "Solar Essence",
         "iconUrl": "assets/icons/ing_solar_essence.png"
       },
       {
-        "name": "Thỏi vàng",
+        "name": "Thỏi Vàng",
         "count": 3,
         "nameEn": "Gold Bar",
         "iconUrl": "assets/icons/ing_gold_bar.png"
@@ -4316,7 +4316,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "farm_computer",
-    "name": "Máy Tính Quản Lý Nông Trại",
+    "name": "Máy tính nông trại",
     "nameEn": "Farm Computer",
     "category": "crafting",
     "subCategory": "Công nghệ cao",
@@ -4329,13 +4329,13 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_stone.png"
       },
       {
-        "name": "Pin năng lượng",
+        "name": "Cục Pin",
         "count": 1,
         "nameEn": "Battery Pack",
         "iconUrl": "assets/icons/ing_battery_pack.png"
       },
       {
-        "name": "Thạch anh tinh luyện",
+        "name": "Thạch anh Tinh luyện",
         "count": 10,
         "nameEn": "Refined Quartz",
         "iconUrl": "assets/icons/ing_refined_quartz.png"
@@ -4349,7 +4349,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "hopper",
-    "name": "Phễu Nạp Nguyên Liệu Tự Động",
+    "name": "Máng nạp",
     "nameEn": "Hopper",
     "category": "crafting",
     "subCategory": "Tự động hóa",
@@ -4357,7 +4357,7 @@ export const RECIPES_DATA = [
     "source": "Mua công thức từ Qi's Walnut Room (50 Qi Gems)",
     "ingredients": [
       {
-        "name": "Gỗ cứng",
+        "name": "Gỗ Cứng",
         "count": 10,
         "nameEn": "Hardwood",
         "iconUrl": "assets/icons/ing_hardwood.png"
@@ -4369,7 +4369,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_iridium_bar.png"
       },
       {
-        "name": "Thỏi phóng xạ",
+        "name": "Thỏi Phóng xạ",
         "count": 1,
         "nameEn": "Radioactive Bar",
         "iconUrl": "assets/icons/smelt_radioactive_bar.png"
@@ -4383,7 +4383,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "tent_kit",
-    "name": "Bộ Lều Cắm Trại Ngủ Ngoài Trời (Mới 1.6)",
+    "name": "Lều dã ngoại",
     "nameEn": "Tent Kit",
     "category": "crafting",
     "subCategory": "Đồ Mới Bản 1.6",
@@ -4392,19 +4392,19 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Hái Lượm (Foraging) Cấp 8",
     "ingredients": [
       {
-        "name": "Gỗ cứng",
+        "name": "Gỗ Cứng",
         "count": 10,
         "nameEn": "Hardwood",
         "iconUrl": "assets/icons/ing_hardwood.png"
       },
       {
-        "name": "Sợi gai",
+        "name": "Sợi",
         "count": 25,
         "nameEn": "Fiber",
         "iconUrl": "assets/icons/ing_fiber.png"
       },
       {
-        "name": "Vải dệt",
+        "name": "Vải",
         "count": 1,
         "nameEn": "Cloth",
         "iconUrl": "assets/icons/ing_cloth.png"
@@ -4418,7 +4418,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "statue_of_blessings",
-    "name": "Tượng Ban Phước Lành Hàng Ngày (Mới 1.6)",
+    "name": "Tượng Phước Lành",
     "nameEn": "Statue of Blessings",
     "category": "crafting",
     "subCategory": "Đồ Mới Bản 1.6",
@@ -4438,7 +4438,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_stone.png"
       },
       {
-        "name": "Thỏi vàng",
+        "name": "Thỏi Vàng",
         "count": 33,
         "nameEn": "Gold Bar",
         "iconUrl": "assets/icons/ing_gold_bar.png"
@@ -4452,7 +4452,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "statue_of_the_dwarf_king",
-    "name": "Tượng Vua Lùn Phước Mỏ (Mới 1.6)",
+    "name": "Tượng Vua người Lùn",
     "nameEn": "Statue of the Dwarf King",
     "category": "crafting",
     "subCategory": "Đồ Mới Bản 1.6",
@@ -4467,7 +4467,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_stone.png"
       },
       {
-        "name": "Thỏi vàng",
+        "name": "Thỏi Vàng",
         "count": 10,
         "nameEn": "Gold Bar",
         "iconUrl": "assets/icons/ing_gold_bar.png"
@@ -4487,7 +4487,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "trap_bobber",
-    "name": "Phao Bẫy Giữ Cá",
+    "name": "Phao hút",
     "nameEn": "Trap Bobber",
     "category": "crafting",
     "subCategory": "Phụ kiện cần câu",
@@ -4495,7 +4495,7 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Câu Cá (Fishing) Cấp 6",
     "ingredients": [
       {
-        "name": "Thỏi đồng",
+        "name": "Thỏi Đồng",
         "count": 1,
         "nameEn": "Copper Bar",
         "iconUrl": "assets/icons/ing_copper_bar.png"
@@ -4514,7 +4514,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "cork_bobber",
-    "name": "Phao Nút Bấc Mở Rộng",
+    "name": "Phao Nút chai",
     "nameEn": "Cork Bobber",
     "category": "crafting",
     "subCategory": "Phụ kiện cần câu",
@@ -4528,13 +4528,13 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_wood.png"
       },
       {
-        "name": "Gỗ cứng",
+        "name": "Gỗ Cứng",
         "count": 10,
         "nameEn": "Hardwood",
         "iconUrl": "assets/icons/ing_hardwood.png"
       },
       {
-        "name": "Chất nhờn",
+        "name": "Thạch Xà-lam",
         "count": 5,
         "nameEn": "Slime",
         "iconUrl": "assets/icons/ing_slime.png"
@@ -4548,7 +4548,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "wild_bait",
-    "name": "Mồi Câu Hoang Dã",
+    "name": "Mồi Dân dã",
     "nameEn": "Wild Bait",
     "category": "crafting",
     "subCategory": "Mồi câu cá",
@@ -4556,19 +4556,19 @@ export const RECIPES_DATA = [
     "source": "Sự kiện 4 Tim của Linus trong lều rừng",
     "ingredients": [
       {
-        "name": "Sợi gai",
+        "name": "Sợi",
         "count": 10,
         "nameEn": "Fiber",
         "iconUrl": "assets/icons/ing_fiber.png"
       },
       {
-        "name": "Chất nhờn",
+        "name": "Thạch Xà-lam",
         "count": 5,
         "nameEn": "Slime",
         "iconUrl": "assets/icons/ing_slime.png"
       },
       {
-        "name": "Thịt bọ",
+        "name": "Thịt Côn trùng",
         "count": 5,
         "nameEn": "Bug Meat",
         "iconUrl": "assets/icons/ing_bug_meat.png"
@@ -4582,7 +4582,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "magic_bait",
-    "name": "Mồi Câu Ma Thuật Xuyên Không Gian",
+    "name": "Mồi ma thuật",
     "nameEn": "Magic Bait",
     "category": "crafting",
     "subCategory": "Mồi câu thần bí",
@@ -4590,13 +4590,13 @@ export const RECIPES_DATA = [
     "source": "Mua công thức từ Qi's Walnut Room (20 Qi Gems)",
     "ingredients": [
       {
-        "name": "Quặng phóng xạ",
+        "name": "Quặng Phóng xạ",
         "count": 1,
         "nameEn": "Radioactive Ore",
         "iconUrl": "assets/icons/ing_radioactive_ore.png"
       },
       {
-        "name": "Thịt bọ",
+        "name": "Thịt Côn trùng",
         "count": 3,
         "nameEn": "Bug Meat",
         "iconUrl": "assets/icons/ing_bug_meat.png"
@@ -4610,7 +4610,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "deluxe_bait",
-    "name": "Mồi Câu Thượng Hạng (Mới 1.6)",
+    "name": "Mồi cao cấp",
     "nameEn": "Deluxe Bait",
     "category": "crafting",
     "subCategory": "Đồ Mới Bản 1.6",
@@ -4619,13 +4619,13 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Câu Cá (Fishing) Cấp 4",
     "ingredients": [
       {
-        "name": "Mồi thường",
+        "name": "Mồi",
         "count": 5,
         "nameEn": "Bait",
         "iconUrl": "assets/icons/craft_bait.png"
       },
       {
-        "name": "Rêu tươi",
+        "name": "Rêu",
         "count": 2,
         "nameEn": "Moss",
         "iconUrl": "assets/icons/ing_moss.png"
@@ -4639,7 +4639,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "challenge_bait",
-    "name": "Mồi Câu Thử Thách Nhân Ba (Mới 1.6)",
+    "name": "Mồi thử thách",
     "nameEn": "Challenge Bait",
     "category": "crafting",
     "subCategory": "Đồ Mới Bản 1.6",
@@ -4653,7 +4653,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_stone.png"
       },
       {
-        "name": "Rêu tươi",
+        "name": "Rêu",
         "count": 2,
         "nameEn": "Moss",
         "iconUrl": "assets/icons/ing_moss.png"
@@ -4667,7 +4667,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "crab_pot",
-    "name": "Lồng Bẫy Cua Đáy Nước",
+    "name": "Bẫy Cua",
     "nameEn": "Crab Pot",
     "category": "crafting",
     "subCategory": "Bẫy thủy sản",
@@ -4681,7 +4681,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_wood.png"
       },
       {
-        "name": "Thỏi sắt",
+        "name": "Thỏi Sắt",
         "count": 3,
         "nameEn": "Iron Bar",
         "iconUrl": "assets/icons/ing_iron_bar.png"
@@ -4695,7 +4695,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "worm_bin",
-    "name": "Thùng Trùn Tự Động Sinh Mồi",
+    "name": "Thùng nuôi Sâu",
     "nameEn": "Worm Bin",
     "category": "crafting",
     "subCategory": "Thiết bị mồi câu",
@@ -4703,25 +4703,25 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Câu Cá (Fishing) Cấp 8",
     "ingredients": [
       {
-        "name": "Gỗ cứng",
+        "name": "Gỗ Cứng",
         "count": 25,
         "nameEn": "Hardwood",
         "iconUrl": "assets/icons/ing_hardwood.png"
       },
       {
-        "name": "Thỏi vàng",
+        "name": "Thỏi Vàng",
         "count": 1,
         "nameEn": "Gold Bar",
         "iconUrl": "assets/icons/ing_gold_bar.png"
       },
       {
-        "name": "Thỏi sắt",
+        "name": "Thỏi Sắt",
         "count": 1,
         "nameEn": "Iron Bar",
         "iconUrl": "assets/icons/ing_iron_bar.png"
       },
       {
-        "name": "Sợi gai",
+        "name": "Sợi",
         "count": 50,
         "nameEn": "Fiber",
         "iconUrl": "assets/icons/ing_fiber.png"
@@ -4735,7 +4735,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "deluxe_worm_bin",
-    "name": "Thùng Trùn Thượng Hạng (Mới 1.6)",
+    "name": "Thùng nuôi sâu Cao cấp",
     "nameEn": "Deluxe Worm Bin",
     "category": "crafting",
     "subCategory": "Đồ Mới Bản 1.6",
@@ -4744,13 +4744,13 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Câu Cá (Fishing) Cấp 8 (hoặc Fishing Mastery)",
     "ingredients": [
       {
-        "name": "Thùng trùn thường",
+        "name": "Thùng nuôi Sâu",
         "count": 1,
         "nameEn": "Worm Bin",
         "iconUrl": "assets/icons/worm_bin.png"
       },
       {
-        "name": "Rêu tươi",
+        "name": "Rêu",
         "count": 30,
         "nameEn": "Moss",
         "iconUrl": "assets/icons/ing_moss.png"
@@ -4764,7 +4764,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "iridium_band",
-    "name": "Vòng Tay Iridium Tối Thượng",
+    "name": "Nhẫn Iridium",
     "nameEn": "Iridium Band",
     "category": "crafting",
     "subCategory": "Nhẫn ma thuật",
@@ -4778,13 +4778,13 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_iridium_bar.png"
       },
       {
-        "name": "Tinh chất mặt trời",
+        "name": "Tinh chất Mặt trời",
         "count": 30,
         "nameEn": "Solar Essence",
         "iconUrl": "assets/icons/ing_solar_essence.png"
       },
       {
-        "name": "Tinh chất hư vô",
+        "name": "Tinh chất Hư không",
         "count": 50,
         "nameEn": "Void Essence",
         "iconUrl": "assets/icons/ing_void_essence.png"
@@ -4798,7 +4798,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "glowstone_ring",
-    "name": "Nhẫn Phát Quang Nam Châm",
+    "name": "Nhẫn Từ Quang",
     "nameEn": "Glowstone Ring",
     "category": "crafting",
     "subCategory": "Nhẫn ma thuật",
@@ -4806,13 +4806,13 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Khai Mỏ (Mining) Cấp 4",
     "ingredients": [
       {
-        "name": "Tinh chất mặt trời",
+        "name": "Tinh chất Mặt trời",
         "count": 5,
         "nameEn": "Solar Essence",
         "iconUrl": "assets/icons/ing_solar_essence.png"
       },
       {
-        "name": "Thỏi sắt",
+        "name": "Thỏi Sắt",
         "count": 5,
         "nameEn": "Iron Bar",
         "iconUrl": "assets/icons/ing_iron_bar.png"
@@ -4826,7 +4826,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "warrior_ring",
-    "name": "Nhẫn Chiến Binh Bùng Nổ",
+    "name": "Nhẫn Chiến binh",
     "nameEn": "Warrior Ring",
     "category": "crafting",
     "subCategory": "Nhẫn chiến đấu",
@@ -4834,7 +4834,7 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Chiến Đấu (Combat) Cấp 4",
     "ingredients": [
       {
-        "name": "Thỏi sắt",
+        "name": "Thỏi Sắt",
         "count": 10,
         "nameEn": "Iron Bar",
         "iconUrl": "assets/icons/ing_iron_bar.png"
@@ -4846,7 +4846,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_coal.png"
       },
       {
-        "name": "Nước mắt băng",
+        "name": "Băng giọt lệ",
         "count": 10,
         "nameEn": "Frozen Tear",
         "iconUrl": "assets/icons/ing_stone.png"
@@ -4860,7 +4860,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "ring_of_yoba",
-    "name": "Nhẫn Hộ Mệnh Thần Yoba",
+    "name": "Nhẫn của Yoba",
     "nameEn": "Ring of Yoba",
     "category": "crafting",
     "subCategory": "Nhẫn bảo hộ",
@@ -4868,13 +4868,13 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Chiến Đấu (Combat) Cấp 7",
     "ingredients": [
       {
-        "name": "Thỏi vàng",
+        "name": "Thỏi Vàng",
         "count": 5,
         "nameEn": "Gold Bar",
         "iconUrl": "assets/icons/ing_gold_bar.png"
       },
       {
-        "name": "Thỏi sắt",
+        "name": "Thỏi Sắt",
         "count": 5,
         "nameEn": "Iron Bar",
         "iconUrl": "assets/icons/ing_iron_bar.png"
@@ -4894,7 +4894,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "mystic_tree_seed",
-    "name": "Hạt Giống Cây Thần Kỳ (Mới 1.6)",
+    "name": "Hạt Cây Kỳ bí",
     "nameEn": "Mystic Tree Seed",
     "category": "crafting",
     "subCategory": "Đồ Mới Bản 1.6",
@@ -4931,7 +4931,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "blue_grass_starter",
-    "name": "Khóm Cỏ Xanh Thần Dược (Mới 1.6)",
+    "name": "Cỏ giống màu lam",
     "nameEn": "Blue Grass Starter",
     "category": "crafting",
     "subCategory": "Đồ Mới Bản 1.6",
@@ -4940,19 +4940,19 @@ export const RECIPES_DATA = [
     "source": "Mua công thức trong Qi's Walnut Room (40 Qi Gems)",
     "ingredients": [
       {
-        "name": "Sợi gai",
+        "name": "Sợi",
         "count": 25,
         "nameEn": "Fiber",
         "iconUrl": "assets/icons/ing_fiber.png"
       },
       {
-        "name": "Rêu tươi",
+        "name": "Rêu",
         "count": 10,
         "nameEn": "Moss",
         "iconUrl": "assets/icons/ing_moss.png"
       },
       {
-        "name": "Siro thần bí",
+        "name": "Nhựa Kỳ bí",
         "count": 1,
         "nameEn": "Mystic Syrup",
         "iconUrl": "assets/icons/ing_stone.png"
@@ -4966,7 +4966,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "tea_sapling",
-    "name": "Cây Trà Búp Xanh",
+    "name": "Cây Chè non",
     "nameEn": "Tea Sapling",
     "category": "crafting",
     "subCategory": "Cây trồng kinh tế",
@@ -4980,7 +4980,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_stone.png"
       },
       {
-        "name": "Sợi gai",
+        "name": "Sợi",
         "count": 5,
         "nameEn": "Fiber",
         "iconUrl": "assets/icons/ing_fiber.png"
@@ -5000,7 +5000,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "warp_totem_farm",
-    "name": "Vật Tổ Dịch Chuyển Về Nông Trại",
+    "name": "Cọc dịch chuyển: Nông trại",
     "nameEn": "Warp Totem: Farm",
     "category": "crafting",
     "subCategory": "Dịch chuyển tức thời",
@@ -5008,7 +5008,7 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Hái Lượm (Foraging) Cấp 8",
     "ingredients": [
       {
-        "name": "Gỗ cứng",
+        "name": "Gỗ Cứng",
         "count": 1,
         "nameEn": "Hardwood",
         "iconUrl": "assets/icons/ing_hardwood.png"
@@ -5020,7 +5020,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_stone.png"
       },
       {
-        "name": "Sợi gai",
+        "name": "Sợi",
         "count": 20,
         "nameEn": "Fiber",
         "iconUrl": "assets/icons/ing_fiber.png"
@@ -5034,7 +5034,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "warp_totem_mountains",
-    "name": "Vật Tổ Dịch Chuyển Lên Vùng Núi",
+    "name": "Cọc dịch chuyển: Núi",
     "nameEn": "Warp Totem: Mountains",
     "category": "crafting",
     "subCategory": "Dịch chuyển tức thời",
@@ -5042,13 +5042,13 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Hái Lượm (Foraging) Cấp 7",
     "ingredients": [
       {
-        "name": "Gỗ cứng",
+        "name": "Gỗ Cứng",
         "count": 1,
         "nameEn": "Hardwood",
         "iconUrl": "assets/icons/ing_hardwood.png"
       },
       {
-        "name": "Quặng sắt",
+        "name": "Quặng Sắt",
         "count": 1,
         "nameEn": "Iron Ore",
         "iconUrl": "assets/icons/ing_iron_ore.png"
@@ -5068,7 +5068,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "warp_totem_beach",
-    "name": "Vật Tổ Dịch Chuyển Ra Bãi Biển",
+    "name": "Cọc dịch chuyển: Biển",
     "nameEn": "Warp Totem: Beach",
     "category": "crafting",
     "subCategory": "Dịch chuyển tức thời",
@@ -5076,7 +5076,7 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Hái Lượm (Foraging) Cấp 6",
     "ingredients": [
       {
-        "name": "Gỗ cứng",
+        "name": "Gỗ Cứng",
         "count": 1,
         "nameEn": "Hardwood",
         "iconUrl": "assets/icons/ing_hardwood.png"
@@ -5088,7 +5088,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/item_coral.png"
       },
       {
-        "name": "Sợi gai",
+        "name": "Sợi",
         "count": 10,
         "nameEn": "Fiber",
         "iconUrl": "assets/icons/ing_fiber.png"
@@ -5102,7 +5102,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "warp_totem_desert",
-    "name": "Vật Tổ Dịch Chuyển Sa Mạc Calico",
+    "name": "Cọc dịch chuyển: Sa mạc",
     "nameEn": "Warp Totem: Desert",
     "category": "crafting",
     "subCategory": "Dịch chuyển tức thời",
@@ -5110,13 +5110,13 @@ export const RECIPES_DATA = [
     "source": "Mua công thức từ Desert Trader (đổi 10 Iridium Bar)",
     "ingredients": [
       {
-        "name": "Gỗ cứng",
+        "name": "Gỗ Cứng",
         "count": 2,
         "nameEn": "Hardwood",
         "iconUrl": "assets/icons/ing_hardwood.png"
       },
       {
-        "name": "Dừa khô",
+        "name": "Dừa",
         "count": 1,
         "nameEn": "Coconut",
         "iconUrl": "assets/icons/item_coconut.png"
@@ -5136,7 +5136,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "warp_totem_island",
-    "name": "Vật Tổ Dịch Chuyển Đảo Gừng",
+    "name": "Cọc dịch chuyển: Đảo",
     "nameEn": "Warp Totem: Island",
     "category": "crafting",
     "subCategory": "Dịch chuyển tức thời",
@@ -5144,7 +5144,7 @@ export const RECIPES_DATA = [
     "source": "Mua từ Volcano Dwarf Dungeon (10,000g)",
     "ingredients": [
       {
-        "name": "Gỗ cứng",
+        "name": "Gỗ Cứng",
         "count": 5,
         "nameEn": "Hardwood",
         "iconUrl": "assets/icons/ing_hardwood.png"
@@ -5168,7 +5168,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "rain_totem",
-    "name": "Vật Tổ Gọi Mưa Thần Bí",
+    "name": "Cọc cầu Mưa",
     "nameEn": "Rain Totem",
     "category": "crafting",
     "subCategory": "Kiểm soát thời tiết",
@@ -5176,7 +5176,7 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Hái Lượm (Foraging) Cấp 9",
     "ingredients": [
       {
-        "name": "Gỗ cứng",
+        "name": "Gỗ Cứng",
         "count": 1,
         "nameEn": "Hardwood",
         "iconUrl": "assets/icons/ing_hardwood.png"
@@ -5201,7 +5201,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "fairy_dust",
-    "name": "Bột Phép Thần Tiên",
+    "name": "Bụi tiên",
     "nameEn": "Fairy Dust",
     "category": "crafting",
     "subCategory": "Phù phép hoàn thành tức thì",
@@ -5228,7 +5228,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "monster_musk",
-    "name": "Nước Hoa Dụ Quái Vật",
+    "name": "Xạ hương Quái vật",
     "nameEn": "Monster Musk",
     "category": "crafting",
     "subCategory": "Chiến đấu & Săn quái",
@@ -5236,13 +5236,13 @@ export const RECIPES_DATA = [
     "source": "Hoàn thành nhiệm vụ Prismatic Jelly của Pháp sư Rasmodius",
     "ingredients": [
       {
-        "name": "Cánh dơi",
+        "name": "Cánh Dơi",
         "count": 30,
         "nameEn": "Bat Wing",
         "iconUrl": "assets/icons/ing_bat_wing.png"
       },
       {
-        "name": "Chất nhờn",
+        "name": "Thạch Xà-lam",
         "count": 30,
         "nameEn": "Slime",
         "iconUrl": "assets/icons/ing_slime.png"
@@ -5256,7 +5256,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "smelt_copper_bar",
-    "name": "Nấu Thỏi Đồng (Copper Bar)",
+    "name": "Thỏi Đồng (Copper Bar)",
     "nameEn": "Copper Bar",
     "category": "smelting",
     "subCategory": "Luyện kim cơ bản",
@@ -5266,7 +5266,7 @@ export const RECIPES_DATA = [
     "source": "Lò luyện kim (Furnace) - Mất 30 phút game",
     "ingredients": [
       {
-        "name": "Quặng đồng",
+        "name": "Quặng Đồng",
         "count": 5,
         "nameEn": "Copper Ore",
         "iconUrl": "assets/icons/ing_copper_ore.png"
@@ -5285,7 +5285,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "smelt_iron_bar",
-    "name": "Nấu Thỏi Sắt (Iron Bar)",
+    "name": "Thỏi Sắt (Iron Bar)",
     "nameEn": "Iron Bar",
     "category": "smelting",
     "subCategory": "Luyện kim cơ bản",
@@ -5295,7 +5295,7 @@ export const RECIPES_DATA = [
     "source": "Lò luyện kim (Furnace) - Mất 2 giờ game",
     "ingredients": [
       {
-        "name": "Quặng sắt",
+        "name": "Quặng Sắt",
         "count": 5,
         "nameEn": "Iron Ore",
         "iconUrl": "assets/icons/ing_iron_ore.png"
@@ -5314,7 +5314,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "smelt_gold_bar",
-    "name": "Nấu Thỏi Vàng (Gold Bar)",
+    "name": "Thỏi Vàng (Gold Bar)",
     "nameEn": "Gold Bar",
     "category": "smelting",
     "subCategory": "Luyện kim cao cấp",
@@ -5324,7 +5324,7 @@ export const RECIPES_DATA = [
     "source": "Lò luyện kim (Furnace) - Mất 5 giờ game",
     "ingredients": [
       {
-        "name": "Quặng vàng",
+        "name": "Quặng Vàng",
         "count": 5,
         "nameEn": "Gold Ore",
         "iconUrl": "assets/icons/ing_gold_ore.png"
@@ -5343,7 +5343,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "smelt_iridium_bar",
-    "name": "Nấu Thỏi Iridium Tối Thượng (Iridium Bar)",
+    "name": "Thỏi Iridium (Iridium Bar)",
     "nameEn": "Iridium Bar",
     "category": "smelting",
     "subCategory": "Kim loại huyền thoại",
@@ -5372,7 +5372,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "smelt_refined_quartz",
-    "name": "Luyện Thạch Anh Tinh Luyện (Refined Quartz)",
+    "name": "Thạch anh Tinh luyện (Refined Quartz)",
     "nameEn": "Refined Quartz",
     "category": "smelting",
     "subCategory": "Vật liệu tinh chế",
@@ -5401,7 +5401,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "smelt_radioactive_bar",
-    "name": "Nấu Thỏi Phóng Xạ (Radioactive Bar)",
+    "name": "Thỏi Phóng xạ (Radioactive Bar)",
     "nameEn": "Radioactive Bar",
     "category": "smelting",
     "subCategory": "Vật liệu nguy hiểm",
@@ -5411,7 +5411,7 @@ export const RECIPES_DATA = [
     "source": "Lò luyện kim (Furnace) - Mất 10 giờ game",
     "ingredients": [
       {
-        "name": "Quặng phóng xạ",
+        "name": "Quặng Phóng xạ",
         "count": 5,
         "nameEn": "Radioactive Ore",
         "iconUrl": "assets/icons/ing_radioactive_ore.png"
@@ -5440,7 +5440,7 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Khai Mỏ (Mining) Cấp 4",
     "ingredients": [
       {
-        "name": "Thỏi đồng",
+        "name": "Thỏi Đồng",
         "count": 3,
         "nameEn": "Copper Bar",
         "iconUrl": "assets/icons/ing_copper_bar.png"
@@ -5463,7 +5463,7 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Khai Mỏ (Mining) Cấp 7",
     "ingredients": [
       {
-        "name": "Thỏi sắt",
+        "name": "Thỏi Sắt",
         "count": 2,
         "nameEn": "Iron Bar",
         "iconUrl": "assets/icons/ing_iron_bar.png"
@@ -5476,7 +5476,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "craft_bait",
-    "name": "Chế Tạo Mồi Câu Cá Tiêu Chuẩn (Bait)",
+    "name": "Mồi (Bait)",
     "nameEn": "Bait",
     "category": "bait",
     "subCategory": "Mồi câu cá",
@@ -5486,7 +5486,7 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Câu Cá (Fishing) Cấp 2 (Tạo ra 5 mồi)",
     "ingredients": [
       {
-        "name": "Thịt bọ",
+        "name": "Thịt Côn trùng",
         "count": 1,
         "nameEn": "Bug Meat",
         "iconUrl": "assets/icons/ing_bug_meat.png"
@@ -5499,7 +5499,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "craft_magnet",
-    "name": "Chế Tạo Nam Châm Hút Kho Báu (Magnet)",
+    "name": "Nam châm (Magnet)",
     "nameEn": "Magnet",
     "category": "bait",
     "subCategory": "Mồi câu đặc biệt",
@@ -5509,7 +5509,7 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Câu Cá (Fishing) Cấp 9 (Tạo ra 3 chiếc)",
     "ingredients": [
       {
-        "name": "Thỏi sắt",
+        "name": "Thỏi Sắt",
         "count": 1,
         "nameEn": "Iron Bar",
         "iconUrl": "assets/icons/ing_iron_bar.png"
@@ -5559,7 +5559,7 @@ export const RECIPES_DATA = [
     "source": "Tiệm Thợ Mộc Robin (Mất 3 ngày thi công)",
     "ingredients": [
       {
-        "name": "Gỗ cứng",
+        "name": "Gỗ Cứng",
         "count": 150,
         "nameEn": "Hardwood",
         "iconUrl": "assets/icons/ing_hardwood.png"
@@ -5623,7 +5623,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "bldg_coop_1",
-    "name": "Chuồng Gia Cầm Cơ Bản (Coop)",
+    "name": "Chuồng gia cầm (Coop)",
     "nameEn": "Coop",
     "category": "buildings",
     "subCategory": "Chuồng chăn nuôi",
@@ -5657,7 +5657,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "bldg_coop_2",
-    "name": "Nâng Cấp Chuồng Gia Cầm Lớn (Big Coop)",
+    "name": "Chuồng Gia cầm Lớn (Big Coop)",
     "nameEn": "Big Coop",
     "category": "buildings",
     "subCategory": "Chuồng chăn nuôi",
@@ -5691,7 +5691,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "bldg_coop_3",
-    "name": "Chuồng Gia Cầm Hoàng Gia (Deluxe Coop)",
+    "name": "Chuồng gia cầm Cao cấp (Deluxe Coop)",
     "nameEn": "Deluxe Coop",
     "category": "buildings",
     "subCategory": "Chuồng chăn nuôi cao cấp",
@@ -5725,7 +5725,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "bldg_barn_1",
-    "name": "Chuồng Gia Súc Cơ Bản (Barn)",
+    "name": "Chuồng Gia súc (Barn)",
     "nameEn": "Barn",
     "category": "buildings",
     "subCategory": "Chuồng chăn nuôi",
@@ -5759,7 +5759,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "bldg_barn_2",
-    "name": "Nâng Cấp Chuồng Gia Súc Lớn (Big Barn)",
+    "name": "Chuồng Gia súc Lớn (Big Barn)",
     "nameEn": "Big Barn",
     "category": "buildings",
     "subCategory": "Chuồng chăn nuôi",
@@ -5793,7 +5793,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "bldg_barn_3",
-    "name": "Chuồng Gia Súc Hoàng Gia (Deluxe Barn)",
+    "name": "Chuồng Gia súc Cao cấp (Deluxe Barn)",
     "nameEn": "Deluxe Barn",
     "category": "buildings",
     "subCategory": "Chuồng chăn nuôi cao cấp",
@@ -5827,7 +5827,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "bldg_silo",
-    "name": "Tháp Chứa Cỏ Khô (Silo)",
+    "name": "Kho chứa Cỏ (Silo)",
     "nameEn": "Silo",
     "category": "buildings",
     "subCategory": "Kho chứa thức ăn gia súc",
@@ -5848,7 +5848,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_clay.png"
       },
       {
-        "name": "Thỏi đồng",
+        "name": "Thỏi Đồng",
         "count": 5,
         "nameEn": "Copper Bar",
         "iconUrl": "assets/icons/ing_copper_bar.png"
@@ -5867,7 +5867,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "bldg_shed_big",
-    "name": "Đại Nhà Xưởng Chế Tạo (Big Shed)",
+    "name": "Nhà Kho Lớn (Big Shed)",
     "nameEn": "Big Shed",
     "category": "buildings",
     "subCategory": "Xưởng sản xuất",
@@ -5901,7 +5901,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "bldg_mill",
-    "name": "Cối Xay Gió (Mill)",
+    "name": "Cối xay gió (Mill)",
     "nameEn": "Mill",
     "category": "buildings",
     "subCategory": "Xay xát nông sản",
@@ -5922,7 +5922,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_wood.png"
       },
       {
-        "name": "Vải dệt",
+        "name": "Vải",
         "count": 4,
         "nameEn": "Cloth",
         "iconUrl": "assets/icons/ing_cloth.png"
@@ -5941,7 +5941,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "bldg_fish_pond",
-    "name": "Ao Nuôi Cá Thủy Sản (Fish Pond)",
+    "name": "Bể nuôi cá (Fish Pond)",
     "nameEn": "Fish Pond",
     "category": "buildings",
     "subCategory": "Nuôi cá chuyên nghiệp",
@@ -5981,7 +5981,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "bldg_stable",
-    "name": "Chuồng Ngựa Cưỡi (Stable)",
+    "name": "Chuồng ngựa (Stable)",
     "nameEn": "Stable",
     "category": "buildings",
     "subCategory": "Phương tiện di chuyển",
@@ -5990,13 +5990,13 @@ export const RECIPES_DATA = [
     "source": "Tiệm Thợ Mộc Robin (Xây trong 2 ngày)",
     "ingredients": [
       {
-        "name": "Gỗ cứng",
+        "name": "Gỗ Cứng",
         "count": 100,
         "nameEn": "Hardwood",
         "iconUrl": "assets/icons/ing_hardwood.png"
       },
       {
-        "name": "Thỏi sắt",
+        "name": "Thỏi Sắt",
         "count": 5,
         "nameEn": "Iron Bar",
         "iconUrl": "assets/icons/ing_iron_bar.png"
@@ -6015,7 +6015,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "bldg_slime_hutch",
-    "name": "Trang Trại Nuôi Slime (Slime Hutch)",
+    "name": "Trại nuôi Xà-lam (Slime Hutch)",
     "nameEn": "Slime Hutch",
     "category": "buildings",
     "subCategory": "Nuôi quái vật",
@@ -6030,7 +6030,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_stone.png"
       },
       {
-        "name": "Thạch anh tinh luyện",
+        "name": "Thạch anh Tinh luyện",
         "count": 10,
         "nameEn": "Refined Quartz",
         "iconUrl": "assets/icons/ing_refined_quartz.png"
@@ -6055,7 +6055,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "magic_earth_obelisk",
-    "name": "Tháp Đất Dịch Chuyển Núi (Earth Obelisk)",
+    "name": "Trụ Đất (Earth Obelisk)",
     "nameEn": "Earth Obelisk",
     "category": "magical_buildings",
     "subCategory": "Dịch chuyển vĩnh cửu",
@@ -6070,7 +6070,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_iridium_bar.png"
       },
       {
-        "name": "Tinh thể đất",
+        "name": "Tinh thể Đất",
         "count": 10,
         "nameEn": "Earth Crystal",
         "iconUrl": "assets/icons/ing_stone.png"
@@ -6089,7 +6089,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "magic_water_obelisk",
-    "name": "Tháp Nước Dịch Chuyển Biển (Water Obelisk)",
+    "name": "Trụ Nước (Water Obelisk)",
     "nameEn": "Water Obelisk",
     "category": "magical_buildings",
     "subCategory": "Dịch chuyển vĩnh cửu",
@@ -6129,7 +6129,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "magic_desert_obelisk",
-    "name": "Tháp Cát Dịch Chuyển Sa Mạc (Desert Obelisk)",
+    "name": "Trụ Cát (Desert Obelisk)",
     "nameEn": "Desert Obelisk",
     "category": "magical_buildings",
     "subCategory": "Dịch chuyển vĩnh cửu",
@@ -6144,13 +6144,13 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_iridium_bar.png"
       },
       {
-        "name": "Quả dừa",
+        "name": "Dừa",
         "count": 10,
         "nameEn": "Coconut",
         "iconUrl": "assets/icons/item_coconut.png"
       },
       {
-        "name": "Quả xương rồng",
+        "name": "Quả Xương rồng",
         "count": 10,
         "nameEn": "Cactus Fruit",
         "iconUrl": "assets/icons/item_cactus_fruit.png"
@@ -6169,7 +6169,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "magic_island_obelisk",
-    "name": "Tháp Nhiệt Đới Đảo Gừng (Island Obelisk)",
+    "name": "Trụ Đảo (Island Obelisk)",
     "nameEn": "Island Obelisk",
     "category": "magical_buildings",
     "subCategory": "Dịch chuyển vĩnh cửu",
@@ -6184,13 +6184,13 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_iridium_bar.png"
       },
       {
-        "name": "Răng rồng",
+        "name": "Răng Rồng",
         "count": 10,
         "nameEn": "Dragon Tooth",
         "iconUrl": "assets/icons/ing_dragon_tooth.png"
       },
       {
-        "name": "Quả chuối",
+        "name": "Chuối",
         "count": 10,
         "nameEn": "Banana",
         "iconUrl": "assets/icons/item_banana.png"
@@ -6209,7 +6209,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "magic_junimo_hut",
-    "name": "Túp Lều Tí Hon Thần Rừng (Junimo Hut)",
+    "name": "Lều Junimo (Junimo Hut)",
     "nameEn": "Junimo Hut",
     "category": "magical_buildings",
     "subCategory": "Tự động hóa nông trại",
@@ -6224,13 +6224,13 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_stone.png"
       },
       {
-        "name": "Quả khế",
+        "name": "Khế",
         "count": 9,
         "nameEn": "Starfruit",
         "iconUrl": "assets/icons/item_starfruit.png"
       },
       {
-        "name": "Sợi gai",
+        "name": "Sợi",
         "count": 200,
         "nameEn": "Fiber",
         "iconUrl": "assets/icons/ing_fiber.png"
@@ -6249,7 +6249,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "magic_gold_clock",
-    "name": "Đồng Hồ Vàng Vĩnh Cửu (Gold Clock)",
+    "name": "Đồng hồ Hoàng kim (Gold Clock)",
     "nameEn": "Gold Clock",
     "category": "magical_buildings",
     "subCategory": "Biểu tượng Hoàn Hảo tối thượng",
@@ -6280,7 +6280,7 @@ export const RECIPES_DATA = [
     "source": "Tiệm Thợ Rèn Clint (Mất 2 ngày nâng cấp)",
     "ingredients": [
       {
-        "name": "Thỏi đồng",
+        "name": "Thỏi Đồng",
         "count": 5,
         "nameEn": "Copper Bar",
         "iconUrl": "assets/icons/ing_copper_bar.png"
@@ -6308,7 +6308,7 @@ export const RECIPES_DATA = [
     "source": "Tiệm Thợ Rèn Clint (Nâng cấp từ Copper, mất 2 ngày)",
     "ingredients": [
       {
-        "name": "Thỏi sắt",
+        "name": "Thỏi Sắt",
         "count": 5,
         "nameEn": "Iron Bar",
         "iconUrl": "assets/icons/ing_iron_bar.png"
@@ -6336,7 +6336,7 @@ export const RECIPES_DATA = [
     "source": "Tiệm Thợ Rèn Clint (Nâng cấp từ Steel, mất 2 ngày)",
     "ingredients": [
       {
-        "name": "Thỏi vàng",
+        "name": "Thỏi Vàng",
         "count": 5,
         "nameEn": "Gold Bar",
         "iconUrl": "assets/icons/ing_gold_bar.png"
@@ -6411,7 +6411,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "tool_iridium_scythe_16",
-    "name": "Lưỡi Hái Iridium Gặt Mùa Màng (Mới 1.6)",
+    "name": "Liềm Iridium",
     "nameEn": "Iridium Scythe",
     "category": "tools",
     "subCategory": "Đồ Mới Bản 1.6",
@@ -6433,7 +6433,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "forge_infinity_blade",
-    "name": "Kiếm Vô Cực Tối Thượng (Infinity Blade)",
+    "name": "Kiếm Vô cực (Infinity Blade)",
     "nameEn": "Infinity Blade",
     "category": "weapons",
     "subCategory": "Vũ khí tối thượng",
@@ -6447,7 +6447,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_stone.png"
       },
       {
-        "name": "Linh hồn thiên hà",
+        "name": "Linh thể Ngân hà",
         "count": 3,
         "nameEn": "Galaxy Soul",
         "iconUrl": "assets/icons/ing_stone.png"
@@ -6465,7 +6465,7 @@ export const RECIPES_DATA = [
   },
   {
     "id": "forge_infinity_gavel",
-    "name": "Búa Vô Cực Thần Sấm (Infinity Gavel)",
+    "name": "Búa Vô cực (Infinity Gavel)",
     "nameEn": "Infinity Gavel",
     "category": "weapons",
     "subCategory": "Vũ khí tối thượng",
@@ -6479,7 +6479,7 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_stone.png"
       },
       {
-        "name": "Linh hồn thiên hà",
+        "name": "Linh thể Ngân hà",
         "count": 3,
         "nameEn": "Galaxy Soul",
         "iconUrl": "assets/icons/ing_stone.png"
@@ -6506,7 +6506,7 @@ export const RECIPES_DATA = [
     "source": "Lò rèn ma thuật Volcano Forge",
     "ingredients": [
       {
-        "name": "Đá Lăng Kính",
+        "name": "Mảnh Ngũ sắc",
         "count": 1,
         "nameEn": "Prismatic Shard",
         "iconUrl": "assets/icons/item_prismatic_shard.png"

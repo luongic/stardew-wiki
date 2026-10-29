@@ -356,35 +356,35 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Thạch Anh Tím (Amethyst)",
+          "name": "Thạch anh Tím (Amethyst)",
           "icon": "assets/icons/item_amethyst.png"
         },
         {
-          "name": "Pudding Chuối Kem Tươi (Banana Pudding)",
+          "name": "Bánh pudding Chuối (Banana Pudding)",
           "icon": "assets/icons/banana_pudding.png"
         },
         {
-          "name": "Bánh Nướng Dâu Đen (Blackberry Cobbler)",
+          "name": "Bánh Mâm xôi đen (Blackberry Cobbler)",
           "icon": "assets/icons/blackberry_cobbler.png"
         },
         {
-          "name": "Bánh Gato Sô-cô-la (Chocolate Cake)",
+          "name": "Bánh Sô-cô-la (Chocolate Cake)",
           "icon": "assets/icons/chocolate_cake.png"
         },
         {
-          "name": "Bách khoa Quái vật (Monster Compendium)",
+          "name": "Bản tóm tắt Quái vật (Monster Compendium)",
           "icon": "assets/icons/monster_compendium.png"
         },
         {
-          "name": "Cá Nóc Phồng (Pufferfish)",
+          "name": "Cá Nóc (Pufferfish)",
           "icon": "assets/icons/item_pufferfish.png"
         },
         {
-          "name": "Bí Ngô (Pumpkin)",
+          "name": "Bí ngô (Pumpkin)",
           "icon": "assets/icons/item_pumpkin.png"
         },
         {
-          "name": "Lươn Biển Sốt Ớt Cay (Spicy Eel)",
+          "name": "Lươn Cay (Spicy Eel)",
           "icon": "assets/icons/spicy_eel.png"
         },
         {
@@ -396,19 +396,19 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ rau củ)"
         },
         {
-          "name": "Kiếm cổ (Ancient Sword)",
+          "name": "Kiếm Cổ đại (Ancient Sword)",
           "icon": "assets/icons/ancient_sword.png"
         },
         {
-          "name": "Vuốt Basilisk (Basilisk Paw)",
+          "name": "Móng vuốt Tử xà (Basilisk Paw)",
           "icon": "assets/icons/basilisk_paw.png"
         },
         {
-          "name": "Sáo xương (Bone Flute)",
+          "name": "Sáo Xương (Bone Flute)",
           "icon": "assets/icons/bone_flute.png"
         },
         {
-          "name": "Tạp chí Chiến đấu Hàng quý (Combat Quarterly)",
+          "name": "Tạp chí Chiến thuật hàng quý (Combat Quarterly)",
           "icon": "assets/icons/combat_quarterly.png"
         },
         {
@@ -430,11 +430,11 @@ export const NPCS_DATA = [
           "name": "Tất cả Rau củ (trừ Hops, Pumpkin, Tea Leaves & Wheat)"
         },
         {
-          "name": "Đường tinh luyện (Sugar)",
+          "name": "Đường (Sugar)",
           "icon": "assets/icons/ing_sugar.png"
         },
         {
-          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "name": "Cải ngựa Dại (Wild Horseradish)",
           "icon": "assets/icons/item_wild_horseradish.png"
         }
       ],
@@ -447,7 +447,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_clay.png"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         }
       ]
@@ -604,7 +604,7 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Thạch Anh Tím (Amethyst)",
+          "name": "Thạch anh Tím (Amethyst)",
           "icon": "assets/icons/item_amethyst.png"
         },
         {
@@ -612,11 +612,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_aquamarine.png"
         },
         {
-          "name": "Vải dệt (Cloth)",
+          "name": "Vải (Cloth)",
           "icon": "assets/icons/ing_cloth.png"
         },
         {
-          "name": "Ngọc Lục Bảo (Emerald)",
+          "name": "Ngọc Lục bảo (Emerald)",
           "icon": "assets/icons/item_emerald.png"
         },
         {
@@ -624,15 +624,15 @@ export const NPCS_DATA = [
           "icon": "assets/icons/item_jade.png"
         },
         {
-          "name": "Trứng vẹt (Parrot Egg)",
+          "name": "Trứng Vẹt (Parrot Egg)",
           "icon": "assets/icons/parrot_egg.png"
         },
         {
-          "name": "Hồng Ngọc (Ruby)",
+          "name": "Hồng ngọc (Ruby)",
           "icon": "assets/icons/item_ruby.png"
         },
         {
-          "name": "Burger Sinh Tồn Thợ Rừng (Survival Burger)",
+          "name": "Bánh kẹp Sinh tồn (Survival Burger)",
           "icon": "assets/icons/survival_burger.png"
         },
         {
@@ -652,7 +652,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ Fish Taco, Fried Eel, Ice Cream, Maki Roll, Rice Pudding, Salmon Dinner, Spicy Eel & Sashimi)"
         },
         {
-          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "name": "Thủy tiên (Daffodil)",
           "icon": "assets/icons/ing_daffodil.png"
         },
         {
@@ -665,23 +665,23 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ Parrot Egg)"
         },
         {
-          "name": "Lươn Biển Áp Chảo (Fried Eel)",
+          "name": "Lươn chiên giòn (Fried Eel)",
           "icon": "assets/icons/fried_eel.png"
         },
         {
-          "name": "Kem Tươi Ốc Quế (Ice Cream)",
+          "name": "Kem (Ice Cream)",
           "icon": "assets/icons/ice_cream.png"
         },
         {
-          "name": "Pudding Gạo Sữa Ngọt Ngào (Rice Pudding)",
+          "name": "Chè gạo (Rice Pudding)",
           "icon": "assets/icons/rice_pudding.png"
         },
         {
-          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "name": "Mâm xôi đỏ (Salmonberry)",
           "icon": "assets/icons/item_salmonberry.png"
         },
         {
-          "name": "Lươn Biển Sốt Ớt Cay (Spicy Eel)",
+          "name": "Lươn Cay (Spicy Eel)",
           "icon": "assets/icons/spicy_eel.png"
         }
       ],
@@ -690,23 +690,23 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Ghét Chung (Universal Hates)"
         },
         {
-          "name": "Bánh Kẹp Taco Cá (Fish Taco)",
+          "name": "Bánh Taco nhân Cá (Fish Taco)",
           "icon": "assets/icons/fish_taco.png"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         },
         {
-          "name": "Cuộn Cơm Rong Biển Maki (Maki Roll)",
+          "name": "Cơm cuộn Rong biển (Maki Roll)",
           "icon": "assets/icons/maki_roll.png"
         },
         {
-          "name": "Cơm Cá Hồi Áp Chảo (Salmon Dinner)",
+          "name": "Bữa tối Cá hồi (Salmon Dinner)",
           "icon": "assets/icons/salmon_dinner.png"
         },
         {
-          "name": "Gỏi Cá Sống Sashimi (Sashimi)",
+          "name": "Gỏi cá tươi (Sashimi)",
           "icon": "assets/icons/sashimi.png"
         }
       ]
@@ -809,19 +809,19 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Quả dừa (Coconut)",
+          "name": "Dừa (Coconut)",
           "icon": "assets/icons/item_coconut.png"
         },
         {
-          "name": "Salad Trái Cây Nhiệt Đới (Fruit Salad)",
+          "name": "Sa-lát Trái cây (Fruit Salad)",
           "icon": "assets/icons/fruit_salad.png"
         },
         {
-          "name": "Bánh Kem Dâu Tây Hồng (Pink Cake)",
+          "name": "Bánh kem Hồng (Pink Cake)",
           "icon": "assets/icons/pink_cake.png"
         },
         {
-          "name": "Hoa hướng dương (Sunflower)",
+          "name": "Hoa Hướng dương (Sunflower)",
           "icon": "assets/icons/ing_sunflower.png"
         },
         {
@@ -833,7 +833,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ rau củ)"
         },
         {
-          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "name": "Thủy tiên (Daffodil)",
           "icon": "assets/icons/ing_daffodil.png"
         }
       ],
@@ -854,7 +854,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Rau củ (trừ Hops, Tea Leaves & Wheat)"
         },
         {
-          "name": "Nấm mỡ gà (Chanterelle)",
+          "name": "Nấm mồng gà (Chanterelle)",
           "icon": "assets/icons/ing_chanterelle.png"
         },
         {
@@ -862,11 +862,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_common_mushroom.png"
         },
         {
-          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "name": "Bồ công anh (Dandelion)",
           "icon": "assets/icons/item_dandelion.png"
         },
         {
-          "name": "Củ gừng (Ginger)",
+          "name": "Gừng (Ginger)",
           "icon": "assets/icons/ing_ginger.png"
         },
         {
@@ -874,7 +874,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_hazelnut.png"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         },
         {
@@ -882,19 +882,19 @@ export const NPCS_DATA = [
           "icon": "assets/icons/item_leek.png"
         },
         {
-          "name": "Nấm dung nham (Magma Cap)",
+          "name": "Nấm Dung nham (Magma Cap)",
           "icon": "assets/icons/magma_cap.png"
         },
         {
-          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "name": "Nấm Bụng dê (Morel)",
           "icon": "assets/icons/item_morel.png"
         },
         {
-          "name": "Siro thần bí (Mystic Syrup)",
+          "name": "Nhựa Kỳ bí (Mystic Syrup)",
           "icon": "assets/icons/mystic_syrup.png"
         },
         {
-          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "name": "Nấm Tím (Purple Mushroom)",
           "icon": "assets/icons/item_purple_mushroom.png"
         },
         {
@@ -902,11 +902,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_quartz.png"
         },
         {
-          "name": "Khoai tuyết (Snow Yam)",
+          "name": "Khoai lang Tuyết (Snow Yam)",
           "icon": "assets/icons/snow_yam.png"
         },
         {
-          "name": "Củ mùa đông (Winter Root)",
+          "name": "Củ mài (Winter Root)",
           "icon": "assets/icons/winter_root.png"
         }
       ],
@@ -922,11 +922,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_clay.png"
         },
         {
-          "name": "Mảnh Lăng Kính (Prismatic Shard)",
+          "name": "Mảnh Ngũ sắc (Prismatic Shard)",
           "icon": "assets/icons/item_prismatic_shard.png"
         },
         {
-          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "name": "Cải ngựa Dại (Wild Horseradish)",
           "icon": "assets/icons/item_wild_horseradish.png"
         }
       ]
@@ -1046,31 +1046,31 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Phô mai dê (Goat Cheese)",
+          "name": "Phô mai sữa Dê (Goat Cheese)",
           "icon": "assets/icons/goat_cheese.png"
         },
         {
-          "name": "Bánh Muffin Hạt Anh Túc (Poppyseed Muffin)",
+          "name": "Bánh xốp nhân Anh túc (Poppyseed Muffin)",
           "icon": "assets/icons/poppyseed_muffin.png"
         },
         {
-          "name": "Salad Rau Vườn (Salad)",
+          "name": "Sa-lát (Salad)",
           "icon": "assets/icons/salad.png"
         },
         {
-          "name": "Món Xào Ngũ Sắc (Stir Fry)",
+          "name": "Rau củ xào (Stir Fry)",
           "icon": "assets/icons/stir_fry.png"
         },
         {
-          "name": "Nấm Cục Truffle (Truffle)",
+          "name": "Nấm Cục (Truffle)",
           "icon": "assets/icons/item_truffle.png"
         },
         {
-          "name": "Món Rau Xào Thập Cẩm (Vegetable Medley)",
+          "name": "Rau củ Hầm (Vegetable Medley)",
           "icon": "assets/icons/vegetable_medley.png"
         },
         {
-          "name": "Rượu vang (Wine)",
+          "name": "Rượu (Wine)",
           "icon": "assets/icons/wine.png"
         },
         {
@@ -1091,7 +1091,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Sữa"
         },
         {
-          "name": "Nấm mỡ gà (Chanterelle)",
+          "name": "Nấm mồng gà (Chanterelle)",
           "icon": "assets/icons/ing_chanterelle.png"
         },
         {
@@ -1099,11 +1099,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_common_mushroom.png"
         },
         {
-          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "name": "Thủy tiên (Daffodil)",
           "icon": "assets/icons/ing_daffodil.png"
         },
         {
-          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "name": "Bồ công anh (Dandelion)",
           "icon": "assets/icons/item_dandelion.png"
         },
         {
@@ -1111,7 +1111,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/driftwood.png"
         },
         {
-          "name": "Củ gừng (Ginger)",
+          "name": "Gừng (Ginger)",
           "icon": "assets/icons/ing_ginger.png"
         },
         {
@@ -1119,7 +1119,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_hazelnut.png"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         },
         {
@@ -1127,19 +1127,19 @@ export const NPCS_DATA = [
           "icon": "assets/icons/item_leek.png"
         },
         {
-          "name": "Nấm dung nham (Magma Cap)",
+          "name": "Nấm Dung nham (Magma Cap)",
           "icon": "assets/icons/magma_cap.png"
         },
         {
-          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "name": "Nấm Bụng dê (Morel)",
           "icon": "assets/icons/item_morel.png"
         },
         {
-          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "name": "Nấm Tím (Purple Mushroom)",
           "icon": "assets/icons/item_purple_mushroom.png"
         },
         {
-          "name": "Khoai tuyết (Snow Yam)",
+          "name": "Khoai lang Tuyết (Snow Yam)",
           "icon": "assets/icons/snow_yam.png"
         },
         {
@@ -1147,11 +1147,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/spring_onion.png"
         },
         {
-          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "name": "Cải ngựa Dại (Wild Horseradish)",
           "icon": "assets/icons/item_wild_horseradish.png"
         },
         {
-          "name": "Củ mùa đông (Winter Root)",
+          "name": "Củ mài (Winter Root)",
           "icon": "assets/icons/winter_root.png"
         }
       ],
@@ -1166,7 +1166,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Đá quý (trừ Diamond & Prismatic Shard)"
         },
         {
-          "name": "Bất Ngờ Cá Chép (Carp Surprise)",
+          "name": "Cá chép Bất ngờ (Carp Surprise)",
           "icon": "assets/icons/carp_surprise.png"
         },
         {
@@ -1174,19 +1174,19 @@ export const NPCS_DATA = [
           "icon": "assets/icons/cookie.png"
         },
         {
-          "name": "Trứng Chiên (Fried Egg)",
+          "name": "Trứng chiên (Fried Egg)",
           "icon": "assets/icons/fried_egg.png"
         },
         {
-          "name": "Kem Tươi Ốc Quế (Ice Cream)",
+          "name": "Kem (Ice Cream)",
           "icon": "assets/icons/ice_cream.png"
         },
         {
-          "name": "Bánh Kem Dâu Tây Hồng (Pink Cake)",
+          "name": "Bánh kem Hồng (Pink Cake)",
           "icon": "assets/icons/pink_cake.png"
         },
         {
-          "name": "Pudding Gạo Sữa Ngọt Ngào (Rice Pudding)",
+          "name": "Chè gạo (Rice Pudding)",
           "icon": "assets/icons/rice_pudding.png"
         },
         {
@@ -1194,11 +1194,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_seaweed.png"
         },
         {
-          "name": "Burger Sinh Tồn Thợ Rừng (Survival Burger)",
+          "name": "Bánh kẹp Sinh tồn (Survival Burger)",
           "icon": "assets/icons/survival_burger.png"
         },
         {
-          "name": "Bánh Tráng Ngô Tortilla (Tortilla)",
+          "name": "Bánh tráng ngô (Tortilla)",
           "icon": "assets/icons/tortilla.png"
         }
       ],
@@ -1207,23 +1207,23 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Ghét Chung (Universal Hates) (trừ Seaweed)"
         },
         {
-          "name": "Bánh Mì Nướng Baguette (Bread)",
+          "name": "Bánh mỳ (Bread)",
           "icon": "assets/icons/bread.png"
         },
         {
-          "name": "Khoai Tây Bào Chiên Giòn (Hashbrowns)",
+          "name": "Khoai tây Chiên (Hashbrowns)",
           "icon": "assets/icons/hashbrowns.png"
         },
         {
-          "name": "Bánh Kếp Bơ Mật Ong (Pancakes)",
+          "name": "Bánh Kếp (Pancakes)",
           "icon": "assets/icons/pancakes.png"
         },
         {
-          "name": "Bánh Pizza Ý (Pizza)",
+          "name": "Pizza (Pizza)",
           "icon": "assets/icons/pizza.png"
         },
         {
-          "name": "Trứng Gà Hư Vô (Void Egg)",
+          "name": "Trứng Hư không (Void Egg)",
           "icon": "assets/icons/item_void_egg.png"
         }
       ]
@@ -1358,47 +1358,47 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Pin năng lượng (Battery Pack)",
+          "name": "Cục Pin (Battery Pack)",
           "icon": "assets/icons/ing_battery_pack.png"
         },
         {
-          "name": "Súp Lơ Trắng (Cauliflower)",
+          "name": "Bông cải trắng (Cauliflower)",
           "icon": "assets/icons/item_cauliflower.png"
         },
         {
-          "name": "Súp Lơ Đút Lò Phô Mai (Cheese Cauliflower)",
+          "name": "Bông cải trắng nấu Phô mai (Cheese Cauliflower)",
           "icon": "assets/icons/cheese_cauliflower.png"
         },
         {
-          "name": "Kim Cương Tinh Khiết (Diamond)",
+          "name": "Kim cương (Diamond)",
           "icon": "assets/icons/item_diamond.png"
         },
         {
-          "name": "Thiết bị người lùn (Dwarf Gadget)",
+          "name": "Thiết bị của Người lùn (Dwarf Gadget)",
           "icon": "assets/icons/dwarf_gadget.png"
         },
         {
-          "name": "Thỏi vàng (Gold Bar)",
+          "name": "Thỏi Vàng (Gold Bar)",
           "icon": "assets/icons/smelt_gold_bar.png"
         },
         {
-          "name": "Thỏi iridium (Iridium Bar)",
+          "name": "Thỏi Iridium (Iridium Bar)",
           "icon": "assets/icons/smelt_iridium_bar.png"
         },
         {
-          "name": "Món Ngon Thợ Mỏ (Miner's Treat)",
+          "name": "Kẹo Thợ mỏ (Miner's Treat)",
           "icon": "assets/icons/miners_treat.png"
         },
         {
-          "name": "Ớt Cay Nhồi Phô Mai Nướng (Pepper Poppers)",
+          "name": "Ớt bung (Pepper Poppers)",
           "icon": "assets/icons/pepper_poppers.png"
         },
         {
-          "name": "Thỏi phóng xạ (Radioactive Bar)",
+          "name": "Thỏi Phóng xạ (Radioactive Bar)",
           "icon": "assets/icons/smelt_radioactive_bar.png"
         },
         {
-          "name": "Bánh Nướng Đại Hoàng (Rhubarb Pie)",
+          "name": "Bánh nướng nhân Đại hoàng (Rhubarb Pie)",
           "icon": "assets/icons/rhubarb_pie.png"
         },
         {
@@ -1414,27 +1414,27 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ Honey, Maple Syrup & Pickles)"
         },
         {
-          "name": "Nấm mỡ gà (Chanterelle)",
+          "name": "Nấm mồng gà (Chanterelle)",
           "icon": "assets/icons/ing_chanterelle.png"
         },
         {
-          "name": "Thỏi đồng (Copper Bar)",
+          "name": "Thỏi Đồng (Copper Bar)",
           "icon": "assets/icons/smelt_copper_bar.png"
         },
         {
-          "name": "Thỏi sắt (Iron Bar)",
+          "name": "Thỏi Sắt (Iron Bar)",
           "icon": "assets/icons/smelt_iron_bar.png"
         },
         {
-          "name": "Nấm dung nham (Magma Cap)",
+          "name": "Nấm Dung nham (Magma Cap)",
           "icon": "assets/icons/magma_cap.png"
         },
         {
-          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "name": "Nấm Bụng dê (Morel)",
           "icon": "assets/icons/item_morel.png"
         },
         {
-          "name": "Nhựa cây sồi (Oak Resin)",
+          "name": "Nhựa Sồi (Oak Resin)",
           "icon": "assets/icons/ing_oak_resin.png"
         },
         {
@@ -1442,7 +1442,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_pine_tar.png"
         },
         {
-          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "name": "Nấm Tím (Purple Mushroom)",
           "icon": "assets/icons/item_purple_mushroom.png"
         },
         {
@@ -1450,7 +1450,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_quartz.png"
         },
         {
-          "name": "Quặng phóng xạ (Radioactive Ore)",
+          "name": "Quặng Phóng xạ (Radioactive Ore)",
           "icon": "assets/icons/ing_radioactive_ore.png"
         }
       ],
@@ -1459,7 +1459,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ Battery Pack, Copper Bar, Dwarf Gadget, Gold Bar, Iridium Bar, Iron Bar, Oak Resin & Pine Tar)"
         },
         {
-          "name": "Mâm Xôi Đen (Blackberry)",
+          "name": "Mâm xôi đen (Blackberry)",
           "icon": "assets/icons/item_blackberry.png"
         },
         {
@@ -1471,11 +1471,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/crystal_fruit.png"
         },
         {
-          "name": "Siro cây phong (Maple Syrup)",
+          "name": "Si-rô nhựa Phong (Maple Syrup)",
           "icon": "assets/icons/ing_maple_syrup.png"
         },
         {
-          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "name": "Mâm xôi đỏ (Salmonberry)",
           "icon": "assets/icons/item_salmonberry.png"
         }
       ],
@@ -1484,7 +1484,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Ghét Chung (Universal Hates) (trừ Radioactive Bar & Radioactive Ore)"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         },
         {
@@ -1496,11 +1496,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/pickles.png"
         },
         {
-          "name": "Khoai tuyết (Snow Yam)",
+          "name": "Khoai lang Tuyết (Snow Yam)",
           "icon": "assets/icons/snow_yam.png"
         },
         {
-          "name": "Nấm Cục Truffle (Truffle)",
+          "name": "Nấm Cục (Truffle)",
           "icon": "assets/icons/item_truffle.png"
         }
       ]
@@ -1633,31 +1633,31 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Kim Cương Tinh Khiết (Diamond)",
+          "name": "Kim cương (Diamond)",
           "icon": "assets/icons/item_diamond.png"
         },
         {
-          "name": "Ngọc Lục Bảo (Emerald)",
+          "name": "Ngọc Lục bảo (Emerald)",
           "icon": "assets/icons/item_emerald.png"
         },
         {
-          "name": "Dưa Gang (Melon)",
+          "name": "Dưa (Melon)",
           "icon": "assets/icons/item_melon.png"
         },
         {
-          "name": "Hoa Anh Túc (Poppy)",
+          "name": "Hoa Anh túc (Poppy)",
           "icon": "assets/icons/ing_poppy.png"
         },
         {
-          "name": "Bánh Muffin Hạt Anh Túc (Poppyseed Muffin)",
+          "name": "Bánh xốp nhân Anh túc (Poppyseed Muffin)",
           "icon": "assets/icons/poppyseed_muffin.png"
         },
         {
-          "name": "Đĩa Rau Đỏ Bổ Dưỡng (Red Plate)",
+          "name": "Suất đồ ăn Đỏ (Red Plate)",
           "icon": "assets/icons/red_plate.png"
         },
         {
-          "name": "Đĩa Củ Quả Luộc Mùa Đông (Roots Platter)",
+          "name": "Củ dại luộc (Roots Platter)",
           "icon": "assets/icons/roots_platter.png"
         },
         {
@@ -1665,7 +1665,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/item_sandfish.png"
         },
         {
-          "name": "Súp Tom Kha Nước Cốt Dừa (Tom Kha Soup)",
+          "name": "Súp tôm nước Dừa (Tom Kha Soup)",
           "icon": "assets/icons/tom_kha_soup.png"
         },
         {
@@ -1686,7 +1686,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Sữa"
         },
         {
-          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "name": "Bồ công anh (Dandelion)",
           "icon": "assets/icons/item_dandelion.png"
         },
         {
@@ -1699,19 +1699,19 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ cổ vật, Price Catalogue & Sandfish)"
         },
         {
-          "name": "Súp Tảo Lục Thanh Nhiệt (Algae Soup)",
+          "name": "Súp Tảo biển (Algae Soup)",
           "icon": "assets/icons/algae_soup.png"
         },
         {
-          "name": "Lông Vịt Xanh Biếc (Duck Feather)",
+          "name": "Lông Vịt (Duck Feather)",
           "icon": "assets/icons/item_duck_feather.png"
         },
         {
-          "name": "Nước Dùng Rêu Trắng (Pale Broth)",
+          "name": "Nước canh suông (Pale Broth)",
           "icon": "assets/icons/pale_broth.png"
         },
         {
-          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "name": "Nấm Tím (Purple Mushroom)",
           "icon": "assets/icons/item_purple_mushroom.png"
         },
         {
@@ -1719,11 +1719,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_quartz.png"
         },
         {
-          "name": "Nấm đỏ (Red Mushroom)",
+          "name": "Nấm Đỏ (Red Mushroom)",
           "icon": "assets/icons/red_mushroom.png"
         },
         {
-          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "name": "Mâm xôi đỏ (Salmonberry)",
           "icon": "assets/icons/item_salmonberry.png"
         },
         {
@@ -1744,7 +1744,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/item_grape.png"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         },
         {
@@ -1752,11 +1752,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_hops.png"
         },
         {
-          "name": "Rượu mật ong (Mead)",
+          "name": "Rượu mật (Mead)",
           "icon": "assets/icons/mead.png"
         },
         {
-          "name": "Bia nhạt (Pale Ale)",
+          "name": "Bia nhẹ (Pale Ale)",
           "icon": "assets/icons/pale_ale.png"
         },
         {
@@ -1764,11 +1764,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/pina_colada.png"
         },
         {
-          "name": "Chân Thỏ May Mắn (Rabbit's Foot)",
+          "name": "Chân Thỏ (Rabbit's Foot)",
           "icon": "assets/icons/item_rabbits_foot.png"
         },
         {
-          "name": "Rượu vang (Wine)",
+          "name": "Rượu (Wine)",
           "icon": "assets/icons/wine.png"
         }
       ]
@@ -1951,15 +1951,15 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Bữa Sáng Hoàn Hảo (Complete Breakfast)",
+          "name": "Bữa sáng Đầy đủ (Complete Breakfast)",
           "icon": "assets/icons/complete_breakfast.png"
         },
         {
-          "name": "Sách Jack Nhanh Nhẹn (Jack Be Nimble, Jack Be Thick)",
+          "name": "Bé khỏe, Bé ngoan (Jack Be Nimble, Jack Be Thick)",
           "icon": "assets/icons/jack_be_nimble_jack_be_thick.png"
         },
         {
-          "name": "Cơm Cá Hồi Áp Chảo (Salmon Dinner)",
+          "name": "Bữa tối Cá hồi (Salmon Dinner)",
           "icon": "assets/icons/salmon_dinner.png"
         },
         {
@@ -1974,15 +1974,15 @@ export const NPCS_DATA = [
           "name": "Tất cả Trứng (trừ Void Egg)"
         },
         {
-          "name": "Trứng Khủng Long Cổ Đại (Dinosaur Egg)",
+          "name": "Trứng Khủng long (Dinosaur Egg)",
           "icon": "assets/icons/item_dinosaur_egg.png"
         },
         {
-          "name": "Đồ ăn vặt dã ngoại (Field Snack)",
+          "name": "Đồ ăn vặt (Field Snack)",
           "icon": "assets/icons/field_snack.png"
         },
         {
-          "name": "Trứng vẹt (Parrot Egg)",
+          "name": "Trứng Vẹt (Parrot Egg)",
           "icon": "assets/icons/parrot_egg.png"
         }
       ],
@@ -1994,11 +1994,11 @@ export const NPCS_DATA = [
           "name": "Tất cả Sách (trừ Jack Be Nimble, Jack Be Thick)"
         },
         {
-          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "name": "Mâm xôi đỏ (Salmonberry)",
           "icon": "assets/icons/item_salmonberry.png"
         },
         {
-          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "name": "Cải ngựa Dại (Wild Horseradish)",
           "icon": "assets/icons/item_wild_horseradish.png"
         }
       ],
@@ -2007,7 +2007,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Ghét Chung (Universal Hates)"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         },
         {
@@ -2110,27 +2110,27 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Chả Cua Biển Áp Chảo (Crab Cakes)",
+          "name": "Bánh Cua (Crab Cakes)",
           "icon": "assets/icons/crab_cakes.png"
         },
         {
-          "name": "Lông Vịt Xanh Biếc (Duck Feather)",
+          "name": "Lông Vịt (Duck Feather)",
           "icon": "assets/icons/item_duck_feather.png"
         },
         {
-          "name": "Tôm Hùm Biển (Lobster)",
+          "name": "Tôm Hùm (Lobster)",
           "icon": "assets/icons/item_lobster.png"
         },
         {
-          "name": "Lựu Đỏ (Pomegranate)",
+          "name": "Lựu (Pomegranate)",
           "icon": "assets/icons/item_pomegranate.png"
         },
         {
-          "name": "Mực đen (Squid Ink)",
+          "name": "Mực Mực (Squid Ink)",
           "icon": "assets/icons/ing_squid_ink.png"
         },
         {
-          "name": "Súp Tom Kha Nước Cốt Dừa (Tom Kha Soup)",
+          "name": "Súp tôm nước Dừa (Tom Kha Soup)",
           "icon": "assets/icons/tom_kha_soup.png"
         },
         {
@@ -2148,11 +2148,11 @@ export const NPCS_DATA = [
           "name": "Tất cả Trái cây (trừ Pomegranate & Salmonberry)"
         },
         {
-          "name": "Bạch Tuộc Biển (Octopus)",
+          "name": "Bạch tuộc (Octopus)",
           "icon": "assets/icons/item_octopus.png"
         },
         {
-          "name": "Mực Ống Đại Dương (Squid)",
+          "name": "Mực (Squid)",
           "icon": "assets/icons/item_squid.png"
         }
       ],
@@ -2164,7 +2164,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Sữa"
         },
         {
-          "name": "Nấm mỡ gà (Chanterelle)",
+          "name": "Nấm mồng gà (Chanterelle)",
           "icon": "assets/icons/ing_chanterelle.png"
         },
         {
@@ -2172,15 +2172,15 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_common_mushroom.png"
         },
         {
-          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "name": "Thủy tiên (Daffodil)",
           "icon": "assets/icons/ing_daffodil.png"
         },
         {
-          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "name": "Bồ công anh (Dandelion)",
           "icon": "assets/icons/item_dandelion.png"
         },
         {
-          "name": "Củ gừng (Ginger)",
+          "name": "Gừng (Ginger)",
           "icon": "assets/icons/ing_ginger.png"
         },
         {
@@ -2188,7 +2188,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_hazelnut.png"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         },
         {
@@ -2196,31 +2196,31 @@ export const NPCS_DATA = [
           "icon": "assets/icons/item_leek.png"
         },
         {
-          "name": "Nấm dung nham (Magma Cap)",
+          "name": "Nấm Dung nham (Magma Cap)",
           "icon": "assets/icons/magma_cap.png"
         },
         {
-          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "name": "Nấm Bụng dê (Morel)",
           "icon": "assets/icons/item_morel.png"
         },
         {
-          "name": "Bánh Pizza Ý (Pizza)",
+          "name": "Pizza (Pizza)",
           "icon": "assets/icons/pizza.png"
         },
         {
-          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "name": "Nấm Tím (Purple Mushroom)",
           "icon": "assets/icons/item_purple_mushroom.png"
         },
         {
-          "name": "Khoai tuyết (Snow Yam)",
+          "name": "Khoai lang Tuyết (Snow Yam)",
           "icon": "assets/icons/snow_yam.png"
         },
         {
-          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "name": "Cải ngựa Dại (Wild Horseradish)",
           "icon": "assets/icons/item_wild_horseradish.png"
         },
         {
-          "name": "Củ mùa đông (Winter Root)",
+          "name": "Củ mài (Winter Root)",
           "icon": "assets/icons/winter_root.png"
         }
       ],
@@ -2237,15 +2237,15 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_quartz.png"
         },
         {
-          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "name": "Mâm xôi đỏ (Salmonberry)",
           "icon": "assets/icons/item_salmonberry.png"
         },
         {
-          "name": "Hải Sâm (Sea Cucumber)",
+          "name": "Hải sâm (Sea Cucumber)",
           "icon": "assets/icons/item_sea_cucumber.png"
         },
         {
-          "name": "Hải Sâm Tím Khổng Lồ (Super Cucumber)",
+          "name": "Siêu Hải sâm (Super Cucumber)",
           "icon": "assets/icons/item_super_cucumber.png"
         }
       ]
@@ -2356,7 +2356,7 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Cà phê (Coffee)",
+          "name": "Cà-phê (Coffee)",
           "icon": "assets/icons/coffee.png"
         },
         {
@@ -2364,15 +2364,15 @@ export const NPCS_DATA = [
           "icon": "assets/icons/pickles.png"
         },
         {
-          "name": "Bữa Ăn Siêu Cấp (Super Meal)",
+          "name": "Bữa ăn Thượng hạng (Super Meal)",
           "icon": "assets/icons/super_meal.png"
         },
         {
-          "name": "Dầu nấm Truffle (Truffle Oil)",
+          "name": "Dầu Nấm cục (Truffle Oil)",
           "icon": "assets/icons/truffle_oil.png"
         },
         {
-          "name": "Rượu vang (Wine)",
+          "name": "Rượu (Wine)",
           "icon": "assets/icons/wine.png"
         },
         {
@@ -2387,7 +2387,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Trái cây (trừ Salmonberry & Spice Berry)"
         },
         {
-          "name": "Nấm mỡ gà (Chanterelle)",
+          "name": "Nấm mồng gà (Chanterelle)",
           "icon": "assets/icons/ing_chanterelle.png"
         },
         {
@@ -2395,27 +2395,27 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_common_mushroom.png"
         },
         {
-          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "name": "Thủy tiên (Daffodil)",
           "icon": "assets/icons/ing_daffodil.png"
         },
         {
-          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "name": "Bồ công anh (Dandelion)",
           "icon": "assets/icons/item_dandelion.png"
         },
         {
-          "name": "Trứng Vịt Đồng Cỏ (Duck Egg)",
+          "name": "Trứng Vịt (Duck Egg)",
           "icon": "assets/icons/item_duck_egg.png"
         },
         {
-          "name": "Lông Vịt Xanh Biếc (Duck Feather)",
+          "name": "Lông Vịt (Duck Feather)",
           "icon": "assets/icons/item_duck_feather.png"
         },
         {
-          "name": "Củ gừng (Ginger)",
+          "name": "Gừng (Ginger)",
           "icon": "assets/icons/ing_ginger.png"
         },
         {
-          "name": "Sữa dê (Goat Milk)",
+          "name": "Sữa Dê (Goat Milk)",
           "icon": "assets/icons/goat_milk.png"
         },
         {
@@ -2423,11 +2423,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_hazelnut.png"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         },
         {
-          "name": "Sữa dê lớn (Large Goat Milk)",
+          "name": "Sữa Dê bình to (Large Goat Milk)",
           "icon": "assets/icons/large_goat_milk.png"
         },
         {
@@ -2435,15 +2435,15 @@ export const NPCS_DATA = [
           "icon": "assets/icons/item_leek.png"
         },
         {
-          "name": "Nấm dung nham (Magma Cap)",
+          "name": "Nấm Dung nham (Magma Cap)",
           "icon": "assets/icons/magma_cap.png"
         },
         {
-          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "name": "Nấm Bụng dê (Morel)",
           "icon": "assets/icons/item_morel.png"
         },
         {
-          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "name": "Nấm Tím (Purple Mushroom)",
           "icon": "assets/icons/item_purple_mushroom.png"
         },
         {
@@ -2451,7 +2451,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_quartz.png"
         },
         {
-          "name": "Khoai tuyết (Snow Yam)",
+          "name": "Khoai lang Tuyết (Snow Yam)",
           "icon": "assets/icons/snow_yam.png"
         },
         {
@@ -2459,11 +2459,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/spring_onion.png"
         },
         {
-          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "name": "Cải ngựa Dại (Wild Horseradish)",
           "icon": "assets/icons/item_wild_horseradish.png"
         },
         {
-          "name": "Củ mùa đông (Winter Root)",
+          "name": "Củ mài (Winter Root)",
           "icon": "assets/icons/winter_root.png"
         }
       ],
@@ -2472,11 +2472,11 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ Spring Onion)"
         },
         {
-          "name": "Bánh Tart Việt Quất (Blueberry Tart)",
+          "name": "Bánh Tart nhân Việt quất (Blueberry Tart)",
           "icon": "assets/icons/blueberry_tart.png"
         },
         {
-          "name": "Bánh Mì Nướng Baguette (Bread)",
+          "name": "Bánh mỳ (Bread)",
           "icon": "assets/icons/bread.png"
         },
         {
@@ -2484,7 +2484,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/cheese.png"
         },
         {
-          "name": "Bánh Gato Sô-cô-la (Chocolate Cake)",
+          "name": "Bánh Sô-cô-la (Chocolate Cake)",
           "icon": "assets/icons/chocolate_cake.png"
         },
         {
@@ -2492,47 +2492,47 @@ export const NPCS_DATA = [
           "icon": "assets/icons/cookie.png"
         },
         {
-          "name": "Sốt Nam Việt Quất Cay Ngọt (Cranberry Sauce)",
+          "name": "Sốt Nam việt quất (Cranberry Sauce)",
           "icon": "assets/icons/cranberry_sauce.png"
         },
         {
-          "name": "Nấm Rừng Xào Tỏi (Fried Mushroom)",
+          "name": "Nấm chiên (Fried Mushroom)",
           "icon": "assets/icons/fried_mushroom.png"
         },
         {
-          "name": "Khoai Lang Ngào Đường (Glazed Yams)",
+          "name": "Khoai lang bọc Đường (Glazed Yams)",
           "icon": "assets/icons/glazed_yams.png"
         },
         {
-          "name": "Phô mai dê (Goat Cheese)",
+          "name": "Phô mai sữa Dê (Goat Cheese)",
           "icon": "assets/icons/goat_cheese.png"
         },
         {
-          "name": "Khoai Tây Bào Chiên Giòn (Hashbrowns)",
+          "name": "Khoai tây Chiên (Hashbrowns)",
           "icon": "assets/icons/hashbrowns.png"
         },
         {
-          "name": "Kem Tươi Ốc Quế (Ice Cream)",
+          "name": "Kem (Ice Cream)",
           "icon": "assets/icons/ice_cream.png"
         },
         {
-          "name": "Bánh Kếp Bơ Mật Ong (Pancakes)",
+          "name": "Bánh Kếp (Pancakes)",
           "icon": "assets/icons/pancakes.png"
         },
         {
-          "name": "Bánh Kem Dâu Tây Hồng (Pink Cake)",
+          "name": "Bánh kem Hồng (Pink Cake)",
           "icon": "assets/icons/pink_cake.png"
         },
         {
-          "name": "Bánh Pizza Ý (Pizza)",
+          "name": "Pizza (Pizza)",
           "icon": "assets/icons/pizza.png"
         },
         {
-          "name": "Bánh Nướng Đại Hoàng (Rhubarb Pie)",
+          "name": "Bánh nướng nhân Đại hoàng (Rhubarb Pie)",
           "icon": "assets/icons/rhubarb_pie.png"
         },
         {
-          "name": "Pudding Gạo Sữa Ngọt Ngào (Rice Pudding)",
+          "name": "Chè gạo (Rice Pudding)",
           "icon": "assets/icons/rice_pudding.png"
         }
       ],
@@ -2541,23 +2541,23 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Ghét Chung (Universal Hates)"
         },
         {
-          "name": "San Hô Biển Hồng (Coral)",
+          "name": "San hô (Coral)",
           "icon": "assets/icons/item_coral.png"
         },
         {
-          "name": "Vỏ ốc anh vũ (Nautilus Shell)",
+          "name": "Vỏ ốc Anh vũ (Nautilus Shell)",
           "icon": "assets/icons/nautilus_shell.png"
         },
         {
-          "name": "Vỏ sò cầu vồng (Rainbow Shell)",
+          "name": "Vỏ ốc Cầu vồng (Rainbow Shell)",
           "icon": "assets/icons/rainbow_shell.png"
         },
         {
-          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "name": "Mâm xôi đỏ (Salmonberry)",
           "icon": "assets/icons/item_salmonberry.png"
         },
         {
-          "name": "Quả mọng cay (Spice Berry)",
+          "name": "Thảo quả (Spice Berry)",
           "icon": "assets/icons/spice_berry.png"
         }
       ]
@@ -2709,15 +2709,15 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Quả Xương Rồng Sa Mạc (Cactus Fruit)",
+          "name": "Quả Xương rồng (Cactus Fruit)",
           "icon": "assets/icons/item_cactus_fruit.png"
         },
         {
-          "name": "Bánh Quẩy Nhựa Phong (Maple Bar)",
+          "name": "Bánh mật cây Phong (Maple Bar)",
           "icon": "assets/icons/maple_bar.png"
         },
         {
-          "name": "Đá mắt hổ (Tigerseye)",
+          "name": "Đá Mắt cọp (Tigerseye)",
           "icon": "assets/icons/tigerseye.png"
         },
         {
@@ -2732,7 +2732,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Trứng (trừ Void Egg)"
         },
         {
-          "name": "Nước ngọt Joja (Joja Cola)",
+          "name": "Joja Cola (Joja Cola)",
           "icon": "assets/icons/joja_cola.png"
         }
       ],
@@ -2744,7 +2744,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Rau củ (trừ Hops, Tea Leaves & Wheat)"
         },
         {
-          "name": "Nấm mỡ gà (Chanterelle)",
+          "name": "Nấm mồng gà (Chanterelle)",
           "icon": "assets/icons/ing_chanterelle.png"
         },
         {
@@ -2752,15 +2752,15 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_common_mushroom.png"
         },
         {
-          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "name": "Thủy tiên (Daffodil)",
           "icon": "assets/icons/ing_daffodil.png"
         },
         {
-          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "name": "Bồ công anh (Dandelion)",
           "icon": "assets/icons/item_dandelion.png"
         },
         {
-          "name": "Củ gừng (Ginger)",
+          "name": "Gừng (Ginger)",
           "icon": "assets/icons/ing_ginger.png"
         },
         {
@@ -2768,7 +2768,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_hazelnut.png"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         },
         {
@@ -2776,15 +2776,15 @@ export const NPCS_DATA = [
           "icon": "assets/icons/item_leek.png"
         },
         {
-          "name": "Nấm dung nham (Magma Cap)",
+          "name": "Nấm Dung nham (Magma Cap)",
           "icon": "assets/icons/magma_cap.png"
         },
         {
-          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "name": "Nấm Bụng dê (Morel)",
           "icon": "assets/icons/item_morel.png"
         },
         {
-          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "name": "Nấm Tím (Purple Mushroom)",
           "icon": "assets/icons/item_purple_mushroom.png"
         },
         {
@@ -2792,7 +2792,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_quartz.png"
         },
         {
-          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "name": "Mâm xôi đỏ (Salmonberry)",
           "icon": "assets/icons/item_salmonberry.png"
         },
         {
@@ -2800,15 +2800,15 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_seaweed.png"
         },
         {
-          "name": "Khoai tuyết (Snow Yam)",
+          "name": "Khoai lang Tuyết (Snow Yam)",
           "icon": "assets/icons/snow_yam.png"
         },
         {
-          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "name": "Cải ngựa Dại (Wild Horseradish)",
           "icon": "assets/icons/item_wild_horseradish.png"
         },
         {
-          "name": "Củ mùa đông (Winter Root)",
+          "name": "Củ mài (Winter Root)",
           "icon": "assets/icons/winter_root.png"
         }
       ],
@@ -2817,27 +2817,27 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Ghét Chung (Universal Hates) (trừ Joja Cola & Seaweed)"
         },
         {
-          "name": "Mảnh xương (Bone Fragment)",
+          "name": "Mảnh xương vụn (Bone Fragment)",
           "icon": "assets/icons/ing_bone_fragment.png"
         },
         {
-          "name": "Mảnh Than Hồng (Cinder Shard)",
+          "name": "Mảnh Nham thạch (Cinder Shard)",
           "icon": "assets/icons/item_cinder_shard.png"
         },
         {
-          "name": "Than Đá (Coal)",
+          "name": "Than đá (Coal)",
           "icon": "assets/icons/item_coal.png"
         },
         {
-          "name": "Thỏi đồng (Copper Bar)",
+          "name": "Thỏi Đồng (Copper Bar)",
           "icon": "assets/icons/smelt_copper_bar.png"
         },
         {
-          "name": "Sốt mayonnaise vịt (Duck Mayonnaise)",
+          "name": "Sốt trứng Vịt (Duck Mayonnaise)",
           "icon": "assets/icons/duck_mayonnaise.png"
         },
         {
-          "name": "Thỏi vàng (Gold Bar)",
+          "name": "Thỏi Vàng (Gold Bar)",
           "icon": "assets/icons/smelt_gold_bar.png"
         },
         {
@@ -2845,7 +2845,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/item_gold_ore.png"
         },
         {
-          "name": "Thỏi iridium (Iridium Bar)",
+          "name": "Thỏi Iridium (Iridium Bar)",
           "icon": "assets/icons/smelt_iridium_bar.png"
         },
         {
@@ -2853,11 +2853,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/item_iridium_ore.png"
         },
         {
-          "name": "Thỏi sắt (Iron Bar)",
+          "name": "Thỏi Sắt (Iron Bar)",
           "icon": "assets/icons/smelt_iron_bar.png"
         },
         {
-          "name": "Sốt Mayonnaise (Mayonnaise)",
+          "name": "Sốt trứng gà tươi (Mayonnaise)",
           "icon": "assets/icons/mayonnaise.png"
         },
         {
@@ -2865,7 +2865,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/pickles.png"
         },
         {
-          "name": "Thạch anh tinh luyện (Refined Quartz)",
+          "name": "Thạch anh Tinh luyện (Refined Quartz)",
           "icon": "assets/icons/smelt_refined_quartz.png"
         }
       ]
@@ -2995,27 +2995,27 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Trứng ếch (Frog Egg)",
+          "name": "Trứng Ếch (Frog Egg)",
           "icon": "assets/icons/frog_egg.png"
         },
         {
-          "name": "Nước mắt băng (Frozen Tear)",
+          "name": "Băng giọt lệ (Frozen Tear)",
           "icon": "assets/icons/frozen_tear.png"
         },
         {
-          "name": "Đá vỏ chai (Obsidian)",
+          "name": "Đá Vỏ chai (Obsidian)",
           "icon": "assets/icons/obsidian.png"
         },
         {
-          "name": "Súp Bí Ngô Hoàng Gia (Pumpkin Soup)",
+          "name": "Súp Bí ngô (Pumpkin Soup)",
           "icon": "assets/icons/pumpkin_soup.png"
         },
         {
-          "name": "Gỏi Cá Sống Sashimi (Sashimi)",
+          "name": "Gỏi cá tươi (Sashimi)",
           "icon": "assets/icons/sashimi.png"
         },
         {
-          "name": "Trứng Gà Hư Vô (Void Egg)",
+          "name": "Trứng Hư không (Void Egg)",
           "icon": "assets/icons/item_void_egg.png"
         },
         {
@@ -3027,7 +3027,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ hoa, Complete Breakfast, Farmer's Lunch, Omelet, Piña Colada & sản phẩm thủ công ngoài Coffee, Green Tea & Oil)"
         },
         {
-          "name": "Tạp chí Chiến đấu Hàng quý (Combat Quarterly)",
+          "name": "Tạp chí Chiến thuật hàng quý (Combat Quarterly)",
           "icon": "assets/icons/combat_quarterly.png"
         },
         {
@@ -3035,7 +3035,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/item_flounder.png"
         },
         {
-          "name": "Bách khoa Quái vật (Monster Compendium)",
+          "name": "Bản tóm tắt Quái vật (Monster Compendium)",
           "icon": "assets/icons/monster_compendium.png"
         },
         {
@@ -3051,7 +3051,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Hoa (trừ Poppy)"
         },
         {
-          "name": "Nấm mỡ gà (Chanterelle)",
+          "name": "Nấm mồng gà (Chanterelle)",
           "icon": "assets/icons/ing_chanterelle.png"
         },
         {
@@ -3059,15 +3059,15 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_common_mushroom.png"
         },
         {
-          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "name": "Thủy tiên (Daffodil)",
           "icon": "assets/icons/ing_daffodil.png"
         },
         {
-          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "name": "Bồ công anh (Dandelion)",
           "icon": "assets/icons/item_dandelion.png"
         },
         {
-          "name": "Củ gừng (Ginger)",
+          "name": "Gừng (Ginger)",
           "icon": "assets/icons/ing_ginger.png"
         },
         {
@@ -3075,7 +3075,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_hazelnut.png"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         },
         {
@@ -3083,31 +3083,31 @@ export const NPCS_DATA = [
           "icon": "assets/icons/item_leek.png"
         },
         {
-          "name": "Nấm dung nham (Magma Cap)",
+          "name": "Nấm Dung nham (Magma Cap)",
           "icon": "assets/icons/magma_cap.png"
         },
         {
-          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "name": "Nấm Bụng dê (Morel)",
           "icon": "assets/icons/item_morel.png"
         },
         {
-          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "name": "Nấm Tím (Purple Mushroom)",
           "icon": "assets/icons/item_purple_mushroom.png"
         },
         {
-          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "name": "Mâm xôi đỏ (Salmonberry)",
           "icon": "assets/icons/item_salmonberry.png"
         },
         {
-          "name": "Khoai tuyết (Snow Yam)",
+          "name": "Khoai lang Tuyết (Snow Yam)",
           "icon": "assets/icons/snow_yam.png"
         },
         {
-          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "name": "Cải ngựa Dại (Wild Horseradish)",
           "icon": "assets/icons/item_wild_horseradish.png"
         },
         {
-          "name": "Củ mùa đông (Winter Root)",
+          "name": "Củ mài (Winter Root)",
           "icon": "assets/icons/winter_root.png"
         }
       ],
@@ -3126,15 +3126,15 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_clay.png"
         },
         {
-          "name": "Bữa Sáng Hoàn Hảo (Complete Breakfast)",
+          "name": "Bữa sáng Đầy đủ (Complete Breakfast)",
           "icon": "assets/icons/complete_breakfast.png"
         },
         {
-          "name": "Bữa Trưa Bác Nông Dân (Farmer's Lunch)",
+          "name": "Bữa trưa Nông dân (Farmer's Lunch)",
           "icon": "assets/icons/farmers_lunch.png"
         },
         {
-          "name": "Trứng Cuộn Phô Mai (Omelet)",
+          "name": "Trứng Ốp-lết (Omelet)",
           "icon": "assets/icons/omelet.png"
         },
         {
@@ -3306,15 +3306,15 @@ export const NPCS_DATA = [
           "icon": "assets/icons/beer.png"
         },
         {
-          "name": "Ớt Cay Đỏ (Hot Pepper)",
+          "name": "Ớt hiểm (Hot Pepper)",
           "icon": "assets/icons/item_hot_pepper.png"
         },
         {
-          "name": "Ớt Cay Nhồi Phô Mai Nướng (Pepper Poppers)",
+          "name": "Ớt bung (Pepper Poppers)",
           "icon": "assets/icons/pepper_poppers.png"
         },
         {
-          "name": "Bánh Pizza Ý (Pizza)",
+          "name": "Pizza (Pizza)",
           "icon": "assets/icons/pizza.png"
         },
         {
@@ -3337,7 +3337,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Không Thích Chung (Universal Dislikes)"
         },
         {
-          "name": "Nấm mỡ gà (Chanterelle)",
+          "name": "Nấm mồng gà (Chanterelle)",
           "icon": "assets/icons/ing_chanterelle.png"
         },
         {
@@ -3345,15 +3345,15 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_common_mushroom.png"
         },
         {
-          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "name": "Thủy tiên (Daffodil)",
           "icon": "assets/icons/ing_daffodil.png"
         },
         {
-          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "name": "Bồ công anh (Dandelion)",
           "icon": "assets/icons/item_dandelion.png"
         },
         {
-          "name": "Củ gừng (Ginger)",
+          "name": "Gừng (Ginger)",
           "icon": "assets/icons/ing_ginger.png"
         },
         {
@@ -3361,7 +3361,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_hazelnut.png"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         },
         {
@@ -3369,15 +3369,15 @@ export const NPCS_DATA = [
           "icon": "assets/icons/item_leek.png"
         },
         {
-          "name": "Nấm dung nham (Magma Cap)",
+          "name": "Nấm Dung nham (Magma Cap)",
           "icon": "assets/icons/magma_cap.png"
         },
         {
-          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "name": "Nấm Bụng dê (Morel)",
           "icon": "assets/icons/item_morel.png"
         },
         {
-          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "name": "Nấm Tím (Purple Mushroom)",
           "icon": "assets/icons/item_purple_mushroom.png"
         },
         {
@@ -3385,15 +3385,15 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_seaweed.png"
         },
         {
-          "name": "Khoai tuyết (Snow Yam)",
+          "name": "Khoai lang Tuyết (Snow Yam)",
           "icon": "assets/icons/snow_yam.png"
         },
         {
-          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "name": "Cải ngựa Dại (Wild Horseradish)",
           "icon": "assets/icons/item_wild_horseradish.png"
         },
         {
-          "name": "Củ mùa đông (Winter Root)",
+          "name": "Củ mài (Winter Root)",
           "icon": "assets/icons/winter_root.png"
         }
       ],
@@ -3541,19 +3541,19 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Phô mai dê (Goat Cheese)",
+          "name": "Phô mai sữa Dê (Goat Cheese)",
           "icon": "assets/icons/goat_cheese.png"
         },
         {
-          "name": "Đào Tiên Hồng (Peach)",
+          "name": "Đào (Peach)",
           "icon": "assets/icons/item_peach.png"
         },
         {
-          "name": "Mì Ý Sốt Bò Băm Cà Chua (Spaghetti)",
+          "name": "Mỳ Ý (Spaghetti)",
           "icon": "assets/icons/spaghetti.png"
         },
         {
-          "name": "Sách Bí mật của Woody (Woody's Secret)",
+          "name": "Bí mật của Gỗ (Woody's Secret)",
           "icon": "assets/icons/woodys_secret.png"
         },
         {
@@ -3571,7 +3571,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Sữa"
         },
         {
-          "name": "Gỗ cứng (Hardwood)",
+          "name": "Gỗ Cứng (Hardwood)",
           "icon": "assets/icons/ing_hardwood.png"
         },
         {
@@ -3579,7 +3579,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_quartz.png"
         },
         {
-          "name": "Tuần báo Tiều phu (Woodcutter's Weekly)",
+          "name": "Tuần báo Tiều Phu (Woodcutter's Weekly)",
           "icon": "assets/icons/woodcutters_weekly.png"
         }
       ],
@@ -3588,7 +3588,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ Hardwood)"
         },
         {
-          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "name": "Cải ngựa Dại (Wild Horseradish)",
           "icon": "assets/icons/item_wild_horseradish.png"
         }
       ],
@@ -3597,7 +3597,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Ghét Chung (Universal Hates)"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         }
       ]
@@ -3731,15 +3731,15 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Lẩu Đậu Que Hầm (Bean Hotpot)",
+          "name": "Lẩu Đậu (Bean Hotpot)",
           "icon": "assets/icons/bean_hotpot.png"
         },
         {
-          "name": "Kem Tươi Ốc Quế (Ice Cream)",
+          "name": "Kem (Ice Cream)",
           "icon": "assets/icons/ice_cream.png"
         },
         {
-          "name": "Pudding Gạo Sữa Ngọt Ngào (Rice Pudding)",
+          "name": "Chè gạo (Rice Pudding)",
           "icon": "assets/icons/rice_pudding.png"
         },
         {
@@ -3761,11 +3761,11 @@ export const NPCS_DATA = [
           "name": "Tất cả Trái cây (trừ Strawberry)"
         },
         {
-          "name": "Trứng Khủng Long Cổ Đại (Dinosaur Egg)",
+          "name": "Trứng Khủng long (Dinosaur Egg)",
           "icon": "assets/icons/item_dinosaur_egg.png"
         },
         {
-          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "name": "Nấm Tím (Purple Mushroom)",
           "icon": "assets/icons/item_purple_mushroom.png"
         }
       ],
@@ -3783,7 +3783,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Ghét Chung (Universal Hates)"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         }
       ]
@@ -3874,7 +3874,7 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Thạch Anh Tím (Amethyst)",
+          "name": "Thạch anh Tím (Amethyst)",
           "icon": "assets/icons/item_amethyst.png"
         },
         {
@@ -3882,23 +3882,23 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_aquamarine.png"
         },
         {
-          "name": "Sốt Atiso Béo Ngậy (Artichoke Dip)",
+          "name": "A-ti-sô dầm Sữa (Artichoke Dip)",
           "icon": "assets/icons/artichoke_dip.png"
         },
         {
-          "name": "Ngọc Lục Bảo (Emerald)",
+          "name": "Ngọc Lục bảo (Emerald)",
           "icon": "assets/icons/item_emerald.png"
         },
         {
-          "name": "Cơm Ý Dương Xỉ Non (Fiddlehead Risotto)",
+          "name": "Cơm Rau dớn (Fiddlehead Risotto)",
           "icon": "assets/icons/fiddlehead_risotto.png"
         },
         {
-          "name": "Thỏi vàng (Gold Bar)",
+          "name": "Thỏi Vàng (Gold Bar)",
           "icon": "assets/icons/smelt_gold_bar.png"
         },
         {
-          "name": "Thỏi iridium (Iridium Bar)",
+          "name": "Thỏi Iridium (Iridium Bar)",
           "icon": "assets/icons/smelt_iridium_bar.png"
         },
         {
@@ -3906,11 +3906,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/item_jade.png"
         },
         {
-          "name": "Geode Vạn năng (Omni Geode)",
+          "name": "Hốc tinh Toàn năng (Omni Geode)",
           "icon": "assets/icons/omni_geode.png"
         },
         {
-          "name": "Hồng Ngọc (Ruby)",
+          "name": "Hồng ngọc (Ruby)",
           "icon": "assets/icons/item_ruby.png"
         },
         {
@@ -3926,15 +3926,15 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ hoa)"
         },
         {
-          "name": "Thỏi đồng (Copper Bar)",
+          "name": "Thỏi Đồng (Copper Bar)",
           "icon": "assets/icons/smelt_copper_bar.png"
         },
         {
-          "name": "Thỏi sắt (Iron Bar)",
+          "name": "Thỏi Sắt (Iron Bar)",
           "icon": "assets/icons/smelt_iron_bar.png"
         },
         {
-          "name": "Nguyệt san Khai mỏ (Mining Monthly)",
+          "name": "Tạp chí Khai khoáng hàng tháng (Mining Monthly)",
           "icon": "assets/icons/mining_monthly.png"
         }
       ],
@@ -3950,11 +3950,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_quartz.png"
         },
         {
-          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "name": "Mâm xôi đỏ (Salmonberry)",
           "icon": "assets/icons/item_salmonberry.png"
         },
         {
-          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "name": "Cải ngựa Dại (Wild Horseradish)",
           "icon": "assets/icons/item_wild_horseradish.png"
         }
       ],
@@ -3963,7 +3963,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Ghét Chung (Universal Hates)"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         }
       ]
@@ -4059,11 +4059,11 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Món Quà Mùa Thu (Autumn's Bounty)",
+          "name": "Tặng phẩm Mùa thu (Autumn's Bounty)",
           "icon": "assets/icons/autumns_bounty.png"
         },
         {
-          "name": "Khoai Lang Ngào Đường (Glazed Yams)",
+          "name": "Khoai lang bọc Đường (Glazed Yams)",
           "icon": "assets/icons/glazed_yams.png"
         },
         {
@@ -4071,11 +4071,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/green_tea.png"
         },
         {
-          "name": "Ớt Cay Đỏ (Hot Pepper)",
+          "name": "Ớt hiểm (Hot Pepper)",
           "icon": "assets/icons/item_hot_pepper.png"
         },
         {
-          "name": "Món Rau Xào Thập Cẩm (Vegetable Medley)",
+          "name": "Rau củ Hầm (Vegetable Medley)",
           "icon": "assets/icons/vegetable_medley.png"
         },
         {
@@ -4087,15 +4087,15 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Thích Chung (Universal Likes)"
         },
         {
-          "name": "Việt Quất Mùa Hè (Blueberry)",
+          "name": "Việt quất (Blueberry)",
           "icon": "assets/icons/item_blueberry.png"
         },
         {
-          "name": "Quả Xương Rồng Sa Mạc (Cactus Fruit)",
+          "name": "Quả Xương rồng (Cactus Fruit)",
           "icon": "assets/icons/item_cactus_fruit.png"
         },
         {
-          "name": "Quả dừa (Coconut)",
+          "name": "Dừa (Coconut)",
           "icon": "assets/icons/item_coconut.png"
         }
       ],
@@ -4107,11 +4107,11 @@ export const NPCS_DATA = [
           "name": "Tất cả Sữa"
         },
         {
-          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "name": "Mâm xôi đỏ (Salmonberry)",
           "icon": "assets/icons/item_salmonberry.png"
         },
         {
-          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "name": "Cải ngựa Dại (Wild Horseradish)",
           "icon": "assets/icons/item_wild_horseradish.png"
         }
       ],
@@ -4120,7 +4120,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Ghét Chung (Universal Hates)"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         },
         {
@@ -4204,19 +4204,19 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Kim Cương Tinh Khiết (Diamond)",
+          "name": "Kim cương (Diamond)",
           "icon": "assets/icons/item_diamond.png"
         },
         {
-          "name": "Bữa Trưa Bác Nông Dân (Farmer's Lunch)",
+          "name": "Bữa trưa Nông dân (Farmer's Lunch)",
           "icon": "assets/icons/farmers_lunch.png"
         },
         {
-          "name": "Bánh Kem Dâu Tây Hồng (Pink Cake)",
+          "name": "Bánh kem Hồng (Pink Cake)",
           "icon": "assets/icons/pink_cake.png"
         },
         {
-          "name": "Bánh Nướng Bí Ngô (Pumpkin Pie)",
+          "name": "Bánh Bí ngô (Pumpkin Pie)",
           "icon": "assets/icons/pumpkin_pie.png"
         },
         {
@@ -4234,7 +4234,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Sữa"
         },
         {
-          "name": "Niên giám Stardew Valley (Stardew Valley Almanac)",
+          "name": "Niên giám Thung lũng Stardew (Stardew Valley Almanac)",
           "icon": "assets/icons/stardew_valley_almanac.png"
         },
         {
@@ -4247,7 +4247,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Không Thích Chung (Universal Dislikes) (trừ Clay)"
         },
         {
-          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "name": "Mâm xôi đỏ (Salmonberry)",
           "icon": "assets/icons/item_salmonberry.png"
         },
         {
@@ -4255,7 +4255,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_seaweed.png"
         },
         {
-          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "name": "Cải ngựa Dại (Wild Horseradish)",
           "icon": "assets/icons/item_wild_horseradish.png"
         }
       ],
@@ -4268,7 +4268,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_clay.png"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         }
       ]
@@ -4397,23 +4397,23 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Bánh Tart Việt Quất (Blueberry Tart)",
+          "name": "Bánh Tart nhân Việt quất (Blueberry Tart)",
           "icon": "assets/icons/blueberry_tart.png"
         },
         {
-          "name": "Quả Xương Rồng Sa Mạc (Cactus Fruit)",
+          "name": "Quả Xương rồng (Cactus Fruit)",
           "icon": "assets/icons/item_cactus_fruit.png"
         },
         {
-          "name": "Quả dừa (Coconut)",
+          "name": "Dừa (Coconut)",
           "icon": "assets/icons/item_coconut.png"
         },
         {
-          "name": "Đại Tiệc Hải Sản (Dish O' The Sea)",
+          "name": "Suất đồ Biển (Dish O' The Sea)",
           "icon": "assets/icons/dish_o_the_sea.png"
         },
         {
-          "name": "Sách Tiệc buffet ngõ hẻm (The Alleyway Buffet)",
+          "name": "Bữa tiệc Đường phố (The Alleyway Buffet)",
           "icon": "assets/icons/the_alleyway_buffet.png"
         },
         {
@@ -4438,7 +4438,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Sữa"
         },
         {
-          "name": "Nấm mỡ gà (Chanterelle)",
+          "name": "Nấm mồng gà (Chanterelle)",
           "icon": "assets/icons/ing_chanterelle.png"
         },
         {
@@ -4446,15 +4446,15 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_common_mushroom.png"
         },
         {
-          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "name": "Thủy tiên (Daffodil)",
           "icon": "assets/icons/ing_daffodil.png"
         },
         {
-          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "name": "Bồ công anh (Dandelion)",
           "icon": "assets/icons/item_dandelion.png"
         },
         {
-          "name": "Củ gừng (Ginger)",
+          "name": "Gừng (Ginger)",
           "icon": "assets/icons/ing_ginger.png"
         },
         {
@@ -4462,7 +4462,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_hazelnut.png"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         },
         {
@@ -4470,19 +4470,19 @@ export const NPCS_DATA = [
           "icon": "assets/icons/item_leek.png"
         },
         {
-          "name": "Nấm dung nham (Magma Cap)",
+          "name": "Nấm Dung nham (Magma Cap)",
           "icon": "assets/icons/magma_cap.png"
         },
         {
-          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "name": "Nấm Bụng dê (Morel)",
           "icon": "assets/icons/item_morel.png"
         },
         {
-          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "name": "Nấm Tím (Purple Mushroom)",
           "icon": "assets/icons/item_purple_mushroom.png"
         },
         {
-          "name": "Khoai tuyết (Snow Yam)",
+          "name": "Khoai lang Tuyết (Snow Yam)",
           "icon": "assets/icons/snow_yam.png"
         },
         {
@@ -4490,11 +4490,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/spring_onion.png"
         },
         {
-          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "name": "Cải ngựa Dại (Wild Horseradish)",
           "icon": "assets/icons/item_wild_horseradish.png"
         },
         {
-          "name": "Củ mùa đông (Winter Root)",
+          "name": "Củ mài (Winter Root)",
           "icon": "assets/icons/winter_root.png"
         }
       ],
@@ -4509,7 +4509,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Đá quý (trừ Diamond & Prismatic Shard)"
         },
         {
-          "name": "Rương kho báu (Treasure Chest)",
+          "name": "Rương báu (Treasure Chest)",
           "icon": "assets/icons/treasure_chest.png"
         }
       ],
@@ -4604,11 +4604,11 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Mực Ống Chiên Giòn (Fried Calamari)",
+          "name": "Mực ống chiên giòn (Fried Calamari)",
           "icon": "assets/icons/fried_squid.png"
         },
         {
-          "name": "Sách Danh mục giá (Price Catalogue)",
+          "name": "Bảng giá (Price Catalogue)",
           "icon": "assets/icons/price_catalogue.png"
         },
         {
@@ -4626,11 +4626,11 @@ export const NPCS_DATA = [
           "name": "Tất cả Sữa"
         },
         {
-          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "name": "Thủy tiên (Daffodil)",
           "icon": "assets/icons/ing_daffodil.png"
         },
         {
-          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "name": "Bồ công anh (Dandelion)",
           "icon": "assets/icons/item_dandelion.png"
         }
       ],
@@ -4645,7 +4645,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Đá quý (trừ Diamond & Prismatic Shard)"
         },
         {
-          "name": "Nấm mỡ gà (Chanterelle)",
+          "name": "Nấm mồng gà (Chanterelle)",
           "icon": "assets/icons/ing_chanterelle.png"
         },
         {
@@ -4653,7 +4653,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_common_mushroom.png"
         },
         {
-          "name": "Củ gừng (Ginger)",
+          "name": "Gừng (Ginger)",
           "icon": "assets/icons/ing_ginger.png"
         },
         {
@@ -4661,7 +4661,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_hazelnut.png"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         },
         {
@@ -4669,31 +4669,31 @@ export const NPCS_DATA = [
           "icon": "assets/icons/item_leek.png"
         },
         {
-          "name": "Nấm dung nham (Magma Cap)",
+          "name": "Nấm Dung nham (Magma Cap)",
           "icon": "assets/icons/magma_cap.png"
         },
         {
-          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "name": "Nấm Bụng dê (Morel)",
           "icon": "assets/icons/item_morel.png"
         },
         {
-          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "name": "Mâm xôi đỏ (Salmonberry)",
           "icon": "assets/icons/item_salmonberry.png"
         },
         {
-          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "name": "Nấm Tím (Purple Mushroom)",
           "icon": "assets/icons/item_purple_mushroom.png"
         },
         {
-          "name": "Khoai tuyết (Snow Yam)",
+          "name": "Khoai lang Tuyết (Snow Yam)",
           "icon": "assets/icons/snow_yam.png"
         },
         {
-          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "name": "Cải ngựa Dại (Wild Horseradish)",
           "icon": "assets/icons/item_wild_horseradish.png"
         },
         {
-          "name": "Củ mùa đông (Winter Root)",
+          "name": "Củ mài (Winter Root)",
           "icon": "assets/icons/winter_root.png"
         }
       ],
@@ -4705,7 +4705,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Cá"
         },
         {
-          "name": "Bắp Ngô (Corn)",
+          "name": "Ngô (Corn)",
           "icon": "assets/icons/item_corn.png"
         },
         {
@@ -4713,11 +4713,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/garlic.png"
         },
         {
-          "name": "Súp Củ Cải Vàng (Parsnip Soup)",
+          "name": "Súp Củ cải vàng (Parsnip Soup)",
           "icon": "assets/icons/parsnip_soup.png"
         },
         {
-          "name": "Bánh Tráng Ngô Tortilla (Tortilla)",
+          "name": "Bánh tráng ngô (Tortilla)",
           "icon": "assets/icons/tortilla.png"
         }
       ]
@@ -4830,23 +4830,23 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Kim Cương Tinh Khiết (Diamond)",
+          "name": "Kim cương (Diamond)",
           "icon": "assets/icons/item_diamond.png"
         },
         {
-          "name": "Ốc Sên Xào Bơ Tỏi Kiểu Pháp (Escargot)",
+          "name": "Ốc nấu bơ tỏi (Escargot)",
           "icon": "assets/icons/escargot.png"
         },
         {
-          "name": "Bánh Kẹp Taco Cá (Fish Taco)",
+          "name": "Bánh Taco nhân Cá (Fish Taco)",
           "icon": "assets/icons/fish_taco.png"
         },
         {
-          "name": "Cam Ngọt (Orange)",
+          "name": "Cam (Orange)",
           "icon": "assets/icons/item_orange.png"
         },
         {
-          "name": "Cà Ri Thơm Nhiệt Đới (Tropical Curry)",
+          "name": "Cà-ri nhiệt đới (Tropical Curry)",
           "icon": "assets/icons/tropical_curry.png"
         },
         {
@@ -4858,11 +4858,11 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ Coleslaw)"
         },
         {
-          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "name": "Thủy tiên (Daffodil)",
           "icon": "assets/icons/ing_daffodil.png"
         },
         {
-          "name": "Nấm Cục Truffle (Truffle)",
+          "name": "Nấm Cục (Truffle)",
           "icon": "assets/icons/item_truffle.png"
         }
       ],
@@ -4871,11 +4871,11 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Không Thích Chung (Universal Dislikes)"
         },
         {
-          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "name": "Mâm xôi đỏ (Salmonberry)",
           "icon": "assets/icons/item_salmonberry.png"
         },
         {
-          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "name": "Cải ngựa Dại (Wild Horseradish)",
           "icon": "assets/icons/item_wild_horseradish.png"
         }
       ],
@@ -4884,11 +4884,11 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Ghét Chung (Universal Hates)"
         },
         {
-          "name": "Salad Bắp Cải Trộn Sốt (Coleslaw)",
+          "name": "Sa-lát Bắp cải (Coleslaw)",
           "icon": "assets/icons/coleslaw.png"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         },
         {
@@ -4961,47 +4961,47 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Cá Trê Gai (Catfish)",
+          "name": "Cá Trê (Catfish)",
           "icon": "assets/icons/item_catfish.png"
         },
         {
-          "name": "Kim Cương Tinh Khiết (Diamond)",
+          "name": "Kim cương (Diamond)",
           "icon": "assets/icons/item_diamond.png"
         },
         {
-          "name": "Thỏi vàng (Gold Bar)",
+          "name": "Thỏi Vàng (Gold Bar)",
           "icon": "assets/icons/smelt_gold_bar.png"
         },
         {
-          "name": "Thỏi iridium (Iridium Bar)",
+          "name": "Thỏi Iridium (Iridium Bar)",
           "icon": "assets/icons/smelt_iridium_bar.png"
         },
         {
-          "name": "Sách Châu báu của biển (Jewels Of The Sea)",
+          "name": "Báu vật và Biển cả (Jewels Of The Sea)",
           "icon": "assets/icons/jewels_of_the_sea.png"
         },
         {
-          "name": "Rượu mật ong (Mead)",
+          "name": "Rượu mật (Mead)",
           "icon": "assets/icons/mead.png"
         },
         {
-          "name": "Bạch Tuộc Biển (Octopus)",
+          "name": "Bạch tuộc (Octopus)",
           "icon": "assets/icons/item_octopus.png"
         },
         {
-          "name": "Bí Ngô (Pumpkin)",
+          "name": "Bí ngô (Pumpkin)",
           "icon": "assets/icons/item_pumpkin.png"
         },
         {
-          "name": "Hải Sâm (Sea Cucumber)",
+          "name": "Hải sâm (Sea Cucumber)",
           "icon": "assets/icons/item_sea_cucumber.png"
         },
         {
-          "name": "Cá Tầm Hoàng Gia (Sturgeon)",
+          "name": "Cá Tầm (Sturgeon)",
           "icon": "assets/icons/item_sturgeon.png"
         },
         {
-          "name": "Sách Nghệ thuật bắt cua (The Art O' Crabbing)",
+          "name": "Nghệ thuật bắt Cua (The Art O' Crabbing)",
           "icon": "assets/icons/the_art_o_crabbing.png"
         },
         {
@@ -5013,55 +5013,55 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ Life Elixir và mọi Món nấu ăn, ngoại trừ các món cá)"
         },
         {
-          "name": "Tạp chí Mồi & Phao câu (Bait And Bobber)",
+          "name": "Mồi Và Phao (Bait And Bobber)",
           "icon": "assets/icons/bait_and_bobber.png"
         },
         {
-          "name": "Cá Nướng Thảo Mộc (Baked Fish)",
+          "name": "Cá nướng (Baked Fish)",
           "icon": "assets/icons/baked_fish.png"
         },
         {
-          "name": "Bất Ngờ Cá Chép (Carp Surprise)",
+          "name": "Cá chép Bất ngờ (Carp Surprise)",
           "icon": "assets/icons/carp_surprise.png"
         },
         {
-          "name": "Súp Hải Sản Ngao Sò Chowder (Chowder)",
+          "name": "Súp nghêu (Chowder)",
           "icon": "assets/icons/chowder.png"
         },
         {
-          "name": "Chả Cua Biển Áp Chảo (Crab Cakes)",
+          "name": "Bánh Cua (Crab Cakes)",
           "icon": "assets/icons/crab_cakes.png"
         },
         {
-          "name": "Cá Vược Chiên Giòn (Crispy Bass)",
+          "name": "Cá vược Chiên giòn (Crispy Bass)",
           "icon": "assets/icons/crispy_bass.png"
         },
         {
-          "name": "Ốc Sên Xào Bơ Tỏi Kiểu Pháp (Escargot)",
+          "name": "Ốc nấu bơ tỏi (Escargot)",
           "icon": "assets/icons/escargot.png"
         },
         {
-          "name": "Lẩu Hải Sản Hầm Củ Quả (Fish Stew)",
+          "name": "Hải sản hầm (Fish Stew)",
           "icon": "assets/icons/fish_stew.png"
         },
         {
-          "name": "Bánh Kẹp Taco Cá (Fish Taco)",
+          "name": "Bánh Taco nhân Cá (Fish Taco)",
           "icon": "assets/icons/fish_taco.png"
         },
         {
-          "name": "Mực Ống Chiên Giòn (Fried Calamari)",
+          "name": "Mực ống chiên giòn (Fried Calamari)",
           "icon": "assets/icons/fried_squid.png"
         },
         {
-          "name": "Lươn Biển Áp Chảo (Fried Eel)",
+          "name": "Lươn chiên giòn (Fried Eel)",
           "icon": "assets/icons/fried_eel.png"
         },
         {
-          "name": "Cá Mú Lingcod (Lingcod)",
+          "name": "Cá Tuyết trâu (Lingcod)",
           "icon": "assets/icons/item_lingcod.png"
         },
         {
-          "name": "Súp Kem Tôm Hùm Hoàng Gia (Lobster Bisque)",
+          "name": "Súp Tôm hùm (Lobster Bisque)",
           "icon": "assets/icons/lobster_bisque.png"
         },
         {
@@ -5069,19 +5069,19 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_quartz.png"
         },
         {
-          "name": "Cơm Cá Hồi Áp Chảo (Salmon Dinner)",
+          "name": "Bữa tối Cá hồi (Salmon Dinner)",
           "icon": "assets/icons/salmon_dinner.png"
         },
         {
-          "name": "Pudding Bọt Biển Thần Thánh (Seafoam Pudding)",
+          "name": "Bánh Bọt biển (Seafoam Pudding)",
           "icon": "assets/icons/seafoam_pudding.png"
         },
         {
-          "name": "Cá Hồi Vằn Hổ (Tiger Trout)",
+          "name": "Cá Hồi hổ (Tiger Trout)",
           "icon": "assets/icons/item_tiger_trout.png"
         },
         {
-          "name": "Súp Cá Hồi Cầu Vồng (Trout Soup)",
+          "name": "Súp cá Hồi (Trout Soup)",
           "icon": "assets/icons/trout_soup.png"
         }
       ],
@@ -5093,7 +5093,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Món nấu ăn (trừ Baked Fish, Bread, Carp Surprise, Chowder, Crab Cakes, Crispy Bass, Dish O' The Sea, Escargot, Fish Stew, Fish Taco, Fried Calamari, Fried Eel, Fried Egg, Lobster Bisque, Maki Roll, Salmon Dinner, Sashimi, Seafoam Pudding, Strange Bun & Trout Soup)"
         },
         {
-          "name": "Nấm mỡ gà (Chanterelle)",
+          "name": "Nấm mồng gà (Chanterelle)",
           "icon": "assets/icons/ing_chanterelle.png"
         },
         {
@@ -5101,15 +5101,15 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_common_mushroom.png"
         },
         {
-          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "name": "Thủy tiên (Daffodil)",
           "icon": "assets/icons/ing_daffodil.png"
         },
         {
-          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "name": "Bồ công anh (Dandelion)",
           "icon": "assets/icons/item_dandelion.png"
         },
         {
-          "name": "Củ gừng (Ginger)",
+          "name": "Gừng (Ginger)",
           "icon": "assets/icons/ing_ginger.png"
         },
         {
@@ -5117,7 +5117,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_hazelnut.png"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         },
         {
@@ -5125,35 +5125,35 @@ export const NPCS_DATA = [
           "icon": "assets/icons/item_leek.png"
         },
         {
-          "name": "Thần dược sinh mệnh (Life Elixir)",
+          "name": "Thần dược Sự sống (Life Elixir)",
           "icon": "assets/icons/life_elixir.png"
         },
         {
-          "name": "Nấm dung nham (Magma Cap)",
+          "name": "Nấm Dung nham (Magma Cap)",
           "icon": "assets/icons/magma_cap.png"
         },
         {
-          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "name": "Nấm Bụng dê (Morel)",
           "icon": "assets/icons/item_morel.png"
         },
         {
-          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "name": "Nấm Tím (Purple Mushroom)",
           "icon": "assets/icons/item_purple_mushroom.png"
         },
         {
-          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "name": "Mâm xôi đỏ (Salmonberry)",
           "icon": "assets/icons/item_salmonberry.png"
         },
         {
-          "name": "Khoai tuyết (Snow Yam)",
+          "name": "Khoai lang Tuyết (Snow Yam)",
           "icon": "assets/icons/snow_yam.png"
         },
         {
-          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "name": "Cải ngựa Dại (Wild Horseradish)",
           "icon": "assets/icons/item_wild_horseradish.png"
         },
         {
-          "name": "Củ mùa đông (Winter Root)",
+          "name": "Củ mài (Winter Root)",
           "icon": "assets/icons/winter_root.png"
         }
       ],
@@ -5333,23 +5333,23 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Sách Bí ẩn (Book of Mysteries)",
+          "name": "Cuốn Sách Kỳ bí (Book of Mysteries)",
           "icon": "assets/icons/book_of_mysteries.png"
         },
         {
-          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "name": "Nấm Tím (Purple Mushroom)",
           "icon": "assets/icons/item_purple_mushroom.png"
         },
         {
-          "name": "Tinh chất mặt trời (Solar Essence)",
+          "name": "Tinh chất Mặt trời (Solar Essence)",
           "icon": "assets/icons/ing_solar_essence.png"
         },
         {
-          "name": "Hải Sâm Tím Khổng Lồ (Super Cucumber)",
+          "name": "Siêu Hải sâm (Super Cucumber)",
           "icon": "assets/icons/item_super_cucumber.png"
         },
         {
-          "name": "Tinh chất hư vô (Void Essence)",
+          "name": "Tinh chất Hư không (Void Essence)",
           "icon": "assets/icons/ing_void_essence.png"
         },
         {
@@ -5367,7 +5367,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Trinket (bùa trang bị)"
         },
         {
-          "name": "Thỏi iridium (Iridium Bar)",
+          "name": "Thỏi Iridium (Iridium Bar)",
           "icon": "assets/icons/smelt_iridium_bar.png"
         },
         {
@@ -5386,7 +5386,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Sữa"
         },
         {
-          "name": "Nấm mỡ gà (Chanterelle)",
+          "name": "Nấm mồng gà (Chanterelle)",
           "icon": "assets/icons/ing_chanterelle.png"
         },
         {
@@ -5394,15 +5394,15 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_common_mushroom.png"
         },
         {
-          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "name": "Thủy tiên (Daffodil)",
           "icon": "assets/icons/ing_daffodil.png"
         },
         {
-          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "name": "Bồ công anh (Dandelion)",
           "icon": "assets/icons/item_dandelion.png"
         },
         {
-          "name": "Củ gừng (Ginger)",
+          "name": "Gừng (Ginger)",
           "icon": "assets/icons/ing_ginger.png"
         },
         {
@@ -5410,7 +5410,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_hazelnut.png"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         },
         {
@@ -5418,31 +5418,31 @@ export const NPCS_DATA = [
           "icon": "assets/icons/item_leek.png"
         },
         {
-          "name": "Nấm dung nham (Magma Cap)",
+          "name": "Nấm Dung nham (Magma Cap)",
           "icon": "assets/icons/magma_cap.png"
         },
         {
-          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "name": "Nấm Bụng dê (Morel)",
           "icon": "assets/icons/item_morel.png"
         },
         {
-          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "name": "Mâm xôi đỏ (Salmonberry)",
           "icon": "assets/icons/item_salmonberry.png"
         },
         {
-          "name": "Chất nhờn (Slime)",
+          "name": "Thạch Xà-lam (Slime)",
           "icon": "assets/icons/ing_slime.png"
         },
         {
-          "name": "Khoai tuyết (Snow Yam)",
+          "name": "Khoai lang Tuyết (Snow Yam)",
           "icon": "assets/icons/snow_yam.png"
         },
         {
-          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "name": "Cải ngựa Dại (Wild Horseradish)",
           "icon": "assets/icons/item_wild_horseradish.png"
         },
         {
-          "name": "Củ mùa đông (Winter Root)",
+          "name": "Củ mài (Winter Root)",
           "icon": "assets/icons/winter_root.png"
         }
       ],
@@ -5515,35 +5515,35 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Kim Cương Tinh Khiết (Diamond)",
+          "name": "Kim cương (Diamond)",
           "icon": "assets/icons/item_diamond.png"
         },
         {
-          "name": "Thỏi iridium (Iridium Bar)",
+          "name": "Thỏi Iridium (Iridium Bar)",
           "icon": "assets/icons/smelt_iridium_bar.png"
         },
         {
-          "name": "Bách khoa Quái vật (Monster Compendium)",
+          "name": "Bản tóm tắt Quái vật (Monster Compendium)",
           "icon": "assets/icons/monster_compendium.png"
         },
         {
-          "name": "Nước Hoa Dụ Quái Vật (Monster Musk)",
+          "name": "Xạ hương Quái vật (Monster Musk)",
           "icon": "assets/icons/monster_musk.png"
         },
         {
-          "name": "Bí Ngô (Pumpkin)",
+          "name": "Bí ngô (Pumpkin)",
           "icon": "assets/icons/item_pumpkin.png"
         },
         {
-          "name": "Trứng Gà Hư Vô (Void Egg)",
+          "name": "Trứng Hư không (Void Egg)",
           "icon": "assets/icons/item_void_egg.png"
         },
         {
-          "name": "Sốt Mayonnaise hư vô (Void Mayonnaise)",
+          "name": "Sốt Trứng Hư không (Void Mayonnaise)",
           "icon": "assets/icons/void_mayonnaise.png"
         },
         {
-          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "name": "Cải ngựa Dại (Wild Horseradish)",
           "icon": "assets/icons/item_wild_horseradish.png"
         },
         {
@@ -5555,7 +5555,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ Life Elixir và mọi Món nấu ăn ngoài Seafoam Pudding & Strange Bun)"
         },
         {
-          "name": "Thỏi vàng (Gold Bar)",
+          "name": "Thỏi Vàng (Gold Bar)",
           "icon": "assets/icons/smelt_gold_bar.png"
         },
         {
@@ -5563,11 +5563,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_quartz.png"
         },
         {
-          "name": "Pudding Bọt Biển Thần Thánh (Seafoam Pudding)",
+          "name": "Bánh Bọt biển (Seafoam Pudding)",
           "icon": "assets/icons/seafoam_pudding.png"
         },
         {
-          "name": "Bánh Bao Kỳ Dị (Strange Bun)",
+          "name": "Bánh bao Kỳ lạ (Strange Bun)",
           "icon": "assets/icons/strange_bun.png"
         }
       ],
@@ -5579,7 +5579,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Món nấu ăn (trừ Bread, Fried Egg, Seafoam Pudding & Strange Bun)"
         },
         {
-          "name": "Nấm mỡ gà (Chanterelle)",
+          "name": "Nấm mồng gà (Chanterelle)",
           "icon": "assets/icons/ing_chanterelle.png"
         },
         {
@@ -5587,15 +5587,15 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_common_mushroom.png"
         },
         {
-          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "name": "Thủy tiên (Daffodil)",
           "icon": "assets/icons/ing_daffodil.png"
         },
         {
-          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "name": "Bồ công anh (Dandelion)",
           "icon": "assets/icons/item_dandelion.png"
         },
         {
-          "name": "Củ gừng (Ginger)",
+          "name": "Gừng (Ginger)",
           "icon": "assets/icons/ing_ginger.png"
         },
         {
@@ -5603,7 +5603,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_hazelnut.png"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         },
         {
@@ -5611,31 +5611,31 @@ export const NPCS_DATA = [
           "icon": "assets/icons/item_leek.png"
         },
         {
-          "name": "Thần dược sinh mệnh (Life Elixir)",
+          "name": "Thần dược Sự sống (Life Elixir)",
           "icon": "assets/icons/life_elixir.png"
         },
         {
-          "name": "Nấm dung nham (Magma Cap)",
+          "name": "Nấm Dung nham (Magma Cap)",
           "icon": "assets/icons/magma_cap.png"
         },
         {
-          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "name": "Nấm Bụng dê (Morel)",
           "icon": "assets/icons/item_morel.png"
         },
         {
-          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "name": "Nấm Tím (Purple Mushroom)",
           "icon": "assets/icons/item_purple_mushroom.png"
         },
         {
-          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "name": "Mâm xôi đỏ (Salmonberry)",
           "icon": "assets/icons/item_salmonberry.png"
         },
         {
-          "name": "Khoai tuyết (Snow Yam)",
+          "name": "Khoai lang Tuyết (Snow Yam)",
           "icon": "assets/icons/snow_yam.png"
         },
         {
-          "name": "Củ mùa đông (Winter Root)",
+          "name": "Củ mài (Winter Root)",
           "icon": "assets/icons/winter_root.png"
         }
       ],
@@ -5699,23 +5699,23 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Lông Vịt Xanh Biếc (Duck Feather)",
+          "name": "Lông Vịt (Duck Feather)",
           "icon": "assets/icons/item_duck_feather.png"
         },
         {
-          "name": "Xoài Nhiệt Đới (Mango)",
+          "name": "Xoài (Mango)",
           "icon": "assets/icons/item_mango.png"
         },
         {
-          "name": "Trứng đà điểu (Ostrich Egg)",
+          "name": "Trứng Đà điểu (Ostrich Egg)",
           "icon": "assets/icons/ostrich_egg.png"
         },
         {
-          "name": "Trứng vẹt (Parrot Egg)",
+          "name": "Trứng Vẹt (Parrot Egg)",
           "icon": "assets/icons/parrot_egg.png"
         },
         {
-          "name": "Món Khoai Môn Nghiền Poi (Poi)",
+          "name": "Sốt khoai môn (Poi)",
           "icon": "assets/icons/poi.png"
         },
         {
@@ -5727,15 +5727,15 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ Beer, Coffee, Life Elixir, Mead, Pale Ale, Pickles, Piña Colada, Wine và các Món nấu ăn ngoài Bread, Fried Egg, Poi, Mango Sticky Rice & Triple Shot Espresso)"
         },
         {
-          "name": "Răng rồng (Dragon Tooth)",
+          "name": "Răng Rồng (Dragon Tooth)",
           "icon": "assets/icons/ing_dragon_tooth.png"
         },
         {
-          "name": "Xôi Xoài Nước Cốt Dừa (Mango Sticky Rice)",
+          "name": "Xôi Xoài (Mango Sticky Rice)",
           "icon": "assets/icons/mango_sticky_rice.png"
         },
         {
-          "name": "Vỏ ốc anh vũ (Nautilus Shell)",
+          "name": "Vỏ ốc Anh vũ (Nautilus Shell)",
           "icon": "assets/icons/nautilus_shell.png"
         },
         {
@@ -5743,11 +5743,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_quartz.png"
         },
         {
-          "name": "Nhum Biển (Sea Urchin)",
+          "name": "Nhím Biển (Sea Urchin)",
           "icon": "assets/icons/item_sea_urchin.png"
         },
         {
-          "name": "Quả mọng cay (Spice Berry)",
+          "name": "Thảo quả (Spice Berry)",
           "icon": "assets/icons/spice_berry.png"
         }
       ],
@@ -5759,7 +5759,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Món nấu ăn (trừ Bread, Fried Egg, Mango Sticky Rice, Poi & Triple Shot Espresso)"
         },
         {
-          "name": "Nấm mỡ gà (Chanterelle)",
+          "name": "Nấm mồng gà (Chanterelle)",
           "icon": "assets/icons/ing_chanterelle.png"
         },
         {
@@ -5767,15 +5767,15 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_common_mushroom.png"
         },
         {
-          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "name": "Thủy tiên (Daffodil)",
           "icon": "assets/icons/ing_daffodil.png"
         },
         {
-          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "name": "Bồ công anh (Dandelion)",
           "icon": "assets/icons/item_dandelion.png"
         },
         {
-          "name": "Củ gừng (Ginger)",
+          "name": "Gừng (Ginger)",
           "icon": "assets/icons/ing_ginger.png"
         },
         {
@@ -5787,11 +5787,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/item_leek.png"
         },
         {
-          "name": "Thần dược sinh mệnh (Life Elixir)",
+          "name": "Thần dược Sự sống (Life Elixir)",
           "icon": "assets/icons/life_elixir.png"
         },
         {
-          "name": "Nấm dung nham (Magma Cap)",
+          "name": "Nấm Dung nham (Magma Cap)",
           "icon": "assets/icons/magma_cap.png"
         },
         {
@@ -5799,23 +5799,23 @@ export const NPCS_DATA = [
           "icon": "assets/icons/pickles.png"
         },
         {
-          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "name": "Nấm Tím (Purple Mushroom)",
           "icon": "assets/icons/item_purple_mushroom.png"
         },
         {
-          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "name": "Mâm xôi đỏ (Salmonberry)",
           "icon": "assets/icons/item_salmonberry.png"
         },
         {
-          "name": "Khoai tuyết (Snow Yam)",
+          "name": "Khoai lang Tuyết (Snow Yam)",
           "icon": "assets/icons/snow_yam.png"
         },
         {
-          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "name": "Cải ngựa Dại (Wild Horseradish)",
           "icon": "assets/icons/item_wild_horseradish.png"
         },
         {
-          "name": "Củ mùa đông (Winter Root)",
+          "name": "Củ mài (Winter Root)",
           "icon": "assets/icons/winter_root.png"
         }
       ],
@@ -5828,7 +5828,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/beer.png"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         },
         {
@@ -5836,11 +5836,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_hops.png"
         },
         {
-          "name": "Rượu mật ong (Mead)",
+          "name": "Rượu mật (Mead)",
           "icon": "assets/icons/mead.png"
         },
         {
-          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "name": "Nấm Bụng dê (Morel)",
           "icon": "assets/icons/item_morel.png"
         },
         {
@@ -5848,7 +5848,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_oil.png"
         },
         {
-          "name": "Bia nhạt (Pale Ale)",
+          "name": "Bia nhẹ (Pale Ale)",
           "icon": "assets/icons/pale_ale.png"
         },
         {
@@ -5856,15 +5856,15 @@ export const NPCS_DATA = [
           "icon": "assets/icons/pina_colada.png"
         },
         {
-          "name": "Cà Phê Espresso Đậm Đặc (Triple Shot Espresso)",
+          "name": "Cà-phê đặc gấp Ba (Triple Shot Espresso)",
           "icon": "assets/icons/triple_shot_espresso.png"
         },
         {
-          "name": "Lúa chưa xay (Unmilled Rice)",
+          "name": "Thóc (Unmilled Rice)",
           "icon": "assets/icons/unmilled_rice.png"
         },
         {
-          "name": "Rượu vang (Wine)",
+          "name": "Rượu (Wine)",
           "icon": "assets/icons/wine.png"
         }
       ]
@@ -5933,19 +5933,19 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Hoa nghệ tây (Crocus)",
+          "name": "Nghệ tây (Crocus)",
           "icon": "assets/icons/ing_crocus.png"
         },
         {
-          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "name": "Thủy tiên (Daffodil)",
           "icon": "assets/icons/ing_daffodil.png"
         },
         {
-          "name": "Xôi Xoài Nước Cốt Dừa (Mango Sticky Rice)",
+          "name": "Xôi Xoài (Mango Sticky Rice)",
           "icon": "assets/icons/mango_sticky_rice.png"
         },
         {
-          "name": "Hoa đậu thơm (Sweet Pea)",
+          "name": "Đậu thơm (Sweet Pea)",
           "icon": "assets/icons/ing_sweet_pea.png"
         },
         {
@@ -5960,11 +5960,11 @@ export const NPCS_DATA = [
           "name": "Tất cả Trái cây"
         },
         {
-          "name": "Sữa dê (Goat Milk)",
+          "name": "Sữa Dê (Goat Milk)",
           "icon": "assets/icons/goat_milk.png"
         },
         {
-          "name": "Sữa dê lớn (Large Goat Milk)",
+          "name": "Sữa Dê bình to (Large Goat Milk)",
           "icon": "assets/icons/large_goat_milk.png"
         },
         {
@@ -5986,7 +5986,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Ghét Chung (Universal Hates)"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         }
       ]
@@ -6046,7 +6046,7 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Bánh Kẹp Taco Cá (Fish Taco)",
+          "name": "Bánh Taco nhân Cá (Fish Taco)",
           "icon": "assets/icons/fish_taco.png"
         },
         {
@@ -6054,11 +6054,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/green_tea.png"
         },
         {
-          "name": "Hoa lấp lánh mùa hè (Summer Spangle)",
+          "name": "Hoa Trang kim (Summer Spangle)",
           "icon": "assets/icons/summer_spangle.png"
         },
         {
-          "name": "Cà Ri Thơm Nhiệt Đới (Tropical Curry)",
+          "name": "Cà-ri nhiệt đới (Tropical Curry)",
           "icon": "assets/icons/tropical_curry.png"
         },
         {
@@ -6070,15 +6070,15 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ Amaranth, Duck Mayonnaise & Mayonnaise)"
         },
         {
-          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "name": "Thủy tiên (Daffodil)",
           "icon": "assets/icons/ing_daffodil.png"
         },
         {
-          "name": "Lá trà (Tea Leaves)",
+          "name": "Búp Chè (Tea Leaves)",
           "icon": "assets/icons/tea_leaves.png"
         },
         {
-          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "name": "Cải ngựa Dại (Wild Horseradish)",
           "icon": "assets/icons/item_wild_horseradish.png"
         }
       ],
@@ -6091,7 +6091,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/amaranth.png"
         },
         {
-          "name": "Nấm mỡ gà (Chanterelle)",
+          "name": "Nấm mồng gà (Chanterelle)",
           "icon": "assets/icons/ing_chanterelle.png"
         },
         {
@@ -6099,15 +6099,15 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_common_mushroom.png"
         },
         {
-          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "name": "Bồ công anh (Dandelion)",
           "icon": "assets/icons/item_dandelion.png"
         },
         {
-          "name": "Sốt mayonnaise vịt (Duck Mayonnaise)",
+          "name": "Sốt trứng Vịt (Duck Mayonnaise)",
           "icon": "assets/icons/duck_mayonnaise.png"
         },
         {
-          "name": "Củ gừng (Ginger)",
+          "name": "Gừng (Ginger)",
           "icon": "assets/icons/ing_ginger.png"
         },
         {
@@ -6115,7 +6115,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_hazelnut.png"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         },
         {
@@ -6123,27 +6123,27 @@ export const NPCS_DATA = [
           "icon": "assets/icons/item_leek.png"
         },
         {
-          "name": "Nấm dung nham (Magma Cap)",
+          "name": "Nấm Dung nham (Magma Cap)",
           "icon": "assets/icons/magma_cap.png"
         },
         {
-          "name": "Sốt Mayonnaise (Mayonnaise)",
+          "name": "Sốt trứng gà tươi (Mayonnaise)",
           "icon": "assets/icons/mayonnaise.png"
         },
         {
-          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "name": "Nấm Bụng dê (Morel)",
           "icon": "assets/icons/item_morel.png"
         },
         {
-          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "name": "Nấm Tím (Purple Mushroom)",
           "icon": "assets/icons/item_purple_mushroom.png"
         },
         {
-          "name": "Khoai tuyết (Snow Yam)",
+          "name": "Khoai lang Tuyết (Snow Yam)",
           "icon": "assets/icons/snow_yam.png"
         },
         {
-          "name": "Củ mùa đông (Winter Root)",
+          "name": "Củ mài (Winter Root)",
           "icon": "assets/icons/winter_root.png"
         }
       ],
@@ -6156,7 +6156,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_quartz.png"
         },
         {
-          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "name": "Mâm xôi đỏ (Salmonberry)",
           "icon": "assets/icons/item_salmonberry.png"
         }
       ]
@@ -6270,7 +6270,7 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Nấm Rừng Xào Tỏi (Fried Mushroom)",
+          "name": "Nấm chiên (Fried Mushroom)",
           "icon": "assets/icons/fried_mushroom.png"
         },
         {
@@ -6286,7 +6286,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Thích Chung (Universal Likes) (trừ hoa)"
         },
         {
-          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "name": "Thủy tiên (Daffodil)",
           "icon": "assets/icons/ing_daffodil.png"
         }
       ],
@@ -6298,11 +6298,11 @@ export const NPCS_DATA = [
           "name": "Tất cả Hoa (trừ Poppy)"
         },
         {
-          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "name": "Mâm xôi đỏ (Salmonberry)",
           "icon": "assets/icons/item_salmonberry.png"
         },
         {
-          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "name": "Cải ngựa Dại (Wild Horseradish)",
           "icon": "assets/icons/item_wild_horseradish.png"
         }
       ],
@@ -6315,11 +6315,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_clay.png"
         },
         {
-          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "name": "Bồ công anh (Dandelion)",
           "icon": "assets/icons/item_dandelion.png"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         },
         {
@@ -6398,19 +6398,19 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Củ dền (Beet)",
+          "name": "Củ cải đường (Beet)",
           "icon": "assets/icons/ing_beet.png"
         },
         {
-          "name": "Bánh Gato Sô-cô-la (Chocolate Cake)",
+          "name": "Bánh Sô-cô-la (Chocolate Cake)",
           "icon": "assets/icons/chocolate_cake.png"
         },
         {
-          "name": "Kim Cương Tinh Khiết (Diamond)",
+          "name": "Kim cương (Diamond)",
           "icon": "assets/icons/item_diamond.png"
         },
         {
-          "name": "Hoa hồng tiên (Fairy Rose)",
+          "name": "Hoa hồng Tiên (Fairy Rose)",
           "icon": "assets/icons/ing_fairy_rose.png"
         },
         {
@@ -6418,7 +6418,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/raisins.png"
         },
         {
-          "name": "Món Nhồi Ngũ Vị (Stuffing)",
+          "name": "Món đồ nhồi (Stuffing)",
           "icon": "assets/icons/stuffing.png"
         },
         {
@@ -6437,39 +6437,39 @@ export const NPCS_DATA = [
           "name": "Tất cả Sữa"
         },
         {
-          "name": "Kính vỡ (Broken Glasses)",
+          "name": "Kính Gãy gọng (Broken Glasses)",
           "icon": "assets/icons/broken_glasses.png"
         },
         {
-          "name": "Nghêu Biển (Clam)",
+          "name": "Nghêu (Clam)",
           "icon": "assets/icons/item_clam.png"
         },
         {
-          "name": "Sò Huyết (Cockle)",
+          "name": "Sò (Cockle)",
           "icon": "assets/icons/item_cockle.png"
         },
         {
-          "name": "San Hô Biển Hồng (Coral)",
+          "name": "San hô (Coral)",
           "icon": "assets/icons/item_coral.png"
         },
         {
-          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "name": "Thủy tiên (Daffodil)",
           "icon": "assets/icons/ing_daffodil.png"
         },
         {
-          "name": "Vẹm Xanh (Mussel)",
+          "name": "Trai (Mussel)",
           "icon": "assets/icons/item_mussel.png"
         },
         {
-          "name": "Vỏ ốc anh vũ (Nautilus Shell)",
+          "name": "Vỏ ốc Anh vũ (Nautilus Shell)",
           "icon": "assets/icons/nautilus_shell.png"
         },
         {
-          "name": "Hàu Biển (Oyster)",
+          "name": "Hàu (Oyster)",
           "icon": "assets/icons/item_oyster.png"
         },
         {
-          "name": "Nhum Biển (Sea Urchin)",
+          "name": "Nhím Biển (Sea Urchin)",
           "icon": "assets/icons/item_sea_urchin.png"
         }
       ],
@@ -6482,7 +6482,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_quartz.png"
         },
         {
-          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "name": "Cải ngựa Dại (Wild Horseradish)",
           "icon": "assets/icons/item_wild_horseradish.png"
         }
       ],
@@ -6498,7 +6498,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_clay.png"
         },
         {
-          "name": "Lươn Biển Áp Chảo (Fried Eel)",
+          "name": "Lươn chiên giòn (Fried Eel)",
           "icon": "assets/icons/fried_eel.png"
         },
         {
@@ -6506,31 +6506,31 @@ export const NPCS_DATA = [
           "icon": "assets/icons/garlic.png"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         },
         {
-          "name": "Cuộn Cơm Rong Biển Maki (Maki Roll)",
+          "name": "Cơm cuộn Rong biển (Maki Roll)",
           "icon": "assets/icons/maki_roll.png"
         },
         {
-          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "name": "Mâm xôi đỏ (Salmonberry)",
           "icon": "assets/icons/item_salmonberry.png"
         },
         {
-          "name": "Gỏi Cá Sống Sashimi (Sashimi)",
+          "name": "Gỏi cá tươi (Sashimi)",
           "icon": "assets/icons/sashimi.png"
         },
         {
-          "name": "Quả mọng cay (Spice Berry)",
+          "name": "Thảo quả (Spice Berry)",
           "icon": "assets/icons/spice_berry.png"
         },
         {
-          "name": "Lươn Biển Sốt Ớt Cay (Spicy Eel)",
+          "name": "Lươn Cay (Spicy Eel)",
           "icon": "assets/icons/spicy_eel.png"
         },
         {
-          "name": "Súp Cá Hồi Cầu Vồng (Trout Soup)",
+          "name": "Súp cá Hồi (Trout Soup)",
           "icon": "assets/icons/trout_soup.png"
         }
       ]
@@ -6606,35 +6606,35 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Bánh Gato Sô-cô-la (Chocolate Cake)",
+          "name": "Bánh Sô-cô-la (Chocolate Cake)",
           "icon": "assets/icons/chocolate_cake.png"
         },
         {
-          "name": "Cá Vược Chiên Giòn (Crispy Bass)",
+          "name": "Cá vược Chiên giòn (Crispy Bass)",
           "icon": "assets/icons/crispy_bass.png"
         },
         {
-          "name": "Kim Cương Tinh Khiết (Diamond)",
+          "name": "Kim cương (Diamond)",
           "icon": "assets/icons/item_diamond.png"
         },
         {
-          "name": "Cà Tím Bỏ Lò Phô Mai (Eggplant Parmesan)",
+          "name": "Cà tím nướng Phô mai (Eggplant Parmesan)",
           "icon": "assets/icons/eggplant_parmesan.png"
         },
         {
-          "name": "Lươn Biển Áp Chảo (Fried Eel)",
+          "name": "Lươn chiên giòn (Fried Eel)",
           "icon": "assets/icons/fried_eel.png"
         },
         {
-          "name": "Bánh Kếp Bơ Mật Ong (Pancakes)",
+          "name": "Bánh Kếp (Pancakes)",
           "icon": "assets/icons/pancakes.png"
         },
         {
-          "name": "Bánh Nướng Đại Hoàng (Rhubarb Pie)",
+          "name": "Bánh nướng nhân Đại hoàng (Rhubarb Pie)",
           "icon": "assets/icons/rhubarb_pie.png"
         },
         {
-          "name": "Món Rau Xào Thập Cẩm (Vegetable Medley)",
+          "name": "Rau củ Hầm (Vegetable Medley)",
           "icon": "assets/icons/vegetable_medley.png"
         },
         {
@@ -6660,7 +6660,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Không Thích Chung (Universal Dislikes)"
         },
         {
-          "name": "Nấm mỡ gà (Chanterelle)",
+          "name": "Nấm mồng gà (Chanterelle)",
           "icon": "assets/icons/ing_chanterelle.png"
         },
         {
@@ -6672,7 +6672,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/garlic.png"
         },
         {
-          "name": "Củ gừng (Ginger)",
+          "name": "Gừng (Ginger)",
           "icon": "assets/icons/ing_ginger.png"
         },
         {
@@ -6680,7 +6680,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_hazelnut.png"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         },
         {
@@ -6688,15 +6688,15 @@ export const NPCS_DATA = [
           "icon": "assets/icons/item_leek.png"
         },
         {
-          "name": "Nấm dung nham (Magma Cap)",
+          "name": "Nấm Dung nham (Magma Cap)",
           "icon": "assets/icons/magma_cap.png"
         },
         {
-          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "name": "Nấm Bụng dê (Morel)",
           "icon": "assets/icons/item_morel.png"
         },
         {
-          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "name": "Nấm Tím (Purple Mushroom)",
           "icon": "assets/icons/item_purple_mushroom.png"
         },
         {
@@ -6704,15 +6704,15 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_quartz.png"
         },
         {
-          "name": "Khoai tuyết (Snow Yam)",
+          "name": "Khoai lang Tuyết (Snow Yam)",
           "icon": "assets/icons/snow_yam.png"
         },
         {
-          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "name": "Cải ngựa Dại (Wild Horseradish)",
           "icon": "assets/icons/item_wild_horseradish.png"
         },
         {
-          "name": "Củ mùa đông (Winter Root)",
+          "name": "Củ mài (Winter Root)",
           "icon": "assets/icons/winter_root.png"
         }
       ],
@@ -6721,15 +6721,15 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Ghét Chung (Universal Hates)"
         },
         {
-          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "name": "Thủy tiên (Daffodil)",
           "icon": "assets/icons/ing_daffodil.png"
         },
         {
-          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "name": "Bồ công anh (Dandelion)",
           "icon": "assets/icons/item_dandelion.png"
         },
         {
-          "name": "Quả mọng cay (Spice Berry)",
+          "name": "Thảo quả (Spice Berry)",
           "icon": "assets/icons/spice_berry.png"
         }
       ]
@@ -6844,11 +6844,11 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Cơm Ý Dương Xỉ Non (Fiddlehead Risotto)",
+          "name": "Cơm Rau dớn (Fiddlehead Risotto)",
           "icon": "assets/icons/fiddlehead_risotto.png"
         },
         {
-          "name": "Hạt Dẻ Rang Muối Bơ (Roasted Hazelnuts)",
+          "name": "Hạt phỉ Nướng (Roasted Hazelnuts)",
           "icon": "assets/icons/roasted_hazelnuts.png"
         },
         {
@@ -6866,11 +6866,11 @@ export const NPCS_DATA = [
           "name": "Tất cả Trái cây"
         },
         {
-          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "name": "Thủy tiên (Daffodil)",
           "icon": "assets/icons/ing_daffodil.png"
         },
         {
-          "name": "Sổ tay an toàn người lùn (Dwarvish Safety Manual)",
+          "name": "Sổ tay an toàn của Người lùn (Dwarvish Safety Manual)",
           "icon": "assets/icons/dwarvish_safety_manual.png"
         }
       ],
@@ -6887,7 +6887,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_quartz.png"
         },
         {
-          "name": "Khoai tuyết (Snow Yam)",
+          "name": "Khoai lang Tuyết (Snow Yam)",
           "icon": "assets/icons/snow_yam.png"
         }
       ],
@@ -6899,19 +6899,19 @@ export const NPCS_DATA = [
           "name": "Tất cả Sữa"
         },
         {
-          "name": "Súp Tảo Lục Thanh Nhiệt (Algae Soup)",
+          "name": "Súp Tảo biển (Algae Soup)",
           "icon": "assets/icons/algae_soup.png"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         },
         {
-          "name": "Gỏi Cá Sống Sashimi (Sashimi)",
+          "name": "Gỏi cá tươi (Sashimi)",
           "icon": "assets/icons/sashimi.png"
         },
         {
-          "name": "Bánh Tráng Ngô Tortilla (Tortilla)",
+          "name": "Bánh tráng ngô (Tortilla)",
           "icon": "assets/icons/tortilla.png"
         }
       ]
@@ -6989,27 +6989,27 @@ export const NPCS_DATA = [
           "icon": "assets/icons/beer.png"
         },
         {
-          "name": "Quả Xương Rồng Sa Mạc (Cactus Fruit)",
+          "name": "Quả Xương rồng (Cactus Fruit)",
           "icon": "assets/icons/item_cactus_fruit.png"
         },
         {
-          "name": "Khoai Lang Ngào Đường (Glazed Yams)",
+          "name": "Khoai lang bọc Đường (Glazed Yams)",
           "icon": "assets/icons/glazed_yams.png"
         },
         {
-          "name": "Rượu mật ong (Mead)",
+          "name": "Rượu mật (Mead)",
           "icon": "assets/icons/mead.png"
         },
         {
-          "name": "Bia nhạt (Pale Ale)",
+          "name": "Bia nhẹ (Pale Ale)",
           "icon": "assets/icons/pale_ale.png"
         },
         {
-          "name": "Củ Cải Vàng (Parsnip)",
+          "name": "Củ cải vàng (Parsnip)",
           "icon": "assets/icons/item_parsnip.png"
         },
         {
-          "name": "Súp Củ Cải Vàng (Parsnip Soup)",
+          "name": "Súp Củ cải vàng (Parsnip Soup)",
           "icon": "assets/icons/parsnip_soup.png"
         },
         {
@@ -7031,7 +7031,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Sữa"
         },
         {
-          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "name": "Thủy tiên (Daffodil)",
           "icon": "assets/icons/ing_daffodil.png"
         }
       ],
@@ -7047,7 +7047,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_quartz.png"
         },
         {
-          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "name": "Cải ngựa Dại (Wild Horseradish)",
           "icon": "assets/icons/item_wild_horseradish.png"
         }
       ],
@@ -7056,15 +7056,15 @@ export const NPCS_DATA = [
           "name": "Tất cả Quà Ghét Chung (Universal Hates) (trừ Joja Cola)"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         },
         {
-          "name": "Bạch Tuộc Biển (Octopus)",
+          "name": "Bạch tuộc (Octopus)",
           "icon": "assets/icons/item_octopus.png"
         },
         {
-          "name": "Mực Ống Đại Dương (Squid)",
+          "name": "Mực (Squid)",
           "icon": "assets/icons/item_squid.png"
         }
       ]
@@ -7139,23 +7139,23 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Búp Bê Cổ Đại (Ancient Doll)",
+          "name": "Búp bê Cổ đại (Ancient Doll)",
           "icon": "assets/icons/item_ancient_doll.png"
         },
         {
-          "name": "Hộp tiên (Fairy Box)",
+          "name": "Rương Thần (Fairy Box)",
           "icon": "assets/icons/fairy_box.png"
         },
         {
-          "name": "Hoa hồng tiên (Fairy Rose)",
+          "name": "Hoa hồng Tiên (Fairy Rose)",
           "icon": "assets/icons/ing_fairy_rose.png"
         },
         {
-          "name": "Bánh Kem Dâu Tây Hồng (Pink Cake)",
+          "name": "Bánh kem Hồng (Pink Cake)",
           "icon": "assets/icons/pink_cake.png"
         },
         {
-          "name": "Pudding Mận Rừng (Plum Pudding)",
+          "name": "Bánh Mận (Plum Pudding)",
           "icon": "assets/icons/plum_pudding.png"
         },
         {
@@ -7178,11 +7178,11 @@ export const NPCS_DATA = [
           "name": "Tất cả Sữa"
         },
         {
-          "name": "Quả dừa (Coconut)",
+          "name": "Dừa (Coconut)",
           "icon": "assets/icons/item_coconut.png"
         },
         {
-          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "name": "Thủy tiên (Daffodil)",
           "icon": "assets/icons/ing_daffodil.png"
         }
       ],
@@ -7200,7 +7200,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Rau củ (trừ Hops & Wheat)"
         },
         {
-          "name": "Nấm mỡ gà (Chanterelle)",
+          "name": "Nấm mồng gà (Chanterelle)",
           "icon": "assets/icons/ing_chanterelle.png"
         },
         {
@@ -7208,11 +7208,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_common_mushroom.png"
         },
         {
-          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "name": "Bồ công anh (Dandelion)",
           "icon": "assets/icons/item_dandelion.png"
         },
         {
-          "name": "Củ gừng (Ginger)",
+          "name": "Gừng (Ginger)",
           "icon": "assets/icons/ing_ginger.png"
         },
         {
@@ -7220,7 +7220,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_hazelnut.png"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         },
         {
@@ -7228,15 +7228,15 @@ export const NPCS_DATA = [
           "icon": "assets/icons/item_leek.png"
         },
         {
-          "name": "Nấm dung nham (Magma Cap)",
+          "name": "Nấm Dung nham (Magma Cap)",
           "icon": "assets/icons/magma_cap.png"
         },
         {
-          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "name": "Nấm Bụng dê (Morel)",
           "icon": "assets/icons/item_morel.png"
         },
         {
-          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "name": "Nấm Tím (Purple Mushroom)",
           "icon": "assets/icons/item_purple_mushroom.png"
         },
         {
@@ -7244,11 +7244,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_quartz.png"
         },
         {
-          "name": "Khoai tuyết (Snow Yam)",
+          "name": "Khoai lang Tuyết (Snow Yam)",
           "icon": "assets/icons/snow_yam.png"
         },
         {
-          "name": "Củ mùa đông (Winter Root)",
+          "name": "Củ mài (Winter Root)",
           "icon": "assets/icons/winter_root.png"
         }
       ],
@@ -7268,11 +7268,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/pina_colada.png"
         },
         {
-          "name": "Cà Phê Espresso Đậm Đặc (Triple Shot Espresso)",
+          "name": "Cà-phê đặc gấp Ba (Triple Shot Espresso)",
           "icon": "assets/icons/triple_shot_espresso.png"
         },
         {
-          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "name": "Cải ngựa Dại (Wild Horseradish)",
           "icon": "assets/icons/item_wild_horseradish.png"
         }
       ]
@@ -7343,15 +7343,15 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Kẹo Dẻo Nam Việt Quất (Cranberry Candy)",
+          "name": "Nam việt quất ngâm đường (Cranberry Candy)",
           "icon": "assets/icons/cranberry_candy.png"
         },
         {
-          "name": "Trứng ếch (Frog Egg)",
+          "name": "Trứng Ếch (Frog Egg)",
           "icon": "assets/icons/frog_egg.png"
         },
         {
-          "name": "Bia Gừng Sủi Bọt Sa Mạc (Ginger Ale)",
+          "name": "Bia gừng (Ginger Ale)",
           "icon": "assets/icons/ginger_ale.png"
         },
         {
@@ -7359,11 +7359,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/item_grape.png"
         },
         {
-          "name": "Bánh Kem Dâu Tây Hồng (Pink Cake)",
+          "name": "Bánh kem Hồng (Pink Cake)",
           "icon": "assets/icons/pink_cake.png"
         },
         {
-          "name": "Ốc Sên Nước (Snail)",
+          "name": "Ốc (Snail)",
           "icon": "assets/icons/item_snail.png"
         },
         {
@@ -7378,11 +7378,11 @@ export const NPCS_DATA = [
           "name": "Tất cả Sữa"
         },
         {
-          "name": "Quả dừa (Coconut)",
+          "name": "Dừa (Coconut)",
           "icon": "assets/icons/item_coconut.png"
         },
         {
-          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "name": "Thủy tiên (Daffodil)",
           "icon": "assets/icons/ing_daffodil.png"
         }
       ],
@@ -7400,7 +7400,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Rau củ (trừ Hops, Tea Leaves & Wheat)"
         },
         {
-          "name": "Nấm mỡ gà (Chanterelle)",
+          "name": "Nấm mồng gà (Chanterelle)",
           "icon": "assets/icons/ing_chanterelle.png"
         },
         {
@@ -7408,11 +7408,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_common_mushroom.png"
         },
         {
-          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "name": "Bồ công anh (Dandelion)",
           "icon": "assets/icons/item_dandelion.png"
         },
         {
-          "name": "Củ gừng (Ginger)",
+          "name": "Gừng (Ginger)",
           "icon": "assets/icons/ing_ginger.png"
         },
         {
@@ -7420,7 +7420,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_hazelnut.png"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         },
         {
@@ -7428,15 +7428,15 @@ export const NPCS_DATA = [
           "icon": "assets/icons/item_leek.png"
         },
         {
-          "name": "Nấm dung nham (Magma Cap)",
+          "name": "Nấm Dung nham (Magma Cap)",
           "icon": "assets/icons/magma_cap.png"
         },
         {
-          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "name": "Nấm Bụng dê (Morel)",
           "icon": "assets/icons/item_morel.png"
         },
         {
-          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "name": "Nấm Tím (Purple Mushroom)",
           "icon": "assets/icons/item_purple_mushroom.png"
         },
         {
@@ -7444,11 +7444,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_quartz.png"
         },
         {
-          "name": "Khoai tuyết (Snow Yam)",
+          "name": "Khoai lang Tuyết (Snow Yam)",
           "icon": "assets/icons/snow_yam.png"
         },
         {
-          "name": "Củ mùa đông (Winter Root)",
+          "name": "Củ mài (Winter Root)",
           "icon": "assets/icons/winter_root.png"
         }
       ],
@@ -7468,11 +7468,11 @@ export const NPCS_DATA = [
           "icon": "assets/icons/pina_colada.png"
         },
         {
-          "name": "Cà Phê Espresso Đậm Đặc (Triple Shot Espresso)",
+          "name": "Cà-phê đặc gấp Ba (Triple Shot Espresso)",
           "icon": "assets/icons/triple_shot_espresso.png"
         },
         {
-          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "name": "Cải ngựa Dại (Wild Horseradish)",
           "icon": "assets/icons/item_wild_horseradish.png"
         }
       ]
@@ -7541,7 +7541,7 @@ export const NPCS_DATA = [
     "gifts": {
       "loved": [
         {
-          "name": "Thạch Anh Tím (Amethyst)",
+          "name": "Thạch anh Tím (Amethyst)",
           "icon": "assets/icons/item_amethyst.png"
         },
         {
@@ -7549,7 +7549,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_aquamarine.png"
         },
         {
-          "name": "Ngọc Lục Bảo (Emerald)",
+          "name": "Ngọc Lục bảo (Emerald)",
           "icon": "assets/icons/item_emerald.png"
         },
         {
@@ -7557,19 +7557,19 @@ export const NPCS_DATA = [
           "icon": "assets/icons/item_jade.png"
         },
         {
-          "name": "Lươn Dung Nham (Lava Eel)",
+          "name": "Lươn Dung nham (Lava Eel)",
           "icon": "assets/icons/item_lava_eel.png"
         },
         {
-          "name": "Đá chanh (Lemon Stone)",
+          "name": "Đá Chanh (Lemon Stone)",
           "icon": "assets/icons/lemon_stone.png"
         },
         {
-          "name": "Geode Vạn năng (Omni Geode)",
+          "name": "Hốc tinh Toàn năng (Omni Geode)",
           "icon": "assets/icons/omni_geode.png"
         },
         {
-          "name": "Hồng Ngọc (Ruby)",
+          "name": "Hồng ngọc (Ruby)",
           "icon": "assets/icons/item_ruby.png"
         },
         {
@@ -7588,7 +7588,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Cổ vật"
         },
         {
-          "name": "Cà rốt hang động (Cave Carrot)",
+          "name": "Cà-rốt Hang (Cave Carrot)",
           "icon": "assets/icons/cave_carrot.png"
         },
         {
@@ -7604,7 +7604,7 @@ export const NPCS_DATA = [
           "name": "Tất cả Trứng"
         },
         {
-          "name": "Nấm mỡ gà (Chanterelle)",
+          "name": "Nấm mồng gà (Chanterelle)",
           "icon": "assets/icons/ing_chanterelle.png"
         },
         {
@@ -7612,15 +7612,15 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_common_mushroom.png"
         },
         {
-          "name": "Hoa thủy tiên vàng (Daffodil)",
+          "name": "Thủy tiên (Daffodil)",
           "icon": "assets/icons/ing_daffodil.png"
         },
         {
-          "name": "Hoa Bồ Công Anh (Dandelion)",
+          "name": "Bồ công anh (Dandelion)",
           "icon": "assets/icons/item_dandelion.png"
         },
         {
-          "name": "Củ gừng (Ginger)",
+          "name": "Gừng (Ginger)",
           "icon": "assets/icons/ing_ginger.png"
         },
         {
@@ -7628,7 +7628,7 @@ export const NPCS_DATA = [
           "icon": "assets/icons/ing_hazelnut.png"
         },
         {
-          "name": "Cây nhựa ruồi (Holly)",
+          "name": "Nhựa ruồi (Holly)",
           "icon": "assets/icons/holly.png"
         },
         {
@@ -7636,31 +7636,31 @@ export const NPCS_DATA = [
           "icon": "assets/icons/item_leek.png"
         },
         {
-          "name": "Nấm dung nham (Magma Cap)",
+          "name": "Nấm Dung nham (Magma Cap)",
           "icon": "assets/icons/magma_cap.png"
         },
         {
-          "name": "Nấm Morel Quý Hiếm (Morel)",
+          "name": "Nấm Bụng dê (Morel)",
           "icon": "assets/icons/item_morel.png"
         },
         {
-          "name": "Nấm Tím Thần Bí (Purple Mushroom)",
+          "name": "Nấm Tím (Purple Mushroom)",
           "icon": "assets/icons/item_purple_mushroom.png"
         },
         {
-          "name": "Quả Mọng Cá Hồi (Salmonberry)",
+          "name": "Mâm xôi đỏ (Salmonberry)",
           "icon": "assets/icons/item_salmonberry.png"
         },
         {
-          "name": "Khoai tuyết (Snow Yam)",
+          "name": "Khoai lang Tuyết (Snow Yam)",
           "icon": "assets/icons/snow_yam.png"
         },
         {
-          "name": "Cải Ngựa Hoang Dã (Wild Horseradish)",
+          "name": "Cải ngựa Dại (Wild Horseradish)",
           "icon": "assets/icons/item_wild_horseradish.png"
         },
         {
-          "name": "Củ mùa đông (Winter Root)",
+          "name": "Củ mài (Winter Root)",
           "icon": "assets/icons/winter_root.png"
         }
       ],

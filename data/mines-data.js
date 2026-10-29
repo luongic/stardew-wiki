@@ -35,7 +35,7 @@ export const MINE_AREAS = [
             "note": "Bắt đầu xuất hiện từ tầng 2"
           },
           {
-            "name": "Than Đá",
+            "name": "Than đá",
             "nameEn": "Coal",
             "icon": "item_coal",
             "note": "Từ đá thường; xe goòng than ở tầng 12, 18, 28, 38"
@@ -43,25 +43,25 @@ export const MINE_AREAS = [
         ],
         "gems": [
           {
-            "name": "Thạch Anh Tím",
+            "name": "Thạch anh Tím",
             "nameEn": "Amethyst",
             "icon": "item_amethyst",
             "note": "Mỏ Thạch Anh Tím ở mọi tầng"
           },
           {
-            "name": "Hoàng Ngọc",
+            "name": "Hoàng ngọc",
             "nameEn": "Topaz",
             "icon": "ing_topaz",
             "note": "Mỏ Hoàng Ngọc ở mọi tầng"
           },
           {
-            "name": "Thạch Anh",
+            "name": "Thạch anh",
             "nameEn": "Quartz",
             "icon": "ing_quartz",
             "note": "Nhặt trên mặt đất"
           },
           {
-            "name": "Tinh Thể Đất",
+            "name": "Tinh thể Đất",
             "nameEn": "Earth Crystal",
             "icon": "earth_crystal",
             "note": "Nhặt trên mặt đất, nhiều nhất ở tầng 1-39"
@@ -69,7 +69,7 @@ export const MINE_AREAS = [
         ],
         "geodes": [
           {
-            "name": "Geode (Đá Hốc)",
+            "name": "Hốc tinh",
             "nameEn": "Geode",
             "icon": "geode",
             "note": "Từ đá (nhiều nhất tầng 1-39), Duggy rơi 25%; tầng 31-39 rất phổ biến"
@@ -91,9 +91,9 @@ export const MINE_AREAS = [
               "Chất Nhờn",
               "Nhựa Cây",
               "Tảo Lục",
-              "Thạch Anh Tím",
-              "Cuộn Giấy Người Lùn I",
-              "Cuộn Giấy Người Lùn IV"
+              "Thạch anh Tím",
+              "Cuộn giấy Người lùn I",
+              "Cuộn giấy Người lùn IV"
             ]
           },
           {
@@ -103,13 +103,13 @@ export const MINE_AREAS = [
             "floors": "1-29",
             "drops": [
               "Bom Anh Đào",
-              "Geode (Đá Hốc)",
-              "Tinh Thể Đất",
+              "Hốc tinh",
+              "Tinh thể Đất",
               "Khoai Lang",
               "Que Nhai Cổ",
-              "Kim Cương",
-              "Cuộn Giấy Người Lùn I",
-              "Cuộn Giấy Người Lùn IV"
+              "Kim cương",
+              "Cuộn giấy Người lùn I",
+              "Cuộn giấy Người lùn IV"
             ],
             "note": "Chui dưới đất, chỉ trồi lên khi người chơi đến gần"
           },
@@ -121,9 +121,9 @@ export const MINE_AREAS = [
             "drops": [
               "Thịt Bọ",
               "Tảo Trắng",
-              "Hạt Giống Cổ Đại",
-              "Cuộn Giấy Người Lùn I",
-              "Cuộn Giấy Người Lùn IV"
+              "Hạt Cổ đại",
+              "Cuộn giấy Người lùn I",
+              "Cuộn giấy Người lùn IV"
             ]
           },
           {
@@ -134,13 +134,13 @@ export const MINE_AREAS = [
             "drops": [
               "Bom Anh Đào",
               "Cua",
-              "Cuộn Giấy Người Lùn I",
-              "Cuộn Giấy Người Lùn IV"
+              "Cuộn giấy Người lùn I",
+              "Cuộn giấy Người lùn IV"
             ],
             "note": "Giả dạng hòn đá"
           },
           {
-            "name": "Ấu Trùng (Grub)",
+            "name": "Ấu trùng (Grub)",
             "nameEn": "Grub",
             "icon": "monster_grub",
             "floors": "11-29",
@@ -148,22 +148,22 @@ export const MINE_AREAS = [
               "Thịt Bọ",
               "Mạ Lúa",
               "Tảo Trắng",
-              "Hạt Giống Cổ Đại",
-              "Cuộn Giấy Người Lùn I",
-              "Cuộn Giấy Người Lùn IV"
+              "Hạt Cổ đại",
+              "Cuộn giấy Người lùn I",
+              "Cuộn giấy Người lùn IV"
             ]
           },
           {
-            "name": "Ruồi Hang (Cave Fly)",
+            "name": "Ruồi (Cave Fly)",
             "nameEn": "Cave Fly",
             "icon": "monster_cave_fly",
             "floors": "11-29",
             "drops": [
               "Thịt Bọ",
               "Tảo Trắng",
-              "Hạt Giống Cổ Đại",
-              "Cuộn Giấy Người Lùn I",
-              "Cuộn Giấy Người Lùn IV"
+              "Hạt Cổ đại",
+              "Cuộn giấy Người lùn I",
+              "Cuộn giấy Người lùn IV"
             ]
           },
           {
@@ -174,23 +174,23 @@ export const MINE_AREAS = [
             "drops": [
               "Cánh Dơi",
               "Bom",
-              "Đĩa Hiếm",
-              "Cuộn Giấy Người Lùn I",
-              "Cuộn Giấy Người Lùn IV"
+              "Đĩa Quý hiếm",
+              "Cuộn giấy Người lùn I",
+              "Cuộn giấy Người lùn IV"
             ]
           },
           {
-            "name": "Người Đá (Stone Golem)",
+            "name": "Golem Đá (Stone Golem)",
             "nameEn": "Stone Golem",
             "icon": "monster_stone_golem",
             "floors": "31-39",
             "drops": [
               "Đá",
-              "Than Đá",
+              "Than đá",
               "Quặng Sắt",
-              "Thạch Anh",
-              "Cuộn Giấy Người Lùn I",
-              "Cuộn Giấy Người Lùn IV"
+              "Thạch anh",
+              "Cuộn giấy Người lùn I",
+              "Cuộn giấy Người lùn IV"
             ]
           }
         ],
@@ -210,37 +210,37 @@ export const MINE_AREAS = [
         ],
         "other": [
           {
-            "name": "Cà Rốt Hang",
+            "name": "Cà-rốt Hang",
             "nameEn": "Cave Carrot",
             "icon": "cave_carrot",
             "note": "Đào ô đất bằng cuốc (5%), thùng gỗ/thùng tròn"
           },
           {
-            "name": "Đất Sét",
+            "name": "Đất sét",
             "nameEn": "Clay",
             "icon": "ing_clay",
             "note": "Đào ô đất bằng cuốc"
           },
           {
-            "name": "Cuộn Giấy Người Lùn I",
+            "name": "Cuộn giấy Người lùn I",
             "nameEn": "Dwarf Scroll I",
             "icon": "dwarf_scroll_i",
             "note": "Đào ô đất (mọi tầng)"
           },
           {
-            "name": "Cuộn Giấy Người Lùn II",
+            "name": "Cuộn giấy Người lùn II",
             "nameEn": "Dwarf Scroll II",
             "icon": "dwarf_scroll_ii",
             "note": "Đào ô đất tầng 1-39"
           },
           {
-            "name": "Mũ Giáp Người Lùn",
+            "name": "Mũ sắt Người lùn",
             "nameEn": "Dwarvish Helm",
             "icon": "item_dwarvish_helm",
             "note": "Đào ô đất tầng 1-39"
           },
           {
-            "name": "Hạt Giống Hỗn Hợp",
+            "name": "Hạt giống Hỗn hợp",
             "nameEn": "Mixed Seeds",
             "icon": "mixed_seeds",
             "note": "Thùng gỗ/thùng tròn tầng 0-79"
@@ -271,7 +271,7 @@ export const MINE_AREAS = [
             "note": "Mỏ đồng ở mọi tầng"
           },
           {
-            "name": "Than Đá",
+            "name": "Than đá",
             "nameEn": "Coal",
             "icon": "item_coal",
             "note": "Từ đá; Dust Sprite rơi 50%; túi than ở tầng 52, 58, 68, 78"
@@ -279,7 +279,7 @@ export const MINE_AREAS = [
         ],
         "gems": [
           {
-            "name": "Ngọc Xanh Biển",
+            "name": "Ngọc xanh biển",
             "nameEn": "Aquamarine",
             "icon": "ing_aquamarine",
             "note": "Bắt đầu xuất hiện từ tầng 40"
@@ -291,25 +291,25 @@ export const MINE_AREAS = [
             "note": "Bắt đầu xuất hiện từ tầng 40"
           },
           {
-            "name": "Nước Mắt Băng",
+            "name": "Băng giọt lệ",
             "nameEn": "Frozen Tear",
             "icon": "frozen_tear",
             "note": "Nhặt trên mặt đất tầng 40-79"
           },
           {
-            "name": "Kim Cương",
+            "name": "Kim cương",
             "nameEn": "Diamond",
             "icon": "item_diamond",
             "note": "Mỏ kim cương từ tầng 50 (rất hiếm)"
           },
           {
-            "name": "Thạch Anh Tím",
+            "name": "Thạch anh Tím",
             "nameEn": "Amethyst",
             "icon": "item_amethyst",
             "note": "Mọi tầng"
           },
           {
-            "name": "Hoàng Ngọc",
+            "name": "Hoàng ngọc",
             "nameEn": "Topaz",
             "icon": "ing_topaz",
             "note": "Mọi tầng"
@@ -317,7 +317,7 @@ export const MINE_AREAS = [
         ],
         "geodes": [
           {
-            "name": "Geode Băng",
+            "name": "Hốc tinh Băng",
             "nameEn": "Frozen Geode",
             "icon": "frozen_geode",
             "note": "Từ đá tầng 41-79"
@@ -331,7 +331,7 @@ export const MINE_AREAS = [
         ],
         "monsters": [
           {
-            "name": "Thạch Băng (Frost Jelly)",
+            "name": "Xà-lam Băng (Frost Jelly)",
             "nameEn": "Frost Jelly",
             "icon": "monster_frost_jelly",
             "floors": "41-79",
@@ -340,9 +340,9 @@ export const MINE_AREAS = [
               "Nhựa Cây",
               "Ngọc Bích",
               "Củ Mùa Đông",
-              "Cuộn Giấy Người Lùn II",
-              "Cuộn Giấy Người Lùn III",
-              "Cuộn Giấy Người Lùn IV"
+              "Cuộn giấy Người lùn II",
+              "Cuộn giấy Người lùn III",
+              "Cuộn giấy Người lùn IV"
             ]
           },
           {
@@ -353,24 +353,24 @@ export const MINE_AREAS = [
             "drops": [
               "Cánh Dơi",
               "Bom",
-              "Đĩa Hiếm",
-              "Cuộn Giấy Người Lùn II",
-              "Cuộn Giấy Người Lùn IV"
+              "Đĩa Quý hiếm",
+              "Cuộn giấy Người lùn II",
+              "Cuộn giấy Người lùn IV"
             ]
           },
           {
-            "name": "Tinh Linh Bụi (Dust Sprite)",
+            "name": "Tinh linh Bụi (Dust Sprite)",
             "nameEn": "Dust Sprite",
             "icon": "monster_dust_sprite",
             "floors": "41-79",
             "drops": [
-              "Than Đá",
-              "Nước Mắt Băng",
+              "Than đá",
+              "Băng giọt lệ",
               "Quả Pha Lê",
               "Hạt Cà Phê",
               "Thỏi Vàng",
-              "Cuộn Giấy Người Lùn II",
-              "Cuộn Giấy Người Lùn IV"
+              "Cuộn giấy Người lùn II",
+              "Cuộn giấy Người lùn IV"
             ],
             "note": "Thường xuất hiện thành đàn, nguồn Than tốt"
           },
@@ -384,27 +384,27 @@ export const MINE_AREAS = [
               "Quặng Vàng",
               "Cá Ma",
               "Thạch Anh Tinh Luyện",
-              "Cuộn Giấy Người Lùn II",
-              "Cuộn Giấy Người Lùn IV"
+              "Cuộn giấy Người lùn II",
+              "Cuộn giấy Người lùn IV"
             ],
             "note": "Bay xuyên tường"
           },
           {
-            "name": "Bộ Xương (Skeleton)",
+            "name": "Xương khô (Skeleton)",
             "nameEn": "Skeleton",
             "icon": "monster_skeleton",
             "floors": "71-79",
             "drops": [
-              "Mảnh Xương",
+              "Mảnh xương vụn",
               "Kiếm Xương",
-              "Xương Bả Vai Tiền Sử"
+              "Xương bả Tiền sử"
             ],
             "note": "Ném xương từ xa"
           }
         ],
         "fish": [
           {
-            "name": "Cá Băng Pip",
+            "name": "Cá Băng",
             "nameEn": "Ice Pip",
             "icon": "item_ice_pip",
             "note": "Hồ nước tầng 60, mọi mùa"
@@ -418,19 +418,19 @@ export const MINE_AREAS = [
         ],
         "other": [
           {
-            "name": "Cà Rốt Hang",
+            "name": "Cà-rốt Hang",
             "nameEn": "Cave Carrot",
             "icon": "cave_carrot",
             "note": "Đào ô đất, thùng gỗ/thùng tròn"
           },
           {
-            "name": "Đất Sét",
+            "name": "Đất sét",
             "nameEn": "Clay",
             "icon": "ing_clay",
             "note": "Đào ô đất bằng cuốc"
           },
           {
-            "name": "Thiết Bị Người Lùn",
+            "name": "Thiết bị của Người lùn",
             "nameEn": "Dwarf Gadget",
             "icon": "dwarf_gadget",
             "note": "Đào ô đất tầng 40-79"
@@ -473,7 +473,7 @@ export const MINE_AREAS = [
             "note": "Chỉ từ Đá Huyền Bí (Mystic Stone) tầng 100+: 1-3 quặng"
           },
           {
-            "name": "Than Đá",
+            "name": "Than đá",
             "nameEn": "Coal",
             "icon": "item_coal",
             "note": "Từ đá; xe goòng than ở tầng 92, 98, 108, 118"
@@ -481,31 +481,31 @@ export const MINE_AREAS = [
         ],
         "gems": [
           {
-            "name": "Hồng Ngọc",
+            "name": "Hồng ngọc",
             "nameEn": "Ruby",
             "icon": "item_ruby",
             "note": "Bắt đầu xuất hiện từ tầng 80"
           },
           {
-            "name": "Ngọc Lục Bảo",
+            "name": "Ngọc Lục bảo",
             "nameEn": "Emerald",
             "icon": "item_emerald",
             "note": "Bắt đầu xuất hiện từ tầng 80"
           },
           {
-            "name": "Thạch Anh Lửa",
+            "name": "Thạch anh Lửa",
             "nameEn": "Fire Quartz",
             "icon": "ing_fire_quartz",
             "note": "Nhặt trên mặt đất tầng 80+"
           },
           {
-            "name": "Kim Cương",
+            "name": "Kim cương",
             "nameEn": "Diamond",
             "icon": "item_diamond",
             "note": "Mỏ kim cương, tỉ lệ tăng dần theo tầng"
           },
           {
-            "name": "Ngọc Xanh Biển",
+            "name": "Ngọc xanh biển",
             "nameEn": "Aquamarine",
             "icon": "ing_aquamarine"
           },
@@ -515,7 +515,7 @@ export const MINE_AREAS = [
             "icon": "item_jade"
           },
           {
-            "name": "Mảnh Lăng Kính",
+            "name": "Mảnh Ngũ sắc",
             "nameEn": "Prismatic Shard",
             "icon": "item_prismatic_shard",
             "note": "25% từ Đá Huyền Bí tầng 100+"
@@ -544,24 +544,24 @@ export const MINE_AREAS = [
             "drops": [
               "Chất Nhờn",
               "Nhựa Cây",
-              "Than Đá",
+              "Than đá",
               "Tảo Trắng",
-              "Kim Cương",
-              "Cuộn Giấy Người Lùn III",
-              "Cuộn Giấy Người Lùn IV"
+              "Kim cương",
+              "Cuộn giấy Người lùn III",
+              "Cuộn giấy Người lùn IV"
             ]
           },
           {
-            "name": "Dơi Dung Nham (Lava Bat)",
+            "name": "Dơi Dung nham (Lava Bat)",
             "nameEn": "Lava Bat",
             "icon": "monster_lava_bat",
             "floors": "81-119",
             "drops": [
               "Cánh Dơi",
               "Bom",
-              "Đĩa Hiếm",
-              "Cuộn Giấy Người Lùn III",
-              "Cuộn Giấy Người Lùn IV"
+              "Đĩa Quý hiếm",
+              "Cuộn giấy Người lùn III",
+              "Cuộn giấy Người lùn IV"
             ]
           },
           {
@@ -572,51 +572,51 @@ export const MINE_AREAS = [
             "drops": [
               "Bom",
               "Cua",
-              "Cuộn Giấy Người Lùn III",
-              "Cuộn Giấy Người Lùn IV"
+              "Cuộn giấy Người lùn III",
+              "Cuộn giấy Người lùn IV"
             ],
             "note": "Giả dạng hòn đá"
           },
           {
-            "name": "Bóng Ma Vũ Phu (Shadow Brute)",
+            "name": "Người Bóng Du côn (Shadow Brute)",
             "nameEn": "Shadow Brute",
             "icon": "monster_shadow_brute",
             "floors": "81-119",
             "drops": [
               "Tinh Chất Hư Vô",
-              "Than Đá",
+              "Than đá",
               "Thỏi Đồng",
               "Bánh Bao Kỳ Lạ",
               "Thỏi Sắt",
               "Thỏi Vàng",
               "Thỏi Iridium",
-              "Đĩa Hiếm",
-              "Mảnh Lăng Kính",
-              "Cuộn Giấy Người Lùn III",
-              "Cuộn Giấy Người Lùn IV"
+              "Đĩa Quý hiếm",
+              "Mảnh Ngũ sắc",
+              "Cuộn giấy Người lùn III",
+              "Cuộn giấy Người lùn IV"
             ]
           },
           {
-            "name": "Pháp Sư Bóng Tối (Shadow Shaman)",
+            "name": "Pháp sư Bóng tối (Shadow Shaman)",
             "nameEn": "Shadow Shaman",
             "icon": "monster_shadow_shaman",
             "floors": "81-119",
             "drops": [
               "Tinh Chất Hư Vô",
-              "Than Đá",
+              "Than đá",
               "Thỏi Đồng",
               "Thỏi Sắt",
               "Thỏi Vàng",
               "Thỏi Iridium",
-              "Đĩa Hiếm",
-              "Mảnh Lăng Kính",
-              "Cuộn Giấy Người Lùn III",
-              "Cuộn Giấy Người Lùn IV"
+              "Đĩa Quý hiếm",
+              "Mảnh Ngũ sắc",
+              "Cuộn giấy Người lùn III",
+              "Cuộn giấy Người lùn IV"
             ],
             "note": "Hồi máu cho quái xung quanh và bắn phép"
           },
           {
-            "name": "Đầu Kim Loại (Metal Head)",
+            "name": "Quái đầu Sắt (Metal Head)",
             "nameEn": "Metal Head",
             "icon": "monster_metal_head",
             "floors": "81-119",
@@ -624,13 +624,13 @@ export const MINE_AREAS = [
               "Tinh Chất Mặt Trời",
               "Quặng Đồng",
               "Quặng Sắt",
-              "Than Đá",
-              "Cuộn Giấy Người Lùn III",
-              "Cuộn Giấy Người Lùn IV"
+              "Than đá",
+              "Cuộn giấy Người lùn III",
+              "Cuộn giấy Người lùn IV"
             ]
           },
           {
-            "name": "Mực Con (Squid Kid)",
+            "name": "Quái đầu To (Squid Kid)",
             "nameEn": "Squid Kid",
             "icon": "monster_squid_kid",
             "floors": "91-119",
@@ -640,15 +640,15 @@ export const MINE_AREAS = [
               "Bom",
               "Thỏi Vàng",
               "Siêu Bom",
-              "Cuộn Giấy Người Lùn III",
-              "Cuộn Giấy Người Lùn IV"
+              "Cuộn giấy Người lùn III",
+              "Cuộn giấy Người lùn IV"
             ],
             "note": "Bay và bắn cầu lửa"
           }
         ],
         "fish": [
           {
-            "name": "Lươn Dung Nham",
+            "name": "Lươn Dung nham",
             "nameEn": "Lava Eel",
             "icon": "item_lava_eel",
             "note": "Hồ dung nham tầng 100, mọi mùa"
@@ -668,19 +668,19 @@ export const MINE_AREAS = [
             "note": "Mọc nhiều ở Tầng Nấm (tầng 81-119)"
           },
           {
-            "name": "Cuộn Giấy Người Lùn IV",
+            "name": "Cuộn giấy Người lùn IV",
             "nameEn": "Dwarf Scroll IV",
             "icon": "dwarf_scroll_iv",
             "note": "Đào ô đất tầng 80-120"
           },
           {
-            "name": "Mảnh Xương",
+            "name": "Mảnh xương vụn",
             "nameEn": "Bone Fragment",
             "icon": "ing_bone_fragment",
             "note": "Thùng gỗ/thùng tròn tầng 80+"
           },
           {
-            "name": "Cà Rốt Hang",
+            "name": "Cà-rốt Hang",
             "nameEn": "Cave Carrot",
             "icon": "cave_carrot",
             "note": "Đào ô đất, thùng gỗ/thùng tròn"
@@ -704,7 +704,7 @@ export const MINE_AREAS = [
         "type": "chest",
         "label": "Rương kho báu (Remix: Wood Club, Elf Blade, Glow Ring, Magnet Ring)",
         "reward": {
-          "name": "Kiếm Nhỏ Bằng Thép",
+          "name": "Đoản kiếm Thép",
           "nameEn": "Steel Smallsword",
           "icon": "steel_smallsword"
         }
@@ -729,7 +729,7 @@ export const MINE_AREAS = [
         "type": "chest",
         "label": "Rương kho báu (Remix vẫn là Ná Cao Su)",
         "reward": {
-          "name": "Ná Cao Su",
+          "name": "Súng Cao su",
           "nameEn": "Slingshot",
           "icon": "slingshot"
         }
@@ -739,7 +739,7 @@ export const MINE_AREAS = [
         "type": "chest",
         "label": "Rương kho báu (Remix: Thermal Boots, Combat Boots, Silver Saber, Pirate's Sword)",
         "reward": {
-          "name": "Ủng Lãnh Nguyên",
+          "name": "Ủng đi tuyết",
           "nameEn": "Tundra Boots",
           "icon": "tundra_boots"
         }
@@ -749,7 +749,7 @@ export const MINE_AREAS = [
         "type": "chest",
         "label": "Rương kho báu (Remix: Cutlass, Iron Edge, Burglar's Shank, Wood Mallet)",
         "reward": {
-          "name": "Dao Găm Pha Lê",
+          "name": "Dao găm Pha lê",
           "nameEn": "Crystal Dagger",
           "icon": "crystal_dagger"
         }
@@ -759,7 +759,7 @@ export const MINE_AREAS = [
         "type": "fish",
         "label": "Hồ có Cá Băng Pip và Cá Ma",
         "reward": {
-          "name": "Cá Băng Pip",
+          "name": "Cá Băng",
           "nameEn": "Ice Pip",
           "icon": "item_ice_pip"
         }
@@ -769,7 +769,7 @@ export const MINE_AREAS = [
         "type": "chest",
         "label": "Rương kho báu (Remix vẫn là Ná Cao Su Bậc Thầy)",
         "reward": {
-          "name": "Ná Cao Su Bậc Thầy",
+          "name": "Súng Cao su Xịn",
           "nameEn": "Master Slingshot",
           "icon": "master_slingshot"
         }
@@ -779,7 +779,7 @@ export const MINE_AREAS = [
         "type": "chest",
         "label": "Rương kho báu (Remix: Dark Boots, Claymore, Templar's Blade, Kudgel, Shadow Dagger)",
         "reward": {
-          "name": "Ủng Đi Trên Lửa",
+          "name": "Ủng chịu lửa",
           "nameEn": "Firewalker Boots",
           "icon": "firewalker_boots"
         }
@@ -789,7 +789,7 @@ export const MINE_AREAS = [
         "type": "chest",
         "label": "Rương kho báu (Remix: Tempered Broadsword, Wicked Kris, Bone Sword, Ossified Blade)",
         "reward": {
-          "name": "Kiếm Hắc Diện Thạch",
+          "name": "Kiếm Hắc diện",
           "nameEn": "Obsidian Edge",
           "icon": "obsidian_edge"
         }
@@ -799,7 +799,7 @@ export const MINE_AREAS = [
         "type": "chest",
         "label": "Rương kho báu: Giọt Sao (+34 năng lượng tối đa; Remix không đổi)",
         "reward": {
-          "name": "Giọt Sao (Stardrop)",
+          "name": "Sao Sa (Stardrop)",
           "nameEn": "Stardrop",
           "icon": "stardrop"
         }
@@ -809,7 +809,7 @@ export const MINE_AREAS = [
         "type": "fish",
         "label": "Hồ dung nham có Lươn Dung Nham",
         "reward": {
-          "name": "Lươn Dung Nham",
+          "name": "Lươn Dung nham",
           "nameEn": "Lava Eel",
           "icon": "item_lava_eel"
         }
@@ -819,7 +819,7 @@ export const MINE_AREAS = [
         "type": "chest",
         "label": "Rương kho báu (Remix: Crystal Shoes, Steel Falchion, The Slammer)",
         "reward": {
-          "name": "Ủng Không Gian",
+          "name": "Ủng Vũ trụ",
           "nameEn": "Space Boots",
           "icon": "space_boots"
         }
@@ -876,17 +876,17 @@ export const MINE_AREAS = [
         ],
         "gems": [
           {
-            "name": "Thạch Anh Tím",
+            "name": "Thạch anh Tím",
             "nameEn": "Amethyst",
             "icon": "item_amethyst"
           },
           {
-            "name": "Hoàng Ngọc",
+            "name": "Hoàng ngọc",
             "nameEn": "Topaz",
             "icon": "ing_topaz"
           },
           {
-            "name": "Ngọc Xanh Biển",
+            "name": "Ngọc xanh biển",
             "nameEn": "Aquamarine",
             "icon": "ing_aquamarine"
           },
@@ -896,40 +896,40 @@ export const MINE_AREAS = [
             "icon": "item_jade"
           },
           {
-            "name": "Hồng Ngọc",
+            "name": "Hồng ngọc",
             "nameEn": "Ruby",
             "icon": "item_ruby"
           },
           {
-            "name": "Ngọc Lục Bảo",
+            "name": "Ngọc Lục bảo",
             "nameEn": "Emerald",
             "icon": "item_emerald"
           },
           {
-            "name": "Kim Cương",
+            "name": "Kim cương",
             "nameEn": "Diamond",
             "icon": "item_diamond"
           },
           {
-            "name": "Mảnh Lăng Kính",
+            "name": "Mảnh Ngũ sắc",
             "nameEn": "Prismatic Shard",
             "icon": "item_prismatic_shard",
             "note": "3,5% từ Mỏ Iridium, 25% từ Đá Huyền Bí; có trong rương phòng kho báu"
           },
           {
-            "name": "Thạch Anh Lửa",
+            "name": "Thạch anh Lửa",
             "nameEn": "Fire Quartz",
             "icon": "ing_fire_quartz",
             "note": "Nhặt trên mặt đất"
           },
           {
-            "name": "Nước Mắt Băng",
+            "name": "Băng giọt lệ",
             "nameEn": "Frozen Tear",
             "icon": "frozen_tear",
             "note": "Nhặt trên mặt đất"
           },
           {
-            "name": "Thạch Anh",
+            "name": "Thạch anh",
             "nameEn": "Quartz",
             "icon": "ing_quartz",
             "note": "Nhặt trên mặt đất"
@@ -951,7 +951,7 @@ export const MINE_AREAS = [
         ],
         "monsters": [
           {
-            "name": "Rắn Bay (Serpent)",
+            "name": "Mãng xà (Serpent)",
             "nameEn": "Serpent",
             "icon": "monster_serpent",
             "floors": "mọi tầng",
@@ -961,7 +961,7 @@ export const MINE_AREAS = [
               "Lươn Cay",
               "Chân Thỏ",
               "Hạt Bắp Cải Đỏ",
-              "Mảnh Lăng Kính"
+              "Mảnh Ngũ sắc"
             ],
             "note": "Quái bay mặc định, di chuyển rất nhanh"
           },
@@ -974,14 +974,14 @@ export const MINE_AREAS = [
               "Nhựa Cây",
               "Quặng Iridium",
               "Thỏi Iridium",
-              "Than Đá",
+              "Than đá",
               "Tảo Trắng",
-              "Kim Cương",
+              "Kim cương",
               "Hạt Bắp Cải Đỏ"
             ]
           },
           {
-            "name": "Slime Lớn (Big Slime)",
+            "name": "Xà-lam cỡ Bự (Big Slime)",
             "nameEn": "Big Slime",
             "icon": "monster_big_purple_slime",
             "floors": "mọi tầng",
@@ -997,16 +997,16 @@ export const MINE_AREAS = [
             "drops": [
               "Tinh Chất Mặt Trời",
               "Vải",
-              "Món Ngon Thợ Mỏ",
+              "Kẹo Thợ mỏ",
               "Mồi Tò Mò",
               "Hạt Bắp Cải Đỏ",
-              "Mảnh Lăng Kính",
-              "Cuộn Giấy Người Lùn IV"
+              "Mảnh Ngũ sắc",
+              "Cuộn giấy Người lùn IV"
             ],
             "note": "Xuất hiện ở Tầng Xác Ướp; phải dùng bom (hoặc phù phép Crusader) để tiêu diệt hẳn"
           },
           {
-            "name": "Hồn Ma Carbon (Carbon Ghost)",
+            "name": "Ma Các-bon (Carbon Ghost)",
             "nameEn": "Carbon Ghost",
             "icon": "monster_carbon_ghost",
             "drops": [
@@ -1016,29 +1016,29 @@ export const MINE_AREAS = [
             "note": "Có thể xuất hiện ở Tầng Xác Ướp"
           },
           {
-            "name": "Dơi Dung Nham (Lava Bat)",
+            "name": "Dơi Dung nham (Lava Bat)",
             "nameEn": "Lava Bat",
             "icon": "monster_lava_bat",
             "floors": "20, 40",
             "drops": [
               "Cánh Dơi",
               "Bom",
-              "Đĩa Hiếm",
-              "Cuộn Giấy Người Lùn III",
-              "Cuộn Giấy Người Lùn IV"
+              "Đĩa Quý hiếm",
+              "Cuộn giấy Người lùn III",
+              "Cuộn giấy Người lùn IV"
             ],
             "note": "Chỉ ở tầng 20 và 40 (nếu đó không phải Tầng Xác Ướp)"
           },
           {
-            "name": "Khủng Long Ớt (Pepper Rex)",
+            "name": "Khủng long Ớt (Pepper Rex)",
             "nameEn": "Pepper Rex",
             "icon": "monster_pepper_rex",
             "floors": "Tầng Tiền Sử (7+)",
             "drops": [
-              "Trứng Khủng Long",
-              "Xương Sườn Tiền Sử",
-              "Xương Chày Tiền Sử",
-              "Đốt Sống Tiền Sử"
+              "Trứng Khủng long",
+              "Xương sườn Tiền sử",
+              "Xương ống Tiền sử",
+              "Xương sống Tiền sử"
             ],
             "note": "Phun lửa"
           },
@@ -1050,9 +1050,9 @@ export const MINE_AREAS = [
             "drops": [
               "Thịt Bọ",
               "Tảo Trắng",
-              "Hạt Giống Cổ Đại",
-              "Cuộn Giấy Người Lùn I",
-              "Cuộn Giấy Người Lùn IV"
+              "Hạt Cổ đại",
+              "Cuộn giấy Người lùn I",
+              "Cuộn giấy Người lùn IV"
             ]
           },
           {
@@ -1063,14 +1063,14 @@ export const MINE_AREAS = [
               "Thịt Bọ",
               "Bít Tết Bọ",
               "Tảo Trắng",
-              "Hạt Giống Cổ Đại",
-              "Cuộn Giấy Người Lùn I",
-              "Cuộn Giấy Người Lùn IV"
+              "Hạt Cổ đại",
+              "Cuộn giấy Người lùn I",
+              "Cuộn giấy Người lùn IV"
             ],
             "note": "Chỉ giết được bằng vũ khí có phù phép Bug Killer"
           },
           {
-            "name": "Rắn Hoàng Gia (Royal Serpent)",
+            "name": "Hoàng Xà (Royal Serpent)",
             "nameEn": "Royal Serpent",
             "icon": "monster_royal_serpent",
             "drops": [
@@ -1079,7 +1079,7 @@ export const MINE_AREAS = [
               "Lươn Cay",
               "Chân Thỏ",
               "Hạt Bắp Cải Đỏ",
-              "Mảnh Lăng Kính"
+              "Mảnh Ngũ sắc"
             ],
             "note": "Chỉ khi Hang ở chế độ nguy hiểm (nhiệm vụ \"Skull Cavern Invasion\" hoặc bật tượng ở lối vào)"
           }
@@ -1087,7 +1087,7 @@ export const MINE_AREAS = [
         "fish": [],
         "other": [
           {
-            "name": "Trứng Khủng Long",
+            "name": "Trứng Khủng long",
             "nameEn": "Dinosaur Egg",
             "icon": "item_dinosaur_egg",
             "note": "Nhặt ở Tầng Tiền Sử"
@@ -1099,7 +1099,7 @@ export const MINE_AREAS = [
             "note": "Nhặt ở Tầng Tiền Sử"
           },
           {
-            "name": "Hạt Giống Cổ Đại",
+            "name": "Hạt Cổ đại",
             "nameEn": "Ancient Seed",
             "icon": "ancient_seed",
             "note": "Cắt cây cỏ ở Tầng Tiền Sử"
@@ -1111,13 +1111,13 @@ export const MINE_AREAS = [
             "note": "Nhặt trên mặt đất"
           },
           {
-            "name": "Mảnh Xương",
+            "name": "Mảnh xương vụn",
             "nameEn": "Bone Fragment",
             "icon": "ing_bone_fragment",
             "note": "Thùng gỗ/thùng tròn"
           },
           {
-            "name": "Than Đá",
+            "name": "Than đá",
             "nameEn": "Coal",
             "icon": "item_coal",
             "note": "Xe goòng/túi than ở tầng ngẫu nhiên"
@@ -1154,17 +1154,17 @@ export const MINE_AREAS = [
         ],
         "gems": [
           {
-            "name": "Thạch Anh Tím",
+            "name": "Thạch anh Tím",
             "nameEn": "Amethyst",
             "icon": "item_amethyst"
           },
           {
-            "name": "Hoàng Ngọc",
+            "name": "Hoàng ngọc",
             "nameEn": "Topaz",
             "icon": "ing_topaz"
           },
           {
-            "name": "Ngọc Xanh Biển",
+            "name": "Ngọc xanh biển",
             "nameEn": "Aquamarine",
             "icon": "ing_aquamarine"
           },
@@ -1174,40 +1174,40 @@ export const MINE_AREAS = [
             "icon": "item_jade"
           },
           {
-            "name": "Hồng Ngọc",
+            "name": "Hồng ngọc",
             "nameEn": "Ruby",
             "icon": "item_ruby"
           },
           {
-            "name": "Ngọc Lục Bảo",
+            "name": "Ngọc Lục bảo",
             "nameEn": "Emerald",
             "icon": "item_emerald"
           },
           {
-            "name": "Kim Cương",
+            "name": "Kim cương",
             "nameEn": "Diamond",
             "icon": "item_diamond"
           },
           {
-            "name": "Mảnh Lăng Kính",
+            "name": "Mảnh Ngũ sắc",
             "nameEn": "Prismatic Shard",
             "icon": "item_prismatic_shard",
             "note": "3,5% từ Mỏ Iridium, 25% từ Đá Huyền Bí; có trong rương phòng kho báu"
           },
           {
-            "name": "Thạch Anh Lửa",
+            "name": "Thạch anh Lửa",
             "nameEn": "Fire Quartz",
             "icon": "ing_fire_quartz",
             "note": "Nhặt trên mặt đất"
           },
           {
-            "name": "Nước Mắt Băng",
+            "name": "Băng giọt lệ",
             "nameEn": "Frozen Tear",
             "icon": "frozen_tear",
             "note": "Nhặt trên mặt đất"
           },
           {
-            "name": "Thạch Anh",
+            "name": "Thạch anh",
             "nameEn": "Quartz",
             "icon": "ing_quartz",
             "note": "Nhặt trên mặt đất"
@@ -1240,16 +1240,16 @@ export const MINE_AREAS = [
             "note": "Giả dạng hòn đá; không có ở Tầng Xác Ướp"
           },
           {
-            "name": "Dơi Dung Nham (Lava Bat)",
+            "name": "Dơi Dung nham (Lava Bat)",
             "nameEn": "Lava Bat",
             "icon": "monster_lava_bat",
             "floors": "40",
             "drops": [
               "Cánh Dơi",
               "Bom",
-              "Đĩa Hiếm",
-              "Cuộn Giấy Người Lùn III",
-              "Cuộn Giấy Người Lùn IV"
+              "Đĩa Quý hiếm",
+              "Cuộn giấy Người lùn III",
+              "Cuộn giấy Người lùn IV"
             ]
           }
         ],
@@ -1292,17 +1292,17 @@ export const MINE_AREAS = [
         ],
         "gems": [
           {
-            "name": "Thạch Anh Tím",
+            "name": "Thạch anh Tím",
             "nameEn": "Amethyst",
             "icon": "item_amethyst"
           },
           {
-            "name": "Hoàng Ngọc",
+            "name": "Hoàng ngọc",
             "nameEn": "Topaz",
             "icon": "ing_topaz"
           },
           {
-            "name": "Ngọc Xanh Biển",
+            "name": "Ngọc xanh biển",
             "nameEn": "Aquamarine",
             "icon": "ing_aquamarine"
           },
@@ -1312,40 +1312,40 @@ export const MINE_AREAS = [
             "icon": "item_jade"
           },
           {
-            "name": "Hồng Ngọc",
+            "name": "Hồng ngọc",
             "nameEn": "Ruby",
             "icon": "item_ruby"
           },
           {
-            "name": "Ngọc Lục Bảo",
+            "name": "Ngọc Lục bảo",
             "nameEn": "Emerald",
             "icon": "item_emerald"
           },
           {
-            "name": "Kim Cương",
+            "name": "Kim cương",
             "nameEn": "Diamond",
             "icon": "item_diamond"
           },
           {
-            "name": "Mảnh Lăng Kính",
+            "name": "Mảnh Ngũ sắc",
             "nameEn": "Prismatic Shard",
             "icon": "item_prismatic_shard",
             "note": "3,5% từ Mỏ Iridium, 25% từ Đá Huyền Bí; có trong rương phòng kho báu"
           },
           {
-            "name": "Thạch Anh Lửa",
+            "name": "Thạch anh Lửa",
             "nameEn": "Fire Quartz",
             "icon": "ing_fire_quartz",
             "note": "Nhặt trên mặt đất"
           },
           {
-            "name": "Nước Mắt Băng",
+            "name": "Băng giọt lệ",
             "nameEn": "Frozen Tear",
             "icon": "frozen_tear",
             "note": "Nhặt trên mặt đất"
           },
           {
-            "name": "Thạch Anh",
+            "name": "Thạch anh",
             "nameEn": "Quartz",
             "icon": "ing_quartz",
             "note": "Nhặt trên mặt đất"
@@ -1421,17 +1421,17 @@ export const MINE_AREAS = [
         ],
         "gems": [
           {
-            "name": "Thạch Anh Tím",
+            "name": "Thạch anh Tím",
             "nameEn": "Amethyst",
             "icon": "item_amethyst"
           },
           {
-            "name": "Hoàng Ngọc",
+            "name": "Hoàng ngọc",
             "nameEn": "Topaz",
             "icon": "ing_topaz"
           },
           {
-            "name": "Ngọc Xanh Biển",
+            "name": "Ngọc xanh biển",
             "nameEn": "Aquamarine",
             "icon": "ing_aquamarine"
           },
@@ -1441,40 +1441,40 @@ export const MINE_AREAS = [
             "icon": "item_jade"
           },
           {
-            "name": "Hồng Ngọc",
+            "name": "Hồng ngọc",
             "nameEn": "Ruby",
             "icon": "item_ruby"
           },
           {
-            "name": "Ngọc Lục Bảo",
+            "name": "Ngọc Lục bảo",
             "nameEn": "Emerald",
             "icon": "item_emerald"
           },
           {
-            "name": "Kim Cương",
+            "name": "Kim cương",
             "nameEn": "Diamond",
             "icon": "item_diamond"
           },
           {
-            "name": "Mảnh Lăng Kính",
+            "name": "Mảnh Ngũ sắc",
             "nameEn": "Prismatic Shard",
             "icon": "item_prismatic_shard",
             "note": "3,5% từ Mỏ Iridium, 25% từ Đá Huyền Bí; có trong rương phòng kho báu"
           },
           {
-            "name": "Thạch Anh Lửa",
+            "name": "Thạch anh Lửa",
             "nameEn": "Fire Quartz",
             "icon": "ing_fire_quartz",
             "note": "Nhặt trên mặt đất"
           },
           {
-            "name": "Nước Mắt Băng",
+            "name": "Băng giọt lệ",
             "nameEn": "Frozen Tear",
             "icon": "frozen_tear",
             "note": "Nhặt trên mặt đất"
           },
           {
-            "name": "Thạch Anh",
+            "name": "Thạch anh",
             "nameEn": "Quartz",
             "icon": "ing_quartz",
             "note": "Nhặt trên mặt đất"
@@ -1505,7 +1505,7 @@ export const MINE_AREAS = [
         "type": "chest",
         "label": "Từ tầng 10: Phòng Kho Báu ngẫu nhiên (1% + may mắn) với rương chứa đồ hiếm",
         "reward": {
-          "name": "Mảnh Lăng Kính",
+          "name": "Mảnh Ngũ sắc",
           "nameEn": "Prismatic Shard",
           "icon": "item_prismatic_shard"
         }
@@ -1525,7 +1525,7 @@ export const MINE_AREAS = [
         "type": "special",
         "label": "Nhiệm vụ Qi \"Qi's Hungry Challenge\" (25 Ngọc Qi) và \"Skull Cavern Invasion\" (40 Ngọc Qi) yêu cầu đến tầng 100",
         "reward": {
-          "name": "Ngọc Qi",
+          "name": "Ngọc Kỳ bí",
           "nameEn": "Qi Gem",
           "icon": "qi_gem"
         }
@@ -1569,7 +1569,7 @@ export const MINE_AREAS = [
         "desc": "Hang dung nham với các đảo nhỏ phải tưới nước để bắc cầu; có Tầng Nấm đầy Nấm Magma giả. Tầng 5 có cửa hàng Người Lùn và hồ nước, không có quái; tầng 9 luôn có rương.",
         "ores": [
           {
-            "name": "Mảnh Than Hồng",
+            "name": "Mảnh Nham thạch",
             "nameEn": "Cinder Shard",
             "icon": "item_cinder_shard",
             "note": "Mỏ Mảnh Than Hồng; nhiều quái và rương cũng rơi"
@@ -1596,7 +1596,7 @@ export const MINE_AREAS = [
             "note": "Mỏ Iridium và Đá Huyền Bí"
           },
           {
-            "name": "Than Đá",
+            "name": "Than đá",
             "nameEn": "Coal",
             "icon": "item_coal",
             "note": "Mỏ than"
@@ -1604,37 +1604,37 @@ export const MINE_AREAS = [
         ],
         "gems": [
           {
-            "name": "Hồng Ngọc",
+            "name": "Hồng ngọc",
             "nameEn": "Ruby",
             "icon": "item_ruby",
             "note": "Mỏ Hồng Ngọc"
           },
           {
-            "name": "Kim Cương",
+            "name": "Kim cương",
             "nameEn": "Diamond",
             "icon": "item_diamond",
             "note": "Mỏ kim cương"
           },
           {
-            "name": "Mảnh Lăng Kính",
+            "name": "Mảnh Ngũ sắc",
             "nameEn": "Prismatic Shard",
             "icon": "item_prismatic_shard",
             "note": "Đá Huyền Bí (25%), Mỏ Iridium (3,5%)"
           },
           {
-            "name": "Ngọc Lục Bảo",
+            "name": "Ngọc Lục bảo",
             "nameEn": "Emerald",
             "icon": "item_emerald",
             "note": "Mỏ Đá Quý (Gem Node), thùng kim loại, Dwarvish Sentry"
           },
           {
-            "name": "Hoàng Ngọc",
+            "name": "Hoàng ngọc",
             "nameEn": "Topaz",
             "icon": "ing_topaz",
             "note": "Mỏ Đá Quý, thùng kim loại"
           },
           {
-            "name": "Thạch Anh Tím",
+            "name": "Thạch anh Tím",
             "nameEn": "Amethyst",
             "icon": "item_amethyst",
             "note": "Mỏ Đá Quý, thùng kim loại"
@@ -1650,52 +1650,52 @@ export const MINE_AREAS = [
         ],
         "monsters": [
           {
-            "name": "Lính Gác Người Lùn (Dwarvish Sentry)",
+            "name": "Máy canh gác của Người Lùn (Dwarvish Sentry)",
             "nameEn": "Dwarvish Sentry",
             "icon": "monster_dwarvish_sentry",
             "drops": [
-              "Thạch Anh Tím",
-              "Ngọc Xanh Biển",
-              "Kim Cương",
-              "Ngọc Lục Bảo",
+              "Thạch anh Tím",
+              "Ngọc xanh biển",
+              "Kim cương",
+              "Ngọc Lục bảo",
               "Ngọc Bích",
-              "Hồng Ngọc",
-              "Hoàng Ngọc"
+              "Hồng ngọc",
+              "Hoàng ngọc"
             ],
             "note": "Có thể xuất hiện khi đập thùng kim loại"
           },
           {
-            "name": "Nấm Magma Giả (False Magma Cap)",
+            "name": "Quái Nấm Dung nham (False Magma Cap)",
             "nameEn": "False Magma Cap",
             "icon": "monster_false_magma_cap",
             "drops": [
-              "Nấm Magma",
-              "Mảnh Than Hồng"
+              "Nấm Dung nham",
+              "Mảnh Nham thạch"
             ],
             "note": "Hành vi giống Cua Đá"
           },
           {
-            "name": "Đầu Nóng (Hot Head)",
+            "name": "Quái đầu Lửa (Hot Head)",
             "nameEn": "Hot Head",
             "icon": "monster_hot_head",
             "drops": [
               "Tinh Chất Mặt Trời",
               "Bom",
-              "Than Đá",
+              "Than đá",
               "Quặng Đồng",
               "Quặng Sắt",
-              "Hạt Dứa",
-              "Cuộn Giấy Người Lùn III",
-              "Cuộn Giấy Người Lùn IV"
+              "Hạt giống Dứa",
+              "Cuộn giấy Người lùn III",
+              "Cuộn giấy Người lùn IV"
             ],
             "note": "Khi sắp chết biến thành bom và phát nổ"
           },
           {
-            "name": "Thằn Lằn Dung Nham (Lava Lurk)",
+            "name": "Quái Dung nham (Lava Lurk)",
             "nameEn": "Lava Lurk",
             "icon": "monster_lava_lurk",
             "drops": [
-              "Mảnh Xương",
+              "Mảnh xương vụn",
               "Răng Rồng"
             ],
             "note": "Bắn 4 cầu lửa xuyên tường từ hồ dung nham"
@@ -1705,15 +1705,15 @@ export const MINE_AREAS = [
             "nameEn": "Magma Sprite",
             "icon": "monster_magma_sprite",
             "drops": [
-              "Mảnh Than Hồng"
+              "Mảnh Nham thạch"
             ]
           },
           {
-            "name": "Tia Lửa Magma (Magma Sparker)",
+            "name": "Ma trơi núi lửa (Magma Sparker)",
             "nameEn": "Magma Sparker",
             "icon": "monster_magma_sparker",
             "drops": [
-              "Mảnh Than Hồng"
+              "Mảnh Nham thạch"
             ],
             "note": "Gây hiệu ứng Bỏng (Burnt)"
           },
@@ -1722,24 +1722,24 @@ export const MINE_AREAS = [
             "nameEn": "Magma Duggy",
             "icon": "monster_magma_duggy",
             "drops": [
-              "Củ Khoai Môn",
-              "Mảnh Than Hồng",
+              "Gốc khoai môn",
+              "Mảnh Nham thạch",
               "Siêu Bom"
             ]
           },
           {
-            "name": "Slime Hổ (Tiger Slime)",
+            "name": "Xà-lam Hổ (Tiger Slime)",
             "nameEn": "Tiger Slime",
             "icon": "monster_tiger_slime",
             "drops": [
               "Chất Nhờn",
               "Nhựa Cây",
-              "Củ Khoai Môn",
+              "Gốc khoai môn",
               "Gừng",
               "Ngọc Bích",
-              "Hạt Dứa",
+              "Hạt giống Dứa",
               "Cây Giống Xoài",
-              "Kim Cương",
+              "Kim cương",
               "Mũ Hổ"
             ]
           }
@@ -1747,7 +1747,7 @@ export const MINE_AREAS = [
         "fish": [],
         "other": [
           {
-            "name": "Nấm Magma",
+            "name": "Nấm Dung nham",
             "nameEn": "Magma Cap",
             "icon": "magma_cap",
             "note": "Nhặt khắp hầm, nhiều ở Tầng Nấm"
@@ -1759,13 +1759,13 @@ export const MINE_AREAS = [
             "note": "Trong bộ xương rồng; Lava Lurk rơi 15%"
           },
           {
-            "name": "Quả Óc Chó Vàng",
+            "name": "Hồ đào Vàng",
             "nameEn": "Golden Walnut",
             "icon": "golden_walnut",
             "note": "Tối đa 17 quả: 5 từ đá, 5 từ quái, 5 từ thùng, 1 từ rương thường và 1 từ rương hiếm đầu tiên"
           },
           {
-            "name": "Hạt Giống Cổ Đại",
+            "name": "Hạt Cổ đại",
             "nameEn": "Ancient Seed",
             "icon": "ancient_seed",
             "note": "Cắt vỏ nấm ở Tầng Nấm (0,5%)"
@@ -1777,13 +1777,13 @@ export const MINE_AREAS = [
             "note": "Rương thường/rương hiếm"
           },
           {
-            "name": "Củ Khoai Môn",
+            "name": "Gốc khoai môn",
             "nameEn": "Taro Tuber",
             "icon": "taro_tuber",
             "note": "Thùng kim loại, rương thường"
           },
           {
-            "name": "Hạt Dứa",
+            "name": "Hạt giống Dứa",
             "nameEn": "Pineapple Seeds",
             "icon": "pineapple_seeds",
             "note": "Thùng kim loại, rương thường"
@@ -1806,7 +1806,7 @@ export const MINE_AREAS = [
         "monsters": [],
         "fish": [
           {
-            "name": "Lươn Dung Nham",
+            "name": "Lươn Dung nham",
             "nameEn": "Lava Eel",
             "icon": "item_lava_eel",
             "note": "Câu trong dung nham ở Miệng Núi Lửa"
@@ -1814,7 +1814,7 @@ export const MINE_AREAS = [
         ],
         "other": [
           {
-            "name": "Mảnh Lăng Kính",
+            "name": "Mảnh Ngũ sắc",
             "nameEn": "Prismatic Shard",
             "icon": "item_prismatic_shard",
             "note": "Rương 1 Mảnh Lăng Kính ở lần đầu đến (không làm mới)"
@@ -1828,7 +1828,7 @@ export const MINE_AREAS = [
         "type": "special",
         "label": "Cửa hàng Người Lùn (cần Sách Dịch Tiếng Người Lùn) và hồ nước đổ đầy bình tưới; vẹt mở lối thoát ra ngoài với 5 Quả Óc Chó Vàng",
         "reward": {
-          "name": "Mảnh Than Hồng",
+          "name": "Mảnh Nham thạch",
           "nameEn": "Cinder Shard",
           "icon": "item_cinder_shard"
         }
@@ -1848,7 +1848,7 @@ export const MINE_AREAS = [
         "type": "chest",
         "label": "Rương chứa 1 Mảnh Lăng Kính ở lần đầu đến",
         "reward": {
-          "name": "Mảnh Lăng Kính",
+          "name": "Mảnh Ngũ sắc",
           "nameEn": "Prismatic Shard",
           "icon": "item_prismatic_shard"
         }
@@ -1858,7 +1858,7 @@ export const MINE_AREAS = [
         "type": "fish",
         "label": "Câu Lươn Dung Nham trong dung nham",
         "reward": {
-          "name": "Lươn Dung Nham",
+          "name": "Lươn Dung nham",
           "nameEn": "Lava Eel",
           "icon": "item_lava_eel"
         }
@@ -1899,7 +1899,7 @@ export const MINE_AREAS = [
             "note": "Mỏ sắt trên đường chính"
           },
           {
-            "name": "Than Đá",
+            "name": "Than đá",
             "nameEn": "Coal",
             "icon": "item_coal",
             "note": "Mỏ than ở lối phụ"
@@ -1907,7 +1907,7 @@ export const MINE_AREAS = [
         ],
         "gems": [
           {
-            "name": "Thạch Anh",
+            "name": "Thạch anh",
             "nameEn": "Quartz",
             "icon": "ing_quartz",
             "note": "Nhặt trên mặt đất"
@@ -1923,10 +1923,10 @@ export const MINE_AREAS = [
               "Tinh Chất Mặt Trời",
               "Tinh Chất Hư Vô",
               "Siêu Bom",
-              "Tinh Thể Đất",
+              "Tinh thể Đất",
               "Nhựa Sồi",
-              "Hộp Sọ Tiền Sử",
-              "Bàn Tay Xương",
+              "Đầu lâu Tiền sử",
+              "Xương Bàn tay",
               "Kẹo Đá Phép Thuật"
             ]
           },
@@ -1939,9 +1939,9 @@ export const MINE_AREAS = [
               "Nhựa Cây",
               "Quặng Đồng",
               "Tảo Trắng",
-              "Kim Cương",
-              "Cuộn Giấy Người Lùn III",
-              "Cuộn Giấy Người Lùn IV"
+              "Kim cương",
+              "Cuộn giấy Người lùn III",
+              "Cuộn giấy Người lùn IV"
             ]
           },
           {
@@ -1953,30 +1953,30 @@ export const MINE_AREAS = [
               "Nhựa Cây",
               "Quặng Sắt",
               "Tảo Trắng",
-              "Kim Cương",
-              "Cuộn Giấy Người Lùn III",
-              "Cuộn Giấy Người Lùn IV"
+              "Kim cương",
+              "Cuộn giấy Người lùn III",
+              "Cuộn giấy Người lùn IV"
             ]
           },
           {
-            "name": "Bộ Xương (Skeleton)",
+            "name": "Xương khô (Skeleton)",
             "nameEn": "Skeleton",
             "icon": "monster_skeleton",
             "drops": [
-              "Mảnh Xương",
+              "Mảnh xương vụn",
               "Kiếm Xương",
-              "Xương Bả Vai Tiền Sử"
+              "Xương bả Tiền sử"
             ],
             "note": "Ở lối phụ (có cả biến thể nguy hiểm)"
           },
           {
-            "name": "Pháp Sư Xương (Skeleton Mage)",
+            "name": "Phù thủy Xương (Skeleton Mage)",
             "nameEn": "Skeleton Mage",
             "icon": "monster_skeleton_mage",
             "drops": [
-              "Mảnh Xương",
+              "Mảnh xương vụn",
               "Kiếm Xương",
-              "Xương Bả Vai Tiền Sử"
+              "Xương bả Tiền sử"
             ],
             "note": "Ở lối phụ"
           }
@@ -1991,7 +1991,7 @@ export const MINE_AREAS = [
         "type": "special",
         "label": "Tượng Thần Chết cuối hầm trao Liềm Vàng (lần đầu); chạm lại để quay về cửa hầm",
         "reward": {
-          "name": "Liềm Vàng",
+          "name": "Liềm Hoàng kim",
           "nameEn": "Golden Scythe",
           "icon": "item_golden_scythe"
         }

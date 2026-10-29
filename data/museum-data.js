@@ -8,7 +8,7 @@
 export const MUSEUM_ITEMS = [
   {
     "id": "dwarf_scroll_i",
-    "name": "Cuộn Giấy Người Lùn I",
+    "name": "Cuộn giấy Người lùn I",
     "nameEn": "Dwarf Scroll I",
     "type": "artifact",
     "group": "Cổ vật",
@@ -18,7 +18,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "dwarf_scroll_ii",
-    "name": "Cuộn Giấy Người Lùn II",
+    "name": "Cuộn giấy Người lùn II",
     "nameEn": "Dwarf Scroll II",
     "type": "artifact",
     "group": "Cổ vật",
@@ -28,7 +28,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "dwarf_scroll_iii",
-    "name": "Cuộn Giấy Người Lùn III",
+    "name": "Cuộn giấy Người lùn III",
     "nameEn": "Dwarf Scroll III",
     "type": "artifact",
     "group": "Cổ vật",
@@ -38,7 +38,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "dwarf_scroll_iv",
-    "name": "Cuộn Giấy Người Lùn IV",
+    "name": "Cuộn giấy Người lùn IV",
     "nameEn": "Dwarf Scroll IV",
     "type": "artifact",
     "group": "Cổ vật",
@@ -48,7 +48,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "chipped_amphora",
-    "name": "Bình Gốm Sứt Mẻ",
+    "name": "Vò Sứt",
     "nameEn": "Chipped Amphora",
     "type": "artifact",
     "group": "Cổ vật",
@@ -58,7 +58,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "arrowhead",
-    "name": "Đầu Mũi Tên",
+    "name": "Mũi Mác",
     "nameEn": "Arrowhead",
     "type": "artifact",
     "group": "Cổ vật",
@@ -68,7 +68,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "ancient_doll",
-    "name": "Búp Bê Cổ Đại",
+    "name": "Búp bê Cổ đại",
     "nameEn": "Ancient Doll",
     "type": "artifact",
     "group": "Cổ vật",
@@ -78,7 +78,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "elvish_jewelry",
-    "name": "Trang Sức Tiên Tộc",
+    "name": "Trang sức Yêu tinh",
     "nameEn": "Elvish Jewelry",
     "type": "artifact",
     "group": "Cổ vật",
@@ -88,7 +88,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "chewing_stick",
-    "name": "Que Đánh Răng Cổ Xưa",
+    "name": "Que nhai",
     "nameEn": "Chewing Stick",
     "type": "artifact",
     "group": "Cổ vật",
@@ -98,7 +98,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "ornamental_fan",
-    "name": "Quạt Trang Trí",
+    "name": "Quạt trang trí",
     "nameEn": "Ornamental Fan",
     "type": "artifact",
     "group": "Cổ vật",
@@ -108,7 +108,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "dinosaur_egg",
-    "name": "Trứng Khủng Long Cổ Đại",
+    "name": "Trứng Khủng long",
     "nameEn": "Dinosaur Egg",
     "type": "artifact",
     "group": "Cổ vật",
@@ -118,7 +118,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "rare_disc",
-    "name": "Đĩa Hiếm",
+    "name": "Đĩa Quý hiếm",
     "nameEn": "Rare Disc",
     "type": "artifact",
     "group": "Cổ vật",
@@ -128,7 +128,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "ancient_sword",
-    "name": "Kiếm cổ",
+    "name": "Kiếm Cổ đại",
     "nameEn": "Ancient Sword",
     "type": "artifact",
     "group": "Cổ vật",
@@ -138,7 +138,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "rusty_spoon",
-    "name": "Thìa Gỉ Sét",
+    "name": "Thìa Rỉ sét",
     "nameEn": "Rusty Spoon",
     "type": "artifact",
     "group": "Cổ vật",
@@ -148,7 +148,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "rusty_spur",
-    "name": "Đinh Thúc Ngựa Gỉ",
+    "name": "Đinh Rỉ sét",
     "nameEn": "Rusty Spur",
     "type": "artifact",
     "group": "Cổ vật",
@@ -158,7 +158,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "rusty_cog",
-    "name": "Bánh Răng Gỉ",
+    "name": "Bánh răng Rỉ sét",
     "nameEn": "Rusty Cog",
     "type": "artifact",
     "group": "Cổ vật",
@@ -178,7 +178,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "ancient_seed",
-    "name": "Hạt Giống Cổ Đại",
+    "name": "Hạt Cổ đại",
     "nameEn": "Ancient Seed",
     "type": "artifact",
     "group": "Cổ vật",
@@ -188,7 +188,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "prehistoric_tool",
-    "name": "Công Cụ Tiền Sử",
+    "name": "Công cụ thời Tiền sử",
     "nameEn": "Prehistoric Tool",
     "type": "artifact",
     "group": "Cổ vật",
@@ -198,7 +198,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "dried_starfish",
-    "name": "Sao Biển Khô",
+    "name": "Xác khô sao biển",
     "nameEn": "Dried Starfish",
     "type": "artifact",
     "group": "Cổ vật",
@@ -208,7 +208,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "anchor",
-    "name": "Mỏ Neo",
+    "name": "Mỏ neo",
     "nameEn": "Anchor",
     "type": "artifact",
     "group": "Cổ vật",
@@ -218,7 +218,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "glass_shards",
-    "name": "Mảnh Thủy Tinh",
+    "name": "Mảnh Thủy tinh",
     "nameEn": "Glass Shards",
     "type": "artifact",
     "group": "Cổ vật",
@@ -228,7 +228,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "bone_flute",
-    "name": "Sáo xương",
+    "name": "Sáo Xương",
     "nameEn": "Bone Flute",
     "type": "artifact",
     "group": "Cổ vật",
@@ -238,7 +238,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "prehistoric_handaxe",
-    "name": "Rìu Tay Thời Tiền Sử",
+    "name": "Rìu đá thời Tiền sử",
     "nameEn": "Prehistoric Handaxe",
     "type": "artifact",
     "group": "Cổ vật",
@@ -248,7 +248,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "dwarvish_helm",
-    "name": "Mũ Giáp Người Lùn",
+    "name": "Mũ sắt Người lùn",
     "nameEn": "Dwarvish Helm",
     "type": "artifact",
     "group": "Cổ vật",
@@ -258,7 +258,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "dwarf_gadget",
-    "name": "Thiết bị người lùn",
+    "name": "Thiết bị của Người lùn",
     "nameEn": "Dwarf Gadget",
     "type": "artifact",
     "group": "Cổ vật",
@@ -268,7 +268,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "ancient_drum",
-    "name": "Trống Cổ",
+    "name": "Trống Cổ đại",
     "nameEn": "Ancient Drum",
     "type": "artifact",
     "group": "Cổ vật",
@@ -278,7 +278,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "golden_mask",
-    "name": "Mặt Nạ Vàng",
+    "name": "Mặt nạ Vàng",
     "nameEn": "Golden Mask",
     "type": "artifact",
     "group": "Cổ vật",
@@ -288,7 +288,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "golden_relic",
-    "name": "Di Vật Mạ Vàng Thần Thoại",
+    "name": "Cổ vật Hoàng kim",
     "nameEn": "Golden Relic",
     "type": "artifact",
     "group": "Cổ vật",
@@ -298,7 +298,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "strange_doll_green",
-    "name": "Búp Bê Kỳ Lạ (xanh lá)",
+    "name": "Búp bê Kỳ lạ (xanh lá)",
     "nameEn": "Strange Doll (green)",
     "type": "artifact",
     "group": "Cổ vật",
@@ -308,7 +308,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "strange_doll_yellow",
-    "name": "Búp Bê Kỳ Lạ (vàng)",
+    "name": "Búp bê Kỳ lạ (vàng)",
     "nameEn": "Strange Doll (yellow)",
     "type": "artifact",
     "group": "Cổ vật",
@@ -318,7 +318,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "prehistoric_scapula",
-    "name": "Xương Bả Vai Tiền Sử",
+    "name": "Xương bả Tiền sử",
     "nameEn": "Prehistoric Scapula",
     "type": "artifact",
     "group": "Cổ vật",
@@ -328,7 +328,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "prehistoric_tibia",
-    "name": "Xương Chày Tiền Sử",
+    "name": "Xương ống Tiền sử",
     "nameEn": "Prehistoric Tibia",
     "type": "artifact",
     "group": "Cổ vật",
@@ -338,7 +338,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "prehistoric_skull",
-    "name": "Hộp Sọ Tiền Sử",
+    "name": "Đầu lâu Tiền sử",
     "nameEn": "Prehistoric Skull",
     "type": "artifact",
     "group": "Cổ vật",
@@ -348,7 +348,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "skeletal_hand",
-    "name": "Bàn Tay Xương",
+    "name": "Xương Bàn tay",
     "nameEn": "Skeletal Hand",
     "type": "artifact",
     "group": "Cổ vật",
@@ -358,7 +358,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "prehistoric_rib",
-    "name": "Xương Sườn Tiền Sử",
+    "name": "Xương sườn Tiền sử",
     "nameEn": "Prehistoric Rib",
     "type": "artifact",
     "group": "Cổ vật",
@@ -368,7 +368,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "prehistoric_vertebra",
-    "name": "Đốt Sống Tiền Sử",
+    "name": "Xương sống Tiền sử",
     "nameEn": "Prehistoric Vertebra",
     "type": "artifact",
     "group": "Cổ vật",
@@ -378,7 +378,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "skeletal_tail",
-    "name": "Đuôi Xương",
+    "name": "Xương Đuôi",
     "nameEn": "Skeletal Tail",
     "type": "artifact",
     "group": "Cổ vật",
@@ -388,7 +388,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "nautilus_fossil",
-    "name": "Hóa Thạch Ốc Anh Vũ",
+    "name": "Hóa thạch Ốc biển",
     "nameEn": "Nautilus Fossil",
     "type": "artifact",
     "group": "Cổ vật",
@@ -398,7 +398,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "amphibian_fossil",
-    "name": "Hóa Thạch Lưỡng Cư",
+    "name": "Hóa thạch loài Lưỡng cư",
     "nameEn": "Amphibian Fossil",
     "type": "artifact",
     "group": "Cổ vật",
@@ -408,7 +408,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "palm_fossil",
-    "name": "Hóa Thạch Cây Cọ",
+    "name": "Hóa thạch Cây cọ",
     "nameEn": "Palm Fossil",
     "type": "artifact",
     "group": "Cổ vật",
@@ -418,7 +418,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "trilobite",
-    "name": "Bọ Ba Thùy",
+    "name": "Bọ Ba thùy",
     "nameEn": "Trilobite",
     "type": "artifact",
     "group": "Cổ vật",
@@ -438,7 +438,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "earth_crystal",
-    "name": "Tinh thể đất",
+    "name": "Tinh thể Đất",
     "nameEn": "Earth Crystal",
     "type": "mineral",
     "group": "Đá quý",
@@ -448,7 +448,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "frozen_tear",
-    "name": "Nước mắt băng",
+    "name": "Băng giọt lệ",
     "nameEn": "Frozen Tear",
     "type": "mineral",
     "group": "Đá quý",
@@ -458,7 +458,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "fire_quartz",
-    "name": "Thạch anh lửa",
+    "name": "Thạch anh Lửa",
     "nameEn": "Fire Quartz",
     "type": "mineral",
     "group": "Đá quý",
@@ -468,7 +468,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "emerald",
-    "name": "Ngọc Lục Bảo",
+    "name": "Ngọc Lục bảo",
     "nameEn": "Emerald",
     "type": "mineral",
     "group": "Đá quý",
@@ -488,7 +488,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "ruby",
-    "name": "Hồng Ngọc",
+    "name": "Hồng ngọc",
     "nameEn": "Ruby",
     "type": "mineral",
     "group": "Đá quý",
@@ -498,7 +498,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "amethyst",
-    "name": "Thạch Anh Tím",
+    "name": "Thạch anh Tím",
     "nameEn": "Amethyst",
     "type": "mineral",
     "group": "Đá quý",
@@ -528,7 +528,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "diamond",
-    "name": "Kim Cương Tinh Khiết",
+    "name": "Kim cương",
     "nameEn": "Diamond",
     "type": "mineral",
     "group": "Đá quý",
@@ -538,7 +538,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "prismatic_shard",
-    "name": "Mảnh Lăng Kính",
+    "name": "Mảnh Ngũ sắc",
     "nameEn": "Prismatic Shard",
     "type": "mineral",
     "group": "Đá quý",
@@ -548,7 +548,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "tigerseye",
-    "name": "Đá mắt hổ",
+    "name": "Đá Mắt cọp",
     "nameEn": "Tigerseye",
     "type": "mineral",
     "group": "Khoáng thạch",
@@ -558,7 +558,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "opal",
-    "name": "Đá Opal",
+    "name": "Ngọc Mắt mèo",
     "nameEn": "Opal",
     "type": "mineral",
     "group": "Khoáng thạch",
@@ -568,7 +568,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "fire_opal",
-    "name": "Opal Lửa",
+    "name": "Ngọc Mắt mèo lửa",
     "nameEn": "Fire Opal",
     "type": "mineral",
     "group": "Khoáng thạch",
@@ -708,7 +708,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "lunarite",
-    "name": "Đá Mặt Trăng",
+    "name": "Đá Mặt trăng",
     "nameEn": "Lunarite",
     "type": "mineral",
     "group": "Khoáng thạch",
@@ -718,7 +718,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "malachite",
-    "name": "Đá Lông Công",
+    "name": "Đá Khổng tước",
     "nameEn": "Malachite",
     "type": "mineral",
     "group": "Khoáng thạch",
@@ -738,7 +738,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "lemon_stone",
-    "name": "Đá chanh",
+    "name": "Đá Chanh",
     "nameEn": "Lemon Stone",
     "type": "mineral",
     "group": "Khoáng thạch",
@@ -758,7 +758,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "orpiment",
-    "name": "Thư Hoàng",
+    "name": "Đá Thư hoàng",
     "nameEn": "Orpiment",
     "type": "mineral",
     "group": "Khoáng thạch",
@@ -768,7 +768,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "petrified_slime",
-    "name": "Chất Nhờn Hóa Đá",
+    "name": "Xà-lam hóa thạch",
     "nameEn": "Petrified Slime",
     "type": "mineral",
     "group": "Khoáng thạch",
@@ -778,7 +778,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "thunder_egg",
-    "name": "Trứng Sấm",
+    "name": "Trứng Sét",
     "nameEn": "Thunder Egg",
     "type": "mineral",
     "group": "Khoáng thạch",
@@ -788,7 +788,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "pyrite",
-    "name": "Pyrit (Vàng Găm)",
+    "name": "Đá Vàng găm",
     "nameEn": "Pyrite",
     "type": "mineral",
     "group": "Khoáng thạch",
@@ -798,7 +798,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "ocean_stone",
-    "name": "Đá Đại Dương",
+    "name": "Đá Đại dương",
     "nameEn": "Ocean Stone",
     "type": "mineral",
     "group": "Khoáng thạch",
@@ -808,7 +808,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "ghost_crystal",
-    "name": "Tinh Thể Ma",
+    "name": "Ma thạch",
     "nameEn": "Ghost Crystal",
     "type": "mineral",
     "group": "Khoáng thạch",
@@ -818,7 +818,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "jasper",
-    "name": "Đá Jasper",
+    "name": "Ngọc Thạch anh",
     "nameEn": "Jasper",
     "type": "mineral",
     "group": "Khoáng thạch",
@@ -838,7 +838,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "marble",
-    "name": "Đá Cẩm Thạch",
+    "name": "Đá Cẩm thạch",
     "nameEn": "Marble",
     "type": "mineral",
     "group": "Khoáng thạch",
@@ -848,7 +848,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "sandstone",
-    "name": "Sa Thạch",
+    "name": "Sa thạch",
     "nameEn": "Sandstone",
     "type": "mineral",
     "group": "Khoáng thạch",
@@ -858,7 +858,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "granite",
-    "name": "Đá Granit",
+    "name": "Đá Hoa cương",
     "nameEn": "Granite",
     "type": "mineral",
     "group": "Khoáng thạch",
@@ -878,7 +878,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "limestone",
-    "name": "Đá Vôi",
+    "name": "Đá vôi",
     "nameEn": "Limestone",
     "type": "mineral",
     "group": "Khoáng thạch",
@@ -888,7 +888,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "soapstone",
-    "name": "Đá Xà Phòng",
+    "name": "Đá Xà phòng",
     "nameEn": "Soapstone",
     "type": "mineral",
     "group": "Khoáng thạch",
@@ -918,7 +918,7 @@ export const MUSEUM_ITEMS = [
   },
   {
     "id": "obsidian",
-    "name": "Đá vỏ chai",
+    "name": "Đá Vỏ chai",
     "nameEn": "Obsidian",
     "type": "mineral",
     "group": "Khoáng thạch",

@@ -73,6 +73,8 @@ Thấy số liệu sai hay có ý tưởng mới? Mở [Issue](https://github.co
 
 Số liệu (giá bán, năng lượng, sở thích quà, sinh nhật) được đối chiếu với [Official Stardew Valley Wiki](https://stardewvalleywiki.com/).
 
+Tên tiếng Việt của vật phẩm, công thức, công cụ, quái vật và gói Nhà Cộng Đồng theo bản Việt hóa [Stardew Valley Viethoa](https://www.nexusmods.com/stardewvalley/mods/8409) của **Kou & Luxanna**, dùng theo quyền "Asset use permission" của mod (được dùng nếu ghi công tác giả). Cảm ơn nhóm dịch!
+
 ## Giấy phép
 
 Mã nguồn phát hành theo [giấy phép MIT](LICENSE). Icon vật phẩm, chân dung NPC và mọi nội dung thuộc trò chơi Stardew Valley là tài sản của ConcernedApe, không nằm trong giấy phép này. Đây là dự án của người hâm mộ, không liên kết với ConcernedApe.
