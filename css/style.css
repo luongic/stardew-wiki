@@ -441,6 +441,8 @@ code {
     0 var(--px) 0 var(--ink), 0 calc(var(--px) * -1) 0 var(--ink),
     var(--px) var(--px) 0 var(--ink), var(--px) calc(var(--px) * 2) 0 var(--ink);
 }
+/* Each phrase wraps as a whole ("Co-op" never splits at its hyphen) */
+.hero__subtitle span { white-space: nowrap; }
 .hero__subtitle {
   color: var(--gold);
   font-size: 1.05rem;

@@ -1,7 +1,7 @@
 {
   "name": "stardew-valley-wiki-vn",
   "version": "1.0.0",
-  "description": "Cẩm nang tra cứu toàn diện Stardew Valley: Tất cả Công thức Chế biến & Hướng dẫn Nhiệm vụ Thường + Ẩn (Bản 1.6+)",
+  "description": "Cẩm nang Stardew Valley 1.6+ tiếng Việt: tra cứu công thức, vật phẩm, dân làng, nhiệm vụ, Nhà Cộng Đồng, bảo tàng, hầm mỏ, bản đồ tương tác; theo dõi tiến độ và đồng bộ co-op",
   "type": "module",
   "scripts": {
     "dev": "serve -l 3000 .",
@@ -10,12 +10,17 @@
     "emulators": "npx -y firebase-tools@13 emulators:start --only auth,firestore --project demo-stardew"
   },
   "keywords": [
-    "stardew-valley",
-    "wiki",
-    "crafting",
+    "co-op",
+    "community-center",
     "cooking",
+    "crafting",
+    "map",
+    "mines",
+    "museum",
     "quests",
-    "stardew-1.6"
+    "stardew-1.6",
+    "stardew-valley",
+    "wiki"
   ],
   "author": "luongic",
   "license": "MIT",

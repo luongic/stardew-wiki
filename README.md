@@ -1,6 +1,6 @@
 # Cẩm Nang Stardew Valley (Tiếng Việt)
 
-Trang tra cứu tĩnh cho Stardew Valley 1.6: công thức chế biến, từ điển vật phẩm, dân làng và lịch trình NPC, hướng dẫn nhiệm vụ, gói Nhà Cộng Đồng, bảo tàng, kế hoạch nguyên liệu và theo dõi tiến độ. Tiến độ được lưu trong trình duyệt bằng localStorage; người chơi co-op có thể tạo phòng để đồng bộ tiến độ với nhau qua Firebase.
+Cẩm nang tiếng Việt cho Stardew Valley 1.6+: công thức chế biến, từ điển vật phẩm, dân làng và lịch trình NPC, hướng dẫn nhiệm vụ, gói Nhà Cộng Đồng, bảo tàng, hầm mỏ, bản đồ tương tác, kế hoạch nguyên liệu và theo dõi tiến độ. Tiến độ và ghi chú được lưu trong trình duyệt; người chơi co-op có thể tạo phòng để đồng bộ với nhau qua Firebase.
 
 **Xem trang:** https://luongic.github.io/stardew-wiki/
 
