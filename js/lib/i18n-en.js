@@ -260,6 +260,31 @@ export const UI_EN = {
   'Đăng nhập Google hiện chưa được hỗ trợ trên trang này.': "Google sign-in isn't supported on this site yet.",
   'Bạn đã đóng cửa sổ đăng nhập.': 'You closed the sign-in window.', 'vừa xong': 'just now',
 
+  // ---- Farm planner ----
+  'Nông Trại': 'Farm', 'Lên Kế Hoạch Nông Trại': 'Farm Planner',
+  'Kéo công trình, vòi tưới, cây trồng, hàng rào... từ bảng bên trái thả vào nông trại để hình dung và sắp xếp. Mỗi món chiếm đúng số ô như trong game. Có thể nạp file save để xem đúng nông trại của bạn.': 'Drag buildings, sprinklers, crops, fences... from the left panel onto the farm to plan your layout. Everything takes the same number of tiles as in the game. Load a save file to see your real farm.',
+  'Chọn / Di chuyển': 'Select / Move', 'Cục tẩy': 'Eraser', 'Hoàn tác': 'Undo', 'Làm lại': 'Redo', 'Lưới ô': 'Grid',
+  'Vùng tưới & bù nhìn': 'Sprinkler & scarecrow range', 'Nạp file save': 'Load save file', 'Tải ảnh': 'Save image', 'Làm trống': 'Clear',
+  'Cách lấy file save': 'Where to find your save file', 'Mở thư mục mang tên nông trại (VD:': 'Open the folder named after your farm (e.g.',
+  'Công trình': 'Buildings', 'Trồng trọt & Tưới': 'Farming & Watering', 'Cây trồng': 'Crops', 'Cây xanh': 'Trees',
+  'Hàng rào & Cổng': 'Fences & Gates', 'Lối đi, Sàn & Cỏ': 'Paths, Floors & Grass', 'Máy móc & Rương': 'Machines & Chests', 'Đá, gốc cây & khác': 'Debris & other',
+  'Đang chọn': 'Current tool', 'ô': 'tiles', 'Thống kê': 'Summary', 'Ô đất đã cuốc': 'Tilled soil', 'Ô có cây trồng': 'Planted tiles',
+  'Ô đất được tưới tự động': 'Auto-watered soil', 'Nguyên liệu cần': 'Materials needed',
+  'Tổng nguyên liệu để chế tạo / xây mọi thứ trên bản đồ (trừ nhà chính và nhà kính).': 'Materials to craft / build everything on the map (except the farmhouse and greenhouse).',
+  'Bấm hoặc kéo để vẽ. Giữ Shift khi kéo để tô cả vùng chữ nhật.': 'Click or drag to paint. Hold Shift while dragging to fill a rectangle.',
+  'Bấm vào bản đồ để đặt. Ô xanh là đặt được, ô đỏ là không.': 'Click the map to place it. Green tiles fit, red tiles do not.',
+  'Bấm hoặc kéo để xoá đồ vật, ô đất, lối đi.': 'Click or drag to remove objects, soil and paths.',
+  'Kéo một món từ bảng bên trái thả vào nông trại, hoặc bấm chọn rồi bấm lên bản đồ. Bấm vào đồ đã đặt để chọn, kéo để di chuyển.': 'Drag something from the left panel onto the farm, or pick it and click the map. Click a placed object to select it, drag to move it.',
+  'Xây và cuốc được': 'Buildable & tillable', 'Chỉ xây được': 'Buildable only', 'Chỉ cuốc được': 'Tillable only', 'Chỉ đi qua': 'Walkable only', 'Không dùng được': 'Blocked',
+  'Không đặt được ở đây': "Can't place that here", 'Đã tải ảnh nông trại': 'Farm image saved', 'Đã nạp nông trại từ file save': 'Farm loaded from save',
+  'Không đọc được file save này': "Couldn't read this save file", 'Đã làm trống nông trại': 'Farm cleared',
+  'Xoá mọi thứ trên bản đồ, chỉ giữ nhà chính, nhà kính và thùng chuyển hàng?': 'Clear everything except the farmhouse, greenhouse and shipping bin?',
+  'Đây không phải file save chính. Hãy chọn file có tên giống thư mục save (VD: Farm_123456789), không phải file SaveGameInfo.': "That isn't the main save file. Pick the file named like the save folder (e.g. Farm_123456789), not SaveGameInfo.",
+  'File save bị lỗi hoặc không đầy đủ.': 'The save file is damaged or incomplete.', 'Không tìm thấy nông trại trong file save.': 'No farm found in this save file.',
+  'File chỉ được đọc ngay trên trình duyệt của bạn, không gửi đi đâu.': 'The file is read in your browser only and never uploaded.',
+  'Ô đất đã cuốc (Tilled Soil)': 'Tilled Soil',
+  ') và chọn file': ') and pick the file', 'cùng tên': 'with the same name', 'với thư mục, không phải file': 'as the folder, not',
+  '(Henrik Peinar, Apache-2.0). Hình công trình, cây và vật phẩm từ game Stardew Valley (ConcernedApe), qua Official Stardew Valley Wiki. Kéo bản đồ để di chuyển, Ctrl/Cmd + cuộn chuột để phóng to.': 'project (Henrik Peinar, Apache-2.0). Building, tree and item art from Stardew Valley (ConcernedApe), via the Official Stardew Valley Wiki. Drag the map to pan, Ctrl/Cmd + scroll to zoom.',
   // ---- Coffee & footer ----
   'Mã QR chuyển khoản ủng hộ': 'Donation QR code',
   'Quét mã bằng ứng dụng ngân hàng hoặc MoMo': 'Scan with a Vietnamese banking app or MoMo',
@@ -279,6 +304,8 @@ export const UI_EN = {
 // Patterns for text that mixes words with numbers or names. Replacement
 // functions receive the regex groups plus `sub`, which translates a piece.
 export const PATTERNS_EN = [
+  [/^File save dùng bản đồ "(.+)"\. Hiện mới có bản đồ Tiêu chuẩn nên vị trí có thể lệch\.$/, 'This save uses the "$1" farm. Only the Standard farm map is available so far, so positions may be off.'],
+  [/^Bản đồ nông trại và dữ liệu ô xây\/cuốc được từ dự án$/, 'Farm map and buildable/tillable tile data from the'],
   [/^Gói (.+? Bundle(?: \(bản Remix\))?)(?: Community Center)?$/, (m, b) => b.replace(' (bản Remix)', ' (Remix)')],
   [/^1\.6 Mới$/, 'New in 1.6'],
   [/^Thư từ (.+?) khi đạt (\d+) Tim tình bạn$/, (m, who, n) => `Mail from ${who.replace(/^cậu bé (rừng xanh )?/, '')} at ${n} hearts`],

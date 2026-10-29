@@ -1,6 +1,6 @@
 # Cẩm Nang Stardew Valley (Tiếng Việt)
 
-Cẩm nang tiếng Việt cho Stardew Valley 1.6+: công thức chế biến, từ điển vật phẩm, dân làng và lịch trình NPC, hướng dẫn nhiệm vụ, gói Nhà Cộng Đồng, bảo tàng, hầm mỏ, bản đồ tương tác, kế hoạch nguyên liệu và theo dõi tiến độ. Tiến độ và ghi chú được lưu trong trình duyệt; người chơi co-op có thể tạo phòng để đồng bộ với nhau qua Firebase.
+Cẩm nang tiếng Việt cho Stardew Valley 1.6+: công thức chế biến, từ điển vật phẩm, dân làng và lịch trình NPC, hướng dẫn nhiệm vụ, gói Nhà Cộng Đồng, bảo tàng, hầm mỏ, bản đồ tương tác, lên kế hoạch nông trại (kéo thả, đọc file save), kế hoạch nguyên liệu và theo dõi tiến độ. Tiến độ và ghi chú được lưu trong trình duyệt; người chơi co-op có thể tạo phòng để đồng bộ với nhau qua Firebase.
 
 **Xem trang:** https://luongic.github.io/stardew-wiki/
 
@@ -20,15 +20,16 @@ index.html            Khung trang, toolbar, các modal tĩnh
 css/style.css         Hệ thiết kế pixel (token ở :root)
 js/main.js            Điểm khởi động
 js/app.js             Controller: tab, tìm kiếm, bộ lọc, event delegation
-js/lib/               storage, progress (kho tiến độ chung), icons (bảng icon), audio, particles, ui (toast/modal), templates
+js/lib/               storage, progress (kho tiến độ chung), icons (bảng icon), i18n (VI/EN), farm-save (đọc file save), audio, particles, ui (toast/modal), templates
 js/sync/              Phòng co-op: coop.js (Firebase), coop-ui.js (popup), firebase-config.js (sinh từ .env)
 scripts/              gen-firebase-config.mjs
 firestore.rules       Security Rules cho phòng co-op
-js/tabs/              Mỗi tab một module: recipes, items, npcs, quests, bundles, museum, mines, map, planner, tracker
+js/tabs/              Mỗi tab một module: recipes, items, npcs, quests, bundles, museum, mines, map, farm, quiz, planner, tracker
 data/*.js             Dữ liệu công thức, vật phẩm, NPC + lịch sự kiện, nhiệm vụ, gói Nhà Cộng Đồng, bảo tàng, hầm mỏ, địa điểm và tọa độ bản đồ
 assets/icons/         Icon vật phẩm (48x48 PNG từ Official Wiki)
 assets/portraits/     Chân dung NPC
 assets/maps/          Bản đồ gốc từ game (qua Official Wiki)
+assets/farm/          Ảnh nền nông trại và hình công trình/cây cho tab Nông Trại
 ```
 
 ### Thêm hành vi mới
@@ -72,6 +73,8 @@ Thấy số liệu sai hay có ý tưởng mới? Mở [Issue](https://github.co
 ## Nguồn dữ liệu
 
 Số liệu (giá bán, năng lượng, sở thích quà, sinh nhật) được đối chiếu với [Official Stardew Valley Wiki](https://stardewvalleywiki.com/).
+
+Tab Nông Trại dùng ảnh nền nông trại Tiêu chuẩn và dữ liệu ô đi/xây/cuốc được từ dự án [stardewplanner](https://github.com/hpeinar/stardewplanner) của Henrik Peinar, theo [giấy phép Apache-2.0](assets/farm/LICENSE-stardewplanner.md). Dữ liệu ô đã được gộp lại thành lưới ký tự trong `data/farm-data.js`; ảnh nền giữ nguyên. Hình công trình và cây lấy từ Official Stardew Valley Wiki, thu nhỏ về tỉ lệ 16 px mỗi ô.
 
 Tên tiếng Việt của vật phẩm, công thức, công cụ, quái vật và gói Nhà Cộng Đồng theo bản Việt hóa [Stardew Valley Viethoa](https://www.nexusmods.com/stardewvalley/mods/8409) của **Kou & Luxanna**, dùng theo quyền "Asset use permission" của mod (được dùng nếu ghi công tác giả). Cảm ơn nhóm dịch!
 

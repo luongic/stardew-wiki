@@ -122,6 +122,9 @@
       <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="map">
         <i data-icon="map"></i> <span>Bản Đồ</span>
       </button>
+      <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="farm">
+        <i data-icon="farm"></i> <span>Nông Trại</span>
+      </button>
       <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="quiz">
         <i data-icon="quiz"></i> <span>Đố Vui</span>
       </button>
@@ -406,6 +409,61 @@
             <aside class="map-info" id="mapInfo"></aside>
           </div>
           <p class="panel__hint map-credit">Bản đồ gốc từ game Stardew Valley (ConcernedApe), qua Official Stardew Valley Wiki. Kéo để di chuyển, cuộn chuột hoặc chụm hai ngón để phóng to. Vị trí dân làng lấy theo trình mô phỏng lịch trình và chỉ mang tính gần đúng.</p>
+        </div>
+      </section>
+
+      <!-- ======= TAB: FARM PLANNER ======= -->
+      <section id="tab-farm" class="tab-panel" role="tabpanel" hidden>
+        <div class="panel farm-panel">
+          <div class="panel__head">
+            <h2 class="panel__title"><i data-icon="farm"></i> Lên Kế Hoạch Nông Trại</h2>
+          </div>
+          <p class="panel__hint">Kéo công trình, vòi tưới, cây trồng, hàng rào... từ bảng bên trái thả vào nông trại để hình dung và sắp xếp. Mỗi món chiếm đúng số ô như trong game. Có thể nạp file save để xem đúng nông trại của bạn.</p>
+          <div class="farm-bar">
+            <div class="farm-bar__group">
+              <button class="btn btn--ghost btn--sm" type="button" data-action="farm-tool" data-tool="select"><i data-icon="search"></i> Chọn / Di chuyển</button>
+              <button class="btn btn--ghost btn--sm" type="button" data-action="farm-tool" data-tool="erase"><i data-icon="trash"></i> Cục tẩy</button>
+              <button class="btn btn--ghost btn--sm" type="button" data-action="farm-undo" title="Ctrl/Cmd + Z">Hoàn tác</button>
+              <button class="btn btn--ghost btn--sm" type="button" data-action="farm-redo" title="Ctrl/Cmd + Shift + Z">Làm lại</button>
+            </div>
+            <div class="farm-bar__group">
+              <button class="btn btn--ghost btn--sm" type="button" data-action="farm-zoom" data-step="-1" aria-label="Thu nhỏ">−</button>
+              <span class="map-bar__zoom-label" id="farmZoomLabel">x1</span>
+              <button class="btn btn--ghost btn--sm" type="button" data-action="farm-zoom" data-step="1" aria-label="Phóng to">+</button>
+              <button class="btn btn--ghost btn--sm" type="button" data-action="farm-zoom" data-step="fit">Vừa khung</button>
+            </div>
+            <div class="farm-bar__group">
+              <label class="toggle"><input type="checkbox" class="px-check" id="farmGridToggle" data-action="farm-grid"> <span>Lưới ô</span></label>
+              <label class="toggle"><input type="checkbox" class="px-check" id="farmRangeToggle" data-action="farm-ranges"> <span>Vùng tưới & bù nhìn</span></label>
+            </div>
+            <div class="farm-bar__group">
+              <button class="btn btn--blue btn--sm" type="button" data-action="farm-import"><i data-icon="upload"></i> Nạp file save</button>
+              <button class="btn btn--ghost btn--sm" type="button" data-action="farm-export"><i data-icon="download"></i> Tải ảnh</button>
+              <button class="btn btn--ghost btn--sm" type="button" data-action="farm-clear"><i data-icon="trash"></i> Làm trống</button>
+              <input type="file" id="farmSaveInput" hidden>
+            </div>
+          </div>
+          <div class="farm-layout">
+            <aside class="farm-palette" id="farmPalette"></aside>
+            <div class="farm-viewport" id="farmViewport">
+              <div class="farm-stage" id="farmStage">
+                <canvas id="farmCanvas" class="farm-canvas"></canvas>
+                <canvas id="farmOverlay" class="farm-canvas farm-canvas--overlay"></canvas>
+              </div>
+              <div class="farm-flash" id="farmFlash" hidden></div>
+            </div>
+            <aside class="farm-side" id="farmSide"></aside>
+          </div>
+          <details class="farm-help">
+            <summary><i data-icon="question"></i> Cách lấy file save</summary>
+            <ul>
+              <li><strong>Windows:</strong> <code>%AppData%\StardewValley\Saves\</code></li>
+              <li><strong>macOS / Linux:</strong> <code>~/.config/StardewValley/Saves/</code></li>
+              <li>Mở thư mục mang tên nông trại (VD: <code>Farm_123456789</code>) và chọn file <strong>cùng tên</strong> với thư mục, không phải file <code>SaveGameInfo</code>.</li>
+              <li>File chỉ được đọc ngay trên trình duyệt của bạn, không gửi đi đâu.</li>
+            </ul>
+          </details>
+          <p class="panel__hint map-credit">Bản đồ nông trại và dữ liệu ô xây/cuốc được từ dự án <a href="https://github.com/hpeinar/stardewplanner" target="_blank" rel="noopener">stardewplanner</a> (Henrik Peinar, Apache-2.0). Hình công trình, cây và vật phẩm từ game Stardew Valley (ConcernedApe), qua Official Stardew Valley Wiki. Kéo bản đồ để di chuyển, Ctrl/Cmd + cuộn chuột để phóng to.</p>
         </div>
       </section>
 
