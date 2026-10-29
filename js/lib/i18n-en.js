@@ -288,7 +288,13 @@ export const UI_EN = {
   'Không có loài cá nào khớp với bộ lọc.': 'No fish match these filters.', 'Huyền thoại': 'Legendary', 'Đánh dấu đã câu được': 'Mark as caught',
   // ---- Farm planner ----
   'Nông Trại': 'Farm', 'Lên Kế Hoạch Nông Trại': 'Farm Planner',
-  'Kéo công trình, vòi tưới, cây trồng, hàng rào... từ bảng bên trái thả vào nông trại để hình dung và sắp xếp. Mỗi món chiếm đúng số ô như trong game. Có thể nạp file save để xem đúng nông trại của bạn.': 'Drag buildings, sprinklers, crops, fences... from the left panel onto the farm to plan your layout. Everything takes the same number of tiles as in the game. Load a save file to see your real farm.',
+  'Kéo công trình, vòi tưới, cây trồng, hàng rào... từ bảng bên trái thả vào nông trại để hình dung và sắp xếp. Mỗi món chiếm đúng số ô như trong game. Có thể nạp file save để xem đúng nông trại của bạn, và xuất thiết kế ra file JSON để gửi người khác mở lại, tham khảo hoặc chỉnh tiếp.': 'Drag buildings, sprinklers, crops, fences... from the left panel onto the farm to plan your layout. Everything takes the same number of tiles as in the game. Load a save file to see your real farm, and export the layout as JSON so others can open, reuse or edit it.',
+  'Mở file save / JSON': 'Open save / JSON', 'Mẫu thiết kế': 'Layouts', 'Mẫu thiết kế nông trại': 'Farm layouts',
+  'Bố cục mẫu cho bản đồ Tiêu chuẩn, xếp theo lối chơi. Nạp mẫu sẽ thay bản đồ hiện tại (bấm Hoàn tác để quay lại), rồi bạn chỉnh tiếp tuỳ ý.': 'Ready-made layouts for the Standard farm, by play style. Loading one replaces the current map (Undo brings it back); then edit it as you like.',
+  'Mức độ': 'Level', 'món đã đặt': 'placed items', 'Dùng mẫu này': 'Use this layout', 'Đã nạp mẫu': 'Layout loaded', 'File save của game hoặc file thiết kế JSON': 'A game save file or a layout JSON file', 'Xuất JSON': 'Export JSON',
+  'Tải thiết kế để chia sẻ, người khác mở lại và chỉnh tiếp được': 'Download the layout to share; others can open and keep editing it',
+  'Đã tải file thiết kế nông trại (JSON)': 'Farm layout downloaded (JSON)', 'Đã mở file thiết kế nông trại': 'Farm layout opened',
+  'File JSON này không phải thiết kế nông trại của Cẩm Nang.': "This JSON file isn't a farm layout from this guide.", 'File JSON bị lỗi.': 'The JSON file is damaged.',
   'Chọn / Di chuyển': 'Select / Move', 'Cục tẩy': 'Eraser', 'Hoàn tác': 'Undo', 'Làm lại': 'Redo', 'Lưới ô': 'Grid',
   'Vùng tưới & bù nhìn': 'Sprinkler & scarecrow range', 'Độ đậm vùng': 'Range opacity', 'Độ đậm vùng tưới & bù nhìn': 'Opacity of sprinkler & scarecrow ranges', 'Nạp file save': 'Load save file', 'Tải ảnh': 'Save image', 'Làm trống': 'Clear',
   'Cách lấy file save': 'Where to find your save file', 'Mở thư mục mang tên nông trại (VD:': 'Open the folder named after your farm (e.g.',
@@ -338,6 +344,7 @@ export const UI_EN = {
 // Patterns for text that mixes words with numbers or names. Replacement
 // functions receive the regex groups plus `sub`, which translates a piece.
 export const PATTERNS_EN = [
+  [/^Bỏ qua (\d+) mục không hợp lệ$/, 'Skipped $1 invalid entries'],
   [/^Xem (\d+) công thức khớp ở tab Công Thức$/, 'See $1 matching recipes in the Recipes tab'],
   [new RegExp(`^${DOW_RE}, ngày (\\d+) (Mùa Xuân|Mùa Hạ|Mùa Thu|Mùa Đông), năm (\\d+)$`), (m, dow, d, s, y) => `${DOW[dow]}, ${SEASON[s]} ${d}, Year ${y}`],
   [/^sau (\d+) ngày \((\d+) (Xuân|Hạ|Thu|Đông)\)$/, (m, n, d, s) => `in ${n} days (${({ 'Xuân': 'Spring', 'Hạ': 'Summer', 'Thu': 'Fall', 'Đông': 'Winter' })[s]} ${d})`],

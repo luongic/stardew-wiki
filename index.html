@@ -446,7 +446,7 @@
           <div class="panel__head">
             <h2 class="panel__title"><i data-icon="farm"></i> Lên Kế Hoạch Nông Trại</h2>
           </div>
-          <p class="panel__hint">Kéo công trình, vòi tưới, cây trồng, hàng rào... từ bảng bên trái thả vào nông trại để hình dung và sắp xếp. Mỗi món chiếm đúng số ô như trong game. Có thể nạp file save để xem đúng nông trại của bạn.</p>
+          <p class="panel__hint">Kéo công trình, vòi tưới, cây trồng, hàng rào... từ bảng bên trái thả vào nông trại để hình dung và sắp xếp. Mỗi món chiếm đúng số ô như trong game. Có thể nạp file save để xem đúng nông trại của bạn, và xuất thiết kế ra file JSON để gửi người khác mở lại, tham khảo hoặc chỉnh tiếp.</p>
           <div class="farm-bar">
             <div class="farm-bar__group">
               <button class="btn btn--ghost btn--sm" type="button" data-action="farm-tool" data-tool="select"><i data-icon="search"></i> Chọn / Di chuyển</button>
@@ -470,7 +470,9 @@
               </label>
             </div>
             <div class="farm-bar__group">
-              <button class="btn btn--blue btn--sm" type="button" data-action="farm-import"><i data-icon="upload"></i> Nạp file save</button>
+              <button class="btn btn--gold btn--sm" type="button" data-action="farm-presets"><i data-icon="farm"></i> Mẫu thiết kế</button>
+              <button class="btn btn--blue btn--sm" type="button" data-action="farm-import" title="File save của game hoặc file thiết kế JSON"><i data-icon="upload"></i> Mở file save / JSON</button>
+              <button class="btn btn--ghost btn--sm" type="button" data-action="farm-export-json" title="Tải thiết kế để chia sẻ, người khác mở lại và chỉnh tiếp được"><i data-icon="save"></i> Xuất JSON</button>
               <button class="btn btn--ghost btn--sm" type="button" data-action="farm-export"><i data-icon="download"></i> Tải ảnh</button>
               <button class="btn btn--ghost btn--sm" type="button" data-action="farm-clear"><i data-icon="trash"></i> Làm trống</button>
               <input type="file" id="farmSaveInput" hidden>
@@ -752,6 +754,15 @@
   </div>
 
   <!-- ======= BUY ME A COFFEE ======= -->
+  <!-- ======= FARM PRESETS ======= -->
+  <div class="modal" id="farmPresetModal" hidden>
+    <div class="modal__box modal__box--wide" role="dialog" aria-modal="true" aria-labelledby="farmPresetTitle">
+      <button class="modal-close-btn" type="button" data-close-modal aria-label="Đóng cửa sổ">✕</button>
+      <h2 class="coop-title" id="farmPresetTitle"><i data-icon="farm"></i> Mẫu thiết kế nông trại</h2>
+      <div id="farmPresetBody"></div>
+    </div>
+  </div>
+
   <!-- ======= PROGRESS FROM SAVE FILE ======= -->
   <div class="modal" id="saveSyncModal" hidden>
     <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="saveSyncTitle">

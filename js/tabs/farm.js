@@ -16,6 +16,7 @@ import { loadJSON, saveJSON, KEYS } from '../lib/storage.js';
 import { ico } from '../lib/icons.js';
 import { t, nm } from '../lib/i18n.js';
 import { readFarmSave } from '../lib/farm-save.js';
+import { openModal, closeModal } from '../lib/ui.js';
 
 const TILE = 16;
 const MAP = FARM_MAPS.standard;
@@ -663,20 +664,111 @@ function exportPng(app) {
   app.showToast(`${ico('download')} ${t('Đã tải ảnh nông trại')}`);
 }
 
-async function importSave(app, file) {
+// ---------- Ready-made layouts ----------
+const STYLE_ICON = { starter: 'item_parsnip', farming: 'crops', ranch: 'animal', mining: 'minerals', fishing: 'fish', all: 'tracker' };
+let presetsCache = null;
+const loadPresets = async () => (presetsCache ||= (await import('../../data/farm-presets.js')).FARM_PRESETS);
+
+async function openPresets() {
+  const presets = await loadPresets();
+  document.getElementById('farmPresetBody').innerHTML = `
+    <p class="muted">${t('Bố cục mẫu cho bản đồ Tiêu chuẩn, xếp theo lối chơi. Nạp mẫu sẽ thay bản đồ hiện tại (bấm Hoàn tác để quay lại), rồi bạn chỉnh tiếp tuỳ ý.')}</p>
+    <div class="preset-grid">
+      ${presets.map(pr => {
+        const machines = pr.objects.length;
+        return `
+        <article class="preset-card">
+          <img src="${pr.thumb}" alt="" class="preset-card__img" loading="lazy">
+          <div class="preset-card__body">
+            <h3 class="preset-card__title">${ico(STYLE_ICON[pr.style] || 'farm')} ${nm(pr)}</h3>
+            <p class="preset-card__level" title="${t('Mức độ')}: ${pr.level}/5">${ico('festival').repeat(pr.level)} <span class="muted">${machines} ${t('món đã đặt')}</span></p>
+            <p class="preset-card__desc">${pr.desc}</p>
+            <button class="btn btn--green btn--sm" type="button" data-action="farm-preset-load" data-preset="${pr.id}">${ico('check')} ${t('Dùng mẫu này')}</button>
+          </div>
+        </article>`;
+      }).join('')}
+    </div>`;
+  openModal('farmPresetModal');
+}
+
+async function loadPreset(app, id) {
+  const pr = (await loadPresets()).find(p => p.id === id);
+  if (!pr) return;
+  snapshot();
+  const ground = {};
+  for (const [g, x, y, w, h] of pr.ground) for (let dy = 0; dy < h; dy++) for (let dx = 0; dx < w; dx++) ground[key(x + dx, y + dy)] = g;
+  plan = { v: 1, map: MAP.id, objects: [...MAP.defaults.map(o => ({ ...o })), ...pr.objects.map(([type, x, y]) => ({ t: type, x, y }))], ground };
+  ui.selected = null;
+  save(); draw(); renderSide();
+  closeModal(document.getElementById('farmPresetModal'));
+  app.sfx.play('complete');
+  app.showToast(`${ico('check')} ${t('Đã nạp mẫu')}: ${nm(pr)}`);
+}
+
+// ---------- Plan files (JSON) to share a layout ----------
+const PLAN_FORMAT = 'stardew-wiki-farm';
+
+function exportJson(app) {
+  const data = {
+    format: PLAN_FORMAT,
+    version: 1,
+    map: MAP.id,
+    exported: new Date().toISOString(),
+    site: 'https://luongic.github.io/stardew-wiki/',
+    objects: plan.objects.map(({ t: type, x, y, w, h }) => ({ t: type, x, y, ...(w ? { w } : {}), ...(h ? { h } : {}) })),
+    ground: plan.ground
+  };
+  const blob = new Blob([JSON.stringify(data, null, 1)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `nong-trai-stardew-${new Date().toISOString().slice(0, 10)}.json`;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  app.showToast(`${ico('download')} ${t('Đã tải file thiết kế nông trại (JSON)')}`);
+}
+
+// Accepts only what the planner understands; anything else is dropped
+function readPlanJson(text) {
+  const data = JSON.parse(text);
+  if (!data || data.format !== PLAN_FORMAT || !Array.isArray(data.objects) || typeof data.ground !== 'object') {
+    const e = new Error('bad plan'); e.userMessage = t('File JSON này không phải thiết kế nông trại của Cẩm Nang.'); throw e;
+  }
+  const inMap = (x, y) => Number.isInteger(x) && Number.isInteger(y) && x >= -2 && y >= -2 && x < MAP.w + 2 && y < MAP.h + 2;
+  let dropped = 0;
+  const objects = data.objects.filter(o => {
+    const ok = o && itemById.has(o.t) && inMap(o.x, o.y);
+    if (!ok) dropped++;
+    return ok;
+  }).map(o => ({ t: o.t, x: o.x, y: o.y, ...(Number.isInteger(o.w) && o.w > 0 && o.w <= 20 ? { w: o.w } : {}), ...(Number.isInteger(o.h) && o.h > 0 && o.h <= 20 ? { h: o.h } : {}) }));
+  const ground = {};
+  for (const [k, g] of Object.entries(data.ground || {})) {
+    const [x, y] = k.split(',').map(Number);
+    const it = itemById.get(g);
+    if (it && (it.kind === 'ground' || it.kind === 'crop') && inMap(x, y)) ground[key(x, y)] = g; else dropped++;
+  }
+  return { objects, ground, dropped };
+}
+
+async function importFile(app, file) {
   try {
     const text = await file.text();
-    const res = readFarmSave(text);
+    const isJson = /^\s*\{/.test(text.slice(0, 200));
+    const res = isJson ? readPlanJson(text) : readFarmSave(text);
     snapshot();
     plan = { v: 1, map: MAP.id, objects: res.objects, ground: res.ground };
     ui.selected = null;
     save(); draw(); renderSide();
     const n = res.objects.length + Object.keys(res.ground).length;
-    app.showToast(`${ico('check')} ${t('Đã nạp nông trại từ file save')}: ${res.farmName || ''} (${n})`);
-    if (res.warning) flash(res.warning);
+    if (isJson) {
+      app.showToast(`${ico('check')} ${t('Đã mở file thiết kế nông trại')} (${n})`);
+      if (res.dropped) flash(`${t('Bỏ qua')} ${res.dropped} ${t('mục không hợp lệ')}`);
+    } else {
+      app.showToast(`${ico('check')} ${t('Đã nạp nông trại từ file save')}: ${res.farmName || ''} (${n})`);
+      if (res.warning) flash(res.warning);
+    }
   } catch (e) {
     console.error('[farm]', e);
-    app.showToast(`${ico('warn')} ${e.userMessage || t('Không đọc được file save này')}`);
+    app.showToast(`${ico('warn')} ${e.userMessage || (e instanceof SyntaxError ? t('File JSON bị lỗi.') : t('Không đọc được file save này'))}`);
   }
 }
 
@@ -705,7 +797,7 @@ const farmTab = {
     });
     document.getElementById('farmSaveInput').addEventListener('change', (e) => {
       const f = e.target.files?.[0];
-      if (f) importSave(window.app, f);
+      if (f) importFile(window.app, f);
       e.target.value = '';
     });
   },
@@ -751,6 +843,9 @@ const farmTab = {
       app.showToast(`${ico('trash')} ${t('Đã làm trống nông trại')}`);
     },
     'farm-export': (app) => exportPng(app),
+    'farm-export-json': (app) => exportJson(app),
+    'farm-presets': () => openPresets(),
+    'farm-preset-load': (app, el) => loadPreset(app, el.dataset.preset),
     'farm-import': () => document.getElementById('farmSaveInput').click()
   }
 };

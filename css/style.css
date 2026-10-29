@@ -266,6 +266,7 @@ code {
 .btn--lg { padding: 9px 20px; font-size: 1.1rem; }
 .btn--ghost { --btn-bg: var(--parch-100); }
 .btn--green { --btn-bg: var(--green); }
+.btn--gold { --btn-bg: var(--gold); }
 .btn--wood { --btn-bg: var(--wood-500); --btn-fg: var(--text-light); }
 .btn--blue { --btn-bg: var(--blue); }
 .btn--purple { --btn-bg: var(--purple); --btn-fg: #fff; }
@@ -2437,6 +2438,19 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
   background: var(--parch-100); border: 2px solid var(--ink); cursor: pointer;
 }
 .fish-card__tick img { width: 18px; height: 18px; }
+
+/* Farm presets */
+.modal__box--wide { width: min(1100px, 96vw); }
+.preset-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; margin-top: 12px; }
+.preset-card { display: flex; flex-direction: column; background: var(--parch-50); border: var(--px) solid var(--parch-300); }
+.preset-card__img { width: 100%; aspect-ratio: 80 / 65; object-fit: cover; image-rendering: auto; border-bottom: var(--px) solid var(--parch-300); }
+.preset-card__body { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; flex: 1; }
+.preset-card__title { display: flex; align-items: center; gap: 6px; font-size: 1.15rem; color: var(--wood-900); }
+.preset-card__level { display: flex; align-items: center; gap: 2px; }
+.preset-card__level img { width: 18px; height: 18px; }
+.preset-card__level .muted { margin-left: 8px; }
+.preset-card__desc { font-size: 0.9rem; flex: 1; }
+.preset-card .btn { align-self: flex-start; }
 
 /* Recipe ingredients that open the item they name */
 .ing-row--link { cursor: pointer; }
