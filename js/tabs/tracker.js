@@ -12,6 +12,9 @@ import { museumProgress } from './museum.js';
 import { ico } from '../lib/icons.js';
 import { KEYS, loadJSON } from '../lib/storage.js';
 import { restoreNote } from '../sync/notes-ui.js';
+import { openModal, closeModal } from '../lib/ui.js';
+import { nm } from '../lib/i18n.js';
+import { setCaughtFish } from './fishing.js';
 
 const BACKUP_VERSION = 3;
 
@@ -116,6 +119,61 @@ async function importProgress(app, file) {
   app.showToast(`${ico('upload')} Đã khôi phục tiến độ từ file sao lưu!`);
 }
 
+// ==========================================
+// PROGRESS FROM A SAVE FILE
+// The save is read in the browser; the result is shown first and only added
+// on top of the current ticks when the player confirms (nothing is unticked).
+// ==========================================
+let pendingSave = null;
+
+function newKeys(domain, keys) { return keys.filter(k => !progress.has(domain, k)); }
+
+async function readSaveFile(app, file) {
+  try {
+    const [{ readSaveProgress }, text] = await Promise.all([import('../lib/save-progress.js'), file.text()]);
+    const res = readSaveProgress(text);
+    pendingSave = res;
+    const add = { recipes: newKeys('recipes', res.recipes), bundles: newKeys('bundles', res.bundles), museum: newKeys('museum', res.museum) };
+    const row = (icon, label, found, fresh) => `
+      <li><span>${ico(icon)} ${t(label)}</span><strong>${found}</strong><span class="muted">${fresh === null ? '' : fresh ? `+${fresh} ${t('mới')}` : t('đã có đủ')}</span></li>`;
+    document.getElementById('saveSyncBody').innerHTML = `
+      <p>${t('Nông trại')} <strong data-no-i18n>${res.farmName || '?'}</strong> · ${t('người chơi')} <strong data-no-i18n>${res.playerName || '?'}</strong></p>
+      <ul class="save-sync__list">
+        ${row('cooking', 'Công thức, công trình & nâng cấp', res.recipes.length, add.recipes.length)}
+        ${row('bundles', 'Ô gói Nhà Cộng Đồng đã nộp', res.bundles.length, add.bundles.length)}
+        ${row('museum', 'Món đã quyên góp Bảo Tàng', res.museum.length, add.museum.length)}
+        ${row('fish', 'Loài cá đã câu được', `${res.fish.caught} / ${res.fish.total}`, null)}
+      </ul>
+      ${res.unmatchedBundles.length ? `<p class="muted">${ico('warn')} ${t('Một số gói (bản Remix) không có trong dữ liệu của trang nên được bỏ qua')}: ${res.unmatchedBundles.join(', ')}</p>` : ''}
+      <p class="muted">${t('Chỉ thêm dấu tick mới, không bỏ tick nào bạn đã đánh dấu. Nhiệm vụ không được lưu rõ trong file save nên vẫn cần tự đánh dấu.')}</p>
+      <div class="btn-row">
+        <button class="btn btn--green" type="button" data-action="save-progress-apply">${ico('check')} ${t('Thêm vào tiến độ')}</button>
+      </div>
+      ${res.fish.missing.length ? `
+        <h3 class="save-sync__sub">${ico('fish')} ${t('Cá chưa câu được')} (${res.fish.missing.length})</h3>
+        <div class="save-sync__fish">
+          ${res.fish.missing.map(f => `<span class="tag" title="${f.location || ''}"><img src="${f.imageUrl}" alt="" class="pixel-img"> ${nm(f)}</span>`).join('')}
+        </div>` : ''}`;
+    openModal('saveSyncModal');
+  } catch (e) {
+    console.error('[save]', e);
+    app.showToast(`${ico('warn')} ${e.userMessage || t('Không đọc được file save này')}`);
+  }
+}
+
+function applySave(app) {
+  if (!pendingSave) return;
+  let n = 0;
+  for (const [domain, keys] of [['recipes', pendingSave.recipes], ['bundles', pendingSave.bundles], ['museum', pendingSave.museum]]) {
+    for (const k of newKeys(domain, keys)) { progress.setFlag(domain, k, true, 'bulk'); n++; }
+  }
+  setCaughtFish(pendingSave.fish.caughtEn);
+  pendingSave = null;
+  closeModal(document.getElementById('saveSyncModal'));
+  app.sfx.play('complete');
+  app.showToast(`${ico('check')} ${t(`Đã thêm ${n} mục từ file save`)}`);
+}
+
 export default {
   id: 'tracker',
   toggles: [],
@@ -132,6 +190,13 @@ export default {
       el.value = ''; // allow choosing the same file again
       if (file) importProgress(app, file);
     },
+    'import-save-progress': () => document.getElementById('saveProgressInput').click(),
+    'save-progress-file': (app, el) => {
+      const file = el.files?.[0];
+      el.value = '';
+      if (file) readSaveFile(app, file);
+    },
+    'save-progress-apply': (app) => applySave(app),
     'reset-progress': (app) => {
       if (!confirm(t('CẢNH BÁO: Thao tác này sẽ đặt lại toàn bộ tiến độ đã hoàn thành về 0. Bạn có chắc không?'))) return;
       for (const domain of ['recipes', 'quests', 'bundles', 'museum']) progress.replace(domain, []);

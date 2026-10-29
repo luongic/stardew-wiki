@@ -98,6 +98,9 @@
 
     <!-- ======= NAVIGATION ======= -->
     <nav class="tabs" aria-label="Main Wiki Navigation" role="tablist">
+      <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="today">
+        <i data-icon="calendar"></i> <span>Hôm Nay</span>
+      </button>
       <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="recipes">
         <i data-icon="recipes"></i> <span>Công Thức Chế Biến</span> <span class="tab__badge" id="recipeTabBadge">0/0</span>
       </button>
@@ -124,6 +127,9 @@
       </button>
       <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="farm">
         <i data-icon="farm"></i> <span>Nông Trại</span>
+      </button>
+      <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="fishing">
+        <i data-icon="fishing"></i> <span>Câu Cá</span>
       </button>
       <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="quiz">
         <i data-icon="quiz"></i> <span>Đố Vui</span>
@@ -412,6 +418,28 @@
         </div>
       </section>
 
+      <!-- ======= TAB: TODAY ======= -->
+      <section id="tab-today" class="tab-panel" role="tabpanel" hidden>
+        <div class="panel today">
+          <div class="panel__head">
+            <h2 class="panel__title"><i data-icon="calendar"></i> Hôm Nay Làm Gì?</h2>
+          </div>
+          <p class="panel__hint">Chọn ngày trong game (hoặc lấy từ file save) để xem sinh nhật, lễ hội, Xe Đẩy Du Mục, công thức trên TV, tiệm đóng cửa và những cây còn kịp trồng trước cuối mùa.</p>
+          <div id="todayBoard"></div>
+        </div>
+      </section>
+
+      <!-- ======= TAB: FISHING ======= -->
+      <section id="tab-fishing" class="tab-panel" role="tabpanel" hidden>
+        <div class="panel fishing">
+          <div class="panel__head">
+            <h2 class="panel__title"><i data-icon="fishing"></i> Câu Được Cá Gì Lúc Này?</h2>
+          </div>
+          <p class="panel__hint">Lọc 66 loài cá trong bộ sưu tập theo mùa, thời tiết, giờ và địa điểm. Bấm ô vuông để đánh dấu loài đã câu được, hoặc nạp từ file save ở tab Tiến Độ.</p>
+          <div id="fishingBoard"></div>
+        </div>
+      </section>
+
       <!-- ======= TAB: FARM PLANNER ======= -->
       <section id="tab-farm" class="tab-panel" role="tabpanel" hidden>
         <div class="panel farm-panel">
@@ -515,8 +543,10 @@
           <div class="btn-row">
             <button class="btn btn--wood btn--lg" type="button" data-action="export-progress"><i data-icon="download"></i> Tải Xuống File Sao Lưu (JSON)</button>
             <button class="btn btn--blue btn--lg" type="button" data-action="import-progress"><i data-icon="upload"></i> Khôi Phục Từ File Sao Lưu</button>
+            <button class="btn btn--green btn--lg" type="button" data-action="import-save-progress"><i data-icon="save"></i> Nạp Tiến Độ Từ File Save Game</button>
             <button class="btn btn--danger btn--lg" type="button" data-action="reset-progress"><i data-icon="warn"></i> Đặt Lại Toàn Bộ Tiến Độ (Reset)</button>
             <input type="file" id="importFileInput" accept="application/json,.json" data-action="import-file" hidden>
+            <input type="file" id="saveProgressInput" data-action="save-progress-file" hidden>
           </div>
         </div>
       </section>
@@ -717,6 +747,15 @@
   </div>
 
   <!-- ======= BUY ME A COFFEE ======= -->
+  <!-- ======= PROGRESS FROM SAVE FILE ======= -->
+  <div class="modal" id="saveSyncModal" hidden>
+    <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="saveSyncTitle">
+      <button class="modal-close-btn" type="button" data-close-modal aria-label="Đóng cửa sổ">✕</button>
+      <h2 class="coop-title" id="saveSyncTitle"><i data-icon="save"></i> Tiến độ trong file save</h2>
+      <div id="saveSyncBody"></div>
+    </div>
+  </div>
+
   <div class="modal" id="coffeeModal" hidden>
     <div class="modal__box modal__box--coffee" role="dialog" aria-modal="true" aria-labelledby="coffeeModalTitle">
       <button class="modal-close-btn" type="button" data-close-modal aria-label="Đóng cửa sổ">✕</button>

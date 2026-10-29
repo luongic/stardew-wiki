@@ -260,6 +260,32 @@ export const UI_EN = {
   'Đăng nhập Google hiện chưa được hỗ trợ trên trang này.': "Google sign-in isn't supported on this site yet.",
   'Bạn đã đóng cửa sổ đăng nhập.': 'You closed the sign-in window.', 'vừa xong': 'just now',
 
+  // ---- Today ----
+  'Hôm Nay': 'Today', 'Hôm Nay Làm Gì?': 'What To Do Today?',
+  'Chọn ngày trong game (hoặc lấy từ file save) để xem sinh nhật, lễ hội, Xe Đẩy Du Mục, công thức trên TV, tiệm đóng cửa và những cây còn kịp trồng trước cuối mùa.': 'Pick an in-game day (or read it from a save file) to see birthdays, festivals, the Traveling Cart, the TV recipe, closed shops and the crops you can still plant before the season ends.',
+  'Ngày': 'Day', 'Năm': 'Year', 'Ngày trước': 'Previous day', 'Ngày sau': 'Next day', 'Lấy ngày từ file save': 'Use the date from a save file',
+  'Đã lấy ngày từ file save': 'Date taken from the save file', 'Sinh nhật': 'Birthdays', 'Hôm nay': 'Today',
+  'Quà tặng hôm nay được tính gấp 8 lần. Họ rất thích': 'Gifts count 8x today. They love',
+  'Hôm nay không có ai sinh nhật.': 'No birthdays today.', 'ngày mai': 'tomorrow', 'Lễ hội': 'Festivals',
+  'Hôm nay không có lễ hội.': 'No festival today.', 'Lễ hội tiếp theo': 'Next festival', 'Thị trấn hôm nay': 'Around town today',
+  'Xe Đẩy Du Mục có mặt': 'The Traveling Cart is here',
+  'ở Rừng Cindersap, 6:00 – 20:00. Tìm Hạt Giống Hiếm, nguyên liệu gói Nhà Cộng Đồng còn thiếu.': 'in Cindersap Forest, 6:00 – 20:00. Look for Rare Seeds and missing bundle items.',
+  'Xe Đẩy Du Mục chỉ đến vào Thứ Sáu và Chủ Nhật.': 'The Traveling Cart only comes on Fridays and Sundays.',
+  'không có công thức mới': 'no new recipe', 'Bật TV để học công thức.': 'Watch TV to learn it.',
+  'phát lại một công thức cũ ngẫu nhiên.': 'reruns a random older recipe.', 'đóng cửa': 'closed',
+  'Ngày lễ hội: phần lớn cửa hàng trong thị trấn đóng cửa cho tới khi lễ hội kết thúc.': 'Festival day: most shops in town are closed until the festival ends.',
+  'Còn kịp trồng': 'Still time to plant',
+  'Hôm nay là ngày cuối mùa: cây trồng ngoài trời sẽ héo vào ngày mai (trừ cây đa mùa).': 'Last day of the season: outdoor crops wither tomorrow (except multi-season crops).',
+  'Mùa Đông chỉ trồng được Hạt giống Mùa Đông và Dưa Tuyết ngoài trời; Nhà Kính trồng được mọi thứ.': 'Outdoors in winter only Winter Seeds and Powdermelon grow; the Greenhouse grows anything.',
+  'Không còn loại hạt nào kịp lớn trong mùa này.': 'Nothing planted now would be ready this season.',
+  'Câu cá': 'Fishing', 'Có': 'There are', 'loài cá câu được trong mùa này.': 'fish species to catch this season.',
+  'Xem theo giờ, thời tiết và địa điểm': 'Filter by time, weather and place',
+  // ---- Fishing ----
+  'Câu Cá': 'Fishing', 'Câu Được Cá Gì Lúc Này?': 'What Can I Catch Now?',
+  'Lọc 66 loài cá trong bộ sưu tập theo mùa, thời tiết, giờ và địa điểm. Bấm ô vuông để đánh dấu loài đã câu được, hoặc nạp từ file save ở tab Tiến Độ.': 'Filter the 66 collection fish by season, weather, time and place. Tick the box on fish you have caught, or load them from a save file in the Progress tab.',
+  'Mọi thời tiết': 'Any weather', 'Trời nắng': 'Sunny', 'Trời mưa': 'Rainy', 'Cả ngày': 'All day', 'Địa điểm': 'Location', 'Mọi địa điểm': 'Any location',
+  'Ẩn cá đã câu được': 'Hide caught fish', 'loài khớp bộ lọc': 'species match', 'Đã câu': 'Caught', 'Nạp từ file save': 'Load from a save file',
+  'Không có loài cá nào khớp với bộ lọc.': 'No fish match these filters.', 'Huyền thoại': 'Legendary', 'Đánh dấu đã câu được': 'Mark as caught',
   // ---- Farm planner ----
   'Nông Trại': 'Farm', 'Lên Kế Hoạch Nông Trại': 'Farm Planner',
   'Kéo công trình, vòi tưới, cây trồng, hàng rào... từ bảng bên trái thả vào nông trại để hình dung và sắp xếp. Mỗi món chiếm đúng số ô như trong game. Có thể nạp file save để xem đúng nông trại của bạn.': 'Drag buildings, sprinklers, crops, fences... from the left panel onto the farm to plan your layout. Everything takes the same number of tiles as in the game. Load a save file to see your real farm.',
@@ -285,6 +311,14 @@ export const UI_EN = {
   'Ô đất đã cuốc (Tilled Soil)': 'Tilled Soil',
   ') và chọn file': ') and pick the file', 'cùng tên': 'with the same name', 'với thư mục, không phải file': 'as the folder, not',
   '(Henrik Peinar, Apache-2.0). Hình công trình, cây và vật phẩm từ game Stardew Valley (ConcernedApe), qua Official Stardew Valley Wiki. Kéo bản đồ để di chuyển, Ctrl/Cmd + cuộn chuột để phóng to.': 'project (Henrik Peinar, Apache-2.0). Building, tree and item art from Stardew Valley (ConcernedApe), via the Official Stardew Valley Wiki. Drag the map to pan, Ctrl/Cmd + scroll to zoom.',
+  // ---- Progress from save ----
+  'Nạp Tiến Độ Từ File Save Game': 'Load Progress From Save File', 'Tiến độ trong file save': 'Progress in the save file',
+  'Nông trại': 'Farm', 'người chơi': 'player', 'mới': 'new', 'đã có đủ': 'already ticked',
+  'Công thức, công trình & nâng cấp': 'Recipes, buildings & upgrades', 'Ô gói Nhà Cộng Đồng đã nộp': 'Community Center slots turned in',
+  'Món đã quyên góp Bảo Tàng': 'Museum donations', 'Loài cá đã câu được': 'Fish species caught',
+  'Một số gói (bản Remix) không có trong dữ liệu của trang nên được bỏ qua': "Some (remixed) bundles aren't in this site's data and were skipped",
+  'Chỉ thêm dấu tick mới, không bỏ tick nào bạn đã đánh dấu. Nhiệm vụ không được lưu rõ trong file save nên vẫn cần tự đánh dấu.': "Only new ticks are added; nothing you ticked is removed. Quests aren't clearly stored in the save, so tick those yourself.",
+  'Thêm vào tiến độ': 'Add to my progress', 'Cá chưa câu được': 'Fish not caught yet',
   // ---- Coffee & footer ----
   'Mã QR chuyển khoản ủng hộ': 'Donation QR code',
   'Quét mã bằng ứng dụng ngân hàng hoặc MoMo': 'Scan with a Vietnamese banking app or MoMo',
@@ -304,6 +338,14 @@ export const UI_EN = {
 // Patterns for text that mixes words with numbers or names. Replacement
 // functions receive the regex groups plus `sub`, which translates a piece.
 export const PATTERNS_EN = [
+  [new RegExp(`^${DOW_RE}, ngày (\\d+) (Mùa Xuân|Mùa Hạ|Mùa Thu|Mùa Đông), năm (\\d+)$`), (m, dow, d, s, y) => `${DOW[dow]}, ${SEASON[s]} ${d}, Year ${y}`],
+  [/^sau (\d+) ngày \((\d+) (Xuân|Hạ|Thu|Đông)\)$/, (m, n, d, s) => `in ${n} days (${({ 'Xuân': 'Spring', 'Hạ': 'Summer', 'Thu': 'Fall', 'Đông': 'Winter' })[s]} ${d})`],
+  [/^ngày mai \((\d+) (Xuân|Hạ|Thu|Đông)\)$/, (m, d, s) => `tomorrow (${({ 'Xuân': 'Spring', 'Hạ': 'Summer', 'Thu': 'Fall', 'Đông': 'Winter' })[s]} ${d})`],
+  [/^· (\d+) (Xuân|Hạ|Thu|Đông) \(sau (\d+) ngày\)$/, (m, d, s, n) => `· ${({ 'Xuân': 'Spring', 'Hạ': 'Summer', 'Thu': 'Fall', 'Đông': 'Winter' })[s]} ${d} (in ${n} days)`],
+  [/^Còn (\d+) ngày tới cuối mùa\. Những hạt giống dưới đây gieo hôm nay sẽ kịp thu hoạch:$/, '$1 days left in the season. Seeds below planted today will be ready in time:'],
+  [/^(\d+) ngày(?: · ([\d.]+g))?$/, (m, n, g) => `${n} days${g ? ` · ${g}` : ''}`],
+  [/^Xuân, Hạ, Thu$/, 'Spring, Summer, Fall'],
+  [/^Đã thêm (\d+) mục từ file save$/, 'Added $1 items from the save file'],
   [/^File save dùng bản đồ "(.+)"\. Hiện mới có bản đồ Tiêu chuẩn nên vị trí có thể lệch\.$/, 'This save uses the "$1" farm. Only the Standard farm map is available so far, so positions may be off.'],
   [/^Bản đồ nông trại và dữ liệu ô xây\/cuốc được từ dự án$/, 'Farm map and buildable/tillable tile data from the'],
   [/^Gói (.+? Bundle(?: \(bản Remix\))?)(?: Community Center)?$/, (m, b) => b.replace(' (bản Remix)', ' (Remix)')],
@@ -379,7 +421,7 @@ export const PATTERNS_EN = [
   [/^Rơi: (.+)$/, (m, list, ...a) => `Drops: ${list.split(', ').map(a.at(-1)).join(', ')}`],
   [/^Hôm nay là Sinh nhật (.+)! \(.+\)$/, (m, who) => `It's ${who}'s birthday today! (gifts count x8)`],
   [/^Đăng xuất sẽ ngắt kết nối phòng (\w+) trên máy này\. .+$/s, 'Signing out disconnects room $1 on this device. You stay a member: sign back in with the same Google account and enter the code to rejoin. Continue?'],
-  [/^Khôi phục bản sao lưu \((.+)\)\?\n• (\d+) công thức • (\d+) nhiệm vụ\n.+$/s, 'Restore the backup ($1)?\n• $2 recipes • $3 quests\nYour current progress will be replaced.'],
+  [/^Khôi phục bản sao lưu \((.+)\)\?\s• (\d+) công thức • (\d+) nhiệm vụ\s.+$/s, 'Restore the backup ($1)?\n• $2 recipes • $3 quests\nYour current progress will be replaced.'],
   [/^Mã phòng: (.+)$/, 'Room code: $1']
 ];
 

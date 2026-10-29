@@ -14,7 +14,10 @@ export const KEYS = {
   bundles: 'stardew_wiki_bundles',
   museum: 'stardew_wiki_museum',
   note: 'stardew_wiki_note',
-  farm: 'stardew_wiki_farm'
+  farm: 'stardew_wiki_farm',
+  today: 'stardew_wiki_today',
+  fishingView: 'stardew_wiki_fishing_view',
+  fishCaught: 'stardew_wiki_fish_caught'
 };
 
 export function loadJSON(key, fallback) {

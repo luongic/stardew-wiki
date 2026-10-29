@@ -79,7 +79,8 @@ export function altName(obj) {
 }
 
 function translate(text) {
-  const s = text.trim();
+  // HTML source line breaks inside a sentence count as single spaces
+  const s = text.trim().replace(/\s+/g, ' ');
   if (!s) return null;
   if (UI_EN[s] !== undefined) return UI_EN[s];
   const name = lookupName(s);

@@ -49,24 +49,31 @@ const FRUIT_TREES = { 628: 'cherry_tree', 629: 'apricot_tree', 630: 'orange_tree
 const CLUMPS = { 600: 'large_stump', 602: 'large_log', 672: 'boulder', 752: 'boulder', 754: 'boulder', 756: 'boulder', 758: 'boulder' };
 
 // ---------- XML helpers (direct children only: buildings contain whole indoor locations) ----------
-const kids = (el, name) => (el ? [...el.children].filter(c => c.localName === name) : []);
-const kid = (el, name) => kids(el, name)[0] || null;
-const text = (el, name) => kid(el, name)?.textContent?.trim() ?? '';
+export const kids = (el, name) => (el ? [...el.children].filter(c => c.localName === name) : []);
+export const kid = (el, name) => kids(el, name)[0] || null;
+export const text = (el, name) => kid(el, name)?.textContent?.trim() ?? '';
 const num = (el, name) => Number(text(el, name)) || 0;
-const xsiType = el => el.getAttribute('xsi:type') || el.getAttributeNS('http://www.w3.org/2001/XMLSchema-instance', 'type') || '';
+export const xsiType = el => el.getAttribute('xsi:type') || el.getAttributeNS('http://www.w3.org/2001/XMLSchema-instance', 'type') || '';
 const vec = el => ({ x: Math.round(num(el, 'X')), y: Math.round(num(el, 'Y')) });
-const cleanId = id => String(id).replace(/^\(\w+\)/, '');
+export const cleanId = id => String(id).replace(/^\(\w+\)/, '');
+// Game locations of a save, e.g. location(root, 'Farm')
+export const location = (root, type) => kids(kid(root, 'locations'), 'GameLocation').find(l => xsiType(l) === type) || null;
 
 function fail(msg) { const e = new Error(msg); e.userMessage = msg; throw e; }
 
-export function readFarmSave(xml) {
+// Checks the file is a main save file and returns its <SaveGame> element
+export function parseSave(xml) {
   if (!/^\s*(<\?xml[^>]*>\s*)?<SaveGame/.test(xml.slice(0, 500))) {
     fail(t('Đây không phải file save chính. Hãy chọn file có tên giống thư mục save (VD: Farm_123456789), không phải file SaveGameInfo.'));
   }
   const doc = new DOMParser().parseFromString(xml, 'application/xml');
   if (doc.querySelector('parsererror')) fail(t('File save bị lỗi hoặc không đầy đủ.'));
-  const root = doc.documentElement;
-  const farm = kids(kid(root, 'locations'), 'GameLocation').find(l => xsiType(l) === 'Farm');
+  return doc.documentElement;
+}
+
+export function readFarmSave(xml) {
+  const root = parseSave(xml);
+  const farm = location(root, 'Farm');
   if (!farm) fail(t('Không tìm thấy nông trại trong file save.'));
 
   const whichFarm = Number(text(root, 'whichFarm')) || 0;
