@@ -2100,18 +2100,17 @@ code {
   border: var(--px) solid #6f8fa3;
   box-shadow: inset var(--px) var(--px) 0 0 rgba(255, 255, 255, 0.6);
 }
-/* Not yet donated: an empty spot showing only the item's silhouette */
+/* Items always show their real art so they are easy to recognise and tick */
 .case-tile__pedestal img {
   width: 44px;
   height: 44px;
   object-fit: contain;
-  filter: brightness(0);
-  opacity: 0.3;
 }
 .case-tile__pedestal.is-broken img { display: none; }
-.case-tile.is-donated { background: #fff3cf; }
-.case-tile.is-donated .case-tile__pedestal { background: #fff8de; border-color: var(--gold-dark); }
-.case-tile.is-donated .case-tile__pedestal img { filter: none; opacity: 1; }
+/* Donated: the whole tile turns green, like the done state elsewhere */
+.case-tile.is-donated { background: #cfeeb4; }
+.case-tile.is-donated .case-tile__pedestal { background: #e3f6d6; border-color: var(--green-dark); }
+.case-tile.is-donated .case-tile__name { color: var(--green-dark); }
 .case-tile__tick {
   display: none;
   position: absolute;
