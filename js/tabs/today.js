@@ -3,7 +3,8 @@
 // One screen for a given in-game day: birthdays (with loved gifts),
 // festivals, the Traveling Cart, the Queen of Sauce recipe, shops that are
 // closed, and the crops that can still be planted before the season ends.
-// The day is chosen here, or read from a save file.
+// The day is chosen here, or read from a save file. Inside a co-op room a
+// day read from a save is shared with everyone (see coop.shareDay).
 // ==========================================================================
 
 import { NPCS_DATA, CALENDAR_EVENTS } from '../../data/npcs-data.js';
@@ -13,6 +14,8 @@ import { ITEMS_DATA } from '../../data/items-data.js';
 import { ico } from '../lib/icons.js';
 import { t, nm } from '../lib/i18n.js';
 import { loadJSON, saveJSON, KEYS } from '../lib/storage.js';
+import { showToast } from '../lib/ui.js';
+import { coop } from '../sync/coop.js';
 import { fishAvailable } from './fishing.js';
 
 const SEASONS = ['spring', 'summer', 'fall', 'winter'];
@@ -23,6 +26,9 @@ const dowOf = day => (day - 1) % 7;
 
 let state = { season: 'spring', day: 1, year: 1, ...loadJSON(KEYS.today, {}) };
 const save = () => saveJSON(KEYS.today, state);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+// Identifies one share, remembered so the same one is never applied twice
+const stampOf = e => `${e.by}:${e.at}`;
 
 // Day n days after the chosen one (wraps across seasons and years)
 function shift(d, n) {
@@ -178,6 +184,7 @@ function render() {
       <input type="file" id="todaySaveInput" data-action="today-save-file" hidden>
     </div>
     <h3 class="today-date">${ico('calendar')} ${dateLabel(d)}</h3>
+    ${d.sharedFrom ? `<p class="muted">${ico('members')} ${t('Ngày lấy từ file save của')} <strong data-no-i18n>${esc(d.sharedFrom)}</strong> ${t('trong phòng Co-op')}</p>` : ''}
     <div class="today-grid">
       ${birthdayCard(d)}
       ${festivalCard(d)}
@@ -187,8 +194,9 @@ function render() {
     </div>`;
 }
 
-function setDay(next) {
-  state = { ...state, ...next };
+// `from`: the teammate whose save this day came from, shown under the date
+function setDay(next, from = null) {
+  state = { ...state, ...next, sharedFrom: from };
   state.day = Math.min(28, Math.max(1, Number(state.day) || 1));
   state.year = Math.max(1, Number(state.year) || 1);
   save(); render();
@@ -200,11 +208,24 @@ async function fromSave(app, file) {
     const root = parseSave(await file.text());
     const season = text(root, 'currentSeason').toLowerCase();
     setDay({ season: SEASONS.includes(season) ? season : 'spring', day: Number(text(root, 'dayOfMonth')) || 1, year: Number(text(root, 'year')) || 1 });
-    app.showToast(`${ico('calendar')} ${t('Đã lấy ngày từ file save')}`);
+    const shared = coop.shareDay(state);
+    if (shared) { state.sharedStamp = stampOf(shared); save(); }
+    app.showToast(`${ico('calendar')} ${t(shared ? 'Đã lấy ngày từ file save và chia sẻ với phòng Co-op' : 'Đã lấy ngày từ file save')}`);
   } catch (e) {
     app.showToast(`${ico('warn')} ${e.userMessage || t('Không đọc được file save này')}`);
   }
 }
+
+// A teammate read a save: jump to that day. Also runs on joining a room (the
+// room's last shared day) but not again after a reload, thanks to the stamp.
+coop.onSharedDay(e => {
+  const stamp = stampOf(e);
+  if (stamp === state.sharedStamp) return;
+  state.sharedStamp = stamp;
+  if (e.by === coop.user?.uid) { save(); return; }
+  setDay({ season: e.season, day: e.day, year: e.year }, e.name);
+  showToast(`${ico('calendar')} ${t('Đã đồng bộ ngày từ file save của')} ${esc(e.name)}`);
+});
 
 export default {
   id: 'today',

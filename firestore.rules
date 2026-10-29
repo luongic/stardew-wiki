@@ -54,6 +54,20 @@ service cloud.firestore {
           && request.resource.data.name.size() <= 24;
       }
 
+      // The in-game day last read from a member's save (Today tab)
+      match /shared/{doc} {
+        allow read: if isMember(code);
+        allow write: if isMember(code)
+          && doc == 'today'
+          && request.resource.data.keys().hasOnly(['season', 'day', 'year', 'name', 'by', 'at'])
+          && request.resource.data.season in ['spring', 'summer', 'fall', 'winter']
+          && request.resource.data.day is int && request.resource.data.day >= 1 && request.resource.data.day <= 28
+          && request.resource.data.year is int && request.resource.data.year >= 1 && request.resource.data.year <= 999
+          && request.resource.data.by == request.auth.uid
+          && request.resource.data.at is int
+          && request.resource.data.name is string && request.resource.data.name.size() <= 24;
+      }
+
       match /progress/{domain} {
         allow read: if isMember(code);
         allow write: if isMember(code)

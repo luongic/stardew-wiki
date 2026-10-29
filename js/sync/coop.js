@@ -8,6 +8,8 @@
 //   rooms/{code}                    { host, createdAt, members: { uid: {name, joinedAt, lastSeen} } }
 //   rooms/{code}/progress/{domain}  { [itemKey]: { v: bool, t, by } }     flag domains
 //   rooms/{code}/progress/planner   { [recipeId]: { n: number, t, by } }  counts
+//   rooms/{code}/shared/today       { season, day, year, name, by, at }   the in-game
+//                                   day last read from someone's save (Today tab)
 //
 // Merging is per item: two players changing different items never overwrite
 // each other. Unticking writes v:false (a tombstone) instead of deleting, so
@@ -45,6 +47,8 @@ class CoopRoom {
     this.room = null;          // latest room doc data
     this.remote = {};          // domain -> latest field map from Firestore
     this.notes = {};           // uid -> { text, name, t } (one note per member)
+    this.sharedDay = null;     // latest rooms/{code}/shared/today
+    this.dayListeners = new Set();
     this.localNote = null;     // () => current local note text, set by the notes panel
     this.status = 'idle';      // idle | connecting | synced | pending | offline | error
     this.error = '';
@@ -67,6 +71,7 @@ class CoopRoom {
   get isGoogle() { return !!this.googleProfile; }
 
   onChange(fn) { this.listeners.add(fn); }
+  onSharedDay(fn) { this.dayListeners.add(fn); }
   notify() { for (const fn of this.listeners) fn(this); }
   setStatus(s, error = '') { this.status = s; this.error = error; this.notify(); }
 
@@ -266,6 +271,11 @@ class CoopRoom {
       this.notify();
     }, e => this.fail(e)));
 
+    this.unsubs.push(fb.onSnapshot(this.dayRef(), snap => {
+      this.sharedDay = snap.exists() ? snap.data() : null;
+      if (this.sharedDay) for (const fn of this.dayListeners) fn(this.sharedDay);
+    }, e => console.warn('[co-op] shared day', e))); // a nice-to-have: never break the room over it
+
     this.unsubs.push(fb.onSnapshot(this.roomRef(), { includeMetadataChanges: true }, snap => {
       if (!snap.exists()) return this.fail(new Error('Phòng không còn tồn tại.'));
       this.room = snap.data();
@@ -293,6 +303,7 @@ class CoopRoom {
     this.unsubs = [];
     this.remote = {};
     this.notes = {};
+    this.sharedDay = null;
     if (notify) {
       this.code = null;
       this.room = null;
@@ -343,6 +354,19 @@ class CoopRoom {
     const existing = await this.fb.getDoc(this.noteRef(code));
     if (existing.exists()) return;
     await this.fb.setDoc(this.noteRef(code), { text: text.slice(0, NOTE_MAX), name: this.name || 'Nông dân', t: this.fb.serverTimestamp() });
+  }
+
+  // ---------- shared day ----------
+  // Only a day read from a save is shared: stepping through days to look
+  // ahead stays on each player's screen. `at` (client clock) plus `by` tells
+  // apart each share, so a snapshot replayed on reload isn't applied twice.
+  dayRef(code = this.code) { return this.fb.doc(this.fb.db, 'rooms', code, 'shared', 'today'); }
+
+  shareDay({ season, day, year }) {
+    if (!this.fb || !this.code) return null;
+    const entry = { season, day, year, name: this.name || 'Nông dân', by: this.user.uid, at: Date.now() };
+    this.fb.setDoc(this.dayRef(), entry).catch(e => console.warn('[co-op] shared day', e));
+    return entry;
   }
 
   // ---------- sync ----------

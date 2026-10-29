@@ -264,6 +264,8 @@ export const UI_EN = {
   'Hôm Nay': 'Today', 'Hôm Nay Làm Gì?': 'What To Do Today?',
   'Chọn ngày trong game (hoặc lấy từ file save) để xem sinh nhật, lễ hội, Xe Đẩy Du Mục, công thức trên TV, tiệm đóng cửa và những cây còn kịp trồng trước cuối mùa.': 'Pick an in-game day (or read it from a save file) to see birthdays, festivals, the Traveling Cart, the TV recipe, closed shops and the crops you can still plant before the season ends.',
   'Ngày': 'Day', 'Năm': 'Year', 'Ngày trước': 'Previous day', 'Ngày sau': 'Next day', 'Lấy ngày từ file save': 'Use the date from a save file',
+  'Đã lấy ngày từ file save và chia sẻ với phòng Co-op': 'Date taken from the save file and shared with your co-op room',
+  'Ngày lấy từ file save của': 'Date from the save of', 'trong phòng Co-op': 'in your co-op room', 'Đã đồng bộ ngày từ file save của': 'Synced the date from the save of',
   'Đã lấy ngày từ file save': 'Date taken from the save file', 'Sinh nhật': 'Birthdays', 'Hôm nay': 'Today',
   'Quà tặng hôm nay được tính gấp 8 lần. Họ rất thích': 'Gifts count 8x today. They love',
   'Hôm nay không có ai sinh nhật.': 'No birthdays today.', 'ngày mai': 'tomorrow', 'Lễ hội': 'Festivals',
