@@ -96,10 +96,19 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background-color: var(--bg);
-  /* 2x2 checker dither, like the grass tiles */
+  transition: background-color 0.3s steps(3, end);
+}
+
+/* 2x2 checker dither, like the grass tiles. It sits on a fixed layer so the
+   page scrolls over it (background-attachment: fixed is ignored on iOS). */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
   background-image: repeating-conic-gradient(var(--bg-dither) 0 25%, transparent 0 50%);
   background-size: 12px 12px;
-  transition: background-color 0.3s steps(3, end);
 }
 
 button, input, select, textarea {
