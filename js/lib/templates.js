@@ -31,11 +31,13 @@ export function iconBox(src, fallback = 'box', alt = '', size = '') {
     </div>`;
 }
 
-export function ingredientList(ingredients, modifier = '') {
+// `linkFor(ing)` may return { type, id } to make a row open that item's or recipe's details
+export function ingredientList(ingredients, modifier = '', linkFor = null) {
   return `
     <ul class="ing-list ${modifier}">
-      ${ingredients.map(ing => `
-        <li class="ing-row">
+      ${ingredients.map(ing => {
+        const link = linkFor?.(ing);
+        const body = `
           <span class="ing-row__left">
             <span class="ing-icon"><img src="${ing.iconUrl || FALLBACK_ICON}" alt="" class="pixel-img" data-fallback="hide" loading="lazy"></span>
             <span>
@@ -43,8 +45,11 @@ export function ingredientList(ingredients, modifier = '') {
               ${ing.nameEn && (isEn || !ing.name.toLowerCase().includes(ing.nameEn.toLowerCase())) && altName(ing) ? `<small class="muted">(${altName(ing)})</small>` : ''}
             </span>
           </span>
-          <span class="count-chip">x${ing.count}</span>
-        </li>`).join('')}
+          <span class="count-chip">x${ing.count}</span>`;
+        return link
+          ? `<li class="ing-row ing-row--link" role="button" tabindex="0" data-action="open-detail" data-type="${link.type}" data-id="${link.id}">${body}</li>`
+          : `<li class="ing-row">${body}</li>`;
+      }).join('')}
     </ul>`;
 }
 

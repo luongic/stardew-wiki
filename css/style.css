@@ -2435,6 +2435,11 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 }
 .fish-card__tick img { width: 18px; height: 18px; }
 
+/* Recipe ingredients that open the item they name */
+.ing-row--link { cursor: pointer; }
+.ing-row--link:hover, .ing-row--link:focus-visible { background: var(--parch-200); outline: none; }
+.empty-state__more { display: flex; justify-content: center; margin-top: -8px; margin-bottom: 20px; }
+
 /* Progress-from-save summary */
 .save-sync__list { list-style: none; display: flex; flex-direction: column; gap: 6px; margin: 12px 0; }
 .save-sync__list li { display: grid; grid-template-columns: 1fr auto 110px; gap: 10px; align-items: center; border-bottom: 1px dashed var(--parch-300); padding-bottom: 4px; }

@@ -338,6 +338,7 @@ export const UI_EN = {
 // Patterns for text that mixes words with numbers or names. Replacement
 // functions receive the regex groups plus `sub`, which translates a piece.
 export const PATTERNS_EN = [
+  [/^Xem (\d+) công thức khớp ở tab Công Thức$/, 'See $1 matching recipes in the Recipes tab'],
   [new RegExp(`^${DOW_RE}, ngày (\\d+) (Mùa Xuân|Mùa Hạ|Mùa Thu|Mùa Đông), năm (\\d+)$`), (m, dow, d, s, y) => `${DOW[dow]}, ${SEASON[s]} ${d}, Year ${y}`],
   [/^sau (\d+) ngày \((\d+) (Xuân|Hạ|Thu|Đông)\)$/, (m, n, d, s) => `in ${n} days (${({ 'Xuân': 'Spring', 'Hạ': 'Summer', 'Thu': 'Fall', 'Đông': 'Winter' })[s]} ${d})`],
   [/^ngày mai \((\d+) (Xuân|Hạ|Thu|Đông)\)$/, (m, d, s) => `tomorrow (${({ 'Xuân': 'Spring', 'Hạ': 'Summer', 'Thu': 'Fall', 'Đông': 'Winter' })[s]} ${d})`],
@@ -440,7 +441,7 @@ export const NAMES_EN = {
   'Tinh Chất Mặt Trời': 'Solar Essence', 'Tinh Chất Hư Vô': 'Void Essence', 'Cá Ma': 'Ghostfish', 'Mảnh xương vụn': 'Bone Fragment', 'Kiếm Xương': 'Bone Sword',
   'Xương bả Tiền sử': 'Prehistoric Scapula', 'Xương sườn Tiền sử': 'Prehistoric Rib', 'Xương ống Tiền sử': 'Prehistoric Tibia', 'Xương sống Tiền sử': 'Prehistoric Vertebra',
   'Đầu lâu Tiền sử': 'Prehistoric Skull', 'Xương Bàn tay': 'Skeletal Hand', 'Bánh Bao Kỳ Lạ': 'Strange Bun', 'Mảnh Ngũ sắc': 'Prismatic Shard',
-  'Mực Đen': 'Squid Ink', 'Lươn Cay': 'Spicy Eel', 'Chân Thỏ': "Rabbit's Foot", 'Hạt Bắp Cải Đỏ': 'Red Cabbage Seeds', 'Vải': 'Cloth',
+  'Mực Đen': 'Squid Ink', 'Mực Mực': 'Squid Ink', 'Lươn Cay': 'Spicy Eel', 'Chân Thỏ': "Rabbit's Foot", 'Hạt Bắp Cải Đỏ': 'Red Cabbage Seeds', 'Vải': 'Cloth',
   'Kẹo Thợ mỏ': "Miner's Treat", 'Mồi Tò Mò': 'Curiosity Lure', 'Trứng Khủng long': 'Dinosaur Egg', 'Bít Tết Bọ': 'Bug Steak', 'Chả Cua': 'Crab Cakes',
   'Pin Năng Lượng': 'Battery Pack', 'Thuốc Bổ Năng Lượng': 'Energy Tonic', 'Thuốc Hồi Sinh Lực': 'Life Elixir', 'Ngọc xanh biển': 'Aquamarine',
   'Ngọc Lục bảo': 'Emerald', 'Hồng ngọc': 'Ruby', 'Hoàng ngọc': 'Topaz', 'Nấm Dung nham': 'Magma Cap', 'Mảnh Nham thạch': 'Cinder Shard',

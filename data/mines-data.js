@@ -636,7 +636,7 @@ export const MINE_AREAS = [
             "floors": "91-119",
             "drops": [
               "Tinh Chất Mặt Trời",
-              "Mực Đen",
+              "Mực Mực",
               "Bom",
               "Thỏi Vàng",
               "Siêu Bom",

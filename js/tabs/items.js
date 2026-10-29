@@ -4,6 +4,7 @@
 
 import { altName } from '../lib/i18n.js';
 import { ITEMS_DATA } from '../../data/items-data.js';
+import { RECIPES_DATA } from '../../data/recipes-data.js';
 import { emptyState, v16Badge, wikiLink, modalHeader, matches, signed } from '../lib/templates.js';
 import { ico } from '../lib/icons.js';
 
@@ -104,8 +105,11 @@ export default {
     });
 
     if (!list.length) {
+      // Dishes and crafted goods live in the Recipes tab: point there when they match
+      const recipeHits = q ? RECIPES_DATA.filter(r => matches(q, r.name, r.nameEn)).length : 0;
       container.innerHTML = emptyState('search', 'Không tìm thấy vật phẩm nào khớp với tìm kiếm!',
-        'Hãy thử tìm từ khóa khác (VD: Rìu, Cuốc, Cá huyền thoại, Kim cương, Dâu tây, 1.6...)');
+        'Hãy thử tìm từ khóa khác (VD: Rìu, Cuốc, Cá huyền thoại, Kim cương, Dâu tây, 1.6...)') +
+        (recipeHits ? `<p class="empty-state__more"><button class="btn btn--blue" type="button" data-action="switch-tab" data-tab="recipes">${ico('recipes')} Xem ${recipeHits} công thức khớp ở tab Công Thức</button></p>` : '');
       return;
     }
 

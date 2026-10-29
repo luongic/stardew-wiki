@@ -6,7 +6,18 @@ import { altName } from '../lib/i18n.js';
 import { RECIPES_DATA } from '../../data/recipes-data.js';
 import { iconBox, ingredientList, emptyState, v16Badge, wikiLink, modalHeader, matches, signed } from '../lib/templates.js';
 import { planner } from './planner.js';
+import { ITEMS_DATA } from '../../data/items-data.js';
 import { ico } from '../lib/icons.js';
+
+// Ingredients open the item (or, for dishes and crafted goods, the recipe) they name
+const itemByEn = new Map(ITEMS_DATA.map(i => [i.nameEn, i]));
+const recipeByEn = new Map(RECIPES_DATA.map(r => [r.nameEn, r]));
+function ingredientLink(ing) {
+  const it = itemByEn.get(ing.nameEn);
+  if (it) return { type: 'item', id: it.id };
+  const r = recipeByEn.get(ing.nameEn);
+  return r ? { type: 'recipe', id: r.id } : null;
+}
 
 const recipeById = new Map(RECIPES_DATA.map(r => [r.id, r]));
 
@@ -45,7 +56,7 @@ function cardHtml(r, done) {
 
         <div class="inset-box">
           <div class="section-label">${ico('ingredients')} Nguyên liệu cần:</div>
-          ${ingredientList(r.ingredients)}
+          ${ingredientList(r.ingredients, '', ingredientLink)}
         </div>
 
         ${r.buffs?.length ? `
@@ -119,7 +130,7 @@ export default {
       <p class="detail-lead">${r.desc}</p>
       <div class="inset-box">
         <h4 class="inset-box__title">${ico('ingredients')} Danh sách nguyên liệu cần:</h4>
-        ${ingredientList(r.ingredients, 'ing-list--lg')}
+        ${ingredientList(r.ingredients, 'ing-list--lg', ingredientLink)}
       </div>
       ${r.tips ? `
         <div class="callout callout--tip">
