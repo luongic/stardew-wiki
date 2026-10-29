@@ -463,6 +463,11 @@
             <div class="farm-bar__group">
               <label class="toggle"><input type="checkbox" class="px-check" id="farmGridToggle" data-action="farm-grid"> <span>Lưới ô</span></label>
               <label class="toggle"><input type="checkbox" class="px-check" id="farmRangeToggle" data-action="farm-ranges"> <span>Vùng tưới & bù nhìn</span></label>
+              <label class="farm-alpha" title="Độ đậm vùng tưới & bù nhìn">
+                <span>Độ đậm vùng</span>
+                <input type="range" class="px-range" id="farmRangeAlpha" min="10" max="90" step="5" value="30" data-action="farm-range-alpha" aria-label="Độ đậm vùng tưới & bù nhìn">
+                <strong id="farmRangeAlphaLabel">30%</strong>
+              </label>
             </div>
             <div class="farm-bar__group">
               <button class="btn btn--blue btn--sm" type="button" data-action="farm-import"><i data-icon="upload"></i> Nạp file save</button>

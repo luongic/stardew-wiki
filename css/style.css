@@ -2266,6 +2266,9 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 }
 .farm-bar__group { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .farm-bar .btn.is-active { --btn-bg: var(--gold); }
+.farm-alpha { display: inline-flex; align-items: center; gap: 8px; }
+.farm-alpha .px-range { width: 120px; }
+.farm-alpha strong { min-width: 3ch; }
 
 .farm-layout {
   display: grid;

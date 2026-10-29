@@ -290,7 +290,7 @@ export const UI_EN = {
   'Nông Trại': 'Farm', 'Lên Kế Hoạch Nông Trại': 'Farm Planner',
   'Kéo công trình, vòi tưới, cây trồng, hàng rào... từ bảng bên trái thả vào nông trại để hình dung và sắp xếp. Mỗi món chiếm đúng số ô như trong game. Có thể nạp file save để xem đúng nông trại của bạn.': 'Drag buildings, sprinklers, crops, fences... from the left panel onto the farm to plan your layout. Everything takes the same number of tiles as in the game. Load a save file to see your real farm.',
   'Chọn / Di chuyển': 'Select / Move', 'Cục tẩy': 'Eraser', 'Hoàn tác': 'Undo', 'Làm lại': 'Redo', 'Lưới ô': 'Grid',
-  'Vùng tưới & bù nhìn': 'Sprinkler & scarecrow range', 'Nạp file save': 'Load save file', 'Tải ảnh': 'Save image', 'Làm trống': 'Clear',
+  'Vùng tưới & bù nhìn': 'Sprinkler & scarecrow range', 'Độ đậm vùng': 'Range opacity', 'Độ đậm vùng tưới & bù nhìn': 'Opacity of sprinkler & scarecrow ranges', 'Nạp file save': 'Load save file', 'Tải ảnh': 'Save image', 'Làm trống': 'Clear',
   'Cách lấy file save': 'Where to find your save file', 'Mở thư mục mang tên nông trại (VD:': 'Open the folder named after your farm (e.g.',
   'Công trình': 'Buildings', 'Trồng trọt & Tưới': 'Farming & Watering', 'Cây trồng': 'Crops', 'Cây xanh': 'Trees',
   'Hàng rào & Cổng': 'Fences & Gates', 'Lối đi, Sàn & Cỏ': 'Paths, Floors & Grass', 'Máy móc & Rương': 'Machines & Chests', 'Đá, gốc cây & khác': 'Debris & other',

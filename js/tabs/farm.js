@@ -48,6 +48,7 @@ const ui = {
   zoom: 1,
   showGrid: false,
   showRanges: false,
+  rangeAlpha: loadJSON(KEYS.farmView, {}).rangeAlpha ?? 0.3,   // how strongly ranges are shaded
   paletteDrag: null,   // item being dragged from the palette
   message: ''
 };
@@ -263,6 +264,26 @@ function draw() {
 
 function tint(x, y, color) { octx.fillStyle = color; octx.fillRect(x * TILE, y * TILE, TILE, TILE); }
 
+// Range colours: blue for sprinklers, magenta for scarecrows, Junimo huts, bee houses (both stand out on the orange soil)
+const WATER = [70, 140, 255];
+const GUARD = [220, 60, 200];
+const isWater = it => it.id.includes('sprinkler');
+
+// Shade a set of tiles and outline its outer edge so the boundary is easy to read
+function shadeArea(tiles, [r, g, b], alpha) {
+  const set = new Set(tiles.map(([x, y]) => key(x, y)));
+  octx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
+  for (const [x, y] of tiles) octx.fillRect(x * TILE, y * TILE, TILE, TILE);
+  octx.fillStyle = `rgba(${r},${g},${b},${Math.min(1, alpha * 2 + 0.25)})`;
+  for (const [x, y] of tiles) {
+    const px = x * TILE, py = y * TILE;
+    if (!set.has(key(x, y - 1))) octx.fillRect(px, py, TILE, 1);
+    if (!set.has(key(x, y + 1))) octx.fillRect(px, py + TILE - 1, TILE, 1);
+    if (!set.has(key(x - 1, y))) octx.fillRect(px, py, 1, TILE);
+    if (!set.has(key(x + 1, y))) octx.fillRect(px + TILE - 1, py, 1, TILE);
+  }
+}
+
 function drawOverlay() {
   if (!octx) return;
   octx.clearRect(0, 0, MAP.w * TILE, MAP.h * TILE);
@@ -272,19 +293,21 @@ function drawOverlay() {
     for (let y = 1; y < MAP.h; y++) octx.fillRect(0, y * TILE, MAP.w * TILE, 1);
   }
   if (ui.showRanges) {
-    const watered = wateredSet();
-    for (const k of watered) { const [x, y] = k.split(',').map(Number); tint(x, y, 'rgba(70,140,255,0.28)'); }
+    // Scarecrows / huts / bee houses first, merged into one area; sprinklers on top
+    const guarded = new Map();
     for (const o of plan.objects) {
       const it = itemById.get(o.t);
-      if (it?.range && !it.id.includes('sprinkler')) for (const [x, y] of rangeTiles(it, o.x, o.y)) tint(x, y, 'rgba(255,220,80,0.12)');
+      if (it?.range && !isWater(it)) for (const t of rangeTiles(it, o.x, o.y)) guarded.set(key(...t), t);
     }
+    shadeArea([...guarded.values()], GUARD, ui.rangeAlpha * 0.6);
+    shadeArea([...wateredSet()].map(k => k.split(',').map(Number)), WATER, ui.rangeAlpha);
   }
   if (ui.selected !== null && plan.objects[ui.selected]) {
     const o = plan.objects[ui.selected]; const { w, h } = sizeOf(o);
     octx.strokeStyle = '#ffe066'; octx.lineWidth = 2;
     octx.strokeRect(o.x * TILE + 1, o.y * TILE + 1, w * TILE - 2, h * TILE - 2);
     const it = itemById.get(o.t);
-    if (it?.range) for (const [x, y] of rangeTiles(it, o.x, o.y)) tint(x, y, 'rgba(70,140,255,0.25)');
+    if (it?.range) shadeArea(rangeTiles(it, o.x, o.y), isWater(it) ? WATER : GUARD, ui.rangeAlpha);
   }
   // Ghost of the item being placed, green if it fits and red if not
   const item = ghostItem();
@@ -292,7 +315,7 @@ function drawOverlay() {
     const { x, y } = ghostOrigin(item);
     const ok = fits(item, x, y, ui.drag?.moving ?? -1);
     for (let dy = 0; dy < item.h; dy++) for (let dx = 0; dx < item.w; dx++) tint(x + dx, y + dy, ok ? 'rgba(80,220,80,0.35)' : 'rgba(240,60,60,0.45)');
-    if (item.range) for (const [rx, ry] of rangeTiles(item, x, y)) tint(rx, ry, 'rgba(70,140,255,0.22)');
+    if (item.range) shadeArea(rangeTiles(item, x, y), isWater(item) ? WATER : GUARD, ui.rangeAlpha);
     const im = img(item.sprite || item.icon);
     if (im && item.kind !== 'ground' && item.kind !== 'crop') {
       octx.globalAlpha = 0.75;
@@ -420,6 +443,8 @@ function renderSide() {
   document.querySelectorAll('[data-action="farm-tool"]').forEach(b => b.classList.toggle('is-active', b.dataset.tool === (ui.tool || 'select')));
   const g = document.getElementById('farmGridToggle'); if (g) g.checked = ui.showGrid;
   const r = document.getElementById('farmRangeToggle'); if (r) r.checked = ui.showRanges;
+  const a = document.getElementById('farmRangeAlpha');
+  if (a) { a.value = Math.round(ui.rangeAlpha * 100); document.getElementById('farmRangeAlphaLabel').textContent = `${a.value}%`; }
   const z = document.getElementById('farmZoomLabel'); if (z) z.textContent = `x${Math.round(ui.zoom * 100) / 100}`;
 }
 
@@ -711,6 +736,12 @@ const farmTab = {
     'farm-zoom': (app, el) => { if (el.dataset.step === 'fit') { ui.zoom = fitZoom(); applyZoom(); } else zoomStep(Number(el.dataset.step)); },
     'farm-grid': (app, el) => { ui.showGrid = el.checked; drawOverlay(); },
     'farm-ranges': (app, el) => { ui.showRanges = el.checked; drawOverlay(); },
+    'farm-range-alpha': (app, el) => {
+      ui.rangeAlpha = Number(el.value) / 100;
+      saveJSON(KEYS.farmView, { rangeAlpha: ui.rangeAlpha });
+      const label = document.getElementById('farmRangeAlphaLabel'); if (label) label.textContent = `${el.value}%`;
+      drawOverlay();
+    },
     'farm-undo': () => { if (undoStack.length) { redoStack.push(JSON.stringify(plan)); restore(undoStack.pop()); } },
     'farm-redo': () => { if (redoStack.length) { undoStack.push(JSON.stringify(plan)); restore(redoStack.pop()); } },
     'farm-delete': () => removeSelected(),
