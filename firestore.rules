@@ -42,6 +42,18 @@ service cloud.firestore {
 
       allow delete: if false;
 
+      // One note per member (doc id = uid), max 1000 characters
+      match /notes/{uid} {
+        allow read: if isMember(code);
+        allow write: if isMember(code)
+          && request.auth.uid == uid
+          && request.resource.data.keys().hasOnly(['text', 'name', 't'])
+          && request.resource.data.text is string
+          && request.resource.data.text.size() <= 1000
+          && request.resource.data.name is string
+          && request.resource.data.name.size() <= 24;
+      }
+
       match /progress/{domain} {
         allow read: if isMember(code);
         allow write: if isMember(code)

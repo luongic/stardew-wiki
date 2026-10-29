@@ -30,6 +30,7 @@ const ROOM_KEY = 'stardew_wiki_coop_room';
 const NAME_KEY = 'stardew_wiki_coop_name';
 const CODE_ALPHABET = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789'; // no I/L/O/0/1 look-alikes
 const LAST_SEEN_EVERY_MS = 2 * 60 * 1000;
+export const NOTE_MAX = 1000;
 
 // `?emulator` runs against the local Firebase emulators (see README)
 const USE_EMULATOR = new URLSearchParams(location.search).has('emulator');
@@ -43,6 +44,8 @@ class CoopRoom {
     this.code = null;
     this.room = null;          // latest room doc data
     this.remote = {};          // domain -> latest field map from Firestore
+    this.notes = {};           // uid -> { text, name, t } (one note per member)
+    this.localNote = null;     // () => current local note text, set by the notes panel
     this.status = 'idle';      // idle | connecting | synced | pending | offline | error
     this.error = '';
     this.unsubs = [];
@@ -190,6 +193,7 @@ class CoopRoom {
       });
       // The host's current progress becomes the room's starting point
       await this.uploadLocal(code, null);
+      await this.uploadNote(code);
       await this.start(code);
     } catch (e) {
       this.fail(e);
@@ -222,6 +226,7 @@ class CoopRoom {
         progress.replace('planner', {}, 'remote');
       } else {
         await this.uploadLocal(code, existing);
+        await this.uploadNote(code);
       }
       await this.start(code);
     } catch (e) {
@@ -256,6 +261,11 @@ class CoopRoom {
     localStorage.setItem(ROOM_KEY, code);
     this.setStatus('connecting');
 
+    this.unsubs.push(fb.onSnapshot(fb.collection(fb.db, 'rooms', code, 'notes'), snap => {
+      this.notes = Object.fromEntries(snap.docs.map(d => [d.id, d.data()]));
+      this.notify();
+    }, e => this.fail(e)));
+
     this.unsubs.push(fb.onSnapshot(this.roomRef(), { includeMetadataChanges: true }, snap => {
       if (!snap.exists()) return this.fail(new Error('Phòng không còn tồn tại.'));
       this.room = snap.data();
@@ -282,6 +292,7 @@ class CoopRoom {
     this.unsubs.forEach(u => u());
     this.unsubs = [];
     this.remote = {};
+    this.notes = {};
     if (notify) {
       this.code = null;
       this.room = null;
@@ -308,6 +319,30 @@ class CoopRoom {
     } catch (e) {
       this.fail(e);
     }
+  }
+
+  // ---------- notes ----------
+  // One note per member, at most 1000 characters (also enforced by the rules),
+  // so a room's notes never grow beyond 8 x 1000 characters.
+  noteRef(code = this.code, uid = this.user?.uid) { return this.fb.doc(this.fb.db, 'rooms', code, 'notes', uid); }
+
+  saveNote(text) {
+    if (!this.fb || !this.code) return;
+    this.fb.setDoc(this.noteRef(), {
+      text: String(text).slice(0, NOTE_MAX),
+      name: this.name || 'Nông dân',
+      t: this.fb.serverTimestamp()
+    }).catch(e => this.fail(e));
+  }
+
+  // On create/join: share the note written while solo, unless the room
+  // already holds one from this account (e.g. written on another device)
+  async uploadNote(code) {
+    const text = this.localNote?.() || '';
+    if (!text.trim()) return;
+    const existing = await this.fb.getDoc(this.noteRef(code));
+    if (existing.exists()) return;
+    await this.fb.setDoc(this.noteRef(code), { text: text.slice(0, NOTE_MAX), name: this.name || 'Nông dân', t: this.fb.serverTimestamp() });
   }
 
   // ---------- sync ----------

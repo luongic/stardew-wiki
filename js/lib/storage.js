@@ -12,7 +12,8 @@ export const KEYS = {
   planner: 'stardew_wiki_planner',
   gathered: 'stardew_wiki_gathered_materials',
   bundles: 'stardew_wiki_bundles',
-  museum: 'stardew_wiki_museum'
+  museum: 'stardew_wiki_museum',
+  note: 'stardew_wiki_note'
 };
 
 export function loadJSON(key, fallback) {

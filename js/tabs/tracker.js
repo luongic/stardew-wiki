@@ -9,6 +9,8 @@ import { progress } from '../lib/progress.js';
 import { bundleProgress } from './bundles.js';
 import { museumProgress } from './museum.js';
 import { ico } from '../lib/icons.js';
+import { KEYS, loadJSON } from '../lib/storage.js';
+import { restoreNote } from '../sync/notes-ui.js';
 
 const BACKUP_VERSION = 3;
 
@@ -65,7 +67,8 @@ function exportProgress(app) {
     plannedItems: planner.items,
     gatheredMaterials: planner.gathered,
     bundleSlots: Array.from(bundleProgress.done),
-    museumDonated: Array.from(museumProgress.donated)
+    museumDonated: Array.from(museumProgress.donated),
+    note: loadJSON(KEYS.note, { text: '' }).text
   };
   const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
@@ -106,6 +109,7 @@ async function importProgress(app, file) {
   progress.replace('planner', planner.validItems(data.plannedItems));
   progress.replace('gathered', planner.validGathered(data.gatheredMaterials));
   progress.replace('bundles', bundleProgress.validKeys(Array.isArray(data.bundleSlots) ? data.bundleSlots : []));
+  restoreNote(data.note);
   progress.replace('museum', museumProgress.validKeys(Array.isArray(data.museumDonated) ? data.museumDonated : []));
   app.sfx.play('complete');
   app.showToast(`${ico('upload')} Đã khôi phục tiến độ từ file sao lưu!`);
