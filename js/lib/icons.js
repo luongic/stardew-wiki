@@ -22,7 +22,7 @@ export const ICONS = {
 
   // Tabs
   recipes: game('fried_egg'), items: game('stardew_valley_almanac'), npcs: px('members'), quests: game('dwarf_scroll_i'),
-  bundles: px('bundle'), museum: game('golden_mask'), mines: game('item_copper_pickaxe'), planner: game('chest'), tracker: game('stardrop'),
+  bundles: px('bundle'), museum: game('golden_mask'), mines: game('item_copper_pickaxe'), map: px('pin'), planner: game('chest'), tracker: game('stardrop'),
 
   // Recipe categories
   cooking: game('complete_breakfast'), crafting: game('sprinkler'), smelting: game('furnace'), bait: game('craft_bait'),

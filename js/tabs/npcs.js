@@ -152,6 +152,15 @@ function simContext() {
   return { hour: sim.hour, weather: effectiveWeather(), season: sim.season, day: sim.day };
 }
 
+// Shared with the Map tab, which shows villagers at the same moment
+export function simSnapshot() {
+  return { ...simContext(), dayName: DAY_NAMES[dayOfWeek(sim.day)] };
+}
+
+export function setSimHour(hour) {
+  sim.hour = Math.min(26, Math.max(6, hour));
+}
+
 const birthdayText = npc => (npc.birthday ? `${npc.birthday.seasonText} Ngày ${npc.birthday.day}` : 'Không rõ');
 
 function birthdaysOn(season, day) {

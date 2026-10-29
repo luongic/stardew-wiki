@@ -110,6 +110,9 @@
       <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="mines">
         <i data-icon="mines"></i> <span>Hầm Mỏ</span>
       </button>
+      <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="map">
+        <i data-icon="map"></i> <span>Bản Đồ</span>
+      </button>
       <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="planner">
         <i data-icon="planner"></i> <span>Kế Hoạch & Tính Nguyên Liệu</span> <span class="tab__badge" id="plannerBadge">0</span>
       </button>
@@ -185,6 +188,9 @@
 
       <!-- Mine area chips are generated from data/mines-data.js -->
       <div class="chip-group" data-filter-group="mines" id="mineAreaChips" hidden></div>
+
+      <!-- Map chips are generated from data/map-data.js -->
+      <div class="chip-group" data-filter-group="map" id="mapChips" hidden></div>
 
       <!-- Each toggle only shows on the tabs whose data it can filter -->
       <div class="toggles" id="quickToggles">
@@ -348,6 +354,38 @@
             <div id="mineShaft"></div>
           </aside>
           <div id="mineZones" class="mines-layout__zones"></div>
+        </div>
+      </section>
+
+      <!-- ======= TAB: MAP ======= -->
+      <section id="tab-map" class="tab-panel" role="tabpanel" hidden>
+        <div class="panel map-panel">
+          <div class="map-bar">
+            <div class="map-bar__zoom">
+              <button class="btn btn--ghost btn--sm" type="button" data-action="map-zoom" data-step="-1" aria-label="Thu nhỏ">−</button>
+              <span class="map-bar__zoom-label" id="mapZoomLabel">x1</span>
+              <button class="btn btn--ghost btn--sm" type="button" data-action="map-zoom" data-step="1" aria-label="Phóng to">+</button>
+              <button class="btn btn--ghost btn--sm" type="button" data-action="map-zoom" data-step="reset">Vừa khung</button>
+            </div>
+            <label class="toggle"><input type="checkbox" class="px-check" id="mapNpcToggle" checked> <span>Hiện vị trí dân làng</span></label>
+            <div class="map-bar__time">
+              <span><i data-icon="clock"></i> <span id="mapTime"></span></span>
+              <input type="range" id="mapTimeSlider" class="px-range" min="6" max="26" step="0.5" aria-label="Giờ trong ngày">
+              <button class="btn btn--ghost btn--sm" type="button" data-action="switch-tab" data-tab="npcs">Đổi ngày / mùa / thời tiết</button>
+            </div>
+          </div>
+          <div class="map-layout">
+            <div class="map-viewport" id="mapViewport">
+              <img id="mapImg" class="map-img pixel-img" alt="Bản đồ Stardew Valley" draggable="false">
+              <div class="map-overlay">
+                <!-- Portraits first, pins on top: a crowd of villagers must never hide a place -->
+                <div id="mapNpcs"></div>
+                <div id="mapSpots"></div>
+              </div>
+            </div>
+            <aside class="map-info" id="mapInfo"></aside>
+          </div>
+          <p class="panel__hint map-credit">Bản đồ gốc từ game Stardew Valley (ConcernedApe), qua Official Stardew Valley Wiki. Kéo để di chuyển, cuộn chuột hoặc chụm hai ngón để phóng to. Vị trí dân làng lấy theo trình mô phỏng lịch trình và chỉ mang tính gần đúng.</p>
         </div>
       </section>
 

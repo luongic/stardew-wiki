@@ -24,10 +24,11 @@ js/lib/               storage, progress (kho tiến độ chung), icons (bảng 
 js/sync/              Phòng co-op: coop.js (Firebase), coop-ui.js (popup), firebase-config.js (sinh từ .env)
 scripts/              gen-firebase-config.mjs
 firestore.rules       Security Rules cho phòng co-op
-js/tabs/              Mỗi tab một module: recipes, items, npcs, quests, bundles, museum, planner, tracker
-data/*.js             Dữ liệu công thức, vật phẩm, NPC + lịch sự kiện, nhiệm vụ, gói Nhà Cộng Đồng, bảo tàng
+js/tabs/              Mỗi tab một module: recipes, items, npcs, quests, bundles, museum, mines, map, planner, tracker
+data/*.js             Dữ liệu công thức, vật phẩm, NPC + lịch sự kiện, nhiệm vụ, gói Nhà Cộng Đồng, bảo tàng, hầm mỏ, địa điểm và tọa độ bản đồ
 assets/icons/         Icon vật phẩm (48x48 PNG từ Official Wiki)
 assets/portraits/     Chân dung NPC
+assets/maps/          Bản đồ gốc từ game (qua Official Wiki)
 ```
 
 ### Thêm hành vi mới

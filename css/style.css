@@ -710,6 +710,133 @@ code {
 .milestone strong { font-weight: 400; color: var(--wood-900); }
 
 /* ==========================================================================
+   MAP
+   The image is scaled with transform: scale(n) for whole n only, and drawn
+   pixelated, so map pixels stay square. Hotspots/portraits sit in an overlay
+   positioned in screen pixels (they don't scale with the map).
+   ========================================================================== */
+
+.map-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 24px;
+  margin-bottom: 14px;
+}
+.map-bar__zoom { display: flex; align-items: center; gap: 8px; }
+.map-bar__zoom-label { min-width: 34px; text-align: center; }
+.map-bar__time { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; flex: 1; min-width: 260px; }
+.map-bar__time .px-range { flex: 1; min-width: 140px; }
+
+.map-layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 18px; align-items: start; }
+
+.map-viewport {
+  position: relative;
+  overflow: hidden;
+  height: 520px;
+  background: #1d3b5c;
+  border: var(--px) solid var(--wood-500);
+  box-shadow: var(--frame);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+.map-viewport:active { cursor: grabbing; }
+.map-img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  max-width: none;
+  transform-origin: 0 0;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+.map-overlay { position: absolute; inset: 0; pointer-events: none; }
+
+.map-spot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.map-spot__pin {
+  width: 12px;
+  height: 12px;
+  background: var(--gold);
+  box-shadow: 0 0 0 2px var(--ink), 2px 2px 0 2px rgba(0, 0, 0, 0.4);
+}
+.map-spot--shop .map-spot__pin { background: var(--gold); }
+.map-spot--home .map-spot__pin { background: var(--orange); }
+.map-spot--landmark .map-spot__pin, .map-spot--area .map-spot__pin { background: var(--teal); }
+.map-spot__label {
+  display: none;
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  padding: 1px 6px;
+  font-size: 0.85rem;
+  color: var(--ink);
+  background: var(--parch-50);
+  box-shadow: var(--frame);
+}
+.map-spot:hover .map-spot__label, .map-spot:focus-visible .map-spot__label, .map-spot.is-selected .map-spot__label { display: block; }
+.map-spot.is-selected .map-spot__pin { background: var(--red); }
+.map-spot:hover { z-index: 3; }
+
+.map-npcs {
+  position: absolute;
+  transform: translate(-50%, calc(-100% - 10px));
+  display: flex;
+  gap: 2px;
+  pointer-events: none;
+}
+.map-npcs__more {
+  order: 2;
+  align-self: center;
+  padding: 0 3px;
+  font-size: 0.75rem;
+  color: var(--ink);
+  background: var(--gold);
+  box-shadow: 0 0 0 2px var(--ink);
+}
+.map-npc {
+  pointer-events: auto;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  background: var(--wood-300);
+  box-shadow: 0 0 0 2px var(--ink);
+  transition: transform var(--t);
+}
+.map-npc:hover { transform: translateY(-3px) scale(1.4); z-index: 4; }
+.map-npc img { width: 100%; height: 100%; object-fit: cover; }
+
+.map-info {
+  padding: 12px 14px;
+  background: var(--parch-100);
+  border: var(--px) solid var(--parch-300);
+  max-height: 520px;
+  overflow-y: auto;
+}
+.place { display: flex; flex-direction: column; gap: 10px; }
+.place__head { display: flex; gap: 10px; align-items: center; }
+.place__icon img { width: 44px; height: 44px; }
+.place__title { font-size: 1.35rem; color: var(--wood-900); }
+.place__row { font-size: 0.95rem; }
+.place__group { display: flex; flex-direction: column; gap: 6px; }
+.place__faces { display: flex; flex-wrap: wrap; gap: 8px; }
+.place__face { display: inline-flex; align-items: center; gap: 4px; font-size: 0.9rem; }
+.place__face img, .place__here img { width: 24px; height: 24px; box-shadow: 0 0 0 2px var(--ink); background: var(--wood-300); }
+.place__here { list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: 0.9rem; }
+.place__here li { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.place__here strong { font-weight: 400; color: var(--wood-900); }
+.map-credit { margin: 12px 0 0; }
+
+/* ==========================================================================
    CO-OP ROOM POPUP
    ========================================================================== */
 
@@ -2080,6 +2207,8 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 
 @media (max-width: 900px) {
   .planner { grid-template-columns: 1fr; }
+  .map-layout { grid-template-columns: 1fr; }
+  .map-info { max-height: none; }
   .mines-layout { grid-template-columns: 1fr; }
   .mines-layout__shaft { position: static; }
   .shaft__column { height: 380px; }
