@@ -93,10 +93,10 @@ function renderTeam() {
     ? notes.map(n => `
         <article class="team-note">
           <header class="team-note__head">
-            <span>${ico('guest')} <strong>${esc(n.name)}</strong></span>
+            <span>${ico('guest')} <strong data-no-i18n>${esc(n.name)}</strong></span>
             <span class="muted">${timeAgo(n.at)}</span>
           </header>
-          <p class="team-note__text">${esc(n.text)}</p>
+          <p class="team-note__text" data-no-i18n>${esc(n.text)}</p>
         </article>`).join('')
     : '<p class="muted">Đồng đội chưa viết ghi chú nào.</p>';
 }

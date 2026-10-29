@@ -5,6 +5,7 @@
 // players must really know the art. Questions are random and endless.
 // ==========================================================================
 
+import { altName } from '../lib/i18n.js';
 import { NPCS_DATA } from '../../data/npcs-data.js';
 import { ITEMS_DATA } from '../../data/items-data.js';
 import { RECIPES_DATA } from '../../data/recipes-data.js';
@@ -134,7 +135,7 @@ function questionHtml() {
     <div class="quiz-q">
       <div class="quiz-q__prompt">${game.topic.prompt}</div>
       <div class="quiz-q__name">${q.answer.name}</div>
-      <div class="quiz-q__en">${done ? q.answer.nameEn : '&nbsp;'}</div>
+      <div class="quiz-q__en">${done ? altName(q.answer) || '&nbsp;' : '&nbsp;'}</div>
     </div>
     <div class="quiz-options">
       ${q.options.map((o, i) => {

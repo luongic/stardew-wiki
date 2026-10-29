@@ -18,7 +18,7 @@ const face = n => `assets/portraits/${n}.png`;
 export const ICONS = {
   // Seasons & sound
   spring: game('ing_daffodil'), summer: game('ing_sunflower'), fall: game('item_pumpkin'), winter: game('crystal_fruit'),
-  sound: px('sound'), mute: px('mute'),
+  sound: px('sound'), mute: px('mute'), lang: px('globe'),
 
   // Tabs
   recipes: game('fried_egg'), items: game('stardew_valley_almanac'), npcs: px('members'), quests: game('dwarf_scroll_i'),

@@ -14,10 +14,11 @@ import { QUESTS_DATA } from '../../data/quests-data.js';
 import { CC_ROOMS } from '../../data/bundles-data.js';
 import { MUSEUM_ITEMS } from '../../data/museum-data.js';
 import { ico } from '../lib/icons.js';
+import { isEn, nm, t } from '../lib/i18n.js';
 
-const recipeName = new Map(RECIPES_DATA.map(r => [r.id, r.name]));
-const questName = new Map(QUESTS_DATA.map(q => [q.id, q.name]));
-const museumName = new Map(MUSEUM_ITEMS.map(m => [m.id, m.name]));
+const recipeName = new Map(RECIPES_DATA.map(r => [r.id, nm(r)]));
+const questName = new Map(QUESTS_DATA.map(q => [q.id, nm(q)]));
+const museumName = new Map(MUSEUM_ITEMS.map(m => [m.id, nm(m)]));
 const bundleById = new Map(CC_ROOMS.flatMap(r => r.bundles).map(b => [b.id, b]));
 
 const STATUS = {
@@ -39,6 +40,7 @@ function timeAgo(ms) {
 }
 
 function describe(a) {
+  if (isEn) return describeEn(a);
   switch (a.domain) {
     case 'recipes': return `${a.v ? 'hoàn thành' : 'bỏ đánh dấu'} công thức ${recipeName.get(a.key) || a.key}`;
     case 'quests': return `${a.v ? 'hoàn thành' : 'bỏ đánh dấu'} nhiệm vụ ${questName.get(a.key) || a.key}`;
@@ -50,6 +52,23 @@ function describe(a) {
       const b = bundleById.get(bundleId);
       const item = b?.items[Number(idx)];
       return `${a.v ? 'nộp' : 'bỏ nộp'} ${item?.name || a.key} vào ${b?.name || 'gói'}`;
+    }
+    default: return a.key;
+  }
+}
+
+function describeEn(a) {
+  switch (a.domain) {
+    case 'recipes': return `${a.v ? 'completed' : 'unmarked'} recipe ${recipeName.get(a.key) || a.key}`;
+    case 'quests': return `${a.v ? 'completed' : 'unmarked'} quest ${questName.get(a.key) || a.key}`;
+    case 'museum': return `${a.v ? 'donated' : 'undid donating'} ${museumName.get(a.key) || a.key}`;
+    case 'gathered': return `${a.v ? 'gathered' : 'ungathered'} ${t(a.key)}`;
+    case 'planner': return `planned ${recipeName.get(a.key) || a.key}: ${typeof a.n === 'number' ? Math.max(0, a.n) : '?'}`;
+    case 'bundles': {
+      const [bundleId, idx] = a.key.split(':');
+      const b = bundleById.get(bundleId);
+      const item = b?.items[Number(idx)];
+      return `${a.v ? 'put' : 'took back'} ${item ? nm(item) : a.key} ${a.v ? 'into' : 'from'} ${b ? nm(b) : 'a bundle'}`;
     }
     default: return a.key;
   }
@@ -131,7 +150,7 @@ function renderMembers() {
     .sort(([, a], [, b]) => (a.joinedAt?.toMillis?.() || 0) - (b.joinedAt?.toMillis?.() || 0));
   el.innerHTML = members.map(([uid, m]) => `
     <li class="coop-member">
-      <span>${pixelIcon(uid === coop.room.host ? 'crown' : 'guest')} ${esc(m.name)}${uid === coop.user?.uid ? ' <span class="muted">(bạn)</span>' : ''}</span>
+      <span>${pixelIcon(uid === coop.room.host ? 'crown' : 'guest')} <span data-no-i18n>${esc(m.name)}</span>${uid === coop.user?.uid ? ' <span class="muted">(bạn)</span>' : ''}</span>
       <span class="muted">${timeAgo(m.lastSeen?.toMillis?.())}</span>
     </li>`).join('');
 }
@@ -144,7 +163,7 @@ function renderActivity() {
   el.innerHTML = items.length
     ? items.map(a => `
         <li class="coop-act">
-          <span><strong>${esc(names[a.by]?.name || 'Ai đó')}</strong> ${esc(describe(a))}</span>
+          <span><strong data-no-i18n>${esc(names[a.by]?.name || t('Ai đó'))}</strong> <span data-no-i18n>${esc(describe(a))}</span></span>
           <span class="muted">${timeAgo(a.at)}</span>
         </li>`).join('')
     : '<li class="muted">Chưa có thay đổi nào.</li>';
@@ -156,7 +175,7 @@ function renderGoogle() {
   if (coop.isGoogle) {
     const g = coop.googleProfile;
     el.innerHTML = `
-      <span class="coop-account">${pixelIcon('check')} Đang dùng Google: <strong>${esc(g.email || g.displayName || 'tài khoản Google')}</strong></span>
+      <span class="coop-account">${pixelIcon('check')} Đang dùng Google: <strong data-no-i18n>${esc(g.email || g.displayName || 'Google')}</strong></span>
       <button class="btn btn--ghost btn--sm" type="button" data-action="coop-signout">${pixelIcon('signout')} Đăng xuất</button>`;
   } else {
     el.innerHTML = `
@@ -219,7 +238,7 @@ export const coopUi = {
       const msg = coop.code
         ? `Đăng xuất sẽ ngắt kết nối phòng ${coop.code} trên máy này. Bạn vẫn là thành viên: đăng nhập lại cùng tài khoản Google rồi nhập mã để vào lại. Tiếp tục?`
         : 'Đăng xuất khỏi tài khoản Google?';
-      if (!confirm(msg)) return;
+      if (!confirm(t(msg))) return;
       try {
         await coop.signOut();
         app.showToast('Đã đăng xuất');
@@ -237,12 +256,12 @@ export const coopUi = {
       const code = document.getElementById('coopCode')?.value;
       const mode = document.querySelector('input[name="coopMode"]:checked')?.value || 'merge';
       if (!code || code.trim().length !== 6) return app.showToast('Mã phòng gồm 6 ký tự');
-      if (mode === 'room' && !confirm('Tiến độ trên máy này sẽ được thay bằng tiến độ của phòng. Tiếp tục?')) return;
+      if (mode === 'room' && !confirm(t('Tiến độ trên máy này sẽ được thay bằng tiến độ của phòng. Tiếp tục?'))) return;
       await coop.join(code, mode);
       if (coop.code) app.showToast(`${ico('key')} Đã vào phòng ${coop.code}`);
     },
     'coop-leave': async (app) => {
-      if (!confirm('Rời phòng? Tiến độ đã đồng bộ vẫn được giữ trên máy này.')) return;
+      if (!confirm(t('Rời phòng? Tiến độ đã đồng bộ vẫn được giữ trên máy này.'))) return;
       await coop.leave();
       app.showToast('Đã rời phòng');
     },

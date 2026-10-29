@@ -30,6 +30,16 @@ import trackerTab from './tabs/tracker.js';
 import { coopUi } from './sync/coop-ui.js';
 import { notesUi } from './sync/notes-ui.js';
 import { ico, hydrateIcons } from './lib/icons.js';
+import { isEn, setLang, registerNames, startTranslating } from './lib/i18n.js';
+import { ITEMS_DATA } from '../data/items-data.js';
+import { RECIPES_DATA } from '../data/recipes-data.js';
+import { NPCS_DATA, CALENDAR_EVENTS } from '../data/npcs-data.js';
+import { QUESTS_DATA } from '../data/quests-data.js';
+import { CC_ROOMS } from '../data/bundles-data.js';
+import { MUSEUM_ITEMS, MUSEUM_REWARDS } from '../data/museum-data.js';
+import { MINE_AREAS } from '../data/mines-data.js';
+import { PLACES } from '../data/places-data.js';
+import { MAPS } from '../data/map-data.js';
 
 const SEASON_NAMES = { spring: 'Mùa Xuân', summer: 'Mùa Hạ', fall: 'Mùa Thu', winter: 'Mùa Đông' };
 const SEARCH_DEBOUNCE_MS = 150;
@@ -40,7 +50,10 @@ export class StardewWikiApp {
     this.tabById = new Map(this.tabs.map(t => [t.id, t]));
     this.tabByDetailType = new Map(this.tabs.filter(t => t.detailType).map(t => [t.detailType, t]));
 
-    this.currentTab = 'recipes';
+    // Switching language reloads the page; come back to the same tab
+    const savedTab = sessionStorage.getItem('stardew_wiki_tab');
+    sessionStorage.removeItem('stardew_wiki_tab');
+    this.currentTab = this.tabById.has(savedTab) ? savedTab : 'recipes';
     this.searchQuery = '';
     this.filters = Object.fromEntries(this.tabs.map(t => [t.id, 'all']));
     this.toggles = { v16: false, unfinished: false, buffs: false };
@@ -57,6 +70,11 @@ export class StardewWikiApp {
   }
 
   init() {
+    if (isEn) {
+      registerNames([ITEMS_DATA, RECIPES_DATA, NPCS_DATA, CALENDAR_EVENTS, QUESTS_DATA, CC_ROOMS,
+        MUSEUM_ITEMS, MUSEUM_REWARDS, MINE_AREAS, PLACES, MAPS]);
+    }
+    startTranslating();
     hydrateIcons();
     initModals();
     initImageFallbacks();
@@ -64,6 +82,8 @@ export class StardewWikiApp {
     startSeasonParticles(document.getElementById('seasonCanvas'), () => this.season);
     this.bindDelegates();
     this.updateAudioButton();
+    const langBtn = document.getElementById('langToggleBtn');
+    if (langBtn) langBtn.innerHTML = `${ico('lang')} ${isEn ? 'Tiếng Việt' : 'English'}`;
     this.tabs.forEach(t => t.init?.(this));
     notesUi.init(this);
     coopUi.init(this);
@@ -146,6 +166,7 @@ export class StardewWikiApp {
         app.sfx.play('click');
         showToast(`${ico(el.dataset.season)} Đã chuyển sang không gian ${SEASON_NAMES[el.dataset.season]}!`);
       },
+      'set-lang': () => setLang(isEn ? 'vi' : 'en'),
       'toggle-audio': (app) => {
         app.sfx.setEnabled(!app.sfx.enabled);
         app.updateAudioButton();

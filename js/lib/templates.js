@@ -1,3 +1,4 @@
+import { isEn, altName } from './i18n.js';
 import { ico } from './icons.js';
 
 // ==========================================================================
@@ -39,7 +40,7 @@ export function ingredientList(ingredients, modifier = '') {
             <span class="ing-icon"><img src="${ing.iconUrl || FALLBACK_ICON}" alt="" class="pixel-img" data-fallback="hide" loading="lazy"></span>
             <span>
               ${ing.name}
-              ${ing.nameEn && !ing.name.toLowerCase().includes(ing.nameEn.toLowerCase()) ? `<small class="muted">(${ing.nameEn})</small>` : ''}
+              ${ing.nameEn && (isEn || !ing.name.toLowerCase().includes(ing.nameEn.toLowerCase())) && altName(ing) ? `<small class="muted">(${altName(ing)})</small>` : ''}
             </span>
           </span>
           <span class="count-chip">x${ing.count}</span>

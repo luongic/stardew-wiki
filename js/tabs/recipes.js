@@ -2,6 +2,7 @@
 // TAB: CÔNG THỨC CHẾ BIẾN (RECIPES)
 // ==========================================================================
 
+import { altName } from '../lib/i18n.js';
 import { RECIPES_DATA } from '../../data/recipes-data.js';
 import { iconBox, ingredientList, emptyState, v16Badge, wikiLink, modalHeader, matches, signed } from '../lib/templates.js';
 import { planner } from './planner.js';
@@ -32,7 +33,7 @@ function cardHtml(r, done) {
           ${iconBox(r.imageUrl, 'box', r.name)}
           <div>
             <h3 class="card__title">${r.name}</h3>
-            <div class="card__sub">${r.nameEn} ${v16Badge(r.version16)}</div>
+            <div class="card__sub">${altName(r)} ${v16Badge(r.version16)}</div>
           </div>
         </div>
         <button class="check-btn" type="button" data-action="toggle-recipe" data-id="${r.id}"
@@ -112,7 +113,7 @@ export default {
       ${modalHeader({
         icon: iconBox(r.imageUrl, 'box', r.name, 'lg'),
         title: r.name,
-        sub: `${r.nameEn} • ${r.subCategory}`,
+        sub: `${altName(r)} • ${r.subCategory}`,
         extra: r.nameEn ? wikiLink(r.nameEn, 'Tra cứu ảnh gốc & Dữ liệu trên Official Wiki') : ''
       })}
       <p class="detail-lead">${r.desc}</p>

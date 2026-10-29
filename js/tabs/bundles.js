@@ -5,6 +5,7 @@
 // marks that item as turned in; a bundle is done once `required` slots are.
 // ==========================================================================
 
+import { altName } from '../lib/i18n.js';
 import { CC_ROOMS } from '../../data/bundles-data.js';
 import { progress } from '../lib/progress.js';
 import { emptyState, matches, pixelIcon } from '../lib/templates.js';
@@ -146,7 +147,7 @@ function bundleCard(b, query) {
         ${bagSvg(b.color)}
         <div class="bundle__titles">
           <h3 class="bundle__title">${b.name}</h3>
-          <div class="muted">${b.nameEn}</div>
+          <div class="muted">${altName(b)}</div>
         </div>
         <div class="bundle__progress">
           <span class="badge ${complete ? 'badge--green' : 'badge--gold'}">${complete ? '✓ Hoàn thành' : `${done}/${b.required}`}</span>
@@ -169,7 +170,7 @@ function roomHeader(room) {
   const done = bundleProgress.isRoomDone(room);
   return `
     <header class="room-head ${done ? 'is-done' : ''}">
-      <h3 class="room-head__title">${ico(room.icon)} ${room.name} <small class="muted">${room.nameEn}</small></h3>
+      <h3 class="room-head__title">${ico(room.icon)} ${room.name} <small class="muted">${altName(room)}</small></h3>
       <div class="room-head__reward">${pixelIcon(done ? 'check' : 'lock')} <strong>Hoàn thành phòng:</strong> ${room.reward}</div>
     </header>`;
 }

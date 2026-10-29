@@ -6,6 +6,7 @@
 // they drop), fish and other finds.
 // ==========================================================================
 
+import { altName } from '../lib/i18n.js';
 import { MINE_AREAS } from '../../data/mines-data.js';
 import { emptyState, matches } from '../lib/templates.js';
 import { ico } from '../lib/icons.js';
@@ -138,7 +139,7 @@ function zoneCard(area, z, q) {
       <header class="zone__head">
         <div>
           <div class="zone__floors">${floorLabel(z.floors)}</div>
-          <h3 class="zone__title">${z.name} <small>${z.nameEn}</small></h3>
+          <h3 class="zone__title">${z.name} <small>${altName(z)}</small></h3>
         </div>
         <span class="badge">${THEMES[z.theme] || z.theme}</span>
       </header>
@@ -192,7 +193,7 @@ const minesTab = {
       <div class="mine-intro">
         <span class="mine-intro__icon">${ico(area.icon)}</span>
         <div>
-          <h2 class="panel__title">${area.name} <small class="muted">${area.nameEn}</small></h2>
+          <h2 class="panel__title">${area.name} <small class="muted">${altName(area)}</small></h2>
           <p>${area.desc || ''}</p>
           <div class="mine-intro__facts">
             ${area.location ? `<span>${ico('pin')} <strong>Vị trí:</strong> ${area.location}</span>` : ''}

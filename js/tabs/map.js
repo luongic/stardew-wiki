@@ -6,6 +6,7 @@
 // coordinates, so they keep their size at any zoom level.
 // ==========================================================================
 
+import { altName } from '../lib/i18n.js';
 import { MAPS, LOCATION_RULES } from '../../data/map-data.js';
 import { PLACES } from '../../data/places-data.js';
 import { NPCS_DATA } from '../../data/npcs-data.js';
@@ -185,7 +186,7 @@ function infoHtml(id) {
         ${p.icon ? `<span class="place__icon">${ico(p.icon)}</span>` : ''}
         <div>
           <h3 class="place__title">${p.name}</h3>
-          <div class="muted">${p.nameEn || ''} · ${KIND_LABELS[p.kind] || ''}</div>
+          <div class="muted">${altName(p)} · ${KIND_LABELS[p.kind] || ''}</div>
         </div>
       </header>
       ${p.desc ? `<p>${p.desc}</p>` : ''}

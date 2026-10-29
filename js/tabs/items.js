@@ -2,6 +2,7 @@
 // TAB: TỪ ĐIỂN VẬT PHẨM (ITEMS ENCYCLOPEDIA, GROUPED BY CATEGORY)
 // ==========================================================================
 
+import { altName } from '../lib/i18n.js';
 import { ITEMS_DATA } from '../../data/items-data.js';
 import { emptyState, v16Badge, wikiLink, modalHeader, matches, signed } from '../lib/templates.js';
 import { ico } from '../lib/icons.js';
@@ -43,7 +44,7 @@ function cardHtml(it) {
           <div class="icon-box"><img src="${it.imageUrl}" alt="${it.name}" class="pixel-img" data-fallback="${PLACEHOLDER}" loading="lazy"></div>
           <div>
             <h3 class="card__title">${it.name}</h3>
-            <div class="card__sub">${it.nameEn} ${v16Badge(it.version16)}</div>
+            <div class="card__sub">${altName(it)} ${v16Badge(it.version16)}</div>
           </div>
         </div>
       </header>
@@ -127,7 +128,7 @@ export default {
       ${modalHeader({
         icon: `<div class="icon-box icon-box--lg"><img src="${it.imageUrl}" alt="${it.name}" class="pixel-img" data-fallback="${PLACEHOLDER}"></div>`,
         title: `${it.name} ${v16Badge(it.version16, 'Bản 1.6 Mới')}`,
-        sub: `${it.nameEn} • ${groupByCat.get(it.category)?.title || ''} • <b>${it.subCategory}</b>`,
+        sub: `${altName(it)} • ${groupByCat.get(it.category)?.title || ''} • <b>${it.subCategory}</b>`,
         extra: wikiLink(it.nameEn, 'Xem bài viết chi tiết trên Official Stardew Valley Wiki', page)
       })}
       <p class="detail-lead">${it.desc}</p>

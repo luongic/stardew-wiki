@@ -2,6 +2,7 @@
 // TAB: TIẾN ĐỘ & HOÀN THÀNH (PROGRESS TRACKER + BACKUP)
 // ==========================================================================
 
+import { t } from '../lib/i18n.js';
 import { RECIPES_DATA } from '../../data/recipes-data.js';
 import { QUESTS_DATA } from '../../data/quests-data.js';
 import { planner } from './planner.js';
@@ -102,7 +103,7 @@ async function importProgress(app, file) {
   const quests = data.completedQuests.filter(id => questIds.has(id));
   const when = data.date ? new Date(data.date).toLocaleString('vi-VN') : 'không rõ ngày';
 
-  if (!confirm(`Khôi phục bản sao lưu (${when})?\n• ${recipes.length} công thức • ${quests.length} nhiệm vụ\nTiến độ hiện tại sẽ bị thay thế.`)) return;
+  if (!confirm(t(`Khôi phục bản sao lưu (${when})?\n• ${recipes.length} công thức • ${quests.length} nhiệm vụ\nTiến độ hiện tại sẽ bị thay thế.`))) return;
 
   progress.replace('recipes', recipes);
   progress.replace('quests', quests);
@@ -132,7 +133,7 @@ export default {
       if (file) importProgress(app, file);
     },
     'reset-progress': (app) => {
-      if (!confirm('CẢNH BÁO: Thao tác này sẽ đặt lại toàn bộ tiến độ đã hoàn thành về 0. Bạn có chắc không?')) return;
+      if (!confirm(t('CẢNH BÁO: Thao tác này sẽ đặt lại toàn bộ tiến độ đã hoàn thành về 0. Bạn có chắc không?'))) return;
       for (const domain of ['recipes', 'quests', 'bundles', 'museum']) progress.replace(domain, []);
       app.showToast('Đã xóa dữ liệu tiến độ');
     }

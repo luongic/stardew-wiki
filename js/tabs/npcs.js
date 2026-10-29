@@ -13,6 +13,7 @@
 // Town festival days are always sunny, so weather is locked to sun there.
 // ==========================================================================
 
+import { altName } from '../lib/i18n.js';
 import { NPCS_DATA, CALENDAR_EVENTS } from '../../data/npcs-data.js';
 import { emptyState, wikiLink, modalHeader, matches } from '../lib/templates.js';
 import { ico } from '../lib/icons.js';
@@ -276,7 +277,7 @@ function cardHtml(npc) {
           <div class="portrait"><img src="${npc.avatar}" alt="${npc.name}" class="pixel-img" data-fallback="${PORTRAIT_FALLBACK}" loading="lazy"></div>
           <div>
             <h3 class="card__title card__title--lg">${npc.name}</h3>
-            <div class="card__sub">${npc.nameEn} <span class="tag">${CATEGORY_LABELS[npc.category] || npc.categoryTitle}</span></div>
+            <div class="card__sub">${altName(npc)} <span class="tag">${CATEGORY_LABELS[npc.category] || npc.categoryTitle}</span></div>
           </div>
         </div>
       </header>
@@ -406,7 +407,7 @@ const npcsTab = {
       ${modalHeader({
         icon: `<div class="portrait portrait--lg"><img src="${npc.avatar}" alt="${npc.name}" class="pixel-img" data-fallback="${PORTRAIT_FALLBACK}"></div>`,
         title: npc.name,
-        sub: `${npc.nameEn} • <span class="tag">${CATEGORY_LABELS[npc.category] || npc.categoryTitle}</span>`,
+        sub: `${altName(npc)} • <span class="tag">${CATEGORY_LABELS[npc.category] || npc.categoryTitle}</span>`,
         extra: wikiLink(npc.nameEn, 'Xem trang bách khoa chính thức trên Official Wiki')
       })}
       <p class="detail-lead">${npc.desc}</p>

@@ -2,6 +2,7 @@
 // TAB: HƯỚNG DẪN NHIỆM VỤ (QUESTS)
 // ==========================================================================
 
+import { altName } from '../lib/i18n.js';
 import { QUESTS_DATA } from '../../data/quests-data.js';
 import { emptyState, v16Badge, modalHeader, matches, pixelIcon } from '../lib/templates.js';
 import { ico } from '../lib/icons.js';
@@ -40,7 +41,7 @@ function cardHtml(q, done) {
           <div>
             <h3 class="card__title">${q.name}</h3>
             <div class="card__sub">
-              ${q.nameEn}
+              ${altName(q)}
               ${q.hidden ? '<span class="badge badge--purple">Ẩn / Bí Mật</span>' : ''}
               ${v16Badge(isV16(q))}
             </div>
@@ -109,7 +110,7 @@ export default {
       ${modalHeader({
         icon: `<div class="icon-box icon-box--lg">${ico(giverIcon(q))}</div>`,
         title: q.name,
-        sub: `${q.nameEn} • Giao bởi: ${q.giver}`
+        sub: `${altName(q)} • Giao bởi: ${q.giver}`
       })}
       <p class="detail-lead">${q.desc}</p>
       <div class="inset-box">

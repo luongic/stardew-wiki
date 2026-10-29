@@ -4,6 +4,7 @@
 // and both travel in the progress backup (see tracker.js).
 // ==========================================================================
 
+import { t, altName, isEn } from '../lib/i18n.js';
 import { RECIPES_DATA } from '../../data/recipes-data.js';
 import { progress } from '../lib/progress.js';
 import { iconBox, FALLBACK_ICON } from '../lib/templates.js';
@@ -73,7 +74,7 @@ function plannedRow(r, count) {
         ${iconBox(r.imageUrl, 'box', r.name, 'sm')}
         <div>
           <div class="planned-row__name">${r.name}</div>
-          <div class="muted">${r.nameEn}</div>
+          <div class="muted">${altName(r)}</div>
         </div>
       </div>
       <div class="qty">
@@ -92,7 +93,7 @@ function materialCard(m) {
         <span class="ing-icon ing-icon--md"><img src="${m.iconUrl}" alt="" class="pixel-img" data-fallback="hide" loading="lazy"></span>
         <span>
           <span class="material__name">${m.name}</span>
-          ${m.nameEn && !m.name.toLowerCase().includes(m.nameEn.toLowerCase()) ? `<span class="muted">${m.nameEn}</span>` : ''}
+          ${m.nameEn && (isEn || !m.name.toLowerCase().includes(m.nameEn.toLowerCase())) ? `<span class="muted">${altName(m)}</span>` : ''}
         </span>
       </span>
       <span class="material__right">
@@ -143,7 +144,7 @@ export default {
     },
     'planner-gathered': (app, el) => planner.toggleGathered(el.dataset.mat),
     'planner-clear': (app) => {
-      if (!confirm('Bạn có chắc muốn xóa toàn bộ kế hoạch chế biến hiện tại?')) return;
+      if (!confirm(t('Bạn có chắc muốn xóa toàn bộ kế hoạch chế biến hiện tại?'))) return;
       planner.clear();
       app.sfx.play('click');
       app.showToast(`${ico('trash')} Đã dọn sạch Kế Hoạch Chế Tạo`);
