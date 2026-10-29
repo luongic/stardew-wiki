@@ -468,6 +468,37 @@ code {
 
 .hero__extras { display: flex; flex-wrap: wrap; gap: 10px; }
 
+.btn--notes {
+  --btn-bg: var(--parch-100);
+  --btn-fg: var(--ink);
+  position: relative;
+  padding: 7px 14px;
+  font-size: 1.05rem;
+}
+/* Unread teammate notes */
+.notes-dot {
+  display: none;
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 12px;
+  height: 12px;
+  background: var(--red);
+  box-shadow: 0 0 0 2px var(--ink);
+}
+.btn--notes.has-unread .notes-dot { display: block; animation: blink 1s steps(2, end) infinite; }
+
+.modal__box--notes { width: min(680px, 100%); }
+.note-input { width: 100%; resize: vertical; min-height: 150px; line-height: 1.4; }
+.note-meta { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin: -8px 0 18px; font-size: 0.9rem; }
+.note-count { color: var(--text-muted); }
+.note-count.is-full { color: var(--red-dark); }
+.team-notes { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+.team-note { padding: 8px 12px; background: var(--parch-100); border: 2px solid var(--parch-300); }
+.team-note__head { display: flex; justify-content: space-between; gap: 10px; font-size: 0.92rem; margin-bottom: 4px; }
+.team-note__head strong { font-weight: 400; color: var(--wood-900); }
+.team-note__text { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 1rem; }
+
 .btn--coop {
   --btn-bg: var(--teal);
   --btn-fg: var(--ink);
@@ -482,6 +513,201 @@ code {
   font-size: 1.05rem;
 }
 .coffee-cup { width: 28px; height: 28px; margin: -4px 0; }
+
+/* ==========================================================================
+   MINES
+   A shaft drawn to scale: each zone is a band positioned by floor
+   (--from/--to as % of the deepest floor); milestones sit at --at.
+   ========================================================================== */
+
+.mines-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+.mines-layout__shaft { position: sticky; top: 12px; }
+
+/* Zone theme colours: band fill, band shade, card header */
+.shaft__band--earth, .zone--earth { --zc: #a0703c; --zd: #6b4423; }
+.shaft__band--ice, .zone--ice { --zc: #8fd0ec; --zd: #3d7fa8; }
+.shaft__band--lava, .zone--lava { --zc: #e0603a; --zd: #8e1f12; }
+.shaft__band--dark, .zone--dark { --zc: #6b5a8a; --zd: #3a2d52; }
+.shaft__band--desert, .zone--desert { --zc: #e0b062; --zd: #a06a24; }
+.shaft__band--volcano, .zone--volcano { --zc: #c0392b; --zd: #5c1a0f; }
+.shaft__band--quarry, .zone--quarry { --zc: #a6a9ad; --zd: #5d6066; }
+
+.shaft { display: flex; flex-direction: column; gap: 12px; }
+.shaft__column {
+  position: relative;
+  height: 560px;
+  margin-left: 30px;
+  background: var(--wood-900);
+  border: var(--px) solid var(--ink);
+  box-shadow: inset 0 0 0 var(--px) var(--wood-700);
+}
+.shaft__band {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: var(--from);
+  height: calc(var(--to) - var(--from));
+  display: grid;
+  place-items: center;
+  /* Dithered rock texture in the zone colour */
+  background:
+    repeating-conic-gradient(rgba(0, 0, 0, 0.14) 0 25%, transparent 0 50%) 0 0 / 8px 8px,
+    var(--zc);
+  border-bottom: var(--px) solid var(--zd);
+  color: #fff;
+  text-shadow: 2px 2px 0 var(--ink);
+  transition: filter var(--t);
+}
+.shaft__band:hover { filter: brightness(1.12); }
+/* Label on the left, markers on the right: never overlap */
+.shaft__band-label {
+  justify-self: start;
+  max-width: calc(100% - 72px);
+  padding-left: 8px;
+  font-size: 1rem;
+  line-height: 1.1;
+  text-align: left;
+}
+.shaft--endless .shaft__band-label { max-width: none; justify-self: center; text-align: center; }
+
+.shaft__tick {
+  position: absolute;
+  left: -30px;
+  top: var(--at);
+  width: 24px;
+  border-top: 2px solid var(--parch-300);
+  font-size: 0.7rem;
+  line-height: 1;
+  color: var(--text-muted);
+  text-align: left;
+}
+.shaft__tick--major { border-top-color: var(--wood-700); }
+.shaft__marker {
+  position: absolute;
+  right: 6px;
+  top: var(--at);
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 0 3px;
+  height: 28px;
+  background: var(--parch-50);
+  box-shadow: var(--frame);
+  pointer-events: auto;
+}
+.shaft__marker img { width: 22px; height: 22px; }
+
+.shaft--endless .shaft__band {
+  position: static;
+  height: 90px;
+  border: var(--px) solid var(--ink);
+  border-bottom-width: 0;
+}
+.shaft__abyss {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 18px 0;
+  color: var(--parch-100);
+  background: linear-gradient(var(--wood-900), #000);
+  border: var(--px) solid var(--ink);
+  border-top: 0;
+}
+.shaft__legend { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 0.8rem; color: var(--text-muted); }
+
+/* Area intro */
+.mine-intro { display: flex; gap: 16px; align-items: flex-start; }
+.mine-intro__icon img { width: 64px; height: 64px; }
+.mine-intro__facts { display: flex; flex-direction: column; gap: 4px; margin-top: 8px; font-size: 0.92rem; }
+.mine-area-title { font-size: 1.4rem; color: var(--text-light); text-shadow: 2px 2px 0 var(--ink); margin: 8px 0 12px; }
+
+/* Zone cards */
+.zone {
+  margin-bottom: 26px;
+  background: var(--parch-50);
+  border: var(--px) solid var(--zd);
+  box-shadow: var(--frame), var(--drop), var(--bevel);
+}
+.zone.is-flash { animation: flash 0.3s steps(2, end) 3; }
+.zone__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  color: #fff;
+  text-shadow: 2px 2px 0 var(--ink);
+  background:
+    repeating-conic-gradient(rgba(0, 0, 0, 0.14) 0 25%, transparent 0 50%) 0 0 / 8px 8px,
+    var(--zc);
+  border-bottom: var(--px) solid var(--zd);
+}
+.zone__floors { font-size: 0.9rem; letter-spacing: 0.06em; }
+.zone__title { font-size: 1.6rem; }
+.zone__title small { font-size: 0.9rem; opacity: 0.9; }
+.zone__head .badge { text-shadow: none; color: var(--ink); }
+.mines-layout__shaft .panel__title { font-size: 1.2rem; }
+.zone__body { padding: 14px 16px; display: flex; flex-direction: column; gap: 14px; }
+.zone__desc { font-size: 1rem; }
+.zone__section-title { font-size: 1.1rem; color: var(--wood-700); margin-bottom: 8px; }
+
+.mine-items { display: flex; flex-wrap: wrap; gap: 8px; }
+.mine-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px 3px 6px;
+  font-size: 0.92rem;
+  background: var(--parch-100);
+  border: 2px solid var(--ink);
+}
+.mine-item .game-icon { width: 24px; height: 24px; }
+.mine-item__note { font-size: 0.78rem; color: var(--text-muted); }
+.mine-item.is-hit, .monster.is-hit { outline: var(--px) solid var(--gold); outline-offset: 1px; }
+
+.monsters { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px; }
+.monster {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 6px 10px;
+  background: var(--parch-100);
+  border: 2px solid var(--parch-300);
+}
+.monster__sprite {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  background: var(--wood-900);
+  border: 2px solid var(--ink);
+}
+.monster__sprite img { width: 36px; height: 36px; object-fit: contain; }
+.monster__info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.monster__name { font-size: 1rem; }
+.monster__drops { font-size: 0.85rem; color: var(--green-dark); }
+
+.milestones { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.milestone {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  background: #fff3cf;
+  border: 2px solid var(--ink);
+  border-left: calc(var(--px) * 3) solid var(--gold-dark);
+  font-size: 0.95rem;
+}
+.milestone__floor { min-width: 72px; color: var(--wood-900); }
+.milestone strong { font-weight: 400; color: var(--wood-900); }
 
 /* ==========================================================================
    CO-OP ROOM POPUP
@@ -1854,6 +2080,9 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 
 @media (max-width: 900px) {
   .planner { grid-template-columns: 1fr; }
+  .mines-layout { grid-template-columns: 1fr; }
+  .mines-layout__shaft { position: static; }
+  .shaft__column { height: 380px; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
 }
 

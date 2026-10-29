@@ -22,9 +22,11 @@ import npcsTab from './tabs/npcs.js';
 import questsTab from './tabs/quests.js';
 import bundlesTab from './tabs/bundles.js';
 import museumTab from './tabs/museum.js';
+import minesTab from './tabs/mines.js';
 import plannerTab from './tabs/planner.js';
 import trackerTab from './tabs/tracker.js';
 import { coopUi } from './sync/coop-ui.js';
+import { notesUi } from './sync/notes-ui.js';
 import { ico, hydrateIcons } from './lib/icons.js';
 
 const SEASON_NAMES = { spring: 'Mùa Xuân', summer: 'Mùa Hạ', fall: 'Mùa Thu', winter: 'Mùa Đông' };
@@ -32,7 +34,7 @@ const SEARCH_DEBOUNCE_MS = 150;
 
 export class StardewWikiApp {
   constructor() {
-    this.tabs = [recipesTab, itemsTab, npcsTab, questsTab, bundlesTab, museumTab, plannerTab, trackerTab];
+    this.tabs = [recipesTab, itemsTab, npcsTab, questsTab, bundlesTab, museumTab, minesTab, plannerTab, trackerTab];
     this.tabById = new Map(this.tabs.map(t => [t.id, t]));
     this.tabByDetailType = new Map(this.tabs.filter(t => t.detailType).map(t => [t.detailType, t]));
 
@@ -47,7 +49,8 @@ export class StardewWikiApp {
     this.actions = {
       ...this.coreActions(),
       ...Object.assign({}, ...this.tabs.map(t => t.actions || {})),
-      ...coopUi.actions
+      ...coopUi.actions,
+      ...notesUi.actions
     };
   }
 
@@ -60,6 +63,7 @@ export class StardewWikiApp {
     this.bindDelegates();
     this.updateAudioButton();
     this.tabs.forEach(t => t.init?.(this));
+    notesUi.init(this);
     coopUi.init(this);
     this.switchTab(this.currentTab);
     this.refreshBadges();

@@ -67,6 +67,11 @@
         </div>
 
         <div class="hero__extras">
+        <button class="btn btn--notes" type="button" id="notesBtn" data-action="notes-open">
+          <i data-icon="note"></i>
+          <span>Ghi chú</span>
+          <span class="notes-dot" aria-label="Có ghi chú mới"></span>
+        </button>
         <!-- Shown only when Firebase is configured (js/sync/firebase-config.js) -->
         <button class="btn btn--coop" type="button" id="coopBtn" data-action="coop-open" hidden>
           <span class="coop-dot coop-dot--idle"></span>
@@ -101,6 +106,9 @@
       </button>
       <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="museum">
         <i data-icon="museum"></i> <span>Bảo Tàng</span> <span class="tab__badge" id="museumTabBadge">0/0</span>
+      </button>
+      <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="mines">
+        <i data-icon="mines"></i> <span>Hầm Mỏ</span>
       </button>
       <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="planner">
         <i data-icon="planner"></i> <span>Kế Hoạch & Tính Nguyên Liệu</span> <span class="tab__badge" id="plannerBadge">0</span>
@@ -174,6 +182,9 @@
         <button class="chip" type="button" data-action="filter" data-value="artifact"><i data-icon="artifacts"></i> Cổ Vật (Artifacts)</button>
         <button class="chip" type="button" data-action="filter" data-value="mineral"><i data-icon="minerals"></i> Khoáng Sản (Minerals)</button>
       </div>
+
+      <!-- Mine area chips are generated from data/mines-data.js -->
+      <div class="chip-group" data-filter-group="mines" id="mineAreaChips" hidden></div>
 
       <!-- Each toggle only shows on the tabs whose data it can filter -->
       <div class="toggles" id="quickToggles">
@@ -325,6 +336,19 @@
           </div>
         </div>
         <div id="museumCases"></div>
+      </section>
+
+      <!-- ======= TAB: MINES ======= -->
+      <section id="tab-mines" class="tab-panel" role="tabpanel" hidden>
+        <div class="panel" id="mineIntro"></div>
+        <div class="mines-layout">
+          <aside class="panel mines-layout__shaft">
+            <h3 class="panel__title"><i data-icon="mines"></i> Bản đồ các tầng</h3>
+            <p class="panel__hint">Bấm vào một vùng để xem chi tiết.</p>
+            <div id="mineShaft"></div>
+          </aside>
+          <div id="mineZones" class="mines-layout__zones"></div>
+        </div>
       </section>
 
       <!-- ======= TAB: CRAFTING PLANNER ======= -->
@@ -531,6 +555,26 @@
       <div class="modal__foot">
         <button class="btn btn--purple btn--lg" type="button" data-close-modal>Đã Hiểu, Đóng Cửa Sổ!</button>
       </div>
+    </div>
+  </div>
+
+  <!-- ======= PLAYER NOTES ======= -->
+  <div class="modal" id="notesModal" hidden>
+    <div class="modal__box modal__box--notes" role="dialog" aria-modal="true" aria-labelledby="notesModalTitle">
+      <button class="modal-close-btn" type="button" data-close-modal aria-label="Đóng cửa sổ">✕</button>
+      <h2 class="coop-title" id="notesModalTitle"><i data-icon="note"></i> Ghi chú</h2>
+      <p class="coop-intro">Ghi lại lần chơi gần nhất: đang làm dở việc gì, lần sau cần làm gì. Ghi chú tự lưu khi bạn ngừng gõ.</p>
+      <label class="coop-field">
+        <span>Ghi chú của bạn</span>
+        <textarea id="noteText" class="coop-input note-input" rows="7"
+                  placeholder="VD: Đã tới tầng 75 hầm mỏ. Cần 5 Quặng Vàng để nâng cấp bình tưới. Mai là sinh nhật Abigail, nhớ mua Thạch Anh Tím!"></textarea>
+      </label>
+      <div class="note-meta">
+        <span id="noteSaved" class="muted"></span>
+        <span id="noteCount" class="note-count"></span>
+      </div>
+      <h3 class="coop-card__title"><i data-icon="members"></i> Ghi chú của đồng đội</h3>
+      <div id="noteTeam" class="team-notes"></div>
     </div>
   </div>
 
