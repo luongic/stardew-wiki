@@ -7,6 +7,8 @@
 //   bundles  - Community Center slots turned in (rooms already completed
 //              count as fully done)
 //   museum   - pieces donated to Gunther
+//   quests   - guessed from flags (see QUEST_RULES), since a save keeps only
+//              the quests still open
 // It also lists the fish never caught, for the Master Angler goal.
 // Everything is matched by English name; the game's numeric item ids are
 // turned into names with data/item-ids.js.
@@ -32,6 +34,77 @@ const ROOM_MAIL = { crafts_room: 'ccCraftsRoom', pantry: 'ccPantry', fish_tank: 
 const TOOL_LEVELS = ['', 'Copper Tool Upgrades', 'Steel Tool Upgrades', 'Gold Tool Upgrades', 'Iridium Tool Upgrades'];
 // A bigger building means the smaller one was built first
 const BUILT_BEFORE = { 'Big Coop': ['Coop'], 'Deluxe Coop': ['Coop', 'Big Coop'], 'Big Barn': ['Barn'], 'Deluxe Barn': ['Barn', 'Big Barn'], 'Big Shed': ['Shed'] };
+
+// A save only lists the quests still in the journal, so each of this site's
+// quests is matched to what finishing it leaves behind: a mail/world flag, an
+// event seen, a completed special order, the deepest mine floor... A quest
+// that came by letter (or is given at the start) and has left the journal was
+// done. Numbers are the game's quest ids (Data/Quests). Solid Gold Lewis and
+// the secret statues leave no trace, so they stay manual.
+//   s: { open(id), flag(name), event(id), order(key), deepest, done(siteId) }
+const QUEST_RULES = {
+  introductions: s => !s.open(9),
+  how_to_win_friends: s => s.done('introductions') && !s.open(25),
+  getting_started: s => !s.open(6) && !s.open(132),
+  raising_animals: s => !s.open(7) && !s.open(133) && (s.built.has('Coop') || s.done('getting_started')),
+  explore_the_mines: s => s.deepest >= 5,
+  deeper_in_the_mines: s => s.deepest >= 40,
+  to_the_bottom: s => s.deepest >= 120,
+  robins_lost_axe: s => s.flag('spring_11_1') && !s.open(100),
+  jodis_request: s => s.flag('spring_19_1') && !s.open(101),
+  mayors_shorts: s => s.flag('summer_3_1') && !s.open(102),
+  pam_is_thirsty: s => s.flag('summer_14_1') && !s.open(103),
+  blackberry_basket: s => s.flag('fall_8_1') && !s.open(107),
+  a_winter_mystery: s => s.flag('HasMagnifyingGlass'),
+  fish_casserole: s => s.event('94') || s.event('95'),
+  goblin_problem: s => s.flag('HasMagicInk') || s.flag('hasPickedUpMagicInk'),
+  dark_talisman: s => (s.flag('HasDarkTalisman') || s.done('goblin_problem')) && !s.open(28),
+  the_mysterious_qi: s => s.flag('HasClubCard'),
+  qis_challenge: s => s.deepest >= 145 || (s.flag('skullCave') && !s.open(20)),
+  cryptic_note_100: s => s.deepest >= 220,
+  special_charm_luck: s => s.flag('HasSpecialCharm'),
+  bears_knowledge: s => s.event('2120303'),
+  pirates_wife: s => s.flag('birdieQuestFinished') || s.flag('gotBirdieReward'),
+  mermaid_flute_puzzle: s => s.flag('gotPearl') || s.island('IslandSouthEast', 'mermaidPuzzleFinished'),
+  gem_birds_shrine: s => s.island('IslandShrine', 'puzzleFinished'),
+  community_cleanup: s => s.order('Linus'),
+  prismatic_jelly: s => s.order('Wizard2'),
+  ectoplasm: s => s.order('Wizard'),
+  the_strong_stuff: s => s.order('Pam'),
+  qis_crop: s => s.order('QiChallenge2'),
+  danger_in_the_mines: s => s.order('QiChallenge9'),
+  raccoon_family_tree: s => s.flag('raccoonMovedIn') || s.raccoonsFed > 0,
+  mastery_cave_pillars: s => [0, 1, 2, 3, 4].every(n => s.stat(`mastery_${n}`) > 0)
+};
+
+// Before 1.6 these were booleans on the player instead of mail flags
+const OLD_FLAG_FIELDS = { HasMagnifyingGlass: 'hasMagnifyingGlass', HasDarkTalisman: 'hasDarkTalisman', HasMagicInk: 'hasMagicInk', HasClubCard: 'hasClubCard', HasSpecialCharm: 'hasSpecialCharm' };
+
+function readQuests(root, player, mail, built) {
+  const open = new Set(kids(kid(player, 'questLog'), 'Quest').map(q => Number(text(q, 'id'))));
+  const flags = new Set([...mail, ...kids(kid(root, 'worldStateIDs'), 'string').map(s => s.textContent.trim())]);
+  for (const [flag, field] of Object.entries(OLD_FLAG_FIELDS)) if (text(player, field) === 'true') flags.add(flag);
+  // <string> since 1.6, <int> before
+  const events = new Set([...(kid(player, 'eventsSeen')?.children || [])].map(e => e.textContent.trim()));
+  const orders = new Set(kids(kid(root, 'completedSpecialOrders'), 'string').map(s => s.textContent.trim()));
+  const stats = new Map(dict(kid(kid(player, 'stats'), 'Values')).map(([k, v]) => [k, Number(v?.textContent) || 0]));
+  const done = new Set();
+  const s = {
+    built,
+    open: id => open.has(id),
+    flag: f => flags.has(f),
+    event: id => events.has(id),
+    order: key => orders.has(key),
+    stat: key => stats.get(key) || 0,
+    island: (type, field) => text(location(root, type), field) === 'true',
+    deepest: Number(text(player, 'deepestMineLevel')) || 0,
+    raccoonsFed: Number(text(root, 'timesFedRaccoons')) || 0,
+    done: id => done.has(id)
+  };
+  // In order, so rules can lean on quests checked before them
+  for (const [id, rule] of Object.entries(QUEST_RULES)) if (rule(s)) done.add(id);
+  return [...done];
+}
 
 export function readSaveProgress(xml) {
   const root = parseSave(xml);
@@ -115,6 +188,7 @@ export function readSaveProgress(xml) {
     recipes: [...recipes],
     bundles: [...bundles],
     museum: [...museum],
+    quests: readQuests(root, player, mail, built),
     fish: { caught: fish.length - missingFish.length, total: fish.length, missing: missingFish, caughtEn: fish.filter(f => caught.has(norm(f.nameEn))).map(f => f.nameEn) },
     unmatchedBundles
   };

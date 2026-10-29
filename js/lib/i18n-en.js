@@ -323,7 +323,8 @@ export const UI_EN = {
   'Công thức, công trình & nâng cấp': 'Recipes, buildings & upgrades', 'Ô gói Nhà Cộng Đồng đã nộp': 'Community Center slots turned in',
   'Món đã quyên góp Bảo Tàng': 'Museum donations', 'Loài cá đã câu được': 'Fish species caught',
   'Một số gói (bản Remix) không có trong dữ liệu của trang nên được bỏ qua': "Some (remixed) bundles aren't in this site's data and were skipped",
-  'Chỉ thêm dấu tick mới, không bỏ tick nào bạn đã đánh dấu. Nhiệm vụ không được lưu rõ trong file save nên vẫn cần tự đánh dấu.': "Only new ticks are added; nothing you ticked is removed. Quests aren't clearly stored in the save, so tick those yourself.",
+  'Chỉ thêm dấu tick mới, không bỏ tick nào bạn đã đánh dấu. Nhiệm vụ được suy ra từ cờ và sự kiện trong file save; Tượng Lewis Vàng và các bức tượng bí ẩn không để lại dấu vết nên vẫn cần tự đánh dấu.': "Only new ticks are added; nothing you ticked is removed. Quests are worked out from flags and events in the save; Solid Gold Lewis and the secret statues leave no trace, so tick those yourself.",
+  'Nhiệm vụ đã hoàn thành': 'Quests completed',
   'Thêm vào tiến độ': 'Add to my progress', 'Cá chưa câu được': 'Fish not caught yet',
   // ---- Coffee & footer ----
   'Mã QR chuyển khoản ủng hộ': 'Donation QR code',

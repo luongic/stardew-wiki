@@ -133,19 +133,20 @@ async function readSaveFile(app, file) {
     const [{ readSaveProgress }, text] = await Promise.all([import('../lib/save-progress.js'), file.text()]);
     const res = readSaveProgress(text);
     pendingSave = res;
-    const add = { recipes: newKeys('recipes', res.recipes), bundles: newKeys('bundles', res.bundles), museum: newKeys('museum', res.museum) };
+    const add = { recipes: newKeys('recipes', res.recipes), quests: newKeys('quests', res.quests), bundles: newKeys('bundles', res.bundles), museum: newKeys('museum', res.museum) };
     const row = (icon, label, found, fresh) => `
       <li><span>${ico(icon)} ${t(label)}</span><strong>${found}</strong><span class="muted">${fresh === null ? '' : fresh ? `+${fresh} ${t('mới')}` : t('đã có đủ')}</span></li>`;
     document.getElementById('saveSyncBody').innerHTML = `
       <p>${t('Nông trại')} <strong data-no-i18n>${res.farmName || '?'}</strong> · ${t('người chơi')} <strong data-no-i18n>${res.playerName || '?'}</strong></p>
       <ul class="save-sync__list">
         ${row('cooking', 'Công thức, công trình & nâng cấp', res.recipes.length, add.recipes.length)}
+        ${row('quests', 'Nhiệm vụ đã hoàn thành', res.quests.length, add.quests.length)}
         ${row('bundles', 'Ô gói Nhà Cộng Đồng đã nộp', res.bundles.length, add.bundles.length)}
         ${row('museum', 'Món đã quyên góp Bảo Tàng', res.museum.length, add.museum.length)}
         ${row('fish', 'Loài cá đã câu được', `${res.fish.caught} / ${res.fish.total}`, null)}
       </ul>
       ${res.unmatchedBundles.length ? `<p class="muted">${ico('warn')} ${t('Một số gói (bản Remix) không có trong dữ liệu của trang nên được bỏ qua')}: ${res.unmatchedBundles.join(', ')}</p>` : ''}
-      <p class="muted">${t('Chỉ thêm dấu tick mới, không bỏ tick nào bạn đã đánh dấu. Nhiệm vụ không được lưu rõ trong file save nên vẫn cần tự đánh dấu.')}</p>
+      <p class="muted">${t('Chỉ thêm dấu tick mới, không bỏ tick nào bạn đã đánh dấu. Nhiệm vụ được suy ra từ cờ và sự kiện trong file save; Tượng Lewis Vàng và các bức tượng bí ẩn không để lại dấu vết nên vẫn cần tự đánh dấu.')}</p>
       <div class="btn-row">
         <button class="btn btn--green" type="button" data-action="save-progress-apply">${ico('check')} ${t('Thêm vào tiến độ')}</button>
       </div>
@@ -164,7 +165,7 @@ async function readSaveFile(app, file) {
 function applySave(app) {
   if (!pendingSave) return;
   let n = 0;
-  for (const [domain, keys] of [['recipes', pendingSave.recipes], ['bundles', pendingSave.bundles], ['museum', pendingSave.museum]]) {
+  for (const [domain, keys] of [['recipes', pendingSave.recipes], ['quests', pendingSave.quests], ['bundles', pendingSave.bundles], ['museum', pendingSave.museum]]) {
     for (const k of newKeys(domain, keys)) { progress.setFlag(domain, k, true, 'bulk'); n++; }
   }
   setCaughtFish(pendingSave.fish.caughtEn);
