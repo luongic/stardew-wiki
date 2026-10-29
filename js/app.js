@@ -24,6 +24,7 @@ import bundlesTab from './tabs/bundles.js';
 import museumTab from './tabs/museum.js';
 import minesTab from './tabs/mines.js';
 import mapTab from './tabs/map.js';
+import quizTab from './tabs/quiz.js';
 import plannerTab from './tabs/planner.js';
 import trackerTab from './tabs/tracker.js';
 import { coopUi } from './sync/coop-ui.js';
@@ -35,7 +36,7 @@ const SEARCH_DEBOUNCE_MS = 150;
 
 export class StardewWikiApp {
   constructor() {
-    this.tabs = [recipesTab, itemsTab, npcsTab, questsTab, bundlesTab, museumTab, minesTab, mapTab, plannerTab, trackerTab];
+    this.tabs = [recipesTab, itemsTab, npcsTab, questsTab, bundlesTab, museumTab, minesTab, mapTab, quizTab, plannerTab, trackerTab];
     this.tabById = new Map(this.tabs.map(t => [t.id, t]));
     this.tabByDetailType = new Map(this.tabs.filter(t => t.detailType).map(t => [t.detailType, t]));
 

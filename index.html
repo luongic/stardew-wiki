@@ -121,6 +121,9 @@
       <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="map">
         <i data-icon="map"></i> <span>Bản Đồ</span>
       </button>
+      <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="quiz">
+        <i data-icon="quiz"></i> <span>Đố Vui</span>
+      </button>
       <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="planner">
         <i data-icon="planner"></i> <span>Kế Hoạch & Tính Nguyên Liệu</span> <span class="tab__badge" id="plannerBadge">0</span>
       </button>
@@ -199,6 +202,9 @@
 
       <!-- Map chips are generated from data/map-data.js -->
       <div class="chip-group" data-filter-group="map" id="mapChips" hidden></div>
+
+      <!-- Quiz topic chips are generated in js/tabs/quiz.js -->
+      <div class="chip-group" data-filter-group="quiz" id="quizChips" hidden></div>
 
       <!-- Each toggle only shows on the tabs whose data it can filter -->
       <div class="toggles" id="quickToggles">
@@ -394,6 +400,17 @@
             <aside class="map-info" id="mapInfo"></aside>
           </div>
           <p class="panel__hint map-credit">Bản đồ gốc từ game Stardew Valley (ConcernedApe), qua Official Stardew Valley Wiki. Kéo để di chuyển, cuộn chuột hoặc chụm hai ngón để phóng to. Vị trí dân làng lấy theo trình mô phỏng lịch trình và chỉ mang tính gần đúng.</p>
+        </div>
+      </section>
+
+      <!-- ======= TAB: MEMORY QUIZ ======= -->
+      <section id="tab-quiz" class="tab-panel" role="tabpanel" hidden>
+        <div class="panel quiz">
+          <div class="panel__head">
+            <h2 class="panel__title"><i data-icon="quiz"></i> Đố Vui Trí Nhớ</h2>
+          </div>
+          <p class="panel__hint">Nhìn tên, chọn đúng hình trong 3 ô. Các lựa chọn sai luôn cùng nhóm nên sẽ khó hơn bạn nghĩ. Câu hỏi sinh ngẫu nhiên, liên tục: chơi bao lâu tuỳ thích.</p>
+          <div id="quizBoard"></div>
         </div>
       </section>
 
