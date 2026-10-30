@@ -3,8 +3,9 @@
 // One screen for a given in-game day: birthdays (with loved gifts),
 // festivals, the Traveling Cart, the Queen of Sauce recipe, shops that are
 // closed, and the crops that can still be planted before the season ends.
-// The day is chosen here, or read from a save file. Inside a co-op room a
-// day read from a save is shared with everyone (see coop.shareDay).
+// The day is chosen here, or read from a save file (through the shared save
+// import, see applySaveDay). Inside a co-op room a day read from a save is
+// shared with everyone (see coop.shareDay).
 // ==========================================================================
 
 import { NPCS_DATA, CALENDAR_EVENTS } from '../../data/npcs-data.js';
@@ -180,8 +181,7 @@ function render() {
         <button class="btn btn--ghost btn--sm" type="button" data-action="today-step" data-step="1" aria-label="${t('Ngày sau')}">+</button>
         <label>${t('Năm')} <input type="number" class="coop-input today-num" min="1" max="99" value="${d.year}" data-action="today-year"></label>
       </div>
-      <button class="btn btn--blue btn--sm" type="button" data-action="today-from-save">${ico('upload')} ${t('Lấy ngày từ file save')}</button>
-      <input type="file" id="todaySaveInput" data-action="today-save-file" hidden>
+      <button class="btn btn--blue btn--sm" type="button" data-action="import-save-progress" title="${t('Nạp file save một lần để đồng bộ tiến độ, ngày và nông trại')}">${ico('upload')} ${t('Lấy ngày từ file save')}</button>
     </div>
     <h3 class="today-date">${ico('calendar')} ${dateLabel(d)}</h3>
     ${d.sharedFrom ? `<p class="muted">${ico('members')} ${t('Ngày lấy từ file save của')} <strong data-no-i18n>${esc(d.sharedFrom)}</strong> ${t('trong phòng Co-op')}</p>` : ''}
@@ -202,18 +202,13 @@ function setDay(next, from = null) {
   save(); render();
 }
 
-async function fromSave(app, file) {
-  try {
-    const { parseSave, text } = await import('../lib/farm-save.js');
-    const root = parseSave(await file.text());
-    const season = text(root, 'currentSeason').toLowerCase();
-    setDay({ season: SEASONS.includes(season) ? season : 'spring', day: Number(text(root, 'dayOfMonth')) || 1, year: Number(text(root, 'year')) || 1 });
-    const shared = coop.shareDay(state);
-    if (shared) { state.sharedStamp = stampOf(shared); save(); }
-    app.showToast(`${ico('calendar')} ${t(shared ? 'Đã lấy ngày từ file save và chia sẻ với phòng Co-op' : 'Đã lấy ngày từ file save')}`);
-  } catch (e) {
-    app.showToast(`${ico('warn')} ${e.userMessage || t('Không đọc được file save này')}`);
-  }
+// Called by the save import (Progress tab): show the save's day and share it
+// with the co-op room. Returns true when it was shared.
+export function applySaveDay(d) {
+  setDay(d);
+  const shared = coop.shareDay(state);
+  if (shared) { state.sharedStamp = stampOf(shared); save(); }
+  return !!shared;
 }
 
 // A teammate read a save: jump to that day. Also runs on joining a room (the
@@ -236,7 +231,5 @@ export default {
     'today-step': (app, el) => setDay(shift(state, Number(el.dataset.step))),
     'today-day': (app, el) => setDay({ day: el.value }),
     'today-year': (app, el) => setDay({ year: el.value }),
-    'today-from-save': () => document.getElementById('todaySaveInput').click(),
-    'today-save-file': (app, el) => { const f = el.files?.[0]; el.value = ''; if (f) fromSave(app, f); }
   }
 };

@@ -327,7 +327,10 @@ export const UI_EN = {
   'Một số gói (bản Remix) không có trong dữ liệu của trang nên được bỏ qua': "Some (remixed) bundles aren't in this site's data and were skipped",
   'Chỉ thêm dấu tick mới, không bỏ tick nào bạn đã đánh dấu. Nhiệm vụ được suy ra từ cờ và sự kiện trong file save; Tượng Lewis Vàng và các bức tượng bí ẩn không để lại dấu vết nên vẫn cần tự đánh dấu.': "Only new ticks are added; nothing you ticked is removed. Quests are worked out from flags and events in the save; Solid Gold Lewis and the secret statues leave no trace, so tick those yourself.",
   'Nhiệm vụ đã hoàn thành': 'Quests completed',
-  'Thêm vào tiến độ': 'Add to my progress', 'Cá chưa câu được': 'Fish not caught yet',
+  'Thêm vào tiến độ': 'Add to my progress', 'Đồng bộ': 'Sync', 'chia sẻ với phòng Co-op': 'shared with the co-op room',
+  'công trình, đồ vật và ô đất': 'buildings, objects and tiles', 'sẽ thay thiết kế bạn đang vẽ (có thể Hoàn tác ở tab Nông Trại)': 'replaces the layout you are drawing (Undo in the Farm tab)',
+  'Nạp file save một lần để đồng bộ tiến độ, ngày và nông trại': 'Load a save once to sync progress, the date and the farm', 'Không đọc được file này': "Couldn't read this file",
+  'Cá chưa câu được': 'Fish not caught yet',
   // ---- Coffee & footer ----
   'Mã QR chuyển khoản ủng hộ': 'Donation QR code',
   'Quét mã bằng ứng dụng ngân hàng hoặc MoMo': 'Scan with a Vietnamese banking app or MoMo',
@@ -347,6 +350,7 @@ export const UI_EN = {
 // Patterns for text that mixes words with numbers or names. Replacement
 // functions receive the regex groups plus `sub`, which translates a piece.
 export const PATTERNS_EN = [
+  [/^Đã đồng bộ từ file save: (.+)$/, (m, list) => `Synced from the save file: ${list.replace(/(\d+) mục tiến độ/, '$1 progress items').replace(/ngày (\d+) (Mùa \S+)/, (x, d, s) => `day ${d} ${({ 'Mùa Xuân': 'Spring', 'Mùa Hạ': 'Summer', 'Mùa Thu': 'Fall', 'Mùa Đông': 'Winter' })[s] || s}`).replace('(đã chia sẻ)', '(shared)').replace('nông trại', 'farm').replace('không có gì', 'nothing')}`],
   [/^Bỏ qua (\d+) mục không hợp lệ$/, 'Skipped $1 invalid entries'],
   [/^Xem (\d+) công thức khớp ở tab Công Thức$/, 'See $1 matching recipes in the Recipes tab'],
   [new RegExp(`^${DOW_RE}, ngày (\\d+) (Mùa Xuân|Mùa Hạ|Mùa Thu|Mùa Đông), năm (\\d+)$`), (m, dow, d, s, y) => `${DOW[dow]}, ${SEASON[s]} ${d}, Year ${y}`],

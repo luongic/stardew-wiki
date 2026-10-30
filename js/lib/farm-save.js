@@ -71,8 +71,19 @@ export function parseSave(xml) {
   return doc.documentElement;
 }
 
+// The in-game date of a save: { season, day, year }
+export function readSaveDay(root) {
+  const season = text(root, 'currentSeason').toLowerCase();
+  return {
+    season: ['spring', 'summer', 'fall', 'winter'].includes(season) ? season : 'spring',
+    day: Math.min(28, Math.max(1, Number(text(root, 'dayOfMonth')) || 1)),
+    year: Math.max(1, Number(text(root, 'year')) || 1)
+  };
+}
+
+// Takes the save's text, or its <SaveGame> element when already parsed
 export function readFarmSave(xml) {
-  const root = parseSave(xml);
+  const root = typeof xml === 'string' ? parseSave(xml) : xml;
   const farm = location(root, 'Farm');
   if (!farm) fail(t('Không tìm thấy nông trại trong file save.'));
 

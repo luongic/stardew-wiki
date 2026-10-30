@@ -106,8 +106,9 @@ function readQuests(root, player, mail, built) {
   return [...done];
 }
 
+// Takes the save's text, or its <SaveGame> element when already parsed
 export function readSaveProgress(xml) {
-  const root = parseSave(xml);
+  const root = typeof xml === 'string' ? parseSave(xml) : xml;
   const player = kid(root, 'player');
   const mail = new Set(kids(kid(player, 'mailReceived'), 'string').map(s => s.textContent.trim()));
 

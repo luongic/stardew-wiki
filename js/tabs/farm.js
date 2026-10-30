@@ -15,7 +15,6 @@ import { RECIPES_DATA } from '../../data/recipes-data.js';
 import { loadJSON, saveJSON, KEYS } from '../lib/storage.js';
 import { ico } from '../lib/icons.js';
 import { t, nm } from '../lib/i18n.js';
-import { readFarmSave } from '../lib/farm-save.js';
 import { openModal, closeModal } from '../lib/ui.js';
 
 const TILE = 16;
@@ -65,6 +64,7 @@ function snapshot() {
   undoStack.push(JSON.stringify(plan));
   if (undoStack.length > UNDO_LIMIT) undoStack.shift();
   redoStack.length = 0;
+  delete plan.source;   // edited by hand: no longer a plain copy of a save
 }
 
 function restore(json) { plan = JSON.parse(json); ui.selected = null; save(); draw(); renderSide(); }
@@ -749,26 +749,39 @@ function readPlanJson(text) {
   return { objects, ground, dropped };
 }
 
+// Called by the save import (Progress tab) with readFarmSave()'s result
+export function applySaveFarm(res) {
+  snapshot();
+  plan = { v: 1, map: MAP.id, source: 'save', objects: res.objects, ground: res.ground };
+  ui.selected = null;
+  save(); draw(); renderSide();
+  if (res.warning) flash(res.warning);
+}
+
+// True when the current plan is safe to overwrite with a save's farm:
+// nothing beyond the starting buildings, or it came from a save already
+export function farmPlanIsReplaceable() {
+  return plan.source === 'save' || (plan.objects.length <= MAP.defaults.length && !Object.keys(plan.ground).length);
+}
+
+// JSON layouts open here; a game save goes through the shared save import
 async function importFile(app, file) {
   try {
     const text = await file.text();
-    const isJson = /^\s*\{/.test(text.slice(0, 200));
-    const res = isJson ? readPlanJson(text) : readFarmSave(text);
+    if (!/^\s*\{/.test(text.slice(0, 200))) {
+      document.dispatchEvent(new CustomEvent('save-file', { detail: { file, text } }));
+      return;
+    }
+    const res = readPlanJson(text);
     snapshot();
     plan = { v: 1, map: MAP.id, objects: res.objects, ground: res.ground };
     ui.selected = null;
     save(); draw(); renderSide();
-    const n = res.objects.length + Object.keys(res.ground).length;
-    if (isJson) {
-      app.showToast(`${ico('check')} ${t('Đã mở file thiết kế nông trại')} (${n})`);
-      if (res.dropped) flash(`${t('Bỏ qua')} ${res.dropped} ${t('mục không hợp lệ')}`);
-    } else {
-      app.showToast(`${ico('check')} ${t('Đã nạp nông trại từ file save')}: ${res.farmName || ''} (${n})`);
-      if (res.warning) flash(res.warning);
-    }
+    app.showToast(`${ico('check')} ${t('Đã mở file thiết kế nông trại')} (${res.objects.length + Object.keys(res.ground).length})`);
+    if (res.dropped) flash(`${t('Bỏ qua')} ${res.dropped} ${t('mục không hợp lệ')}`);
   } catch (e) {
     console.error('[farm]', e);
-    app.showToast(`${ico('warn')} ${e.userMessage || (e instanceof SyntaxError ? t('File JSON bị lỗi.') : t('Không đọc được file save này'))}`);
+    app.showToast(`${ico('warn')} ${e.userMessage || (e instanceof SyntaxError ? t('File JSON bị lỗi.') : t('Không đọc được file này'))}`);
   }
 }
 
