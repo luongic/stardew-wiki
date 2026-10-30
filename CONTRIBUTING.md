@@ -50,3 +50,13 @@ npm run dev   # mở http://localhost:3000
 ## Bản quyền
 
 Khi gửi đóng góp, bạn đồng ý để phần mã của mình được phát hành theo [giấy phép MIT](LICENSE) của dự án. Hình ảnh và nội dung trò chơi Stardew Valley thuộc về ConcernedApe và không nằm trong giấy phép này.
+
+## Phiên bản & cập nhật cho người dùng
+
+Trang dùng service worker (`sw.js`) để lưu sẵn mã nguồn, dữ liệu và hình ảnh trong trình duyệt: mở nhanh và dùng được khi mất mạng. Mỗi phiên bản là một bộ nhớ đệm riêng, đặt tên theo mã băm nội dung các file (`version.json`).
+
+- Bật git hook một lần: `npm run hooks`. Từ đó mỗi lần commit, hook tự tính lại phiên bản khi có file thay đổi (cập nhật nhỏ: người dùng nhận bản mới ở lần mở trang tiếp theo).
+- Cập nhật quan trọng: sau khi `git add`, chạy `npm run release -- "Ghi chú 1" "Ghi chú 2"` rồi commit. Người dùng đang mở trang sẽ thấy popup kèm ghi chú và nút "Cập nhật ngay".
+- Khi chạy thử ở máy (`npm run dev`), service worker bị tắt để luôn thấy file mới nhất; thêm `?sw` vào địa chỉ để thử chế độ offline.
+- Tiến độ, ghi chú và thiết kế nông trại của người dùng nằm trong localStorage, không bị xoá khi cập nhật.
+

@@ -106,6 +106,40 @@ function readQuests(root, player, mail, built) {
   return [...done];
 }
 
+
+// ---------- Player profiles: skills, professions, mastery, a few totals ----------
+const SKILL_FIELDS = ['farmingLevel', 'fishingLevel', 'foragingLevel', 'miningLevel', 'combatLevel'];
+
+function readPlayer(el, root) {
+  const xp = kids(kid(el, 'experiencePoints'), 'int').map(i => Number(i.textContent) || 0);
+  const stats = new Map(dict(kid(kid(el, 'stats'), 'Values')).map(([k, v]) => [k, Number(v?.textContent) || 0]));
+  return {
+    name: text(el, 'name'),
+    skills: SKILL_FIELDS.map((f, i) => ({ level: Number(text(el, f)) || 0, xp: xp[i] || 0 })),
+    professions: kids(kid(el, 'professions'), 'int').map(i => Number(i.textContent)),
+    masteryXp: stats.get('MasteryExp') || 0,
+    masteryClaimed: [0, 1, 2, 3, 4].filter(n => (stats.get(`mastery_${n}`) || 0) > 0),
+    money: Number(text(el, 'money')) || 0,
+    earned: Number(text(el, 'totalMoneyEarned')) || 0,
+    daysPlayed: stats.get('daysPlayed') || 0,
+    hoursPlayed: Math.round((Number(text(el, 'millisecondsPlayed')) || 0) / 3600000),
+    deepestMine: Number(text(el, 'deepestMineLevel')) || 0,
+    maxHealth: Number(text(el, 'maxHealth')) || 0,
+    maxStamina: Number(text(el, 'maxStamina')) || 0,
+    fishCaught: stats.get('fishCaught') || 0,
+    monstersKilled: stats.get('monstersKilled') || 0,
+    walnuts: Number(text(root, 'goldenWalnutsFound')) || 0,
+    qiGems: Number(text(el, 'qiGems')) || 0
+  };
+}
+
+// The host first, then co-op farmhands kept in the same save
+export function readPlayers(root) {
+  const host = readPlayer(kid(root, 'player'), root);
+  const hands = kids(kid(root, 'farmhands'), 'Farmer').map(f => readPlayer(f, root)).filter(p => p.name);
+  return [host, ...hands];
+}
+
 // Takes the save's text, or its <SaveGame> element when already parsed
 export function readSaveProgress(xml) {
   const root = typeof xml === 'string' ? parseSave(xml) : xml;
@@ -190,6 +224,7 @@ export function readSaveProgress(xml) {
     bundles: [...bundles],
     museum: [...museum],
     quests: readQuests(root, player, mail, built),
+    players: readPlayers(root),
     fish: { caught: fish.length - missingFish.length, total: fish.length, missing: missingFish, caughtEn: fish.filter(f => caught.has(norm(f.nameEn))).map(f => f.nameEn) },
     unmatchedBundles
   };

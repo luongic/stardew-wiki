@@ -331,6 +331,21 @@ export const UI_EN = {
   'công trình, đồ vật và ô đất': 'buildings, objects and tiles', 'sẽ thay thiết kế bạn đang vẽ (có thể Hoàn tác ở tab Nông Trại)': 'replaces the layout you are drawing (Undo in the Farm tab)',
   'Nạp file save một lần để đồng bộ tiến độ, ngày và nông trại': 'Load a save once to sync progress, the date and the farm', 'Không đọc được file này': "Couldn't read this file",
   'Cá chưa câu được': 'Fish not caught yet',
+  // ---- Site updates ----
+  'Có bản cập nhật mới': 'A new version is available',
+  'Cẩm Nang vừa có bản cập nhật quan trọng. Tiến độ, ghi chú và thiết kế nông trại của bạn vẫn được giữ nguyên.': 'The guide has an important update. Your progress, notes and farm layouts are kept.',
+  'Cập nhật ngay': 'Update now', 'Để sau': 'Later',
+  // ---- Player profile ----
+  'Hồ sơ nhân vật': 'Player profile', 'Hồ sơ nhân vật (cấp kỹ năng, nghề)': 'Player profile (skill levels, professions)',
+  'Nạp file save để xem cấp độ Trồng trọt, Câu cá, Hái lượm, Khai khoáng, Chiến đấu, nghề đã chọn và độ Thành thạo của nhân vật.': "Load a save file to see your Farming, Fishing, Foraging, Mining and Combat levels, chosen professions and Mastery.",
+  'Nạp file save': 'Load save file', 'cập nhật': 'updated', 'Cấp': 'Level', 'Cấp tối đa': 'Max level', 'còn': '', 'tới cấp': 'to level',
+  'Chưa chọn nghề cấp': 'No profession chosen yet at level', 'chọn khi đi ngủ': 'pick it when you go to bed', 'Chọn nghề ở cấp 5 và cấp 10.': 'Professions are chosen at levels 5 and 10.',
+  'Thành thạo (Mastery)': 'Mastery', 'kỹ năng đã nhận thưởng': 'skill rewards claimed', 'Đã đạt tối đa': 'Maxed', 'tới bậc': 'to level',
+  'Mở khi cả 5 kỹ năng đạt cấp 10: kinh nghiệm kiếm thêm sau đó tính vào Thành thạo, dùng để nhận thưởng ở Hang Thành Thạo.': 'Unlocks once all five skills reach level 10: further experience counts as Mastery, spent on rewards in the Mastery Cave.',
+  'Tiền': 'Money', 'Tổng thu nhập': 'Total earned', 'Ngày đã chơi': 'Days played', 'Giờ chơi': 'Hours played', 'Sâu nhất': 'Deepest',
+  'Máu': 'Health', 'Năng lượng': 'Energy', 'Cá đã câu': 'Fish caught', 'Quái đã hạ': 'Monsters slain', 'Óc Chó Vàng': 'Golden Walnuts', 'Đá Qi': 'Qi Gems',
+  'Trồng trọt': 'Farming', 'Khai khoáng': 'Mining', 'Chiến đấu': 'Combat', 'Hái lượm': 'Foraging',
+  'Bậc thầy Nông nghiệp': 'Farming Mastery', 'Bậc thầy Câu cá': 'Fishing Mastery', 'Bậc thầy Hái lượm': 'Foraging Mastery', 'Bậc thầy Khai khoáng': 'Mining Mastery', 'Bậc thầy Chiến đấu': 'Combat Mastery',
   // ---- Coffee & footer ----
   'Mã QR chuyển khoản ủng hộ': 'Donation QR code',
   'Quét mã bằng ứng dụng ngân hàng hoặc MoMo': 'Scan with a Vietnamese banking app or MoMo',
@@ -350,6 +365,10 @@ export const UI_EN = {
 // Patterns for text that mixes words with numbers or names. Replacement
 // functions receive the regex groups plus `sub`, which translates a piece.
 export const PATTERNS_EN = [
+  [/^Phiên bản (\w*)$/, 'Version $1'],
+  [/^Hang Đầu Lâu tầng (\d+)$/, 'Skull Cavern floor $1'], [/^Hầm Mỏ tầng (\d+)$/, 'Mines floor $1'],
+  [/^([\d.]+) \/ ([\d.]+) XP · còn ([\d.]+) XP tới cấp (\d+)$/, '$1 / $2 XP · $3 XP to level $4'],
+  [/^Cấp tối đa · ([\d.]+) XP$/, 'Max level · $1 XP'],
   [/^Đã đồng bộ từ file save: (.+)$/, (m, list) => `Synced from the save file: ${list.replace(/(\d+) mục tiến độ/, '$1 progress items').replace(/ngày (\d+) (Mùa \S+)/, (x, d, s) => `day ${d} ${({ 'Mùa Xuân': 'Spring', 'Mùa Hạ': 'Summer', 'Mùa Thu': 'Fall', 'Mùa Đông': 'Winter' })[s] || s}`).replace('(đã chia sẻ)', '(shared)').replace('nông trại', 'farm').replace('không có gì', 'nothing')}`],
   [/^Bỏ qua (\d+) mục không hợp lệ$/, 'Skipped $1 invalid entries'],
   [/^Xem (\d+) công thức khớp ở tab Công Thức$/, 'See $1 matching recipes in the Recipes tab'],

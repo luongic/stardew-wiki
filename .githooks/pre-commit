@@ -1,0 +1,5 @@
+#!/bin/sh
+# Keep the offline cache version (sw.js, version.json) in step with the files
+# being committed. Turn on once with: npm run hooks
+node scripts/build-sw.mjs || exit 1
+git add sw.js version.json

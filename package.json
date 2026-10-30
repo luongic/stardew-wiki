@@ -7,6 +7,9 @@
     "dev": "serve -l 3000 .",
     "start": "serve -l 3000 .",
     "config": "node scripts/gen-firebase-config.mjs",
+    "version:site": "node scripts/build-sw.mjs",
+    "release": "node scripts/build-sw.mjs --important",
+    "hooks": "git config core.hooksPath .githooks",
     "emulators": "npx -y firebase-tools@13 emulators:start --only auth,firestore --project demo-stardew"
   },
   "keywords": [

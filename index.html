@@ -537,6 +537,7 @@
 
       <!-- ======= TAB: PROGRESS TRACKER ======= -->
       <section id="tab-tracker" class="tab-panel" role="tabpanel" hidden>
+        <div id="profileBoard"></div>
         <div class="stats-grid" id="statsGrid"></div>
 
         <div class="panel">
@@ -569,6 +570,7 @@
         <a href="https://www.nexusmods.com/stardewvalley/mods/8409" target="_blank" rel="noopener">Stardew Valley Viethoa</a> của Kou &amp; Luxanna.</p>
       <p class="footer__small">Dữ liệu theo phiên bản 1.6+: công thức, vật phẩm, dân làng, nhiệm vụ, Nhà Cộng Đồng, bảo tàng, hầm mỏ và bản đồ (gồm Mưa Xanh, Gấu Mèo, Hang Thành Thạo...).</p>
       <p class="footer__share">Nếu thấy Cẩm Nang hữu ích, hãy chia sẻ cho bạn bè và cùng <a href="https://github.com/luongic/stardew-wiki/issues" target="_blank" rel="noopener">đóng góp</a> với mình nhé!</p>
+      <p class="footer__small footer__version" id="siteVersion"></p>
       <p class="footer__love">from <a href="https://luongic.github.io/mever/" target="_blank" rel="noopener">luongic</a> with love <img src="assets/pixel-heart.svg" alt="" class="pixel-heart"></p>
     </footer>
   </div>
@@ -754,6 +756,15 @@
   </div>
 
   <!-- ======= BUY ME A COFFEE ======= -->
+  <!-- ======= SITE UPDATE ======= -->
+  <div class="modal" id="updateModal" hidden>
+    <div class="modal__box modal__box--notes" role="dialog" aria-modal="true" aria-labelledby="updateTitle">
+      <button class="modal-close-btn" type="button" data-close-modal aria-label="Đóng cửa sổ">✕</button>
+      <h2 class="coop-title" id="updateTitle"><i data-icon="sparkle"></i> Có bản cập nhật mới</h2>
+      <div id="updateBody"></div>
+    </div>
+  </div>
+
   <!-- ======= FARM PRESETS ======= -->
   <div class="modal" id="farmPresetModal" hidden>
     <div class="modal__box modal__box--wide" role="dialog" aria-modal="true" aria-labelledby="farmPresetTitle">

@@ -31,6 +31,7 @@ import quizTab from './tabs/quiz.js';
 import plannerTab from './tabs/planner.js';
 import trackerTab from './tabs/tracker.js';
 import { coopUi } from './sync/coop-ui.js';
+import { initUpdates, applyUpdate } from './lib/updates.js';
 import { notesUi } from './sync/notes-ui.js';
 import { ico, hydrateIcons } from './lib/icons.js';
 import { isEn, setLang, registerNames, startTranslating } from './lib/i18n.js';
@@ -92,6 +93,7 @@ export class StardewWikiApp {
     this.tabs.forEach(t => t.init?.(this));
     notesUi.init(this);
     coopUi.init(this);
+    initUpdates();
     this.switchTab(this.currentTab);
     this.refreshBadges();
 
@@ -193,6 +195,7 @@ export class StardewWikiApp {
         app.openDetail(el.dataset.type, el.dataset.id);
         app.sfx.play('click');
       },
+      'update-now': () => applyUpdate(),
       'open-modal': (app, el) => {
         openModal(el.dataset.modal);
         app.sfx.play('click');

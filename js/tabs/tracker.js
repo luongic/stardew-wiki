@@ -18,6 +18,8 @@ import { setCaughtFish } from './fishing.js';
 import { applySaveDay } from './today.js';
 import { applySaveFarm, farmPlanIsReplaceable } from './farm.js';
 import { coop } from '../sync/coop.js';
+import { SKILLS, LEVEL_XP, MASTERY_XP, PROFESSIONS } from '../../data/skills-data.js';
+import { saveJSON } from '../lib/storage.js';
 
 const BACKUP_VERSION = 3;
 
@@ -123,6 +125,102 @@ async function importProgress(app, file) {
 }
 
 // ==========================================
+// PLAYER PROFILE (from the last save read): skills, professions, mastery
+// ==========================================
+let profileIndex = 0;
+const fmt = n => Number(n || 0).toLocaleString('vi-VN');
+
+function skillCard(sk, p) {
+  const { level, xp } = p.skills[sk.xp] || { level: 0, xp: 0 };
+  const prev = level ? LEVEL_XP[level - 1] : 0;
+  const next = LEVEL_XP[level];
+  const pct = level >= 10 ? 100 : Math.max(0, Math.min(100, ((xp - prev) / (next - prev)) * 100));
+  const profs = p.professions.map(id => PROFESSIONS[id]).filter(pr => pr?.skill === sk.id).sort((a, b) => a.level - b.level);
+  const missing = [5, 10].filter(lv => level >= lv && !profs.some(pr => pr.level === lv));
+  return `
+    <article class="skill-card ${level >= 10 ? 'is-max' : ''}">
+      <header class="skill-card__head">
+        <img src="${sk.icon}" alt="" class="pixel-img skill-card__icon">
+        <div>
+          <h3 class="skill-card__name">${nm(sk)}</h3>
+          <div class="skill-pips" aria-label="${t('Cấp')} ${level}/10">${Array.from({ length: 10 }, (_, i) => `<span class="${i < level ? 'is-on' : ''} ${i === 4 || i === 9 ? 'is-big' : ''}"></span>`).join('')}</div>
+        </div>
+        <strong class="skill-card__level">${level}</strong>
+      </header>
+      <div class="skill-bar" title="${fmt(xp)} XP"><span style="width:${pct}%"></span></div>
+      <p class="skill-card__xp muted">${level >= 10 ? `${t('Cấp tối đa')} · ${fmt(xp)} XP` : `${fmt(xp)} / ${fmt(next)} XP · ${t('còn')} ${fmt(next - xp)} XP ${t('tới cấp')} ${level + 1}`}</p>
+      ${profs.map(pr => `
+        <div class="skill-prof"><span class="tag tag--gold">${t('Cấp')} ${pr.level}</span> <strong>${nm(pr)}</strong>
+          <p class="muted">${pr.desc}</p></div>`).join('')}
+      ${missing.map(lv => `<p class="muted">${ico('warn')} ${t('Chưa chọn nghề cấp')} ${lv} (${t('chọn khi đi ngủ')})</p>`).join('')}
+      ${level < 5 ? `<p class="muted">${t('Chọn nghề ở cấp 5 và cấp 10.')}</p>` : ''}
+      ${p.masteryClaimed.includes(sk.mastery) ? `<p class="skill-card__mastery">${ico('sparkle')} ${t(sk.masteryName)}</p>` : ''}
+    </article>`;
+}
+
+function masteryCard(p) {
+  const allMax = p.skills.every(s => s.level >= 10);
+  const lv = MASTERY_XP.filter(x => p.masteryXp >= x).length;
+  const prev = lv ? MASTERY_XP[lv - 1] : 0;
+  const next = MASTERY_XP[lv];
+  const pct = lv >= 5 ? 100 : ((p.masteryXp - prev) / (next - prev)) * 100;
+  return `
+    <article class="skill-card skill-card--mastery">
+      <header class="skill-card__head">
+        <img src="assets/icons/skill_mastery.png" alt="" class="pixel-img skill-card__icon">
+        <div><h3 class="skill-card__name">${t('Thành thạo (Mastery)')}</h3>
+          <p class="muted">${p.masteryClaimed.length}/5 ${t('kỹ năng đã nhận thưởng')}</p></div>
+        <strong class="skill-card__level">${lv}</strong>
+      </header>
+      ${allMax || p.masteryXp ? `
+        <div class="skill-bar skill-bar--mastery"><span style="width:${Math.max(0, Math.min(100, pct))}%"></span></div>
+        <p class="skill-card__xp muted">${lv >= 5 ? `${t('Đã đạt tối đa')} · ${fmt(p.masteryXp)} XP` : `${fmt(p.masteryXp)} / ${fmt(next)} XP ${t('tới bậc')} ${lv + 1}`}</p>`
+      : `<p class="muted">${t('Mở khi cả 5 kỹ năng đạt cấp 10: kinh nghiệm kiếm thêm sau đó tính vào Thành thạo, dùng để nhận thưởng ở Hang Thành Thạo.')}</p>`}
+    </article>`;
+}
+
+function profileHtml() {
+  const data = loadJSON(KEYS.profiles, null);
+  if (!data?.players?.length) {
+    return `
+      <section class="panel profile profile--empty">
+        <h2 class="panel__title">${ico('save')} ${t('Hồ sơ nhân vật')}</h2>
+        <p class="muted">${t('Nạp file save để xem cấp độ Trồng trọt, Câu cá, Hái lượm, Khai khoáng, Chiến đấu, nghề đã chọn và độ Thành thạo của nhân vật.')}</p>
+        <button class="btn btn--green" type="button" data-action="import-save-progress">${ico('upload')} ${t('Nạp file save')}</button>
+      </section>`;
+  }
+  const players = data.players;
+  const p = players[Math.min(profileIndex, players.length - 1)];
+  const mine = p.deepestMine > 120 ? `${t('Hang Đầu Lâu tầng')} ${p.deepestMine - 120}` : `${t('Hầm Mỏ tầng')} ${p.deepestMine}`;
+  const stat = (icon, label, value) => `<span class="tag">${ico(icon)} ${t(label)}: <strong>${value}</strong></span>`;
+  return `
+    <section class="panel profile">
+      <div class="profile__head">
+        <h2 class="panel__title">${ico('save')} ${t('Hồ sơ nhân vật')}</h2>
+        ${players.length > 1 ? `<div class="seg">${players.map((pl, i) => `<button class="seg-btn ${pl === p ? 'is-active' : ''}" type="button" data-action="profile-player" data-i="${i}" data-no-i18n>${ico(i ? 'guest' : 'crown')} ${pl.name}</button>`).join('')}</div>` : ''}
+        <span class="muted">${t('Nông trại')} <strong data-no-i18n>${data.farmName || '?'}</strong> · ${t('cập nhật')} ${new Date(data.at).toLocaleString('vi-VN')}</span>
+      </div>
+      <div class="profile__stats">
+        ${stat('money', 'Tiền', `${fmt(p.money)}g`)}
+        ${stat('medal', 'Tổng thu nhập', `${fmt(p.earned)}g`)}
+        ${stat('calendar', 'Ngày đã chơi', fmt(p.daysPlayed))}
+        ${stat('clock', 'Giờ chơi', fmt(p.hoursPlayed))}
+        ${stat('mines', 'Sâu nhất', mine)}
+        ${stat('health', 'Máu', p.maxHealth)}
+        ${stat('energy', 'Năng lượng', p.maxStamina)}
+        ${stat('fish', 'Cá đã câu', fmt(p.fishCaught))}
+        ${stat('skull', 'Quái đã hạ', fmt(p.monstersKilled))}
+        ${p.walnuts ? stat('golden_walnut', 'Óc Chó Vàng', `${p.walnuts}/130`) : ''}
+        ${p.qiGems ? stat('sparkle', 'Đá Qi', fmt(p.qiGems)) : ''}
+      </div>
+      <div class="skill-grid">
+        ${SKILLS.map(sk => skillCard(sk, p)).join('')}
+        ${masteryCard(p)}
+      </div>
+    </section>`;
+}
+
+// ==========================================
 // ONE SAVE FILE FOR EVERY TAB
 // The save is read once, in the browser, then a summary lets the player pick
 // what to update: progress ticks (added on top, nothing unticked) and caught
@@ -163,6 +261,7 @@ async function readSaveFile(app, file, preread = null) {
         ${row('bundles', 'Ô gói Nhà Cộng Đồng đã nộp', res.bundles.length, add.bundles.length)}
         ${row('museum', 'Món đã quyên góp Bảo Tàng', res.museum.length, add.museum.length)}
         ${row('fish', 'Loài cá đã câu được', `${res.fish.caught} / ${res.fish.total}`, null)}
+        ${row('save', 'Hồ sơ nhân vật (cấp kỹ năng, nghề)', res.players.map(pl => `${pl.name}: ${pl.skills.map(x => x.level).join('/')}`).join(' · '), null)}
       </ul>
       ${res.unmatchedBundles.length ? `<p class="muted">${ico('warn')} ${t('Một số gói (bản Remix) không có trong dữ liệu của trang nên được bỏ qua')}: ${res.unmatchedBundles.join(', ')}</p>` : ''}
       <p class="muted">${t('Chỉ thêm dấu tick mới, không bỏ tick nào bạn đã đánh dấu. Nhiệm vụ được suy ra từ cờ và sự kiện trong file save; Tượng Lewis Vàng và các bức tượng bí ẩn không để lại dấu vết nên vẫn cần tự đánh dấu.')}</p>
@@ -203,6 +302,8 @@ function applySave(app) {
       for (const k of newKeys(domain, keys)) { progress.setFlag(domain, k, true, 'bulk'); n++; }
     }
     setCaughtFish(res.fish.caughtEn);
+    saveJSON(KEYS.profiles, { farmName: res.farmName, at: Date.now(), players: res.players });
+    profileIndex = 0;
     done.push(`${n} ${t('mục tiến độ')}`);
   }
   if (checked('syncToday')) {
@@ -228,6 +329,7 @@ export default {
   toggles: [],
 
   render(app) {
+    document.getElementById('profileBoard').innerHTML = profileHtml();
     document.getElementById('statsGrid').innerHTML = GROUPS.map(g => statCard(app, g)).join('');
   },
 
@@ -246,6 +348,7 @@ export default {
       if (file) readSaveFile(app, file);
     },
     'save-progress-apply': (app) => applySave(app),
+    'profile-player': (app, el) => { profileIndex = Number(el.dataset.i); app.render(); },
     'reset-progress': (app) => {
       if (!confirm(t('CẢNH BÁO: Thao tác này sẽ đặt lại toàn bộ tiến độ đã hoàn thành về 0. Bạn có chắc không?'))) return;
       for (const domain of ['recipes', 'quests', 'bundles', 'museum']) progress.replace(domain, []);

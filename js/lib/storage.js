@@ -18,7 +18,8 @@ export const KEYS = {
   farmView: 'stardew_wiki_farm_view',
   today: 'stardew_wiki_today',
   fishingView: 'stardew_wiki_fishing_view',
-  fishCaught: 'stardew_wiki_fish_caught'
+  fishCaught: 'stardew_wiki_fish_caught',
+  profiles: 'stardew_wiki_profiles'
 };
 
 export function loadJSON(key, fallback) {
