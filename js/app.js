@@ -96,6 +96,7 @@ export class StardewWikiApp {
     notesUi.init(this);
     coopUi.init(this);
     initUpdates();
+    this.bindScrollTop();
     this.switchTab(this.currentTab);
     this.refreshBadges();
 
@@ -198,6 +199,11 @@ export class StardewWikiApp {
         app.sfx.play('click');
       },
       'update-now': () => applyUpdate(),
+      'scroll-top': (app) => {
+        const instant = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: 0, behavior: instant ? 'auto' : 'smooth' });
+        app.sfx.play('click');
+      },
       'open-modal': (app, el) => {
         openModal(el.dataset.modal);
         app.sfx.play('click');
@@ -276,6 +282,16 @@ export class StardewWikiApp {
     document.querySelectorAll('[data-action="set-season"]').forEach(btn => {
       btn.classList.toggle('is-active', btn.dataset.season === season);
     });
+  }
+
+  // The back-to-top button appears once the page is scrolled past the hero
+  bindScrollTop() {
+    const btn = document.querySelector('.scroll-top');
+    if (!btn) return;
+    let queued = false;
+    const update = () => { queued = false; btn.classList.toggle('is-visible', window.scrollY > 600); };
+    window.addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(update); } }, { passive: true });
+    update();
   }
 
   updateAudioButton() {

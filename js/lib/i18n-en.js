@@ -360,7 +360,7 @@ export const UI_EN = {
   // ---- Site updates ----
   'Có bản cập nhật mới': 'A new version is available',
   'Cẩm Nang vừa có bản cập nhật quan trọng. Tiến độ, ghi chú và thiết kế nông trại của bạn vẫn được giữ nguyên.': 'The guide has an important update. Your progress, notes and farm layouts are kept.',
-  'Cập nhật ngay': 'Update now', 'Để sau': 'Later',
+  'Cập nhật ngay': 'Update now', 'Để sau': 'Later', 'Lên đầu trang': 'Back to top',
   // ---- Player profile ----
   'Hồ sơ nhân vật': 'Player profile', 'Hồ sơ nhân vật (cấp kỹ năng, nghề)': 'Player profile (skill levels, professions)',
   'Nạp file save để xem cấp độ Trồng trọt, Câu cá, Hái lượm, Khai khoáng, Chiến đấu, nghề đã chọn và độ Thành thạo của nhân vật.': "Load a save file to see your Farming, Fishing, Foraging, Mining and Combat levels, chosen professions and Mastery.",

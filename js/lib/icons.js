@@ -55,7 +55,7 @@ export const ICONS = {
   saloon: game('beer'), fishing: game('item_fishing_rod_bamboo'), sparkle: px('sparkle'),
 
   // Progress & backup
-  save: px('save'), download: px('download'), upload: px('upload'), trash: game('tool_trashcan_upgrades'),
+  save: px('save'), download: px('download'), upload: px('upload'), up: px('up'), trash: game('tool_trashcan_upgrades'),
   medal: game('item_golden_relic'),
 
   // Guides & misc
