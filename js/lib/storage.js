@@ -19,7 +19,8 @@ export const KEYS = {
   today: 'stardew_wiki_today',
   fishingView: 'stardew_wiki_fishing_view',
   fishCaught: 'stardew_wiki_fish_caught',
-  profiles: 'stardew_wiki_profiles'
+  profiles: 'stardew_wiki_profiles',
+  journal: 'stardew_wiki_journal'
 };
 
 export function loadJSON(key, fallback) {

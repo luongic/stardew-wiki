@@ -2465,6 +2465,42 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 .skill-prof p { font-size: 0.85rem; }
 .skill-card__mastery { display: flex; align-items: center; gap: 6px; color: #6b3fb8; }
 
+/* Farm journal */
+.journal-meta { margin-bottom: 10px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.journal-tabs, .journal-filters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.journal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 10px; }
+.journal-card { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; background: var(--parch-50); border: var(--px) solid var(--parch-300); }
+.journal-card h3 { font-size: 1.1rem; color: var(--wood-900); display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.journal-card__title img, .machine-list img, .friend-card__row img, .friend-card__gifts img { width: 22px; height: 22px; vertical-align: -5px; }
+.friend-card__head { display: flex; gap: 10px; align-items: center; }
+.friend-card__face { width: 48px; height: 48px; box-shadow: 0 0 0 2px var(--ink); background: var(--wood-300); flex-shrink: 0; }
+.friend-card__row { font-size: 0.92rem; display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+.friend-card__gifts { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; font-size: 0.88rem; }
+.hearts { display: flex; flex-wrap: wrap; gap: 2px; margin-top: 3px; }
+.hearts span { width: 12px; height: 11px; background: var(--parch-200);
+  clip-path: polygon(50% 100%, 0 40%, 0 15%, 20% 0, 40% 0, 50% 15%, 60% 0, 80% 0, 100% 15%, 100% 40%); }
+.hearts span.is-on { background: #e0465a; }
+.journal-search { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.journal-search input { flex: 1; padding: 6px 10px; }
+.storage-list { display: flex; flex-direction: column; gap: 6px; }
+.storage-row { display: flex; gap: 10px; align-items: flex-start; padding: 6px 10px; background: var(--parch-50); border: 2px solid var(--parch-300); }
+.storage-row__icon { width: 32px; height: 32px; flex-shrink: 0; }
+.storage-row__body { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.storage-row__places { display: flex; flex-wrap: wrap; gap: 4px; font-size: 0.85rem; }
+.machine-list { list-style: none; display: flex; flex-direction: column; gap: 4px; font-size: 0.88rem; }
+.machine-list li { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; border-bottom: 1px dashed var(--parch-300); padding-bottom: 3px; }
+.goal-list { display: flex; flex-direction: column; gap: 8px; }
+.goal-row { display: flex; gap: 10px; align-items: center; padding: 8px 10px; background: var(--parch-50); border: 2px solid var(--parch-300); }
+.goal-row.is-done { background: #e3f6d6; border-color: var(--green-dark); }
+.goal-row__icon { width: 32px; height: 32px; }
+.goal-row__body { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.goal-row__head { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.perfection-total { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.perfection-total strong { font-size: 2.4rem; color: var(--wood-700); }
+.journal-sub { margin: 16px 0 8px; display: flex; align-items: center; gap: 6px; color: var(--wood-900); }
+.journal-hints { list-style: none; margin-top: 8px; display: flex; flex-direction: column; gap: 4px; }
+.text-red { color: #b8322e; }
+
 /* Site update popup */
 .update-notes { list-style: none; display: flex; flex-direction: column; gap: 6px; margin: 12px 0; }
 .update-notes li { display: flex; gap: 8px; align-items: flex-start; }

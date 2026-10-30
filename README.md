@@ -1,6 +1,6 @@
 # Cẩm Nang Stardew Valley (Tiếng Việt)
 
-Cẩm nang tiếng Việt cho Stardew Valley 1.6+: việc cần làm theo ngày, công thức chế biến, từ điển vật phẩm, dân làng và lịch trình NPC, hướng dẫn nhiệm vụ, gói Nhà Cộng Đồng, bảo tàng, hầm mỏ, bản đồ tương tác, lên kế hoạch nông trại (kéo thả, mẫu thiết kế theo lối chơi, xuất/nhập JSON, đọc file save), tra cứu cá theo mùa/giờ/thời tiết, kế hoạch nguyên liệu và theo dõi tiến độ (tự đánh dấu từ file save). Tiến độ và ghi chú được lưu trong trình duyệt; người chơi co-op có thể tạo phòng để đồng bộ với nhau qua Firebase.
+Cẩm nang tiếng Việt cho Stardew Valley 1.6+: việc cần làm theo ngày, công thức chế biến, từ điển vật phẩm, dân làng và lịch trình NPC, hướng dẫn nhiệm vụ, gói Nhà Cộng Đồng, bảo tàng, hầm mỏ, bản đồ tương tác, lên kế hoạch nông trại (kéo thả, mẫu thiết kế theo lối chơi, xuất/nhập JSON, đọc file save), tra cứu cá theo mùa/giờ/thời tiết, kế hoạch nguyên liệu và theo dõi tiến độ (tự đánh dấu từ file save), hồ sơ nhân vật và Sổ Tay Nông Trại (tình bạn, đồ trong rương, máy móc, mùa vụ, vật nuôi, diệt quái, Hoàn Hảo) đọc từ file save. Tiến độ và ghi chú được lưu trong trình duyệt; người chơi co-op có thể tạo phòng để đồng bộ với nhau qua Firebase.
 
 **Xem trang:** https://luongic.github.io/stardew-wiki/
 

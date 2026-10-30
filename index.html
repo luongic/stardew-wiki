@@ -128,6 +128,9 @@
       <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="farm">
         <i data-icon="farm"></i> <span>Nông Trại</span>
       </button>
+      <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="journal">
+        <i data-icon="story"></i> <span>Sổ Tay Nông Trại</span>
+      </button>
       <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="fishing">
         <i data-icon="fishing"></i> <span>Câu Cá</span>
       </button>
@@ -426,6 +429,17 @@
           </div>
           <p class="panel__hint">Chọn ngày trong game (hoặc lấy từ file save) để xem sinh nhật, lễ hội, Xe Đẩy Du Mục, công thức trên TV, tiệm đóng cửa và những cây còn kịp trồng trước cuối mùa.</p>
           <div id="todayBoard"></div>
+        </div>
+      </section>
+
+      <!-- ======= TAB: FARM JOURNAL ======= -->
+      <section id="tab-journal" class="tab-panel" role="tabpanel" hidden>
+        <div class="panel journal">
+          <div class="panel__head">
+            <h2 class="panel__title"><i data-icon="story"></i> Sổ Tay Nông Trại</h2>
+          </div>
+          <p class="panel__hint">Thông tin đọc từ file save của bạn, chỉ để xem, không thay đổi gì trong game: tình bạn và quà đang có sẵn, đồ trong túi và rương, máy móc đang chạy, cây trồng, vật nuôi, mục tiêu diệt quái và mức Hoàn Hảo.</p>
+          <div id="journalBoard"></div>
         </div>
       </section>
 

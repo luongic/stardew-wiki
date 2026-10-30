@@ -27,6 +27,7 @@ import mapTab from './tabs/map.js';
 import farmTab from './tabs/farm.js';
 import todayTab from './tabs/today.js';
 import fishingTab from './tabs/fishing.js';
+import journalTab from './tabs/journal.js';
 import quizTab from './tabs/quiz.js';
 import plannerTab from './tabs/planner.js';
 import trackerTab from './tabs/tracker.js';
@@ -46,13 +47,14 @@ import { PLACES } from '../data/places-data.js';
 import { MAPS } from '../data/map-data.js';
 import { FARM_ITEMS } from '../data/farm-data.js';
 import { FISH_LOCATIONS } from '../data/fish-data.js';
+import { MONSTER_GOALS, PERFECTION, STARDROPS } from '../data/journal-data.js';
 
 const SEASON_NAMES = { spring: 'Mùa Xuân', summer: 'Mùa Hạ', fall: 'Mùa Thu', winter: 'Mùa Đông' };
 const SEARCH_DEBOUNCE_MS = 150;
 
 export class StardewWikiApp {
   constructor() {
-    this.tabs = [todayTab, recipesTab, itemsTab, npcsTab, questsTab, bundlesTab, museumTab, minesTab, mapTab, farmTab, fishingTab, quizTab, plannerTab, trackerTab];
+    this.tabs = [todayTab, recipesTab, itemsTab, npcsTab, questsTab, bundlesTab, museumTab, minesTab, mapTab, farmTab, journalTab, fishingTab, quizTab, plannerTab, trackerTab];
     this.tabById = new Map(this.tabs.map(t => [t.id, t]));
     this.tabByDetailType = new Map(this.tabs.filter(t => t.detailType).map(t => [t.detailType, t]));
 
@@ -78,7 +80,7 @@ export class StardewWikiApp {
   init() {
     if (isEn) {
       registerNames([ITEMS_DATA, RECIPES_DATA, NPCS_DATA, CALENDAR_EVENTS, QUESTS_DATA, CC_ROOMS,
-        MUSEUM_ITEMS, MUSEUM_REWARDS, MINE_AREAS, PLACES, MAPS, FARM_ITEMS, FISH_LOCATIONS]);
+        MUSEUM_ITEMS, MUSEUM_REWARDS, MINE_AREAS, PLACES, MAPS, FARM_ITEMS, FISH_LOCATIONS, MONSTER_GOALS, PERFECTION, STARDROPS]);
     }
     startTranslating();
     hydrateIcons();

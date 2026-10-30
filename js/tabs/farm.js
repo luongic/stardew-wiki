@@ -50,6 +50,7 @@ const ui = {
   showRanges: false,
   rangeAlpha: loadJSON(KEYS.farmView, {}).rangeAlpha ?? 0.3,   // how strongly ranges are shaded
   paletteDrag: null,   // item being dragged from the palette
+  highlight: [],       // tiles to point out (from the Journal tab)
   message: ''
 };
 
@@ -334,6 +335,27 @@ function drawOverlay() {
   }
   // Shift-drag rectangle preview
   if (ui.drag?.rect && ui.hover) for (const p of rectTiles(ui.drag.start, ui.hover)) tint(p.x, p.y, 'rgba(255,255,255,0.25)');
+  // Tiles pointed out from the Journal tab: a thick gold frame around each
+  for (const h of ui.highlight) {
+    octx.strokeStyle = '#2b1408'; octx.lineWidth = 4; octx.strokeRect(h.x * TILE - 3, h.y * TILE - 3, TILE + 6, TILE + 6);
+    octx.strokeStyle = '#ffcd38'; octx.lineWidth = 2; octx.strokeRect(h.x * TILE - 3, h.y * TILE - 3, TILE + 6, TILE + 6);
+  }
+}
+
+// Point out tiles (a chest, a machine...) and scroll the map to the first one
+export function focusFarmTiles(tiles) {
+  ui.highlight = tiles;
+  requestAnimationFrame(() => {
+    const vp = document.getElementById('farmViewport');
+    const stage = document.getElementById('farmStage');
+    if (!vp || !stage || !tiles.length) return;
+    if (ui.zoom < 1.5) { ui.zoom = ZOOMS.find(z => z >= 1.5) || ui.zoom; applyZoom(false); }
+    const { x, y } = tiles[0];
+    vp.scrollLeft = ((x + 0.5) / MAP.w) * stage.offsetWidth - vp.clientWidth / 2;
+    vp.scrollTop = ((y + 0.5) / MAP.h) * stage.offsetHeight - vp.clientHeight / 2;
+    vp.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    drawOverlay();
+  });
 }
 
 function ghostItem() {
@@ -511,6 +533,7 @@ function bindBoard() {
 
   stage.addEventListener('pointerdown', (ev) => {
     if (ev.button !== 0) return;
+    ui.highlight = [];
     const p = tileAt(ev);
     if (!p) return;
     ui.hover = p;

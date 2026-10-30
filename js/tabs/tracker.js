@@ -243,7 +243,9 @@ async function readSaveFile(app, file, preread = null) {
     const day = readSaveDay(root);
     let farm = null;
     try { farm = readFarmSave(root); } catch { /* a save without a farm: skip that part */ }
-    pendingSave = { res, day, farm };
+    let journal = null;
+    try { journal = (await import('../lib/save-journal.js')).readJournal(root); } catch (e) { console.warn('[journal]', e); }
+    pendingSave = { res, day, farm, journal };
 
     const add = { recipes: newKeys('recipes', res.recipes), quests: newKeys('quests', res.quests), bundles: newKeys('bundles', res.bundles), museum: newKeys('museum', res.museum) };
     const row = (icon, label, found, fresh) => `
@@ -270,6 +272,10 @@ async function readSaveFile(app, file, preread = null) {
         <span><strong>${ico('calendar')} ${t('Hôm Nay')}:</strong> ${DOW_VI[(day.day - 1) % 7]}, ${t('ngày')} ${day.day} ${SEASON_VI[day.season]}, ${t('năm')} ${day.year}
         ${coop.code ? `<span class="muted">(${t('chia sẻ với phòng Co-op')})</span>` : ''}</span></label>
 
+      ${journal ? `
+      <label class="save-sync__part"><input type="checkbox" class="px-check" id="syncJournal" checked>
+        <span><strong>${ico('story')} ${t('Sổ Tay Nông Trại')}:</strong> ${t('tình bạn, túi & rương, máy móc, mùa vụ, vật nuôi, diệt quái, Hoàn Hảo')}</span></label>` : ''}
+
       ${farm ? `
       <label class="save-sync__part"><input type="checkbox" class="px-check" id="syncFarm" ${replaceable ? 'checked' : ''}>
         <span><strong>${ico('farm')} ${t('Nông Trại')}:</strong> ${farmCount} ${t('công trình, đồ vật và ô đất')}
@@ -293,7 +299,7 @@ async function readSaveFile(app, file, preread = null) {
 
 function applySave(app) {
   if (!pendingSave) return;
-  const { res, day, farm } = pendingSave;
+  const { res, day, farm, journal } = pendingSave;
   const checked = id => document.getElementById(id)?.checked;
   const done = [];
   if (checked('syncProgress')) {
@@ -309,6 +315,10 @@ function applySave(app) {
   if (checked('syncToday')) {
     const shared = applySaveDay(day);
     done.push(`${t('ngày')} ${day.day} ${SEASON_VI[day.season]}${shared ? ` (${t('đã chia sẻ')})` : ''}`);
+  }
+  if (journal && checked('syncJournal')) {
+    saveJSON(KEYS.journal, { ...journal, day, farmName: res.farmName, at: Date.now() });
+    done.push(t('sổ tay'));
   }
   if (farm && checked('syncFarm')) {
     applySaveFarm(farm);
