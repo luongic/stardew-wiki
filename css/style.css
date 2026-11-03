@@ -458,7 +458,7 @@ code {
   font-size: 1.05rem;
   text-shadow: 2px 2px 0 var(--ink);
 }
-/* Season/audio group on the left, the coffee button pinned to the right */
+/* Season/audio group on the left, notes and Co-op buttons on the right */
 .hero__bar {
   flex-basis: 100%;
   display: flex;
@@ -2180,7 +2180,12 @@ code {
 .footer a { color: var(--gold); }
 .footer__small { font-size: 0.82rem; opacity: 0.85; margin-top: 4px; }
 .footer__share { margin-top: 14px; font-size: 1rem; }
+.footer__coffee { margin: 10px 0 6px; }
 .footer__love { margin-top: 4px; font-size: 1.05rem; }
+.footer__thanks { margin-top: 10px; font-size: 0.95rem; }
+.footer__sources { margin: 8px auto 0; max-width: 760px; font-size: 0.85rem; text-align: left; }
+.footer__sources summary { cursor: pointer; text-align: center; color: var(--gold); }
+.footer__sources ul { margin: 8px 0 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; opacity: 0.9; }
 
 /* 7x6 pixel heart, scaled by whole pixels (x3) so it stays crisp */
 /* 9x9 pixel icons (assets/pixel-*.svg), scaled x2 to stay crisp */

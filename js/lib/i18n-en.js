@@ -408,6 +408,15 @@ export const UI_EN = {
   // ---- Modals (titles & buttons only; guide bodies stay Vietnamese) ----
   'Đóng cửa sổ': 'Close', 'Chi tiết': 'Details',
   'Không tải được mã JavaScript của trang.': "The page's JavaScript failed to load.",
+  // ---- Footer: thanks & sources ----
+  'Special thanks to': 'Special thanks to', 'và cộng đồng': 'and the community of', 'Nguồn tham khảo': 'Sources',
+  'của ConcernedApe: trò chơi, hình ảnh và nhân vật.': 'by ConcernedApe: the game, its art and characters.',
+  ': dữ liệu vật phẩm, công thức, dân làng, nhiệm vụ, hình ảnh, bản đồ và lời giải Mật thư (nội dung theo giấy phép CC BY-NC-SA 3.0).': ': item, recipe, villager and quest data, pictures, maps and Secret Note solutions (content under CC BY-NC-SA 3.0).',
+  'của Kou & Luxanna: tên và mô tả tiếng Việt, nhiệm vụ, thành tựu, Mật thư.': 'by Kou & Luxanna: Vietnamese names and descriptions, quests, achievements, Secret Notes.',
+  'của MouseyPounds (MIT): cách tính các dự đoán, bảng mã vật phẩm, hình cây Cactis.': 'by MouseyPounds (MIT): the prediction logic, item id tables, the Cactis sprites.',
+  'của Henrik Peinar (Apache-2.0): lưới ô và ảnh nền bản đồ nông trại.': 'by Henrik Peinar (Apache-2.0): the farm map tile grid and background.',
+  '(Google Fonts, OFL): phông chữ pixel.': '(Google Fonts, OFL): the pixel font.',
+  ': đăng nhập và đồng bộ phòng Co-op.': ': sign-in and Co-op room sync.',
   // ---- Secret notes ----
   'File save bạn nạp trước đây được đọc bằng bản cũ của trang, chưa có danh sách mật thư đã đọc. Hãy nạp lại file save một lần.': 'Your save was loaded with an older version of this site, which did not keep the list of notes read. Please load the save file once more.',
   'Gợi ý': 'Hint',
