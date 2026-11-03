@@ -408,6 +408,8 @@ export const UI_EN = {
   // ---- Modals (titles & buttons only; guide bodies stay Vietnamese) ----
   'Đóng cửa sổ': 'Close', 'Chi tiết': 'Details',
   'Không tải được mã JavaScript của trang.': "The page's JavaScript failed to load.",
+  // ---- Fishing: place popup ----
+  'loài cá': 'fish', 'Vị trí trên bản đồ': 'Location on the map of', 'Cá câu được ở đây': 'Fish caught here', 'Lọc theo địa điểm này': 'Filter by this place',
   // ---- Predictor ----
   'Thông tin theo Official Stardew Valley Wiki': 'Facts from the Official Stardew Valley Wiki', 'Phân bón': 'Fertilizer', 'Đồ câu cá': 'Fishing tackle', 'Đồ đặc biệt': 'Special item', 'Đồ chế tạo': 'Crafted item', 'Hốc đá': 'Geode', 'Hộp bí ẩn': 'Mystery box',
   'Xe hàng rong của bà chủ xe và chú heo': "The Traveling Cart's owner and her pig",

@@ -8,9 +8,11 @@
 import { FISH, FISH_LOCATIONS } from '../../data/fish-data.js';
 import { ITEMS_DATA } from '../../data/items-data.js';
 import { ico } from '../lib/icons.js';
-import { t, nm } from '../lib/i18n.js';
+import { t, nm, isEn } from '../lib/i18n.js';
 import { loadJSON, saveJSON, KEYS } from '../lib/storage.js';
-import { matches } from '../lib/templates.js';
+import { matches, modalHeader, wikiLink } from '../lib/templates.js';
+import { MAPS } from '../../data/map-data.js';
+import { closeModal } from '../lib/ui.js';
 
 const itemByEn = new Map(ITEMS_DATA.map(i => [i.nameEn, i]));
 const SEASONS = ['spring', 'summer', 'fall', 'winter'];
@@ -37,6 +39,44 @@ export function setCaughtFish(namesEn) {
 const timeText = f => f.time.map(([a, b]) => (a === 6 && b === 26 ? t('Cả ngày') : `${hourLabel(a)} – ${hourLabel(b)}`)).join(', ');
 const weatherText = { sun: 'Trời nắng', rain: 'Trời mưa', any: 'Mọi thời tiết' };
 
+// A place name that opens its popup (picture + where it is on the map)
+const locLink = l => FISH_LOCATIONS[l].photo
+  ? `<button class="link-btn fish-loc-link" type="button" data-action="open-detail" data-type="fishloc" data-id="${l}">${nm(FISH_LOCATIONS[l])}</button>`
+  : nm(FISH_LOCATIONS[l]);
+
+function locDetail(id) {
+  const l = FISH_LOCATIONS[id];
+  if (!l?.photo) return '';
+  const map = MAPS.find(m => m.id === l.map);
+  const here = FISH.filter(f => f.loc.includes(id));
+  return `
+    ${modalHeader({
+      icon: `<div class="icon-box icon-box--lg">${ico('pin')}</div>`,
+      title: nm(l),
+      sub: `${isEn ? l.name : l.nameEn} • ${here.length} ${t('loài cá')}`,
+      extra: wikiLink(l.nameEn, 'Xem bài viết chi tiết trên Official Stardew Valley Wiki', l.wiki)
+    })}
+    <div class="fish-place">
+      <figure class="fish-place__photo">
+        <img src="${l.photo}" alt="${nm(l)}" class="pixel-img" loading="lazy" data-fallback="hide">
+        <figcaption class="muted">${t('Ảnh: Official Stardew Valley Wiki.')}</figcaption>
+      </figure>
+      ${map ? `
+      <figure class="fish-place__map">
+        <div class="fish-place__mapbox">
+          <img src="${map.img}" alt="${nm(map)}" class="pixel-img">
+          <span class="fish-place__pin" style="left:${(l.x / map.w) * 100}%;top:${(l.y / map.h) * 100}%" aria-hidden="true"></span>
+        </div>
+        <figcaption class="muted">${ico('pin')} ${t('Vị trí trên bản đồ')} ${nm(map)}</figcaption>
+      </figure>` : ''}
+    </div>
+    <h4 class="journal-sub">${ico('fish')} ${t('Cá câu được ở đây')}</h4>
+    <div class="fish-place__list">
+      ${here.map(f => { const it = itemByEn.get(f.en); return `<span class="tag ${caught.has(f.en) ? 'tag--green' : ''}">${it ? `<img src="${it.imageUrl}" alt="" class="pixel-img">` : ''} ${it ? nm(it) : f.en}</span>`; }).join('')}
+    </div>
+    <button class="btn btn--blue btn--sm" type="button" data-action="fish-loc-pick" data-loc="${id}">${ico('fishing')} ${t('Lọc theo địa điểm này')}</button>`;
+}
+
 function cardHtml(f) {
   const it = itemByEn.get(f.en);
   const done = caught.has(f.en);
@@ -46,7 +86,7 @@ function cardHtml(f) {
       <img src="${it?.imageUrl}" alt="" class="pixel-img fish-card__img">
       <div class="fish-card__body">
         <h3 class="fish-card__name">${it ? nm(it) : f.en}${f.legendary ? ` <span class="tag tag--gold">${t('Huyền thoại')}</span>` : ''}</h3>
-        <p class="fish-card__row">${ico('pin')} ${f.loc.map(l => nm(FISH_LOCATIONS[l])).join(', ')}</p>
+        <p class="fish-card__row">${ico('pin')} ${f.loc.map(locLink).join(', ')}</p>
         <p class="fish-card__row">${ico('clock')} ${timeText(f)} · ${f.weather === 'any' ? `${ico('sunny')}${ico('rainy')}` : ico(f.weather === 'rain' ? 'rainy' : 'sunny')} ${t(weatherText[f.weather])}</p>
         <p class="fish-card__row">${ico('season')} ${f.seasons.length === 4 ? t('Quanh năm') : f.seasons.map(s => t(SEASON_SHORT[s])).join(', ')}${it?.sellPrice ? ` · ${ico('money')} ${it.sellPrice}g` : ''}</p>
         ${f.note ? `<p class="fish-card__note muted">${f.note}</p>` : ''}
@@ -104,12 +144,15 @@ export default {
   id: 'fishing',
   toggles: [],
   render,
+  detailType: 'fishloc',
+  detail: (app, id) => locDetail(id),
   actions: {
     'fish-season': (app, el) => { ui.season = el.dataset.season; persist(app); },
     'fish-weather': (app, el) => { ui.weather = el.dataset.weather; persist(app); },
     'fish-anytime': (app, el) => { ui.hour = el.checked ? null : 12; persist(app); },
     'fish-hour': (app, el) => { ui.hour = Number(el.value); saveJSON(KEYS.fishingView, ui); renderList(app); },
     'fish-loc': (app, el) => { ui.loc = el.value; persist(app); },
+    'fish-loc-pick': (app, el) => { ui.loc = el.dataset.loc; closeModal(document.getElementById('detailModal')); persist(app); },
     'fish-hide': (app, el) => { ui.hideCaught = el.checked; persist(app); },
     'fish-caught': (app, el) => {
       const en = el.dataset.fish;

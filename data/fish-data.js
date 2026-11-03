@@ -9,23 +9,25 @@
 // Tên, hình và giá lấy từ data/items-data.js qua nameEn.
 // ==========================================================================
 
+// photo: picture of the place (Official Stardew Valley Wiki); map/x/y: where it is on
+// that world map of data/map-data.js (pixels of the map image); wiki: the wiki page. Crab pots have neither.
 export const FISH_LOCATIONS = {
-  ocean: { name: 'Biển (Bãi Biển)', nameEn: 'Ocean' },
-  river_town: { name: 'Sông thị trấn', nameEn: 'Town River' },
-  river_forest: { name: 'Sông Rừng Cindersap', nameEn: 'Forest River' },
-  lake: { name: 'Hồ trên Núi', nameEn: 'Mountain Lake' },
-  pond: { name: 'Ao Rừng Cindersap', nameEn: 'Forest Pond' },
-  waterfall: { name: 'Thác Rừng Cindersap', nameEn: 'Forest Waterfalls' },
-  secret_woods: { name: 'Rừng Bí Mật', nameEn: 'Secret Woods' },
-  sewers: { name: 'Cống Ngầm', nameEn: 'The Sewers' },
-  bug_lair: { name: 'Hang Bọ Đột Biến', nameEn: 'Mutant Bug Lair' },
-  swamp: { name: 'Đầm Lầy Phù Thủy', nameEn: "Witch's Swamp" },
-  desert: { name: 'Sa Mạc Calico', nameEn: 'Calico Desert' },
-  mines: { name: 'Hầm Mỏ (tầng 20, 60, 100)', nameEn: 'The Mines' },
-  night_market: { name: 'Tàu ngầm Chợ Đêm', nameEn: 'Night Market Submarine' },
-  island: { name: 'Đảo Gừng', nameEn: 'Ginger Island' },
-  pirate_cove: { name: 'Hang Hải Tặc (Đảo Gừng)', nameEn: 'Pirate Cove' },
-  volcano: { name: 'Núi Lửa (Đảo Gừng)', nameEn: 'Volcano' },
+  ocean: { name: 'Biển (Bãi Biển)', nameEn: 'Ocean', photo: 'assets/places/beach.jpg', map: 'valley', x: 300, y: 212, wiki: 'The_Beach' },
+  river_town: { name: 'Sông thị trấn', nameEn: 'Town River', photo: 'assets/places/town.jpg', map: 'valley', x: 270, y: 120, wiki: 'Pelican_Town' },
+  river_forest: { name: 'Sông Rừng Cindersap', nameEn: 'Forest River', photo: 'assets/places/forest.jpg', map: 'valley', x: 160, y: 163, wiki: 'Cindersap_Forest' },
+  lake: { name: 'Hồ trên Núi', nameEn: 'Mountain Lake', photo: 'assets/places/lake.jpg', map: 'valley', x: 285, y: 57, wiki: 'The_Mountain' },
+  pond: { name: 'Ao Rừng Cindersap', nameEn: 'Forest Pond', photo: 'assets/places/forest.jpg', map: 'valley', x: 95, y: 150, wiki: 'Cindersap_Forest' },
+  waterfall: { name: 'Thác Rừng Cindersap', nameEn: 'Forest Waterfalls', photo: 'assets/places/forest.jpg', map: 'valley', x: 113, y: 200, wiki: 'Cindersap_Forest' },
+  secret_woods: { name: 'Rừng Bí Mật', nameEn: 'Secret Woods', photo: 'assets/places/secret_woods.jpg', map: 'valley', x: 74, y: 100, wiki: 'Secret_Woods' },
+  sewers: { name: 'Cống Ngầm', nameEn: 'The Sewers', photo: 'assets/places/sewers.jpg', map: 'valley', x: 142, y: 203, wiki: 'The_Sewers' },
+  bug_lair: { name: 'Hang Bọ Đột Biến', nameEn: 'Mutant Bug Lair', photo: 'assets/places/bug_lair.jpg', map: 'valley', x: 142, y: 203, wiki: 'Mutant_Bug_Lair' },
+  swamp: { name: 'Đầm Lầy Phù Thủy', nameEn: "Witch's Swamp", photo: 'assets/places/swamp.jpg', map: 'valley', x: 72, y: 139, wiki: 'Witch%27s_Swamp' },
+  desert: { name: 'Sa Mạc Calico', nameEn: 'Calico Desert', photo: 'assets/places/desert.png', map: 'valley', x: 34, y: 22, wiki: 'The_Desert' },
+  mines: { name: 'Hầm Mỏ (tầng 20, 60, 100)', nameEn: 'The Mines', photo: 'assets/places/mines.jpg', map: 'valley', x: 291, y: 40, wiki: 'The_Mines' },
+  night_market: { name: 'Tàu ngầm Chợ Đêm', nameEn: 'Night Market Submarine', photo: 'assets/places/night_market.jpg', map: 'valley', x: 300, y: 200, wiki: 'Night_Market' },
+  island: { name: 'Đảo Gừng', nameEn: 'Ginger Island', photo: 'assets/maps/ginger_island.png', map: 'ginger_island', x: 235, y: 172, wiki: 'Ginger_Island' },
+  pirate_cove: { name: 'Hang Hải Tặc (Đảo Gừng)', nameEn: 'Pirate Cove', photo: 'assets/places/pirate_cove.jpg', map: 'ginger_island', x: 150, y: 190, wiki: 'Pirate_Cove' },
+  volcano: { name: 'Núi Lửa (Đảo Gừng)', nameEn: 'Volcano', photo: 'assets/places/volcano.jpg', map: 'ginger_island', x: 240, y: 108, wiki: 'Volcano_Dungeon' },
   crabpot_ocean: { name: 'Lồng bẫy cua: nước mặn', nameEn: 'Crab Pot: ocean' },
   crabpot_fresh: { name: 'Lồng bẫy cua: nước ngọt', nameEn: 'Crab Pot: freshwater' }
 };

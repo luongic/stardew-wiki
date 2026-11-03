@@ -2690,3 +2690,17 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 .item-tag--link { padding: 0; border: 0; background: none; font: inherit; color: inherit; text-align: left; cursor: pointer; }
 .item-tag--link span { text-decoration: underline dotted; text-underline-offset: 3px; }
 .item-tag--link:hover span, .item-tag--link:focus-visible span { color: var(--wood-500); text-decoration-style: solid; }
+
+/* Fishing: place popup */
+.fish-loc-link { font: inherit; }
+.fish-place { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin: 10px 0; }
+.fish-place figure { margin: 0; display: flex; flex-direction: column; gap: 4px; }
+.fish-place__photo img { width: 100%; height: auto; max-height: 320px; object-fit: contain; background: var(--parch-100); border: var(--px) solid var(--wood-700); }
+.fish-place__mapbox { position: relative; border: var(--px) solid var(--wood-700); line-height: 0; }
+.fish-place__mapbox img { width: 100%; height: auto; image-rendering: pixelated; }
+.fish-place__pin { position: absolute; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; background: #e0465a; border: 2px solid #fff; box-shadow: 0 0 0 2px var(--ink); }
+.fish-place__pin::after { content: ''; position: absolute; inset: -8px; border-radius: 50%; border: 3px solid #e0465a; animation: fish-pin 1.4s ease-out infinite; }
+@keyframes fish-pin { from { transform: scale(0.4); opacity: 1; } to { transform: scale(1.6); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .fish-place__pin::after { animation: none; } }
+.fish-place__list { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px; }
+.fish-place__list img { width: 20px; height: 20px; vertical-align: -4px; }
