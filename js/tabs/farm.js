@@ -452,7 +452,7 @@ function sideHtml() {
 
     ${s.mats.length ? `
     <div class="farm-card">
-      <h3 class="farm-card__title">${ico('ingredients')} ${t('Nguyên liệu cần')}</h3>
+      <h3 class="farm-card__title">${t('Nguyên liệu cần')}</h3>
       <p class="muted">${t('Tổng nguyên liệu để chế tạo / xây mọi thứ trên bản đồ (trừ nhà chính và nhà kính).')}</p>
       <ul class="farm-stats">
         ${s.mats.slice(0, 14).map(m => `<li><span>${m.iconUrl ? `<img src="${m.iconUrl}" alt="" class="pixel-img">` : ''} ${m.name}</span><strong>${m.count.toLocaleString()}</strong></li>`).join('')}

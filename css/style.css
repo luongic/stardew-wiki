@@ -1169,8 +1169,13 @@ code {
 }
 
 .check-btn {
+  /* Fixed square: long titles must not squeeze it */
+  flex: 0 0 34px;
   width: 34px;
   height: 34px;
+  min-width: 34px;
+  padding: 0;
+  align-self: flex-start;
   font-size: 1.2rem;
   color: transparent;
   margin-bottom: calc(var(--px) * 2);

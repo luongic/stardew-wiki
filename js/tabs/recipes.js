@@ -55,7 +55,7 @@ function cardHtml(r, done) {
         <p class="card__desc">${r.desc}</p>
 
         <div class="inset-box">
-          <div class="section-label">${ico('ingredients')} Nguyên liệu cần:</div>
+          <div class="section-label">Nguyên liệu cần:</div>
           ${ingredientList(r.ingredients, '', ingredientLink)}
         </div>
 
@@ -129,7 +129,7 @@ export default {
       })}
       <p class="detail-lead">${r.desc}</p>
       <div class="inset-box">
-        <h4 class="inset-box__title">${ico('ingredients')} Danh sách nguyên liệu cần:</h4>
+        <h4 class="inset-box__title">Danh sách nguyên liệu cần:</h4>
         ${ingredientList(r.ingredients, 'ing-list--lg', ingredientLink)}
       </div>
       ${r.tips ? `
