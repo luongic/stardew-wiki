@@ -2,13 +2,15 @@
 // TAB: TỪ ĐIỂN VẬT PHẨM (ITEMS ENCYCLOPEDIA, GROUPED BY CATEGORY)
 // ==========================================================================
 
-import { altName } from '../lib/i18n.js';
+import { altName, isEn, t } from '../lib/i18n.js';
 import { ITEMS_DATA } from '../../data/items-data.js';
 import { RECIPES_DATA } from '../../data/recipes-data.js';
+import { EXTRA_ITEMS } from '../../data/extra-items.js';
 import { emptyState, v16Badge, wikiLink, modalHeader, matches, signed } from '../lib/templates.js';
 import { ico } from '../lib/icons.js';
 
 const itemById = new Map(ITEMS_DATA.map(it => [it.id, it]));
+const extraById = new Map(EXTRA_ITEMS.map(it => [it.id, it]));
 const PLACEHOLDER = 'assets/pixel-box.svg';
 
 const GROUPS = [
@@ -86,6 +88,32 @@ function cardHtml(it) {
     </article>`;
 }
 
+// Items outside the dictionary (seen in the Predictor tab): name, description, price and the wiki's facts
+function extraDetail(it) {
+  // The wiki's generic furniture line is not a description
+  const en = it.descEn === "This furniture can't be placed outdoors." ? '' : it.descEn;
+  const desc = (isEn ? en : it.desc) || en || it.desc;
+  return `
+    ${modalHeader({
+      icon: `<div class="icon-box icon-box--lg"><img src="${it.imageUrl || PLACEHOLDER}" alt="${it.name}" class="pixel-img" data-fallback="${PLACEHOLDER}"></div>`,
+      title: isEn ? it.nameEn : it.name,
+      sub: `${isEn ? it.name : it.nameEn} • <b>${t(it.kind)}</b>`,
+      extra: wikiLink(it.nameEn, 'Xem bài viết chi tiết trên Official Stardew Valley Wiki', it.wikiFile)
+    })}
+    ${desc ? `<p class="detail-lead">${desc}</p>` : ''}
+    <div class="spec-grid">
+      <div class="spec spec--gold">
+        <div class="spec__label">${ico('money')} ${t('GIÁ BÁN CƠ BẢN')}</div>
+        <div class="spec__value">${it.sellPrice > 0 ? `${it.sellPrice.toLocaleString()}g` : t('Không thể bán')}</div>
+      </div>
+    </div>
+    ${it.info?.length ? `
+      <div class="inset-box">
+        <h4 class="inset-box__title">${ico('wiki')} ${t('Thông tin theo Official Stardew Valley Wiki')}:</h4>
+        <ul class="bullet-list" lang="en">${it.info.map(([k, v]) => `<li><strong>${k}:</strong> ${v}</li>`).join('')}</ul>
+      </div>` : ''}`;
+}
+
 export default {
   id: 'items',
   detailType: 'item',
@@ -136,7 +164,7 @@ export default {
 
   detail(app, id) {
     const it = itemById.get(id);
-    if (!it) return '';
+    if (!it) return extraById.has(id) ? extraDetail(extraById.get(id)) : '';
     const page = it.wikiFile ? it.wikiFile.replace('.png', '') : undefined;
     return `
       ${modalHeader({

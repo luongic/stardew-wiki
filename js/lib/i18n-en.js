@@ -409,6 +409,7 @@ export const UI_EN = {
   'Đóng cửa sổ': 'Close', 'Chi tiết': 'Details',
   'Không tải được mã JavaScript của trang.': "The page's JavaScript failed to load.",
   // ---- Predictor ----
+  'Thông tin theo Official Stardew Valley Wiki': 'Facts from the Official Stardew Valley Wiki', 'Phân bón': 'Fertilizer', 'Đồ câu cá': 'Fishing tackle', 'Đồ đặc biệt': 'Special item', 'Đồ chế tạo': 'Crafted item', 'Hốc đá': 'Geode', 'Hộp bí ẩn': 'Mystery box',
   'Xe hàng rong của bà chủ xe và chú heo': "The Traveling Cart's owner and her pig",
   'Xe hàng rong ghé Rừng Cindersap vào Thứ Sáu và Chủ Nhật.': 'The Traveling Cart visits Cindersap Forest on Fridays and Sundays.',
   'Quầy của người bán sách': "The Bookseller's stall",
