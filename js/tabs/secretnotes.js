@@ -2,7 +2,9 @@
 // TAB: MẬT THƯ (SECRET NOTES & JOURNAL SCRAPS)
 // The 27 Secret Notes and the 11 Journal Scraps of Ginger Island. Notes the
 // player has read (from the last save file) are shown in full with their
-// solution; the others stay hidden behind "Xem Spoilers", like hidden quests.
+// solution; so are notes a co-op partner has read, marked "read by". The
+// others stay hidden behind "Xem Spoilers", like hidden quests. A footnote
+// says whether the secret needs the player to have read the note themselves.
 // ==========================================================================
 
 import { SECRET_NOTES } from '../../data/secret-notes-data.js';
@@ -28,9 +30,11 @@ function players() {
   return j?.players?.length ? j.players : null;
 }
 
-function cardHtml(n, group, seen) {
+// `seen`: notes the chosen player read; `others`: [{ name, seen }] of the co-op partners
+function cardHtml(n, group, seen, others) {
   const read = seen?.has(n.id);
-  const open = read || revealed.has(n.id);
+  const readBy = read ? [] : others.filter(o => o.seen.has(n.id)).map(o => o.name);
+  const open = read || readBy.length > 0 || revealed.has(n.id);
   const text = isEn ? (n.textEn || n.text) : (n.text || n.textEn);
   const solution = isEn ? n.solutionEn : n.solution;
   const hint = isEn ? n.hintEn : n.hint;
@@ -45,9 +49,10 @@ function cardHtml(n, group, seen) {
           <div>
             <h3 class="card__title">${group.label(n)}</h3>
             <div class="card__sub">${seen ? (read ? `<span class="tag tag--green">${ico('check')} ${t('Đã đọc')}</span>` : `<span class="tag">${t('Chưa đọc')}</span>`) : ''}</div>
+            ${readBy.length ? `<div class="card__sub note-card__by">${ico('members')} ${t('Đã đọc bởi')}: <strong data-no-i18n>${readBy.map(esc).join(', ')}</strong></div>` : ''}
           </div>
         </div>
-        ${read ? '' : `<button class="btn btn--purple btn--sm" type="button" data-action="note-spoiler" data-id="${n.id}">${ico('eye')} ${t(open ? 'Ẩn Spoilers' : 'Xem Spoilers')}</button>`}
+        ${read || readBy.length ? '' : `<button class="btn btn--purple btn--sm" type="button" data-action="note-spoiler" data-id="${n.id}">${ico('eye')} ${t(open ? 'Ẩn Spoilers' : 'Xem Spoilers')}</button>`}
       </header>
       ${open ? `
       <div class="card__body">
@@ -61,6 +66,7 @@ function cardHtml(n, group, seen) {
             ${[...reveals].map(([who, items]) => `<div>${npcTag(who)} ${items.map(en => itemTag(en)).join('')}</div>`).join('')}
           </div>` : ''}
       </div>` : `<div class="card__body"><p class="muted">${ico('lock')} ${t('Nội dung đang ẩn để tránh spoil.')}</p></div>`}
+      ${!read && n.needRead !== undefined ? `<p class="note-card__foot">${t(n.needRead ? '*Cần tự đọc mật thư này để thực hiện' : '*Có thể làm mà không cần đọc mật thư')}</p>` : ''}
     </article>`;
 }
 
@@ -71,6 +77,7 @@ function render() {
   const p = ps?.[Math.min(ui.player, ps.length - 1)];
   // Older journal snapshots only kept counts: ask for the save again
   const seen = p?.notesSeen ? new Set(p.notesSeen) : null;
+  const others = seen ? ps.filter(x => x !== p && x.notesSeen).map(x => ({ name: x.name, seen: new Set(x.notesSeen) })) : [];
   const shown = n => ui.filter === 'all' || !seen || (ui.filter === 'read' ? seen.has(n.id) : !seen.has(n.id));
   const chip = (id, label) => `<button class="chip ${ui.filter === id ? 'is-active' : ''}" type="button" data-action="note-filter" data-filter="${id}">${t(label)}</button>`;
   el.innerHTML = `
@@ -86,7 +93,7 @@ function render() {
       const list = all.filter(shown);
       return `
         <h3 class="journal-sub">${ico(g.icon)} ${t(g.name)}${seen ? `: ${all.filter(n => seen.has(n.id)).length}/${all.length}` : ` (${all.length})`}</h3>
-        <div class="content-grid note-grid">${list.map(n => cardHtml(n, g, seen)).join('') || `<p class="muted">${t('Không có mẩu nào.')}</p>`}</div>`;
+        <div class="content-grid note-grid">${list.map(n => cardHtml(n, g, seen, others)).join('') || `<p class="muted">${t('Không có mẩu nào.')}</p>`}</div>`;
     }).join('')}`;
 }
 

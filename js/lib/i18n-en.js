@@ -418,6 +418,8 @@ export const UI_EN = {
   '(Google Fonts, OFL): phông chữ pixel.': '(Google Fonts, OFL): the pixel font.',
   ': đăng nhập và đồng bộ phòng Co-op.': ': sign-in and Co-op room sync.',
   // ---- Secret notes ----
+  'Đã đọc bởi': 'Read by', '*Cần tự đọc mật thư này để thực hiện': '*You need to read this note yourself for it to work',
+  '*Có thể làm mà không cần đọc mật thư': '*Works without reading the note',
   'File save bạn nạp trước đây được đọc bằng bản cũ của trang, chưa có danh sách mật thư đã đọc. Hãy nạp lại file save một lần.': 'Your save was loaded with an older version of this site, which did not keep the list of notes read. Please load the save file once more.',
   'Gợi ý': 'Hint',
   'Đọc mẩu này sẽ mở khóa trong Sổ quà tặng': 'Reading this note adds to the gift log',
