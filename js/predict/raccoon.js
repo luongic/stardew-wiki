@@ -130,6 +130,11 @@ export default {
       rows.push({ cls: row - 1 === fedSoFar ? 'is-today' : row - 1 < fedSoFar ? 'is-past' : '',
         cells: [row.toLocaleString('en-US'), ...itemCells(request[0]), ...itemCells(request[1]), ...itemCells(reward)] });
     }
-    return table([t('Lần'), t('Món thứ nhất'), t('SL'), t('Món thứ hai'), t('SL'), t('Phần thưởng'), t('SL')], rows);
+    // The Giant Stump after it is repaired (picture: Official Stardew Valley Wiki)
+    const figure = `<figure class="predict-figure">
+      <img src="assets/predict/giant_stump.png" alt="${t('Gốc Cây Khổng Lồ của Gia đình Gấu Mèo ở Rừng Cindersap')}" class="pixel-img" loading="lazy" data-fallback="hide">
+      <figcaption class="muted">${t('Gốc Cây Khổng Lồ của Gia đình Gấu Mèo ở Rừng Cindersap. Ảnh: Official Stardew Valley Wiki.')}</figcaption>
+    </figure>`;
+    return figure + table([t('Lần'), t('Món thứ nhất'), t('SL'), t('Món thứ hai'), t('SL'), t('Phần thưởng'), t('SL')], rows);
   }
 };

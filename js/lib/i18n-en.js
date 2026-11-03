@@ -409,6 +409,8 @@ export const UI_EN = {
   'Đóng cửa sổ': 'Close', 'Chi tiết': 'Details',
   'Không tải được mã JavaScript của trang.': "The page's JavaScript failed to load.",
   // ---- Predictor ----
+  'Gốc Cây Khổng Lồ của Gia đình Gấu Mèo ở Rừng Cindersap': "The Raccoon family's Giant Stump in Cindersap Forest",
+  'Gốc Cây Khổng Lồ của Gia đình Gấu Mèo ở Rừng Cindersap. Ảnh: Official Stardew Valley Wiki.': "The Raccoon family's Giant Stump in Cindersap Forest. Picture: Official Stardew Valley Wiki.",
   'Dự Đoán': 'Predictor',
   'Trò chơi quyết định nhiều thứ bằng số ngẫu nhiên có "hạt giống" theo Game ID, nên kết quả có thể tính trước: giờ tàu chạy, thời tiết, sự kiện đêm, hàng của Xe Đẩy Du Mục, đồ trong hốc đá, hộp bí ẩn... Cách tính theo': 'The game decides many things with random numbers seeded by the Game ID, so they can be worked out ahead: train times, weather, night events, Traveling Cart stock, geode contents, mystery boxes... Calculations follow',
   'của MouseyPounds (MIT).': 'by MouseyPounds (MIT).', 'Từ file save': 'From the save file', 'Nhập tay': 'Entered by hand',
