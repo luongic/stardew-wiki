@@ -13,7 +13,9 @@ import { ico } from '../lib/icons.js';
 import { KEYS, loadJSON } from '../lib/storage.js';
 import { restoreNote } from '../sync/notes-ui.js';
 import { openModal, closeModal } from '../lib/ui.js';
-import { nm } from '../lib/i18n.js';
+import { nm, isEn } from '../lib/i18n.js';
+import { ITEMS_DATA } from '../../data/items-data.js';
+import { BOOTS, CLOTHES } from '../../data/save-data.js';
 import { setCaughtFish } from './fishing.js';
 import { applySaveDay } from './today.js';
 import { applySaveFarm, farmPlanIsReplaceable } from './farm.js';
@@ -179,6 +181,43 @@ function masteryCard(p) {
     </article>`;
 }
 
+// ---------- What the character is wearing ----------
+const RINGS = new Map(ITEMS_DATA.filter(i => i.category === 'rings').map(i => [i.nameEn, i]));
+const bootIcon = en => `assets/icons/${en.toLowerCase().replace(/'/g, '').replace(/[^a-z0-9]+/g, '_')}.png`;
+
+function wearHtml(p) {
+  const w = p.wear;
+  if (!w) return '';
+  const slot = (label, icon, name, note = '') => `
+    <div class="wear-slot">
+      <img src="${icon}" alt="" class="pixel-img" data-fallback="hide">
+      <div><small>${t(label)}</small><strong${name.raw ? ' data-no-i18n' : ''}>${name.text}</strong>${note ? `<small>${note}</small>` : ''}</div>
+    </div>`;
+  const ring = r => {
+    if (!r) return null;
+    const parts = r.parts?.length ? r.parts : [r];
+    const info = parts.map(x => RINGS.get(x.name));
+    return {
+      name: { text: parts.map((x, i) => info[i] ? nm(info[i]) : x.name).join(' + '), raw: !info.every(Boolean) },
+      icon: info[0]?.imageUrl || 'assets/pixel-ring.svg',
+      note: isEn ? '' : info.filter(Boolean).map(i => i.desc).join(' ')
+    };
+  };
+  const out = [];
+  if (w.hat) out.push(slot('Mũ', 'assets/pixel-crown.svg', { text: w.hat.name, raw: true }));
+  if (w.shirt) out.push(slot('Áo', 'assets/pixel-guest.svg', isEn ? { text: w.shirt.name, raw: true } : { text: CLOTHES[w.shirt.name.replace(/[^A-Za-z]/g, '')] || w.shirt.name, raw: true }));
+  if (w.pants) out.push(slot('Quần', 'assets/pixel-guest.svg', isEn ? { text: w.pants.name, raw: true } : { text: CLOTHES[w.pants.name.replace(/[^A-Za-z]/g, '')] || w.pants.name, raw: true }));
+  if (w.boots) {
+    const b = BOOTS[w.boots.id];
+    out.push(slot('Giày', bootIcon(w.boots.name), { text: b ? (isEn ? b.nameEn : b.name) : w.boots.name, raw: true },
+      b ? [b.defense && `+${b.defense} ${t('Phòng thủ')}`, b.immunity && `+${b.immunity} ${t('Miễn nhiễm')}`].filter(Boolean).join(' · ') : ''));
+  }
+  for (const [label, r] of [['Nhẫn trái', ring(w.leftRing)], ['Nhẫn phải', ring(w.rightRing)]]) if (r) out.push(slot(label, r.icon, r.name, r.note));
+  return out.length ? `
+    <h3 class="journal-sub">${ico('rings')} ${t('Trang bị')}</h3>
+    <div class="wear-grid">${out.join('')}</div>` : '';
+}
+
 function profileHtml() {
   const data = loadJSON(KEYS.profiles, null);
   if (!data?.players?.length) {
@@ -217,6 +256,7 @@ function profileHtml() {
         ${SKILLS.map(sk => skillCard(sk, p)).join('')}
         ${masteryCard(p)}
       </div>
+      ${wearHtml(p)}
     </section>`;
 }
 

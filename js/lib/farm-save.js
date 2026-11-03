@@ -28,6 +28,9 @@ const OBJECTS = {
   'Chest': 'chest', 'Big Chest': 'big_chest', 'Stone Chest': 'chest', 'Big Stone Chest': 'big_chest', 'Hopper': 'hopper', 'Auto-Grabber': 'auto_grabber',
   'Mini-Obelisk': 'mini_obelisk', 'Farm Computer': 'farm_computer', 'Torch': 'torch', 'Lightning Rod': 'lightning_rod', 'Solar Panel': 'solar_panel',
   'Mushroom Log': 'mushroom_log', 'Tapper': 'tapper', 'Heavy Tapper': 'heavy_tapper',
+  'Heavy Furnace': 'heavy_furnace', 'Charcoal Kiln': 'charcoal_kiln', 'Recycling Machine': 'recycling_machine', 'Bait Maker': 'bait_maker',
+  'Bone Mill': 'bone_mill', 'Deconstructor': 'deconstructor', 'Slime Egg-Press': 'slime_egg_press', 'Slime Incubator': 'slime_incubator',
+  'Incubator': 'incubator', 'Ostrich Incubator': 'ostrich_incubator', 'Wood Sign': 'wood_sign', 'Stone Sign': 'stone_sign', 'Dark Sign': 'dark_sign',
   'Stone': 'stone', 'Weeds': 'weeds', 'Twig': 'twig'
 };
 // Fence item ids (Data/Objects): wood, stone, iron, gate, hardwood

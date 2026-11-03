@@ -1,8 +1,9 @@
 // ==========================================================================
 // TAB: SỔ TAY NÔNG TRẠI (FARM JOURNAL)
 // What the last save file says about the player's world, read-only:
-// friendships and gifts on hand, items in the backpack and chests, machines,
-// growing crops, farm animals, Marlon's monster goals and Perfection.
+// friendships and gifts on hand, quests, items in the backpack and chests,
+// machines, growing crops, farm animals, collections, stats, Marlon's monster
+// goals and Perfection. In co-op the personal parts switch between players.
 // Only things the player has already seen in game are shown; hints that
 // could spoil (where the missing Stardrops are) stay behind a toggle.
 // ==========================================================================
@@ -11,7 +12,9 @@ import { NPCS_DATA } from '../../data/npcs-data.js';
 import { ITEMS_DATA } from '../../data/items-data.js';
 import { RECIPES_DATA } from '../../data/recipes-data.js';
 import { FARM_ITEMS } from '../../data/farm-data.js';
-import { MONSTER_GOALS, PERFECTION, STARDROPS } from '../../data/journal-data.js';
+import { MONSTER_GOALS, PERFECTION, STARDROPS, STAT_GROUPS } from '../../data/journal-data.js';
+import { QUEST_INFO, ACHIEVEMENTS } from '../../data/save-data.js';
+import { MUSEUM_ITEMS } from '../../data/museum-data.js';
 import { ico } from '../lib/icons.js';
 import { t, nm, isEn } from '../lib/i18n.js';
 import { loadJSON, KEYS } from '../lib/storage.js';
@@ -21,17 +24,20 @@ import { OBJECT_NAMES } from '../../data/item-ids.js';
 
 const SECTIONS = [
   { id: 'friends', name: 'Tình bạn', icon: 'loved' },
+  { id: 'quests', name: 'Nhiệm vụ', icon: 'quests' },
   { id: 'storage', name: 'Túi & Rương', icon: 'chest' },
   { id: 'machines', name: 'Máy móc', icon: 'keg' },
   { id: 'crops', name: 'Mùa vụ', icon: 'crops' },
   { id: 'animals', name: 'Vật nuôi', icon: 'animal' },
+  { id: 'collection', name: 'Bộ sưu tập', icon: 'museum' },
+  { id: 'stats', name: 'Thống kê', icon: 'steps' },
   { id: 'monsters', name: 'Diệt quái', icon: 'skull' },
   { id: 'perfection', name: 'Hoàn Hảo', icon: 'tracker' }
 ];
 const SEASONS = ['spring', 'summer', 'fall', 'winter'];
 const SEASON_WORD = { spring: 'Xuân', summer: 'Hạ', fall: 'Thu', winter: 'Đông' };
 
-const ui = { section: 'friends', friendFilter: 'all', search: '', hints: false };
+const ui = { section: 'friends', friendFilter: 'all', search: '', hints: false, player: 0 };
 
 // ---------- names & icons for the game's English names ----------
 const byEn = new Map();
@@ -47,6 +53,7 @@ const PLACE = { Farm: 'Nông trại', FarmHouse: 'Nhà chính', Greenhouse: 'Nh�
   IslandNorth: 'Bắc Đảo Gừng', IslandSouth: 'Nam Đảo Gừng', IslandEast: 'Đông Đảo Gừng', IslandSouthEast: 'Đông Nam Đảo Gừng',
   IslandFarmHouse: 'Nhà trên Đảo Gừng', Cabin: 'Nhà nhỏ', backpack: 'Túi đồ' };
 const place = s => {
+  if (s.kind === 'backpack' && s.owner) return `${t('Túi của')} ${s.owner}`;
   const label = PLACE[s.label] || PLACE[s.where] || itemName(s.label || s.where);
   return s.parent && s.parent !== 'Farm' ? `${label} (${PLACE[s.parent] || s.parent})` : label;
 };
@@ -55,10 +62,18 @@ const ANIMALS = { 'White Chicken': 'Gà trắng', 'Brown Chicken': 'Gà nâu', '
 
 function data() { return loadJSON(KEYS.journal, null); }
 
-// Everything the player owns, by English name: [{ total, places: [{ s, stack }] }]
-function inventory(d) {
+// Players of the save (snapshots from before co-op support hold only the host)
+const playersOf = d => d.players?.length ? d.players
+  : [{ name: '', friends: d.friends || {}, goals: d.goals || [], quests: null }];
+const me = d => { const ps = playersOf(d); return ps[Math.min(ui.player, ps.length - 1)]; };
+// Every backpack, chest, fridge and grabber of the save
+const containers = d => [...(d.players || []).map(p => ({ ...p.backpack, owner: d.players.length > 1 ? p.name : '' })), ...d.storage];
+const reloadHint = () => `<p class="muted">${ico('upload')} ${t('Nạp lại file save ở tab Tiến Độ để xem mục này.')}</p>`;
+
+// Everything the farm owns, by English name: [{ total, places: [{ s, stack }] }]
+export function inventory(d) {
   const map = new Map();
-  for (const s of d.storage) for (const it of s.items) {
+  for (const s of containers(d)) for (const it of s.items) {
     const k = it.name.toLowerCase();
     const e = map.get(k) || { name: it.name, total: 0, places: [] };
     e.total += it.stack;
@@ -72,9 +87,10 @@ function inventory(d) {
 function friendsHtml(d) {
   const owned = inventory(d);
   const day = d.day || { season: 'spring', day: 1 };
+  const friends = me(d).friends;
   const rows = NPCS_DATA.map(npc => {
     const key = npc.nameEn === 'Wizard (M. Rasmodius)' ? 'Wizard' : npc.nameEn === 'Mayor Lewis' ? 'Lewis' : npc.nameEn;
-    return { npc, f: d.friends[key] || d.friends[npc.nameEn] };
+    return { npc, f: friends[key] || friends[npc.nameEn] };
   }).filter(r => r.f);
   let list = rows;
   if (ui.friendFilter === 'gifts') list = rows.filter(r => r.f.giftsWeek < 2 && r.f.status !== 'Married');
@@ -112,7 +128,7 @@ function storageHtml(d) {
   const q = ui.search.trim();
   return `
     <label class="journal-search">${ico('search')}<input type="search" class="coop-input" data-journal-search value="${q.replace(/"/g, '&quot;')}" placeholder="${t('Tìm món trong túi và rương (VD: Gỗ, Đá Iridium, Hoa...)')}"></label>
-    <p class="muted">${t('Đang có')} ${inv.length} ${t('loại đồ trong')} ${d.storage.filter(s => s.items.length).length} ${t('chỗ chứa')}. ${t('Bấm "Xem trên bản đồ" để thấy rương ở tab Nông Trại.')}</p>
+    <p class="muted">${t('Đang có')} ${inv.length} ${t('loại đồ trong')} ${containers(d).filter(s => s.items.length).length} ${t('chỗ chứa')}. ${t('Bấm "Xem trên bản đồ" để thấy rương ở tab Nông Trại.')}</p>
     ${storageListHtml(d)}`;
 }
 
@@ -225,7 +241,7 @@ function monstersHtml(d) {
     <p class="muted">${t('Mục tiêu trên tường Hội Mạo Hiểm Giả. Đạt đủ số lượng thì gặp Gil để nhận thưởng.')}</p>
     <div class="goal-list">
       ${MONSTER_GOALS.map(g => {
-        const k = d.goals.find(x => x.id === g.id)?.killed || 0;
+        const k = me(d).goals.find(x => x.id === g.id)?.killed || 0;
         const done = k >= g.goal;
         return `
         <div class="goal-row ${done ? 'is-done' : ''}">
@@ -252,7 +268,7 @@ function perfectionHtml(d) {
     <div class="perfection-total">
       <strong>${Math.floor(total)}%</strong>
       <div class="skill-bar skill-bar--mastery"><span style="width:${total}%"></span></div>
-      <p class="muted">${t('Tính như tượng Theo Dõi Hoàn Hảo trong Phòng Óc Chó của Ông Qi (người chơi chính). Phần đồ đã giao bán là ước tính.')}</p>
+      <p class="muted">${t('Tính như tượng Theo Dõi Hoàn Hảo trong Phòng Óc Chó của Ông Qi. Phần đồ đã giao bán là ước tính.')}${(d.players?.length || 0) > 1 ? ` ${t('Chơi chung: mỗi mục lấy người chơi cao nhất.')}` : ''}</p>
     </div>
     <div class="goal-list">
       ${rows.map(({ c, have, score }) => `
@@ -269,7 +285,131 @@ function perfectionHtml(d) {
       ${ui.hints ? `<ul class="journal-hints">${missingDrops.map(s => `<li>${ico('sparkle')} ${nm(s)}</li>`).join('')}</ul>` : ''}` : `<p>${ico('check')} ${t('Đã tìm đủ 7 Stardrop!')}</p>`}`;
 }
 
-const RENDER = { friends: friendsHtml, storage: storageHtml, machines: machinesHtml, crops: cropsHtml, animals: animalsHtml, monsters: monstersHtml, perfection: perfectionHtml };
+// ---------- Quests ----------
+const QUEST_TYPES = { ItemDelivery: 'Giao hàng', SlayMonster: 'Diệt quái', Fishing: 'Câu cá', ResourceCollection: 'Thu thập', Socialize: 'Giao lưu',
+  Crafting: 'Chế tạo', LostItem: 'Tìm đồ thất lạc', Building: 'Xây dựng', ItemHarvest: 'Thu hoạch', Location: 'Khám phá', Basic: 'Nhiệm vụ' };
+const npcOf = en => NPCS_DATA.find(n => n.nameEn === en || n.nameEn === `Mayor ${en}` || (en === 'Wizard' && n.nameEn.startsWith('Wizard')));
+
+function questsHtml(d) {
+  const list = me(d).quests;
+  if (!list) return reloadHint();
+  if (!list.length) return `<p class="muted">${t('Nhật ký nhiệm vụ đang trống.')}</p>`;
+  return `
+    <p class="muted">${t('Nhật ký nhiệm vụ lúc lưu game. Nhiệm vụ có hướng dẫn trên trang thì bấm để xem cách làm.')}</p>
+    <div class="journal-grid">
+      ${list.map(q => {
+        const info = QUEST_INFO[q.id];
+        const title = (isEn ? info?.nameEn : info?.name) || q.title || t(QUEST_TYPES[q.type] || 'Nhiệm vụ');
+        const goal = isEn ? '' : (q.goal || info?.goal || '');
+        const npc = q.npc && npcOf(q.npc);
+        return `
+        <article class="journal-card quest-card ${q.done ? 'is-done' : ''}">
+          <h3 class="journal-card__title">${npc ? img(npc.avatar, 'friend-card__face') : ico('quests')} <span${info ? '' : ' data-no-i18n'}>${title}</span></h3>
+          ${goal.length > 2 ? `<p data-no-i18n>${goal}</p>` : ''}
+          <p class="friend-card__row">
+            ${q.done ? `<span class="tag tag--green">${ico('check')} ${t('Đã xong, quay lại nhận thưởng')}</span>` : ''}
+            ${q.money ? `<span class="tag tag--gold">${ico('money')} ${q.money.toLocaleString('vi-VN')}g</span>` : ''}
+            ${q.daysLeft > 0 ? `<span class="tag">${ico('hourglass')} ${t(`Còn ${q.daysLeft} ngày`)}</span>` : ''}
+            ${npc ? `<span class="tag">${ico('giver')} ${nm(npc)}</span>` : ''}
+          </p>
+          ${info?.site ? `<button class="btn btn--ghost" type="button" data-action="open-detail" data-type="quest" data-id="${info.site}">${ico('search')} ${t('Xem hướng dẫn')}</button>` : ''}
+        </article>`;
+      }).join('')}
+    </div>`;
+}
+
+// ---------- Collections ----------
+// Power books (stats Book_*); two items-data names differ from the game's
+const BOOK_NAMES = { Book_WildSeeds: 'Ways Of The Wild', Book_Horse: 'Horse The Book' };
+const POWER_BOOKS = Object.keys(OBJECT_NAMES).filter(k => k.startsWith('Book_'));
+const museumById = new Map(MUSEUM_ITEMS.map(m => [m.id, m]));
+const bar = (have, total) => `<div class="skill-bar"><span style="width:${Math.min(100, (have / total) * 100)}%"></span></div>`;
+
+function collectionHtml(d) {
+  const p = me(d);
+  if (!p.found) return reloadHint();
+  const inv = inventory(d);
+  const missing = p.found.filter(f => !f.donated);
+  const fish = [...p.fishRecords].sort((a, b) => b.count - a.count);
+  const earned = new Set(p.achievements);
+  const achs = Object.entries(ACHIEVEMENTS);
+  const bookName = id => BOOK_NAMES[id] || OBJECT_NAMES[id];
+  return `
+    <h3 class="journal-sub">${ico('museum')} ${t('Bảo Tàng')}: ${d.donated}/95</h3>
+    ${bar(d.donated, 95)}
+    ${missing.length ? `
+      <p class="muted">${t('Đã tìm thấy nhưng chưa quyên góp cho Gunther:')}</p>
+      <div class="storage-list">
+        ${missing.map(f => {
+          const m = museumById.get(f.museum), have = inv.get(f.name.toLowerCase());
+          return `
+          <article class="storage-row">
+            ${img(m.icon, 'storage-row__icon')}
+            <div class="storage-row__body">
+              <div><strong>${nm(m)}</strong> <span class="tag">${t(f.kind === 'artifact' ? 'Cổ vật' : 'Khoáng sản')}</span></div>
+              <div class="storage-row__places">${have ? have.places.map(x => `<span class="tag">${ico(x.s.kind === 'backpack' ? 'guest' : 'chest')} ${t(place(x.s))}${x.s.x !== undefined && x.s.kind !== 'fridge' ? ` (${x.s.x}, ${x.s.y})` : ''} · ${x.stack}
+                ${x.s.where === 'Farm' && x.s.x !== undefined ? `<button class="link-btn" type="button" data-action="journal-map" data-x="${x.s.x}" data-y="${x.s.y}">${t('Xem trên bản đồ')}</button>` : ''}</span>`).join('')
+                : `<span class="muted">${t('Không còn trong túi hay rương')}</span>`}</div>
+            </div>
+          </article>`;
+        }).join('')}
+      </div>` : `<p>${ico('check')} ${t('Mọi món đã tìm thấy đều đã quyên góp.')}</p>`}
+
+    <h3 class="journal-sub">${ico('books')} ${t('Sách năng lực')}: ${p.books.length}/${POWER_BOOKS.length}</h3>
+    <div class="book-grid">
+      ${POWER_BOOKS.map(id => `<span class="tag ${p.books.includes(id) ? 'tag--green' : 'is-dim'}" title="${p.books.includes(id) ? t('Đã đọc') : t('Chưa đọc')}">${img(itemIcon(bookName(id)))} ${itemName(bookName(id))}</span>`).join('')}
+    </div>
+
+    <div class="journal-grid">
+      <article class="journal-card">
+        <h3 class="journal-card__title">${ico('source')} ${t('Sách thất lạc (Thư viện)')}</h3>
+        <p><strong>${d.world.lostBooks}/21</strong></p>${bar(d.world.lostBooks, 21)}
+      </article>
+      <article class="journal-card">
+        <h3 class="journal-card__title">${ico('note')} ${t('Mẩu giấy bí mật')}</h3>
+        <p><strong>${p.notes}/25</strong>${p.scraps ? ` · ${t('Mảnh nhật ký Đảo Gừng')}: <strong>${p.scraps}/11</strong>` : ''}</p>${bar(p.notes, 25)}
+      </article>
+    </div>
+
+    <h3 class="journal-sub">${ico('fish')} ${t('Kỷ lục câu cá')}: ${fish.length} ${t('loại')}</h3>
+    <div class="fish-records">
+      ${fish.map(f => {
+        const en = OBJECT_NAMES[f.id];
+        return `<div class="fish-record">${img(itemIcon(en))} <span>${itemName(en)}</span> <span class="tag">x${f.count}</span>${f.size ? ` <span class="muted">${t('Lớn nhất')} ${f.size} in (${Math.round(f.size * 2.54)} cm)</span>` : ''}</div>`;
+      }).join('')}
+    </div>
+
+    <h3 class="journal-sub">${ico('medal')} ${t('Thành tựu')}: ${achs.filter(([id]) => earned.has(Number(id))).length}/${achs.length}</h3>
+    <div class="goal-list goal-list--achievements">
+      ${achs.sort(([a], [b]) => earned.has(Number(b)) - earned.has(Number(a))).map(([id, a]) => `
+        <div class="goal-row ${earned.has(Number(id)) ? 'is-done' : 'is-dim'}">
+          <div class="goal-row__body">
+            <div class="goal-row__head"><strong>${isEn ? a.nameEn : a.name}</strong> ${earned.has(Number(id)) ? ico('check') : ''}</div>
+            <p class="muted">${isEn ? a.descEn : a.desc}</p>
+          </div>
+        </div>`).join('')}
+    </div>`;
+}
+
+// ---------- Stats ----------
+function statsHtml(d) {
+  const p = me(d);
+  if (!p.stats) return reloadHint();
+  const v = Object.fromEntries(Object.entries(p.stats).map(([k, n]) => [k.toLowerCase(), n]));
+  return `
+    <div class="journal-grid">
+      ${STAT_GROUPS.map(g => `
+        <article class="journal-card">
+          <h3 class="journal-card__title">${ico(g.icon)} ${nm(g)}</h3>
+          <ul class="stat-list">
+            ${g.stats.filter(([k]) => v[k]).map(([k, vi, en]) => `<li><span>${isEn ? en : vi}</span> <strong>${v[k].toLocaleString('vi-VN')}</strong></li>`).join('') || `<li class="muted">${t('Chưa có số liệu')}</li>`}
+          </ul>
+        </article>`).join('')}
+    </div>`;
+}
+
+const RENDER = { friends: friendsHtml, quests: questsHtml, storage: storageHtml, machines: machinesHtml, crops: cropsHtml, animals: animalsHtml,
+  collection: collectionHtml, stats: statsHtml, monsters: monstersHtml, perfection: perfectionHtml };
 
 function render() {
   const el = document.getElementById('journalBoard');
@@ -288,6 +428,8 @@ function render() {
   el.innerHTML = `
     <p class="muted journal-meta">${t('Nông trại')} <strong data-no-i18n>${d.farmName || '?'}</strong> · ${t('cập nhật')} ${new Date(d.at).toLocaleString('vi-VN')}
       <button class="link-btn" type="button" data-action="import-save-progress">${t('Nạp lại file save')}</button></p>
+    ${playersOf(d).length > 1 ? `<div class="journal-players">${ico('members')} ${playersOf(d).map((p, i) => `<button class="chip ${me(d) === p ? 'is-active' : ''}" type="button" data-action="journal-player" data-index="${i}" data-no-i18n>${p.name}</button>`).join('')}
+      <span class="muted">${t('Tình bạn, túi đồ, nhiệm vụ, bộ sưu tập và thống kê là của từng người.')}</span></div>` : ''}
     <div class="journal-tabs">
       ${SECTIONS.map(s => `<button class="chip ${ui.section === s.id ? 'is-active' : ''}" type="button" data-action="journal-section" data-section="${s.id}">${ico(s.icon)} ${t(s.name)}</button>`).join('')}
     </div>
@@ -316,6 +458,9 @@ export default {
   actions: {
     'journal-section': (app, el) => { ui.section = el.dataset.section; render(); },
     'journal-friends': (app, el) => { ui.friendFilter = el.dataset.filter; render(); },
+    'journal-player': (app, el) => { ui.player = Number(el.dataset.index) || 0; render(); },
+    // From other tabs: open the journal on one section
+    'journal-open': (app, el) => { ui.section = el.dataset.section; app.switchTab('journal'); app.sfx.play('click'); },
     'journal-hints': (app, el) => { ui.hints = el.checked; render(); },
     'journal-map': (app, el) => {
       app.switchTab('farm');

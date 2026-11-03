@@ -3,6 +3,8 @@
 // One screen for a given in-game day: birthdays (with loved gifts),
 // festivals, the Traveling Cart, the Queen of Sauce recipe, shops that are
 // closed, and the crops that can still be planted before the season ends.
+// When the last save file is from the chosen day, a morning checklist comes
+// first: mail, tomorrow's weather and luck, animals, crops and machines.
 // The day is chosen here, or read from a save file (through the shared save
 // import, see applySaveDay). Inside a co-op room a day read from a save is
 // shared with everyone (see coop.shareDay).
@@ -18,6 +20,7 @@ import { loadJSON, saveJSON, KEYS } from '../lib/storage.js';
 import { showToast } from '../lib/ui.js';
 import { coop } from '../sync/coop.js';
 import { fishAvailable } from './fishing.js';
+import { inventory } from './journal.js';
 
 const SEASONS = ['spring', 'summer', 'fall', 'winter'];
 const SEASON_VI = { spring: 'Mùa Xuân', summer: 'Mùa Hạ', fall: 'Mùa Thu', winter: 'Mùa Đông' };
@@ -166,6 +169,56 @@ function fishCard(d) {
       <button class="link-btn" type="button" data-action="switch-tab" data-tab="fishing">${t('Xem theo giờ, thời tiết và địa điểm')}</button></p>`);
 }
 
+// ---------- Morning checklist from the last save (the game saves overnight) ----------
+const WEATHER = { Sun: ['sunny', 'Trời nắng'], Rain: ['rainy', 'Mưa (cây tự được tưới)'], Storm: ['storm', 'Giông bão (cây tự được tưới)'],
+  Snow: ['snowy', 'Có tuyết'], Wind: ['spring', 'Có gió'], GreenRain: ['rainy', 'Mưa Xanh'], Festival: ['festival', 'Ngày lễ hội'], Wedding: ['marriage', 'Lễ cưới'] };
+// The fortune teller's wording on the TV, from the save's daily luck
+const luckLabel = v => v > 0.07 ? 'Các linh hồn đang rất vui (rất may mắn)' : v > 0.02 ? 'Các linh hồn đang vui (may mắn)'
+  : v >= -0.02 ? 'Các linh hồn bình thường' : v >= -0.07 ? 'Các linh hồn hơi bực (hơi xui)' : 'Các linh hồn đang giận (rất xui)';
+const sameDay = (a, b) => a && b && a.season === b.season && a.day === b.day && a.year === b.year;
+
+function morningCard(d) {
+  const j = loadJSON(KEYS.journal, null);
+  if (!j?.world) return '';
+  if (!sameDay(j.day, d)) {
+    return card('save', 'Việc nên làm sáng nay', `<p class="muted">${t('File save gần nhất là ngày')} ${j.day.day} ${SEASON_VI[j.day.season]}, ${t('năm')} ${j.day.year}.
+      <button class="link-btn" type="button" data-action="today-to-save">${t('Xem ngày đó')}</button> ${t('hoặc nạp file save mới để có danh sách việc sáng nay.')}</p>`);
+  }
+  const lines = [];
+  const players = j.players || [];
+  const mail = players.filter(p => p.mailbox > 0);
+  if (mail.length) lines.push(`${ico('letter')} <span>${t('Có thư trong hộp thư')}: ${mail.map(p => `<strong data-no-i18n>${esc(p.name)}</strong> ${p.mailbox}`).join(' · ')}</span>`);
+  const [wIcon, wText] = WEATHER[j.world.weather] || WEATHER.Sun;
+  lines.push(`${ico(wIcon)} <span>${t('Thời tiết ngày mai')}: <strong>${t(wText)}</strong></span>`);
+  lines.push(`${ico('luck')} <span>${t('Vận may hôm nay')}: <strong>${t(luckLabel(j.world.luck))}</strong></span>`);
+  const produce = j.animals.filter(a => a.produce).length;
+  if (j.animals.length) lines.push(`${ico('animal')} <span>${t(`Vuốt ve ${j.animals.length} vật nuôi`)}${produce ? ` · ${t(`${produce} con có sản phẩm để thu`)}` : ''}
+    <button class="link-btn" type="button" data-action="journal-open" data-section="animals">${t('Xem')}</button></span>`);
+  const live = j.crops.filter(c => !c.dead);
+  const ripe = live.filter(c => c.days === 0).length, dry = live.filter(c => !c.watered && c.days > 0).length, dead = j.crops.length - live.length;
+  if (ripe || dry || dead) lines.push(`${ico('crops')} <span>${[ripe && t(`${ripe} ô thu hoạch được`), dry && t(`${dry} ô chưa tưới`), dead && t(`${dead} ô cây chết`)].filter(Boolean).join(' · ')}
+    <button class="link-btn" type="button" data-action="journal-open" data-section="crops">${t('Xem')}</button></span>`);
+  const done = j.machines.filter(m => m.ready || m.minutes <= 0).length;
+  if (done) lines.push(`${ico('keg')} <span>${t(`${done} máy đã xong, chờ lấy sản phẩm`)} <button class="link-btn" type="button" data-action="journal-open" data-section="machines">${t('Xem')}</button></span>`);
+  // Birthdays: loved gifts already in a chest or backpack
+  const owned = inventory(j);
+  for (const npc of birthdaysOn(d.season, d.day)) {
+    const have = (npc.gifts?.loved || []).map(g => ({ g, en: (g.name.match(/\(([^)]+)\)\s*$/) || [])[1] })).filter(x => x.en && owned.has(x.en.toLowerCase()));
+    lines.push(`${ico('birthday')} <span>${t('Sinh nhật')} <strong>${nm(npc)}</strong>${have.length
+      ? `: ${t('bạn đang có')} ${have.slice(0, 5).map(x => `<img src="${x.g.icon}" alt="" title="${x.g.name}" class="pixel-img">`).join('')}`
+      : ` · ${t('chưa có món họ rất thích trong túi hay rương')}`}</span>`);
+  }
+  // Quests: each player has their own log
+  const logs = players.filter(p => p.quests?.length);
+  const quests = logs.flatMap(p => p.quests);
+  const turnIn = quests.filter(q => q.done).length, ending = quests.filter(q => q.daysLeft === 1).length;
+  if (logs.length) lines.push(`${ico('quests')} <span>${t('Nhiệm vụ đang làm')}: ${logs.map(p => `${players.length > 1 ? `<strong data-no-i18n>${esc(p.name)}</strong> ` : ''}${p.quests.length}`).join(' · ')}${turnIn ? ` · ${t(`${turnIn} đã xong chờ nhận thưởng`)}` : ''}${ending ? ` · <strong>${t(`${ending} hết hạn hôm nay`)}</strong>` : ''}
+    <button class="link-btn" type="button" data-action="journal-open" data-section="quests">${t('Xem')}</button></span>`);
+  return card('save', 'Việc nên làm sáng nay', `
+    <p class="muted">${t('Theo file save của nông trại')} <strong data-no-i18n>${esc(j.farmName || '')}</strong>.</p>
+    <ul class="today-checklist">${lines.map(l => `<li>${l}</li>`).join('')}</ul>`);
+}
+
 function render() {
   const el = document.getElementById('todayBoard');
   if (!el) return;
@@ -186,6 +239,7 @@ function render() {
     <h3 class="today-date">${ico('calendar')} ${dateLabel(d)}</h3>
     ${d.sharedFrom ? `<p class="muted">${ico('members')} ${t('Ngày lấy từ file save của')} <strong data-no-i18n>${esc(d.sharedFrom)}</strong> ${t('trong phòng Co-op')}</p>` : ''}
     <div class="today-grid">
+      ${morningCard(d)}
       ${birthdayCard(d)}
       ${festivalCard(d)}
       ${townCard(d)}
@@ -231,5 +285,6 @@ export default {
     'today-step': (app, el) => setDay(shift(state, Number(el.dataset.step))),
     'today-day': (app, el) => setDay({ day: el.value }),
     'today-year': (app, el) => setDay({ year: el.value }),
+    'today-to-save': () => { const j = loadJSON(KEYS.journal, null); if (j?.day) setDay(j.day); },
   }
 };

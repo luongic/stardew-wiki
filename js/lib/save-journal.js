@@ -2,13 +2,16 @@
 // FARM JOURNAL FROM A SAVE FILE
 // A read-only summary of the player's world for the Journal tab: friendships,
 // what is in the backpack and every chest, machines at work, growing crops,
-// farm animals, Marlon's monster goals and the Perfection breakdown.
+// farm animals, quests, collections, stats, Marlon's monster goals and the
+// Perfection breakdown. Co-op saves give one entry per player (`players`);
+// chests, machines, crops and animals are shared by the whole farm.
 // Names are the game's English item names; the tab shows them translated.
 // ==========================================================================
 
-import { kids, kid, text, xsiType, cleanId } from './farm-save.js';
+import { kids, kid, text, xsiType, cleanId, location } from './farm-save.js';
 import { OBJECT_NAMES, OBJECT_KINDS } from '../../data/item-ids.js';
 import { MONSTER_GOALS, PERFECTION_VILLAGERS, DATABLE, STARDROPS, SHIPPED_CATEGORIES } from '../../data/journal-data.js';
+import { MUSEUM_ITEMS } from '../../data/museum-data.js';
 
 const num = (el, name) => Number(text(el, name)) || 0;
 const dict = el => kids(el, 'item').map(i => [kid(i, 'key')?.textContent.trim(), kid(i, 'value')]);
@@ -47,15 +50,93 @@ function readFriends(player) {
   return friends;
 }
 
+const norm = s => String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+const museumOf = new Map(MUSEUM_ITEMS.map(m => [norm(m.nameEn), m.id]));
+
+// Marlon's goals from the player's own kill counts
+function readGoals(player) {
+  const killed = new Map(dict(kid(kid(player, 'stats'), 'specificMonstersKilled')).map(([k, v]) => [k, Number(v?.textContent) || 0]));
+  const count = names => [...killed].filter(([k]) => names.some(n => k === n || k.startsWith(`${n} `))).reduce((a, [, v]) => a + v, 0);
+  return MONSTER_GOALS.map(g => ({ id: g.id, killed: count(g.monsters) }));
+}
+
+// Quest log: story quests by id, Help Wanted quests by their own title
+function readQuests(player) {
+  return kids(kid(player, 'questLog'), 'Quest').map(q => ({
+    id: text(q, 'id'), type: (xsiType(q) || 'Quest').replace(/Quest$/, '') || 'Basic',
+    title: text(q, '_questTitle'), goal: text(q, '_currentObjective'), npc: text(q, 'npcName') || text(q, 'target'),
+    money: num(q, 'moneyReward'), daysLeft: num(q, 'daysLeft'), done: text(q, 'completed') === 'true'
+  }));
+}
+
+// Artifacts and minerals this player has found, with the museum ones not yet donated
+function readFound(player, donated) {
+  const found = [];
+  for (const [field, kind] of [['archaeologyFound', 'artifact'], ['mineralsFound', 'mineral']]) {
+    for (const [k, v] of dict(kid(player, field))) {
+      const id = cleanId(k), name = OBJECT_NAMES[id] || '';
+      const museum = museumOf.get(norm(name));
+      if (museum) found.push({ id, name, kind, count: Number(kids(kid(v, 'ArrayOfInt') || v, 'int')[0]?.textContent) || 1, museum, donated: donated.has(museum) });
+    }
+  }
+  return found;
+}
+
+function readPerfection(player, root, built, goals, friends) {
+  const mail = new Set(kids(kid(player, 'mailReceived'), 'string').map(s => s.textContent.trim()));
+  const shipped = dict(kid(player, 'basicShipped')).map(([k]) => cleanId(k)).filter(id => {
+    const [type, cat] = OBJECT_KINDS[id] || [];
+    return type === 'Basic' && SHIPPED_CATEGORIES.includes(cat);
+  }).length;
+  const fishKinds = dict(kid(player, 'fishCaught')).map(([k]) => cleanId(k)).filter(id => (OBJECT_KINDS[id] || [])[0] === 'Fish').length;
+  const skillSum = ['farmingLevel', 'fishingLevel', 'foragingLevel', 'miningLevel', 'combatLevel', 'luckLevel'].reduce((a, f) => a + num(player, f), 0);
+  return {
+    shipped, fish: fishKinds,
+    friends: PERFECTION_VILLAGERS.filter(n => (friends[n]?.points || 0) >= (DATABLE.includes(n) ? 2000 : 2500)).length,
+    obelisks: ['Earth Obelisk', 'Water Obelisk', 'Desert Obelisk', 'Island Obelisk'].filter(o => built.includes(o)).length,
+    clock: built.includes('Gold Clock') ? 1 : 0,
+    slayer: goals.filter((g, i) => g.killed >= MONSTER_GOALS[i].goal).length,
+    level: Math.min(25, Math.floor(skillSum / 2)),
+    stardrops: STARDROPS.filter(s => mail.has(s.flag)).length,
+    stardropFlags: STARDROPS.filter(s => mail.has(s.flag)).map(s => s.flag),
+    cooking: dict(kid(player, 'recipesCooked')).filter(([, v]) => Number(v?.textContent) > 0).length,
+    crafting: dict(kid(player, 'craftingRecipes')).filter(([k, v]) => k !== 'Wedding Ring' && Number(v?.textContent) > 0).length,
+    walnuts: num(root, 'goldenWalnutsFound')
+  };
+}
+
+function readPlayer(player, root, built, donated) {
+  const friends = readFriends(player);
+  const goals = readGoals(player);
+  const stats = Object.fromEntries(dict(kid(kid(player, 'stats'), 'Values')).map(([k, v]) => [k, Number(v?.textContent) || 0]));
+  const notes = kids(kid(player, 'secretNotesSeen'), 'int').map(i => Number(i.textContent));
+  return {
+    name: text(player, 'name'),
+    friends, goals,
+    backpack: { where: 'backpack', kind: 'backpack', items: itemsIn(kid(player, 'items')) },
+    mailbox: kids(kid(player, 'mailbox'), 'string').length,
+    quests: readQuests(player),
+    stats,
+    books: Object.keys(stats).filter(k => k.startsWith('Book_') && stats[k] > 0),
+    achievements: kids(kid(player, 'achievements'), 'int').map(i => Number(i.textContent)),
+    found: readFound(player, donated),
+    // Fish caught: [how many, biggest size in inches]
+    fishRecords: dict(kid(player, 'fishCaught')).map(([k, v]) => {
+      const [count, size] = kids(kid(v, 'ArrayOfInt') || v, 'int').map(i => Number(i.textContent));
+      return { id: cleanId(k), count: count || 0, size: size > 0 ? size : 0 };
+    }).filter(f => OBJECT_NAMES[f.id]),
+    notes: notes.filter(n => n < 1000).length,
+    scraps: notes.filter(n => n >= 1000).length,
+    perfection: readPerfection(player, root, built, goals, friends)
+  };
+}
+
 export function readJournal(root) {
-  const player = kid(root, 'player');
   const locs = locations(root);
   const storage = [];   // { where, x, y, items, kind }
   const machines = [];  // { name, product, minutes, ready, where, x, y }
   const crops = [];     // { harvest, days, where, x, y, dead, regrow }
   const animals = [];   // { name, type, hearts, happiness, age, where, produce }
-
-  storage.push({ where: 'backpack', kind: 'backpack', items: itemsIn(kid(player, 'items')) });
 
   for (const loc of locs) {
     for (const item of kids(kid(loc.el, 'objects'), 'item')) {
@@ -108,35 +189,26 @@ export function readJournal(root) {
     }
   }
 
-  // ---------- Monster goals ----------
-  const killed = new Map(dict(kid(kid(player, 'stats'), 'specificMonstersKilled')).map(([k, v]) => [k, Number(v?.textContent) || 0]));
-  const count = names => [...killed].filter(([k]) => names.some(n => k === n || k.startsWith(`${n} `))).reduce((a, [, v]) => a + v, 0);
-  const goals = MONSTER_GOALS.map(g => ({ id: g.id, killed: count(g.monsters) }));
-
-  // ---------- Perfection ----------
-  const mail = new Set(kids(kid(player, 'mailReceived'), 'string').map(s => s.textContent.trim()));
-  const friends = readFriends(player);
+  // ---------- Players (host first, then the farmhands who have joined) ----------
   const farm = locs.find(l => l.id === 'Farm');
   const built = kids(kid(farm?.el, 'buildings'), 'Building').map(b => text(b, 'buildingType'));
-  const shipped = dict(kid(player, 'basicShipped')).map(([k]) => cleanId(k)).filter(id => {
-    const [type, cat] = OBJECT_KINDS[id] || [];
-    return type === 'Basic' && SHIPPED_CATEGORIES.includes(cat);
-  }).length;
-  const fishKinds = dict(kid(player, 'fishCaught')).map(([k]) => cleanId(k)).filter(id => (OBJECT_KINDS[id] || [])[0] === 'Fish').length;
-  const skillSum = ['farmingLevel', 'fishingLevel', 'foragingLevel', 'miningLevel', 'combatLevel', 'luckLevel'].reduce((a, f) => a + num(player, f), 0);
-  const maxed = PERFECTION_VILLAGERS.filter(n => (friends[n]?.points || 0) >= (DATABLE.includes(n) ? 2000 : 2500)).length;
-  const perfection = {
-    shipped, fish: fishKinds, friends: maxed,
-    obelisks: ['Earth Obelisk', 'Water Obelisk', 'Desert Obelisk', 'Island Obelisk'].filter(o => built.includes(o)).length,
-    clock: built.includes('Gold Clock') ? 1 : 0,
-    slayer: goals.filter((g, i) => g.killed >= MONSTER_GOALS[i].goal).length,
-    level: Math.min(25, Math.floor(skillSum / 2)),
-    stardrops: STARDROPS.filter(s => mail.has(s.flag)).length,
-    stardropFlags: STARDROPS.filter(s => mail.has(s.flag)).map(s => s.flag),
-    cooking: dict(kid(player, 'recipesCooked')).filter(([, v]) => Number(v?.textContent) > 0).length,
-    crafting: dict(kid(player, 'craftingRecipes')).filter(([k, v]) => k !== 'Wedding Ring' && Number(v?.textContent) > 0).length,
-    walnuts: num(root, 'goldenWalnutsFound')
-  };
+  const donated = new Set(kids(kid(location(root, 'LibraryMuseum'), 'museumPieces'), 'item')
+    .map(i => museumOf.get(norm(OBJECT_NAMES[cleanId(text(i, 'value'))]))).filter(Boolean));
+  const players = [kid(root, 'player'), ...kids(kid(root, 'farmhands'), 'Farmer').filter(f => text(f, 'name'))]
+    .map(p => readPlayer(p, root, built, donated));
 
-  return { friends, storage, machines, crops, animals, goals, perfection };
+  // Perfection counts the best player in each category; obelisks, the clock and walnuts are shared
+  const perfection = { ...players[0].perfection };
+  for (const p of players.slice(1)) {
+    for (const [k, v] of Object.entries(p.perfection)) if (typeof v === 'number' && v > perfection[k]) {
+      perfection[k] = v;
+      if (k === 'stardrops') perfection.stardropFlags = p.perfection.stardropFlags;
+    }
+  }
+
+  return {
+    storage, machines, crops, animals, players, perfection,
+    donated: donated.size,
+    world: { weather: text(root, 'weatherForTomorrow') || 'Sun', luck: Number(text(root, 'dailyLuck')) || 0, lostBooks: num(root, 'lostBooksFound'), walnuts: num(root, 'goldenWalnutsFound') }
+  };
 }

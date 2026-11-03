@@ -67,3 +67,33 @@ export const PERFECTION = [
 
 // Shipping collection: item categories counted in the "Items Shipped" tab
 export const SHIPPED_CATEGORIES = [-75, -79, -80, -81, -5, -6, -18, -26, -27, -14, -17, -23, -15, -16];
+
+// Fun stats (player.stats): the save key, lowercased, -> label. Grouped as on the
+// game's Collections > Stats page; keys not listed here are not shown.
+export const STAT_GROUPS = [
+  { id: 'farm', name: 'Nông trại', nameEn: 'Farming', icon: 'crops', stats: [
+    ['daysplayed', 'Ngày đã chơi', 'Days played'], ['seedssown', 'Hạt giống đã gieo', 'Seeds sown'], ['dirthoed', 'Ô đất đã cuốc', 'Soil tiles hoed'],
+    ['cropsshipped', 'Nông sản đã giao bán', 'Crops shipped'], ['itemsshipped', 'Vật phẩm đã giao bán', 'Items shipped'],
+    ['chickeneggslayed', 'Trứng gà', 'Chicken eggs laid'], ['duckeggslayed', 'Trứng vịt', 'Duck eggs laid'], ['cowmilkproduced', 'Sữa bò', 'Cow milk'],
+    ['goatmilkproduced', 'Sữa dê', 'Goat milk'], ['sheepwoolproduced', 'Lông cừu', 'Sheep wool'], ['rabbitwoolproduced', 'Lông thỏ', 'Rabbit wool'],
+    ['trufflesfound', 'Nấm cục tìm được', 'Truffles found'], ['cheesemade', 'Phô mai đã làm', 'Cheese made'], ['goatcheesemade', 'Phô mai dê đã làm', 'Goat cheese made'],
+    ['preservesmade', 'Mứt và dưa muối đã làm', 'Preserves made'], ['beveragesmade', 'Đồ uống đã ủ', 'Beverages made'],
+    ['itemscrafted', 'Đồ đã chế tạo', 'Items crafted'], ['itemscooked', 'Món đã nấu', 'Dishes cooked']] },
+  { id: 'nature', name: 'Hái lượm & Câu cá', nameEn: 'Foraging & Fishing', icon: 'forage', stats: [
+    ['itemsforaged', 'Đồ hái lượm', 'Items foraged'], ['treeschopped', 'Cây đã đốn', 'Trees chopped'], ['stumpschopped', 'Gốc cây đã chặt', 'Stumps chopped'],
+    ['wildtreesplanted', 'Cây rừng đã trồng', 'Wild trees planted'], ['mossharvested', 'Rêu đã thu', 'Moss harvested'], ['weedseliminated', 'Cỏ dại đã dọn', 'Weeds cleared'],
+    ['cavecarrotsfound', 'Cà rốt hang tìm được', 'Cave carrots found'], ['timesfished', 'Lần quăng câu', 'Times fished'], ['fishcaught', 'Cá đã câu', 'Fish caught'],
+    ['precisefishcaught', 'Cá câu hoàn hảo', 'Perfect catches'], ['fishingtreasures', 'Rương kho báu khi câu', 'Fishing treasures']] },
+  { id: 'mines', name: 'Hầm mỏ & Chiến đấu', nameEn: 'Mining & Combat', icon: 'mines', stats: [
+    ['rockscrushed', 'Đá đã đập', 'Rocks crushed'], ['stonegathered', 'Đá thu được', 'Stone gathered'], ['copperfound', 'Quặng đồng', 'Copper ore'],
+    ['ironfound', 'Quặng sắt', 'Iron ore'], ['goldfound', 'Quặng vàng', 'Gold ore'], ['iridiumfound', 'Quặng iridium', 'Iridium ore'],
+    ['diamondsfound', 'Kim cương', 'Diamonds'], ['prismaticshardsfound', 'Mảnh Lăng kính', 'Prismatic shards'], ['otherpreciousgemsfound', 'Đá quý khác', 'Other gems'],
+    ['mysticstonescrushed', 'Đá Huyền bí đã đập', 'Mystic stones crushed'], ['geodescracked', 'Hốc đá đã đập', 'Geodes cracked'],
+    ['monsterskilled', 'Quái đã hạ', 'Monsters slain'], ['slimeskilled', 'Xà-lam đã hạ', 'Slimes slain'], ['timesunconscious', 'Lần bất tỉnh', 'Times passed out']] },
+  { id: 'town', name: 'Thị trấn', nameEn: 'Town life', icon: 'npcs', stats: [
+    ['stepstaken', 'Bước chân', 'Steps taken'], ['giftsgiven', 'Quà đã tặng', 'Gifts given'], ['questscompleted', 'Nhiệm vụ đã xong', 'Quests completed'],
+    ['billboardquestsdone', 'Việc ở bảng tin đã làm', 'Help Wanted done'], ['notesfound', 'Mẩu giấy bí mật', 'Secret notes found'],
+    ['artifactspotsdug', 'Ô cổ vật đã đào', 'Artifact spots dug'], ['trashcanschecked', 'Thùng rác đã lục', 'Trash cans checked'],
+    ['piecesoftrashrecycled', 'Rác đã tái chế', 'Trash recycled'], ['mysteryboxesopened', 'Hộp Bí ẩn đã mở', 'Mystery boxes opened'],
+    ['ticketprizesclaimed', 'Giải thưởng vé đã nhận', 'Prize tickets claimed'], ['goldentagsturnedin', 'Thẻ Vàng đã nộp', 'Golden tags turned in']] }
+];

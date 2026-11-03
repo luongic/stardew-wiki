@@ -3,3 +3,8 @@ node_modules/
 *.log
 .env
 .firebase/
+
+# Stardew Valley save files (personal data, used only for local testing):
+# "<FarmName>_<digits>" save files, their _old backups and SaveGameInfo
+*_[0-9][0-9][0-9][0-9][0-9][0-9]*
+SaveGameInfo*

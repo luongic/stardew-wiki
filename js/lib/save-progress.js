@@ -110,6 +110,18 @@ function readQuests(root, player, mail, built) {
 // ---------- Player profiles: skills, professions, mastery, a few totals ----------
 const SKILL_FIELDS = ['farmingLevel', 'fishingLevel', 'foragingLevel', 'miningLevel', 'combatLevel'];
 
+// What the player is wearing: { slot: { name (English), id } }; a Combined Ring lists both rings
+function readWear(el) {
+  const piece = e => e && e.getAttribute('xsi:nil') !== 'true' && text(e, 'name') ? { name: text(e, 'name'), id: cleanId(text(e, 'itemId')) } : null;
+  const ring = e => {
+    const r = piece(e);
+    if (r) r.parts = kids(kid(e, 'combinedRings'), 'Ring').map(piece).filter(Boolean);
+    return r;
+  };
+  return { hat: piece(kid(el, 'hat')), shirt: piece(kid(el, 'shirtItem')), pants: piece(kid(el, 'pantsItem')), boots: piece(kid(el, 'boots')),
+    leftRing: ring(kid(el, 'leftRing')), rightRing: ring(kid(el, 'rightRing')) };
+}
+
 function readPlayer(el, root) {
   const xp = kids(kid(el, 'experiencePoints'), 'int').map(i => Number(i.textContent) || 0);
   const stats = new Map(dict(kid(kid(el, 'stats'), 'Values')).map(([k, v]) => [k, Number(v?.textContent) || 0]));
@@ -129,7 +141,8 @@ function readPlayer(el, root) {
     fishCaught: stats.get('fishCaught') || 0,
     monstersKilled: stats.get('monstersKilled') || 0,
     walnuts: Number(text(root, 'goldenWalnutsFound')) || 0,
-    qiGems: Number(text(el, 'qiGems')) || 0
+    qiGems: Number(text(el, 'qiGems')) || 0,
+    wear: readWear(el)
   };
 }
 

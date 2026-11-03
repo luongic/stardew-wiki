@@ -2500,6 +2500,27 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 .journal-sub { margin: 16px 0 8px; display: flex; align-items: center; gap: 6px; color: var(--wood-900); }
 .journal-hints { list-style: none; margin-top: 8px; display: flex; flex-direction: column; gap: 4px; }
 .text-red { color: #b8322e; }
+.journal-players { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 10px; padding: 6px 10px; background: var(--parch-100); border: 2px dashed var(--parch-300); }
+.journal-players .muted { font-size: 0.85rem; }
+.quest-card.is-done { background: #e3f6d6; border-color: var(--green-dark); }
+.quest-card .btn { align-self: flex-start; }
+.goal-list--achievements { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.goal-row.is-dim, .tag.is-dim { opacity: 0.55; }
+.book-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.book-grid img, .fish-record img { width: 22px; height: 22px; vertical-align: -5px; }
+.journal-body .journal-grid + .journal-sub { margin-top: 18px; }
+.fish-records { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 4px 12px; font-size: 0.9rem; }
+.fish-record { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; border-bottom: 1px dashed var(--parch-300); padding-bottom: 3px; }
+.stat-list { list-style: none; display: flex; flex-direction: column; gap: 3px; font-size: 0.92rem; }
+.stat-list li { display: flex; justify-content: space-between; gap: 8px; border-bottom: 1px dashed var(--parch-300); padding-bottom: 2px; }
+.today-checklist { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.today-checklist li { display: flex; align-items: flex-start; gap: 8px; }
+.today-checklist li > img { flex-shrink: 0; margin-top: 2px; }
+.today-checklist img { width: 22px; height: 22px; vertical-align: -5px; }
+.wear-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 6px; }
+.wear-slot { display: flex; gap: 8px; align-items: center; padding: 6px 8px; background: var(--parch-50); border: 2px solid var(--parch-300); font-size: 0.88rem; }
+.wear-slot img { width: 32px; height: 32px; flex-shrink: 0; }
+.wear-slot small { display: block; color: var(--wood-700); }
 
 /* Back-to-top button */
 .scroll-top {
