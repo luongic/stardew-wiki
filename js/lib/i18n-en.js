@@ -409,6 +409,9 @@ export const UI_EN = {
   'Đóng cửa sổ': 'Close', 'Chi tiết': 'Details',
   'Không tải được mã JavaScript của trang.': "The page's JavaScript failed to load.",
   // ---- Secret notes ----
+  'File save bạn nạp trước đây được đọc bằng bản cũ của trang, chưa có danh sách mật thư đã đọc. Hãy nạp lại file save một lần.': 'Your save was loaded with an older version of this site, which did not keep the list of notes read. Please load the save file once more.',
+  'Gợi ý': 'Hint',
+  'Đọc mẩu này sẽ mở khóa trong Sổ quà tặng': 'Reading this note adds to the gift log',
   'Nội dung đang ẩn để tránh spoil.': 'Hidden to avoid spoilers.',
   'Mật Thư': 'Secret Notes',
   'Mật Thư (Secret Notes)': 'Secret Notes',

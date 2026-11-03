@@ -2709,3 +2709,4 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 .note-card .card__head { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
 .note-card__text { white-space: pre-line; line-height: 1.6; }
 .note-card__img { display: block; width: 216px; max-width: 100%; height: auto; margin: 0 auto 8px; image-rendering: pixelated; }
+.note-card__gifts > div { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; margin-top: 4px; }

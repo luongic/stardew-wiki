@@ -9,6 +9,9 @@ import { SECRET_NOTES } from '../../data/secret-notes-data.js';
 import { ico } from '../lib/icons.js';
 import { t, isEn } from '../lib/i18n.js';
 import { loadJSON, KEYS } from '../lib/storage.js';
+import { OBJECT_NAMES } from '../../data/item-ids.js';
+import { itemTag } from '../lib/item-lookup.js';
+import { npcTag } from '../predict/npc.js';
 
 const ui = { filter: 'all', player: 0 };
 const revealed = new Set();
@@ -30,6 +33,10 @@ function cardHtml(n, group, seen) {
   const open = read || revealed.has(n.id);
   const text = isEn ? (n.textEn || n.text) : (n.text || n.textEn);
   const solution = isEn ? n.solutionEn : n.solution;
+  const hint = isEn ? n.hintEn : n.hint;
+  // Gifts the note adds to the gift log, grouped by villager
+  const reveals = new Map();
+  for (const [who, id] of n.reveals || []) (reveals.get(who) || reveals.set(who, []).get(who)).push(OBJECT_NAMES[id] || id);
   return `
     <article class="card note-card ${read ? 'is-done' : ''}">
       <header class="card__head">
@@ -47,6 +54,12 @@ function cardHtml(n, group, seen) {
         ${n.image ? `<img src="${n.image}" alt="${esc(group.label(n))}" class="pixel-img note-card__img" loading="lazy">` : ''}
         ${text ? `<p class="note-card__text" data-no-i18n>${esc(text)}</p>` : ''}
         ${solution ? `<div class="callout callout--tip"><strong>${ico('tip')} ${t('Lời giải')}:</strong> <span data-no-i18n>${esc(solution)}</span></div>` : ''}
+        ${hint ? `<div class="callout callout--tip"><strong>${ico('tip')} ${t('Gợi ý')}:</strong> <span data-no-i18n>${esc(hint)}</span></div>` : ''}
+        ${reveals.size ? `
+          <div class="callout callout--green note-card__gifts">
+            <strong>${ico('gift')} ${t('Đọc mẩu này sẽ mở khóa trong Sổ quà tặng')}:</strong>
+            ${[...reveals].map(([who, items]) => `<div>${npcTag(who)} ${items.map(en => itemTag(en)).join('')}</div>`).join('')}
+          </div>` : ''}
       </div>` : `<div class="card__body"><p class="muted">${ico('lock')} ${t('Nội dung đang ẩn để tránh spoil.')}</p></div>`}
     </article>`;
 }
@@ -64,7 +77,9 @@ function render() {
     ${seen ? `
       ${ps.length > 1 ? `<div class="journal-players">${ico('members')} ${ps.map((x, i) => `<button class="chip ${x === p ? 'is-active' : ''}" type="button" data-action="note-player" data-index="${i}" data-no-i18n>${esc(x.name)}</button>`).join('')}</div>` : ''}
       <div class="journal-filters">${chip('all', 'Tất cả')}${chip('read', 'Đã đọc')}${chip('unread', 'Chưa đọc')}</div>`
-    : `<p class="muted">${ico('upload')} ${t('Nạp file save ở tab Tiến Độ để biết mẩu nào bạn đã đọc. Chưa có save thì mọi mẩu đều ẩn sau nút Xem Spoilers.')}
+    : `<p class="${ps ? 'callout callout--tip' : 'muted'}">${ico(ps ? 'warn' : 'upload')} ${ps
+        ? t('File save bạn nạp trước đây được đọc bằng bản cũ của trang, chưa có danh sách mật thư đã đọc. Hãy nạp lại file save một lần.')
+        : t('Nạp file save ở tab Tiến Độ để biết mẩu nào bạn đã đọc. Chưa có save thì mọi mẩu đều ẩn sau nút Xem Spoilers.')}
         <button class="link-btn" type="button" data-action="import-save-progress">${t('Nạp file save')}</button></p>`}
     ${GROUPS.map(g => {
       const all = SECRET_NOTES.filter(g.test);
