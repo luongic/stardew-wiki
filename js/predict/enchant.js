@@ -53,6 +53,7 @@ export default {
   id: 'enchant', name: 'Phù phép ở Lò Rèn', nameEn: 'Forge Enchantments', icon: 'forge_enchantments',
   intro: 'Bùa chú nhận được khi phù phép vũ khí và dụng cụ ở Lò Rèn Núi Lửa (Đảo Gừng), theo số lần người chơi này đã phù phép. Kết quả đầu là khi món đồ chưa có bùa chú; nếu đã có thì là một trong hai kết quả sau (di chuột vào (...) để xem từng trường hợp).',
   introEn: 'The enchantment a weapon or tool gets at the Volcano Forge (Ginger Island), by how many times this player has enchanted. The first result is for an item with no enchantment; otherwise it is one of the other two (hover (...) for each case).',
+  figure: { src: ['assets/predict/forge.png'], alt: 'Giao diện Lò Rèn trong Hầm Núi Lửa', caption: 'Lò Rèn ở Hầm Núi Lửa (Đảo Gừng): đặt công cụ hoặc vũ khí bên trái, Mảnh Ngũ Sắc bên phải để phù phép.' },
   players: true,
   nav: { step: PAGE, big: 100, min: 0, start: (ctx, opts) => PAGE * Math.floor((ctx.timesEnchanted?.[opts?.player ?? 0] || 0) / PAGE),
     stepLabel: '20 lần trước', nextLabel: '20 lần sau', bigLabel: '100 lần trước', bigNextLabel: '100 lần sau' },

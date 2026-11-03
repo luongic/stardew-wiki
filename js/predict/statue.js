@@ -44,6 +44,7 @@ export default {
   id: 'statue', name: 'Tượng Thành Thạo', nameEn: 'Mastery Statues', icon: 'statue_of_blessings',
   intro: 'Tượng Phước Lành: phước lành trong ngày, có hai kết quả tùy trời mưa hay không (ngày lễ hội tính như ngày mưa). Phước lành Bướm chỉ có khi không mưa: di chuột vào (...) để xem Bướm Ngũ Sắc của từng người chơi xuất hiện ở bản đồ nào. Tượng Vua người Lùn: hai lựa chọn của ngày.',
   introEn: 'Statue of Blessings: the blessing of the day, with two results depending on whether it rains (festival days count as rain). The Butterfly blessing only happens without rain: hover (...) to see which map each player\'s Prismatic Butterfly appears on. Statue of the Dwarf King: the two choices of the day.',
+  figure: { src: ['assets/predict/statue_of_blessings.png', 'assets/predict/statue_of_the_dwarf_king.png'], alt: 'Tượng Phước Lành và Tượng Vua người Lùn', caption: 'Tượng Phước Lành và Tượng Vua người Lùn, mở bằng Hang Thành Thạo.', small: true },
   nav: { step: 28, big: 112, start: ctx => monthStart(today(ctx)) },
   render(ctx, start) {
     const cal = calendar(ctx, start, day => {

@@ -14,6 +14,7 @@ export default {
   id: 'crane', name: 'Máy gắp thú', nameEn: 'Crane Game', icon: 'movie_ticket',
   intro: 'Máy gắp thú trong Rạp Chiếu Phim. Có ngày đã có người chơi máy nên bạn không chơi được.',
   introEn: 'The crane game in the Movie Theater. On some days someone is already playing it, so you can\'t.',
+  figure: { src: ['assets/predict/crane_game.png'], alt: 'Máy gắp thú trong Rạp Chiếu Phim', caption: 'Máy gắp thú ở sảnh Rạp Chiếu Phim.' },
   nav: { step: 28, big: 112, start: ctx => monthStart(today(ctx)) },
   render(ctx, start) {
     return calendar(ctx, start, day => craneBusy(ctx, day)

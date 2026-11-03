@@ -2683,5 +2683,7 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 .predict-cactus span { width: 48px; height: 48px; background: url("../assets/predict/free_cactuses.png") no-repeat; image-rendering: pixelated; }
 .predict-swatch { text-shadow: 0 0 1px var(--ink); }
 .predict-figure { margin: 0 0 12px; max-width: 620px; }
-.predict-figure img { display: block; width: 100%; height: auto; border: var(--px) solid var(--wood-700); image-rendering: pixelated; }
+.predict-figure__imgs { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px; }
+.predict-figure img { display: block; max-width: 100%; height: auto; border: var(--px) solid var(--wood-700); image-rendering: pixelated; }
+.predict-figure--small img { width: 96px; border: 0; }
 .predict-figure figcaption { margin-top: 4px; font-size: 0.82rem; }

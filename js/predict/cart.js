@@ -96,6 +96,7 @@ export default {
   id: 'cart', name: 'Xe hàng rong', nameEn: 'Traveling Cart', icon: 'item_rare_seed',
   intro: 'Hàng của xe hàng rong ở Rừng Cindersap (Thứ Sáu và Chủ Nhật), cùng thuyền ở Chợ Đêm (15-17 Mùa Đông) và xe ở Lễ hội Sa mạc (15-17 Mùa Xuân). Mỗi lần có 10 món cơ bản, 1 món nội thất và vài ô đặc biệt có tỉ lệ riêng.',
   introEn: 'Stock of the Traveling Cart in Cindersap Forest (Fridays and Sundays), plus the boat at the Night Market (Winter 15-17) and the cart at the Desert Festival (Spring 15-17). Each visit has 10 basic items, 1 furniture and a few special slots with their own odds.',
+  figure: { src: ['assets/predict/traveling_cart.png'], alt: 'Xe hàng rong của bà chủ xe và chú heo', caption: 'Xe hàng rong ghé Rừng Cindersap vào Thứ Sáu và Chủ Nhật.' },
   nav: { step: 7, big: 112, start: ctx => weekStart(today(ctx)), stepLabel: 'Tuần trước', nextLabel: 'Tuần sau' },
   search: {
     placeholder: 'Tìm món trong 2 năm tới...',

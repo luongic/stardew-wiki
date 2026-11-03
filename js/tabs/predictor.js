@@ -66,6 +66,13 @@ function navHtml(p, ctx, offset, opts) {
     </div>`;
 }
 
+// A reference picture for the module (all from the Official Stardew Valley Wiki)
+const figureHtml = f => `
+  <figure class="predict-figure ${f.small ? 'predict-figure--small' : ''}">
+    <div class="predict-figure__imgs">${f.src.map(src => `<img src="${src}" alt="${esc(t(f.alt))}" class="pixel-img" loading="lazy" data-fallback="hide">`).join('')}</div>
+    <figcaption class="muted">${t(f.caption)} ${t('Ảnh: Official Stardew Valley Wiki.')}</figcaption>
+  </figure>`;
+
 function render() {
   const el = document.getElementById('predictorBoard');
   if (!el) return;
@@ -95,6 +102,7 @@ function render() {
     </div>
     <h3 class="journal-sub">${ico(p.icon)} ${nm(p)}</h3>
     <p class="muted predict-intro">${isEn && p.introEn ? p.introEn : t(p.intro)}</p>
+    ${p.figure && !view.query ? figureHtml(p.figure) : ''}
     ${body}`;
 }
 

@@ -68,6 +68,7 @@ export default {
   id: 'calico', name: 'Calico Jack', nameEn: 'Calico Jack', icon: 'calico_egg',
   intro: 'Bàn Calico Jack trong Sòng bạc (Sa mạc Calico): cách chơi tốt nhất cho từng ván trong ngày, đếm từ ván đầu tiên bạn chơi hôm đó. Quá 21 là thua; "siêu quắc" phụ thuộc vận may nên chỉ là khả năng.',
   introEn: 'The Calico Jack table in the Casino (Calico Desert): the best play for each game of the day, counted from your first game that day. Over 21 loses; a "super bust" depends on luck, so it is only a possibility.',
+  figure: { src: ['assets/predict/casino.png'], alt: 'Sòng bạc ở Sa mạc Calico', caption: 'Sòng bạc của Ông Qi ở Sa mạc Calico: bàn Calico Jack ở góc dưới bên trái.' },
   nav: { step: 1, big: 7, start: ctx => today(ctx), min: 1, stepLabel: 'Hôm trước', nextLabel: 'Hôm sau', bigLabel: 'Tuần trước', bigNextLabel: 'Tuần sau' },
   render(ctx, day) {
     const rows = [];

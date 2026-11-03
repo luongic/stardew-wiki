@@ -30,6 +30,7 @@ export default {
   id: 'gembirds', name: 'Chim Đá Quý', nameEn: 'Gem Birds', icon: 'item_prismatic_shard',
   intro: 'Màu chim đá quý ở từng khu của Đảo Gừng, cho câu đố Đền Thờ Chim Đá Quý (ở khu Bắc). Thứ tự này cố định cho cả save.',
   introEn: 'The colour of Gem Bird in each part of Ginger Island, for the Gem Bird Shrine puzzle (Island North). The order is fixed for the whole save.',
+  figure: { src: ['assets/predict/gem_birds_shrine.png'], alt: 'Đền thờ Chim Đá Quý trên Đảo Gừng', caption: 'Đền thờ Chim Đá Quý trong rừng rậm phía đông Đảo Gừng: đặt đúng viên đá quý lên bệ của từng hướng.' },
   render(ctx) {
     return table([t('Hướng (Khu vực)'), t('Loại chim')], gemBirds(ctx).map((b, i) =>
       [t(PLACES[i]), `${t(BIRDS[b][1])} (${itemTag(BIRDS[b][2])})`]));

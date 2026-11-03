@@ -47,6 +47,7 @@ export default {
   id: 'book', name: 'Người bán sách', nameEn: 'Bookseller', icon: 'book_of_stars',
   intro: 'Hai ngày mỗi mùa Người bán sách ghé Thị trấn Pelican, và các cuốn sách được chọn ngẫu nhiên hôm đó. Sách luôn có bán (như Danh mục Giá) hoặc mở theo điều kiện khác không hiện ở đây.',
   introEn: 'The two days each season when the Bookseller visits Pelican Town, and the books picked at random on those days. Books that are always sold (like the Price Catalogue) or unlocked by other conditions are not shown.',
+  figure: { src: ['assets/predict/bookseller.png'], alt: 'Quầy của người bán sách', caption: 'Người bán sách ghé Thị trấn 2 lần mỗi mùa, dựng quầy phía trên JojaMart (bên kia sông).' },
   nav: { step: 28, big: 112, start: ctx => monthStart(today(ctx)) },
   search: {
     placeholder: 'Tìm sách trong 2 năm tới...',

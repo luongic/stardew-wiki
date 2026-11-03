@@ -1,6 +1,6 @@
 // ==========================================================================
 // PREDICTIONS: THE LIST SHOWN IN THE PREDICTOR TAB
-// Each module: { id, name, nameEn, icon, intro, introEn?, nav?, players?,
+// Each module: { id, name, nameEn, icon, intro, introEn?, figure?: { src[], alt, caption, small? }, nav?, players?,
 //   search?: { placeholder, run(ctx, query, opts) }, render(ctx, offset, opts) }
 // `nav`: { step, big?, start(ctx, opts), min? } browses by `offset` (a day number
 // for calendars, a count for geodes and boxes...).

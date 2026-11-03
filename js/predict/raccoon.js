@@ -121,6 +121,7 @@ export default {
   id: 'raccoon', name: 'Gấu Mèo', nameEn: 'Raccoon Requests', icon: 'raccoon_icon',
   intro: 'Hai món Gia đình Gấu Mèo (Gốc Cây Khổng Lồ, Rừng Cindersap) yêu cầu mỗi lần và phần thưởng nhận được. Một số yêu cầu tùy theo mùa lúc được hỏi nên có thể liệt kê đủ bốn mùa.',
   introEn: 'The two items the Raccoon family (Giant Stump, Cindersap Forest) asks for each time and the reward you get. Some requests depend on the season they are asked in, so all four seasons may be listed.',
+  figure: { src: ['assets/predict/giant_stump.png'], alt: 'Gốc Cây Khổng Lồ của Gia đình Gấu Mèo ở Rừng Cindersap', caption: 'Gốc Cây Khổng Lồ của Gia đình Gấu Mèo ở Rừng Cindersap.' },
   nav: { step: PAGE, big: 50, min: 0, start: ctx => PAGE * Math.floor((ctx.timesFedRaccoons || 0) / PAGE),
     stepLabel: '10 lần trước', nextLabel: '10 lần sau', bigLabel: '50 lần trước', bigNextLabel: '50 lần sau' },
   render(ctx, offset) {
@@ -130,11 +131,6 @@ export default {
       rows.push({ cls: row - 1 === fedSoFar ? 'is-today' : row - 1 < fedSoFar ? 'is-past' : '',
         cells: [row.toLocaleString('en-US'), ...itemCells(request[0]), ...itemCells(request[1]), ...itemCells(reward)] });
     }
-    // The Giant Stump after it is repaired (picture: Official Stardew Valley Wiki)
-    const figure = `<figure class="predict-figure">
-      <img src="assets/predict/giant_stump.png" alt="${t('Gốc Cây Khổng Lồ của Gia đình Gấu Mèo ở Rừng Cindersap')}" class="pixel-img" loading="lazy" data-fallback="hide">
-      <figcaption class="muted">${t('Gốc Cây Khổng Lồ của Gia đình Gấu Mèo ở Rừng Cindersap. Ảnh: Official Stardew Valley Wiki.')}</figcaption>
-    </figure>`;
-    return figure + table([t('Lần'), t('Món thứ nhất'), t('SL'), t('Món thứ hai'), t('SL'), t('Phần thưởng'), t('SL')], rows);
+    return table([t('Lần'), t('Món thứ nhất'), t('SL'), t('Món thứ hai'), t('SL'), t('Phần thưởng'), t('SL')], rows);
   }
 };
