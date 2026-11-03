@@ -21,6 +21,7 @@ import { loadJSON, KEYS } from '../lib/storage.js';
 import { matches } from '../lib/templates.js';
 import { focusFarmTiles } from './farm.js';
 import { OBJECT_NAMES } from '../../data/item-ids.js';
+import { itemTag } from '../lib/item-lookup.js';
 
 const SECTIONS = [
   { id: 'friends', name: 'Tình bạn', icon: 'loved' },
@@ -57,6 +58,11 @@ const place = s => {
   const label = PLACE[s.label] || PLACE[s.where] || itemName(s.label || s.where);
   return s.parent && s.parent !== 'Farm' ? `${label} (${PLACE[s.parent] || s.parent})` : label;
 };
+// Farm animal pictures and the days a baby needs to grow up (Data/FarmAnimals)
+const ANIMAL_ART = { 'White Chicken': 3, 'Brown Chicken': 3, 'Blue Chicken': 3, 'Void Chicken': 3, 'Golden Chicken': 3, Duck: 5, Rabbit: 6, Dinosaur: 0,
+  'White Cow': 5, 'Brown Cow': 5, Goat: 5, Sheep: 4, Pig: 10, Ostrich: 7 };
+const animalImg = type => `assets/icons/animal_${type.toLowerCase().replace(/ /g, '_')}.png`;
+
 const ANIMALS = { 'White Chicken': 'Gà trắng', 'Brown Chicken': 'Gà nâu', 'Blue Chicken': 'Gà xanh', 'Void Chicken': 'Gà Hư không', 'Golden Chicken': 'Gà Vàng',
   Duck: 'Vịt', Rabbit: 'Thỏ', Dinosaur: 'Khủng long', 'White Cow': 'Bò trắng', 'Brown Cow': 'Bò nâu', Goat: 'Dê', Sheep: 'Cừu', Pig: 'Heo', Ostrich: 'Đà điểu' };
 
@@ -226,6 +232,11 @@ function animalsHtml(d) {
     <div class="journal-grid">
       ${d.animals.sort((a, b) => a.where.localeCompare(b.where) || b.friendship - a.friendship).map(a => `
         <article class="journal-card animal-card">
+          ${a.type in ANIMAL_ART ? (() => {
+            const left = ANIMAL_ART[a.type] - a.age;
+            return `<div class="animal-card__art ${left > 0 ? 'is-baby' : ''}"><img src="${animalImg(a.type)}" alt="" class="pixel-img" loading="lazy" data-fallback="hide"></div>
+              ${left > 0 ? `<span class="tag animal-card__baby">${t(`Con non, còn ${left} ngày nữa trưởng thành`)}</span>` : ''}`;
+          })() : ''}
           <h3 class="journal-card__title" data-no-i18n>${a.name}</h3>
           <p class="muted">${t(ANIMALS[a.type] || a.type)} · ${t(place({ label: a.where }))} · ${a.age} ${t('ngày tuổi')}</p>
           <div class="hearts hearts--5" title="${a.friendship}/1000">${Array.from({ length: 5 }, (_, i) => `<span class="${i < a.hearts ? 'is-on' : ''}"></span>`).join('')}</div>
@@ -235,6 +246,11 @@ function animalsHtml(d) {
         </article>`).join('')}
     </div>`;
 }
+
+// Reward of a monster goal: the item (icon, opens its popup) or Marlon's phone number
+const rewardHtml = g => g.id === 'magma'
+  ? `<span class="item-tag"><img src="assets/icons/x_telephone.png" alt="" class="pixel-img">${isEn ? g.rewardEn : g.reward}</span>`
+  : itemTag(g.rewardEn);
 
 function monstersHtml(d) {
   return `
@@ -249,7 +265,7 @@ function monstersHtml(d) {
           <div class="goal-row__body">
             <div class="goal-row__head"><strong>${nm(g)}</strong> <span>${Math.min(k, g.goal)}/${g.goal}</span></div>
             <div class="skill-bar"><span style="width:${Math.min(100, (k / g.goal) * 100)}%"></span></div>
-            <p class="muted">${ico('gift')} ${isEn ? g.rewardEn : g.reward}${done ? ` · ${ico('check')} ${t('Hoàn thành')}` : ''}</p>
+            <p class="goal-row__reward">${ico('gift')} ${rewardHtml(g)}${done ? ` · ${ico('check')} ${t('Hoàn thành')}` : ''}</p>
           </div>
         </div>`;
       }).join('')}

@@ -14,7 +14,7 @@ export const MONSTER_GOALS = [
     monsters: ['Bat', 'Frost Bat', 'Lava Bat', 'Iridium Bat'] },
   { id: 'skeletons', name: 'Xương khô', nameEn: 'Skeletons', goal: 50, reward: 'Mặt nạ Đầu lâu', rewardEn: 'Skeleton Mask', icon: 'monster_skeleton',
     monsters: ['Skeleton', 'Skeleton Mage'] },
-  { id: 'insects', name: 'Côn trùng hang', nameEn: 'Cave Insects', goal: 80, reward: 'Mũ Đầu côn trùng', rewardEn: 'Insect Head', icon: 'monster_bug',
+  { id: 'insects', name: 'Côn trùng hang', nameEn: 'Cave Insects', goal: 80, reward: 'Đầu Côn trùng', rewardEn: 'Insect Head', icon: 'monster_bug',
     monsters: ['Bug', 'Fly', 'Grub', 'Mutant Fly', 'Mutant Grub', 'Armored Bug'] },
   { id: 'duggies', name: 'Duggy', nameEn: 'Duggies', goal: 30, reward: 'Mũ Bảo hộ', rewardEn: 'Hard Hat', icon: 'monster_duggy',
     monsters: ['Duggy', 'Magma Duggy'] },

@@ -525,7 +525,7 @@ export const PATTERNS_EN = [
   [/^Còn (\d+) ngày tới cuối mùa \(theo ngày trong save\)\.$/, '$1 days left in the season (save date).'],
   [/^~(\d+) ngày$/, '~$1 days'], [/^(\d+) ô$/, '$1 tiles'], [/^Sớm nhất còn (\d+) ngày$/, 'Next harvest in $1 days'],
   [/^Phiên bản (\w*)$/, 'Version $1'],
-  [/^Còn (\d+) ngày$/, '$1 days left'], [/^Còn (\d+) lần ghé$/, '$1 visit(s) left'], [/^Vuốt ve (\d+) vật nuôi$/, 'Pet $1 animals'], [/^(\d+) con có sản phẩm để thu$/, '$1 with produce to collect'],
+  [/^Còn (\d+) ngày$/, '$1 days left'], [/^Con non, còn (\d+) ngày nữa trưởng thành$/, 'Baby, grows up in $1 days'], [/^Còn (\d+) lần ghé$/, '$1 visit(s) left'], [/^Vuốt ve (\d+) vật nuôi$/, 'Pet $1 animals'], [/^(\d+) con có sản phẩm để thu$/, '$1 with produce to collect'],
   [/^(\d+) ô thu hoạch được$/, '$1 tiles to harvest'], [/^(\d+) ô chưa tưới$/, '$1 tiles to water'], [/^(\d+) ô cây chết$/, '$1 dead crops'],
   [/^(\d+) máy đã xong, chờ lấy sản phẩm$/, '$1 machines ready to collect'],
   [/^(\d+) đã hoàn thành$/, '$1 completed'], [/^(\d+) hết hạn hôm nay$/, '$1 end today'],

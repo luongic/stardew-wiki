@@ -2503,6 +2503,13 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 .goal-row__icon { width: 32px; height: 32px; }
 .goal-row__body { flex: 1; display: flex; flex-direction: column; gap: 4px; }
 .goal-row__head { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.goal-row__reward { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; color: var(--wood-700); }
+.goal-row__reward .item-tag img { width: 28px; height: 28px; }
+.animal-card { position: relative; }
+.animal-card__art { height: 96px; display: flex; align-items: flex-end; justify-content: center; }
+.animal-card__art img { max-height: 96px; width: auto; image-rendering: pixelated; transform: scale(1.4); transform-origin: bottom center; }
+.animal-card__art.is-baby img { transform: scale(0.8); }
+.animal-card__baby { align-self: center; }
 .perfection-total { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
 .perfection-total strong { font-size: 2.4rem; color: var(--wood-700); }
 .journal-sub { margin: 16px 0 8px; display: flex; align-items: center; gap: 6px; color: var(--wood-900); }
