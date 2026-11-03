@@ -113,6 +113,9 @@
       <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="quests">
         <i data-icon="quests"></i> <span>Hướng Dẫn Nhiệm Vụ</span> <span class="tab__badge" id="questTabBadge">0/0</span>
       </button>
+      <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="secretnotes">
+        <i data-icon="secret_note"></i> <span>Mật Thư</span>
+      </button>
       <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="bundles">
         <i data-icon="bundles"></i> <span>Nhà Cộng Đồng</span> <span class="tab__badge" id="bundleTabBadge">0/0</span>
       </button>
@@ -345,6 +348,17 @@
       <!-- ======= TAB: QUESTS ======= -->
       <section id="tab-quests" class="tab-panel" role="tabpanel" hidden>
         <div id="questsGrid" class="content-grid" aria-live="polite"></div>
+      </section>
+
+      <!-- ======= TAB: SECRET NOTES ======= -->
+      <section id="tab-secretnotes" class="tab-panel" role="tabpanel" hidden>
+        <div class="panel">
+          <div class="panel__head">
+            <h2 class="panel__title"><i data-icon="secret_note"></i> Mật Thư (Secret Notes)</h2>
+          </div>
+          <p class="panel__hint">27 Mật thư (nhặt được sau khi có Kính Lúp ở nhiệm vụ "Bí Ẩn Mùa Đông") và 11 Mảnh nhật ký trên Đảo Gừng. Mẩu bạn đã đọc hiện đầy đủ kèm lời giải; mẩu chưa đọc được ẩn sau nút Xem Spoilers. Nội dung theo bản Việt hóa Viethoa, hình và lời giải theo Official Stardew Valley Wiki.</p>
+          <div id="secretNotesBoard"></div>
+        </div>
       </section>
 
       <!-- ======= TAB: COMMUNITY CENTER BUNDLES ======= -->

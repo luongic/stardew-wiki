@@ -125,6 +125,7 @@ function readPlayer(player, root, built, donated) {
       const [count, size] = kids(kid(v, 'ArrayOfInt') || v, 'int').map(i => Number(i.textContent));
       return { id: cleanId(k), count: count || 0, size: size > 0 ? size : 0 };
     }).filter(f => OBJECT_NAMES[f.id]),
+    notesSeen: notes,
     notes: notes.filter(n => n < 1000).length,
     scraps: notes.filter(n => n >= 1000).length,
     perfection: readPerfection(player, root, built, goals, friends)

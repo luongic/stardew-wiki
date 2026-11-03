@@ -2704,3 +2704,8 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 @media (prefers-reduced-motion: reduce) { .fish-place__pin::after { animation: none; } }
 .fish-place__list { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px; }
 .fish-place__list img { width: 20px; height: 20px; vertical-align: -4px; }
+
+/* Secret notes */
+.note-card .card__head { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.note-card__text { white-space: pre-line; line-height: 1.6; }
+.note-card__img { display: block; width: 216px; max-width: 100%; height: auto; margin: 0 auto 8px; image-rendering: pixelated; }

@@ -408,6 +408,16 @@ export const UI_EN = {
   // ---- Modals (titles & buttons only; guide bodies stay Vietnamese) ----
   'Đóng cửa sổ': 'Close', 'Chi tiết': 'Details',
   'Không tải được mã JavaScript của trang.': "The page's JavaScript failed to load.",
+  // ---- Secret notes ----
+  'Nội dung đang ẩn để tránh spoil.': 'Hidden to avoid spoilers.',
+  'Mật Thư': 'Secret Notes',
+  'Mật Thư (Secret Notes)': 'Secret Notes',
+  'Mật thư': 'Secret Note',
+  'Mảnh nhật ký': 'Journal Scrap',
+  'Lời giải': 'Solution',
+  'Không có mẩu nào.': 'No notes here.',
+  'Nạp file save ở tab Tiến Độ để biết mẩu nào bạn đã đọc. Chưa có save thì mọi mẩu đều ẩn sau nút Xem Spoilers.': 'Load a save file in the Progress tab to see which notes you have read. Without a save, every note stays behind the spoiler button.',
+  '27 Mật thư (nhặt được sau khi có Kính Lúp ở nhiệm vụ "Bí Ẩn Mùa Đông") và 11 Mảnh nhật ký trên Đảo Gừng. Mẩu bạn đã đọc hiện đầy đủ kèm lời giải; mẩu chưa đọc được ẩn sau nút Xem Spoilers. Nội dung theo bản Việt hóa Viethoa, hình và lời giải theo Official Stardew Valley Wiki.': 'The 27 Secret Notes (found once you have the Magnifying Glass from "A Winter Mystery") and the 11 Journal Scraps on Ginger Island. Notes you have read are shown in full with their solution; unread ones stay behind the spoiler button. Vietnamese text from Viethoa; pictures and solutions from the Official Stardew Valley Wiki.',
   // ---- Fishing: place popup ----
   'loài cá': 'fish', 'Vị trí trên bản đồ': 'Location on the map of', 'Cá câu được ở đây': 'Fish caught here', 'Lọc theo địa điểm này': 'Filter by this place',
   // ---- Predictor ----
