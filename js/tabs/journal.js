@@ -307,7 +307,7 @@ function questsHtml(d) {
           <h3 class="journal-card__title">${npc ? img(npc.avatar, 'friend-card__face') : ico('quests')} <span${info ? '' : ' data-no-i18n'}>${title}</span></h3>
           ${goal.length > 2 ? `<p data-no-i18n>${goal}</p>` : ''}
           <p class="friend-card__row">
-            ${q.done ? `<span class="tag tag--green">${ico('check')} ${t('Đã xong, quay lại nhận thưởng')}</span>` : ''}
+            ${q.done ? `<span class="tag tag--green">${ico('check')} ${t('Đã hoàn thành')}</span>` : ''}
             ${q.money ? `<span class="tag tag--gold">${ico('money')} ${q.money.toLocaleString('vi-VN')}g</span>` : ''}
             ${q.daysLeft > 0 ? `<span class="tag">${ico('hourglass')} ${t(`Còn ${q.daysLeft} ngày`)}</span>` : ''}
             ${npc ? `<span class="tag">${ico('giver')} ${nm(npc)}</span>` : ''}

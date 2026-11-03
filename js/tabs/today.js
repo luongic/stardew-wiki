@@ -215,7 +215,7 @@ function morningCard(d) {
   const logs = players.filter(p => p.quests?.length);
   const quests = logs.flatMap(p => p.quests);
   const turnIn = quests.filter(q => q.done).length, ending = quests.filter(q => q.daysLeft === 1).length;
-  if (logs.length) lines.push(`${ico('quests')} <span>${t('Nhiệm vụ đang làm')}: ${logs.map(p => `${players.length > 1 ? `<strong data-no-i18n>${esc(p.name)}</strong> ` : ''}${p.quests.length}`).join(' · ')}${turnIn ? ` · ${t(`${turnIn} đã xong chờ nhận thưởng`)}` : ''}${ending ? ` · <strong>${t(`${ending} hết hạn hôm nay`)}</strong>` : ''}
+  if (logs.length) lines.push(`${ico('quests')} <span>${t('Nhiệm vụ đang làm')}: ${logs.map(p => `${players.length > 1 ? `<strong data-no-i18n>${esc(p.name)}</strong> ` : ''}${p.quests.length}`).join(' · ')}${turnIn ? ` · ${t(`${turnIn} đã hoàn thành`)}` : ''}${ending ? ` · <strong>${t(`${ending} hết hạn hôm nay`)}</strong>` : ''}
     <button class="link-btn" type="button" data-action="journal-open" data-section="quests">${t('Xem')}</button></span>`);
   return card('save', 'Việc nên làm sáng nay', `
     <p class="muted">${t('Theo file save của nông trại')} <strong data-no-i18n>${esc(j.farmName || '')}</strong>.</p>

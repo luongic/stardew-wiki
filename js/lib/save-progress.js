@@ -81,7 +81,11 @@ const QUEST_RULES = {
 const OLD_FLAG_FIELDS = { HasMagnifyingGlass: 'hasMagnifyingGlass', HasDarkTalisman: 'hasDarkTalisman', HasMagicInk: 'hasMagicInk', HasClubCard: 'hasClubCard', HasSpecialCharm: 'hasSpecialCharm' };
 
 function readQuests(root, player, mail, built) {
-  const open = new Set(kids(kid(player, 'questLog'), 'Quest').map(q => Number(text(q, 'id'))));
+  // Quests still to do. A finished quest can stay in the journal until the next
+  // morning (completed / destroy = true), so it does not count as open.
+  const open = new Set(kids(kid(player, 'questLog'), 'Quest')
+    .filter(q => text(q, 'completed') !== 'true' && text(q, 'destroy') !== 'true')
+    .map(q => Number(text(q, 'id'))));
   const flags = new Set([...mail, ...kids(kid(root, 'worldStateIDs'), 'string').map(s => s.textContent.trim())]);
   for (const [flag, field] of Object.entries(OLD_FLAG_FIELDS)) if (text(player, field) === 'true') flags.add(flag);
   // <string> since 1.6, <int> before
