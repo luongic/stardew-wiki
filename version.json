@@ -1,7 +1,9 @@
 {
-  "version": "5f15768fda",
+  "version": "7bd8b4f3aa",
   "content": "5f15768fda",
-  "built": "2026-11-03T04:56:24.392Z",
-  "important": false,
-  "notes": []
+  "built": "2026-11-03T04:57:49.021Z",
+  "important": true,
+  "notes": [
+    "new update"
+  ]
 }
