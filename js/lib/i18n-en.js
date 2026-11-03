@@ -418,6 +418,9 @@ export const UI_EN = {
   '(Google Fonts, OFL): phông chữ pixel.': '(Google Fonts, OFL): the pixel font.',
   ': đăng nhập và đồng bộ phòng Co-op.': ': sign-in and Co-op room sync.',
   // ---- Secret notes ----
+  'Vuốt ngang để xem thêm cột': 'Swipe sideways for more columns',
+  'Đang tải Mật thư...': 'Loading Secret Notes...', 'Đang tải phần Dự Đoán...': 'Loading the predictions...',
+  'Không tải được phần Dự Đoán. Kiểm tra kết nối rồi mở lại tab.': "Couldn't load the predictions. Check your connection and open the tab again.",
   'Đã đọc bởi': 'Read by', '*Cần tự đọc mật thư này để thực hiện': '*You need to read this note yourself for it to work',
   '*Có thể làm mà không cần đọc mật thư': '*Works without reading the note',
   'File save bạn nạp trước đây được đọc bằng bản cũ của trang, chưa có danh sách mật thư đã đọc. Hãy nạp lại file save một lần.': 'Your save was loaded with an older version of this site, which did not keep the list of notes read. Please load the save file once more.',

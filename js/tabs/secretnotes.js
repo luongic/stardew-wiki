@@ -7,7 +7,6 @@
 // says whether the secret needs the player to have read the note themselves.
 // ==========================================================================
 
-import { SECRET_NOTES } from '../../data/secret-notes-data.js';
 import { ico } from '../lib/icons.js';
 import { t, isEn } from '../lib/i18n.js';
 import { loadJSON, KEYS } from '../lib/storage.js';
@@ -16,6 +15,8 @@ import { itemTag } from '../lib/item-lookup.js';
 import { npcTag } from '../predict/npc.js';
 
 const ui = { filter: 'all', player: 0 };
+// The notes data (~40 KB) loads the first time the tab is opened
+let SECRET_NOTES = null, loading = null;
 const revealed = new Set();
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
@@ -73,6 +74,13 @@ function cardHtml(n, group, seen, others) {
 function render() {
   const el = document.getElementById('secretNotesBoard');
   if (!el) return;
+  if (!SECRET_NOTES) {
+    el.innerHTML = `<p class="muted">${ico('hourglass')} ${t('Đang tải Mật thư...')}</p>`;
+    loading ||= import('../../data/secret-notes-data.js')
+      .then(m => { SECRET_NOTES = m.SECRET_NOTES; render(); })
+      .catch(e => { console.error('[secret notes]', e); loading = null; });
+    return;
+  }
   const ps = players();
   const p = ps?.[Math.min(ui.player, ps.length - 1)];
   // Older journal snapshots only kept counts: ask for the save again

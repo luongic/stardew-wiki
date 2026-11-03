@@ -2681,11 +2681,24 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 .predict-cal td.is-past { opacity: 0.5; }
 .predict-cal td.is-today { background: #fff2b8; box-shadow: inset 0 0 0 2px var(--gold, #d9a22b); }
 .predict-cal__date { display: block; font-weight: bold; color: var(--wood-700); }
+/* Phones: one day per row instead of a 7-column grid that needs sideways scrolling */
+@media (max-width: 600px) {
+  .predict-cal { min-width: 0; table-layout: auto; }
+  .predict-cal thead { display: none; }
+  .predict-cal, .predict-cal tbody, .predict-cal tr { display: block; }
+  .predict-cal td { display: flex; gap: 10px; align-items: flex-start; height: auto; border-width: 0 2px 2px; }
+  .predict-cal tr:first-child td:first-child { border-top-width: 2px; }
+  .predict-cal caption { display: block; }
+  .predict-cal__date { flex: 0 0 28px; }
+  .predict-cal td::before { content: attr(data-dow); order: 1; flex: 0 0 auto; margin-left: auto; color: var(--wood-500); font-size: 0.8rem; }
+  .predict-cal__cell { flex: 1; min-width: 0; }
+}
 .predict-cal img, .predict-table img, .item-tag img { width: 20px; height: 20px; vertical-align: -4px; }
 .predict-hit { display: block; color: var(--wood-900); font-weight: bold; }
 .predict-none { display: block; color: var(--wood-500, #9a7b55); }
 .predict-note { float: right; }
 .predict-table-wrap { overflow-x: auto; }
+.predict-table-wrap.is-scrollable::before { content: '⇆ ' attr(data-hint); position: sticky; left: 0; display: block; padding: 2px 0 6px; font-size: 0.82rem; color: var(--wood-500); }
 .predict-table { width: 100%; border-collapse: collapse; background: var(--parch-50); font-size: 0.88rem; }
 .predict-table th { padding: 5px 6px; background: var(--wood-700); color: var(--parch-50); text-align: left; }
 .predict-table td { padding: 5px 6px; border: 2px solid var(--parch-300); vertical-align: top; }

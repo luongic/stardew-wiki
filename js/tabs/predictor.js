@@ -6,10 +6,10 @@
 // prediction is a module in js/predict/ (see js/predict/index.js); this tab
 // shows one at a time with browsing (previous / next month, etc.).
 // Numbers come from the last save file, or from a Game ID typed by hand.
+// The prediction modules and their data (~200 KB) load the first time the
+// tab is opened, not with the page.
 // ==========================================================================
 
-import { PREDICTIONS } from '../predict/index.js';
-import { manualContext } from '../predict/context.js';
 import { dateLabel, today, esc } from '../predict/core.js';
 import { ico } from '../lib/icons.js';
 import { t, nm, isEn } from '../lib/i18n.js';
@@ -20,6 +20,19 @@ const view = { id: 'train', offset: null, player: 0, query: '', manual: false, .
 const saveView = () => saveJSON(KEYS.predictView, { id: view.id, player: view.player });
 
 export const predictContext = () => loadJSON(KEYS.predict, null);
+let PREDICTIONS = null, manualContext = null, loading = null;
+function loadModules() {
+  loading ||= Promise.all([import('../predict/index.js'), import('../predict/context.js')])
+    .then(([list, context]) => { PREDICTIONS = list.PREDICTIONS; manualContext = context.manualContext; render(); })
+    .catch(e => {
+      console.error('[predict]', e);
+      loading = null;
+      const el = document.getElementById('predictorBoard');
+      if (el) el.innerHTML = `<p class="text-red">${ico('warn')} ${t('Không tải được phần Dự Đoán. Kiểm tra kết nối rồi mở lại tab.')}</p>`;
+    });
+  return loading;
+}
+
 const current = () => PREDICTIONS.find(p => p.id === view.id) || PREDICTIONS[0];
 
 // Called by the save import (Progress tab)
@@ -76,6 +89,11 @@ const figureHtml = f => `
 function render() {
   const el = document.getElementById('predictorBoard');
   if (!el) return;
+  if (!PREDICTIONS) {
+    el.innerHTML = `<p class="muted">${ico('hourglass')} ${t('Đang tải phần Dự Đoán...')}</p>`;
+    loadModules();
+    return;
+  }
   const ctx = predictContext();
   const p = current();
   let body = '';
@@ -104,6 +122,8 @@ function render() {
     <p class="muted predict-intro">${isEn && p.introEn ? p.introEn : t(p.intro)}</p>
     ${p.figure && !view.query ? figureHtml(p.figure) : ''}
     ${body}`;
+  // Wide tables on phones: say they scroll sideways
+  el.querySelectorAll('.predict-table-wrap').forEach(w => w.classList.toggle('is-scrollable', w.scrollWidth > w.clientWidth + 2));
 }
 
 function onSubmit(e) {

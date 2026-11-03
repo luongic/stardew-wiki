@@ -164,7 +164,8 @@ export function calendar(ctx, start, cell) {
     html += '<tr>';
     for (let k = 0; k < 7; k++) {
       const day = start + w * 7 + k;
-      html += `<td class="${when(ctx, day)}"><span class="predict-cal__date">${dateOf(day).day}</span>${cell(day)}</td>`;
+      // data-dow: the weekday shown next to the date when phones list the days one per row
+      html += `<td class="${when(ctx, day)}" data-dow="${dowName(k)}"><span class="predict-cal__date">${dateOf(day).day}</span><div class="predict-cal__cell">${cell(day)}</div></td>`;
     }
     html += '</tr>';
   }
@@ -173,7 +174,7 @@ export function calendar(ctx, start, cell) {
 
 // A table: `head` is a list of column titles, `rows` a list of lists of cell HTML
 export function table(head, rows, cls = '') {
-  return `<div class="predict-table-wrap"><table class="predict-table ${cls}">
+  return `<div class="predict-table-wrap" data-hint="${t('Vuốt ngang để xem thêm cột')}"><table class="predict-table ${cls}">
     <thead><tr>${head.map(h => `<th>${h}</th>`).join('')}</tr></thead>
     <tbody>${rows.map(r => `<tr${r.cls ? ` class="${r.cls}"` : ''}>${(r.cells || r).map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
 }
