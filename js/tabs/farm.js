@@ -48,7 +48,9 @@ const ui = {
   zoom: 1,
   showGrid: false,
   showRanges: false,
-  rangeAlpha: loadJSON(KEYS.farmView, {}).rangeAlpha ?? 0.3,   // how strongly ranges are shaded
+  // How strongly ranges are shaded: sprinklers and scarecrows separately (older saves had one value)
+  waterAlpha: loadJSON(KEYS.farmView, {}).waterAlpha ?? loadJSON(KEYS.farmView, {}).rangeAlpha ?? 0.3,
+  guardAlpha: loadJSON(KEYS.farmView, {}).guardAlpha ?? (loadJSON(KEYS.farmView, {}).rangeAlpha ?? 0.3) * 0.6,
   paletteDrag: null,   // item being dragged from the palette
   highlight: [],       // tiles to point out (from the Journal tab)
   message: ''
@@ -301,15 +303,15 @@ function drawOverlay() {
       const it = itemById.get(o.t);
       if (it?.range && !isWater(it)) for (const t of rangeTiles(it, o.x, o.y)) guarded.set(key(...t), t);
     }
-    shadeArea([...guarded.values()], GUARD, ui.rangeAlpha * 0.6);
-    shadeArea([...wateredSet()].map(k => k.split(',').map(Number)), WATER, ui.rangeAlpha);
+    shadeArea([...guarded.values()], GUARD, ui.guardAlpha);
+    shadeArea([...wateredSet()].map(k => k.split(',').map(Number)), WATER, ui.waterAlpha);
   }
   if (ui.selected !== null && plan.objects[ui.selected]) {
     const o = plan.objects[ui.selected]; const { w, h } = sizeOf(o);
     octx.strokeStyle = '#ffe066'; octx.lineWidth = 2;
     octx.strokeRect(o.x * TILE + 1, o.y * TILE + 1, w * TILE - 2, h * TILE - 2);
     const it = itemById.get(o.t);
-    if (it?.range) shadeArea(rangeTiles(it, o.x, o.y), isWater(it) ? WATER : GUARD, ui.rangeAlpha);
+    if (it?.range) shadeArea(rangeTiles(it, o.x, o.y), isWater(it) ? WATER : GUARD, isWater(it) ? ui.waterAlpha : ui.guardAlpha);
   }
   // Ghost of the item being placed, green if it fits and red if not
   const item = ghostItem();
@@ -317,7 +319,7 @@ function drawOverlay() {
     const { x, y } = ghostOrigin(item);
     const ok = fits(item, x, y, ui.drag?.moving ?? -1);
     for (let dy = 0; dy < item.h; dy++) for (let dx = 0; dx < item.w; dx++) tint(x + dx, y + dy, ok ? 'rgba(80,220,80,0.35)' : 'rgba(240,60,60,0.45)');
-    if (item.range) shadeArea(rangeTiles(item, x, y), isWater(item) ? WATER : GUARD, ui.rangeAlpha);
+    if (item.range) shadeArea(rangeTiles(item, x, y), isWater(item) ? WATER : GUARD, isWater(item) ? ui.waterAlpha : ui.guardAlpha);
     const im = img(item.sprite || item.icon);
     if (im && item.kind !== 'ground' && item.kind !== 'crop') {
       octx.globalAlpha = 0.75;
@@ -466,8 +468,10 @@ function renderSide() {
   document.querySelectorAll('[data-action="farm-tool"]').forEach(b => b.classList.toggle('is-active', b.dataset.tool === (ui.tool || 'select')));
   const g = document.getElementById('farmGridToggle'); if (g) g.checked = ui.showGrid;
   const r = document.getElementById('farmRangeToggle'); if (r) r.checked = ui.showRanges;
-  const a = document.getElementById('farmRangeAlpha');
-  if (a) { a.value = Math.round(ui.rangeAlpha * 100); document.getElementById('farmRangeAlphaLabel').textContent = `${a.value}%`; }
+  for (const kind of ['water', 'guard']) {
+    const a = document.querySelector(`[data-action="farm-range-alpha"][data-kind="${kind}"]`);
+    if (a) { a.value = Math.round(ui[`${kind}Alpha`] * 100); a.nextElementSibling.textContent = `${a.value}%`; }
+  }
   const z = document.getElementById('farmZoomLabel'); if (z) z.textContent = `x${Math.round(ui.zoom * 100) / 100}`;
 }
 
@@ -865,9 +869,9 @@ const farmTab = {
     'farm-grid': (app, el) => { ui.showGrid = el.checked; drawOverlay(); },
     'farm-ranges': (app, el) => { ui.showRanges = el.checked; drawOverlay(); },
     'farm-range-alpha': (app, el) => {
-      ui.rangeAlpha = Number(el.value) / 100;
-      saveJSON(KEYS.farmView, { rangeAlpha: ui.rangeAlpha });
-      const label = document.getElementById('farmRangeAlphaLabel'); if (label) label.textContent = `${el.value}%`;
+      ui[`${el.dataset.kind}Alpha`] = Number(el.value) / 100;
+      saveJSON(KEYS.farmView, { waterAlpha: ui.waterAlpha, guardAlpha: ui.guardAlpha });
+      el.nextElementSibling.textContent = `${el.value}%`;
       drawOverlay();
     },
     'farm-undo': () => { if (undoStack.length) { redoStack.push(JSON.stringify(plan)); restore(undoStack.pop()); } },

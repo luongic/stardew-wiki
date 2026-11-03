@@ -19,6 +19,7 @@ import { BOOTS, CLOTHES } from '../../data/save-data.js';
 import { setCaughtFish } from './fishing.js';
 import { applySaveDay } from './today.js';
 import { applySaveFarm, farmPlanIsReplaceable } from './farm.js';
+import { applySavePredict } from './predictor.js';
 import { coop } from '../sync/coop.js';
 import { SKILLS, LEVEL_XP, MASTERY_XP, PROFESSIONS } from '../../data/skills-data.js';
 import { saveJSON } from '../lib/storage.js';
@@ -285,7 +286,9 @@ async function readSaveFile(app, file, preread = null) {
     try { farm = readFarmSave(root); } catch { /* a save without a farm: skip that part */ }
     let journal = null;
     try { journal = (await import('../lib/save-journal.js')).readJournal(root); } catch (e) { console.warn('[journal]', e); }
-    pendingSave = { res, day, farm, journal };
+    let predict = null;
+    try { predict = (await import('../predict/context.js')).readPredictContext(root); } catch (e) { console.warn('[predict]', e); }
+    pendingSave = { res, day, farm, journal, predict };
 
     const add = { recipes: newKeys('recipes', res.recipes), quests: newKeys('quests', res.quests), bundles: newKeys('bundles', res.bundles), museum: newKeys('museum', res.museum) };
     const row = (icon, label, found, fresh) => `
@@ -339,7 +342,7 @@ async function readSaveFile(app, file, preread = null) {
 
 function applySave(app) {
   if (!pendingSave) return;
-  const { res, day, farm, journal } = pendingSave;
+  const { res, day, farm, journal, predict } = pendingSave;
   const checked = id => document.getElementById(id)?.checked;
   const done = [];
   if (checked('syncProgress')) {
@@ -360,6 +363,8 @@ function applySave(app) {
     saveJSON(KEYS.journal, { ...journal, day, farmName: res.farmName, at: Date.now() });
     done.push(t('sổ tay'));
   }
+  // Predictions only read the save (Game ID, counters): always kept up to date
+  if (predict) applySavePredict(predict);
   if (farm && checked('syncFarm')) {
     applySaveFarm(farm);
     done.push(t('nông trại'));

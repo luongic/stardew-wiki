@@ -2270,6 +2270,9 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 .farm-alpha { display: inline-flex; align-items: center; gap: 8px; }
 .farm-alpha .px-range { width: 120px; }
 .farm-alpha strong { min-width: 3ch; }
+.farm-alpha--water span::before, .farm-alpha--guard span::before { content: ''; display: inline-block; width: 10px; height: 10px; margin-right: 5px; border: 2px solid var(--ink); vertical-align: -1px; }
+.farm-alpha--water span::before { background: rgb(70, 140, 255); }
+.farm-alpha--guard span::before { background: rgb(220, 60, 200); }
 
 .farm-layout {
   display: grid;
@@ -2643,3 +2646,39 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
   .modal__box { padding: 18px 16px; }
   .detail-head { flex-direction: column; align-items: flex-start; }
 }
+
+/* Predictor */
+.predict-source { display: flex; flex-direction: column; gap: 8px; padding: 10px 12px; margin-bottom: 12px; background: var(--parch-100); border: 2px dashed var(--parch-300); }
+.predict-source__actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.predict-manual { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 8px; }
+.predict-manual label { display: flex; flex-direction: column; gap: 2px; font-size: 0.85rem; }
+.predict-manual input[name="gameID"] { width: 140px; }
+.predict-manual .muted { flex-basis: 100%; font-size: 0.82rem; }
+.predict-intro { margin-bottom: 10px; }
+.predict-nav { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.predict-out { overflow-x: auto; }
+.predict-cal { width: 100%; min-width: 560px; border-collapse: collapse; table-layout: fixed; background: var(--parch-50); }
+.predict-cal caption { text-align: left; font-weight: bold; padding: 4px 0 6px; color: var(--wood-900); }
+.predict-cal th { padding: 4px; background: var(--wood-700); color: var(--parch-50); font-size: 0.85rem; }
+.predict-cal td { vertical-align: top; height: 64px; padding: 4px 5px; border: 2px solid var(--parch-300); font-size: 0.82rem; }
+.predict-cal td.is-past { opacity: 0.5; }
+.predict-cal td.is-today { background: #fff2b8; box-shadow: inset 0 0 0 2px var(--gold, #d9a22b); }
+.predict-cal__date { display: block; font-weight: bold; color: var(--wood-700); }
+.predict-cal img, .predict-table img, .item-tag img { width: 20px; height: 20px; vertical-align: -4px; }
+.predict-hit { display: block; color: var(--wood-900); font-weight: bold; }
+.predict-none { display: block; color: var(--wood-500, #9a7b55); }
+.predict-note { float: right; }
+.predict-table-wrap { overflow-x: auto; }
+.predict-table { width: 100%; border-collapse: collapse; background: var(--parch-50); font-size: 0.88rem; }
+.predict-table th { padding: 5px 6px; background: var(--wood-700); color: var(--parch-50); text-align: left; }
+.predict-table td { padding: 5px 6px; border: 2px solid var(--parch-300); vertical-align: top; }
+.predict-table tr.is-past td { opacity: 0.5; }
+.predict-table tr.is-today td { background: #fff2b8; }
+.item-tag { display: inline-flex; align-items: center; gap: 4px; margin: 1px 6px 1px 0; }
+.item-tag.is-need { color: #1d7a2c; font-weight: bold; }
+.item-tag.is-rare { color: #8a3fb8; font-weight: bold; }
+.predict-cacti { display: flex; flex-wrap: wrap; gap: 16px; }
+.predict-cacti > div { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.predict-cactus { display: flex; flex-direction: column; }
+.predict-cactus span { width: 48px; height: 48px; background: url("../assets/predict/free_cactuses.png") no-repeat; image-rendering: pixelated; }
+.predict-swatch { text-shadow: 0 0 1px var(--ink); }

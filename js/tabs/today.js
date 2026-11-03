@@ -21,6 +21,9 @@ import { showToast } from '../lib/ui.js';
 import { coop } from '../sync/coop.js';
 import { fishAvailable } from './fishing.js';
 import { inventory } from './journal.js';
+import { trainOn } from '../predict/trains.js';
+import { weatherOn } from '../predict/weather.js';
+import { nightEvent, NIGHT_EVENTS } from '../predict/night.js';
 
 const SEASONS = ['spring', 'summer', 'fall', 'winter'];
 const SEASON_VI = { spring: 'Mùa Xuân', summer: 'Mùa Hạ', fall: 'Mùa Thu', winter: 'Mùa Đông' };
@@ -219,6 +222,27 @@ function morningCard(d) {
     <ul class="today-checklist">${lines.map(l => `<li>${l}</li>`).join('')}</ul>`);
 }
 
+// ---------- Predictions for the chosen day (needs the Game ID from a save) ----------
+const WEATHER_PREDICT = { Sun: ['sunny', 'Nắng'], Rain: ['rainy', 'Mưa'], Storm: ['storm', 'Giông bão'], 'Green Rain': ['rainy', 'Mưa Xanh'] };
+
+function predictCard(d) {
+  const ctx = loadJSON(KEYS.predict, null);
+  if (!ctx?.gameID) return '';
+  const day = (d.year - 1) * 112 + SEASONS.indexOf(d.season) * 28 + d.day;
+  const train = trainOn(ctx, day);
+  const tomorrow = weatherOn(ctx, day + 1);
+  const [wIcon, wText] = WEATHER_PREDICT[tomorrow] || ['festival', tomorrow];
+  const night = nightEvent(ctx, day).event;
+  const lines = [
+    `${ico('item_coal')} <span>${day < 31 ? t('Đường ray chưa mở') : train ? `<strong>${t('Tàu chạy lúc')} ${train}</strong>` : t('Hôm nay không có tàu')}</span>`,
+    `${ico(wIcon)} <span>${t('Thời tiết ngày mai')}: <strong>${t(wText)}</strong></span>`,
+    `${ico(night ? NIGHT_EVENTS[night][0] : 'calendar')} <span>${t('Đêm nay')}: ${night ? `<strong>${t(NIGHT_EVENTS[night][1])}</strong>` : t('không có sự kiện')}</span>`
+  ];
+  return card('oracle', 'Dự đoán', `
+    <ul class="today-checklist">${lines.map(l => `<li>${l}</li>`).join('')}</ul>
+    <button class="link-btn" type="button" data-action="switch-tab" data-tab="predictor">${t('Xem thêm ở tab Dự Đoán')}</button>`);
+}
+
 function render() {
   const el = document.getElementById('todayBoard');
   if (!el) return;
@@ -240,6 +264,7 @@ function render() {
     ${d.sharedFrom ? `<p class="muted">${ico('members')} ${t('Ngày lấy từ file save của')} <strong data-no-i18n>${esc(d.sharedFrom)}</strong> ${t('trong phòng Co-op')}</p>` : ''}
     <div class="today-grid">
       ${morningCard(d)}
+      ${predictCard(d)}
       ${birthdayCard(d)}
       ${festivalCard(d)}
       ${townCard(d)}
