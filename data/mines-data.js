@@ -9,6 +9,7 @@
 export const MINE_AREAS = [
   {
     "id": "mines",
+    "place": { "photo": "assets/places/mines.jpg", "map": "valley", "x": 291, "y": 40 },
     "name": "Hầm Mỏ",
     "nameEn": "The Mines",
     "icon": "area_the_mines",
@@ -838,6 +839,7 @@ export const MINE_AREAS = [
   },
   {
     "id": "skull_cavern",
+    "place": { "photo": "assets/places/skull_cavern.jpg", "map": "desert", "x": 135, "y": 80 },
     "name": "Hang Đầu Lâu",
     "nameEn": "Skull Cavern",
     "icon": "skull_key",
@@ -1549,6 +1551,7 @@ export const MINE_AREAS = [
   },
   {
     "id": "volcano",
+    "place": { "photo": "assets/places/volcano.jpg", "map": "ginger_island", "x": 240, "y": 108 },
     "name": "Hầm Ngục Núi Lửa",
     "nameEn": "Volcano Dungeon",
     "icon": "item_cinder_shard",
@@ -1867,6 +1870,7 @@ export const MINE_AREAS = [
   },
   {
     "id": "quarry_mine",
+    "place": { "photo": "assets/places/quarry.jpg", "map": "valley", "x": 321, "y": 55 },
     "name": "Mỏ Mỏ Đá",
     "nameEn": "Quarry Mine",
     "icon": "item_golden_scythe",

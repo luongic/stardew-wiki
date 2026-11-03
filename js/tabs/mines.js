@@ -8,6 +8,7 @@
 
 import { altName } from '../lib/i18n.js';
 import { MINE_AREAS } from '../../data/mines-data.js';
+import { placeView } from '../lib/place-view.js';
 import { emptyState, matches } from '../lib/templates.js';
 import { ico } from '../lib/icons.js';
 
@@ -201,7 +202,8 @@ const minesTab = {
             <span>${ico('calendar')} <strong>Số tầng:</strong> ${area.floorMax ? area.floorMax : 'không giới hạn'}</span>
           </div>
         </div>
-      </div>`;
+      </div>
+      ${area.place ? placeView(area.place, area.name) : ''}`;
 
     document.getElementById('mineShaft').innerHTML = shaftHtml(area);
 
