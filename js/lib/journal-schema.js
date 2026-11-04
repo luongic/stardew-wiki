@@ -10,7 +10,7 @@
 import { ico } from './icons.js';
 import { t } from './i18n.js';
 
-export const JOURNAL_SCHEMA = 3;
+export const JOURNAL_SCHEMA = 4;
 
 export const isStale = j => !!j && (j.schema || 0) < JOURNAL_SCHEMA;
 

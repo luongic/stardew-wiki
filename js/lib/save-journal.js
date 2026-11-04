@@ -10,7 +10,7 @@
 
 import { kids, kid, text, xsiType, cleanId, location } from './farm-save.js';
 import { OBJECT_NAMES, OBJECT_KINDS } from '../../data/item-ids.js';
-import { MONSTER_GOALS, PERFECTION_VILLAGERS, DATABLE, STARDROPS, SHIPPED_CATEGORIES } from '../../data/journal-data.js';
+import { MONSTER_GOALS, PERFECTION_VILLAGERS, DATABLE, STARDROPS, SHIPPED_CATEGORIES, WALLET } from '../../data/journal-data.js';
 import { MUSEUM_ITEMS } from '../../data/museum-data.js';
 
 const num = (el, name) => Number(text(el, name)) || 0;
@@ -121,12 +121,38 @@ function readNotesDone(player, notes) {
   return [...done].sort((a, b) => a - b);
 }
 
-function readPlayer(player, root, built, donated) {
+const mailOf = player => new Set(kids(kid(player, 'mailReceived'), 'string').map(s => s.textContent.trim()));
+
+// What Grandpa's evaluation counts (Utility.getGrandpaScore); the points are added up by the Journal tab
+function readGrandpa(player, friends, mail, events, hostMail, petLove) {
+  const level = ['farmingLevel', 'fishingLevel', 'foragingLevel', 'miningLevel', 'combatLevel', 'luckLevel'].reduce((a, f) => a + num(player, f), 0) / 2;
+  return {
+    money: num(player, 'totalMoneyEarned'),
+    achievements: kids(kid(player, 'achievements'), 'int').map(i => Number(i.textContent)).filter(id => [5, 26, 34].includes(id)),
+    ccRooms: ['ccBoilerRoom', 'ccCraftsRoom', 'ccPantry', 'ccFishTank', 'ccVault', 'ccBulletin'].filter(f => mail.has(f) || hostMail.has(f)).length,
+    ccDone: events.has('191393'), joja: mail.has('JojaMember') || hostMail.has('JojaMember'),
+    married: !!text(player, 'spouse') || Object.values(friends).some(f => f.status === 'Married'),
+    house: num(player, 'houseUpgradeLevel'),
+    friends8: Object.values(friends).filter(f => f.points >= 1975).length,
+    level, petLove: mail.has('petLoveMessage') ? 1000 : petLove,
+    rustyKey: hostMail.has('HasRustyKey'), skullKey: hostMail.has('HasSkullKey')
+  };
+}
+
+function readPlayer(player, root, built, donated, hostMail, petLove) {
   const friends = readFriends(player);
   const goals = readGoals(player);
   const stats = Object.fromEntries(dict(kid(kid(player, 'stats'), 'Values')).map(([k, v]) => [k, Number(v?.textContent) || 0]));
   const notes = kids(kid(player, 'secretNotesSeen'), 'int').map(i => Number(i.textContent));
+  const mail = mailOf(player);
+  // Event ids are ints in older saves and strings in newer ones; festivals and other named events are left out
+  const events = new Set([...kids(kid(player, 'eventsSeen'), 'int'), ...kids(kid(player, 'eventsSeen'), 'string')].map(e => e.textContent.trim()).filter(e => /^\d+$/.test(e)));
+  const statLow = Object.fromEntries(Object.entries(stats).map(([k, v]) => [k.toLowerCase(), v]));
   return {
+    events: [...events],
+    // Special items & powers; the host's flag counts for the shared ones (keys, translation guide)
+    wallet: WALLET.filter(w => w.flag ? (w.host ? hostMail : mail).has(w.flag) : w.event ? events.has(w.event) : statLow[w.stat] > 0).map(w => w.id),
+    grandpa: readGrandpa(player, friends, mail, events, hostMail, petLove),
     name: text(player, 'name'),
     friends, goals,
     backpack: { where: 'backpack', kind: 'backpack', items: itemsIn(kid(player, 'items')) },
@@ -215,8 +241,30 @@ export function readJournal(root) {
   const built = kids(kid(farm?.el, 'buildings'), 'Building').map(b => text(b, 'buildingType'));
   const donated = new Set(kids(kid(location(root, 'LibraryMuseum'), 'museumPieces'), 'item')
     .map(i => museumOf.get(norm(OBJECT_NAMES[cleanId(text(i, 'value'))]))).filter(Boolean));
-  const players = [kid(root, 'player'), ...kids(kid(root, 'farmhands'), 'Farmer').filter(f => text(f, 'name'))]
-    .map(p => readPlayer(p, root, built, donated));
+  const host = kid(root, 'player');
+  const hostMail = mailOf(host);
+  // The pet's love (Grandpa counts a pet at full friendship)
+  let petLove = 0;
+  for (const loc of locs) for (const npc of kids(kid(loc.el, 'characters'), 'NPC')) if (['Pet', 'Cat', 'Dog'].includes(xsiType(npc))) petLove = Math.max(petLove, num(npc, 'friendshipTowardFarmer'));
+  const players = [host, ...kids(kid(root, 'farmhands'), 'Farmer').filter(f => text(f, 'name'))]
+    .map(p => readPlayer(p, root, built, donated, hostMail, petLove));
+
+  // Fish ponds on the farm: fish, how full, what the next population quest asks for
+  const fishPonds = kids(kid(farm?.el, 'buildings'), 'Building').filter(b => text(b, 'buildingType') === 'Fish Pond').map(b => ({
+    fish: cleanId(text(b, 'fishType')), count: num(b, 'currentOccupants'), max: num(b, 'maxOccupants'),
+    need: text(kid(b, 'neededItem'), 'name'), needId: cleanId(text(kid(b, 'neededItem'), 'itemId')), needCount: num(b, 'neededItemCount'),
+    asked: text(b, 'hasCompletedRequest') !== 'true' && !!kid(kid(b, 'neededItem'), 'name'),
+    output: text(kid(b, 'output'), 'name'), outputStack: num(kid(b, 'output'), 'stack'), x: num(b, 'tileX'), y: num(b, 'tileY')
+  })).filter(p => p.fish && p.fish !== '-1');
+
+  // Ginger Island walnuts: keys of the one-time ones, counts of the limited ones (shared by the farm)
+  const walnuts = {
+    found: num(root, 'goldenWalnutsFound'),
+    tracker: kids(kid(root, 'collectedNutTracker'), 'string').map(s => s.textContent.trim()),
+    limited: Object.fromEntries(kids(kid(root, 'limitedNutDrops'), 'item').map(i => [text(kid(i, 'key'), 'string'), Number(text(kid(i, 'value'), 'int')) || 0])),
+    coconut: text(root, 'goldenCoconutCracked') === 'true', parrot: text(root, 'activatedGoldenParrot') === 'true'
+  };
+  const quest = o => ({ key: text(o, 'questKey'), due: num(o, 'dueDate'), qi: text(o, 'orderType') === 'Qi' });
 
   // Perfection counts the best player in each category; obelisks, the clock and walnuts are shared
   const perfection = { ...players[0].perfection };
@@ -228,7 +276,14 @@ export function readJournal(root) {
   }
 
   return {
-    storage, machines, crops, animals, players, perfection, rarecrows,
+    storage, machines, crops, animals, players, perfection, rarecrows, fishPonds, walnuts,
+    island: { open: hostMail.has('willyBoatFixed'), upgrades: [...hostMail].filter(f => f.startsWith('Island_')) },
+    orders: {
+      done: kids(kid(root, 'completedSpecialOrders'), 'string').map(s => s.textContent.trim()),
+      active: kids(kid(root, 'specialOrders'), 'SpecialOrder').map(quest),
+      board: kids(kid(root, 'availableSpecialOrders'), 'SpecialOrder').map(quest)
+    },
+    grandpaScore: num(farm?.el, 'grandpaScore'),
     donated: donated.size,
     world: { weather: text(root, 'weatherForTomorrow') || 'Sun', luck: Number(text(root, 'dailyLuck')) || 0, lostBooks: num(root, 'lostBooksFound'), walnuts: num(root, 'goldenWalnutsFound') }
   };

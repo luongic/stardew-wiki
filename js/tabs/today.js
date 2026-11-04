@@ -211,6 +211,13 @@ function morningCard(d) {
       ? `: ${t('bạn đang có')} ${have.slice(0, 5).map(x => `<img src="${x.g.icon}" alt="" title="${x.g.name}" class="pixel-img">`).join('')}`
       : ` · ${t('chưa có món họ rất thích trong túi hay rương')}`}</span>`);
   }
+  // Gifts this week (two per villager, the week starts on Monday)
+  const giftLines = players.filter(p => p.friends).map(p => {
+    const left = Object.entries(p.friends).filter(([who, f]) => f.giftsWeek < 2 && NPCS_DATA.some(n => n.nameEn === who || n.nameEn === `Mayor ${who}` || (who === 'Wizard' && n.nameEn.startsWith('Wizard'))));
+    return `${players.length > 1 ? `<strong data-no-i18n>${esc(p.name)}</strong> ` : ''}${t(`${left.length} người chưa đủ 2 quà`)}`;
+  });
+  if (giftLines.length) lines.push(`${ico('gift')} <span>${t('Quà tuần này')}: ${giftLines.join(' · ')}${d.day % 7 === 0 ? ` · <strong>${t('hôm nay Chủ Nhật là ngày cuối để tặng trong tuần')}</strong>` : ''}
+    <button class="link-btn" type="button" data-action="journal-friends-gifts">${t('Xem')}</button></span>`);
   // Quests: each player has their own log
   const logs = players.filter(p => p.quests?.length);
   const quests = logs.flatMap(p => p.quests);

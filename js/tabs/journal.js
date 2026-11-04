@@ -12,7 +12,8 @@ import { NPCS_DATA } from '../../data/npcs-data.js';
 import { ITEMS_DATA } from '../../data/items-data.js';
 import { RECIPES_DATA } from '../../data/recipes-data.js';
 import { FARM_ITEMS } from '../../data/farm-data.js';
-import { MONSTER_GOALS, PERFECTION, STARDROPS, STAT_GROUPS, RARECROWS } from '../../data/journal-data.js';
+import { MONSTER_GOALS, PERFECTION, STARDROPS, STAT_GROUPS, RARECROWS, WALLET } from '../../data/journal-data.js';
+import { dateLabel } from '../predict/core.js';
 import { QUEST_INFO, ACHIEVEMENTS } from '../../data/save-data.js';
 import { MUSEUM_ITEMS } from '../../data/museum-data.js';
 import { ico } from '../lib/icons.js';
@@ -21,17 +22,22 @@ import { loadJSON, KEYS } from '../lib/storage.js';
 import { matches } from '../lib/templates.js';
 import { focusFarmTiles } from './farm.js';
 import { OBJECT_NAMES } from '../../data/item-ids.js';
-import { itemTag } from '../lib/item-lookup.js';
+import { itemTag, itemInfo } from '../lib/item-lookup.js';
 import { isStale, staleNotice } from '../lib/journal-schema.js';
 
 const SECTIONS = [
   { id: 'friends', name: 'Tình bạn', icon: 'loved' },
+  { id: 'events', name: 'Sự kiện tim', icon: 'x_bouquet' },
   { id: 'quests', name: 'Nhiệm vụ', icon: 'quests' },
+  { id: 'orders', name: 'Đơn hàng đặc biệt', icon: 'specialOrders' },
   { id: 'storage', name: 'Túi & Rương', icon: 'chest' },
   { id: 'machines', name: 'Máy móc', icon: 'keg' },
   { id: 'crops', name: 'Mùa vụ', icon: 'crops' },
   { id: 'animals', name: 'Vật nuôi', icon: 'animal' },
   { id: 'collection', name: 'Bộ sưu tập', icon: 'museum' },
+  { id: 'wallet', name: 'Ví đặc biệt', icon: 'rusty_key' },
+  { id: 'island', name: 'Đảo Gừng', icon: 'golden_walnut' },
+  { id: 'grandpa', name: 'Ông nội', icon: 'x_statue_of_perfection' },
   { id: 'stats', name: 'Thống kê', icon: 'steps' },
   { id: 'monsters', name: 'Diệt quái', icon: 'skull' },
   { id: 'perfection', name: 'Hoàn Hảo', icon: 'tracker' }
@@ -39,7 +45,7 @@ const SECTIONS = [
 const SEASONS = ['spring', 'summer', 'fall', 'winter'];
 const SEASON_WORD = { spring: 'Xuân', summer: 'Hạ', fall: 'Thu', winter: 'Đông' };
 
-const ui = { section: 'friends', friendFilter: 'all', search: '', hints: false, player: 0 };
+const ui = { section: 'friends', friendFilter: 'all', eventFilter: 'all', search: '', hints: false, walnutHints: false, player: 0 };
 
 // ---------- names & icons for the game's English names ----------
 const byEn = new Map();
@@ -49,6 +55,7 @@ const clean = s => String(s || '').replace(/\s*\([^)]*\)\s*$/, '');
 const info = en => { const s = String(en).toLowerCase(), base = s.replace(/\s*\(.*\)$/, ''); return byEn.get(s) || byEn.get(base) || byEn.get(base.replace(/^(large |big )/, '')); };
 const itemName = en => { const x = info(en); return x ? (isEn ? x.nameEn : clean(x.name)) : en; };
 const itemIcon = en => { const x = info(en); return x?.imageUrl || x?.icon || x?.sprite || 'assets/pixel-box.svg'; };
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const img = (src, cls = '') => `<img src="${src}" alt="" class="pixel-img ${cls}" loading="lazy" data-fallback="hide">`;
 
 const PLACE = { Farm: 'Nông trại', FarmHouse: 'Nhà chính', Greenhouse: 'Nhà kính', Cellar: 'Hầm rượu', IslandWest: 'Nông trại Đảo Gừng',
@@ -228,7 +235,7 @@ function cropsHtml(d) {
 }
 
 function animalsHtml(d) {
-  if (!d.animals.length) return `<p class="muted">${t('Chưa có vật nuôi nào trong save.')}</p>`;
+  if (!d.animals.length) return `<p class="muted">${t('Chưa có vật nuôi nào trong save.')}</p>${fishPondsHtml(d)}`;
   return `
     <div class="journal-grid">
       ${d.animals.sort((a, b) => a.where.localeCompare(b.where) || b.friendship - a.friendship).map(a => `
@@ -245,7 +252,30 @@ function animalsHtml(d) {
           <p class="friend-card__row">${a.pet ? `${ico('check')} ${t('Đã vuốt ve hôm nay')}` : `${ico('warn')} ${t('Chưa vuốt ve hôm nay')}`}</p>
           ${a.produce ? `<p class="friend-card__row">${img(itemIcon(a.produce))} ${itemName(a.produce)}</p>` : ''}
         </article>`).join('')}
-    </div>`;
+    </div>
+    ${fishPondsHtml(d)}`;
+}
+
+// Fish ponds: how full each is and what the next population quest asks for
+function fishPondsHtml(d) {
+  if (!d.fishPonds) return '';
+  return `
+    <h3 class="journal-sub">${ico('bldg_fish_pond')} ${t('Bể nuôi cá')}: ${d.fishPonds.length}</h3>
+    ${d.fishPonds.length ? `<div class="journal-grid">
+      ${d.fishPonds.map(p => {
+        const fish = OBJECT_NAMES[p.fish] || p.fish;
+        return `
+        <article class="journal-card pond-card">
+          <h3 class="journal-card__title">${itemTag(fish)}</h3>
+          <p class="goal-row__head"><span>${t('Số cá')}</span> <strong>${p.count}/${p.max}</strong></p>
+          ${bar(p.count, Math.max(1, p.max))}
+          ${p.asked ? `<p class="friend-card__row">${ico('quests')} ${t('Cá muốn')}: ${itemTag(p.need, ` ×${p.needCount}`)} <span class="muted">${t('để bể chứa thêm cá')}</span></p>` : ''}
+          ${!p.asked && p.count >= p.max && p.max >= 10 ? `<p class="friend-card__row">${ico('check')} ${t('Bể đã đầy tối đa')}</p>` : ''}
+          ${p.output ? `<p class="friend-card__row">${ico('gift')} ${t('Có sản phẩm để lấy')}: ${itemTag(p.output, p.outputStack > 1 ? ` ×${p.outputStack}` : '')}</p>` : ''}
+          <button class="link-btn" type="button" data-action="journal-map" data-x="${p.x + 2}" data-y="${p.y + 2}">${ico('map')} ${t('Xem trên bản đồ nông trại')}</button>
+        </article>`;
+      }).join('')}
+    </div>` : `<p class="muted">${t('Chưa có bể nuôi cá nào. Robin xây Bể nuôi cá với 5.000g, 200 Đá, 5 Rong biển và 5 Tảo xanh.')}</p>`}`;
 }
 
 // Reward of a monster goal: the item (icon, opens its popup) or Marlon's phone number
@@ -471,8 +501,229 @@ function statsHtml(d) {
     </div>`;
 }
 
+// ---------- Lists that load the first time their section opens ----------
+const LAZY = { events: () => import('../../data/heart-events-data.js'), island: () => import('../../data/island-data.js'), orders: () => import('../../data/special-orders-data.js') };
+const lazy = {};
+function need(id) {
+  if (lazy[id]?.data) return lazy[id].data;
+  lazy[id] ||= { p: LAZY[id]().then(m => { lazy[id].data = m; render(); }).catch(e => { console.error('[journal]', id, e); delete lazy[id]; }) };
+  return null;
+}
+const loadingHtml = () => `<p class="muted">${ico('hourglass')} ${t('Đang tải...')}</p>`;
+const tx = (x, f) => (isEn ? x[`${f}En`] : x[f]) || x[f] || '';
+const daysPlayedOf = day => day ? (day.year - 1) * 112 + SEASONS.indexOf(day.season) * 28 + day.day : 0;
+
+// ---------- Heart events ----------
+function eventsHtml(d) {
+  const data = need('events');
+  if (!data) return loadingHtml();
+  const p = me(d);
+  if (!p.events) return reloadHint();
+  const seen = new Set(p.events);
+  const cards = Object.entries(data.HEART_EVENTS).map(([who, all]) => {
+    const f = p.friends[who];
+    if (!f) return null;
+    // 14-heart events only matter for the spouse
+    const list = all.filter(e => e.h < 14 || f.status === 'Married');
+    const hearts = Math.floor(f.points / 250);
+    const rows = list.map(e => ({ e, seen: e.ids.some(id => seen.has(String(id))), ready: hearts >= e.h }));
+    return { who, f, hearts, rows, npc: npcOf(who), missing: rows.filter(r => !r.seen).length, ready: rows.filter(r => !r.seen && r.ready).length };
+  }).filter(c => c && c.rows.length);
+  const total = cards.reduce((a, c) => a + c.rows.length, 0), missing = cards.reduce((a, c) => a + c.missing, 0), ready = cards.reduce((a, c) => a + c.ready, 0);
+  let list = cards;
+  if (ui.eventFilter === 'ready') list = cards.filter(c => c.ready);
+  if (ui.eventFilter === 'missing') list = cards.filter(c => c.missing);
+  list.sort((a, b) => b.ready - a.ready || b.hearts - a.hearts);
+  const chip = (id, label) => `<button class="chip ${ui.eventFilter === id ? 'is-active' : ''}" type="button" data-action="journal-events" data-filter="${id}">${t(label)}</button>`;
+  return `
+    <p class="notes-done">${ico('x_bouquet')} ${t('Đã xem')} <strong>${total - missing}/${total}</strong> ${t('sự kiện tim của những người bạn đã gặp')} · <strong>${ready}</strong> ${t('sự kiện đủ tim để xem ngay')}</p>
+    <div class="journal-filters">${chip('all', 'Tất cả')}${chip('ready', 'Xem được ngay')}${chip('missing', 'Còn sự kiện chưa xem')}</div>
+    <p class="muted">${t('Theo danh sách sự kiện đã xem trong file save. Sự kiện 14 tim chỉ hiện với người bạn đã cưới.')}</p>
+    <div class="journal-grid">
+      ${list.map(c => `
+        <article class="journal-card event-card">
+          <header class="friend-card__head">
+            ${c.npc ? img(c.npc.avatar, 'friend-card__face') : ''}
+            <div>
+              <h3>${c.npc ? nm(c.npc) : `<span data-no-i18n>${esc(c.who)}</span>`}</h3>
+              <p class="muted">${c.hearts} ${t('tim')} · ${t('đã xem')} ${c.rows.length - c.missing}/${c.rows.length}</p>
+            </div>
+          </header>
+          <ul class="event-list">
+            ${c.rows.map(({ e, seen: s, ready: r }) => `
+              <li class="${s ? 'is-done' : r ? 'is-ready' : 'is-locked'}">
+                <div class="event-list__head"><span class="tag ${s ? 'tag--green' : r ? 'tag--gold' : ''}">${e.h} ${t('tim')}</span>
+                  <strong data-no-i18n>${esc(tx(e, 'name'))}</strong>
+                  ${s ? `${ico('check')}` : r ? `<span class="tag tag--gold">${t('Xem được ngay')}</span>` : `<span class="muted">${t(`Cần ${e.h} tim`)}</span>`}</div>
+                ${s ? '' : `<p data-no-i18n>${ico('map')} ${esc(tx(e, 'where'))}${tx(e, 'when') ? ` · ${esc(tx(e, 'when'))}` : ''}</p>
+                  ${tx(e, 'note') ? `<p class="muted" data-no-i18n>${esc(tx(e, 'note'))}</p>` : ''}`}
+              </li>`).join('')}
+          </ul>
+        </article>`).join('') || `<p class="muted">${t('Không có ai khớp bộ lọc.')}</p>`}
+    </div>
+    <p class="muted">${t('Nguồn: mã sự kiện theo stardew-checkup (MouseyPounds), điều kiện theo Official Stardew Valley Wiki.')}</p>`;
+}
+
+// ---------- Special orders ----------
+function ordersHtml(d) {
+  const data = need('orders');
+  if (!data) return loadingHtml();
+  const o = d.orders;
+  if (!o) return reloadHint();
+  const done = new Set(o.done), active = new Map(o.active.map(a => [a.key, a])), board = new Set(o.board.map(b => b.key));
+  const group = (id, title, icon, intro) => {
+    const list = data.SPECIAL_ORDERS.filter(x => x.board === id);
+    return `
+      <h3 class="journal-sub">${ico(icon)} ${t(title)}: ${list.filter(x => done.has(x.id)).length}/${list.length}</h3>
+      <p class="muted">${t(intro)}</p>
+      <div class="journal-grid">
+        ${list.map(x => {
+          const npc = npcOf(x.giver), a = active.get(x.id);
+          return `
+          <article class="journal-card quest-card ${done.has(x.id) ? 'is-done' : ''}">
+            <h3 class="journal-card__title">${npc ? img(npc.avatar, 'friend-card__face') : ico(icon)} <span data-no-i18n>${esc(tx(x, 'name'))}</span></h3>
+            <p class="friend-card__row">
+              ${done.has(x.id) ? `<span class="tag tag--green">${ico('check')} ${t('Đã hoàn thành')}</span>` : ''}
+              ${a ? `<span class="tag tag--gold">${ico('hourglass')} ${t('Đang làm')} · ${t('hạn')} ${dateLabel(a.due)}</span>` : board.has(x.id) ? `<span class="tag tag--gold">${ico('quests')} ${t('Đang có trên bảng')}</span>` : ''}
+              ${x.days ? `<span class="tag">${ico('hourglass')} ${t(`${x.days} ngày`)}</span>` : ''}
+              ${x.repeat ? `<span class="tag">${t('Lặp lại được')}</span>` : ''}
+            </p>
+            <p data-no-i18n>${esc(tx(x, 'task'))}</p>
+            ${tx(x, 'needs') ? `<p class="muted" data-no-i18n>${ico('lock')} ${esc(tx(x, 'needs'))}</p>` : ''}
+            <p class="friend-card__row">${ico('gift')} <span data-no-i18n>${esc(tx(x, 'reward'))}</span></p>
+            ${x.rewardItems?.some(itemInfo) ? `<div class="friend-card__gifts">${x.rewardItems.filter(itemInfo).map(en => itemTag(en)).join('')}</div>` : ''}
+            ${x.site ? `<button class="btn btn--ghost" type="button" data-action="open-detail" data-type="quest" data-id="${x.site}">${ico('search')} ${t('Xem hướng dẫn')}</button>` : ''}
+          </article>`;
+        }).join('')}
+      </div>`;
+  };
+  return `
+    ${group('town', 'Bảng đơn hàng thị trấn', 'specialOrders', 'Bảng cạnh cửa tiệm Pierre, mở từ ngày 2 Mùa Thu năm 1. Mỗi thứ Hai có đơn mới; mỗi lần chỉ nhận một đơn.')}
+    ${group('qi', 'Đơn hàng của Mr. Qi', 'qi_gem', 'Trong Phòng Óc Chó của Mr. Qi trên Đảo Gừng (cần 100 Óc chó Vàng). Phần thưởng là Ngọc Qi.')}
+    <p class="muted">${t('Nguồn: mã đơn theo stardew-checkup (MouseyPounds), nội dung theo Official Stardew Valley Wiki.')}</p>`;
+}
+
+// ---------- Special items & powers ----------
+function walletHtml(d) {
+  const p = me(d);
+  if (!p.wallet) return reloadHint();
+  const have = new Set(p.wallet);
+  return `
+    <p class="notes-done">${ico('rusty_key')} ${t('Đã có')} <strong>${have.size}/${WALLET.length}</strong> ${t('món đặc biệt và năng lực')}</p>
+    <p class="muted">${t('Như trang Đồ đặc biệt & Năng lực trong Bộ sưu tập của game. Chìa khóa và sách dịch dùng chung cả nông trại.')}</p>
+    <div class="journal-grid">
+      ${WALLET.map(w => `
+        <article class="journal-card wallet-card ${have.has(w.id) ? 'is-done' : 'is-dim'}">
+          <h3 class="journal-card__title">${ico(w.icon)} ${nm(w)}</h3>
+          <p class="friend-card__row">${have.has(w.id) ? `<span class="tag tag--green">${ico('check')} ${t('Đã có')}</span>` : `<span class="tag">${t('Chưa có')}</span>`}</p>
+          <p data-no-i18n>${esc(tx(w, 'how'))}</p>
+        </article>`).join('')}
+    </div>`;
+}
+
+// ---------- Ginger Island: walnuts and upgrades ----------
+function islandHtml(d) {
+  const data = need('island');
+  if (!data) return loadingHtml();
+  const w = d.walnuts;
+  if (!w) return reloadHint();
+  const got = x => x.kind === 'tracker' ? (w.tracker.includes(x.key) ? x.n : 0) : x.kind === 'coconut' ? (w.coconut ? 1 : 0) : Math.min(x.n, w.limited[x.key] || 0);
+  const total = data.WALNUTS.reduce((a, x) => a + x.n, 0);
+  const found = w.found;
+  const bought = new Set(d.island.upgrades);
+  const left = data.ISLAND_UPGRADES.filter(u => !bought.has(u.flag));
+  const milestone = (n, label) => `<li class="${found >= n ? 'is-done' : ''}">${found >= n ? ico('check') : ico('lock')} ${t(label)} <span class="muted">(${Math.min(found, n)}/${n})</span></li>`;
+  return `
+    ${d.island.open ? '' : `<p class="callout callout--tip">${ico('lock')} ${t('Chưa tới được Đảo Gừng. Sau khi hoàn thành Nhà Cộng Đồng (hoặc Joja), sửa thuyền của Willy với 200 Gỗ Cứng, 5 Thỏi Iridium và 5 Pin.')}</p>`}
+    <div class="perfection-total">
+      <strong>${found}/${total}</strong> ${ico('golden_walnut')}
+      ${bar(found, total)}
+      <ul class="journal-hints">${milestone(10, 'Leo tin tưởng (10 quả)')}${milestone(100, 'Mở Phòng Óc Chó của Mr. Qi (100 quả)')}${milestone(total, 'Tìm đủ mọi Óc chó Vàng')}</ul>
+      ${found < total ? `<p class="muted">${t(`Vẹt Vàng Joja nhặt hộ số còn lại với giá ${((total - found) * 10000).toLocaleString('vi-VN')}g.`)}</p>` : w.parrot ? `<p class="muted">${t('Đã dùng Vẹt Vàng Joja.')}</p>` : ''}
+    </div>
+    <h3 class="journal-sub">${ico('ginger')} ${t('Nâng cấp trên đảo')}: ${data.ISLAND_UPGRADES.length - left.length}/${data.ISLAND_UPGRADES.length}
+      ${left.length ? `<span class="muted">· ${t(`còn ${left.reduce((a, u) => a + u.cost, 0)} quả để mua hết`)}</span>` : ''}</h3>
+    <div class="goal-list">
+      ${data.ISLAND_UPGRADES.map(u => `
+        <div class="goal-row ${bought.has(u.flag) ? 'is-done' : ''}">
+          <div class="goal-row__body">
+            <div class="goal-row__head"><strong>${nm(u)}</strong> <span>${bought.has(u.flag) ? `${ico('check')} ${t('Đã mua')}` : `${u.cost} ${ico('golden_walnut')}`}</span></div>
+            <p class="goal-row__reward" data-no-i18n>${esc(tx(u, 'desc'))}</p>
+          </div>
+        </div>`).join('')}
+    </div>
+    <h3 class="journal-sub">${ico('golden_walnut')} ${t('Óc chó Vàng theo khu vực')}</h3>
+    <label class="toggle"><input type="checkbox" class="px-check" data-action="journal-walnut-hints" ${ui.walnutHints ? 'checked' : ''}> <span>${t('Hiện gợi ý chỗ tìm những quả còn thiếu')}</span></label>
+    ${data.WALNUT_AREAS.map(area => {
+      const list = data.WALNUTS.filter(x => x.area === area.id);
+      if (!list.length) return '';
+      const have = list.reduce((a, x) => a + got(x), 0), all = list.reduce((a, x) => a + x.n, 0);
+      return `
+        <details class="walnut-area" ${d.island.open && have < all ? 'open' : ''}>
+          <summary><strong>${nm(area)}</strong> <span class="muted">${have}/${all}</span></summary>
+          <ul class="walnut-list">
+            ${list.map(x => {
+              const g = got(x);
+              return `<li class="${g >= x.n ? 'is-done' : ''}">${g >= x.n ? ico('check') : ico('golden_walnut')} <strong>${nm(x)}</strong>${x.n > 1 ? ` <span class="muted">${g}/${x.n}</span>` : ''}
+                ${g < x.n && ui.walnutHints && tx(x, 'hint') ? `<p class="muted" data-no-i18n>${esc(tx(x, 'hint'))}</p>` : ''}</li>`;
+            }).join('')}
+          </ul>
+        </details>`;
+    }).join('')}
+    <p class="muted">${t('Nguồn: cách đếm theo stardew-checkup (MouseyPounds), gợi ý theo Official Stardew Valley Wiki.')}</p>`;
+}
+
+// ---------- Grandpa's evaluation (Utility.getGrandpaScore) ----------
+function grandpaHtml(d) {
+  const g = me(d).grandpa;
+  if (!g) return reloadHint();
+  const m = g.money, fmt = n => n.toLocaleString('vi-VN');
+  const cc = g.ccDone || g.ccRooms >= 6;
+  const rows = [
+    ...[[5e4, 1], [1e5, 1], [2e5, 1], [3e5, 1], [5e5, 1], [1e6, 2]].map(([n, pts]) => [pts, m >= n, `Tổng thu nhập ${fmt(n)}g`, m < n ? `còn ${fmt(n - m)}g` : '']),
+    [1, g.achievements.includes(5), 'Thành tựu "Bộ Sưu Tập Hoàn Chỉnh" (quyên góp đủ Bảo Tàng)'],
+    [1, g.achievements.includes(26), 'Thành tựu "Bậc Thầy Câu Cá" (câu đủ mọi loài cá)'],
+    [1, g.achievements.includes(34), 'Thành tựu "Giao Hàng Toàn Diện" (giao bán đủ mọi món)'],
+    [1, cc, 'Hoàn thành Nhà Cộng Đồng', g.joja ? 'không thể: đã là hội viên Joja' : cc ? '' : `${g.ccRooms}/6 ${t('khu')}`],
+    [2, g.ccDone, 'Dự lễ khánh thành Nhà Cộng Đồng', g.joja ? 'không thể: đã là hội viên Joja' : ''],
+    [1, g.rustyKey, 'Có Chìa khóa Gỉ (mở Cống Ngầm)'],
+    [1, g.skullKey, 'Có Chìa khóa Đầu lâu (tầng 120 Hầm Mỏ)'],
+    [1, g.married && g.house >= 2, 'Đã kết hôn và nâng nhà lên cấp 2', `${g.married ? t('đã kết hôn') : t('chưa kết hôn')} · ${t('nhà cấp')} ${g.house}`],
+    [1, g.friends8 >= 5, '5 người bạn từ 8 tim', `${Math.min(g.friends8, 5)}/5`],
+    [1, g.friends8 >= 10, '10 người bạn từ 8 tim', `${Math.min(g.friends8, 10)}/10`],
+    [1, g.level >= 15, 'Cấp nông dân 15', `${g.level}/15`],
+    [1, g.level >= 25, 'Cấp nông dân 25', `${g.level}/25`],
+    [1, g.petLove >= 999, 'Thú cưng thương bạn hết mức']
+  ];
+  const points = rows.reduce((a, [pts, ok]) => a + (ok ? pts : 0), 0);
+  const candles = points >= 12 ? 4 : points >= 8 ? 3 : points >= 4 ? 2 : 1;
+  const next = [4, 8, 12].find(n => n > points);
+  const now = daysPlayedOf(d.day), evalDay = 225;
+  return `
+    <div class="perfection-total grandpa-total">
+      <div class="grandpa-candles" title="${candles}/4">${[1, 2, 3, 4].map(i => `<span class="${i <= candles ? 'is-lit' : ''}">${ico('farm_torch')}</span>`).join('')}</div>
+      <strong>${points}/21 ${t('điểm')} · ${candles} ${t('nến')}</strong>
+      ${bar(points, 21)}
+      <p class="muted">${next ? t(`Thêm ${next - points} điểm nữa để được ${candles + 1} nến.`) : t('Đủ 4 nến: Ông nội tặng Tượng Hoàn Hảo.')}</p>
+      <p class="muted">${d.grandpaScore
+        ? t(`Ông nội đã chấm ${d.grandpaScore} nến. Đặt 1 Kim cương lên điện thờ để được chấm lại.`)
+        : now && now < evalDay ? t(`Ông nội sẽ chấm vào sáng ngày 1 Mùa Xuân năm 3, còn ${evalDay - now} ngày.`) : t('Ông nội chấm vào sáng ngày 1 Mùa Xuân năm 3.')}
+        ${t('Điểm tính cho người chơi đang chọn.')}</p>
+    </div>
+    <div class="goal-list">
+      ${rows.map(([pts, ok, label, extra]) => `
+        <div class="goal-row ${ok ? 'is-done' : ''}">
+          <div class="goal-row__body">
+            <div class="goal-row__head"><strong>${ok ? ico('check') : ''} ${t(label)}</strong> <span>${ok ? '' : extra ? `<span class="muted">${t(extra)}</span> · ` : ''}+${pts}</span></div>
+          </div>
+        </div>`).join('')}
+    </div>
+    <p class="muted">${t('Nguồn: cách tính theo stardew-checkup (MouseyPounds) và Official Stardew Valley Wiki (Grandpa).')}</p>`;
+}
+
 const RENDER = { friends: friendsHtml, quests: questsHtml, storage: storageHtml, machines: machinesHtml, crops: cropsHtml, animals: animalsHtml,
-  collection: collectionHtml, stats: statsHtml, monsters: monstersHtml, perfection: perfectionHtml };
+  collection: collectionHtml, stats: statsHtml, monsters: monstersHtml, perfection: perfectionHtml,
+  events: eventsHtml, orders: ordersHtml, wallet: walletHtml, island: islandHtml, grandpa: grandpaHtml };
 
 function render() {
   const el = document.getElementById('journalBoard');
@@ -525,7 +776,10 @@ export default {
     'journal-player': (app, el) => { ui.player = Number(el.dataset.index) || 0; render(); },
     // From other tabs: open the journal on one section
     'journal-open': (app, el) => { ui.section = el.dataset.section; app.switchTab('journal'); app.sfx.play('click'); },
+    'journal-friends-gifts': app => { ui.section = 'friends'; ui.friendFilter = 'gifts'; app.switchTab('journal'); app.sfx.play('click'); },
     'journal-hints': (app, el) => { ui.hints = el.checked; render(); },
+    'journal-events': (app, el) => { ui.eventFilter = el.dataset.filter; render(); },
+    'journal-walnut-hints': (app, el) => { ui.walnutHints = el.checked; render(); },
     'journal-map': (app, el) => {
       app.switchTab('farm');
       focusFarmTiles([{ x: Number(el.dataset.x), y: Number(el.dataset.y) }]);

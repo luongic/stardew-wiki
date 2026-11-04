@@ -110,3 +110,39 @@ export const RARECROWS = [
   { n: 7, id: '139', source: 'Quyên góp 20 cổ vật (không tính khoáng sản) cho Bảo Tàng; sau đó mua thêm được ở Chợ Đêm.', sourceEn: 'Donate 20 artifacts (minerals do not count) to the Museum; later also sold at the Night Market.' },
   { n: 8, id: '140', source: 'Quyên góp 40 món cho Bảo Tàng; sau đó mua thêm được ở Chợ Đêm.', sourceEn: 'Donate 40 items to the Museum; later also sold at the Night Market.' }
 ];
+
+// Special items & powers (Collections > Special Items & Powers, Data/Powers). How the save
+// tells each one: a mail flag, a seen event or a stat. `host`: shared, the host's flag counts.
+// From stardew-checkup by MouseyPounds (MIT License); sources: Official Stardew Valley Wiki.
+export const WALLET = [
+  { id: 'RustyKey', flag: 'HasRustyKey', host: true, icon: 'rusty_key', name: 'Chìa khóa Gỉ', nameEn: 'Rusty Key',
+    how: 'Quyên góp 60 món cho Bảo Tàng; Gunther trao chìa mở Cống Ngầm.', howEn: 'Donate 60 items to the Museum; Gunther gives the key to the Sewers.' },
+  { id: 'SkullKey', flag: 'HasSkullKey', host: true, icon: 'skull_key', name: 'Chìa khóa Đầu lâu', nameEn: 'Skull Key',
+    how: 'Xuống tới tầng 120 của Hầm Mỏ; mở Hang Đầu Lâu và máy Junimo Kart.', howEn: 'Reach floor 120 of the Mines; opens Skull Cavern and Junimo Kart.' },
+  { id: 'DwarvishTranslationGuide', flag: 'HasDwarvishTranslationGuide', host: true, icon: 'dwarvish_translation_guide', name: 'Sách dịch tiếng Người Lùn', nameEn: 'Dwarvish Translation Guide',
+    how: 'Quyên góp đủ 4 Cuộn Giấy Người Lùn cho Bảo Tàng; nói chuyện được với Người Lùn.', howEn: 'Donate all 4 Dwarf Scrolls to the Museum; lets you talk to the Dwarf.' },
+  { id: 'ClubCard', flag: 'HasClubCard', icon: 'wallet_club_card', name: 'Thẻ Hội viên', nameEn: 'Club Card',
+    how: 'Làm theo chuỗi gợi ý của Mr. Qi bắt đầu từ Mật thư #22 (đường hầm ở Trạm Xe Buýt); mở Sòng bạc ở Sa Mạc.', howEn: "Follow Mr. Qi's trail that starts with Secret Note #22 (the Bus Stop tunnel); opens the Casino in the desert." },
+  { id: 'SpecialCharm', flag: 'HasSpecialCharm', icon: 'luck', name: 'Bùa May mắn', nameEn: 'Special Charm',
+    how: 'Làm theo Mật thư #20 (cách làm ở tab Mật Thư); tăng vận may mỗi ngày.', howEn: 'Follow Secret Note #20 (see the Secret Notes tab); raises daily luck.' },
+  { id: 'MagnifyingGlass', flag: 'HasMagnifyingGlass', icon: 'wallet_magnifying_glass', name: 'Kính lúp', nameEn: 'Magnifying Glass',
+    how: 'Nhiệm vụ "Bí ẩn Mùa Đông" (từ Mùa Đông năm 1); nhặt được Mật thư.', howEn: 'The "A Winter Mystery" quest (from Winter, year 1); lets you find Secret Notes.' },
+  { id: 'DarkTalisman', flag: 'HasDarkTalisman', icon: 'wallet_dark_talisman', name: 'Bùa Hắc ám', nameEn: 'Dark Talisman',
+    how: 'Nhiệm vụ Bùa Hắc ám: tìm bùa trong Hang Bọ Đột Biến (qua Cống Ngầm); mở đường tới Đầm lầy Phù thủy.', howEn: "The Dark Talisman quest: find it in the Mutant Bug Lair (through the Sewers); opens the way to the Witch's Swamp." },
+  { id: 'MagicInk', flag: 'HasMagicInk', icon: 'wallet_magic_ink', name: 'Mực Phép thuật', nameEn: 'Magic Ink',
+    how: 'Nhiệm vụ "Goblin Phiền toái" ở Đầm lầy Phù thủy; Phù thủy mở việc xây công trình phép.', howEn: 'The Goblin Problem quest in the Witch\'s Swamp; the Wizard can then build magic buildings.' },
+  { id: 'KeyToTheTown', flag: 'HasTownKey', icon: 'wallet_key_to_the_town', name: 'Chìa khóa Thị trấn', nameEn: 'Key To The Town',
+    how: 'Mua ở Phòng Óc Chó của Mr. Qi với 20 Ngọc Qi; vào mọi nhà bất kỳ giờ nào.', howEn: "Bought in Qi's Walnut Room for 20 Qi Gems; enter any building at any hour." },
+  { id: 'ForestMagic', flag: 'canReadJunimoText', icon: 'wallet_forest_magic', name: 'Phép Rừng', nameEn: 'Forest Magic',
+    how: 'Uống thuốc của Phù thủy (nhiệm vụ Gặp Phù thủy); đọc được chữ Junimo ở Nhà Cộng Đồng.', howEn: "Drink the Wizard's potion (Meet the Wizard); read the Junimos' writing." },
+  { id: 'BearPaw', event: '2120303', icon: 'wallet_bears_knowledge', name: 'Kiến thức của Gấu', nameEn: "Bear's Knowledge",
+    how: 'Mật thư #23: mang Siro Phong cho chú gấu ở Rừng Bí Mật; Mâm xôi đen và Mâm xôi hồng bán giá gấp 3.', howEn: 'Secret Note #23: bring Maple Syrup to the bear in the Secret Woods; Blackberries and Salmonberries sell for 3x.' },
+  { id: 'SpringOnionMastery', event: '3910979', icon: 'wallet_spring_onion_mastery', name: 'Bậc thầy Hành Xuân', nameEn: 'Spring Onion Mastery',
+    how: 'Xem sự kiện 8 tim chung của Jas và Vincent (mục Sự kiện tim); Hành Xuân bán giá gấp 5.', howEn: "See Jas and Vincent's shared 8-heart event (Heart events section); Spring Onions sell for 5x." },
+  { id: 'Mastery_Farming', stat: 'mastery_0', icon: 'skill_mastery', name: 'Thành Thạo Trồng trọt', nameEn: 'Farming Mastery',
+    how: 'Lên cấp 10 mọi kỹ năng, tới Hang Thành Thạo rồi đủ điểm Thành Thạo để mở.', howEn: 'Max every skill, then earn Mastery points and claim it in the Mastery Cave.' },
+  { id: 'Mastery_Fishing', stat: 'mastery_1', icon: 'skill_mastery', name: 'Thành Thạo Câu cá', nameEn: 'Fishing Mastery', how: 'Như trên.', howEn: 'As above.' },
+  { id: 'Mastery_Foraging', stat: 'mastery_2', icon: 'skill_mastery', name: 'Thành Thạo Hái lượm', nameEn: 'Foraging Mastery', how: 'Như trên.', howEn: 'As above.' },
+  { id: 'Mastery_Mining', stat: 'mastery_3', icon: 'skill_mastery', name: 'Thành Thạo Khai khoáng', nameEn: 'Mining Mastery', how: 'Như trên.', howEn: 'As above.' },
+  { id: 'Mastery_Combat', stat: 'mastery_4', icon: 'skill_mastery', name: 'Thành Thạo Chiến đấu', nameEn: 'Combat Mastery', how: 'Như trên.', howEn: 'As above.' }
+];

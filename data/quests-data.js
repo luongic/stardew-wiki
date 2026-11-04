@@ -530,7 +530,7 @@ export const QUESTS_DATA = [
     giver: "Linus",
     giverIcon: "🗑️",
     unlockCondition: "Mở khóa Bảng Đơn Hàng Lớn (Special Orders Board) vào Mùa Thu Năm 1",
-    reward: "500g & Công thức Thùng Tái Chế Sợi (Fiber Maker) & Cắt cảnh hồ nước sạch đẹp",
+    reward: "500g, 250 điểm tình bạn với Linus & Công thức Hạt giống Cây lấy sợi (Fiber Seeds) & cảnh phim hồ trên núi",
     hidden: false,
     desc: "Linus phát động chiến dịch gom 20 món rác thải từ nguồn nước thung lũng trong 7 ngày.",
     steps: [
@@ -588,7 +588,7 @@ export const QUESTS_DATA = [
     giver: "Pam",
     giverIcon: "🥔",
     unlockCondition: "Bảng Đơn Hàng Lớn của Lewis vào Mùa Xuân",
-    reward: "1,000g & Kênh TV xem phim Fiddlehead TV & 1 Tim tình bạn với Pam",
+    reward: "3,000g, 250 điểm tình bạn với Pam & kênh truyền hình F.I.B.S.",
     hidden: false,
     desc: "Pam muốn thử món rượu mạnh ủ từ 12 củ khoai tây tươi.",
     steps: [
@@ -619,8 +619,8 @@ export const QUESTS_DATA = [
   },
   {
     id: "danger_in_the_mines",
-    name: "Nguy Hiểm Dưới Lòng Đất (Danger in the Mines)",
-    nameEn: "Danger in the Mines",
+    name: "Nguy Hiểm Dưới Lòng Đất (Danger In The Deep)",
+    nameEn: "Danger In The Deep",
     category: "special_orders",
     giver: "Mr. Qi (Phòng Óc Chó)",
     giverIcon: "💀",
