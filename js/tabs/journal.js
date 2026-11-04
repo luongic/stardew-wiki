@@ -12,7 +12,7 @@ import { NPCS_DATA } from '../../data/npcs-data.js';
 import { ITEMS_DATA } from '../../data/items-data.js';
 import { RECIPES_DATA } from '../../data/recipes-data.js';
 import { FARM_ITEMS } from '../../data/farm-data.js';
-import { MONSTER_GOALS, PERFECTION, STARDROPS, STAT_GROUPS } from '../../data/journal-data.js';
+import { MONSTER_GOALS, PERFECTION, STARDROPS, STAT_GROUPS, RARECROWS } from '../../data/journal-data.js';
 import { QUEST_INFO, ACHIEVEMENTS } from '../../data/save-data.js';
 import { MUSEUM_ITEMS } from '../../data/museum-data.js';
 import { ico } from '../lib/icons.js';
@@ -341,6 +341,49 @@ const POWER_BOOKS = Object.keys(OBJECT_NAMES).filter(k => k.startsWith('Book_'))
 const museumById = new Map(MUSEUM_ITEMS.map(m => [m.id, m]));
 const bar = (have, total) => `<div class="skill-bar"><span style="width:${Math.min(100, (have / total) * 100)}%"></span></div>`;
 
+// Stardrops this player has eaten (the missing ones stay behind the hint toggle)
+function stardropsHtml(p) {
+  if (!p.stardrops) return '';
+  const found = STARDROPS.filter(s => p.stardrops.includes(s.flag));
+  const missing = STARDROPS.length - found.length;
+  return `
+    <h3 class="journal-sub">${ico('stardrop')} ${t('Stardrop đã dùng')}: ${found.length}/${STARDROPS.length}</h3>
+    <div class="stardrop-list">
+      ${found.map(s => `<span class="tag tag--green">${ico('stardrop')} ${nm(s)}</span>`).join('') || `<span class="muted">${t('Chưa có Stardrop nào.')}</span>`}
+      ${missing ? `<span class="tag is-dim">${ico('question')} ${t(`Còn ${missing} Stardrop chưa tìm`)}</span>` : ''}
+    </div>
+    ${missing ? `<p class="muted">${t('Nơi tìm các Stardrop còn lại nằm ở mục Hoàn Hảo (bật "Hiện gợi ý").')}</p>` : ''}`;
+}
+
+// The 8 Rarecrows: placed on a map, kept in a chest or backpack, or not found yet
+function rarecrowsHtml(d) {
+  if (!d.rarecrows) return '';
+  const inv = inventory(d);
+  const stored = id => [...inv.values()].filter(e => e.name === 'Rarecrow').flatMap(e => e.places).filter(x => x.s.items.some(i => i.name === 'Rarecrow' && i.id === id));
+  const rows = RARECROWS.map(r => ({ r, placed: d.rarecrows.filter(x => x.id === r.id), kept: stored(r.id) }));
+  const have = rows.filter(x => x.placed.length || x.kept.length).length;
+  return `
+    <h3 class="journal-sub">${ico('rarecrow_1')} ${t('Bù nhìn Quý hiếm')}: ${have}/8</h3>
+    <p class="muted">${t('Đặt đủ 8 loại trên nông trại để nhận thư kèm công thức Bù nhìn Cao cấp.')}</p>
+    <div class="rarecrow-grid">
+      ${rows.map(({ r, placed, kept }) => {
+        const got = placed.length || kept.length;
+        return `
+        <article class="journal-card rarecrow-card ${got ? 'is-done' : ''}">
+          <img src="assets/icons/rarecrow_${r.n}.png" alt="" class="pixel-img rarecrow-card__img ${got ? '' : 'is-dim'}" loading="lazy">
+          <div>
+            <h4>${t('Bù nhìn Quý hiếm')} #${r.n}</h4>
+            ${placed.map(x => `<span class="tag tag--green">${ico('pin')} ${t(place(x))} (${x.x}, ${x.y})
+              ${x.where === 'Farm' ? `<button class="link-btn" type="button" data-action="journal-map" data-x="${x.x}" data-y="${x.y}">${t('Xem trên bản đồ')}</button>` : ''}</span>`).join('')}
+            ${kept.map(x => `<span class="tag">${ico(x.s.kind === 'backpack' ? 'guest' : 'chest')} ${t(place(x.s))}${x.s.x !== undefined ? ` (${x.s.x}, ${x.s.y})` : ''}</span>`).join('')}
+            ${got ? '' : `<span class="tag is-dim">${t('Chưa có')}</span>`}
+            <p class="muted">${isEn ? r.sourceEn : r.source}</p>
+          </div>
+        </article>`;
+      }).join('')}
+    </div>`;
+}
+
 function collectionHtml(d) {
   const p = me(d);
   if (!p.found) return reloadHint();
@@ -370,6 +413,9 @@ function collectionHtml(d) {
           </article>`;
         }).join('')}
       </div>` : `<p>${ico('check')} ${t('Mọi món đã tìm thấy đều đã quyên góp.')}</p>`}
+
+    ${stardropsHtml(p)}
+    ${rarecrowsHtml(d)}
 
     <h3 class="journal-sub">${ico('books')} ${t('Sách năng lực')}: ${p.books.length}/${POWER_BOOKS.length}</h3>
     <div class="book-grid">

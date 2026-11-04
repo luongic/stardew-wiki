@@ -16,7 +16,7 @@ import { openModal, closeModal } from '../lib/ui.js';
 import { nm, isEn } from '../lib/i18n.js';
 import { ITEMS_DATA } from '../../data/items-data.js';
 import { BOOTS, CLOTHES } from '../../data/save-data.js';
-import { setCaughtFish } from './fishing.js';
+import { setCaughtFish, setFishingSeason } from './fishing.js';
 import { applySaveDay } from './today.js';
 import { applySaveFarm, farmPlanIsReplaceable } from './farm.js';
 import { applySavePredict } from './predictor.js';
@@ -357,6 +357,7 @@ function applySave(app) {
   }
   if (checked('syncToday')) {
     const shared = applySaveDay(day);
+    setFishingSeason(day.season);
     done.push(`${t('ngày')} ${day.day} ${SEASON_VI[day.season]}${shared ? ` (${t('đã chia sẻ')})` : ''}`);
   }
   if (journal && checked('syncJournal')) {

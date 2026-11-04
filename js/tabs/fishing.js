@@ -30,6 +30,13 @@ export function fishAvailable({ season, weather = 'any', hour = null, loc = 'all
   return FISH.filter(f => f.seasons.includes(season) && inWeather(f, weather) && inTime(f, hour) && (loc === 'all' || f.loc.includes(loc)));
 }
 
+// Called after reading a save file: show the fish of the save's season
+export function setFishingSeason(season) {
+  if (!SEASONS.includes(season)) return;
+  ui.season = season;
+  saveJSON(KEYS.fishingView, ui);
+}
+
 // Called after reading a save file: replace the caught list
 export function setCaughtFish(namesEn) {
   caught = new Set(namesEn);

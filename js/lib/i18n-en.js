@@ -418,6 +418,12 @@ export const UI_EN = {
   '(Google Fonts, OFL): phông chữ pixel.': '(Google Fonts, OFL): the pixel font.',
   ': đăng nhập và đồng bộ phòng Co-op.': ': sign-in and Co-op room sync.',
   // ---- Secret notes ----
+  'Đã thực hiện': 'Done', 'chưa có mật thư nào': 'none yet',
+  '(theo dấu game lưu trong save; một số bí mật không để lại dấu nên không biết được)': '(from the marks the game keeps in the save; some secrets leave none, so they cannot be told)',
+  // ---- Journal: stardrops & rarecrows ----
+  'Stardrop đã dùng': 'Stardrops eaten', 'Chưa có Stardrop nào.': 'No Stardrops yet.', 'Bù nhìn Quý hiếm': 'Rarecrow',
+  'Nơi tìm các Stardrop còn lại nằm ở mục Hoàn Hảo (bật "Hiện gợi ý").': 'Where to find the rest: Perfection section ("Show hints").',
+  'Đặt đủ 8 loại trên nông trại để nhận thư kèm công thức Bù nhìn Cao cấp.': 'Place all 8 on the farm for a letter with the Deluxe Scarecrow recipe.',
   'Vuốt ngang để xem thêm cột': 'Swipe sideways for more columns',
   'Đang tải Mật thư...': 'Loading Secret Notes...', 'Đang tải phần Dự Đoán...': 'Loading the predictions...',
   'Không tải được phần Dự Đoán. Kiểm tra kết nối rồi mở lại tab.': "Couldn't load the predictions. Check your connection and open the tab again.",
@@ -528,7 +534,7 @@ export const PATTERNS_EN = [
   [/^Còn (\d+) ngày tới cuối mùa \(theo ngày trong save\)\.$/, '$1 days left in the season (save date).'],
   [/^~(\d+) ngày$/, '~$1 days'], [/^(\d+) ô$/, '$1 tiles'], [/^Sớm nhất còn (\d+) ngày$/, 'Next harvest in $1 days'],
   [/^Phiên bản (\w*)$/, 'Version $1'],
-  [/^Còn (\d+) ngày$/, '$1 days left'], [/^Con non, còn (\d+) ngày nữa trưởng thành$/, 'Baby, grows up in $1 days'], [/^Còn (\d+) lần ghé$/, '$1 visit(s) left'], [/^Vuốt ve (\d+) vật nuôi$/, 'Pet $1 animals'], [/^(\d+) con có sản phẩm để thu$/, '$1 with produce to collect'],
+  [/^Còn (\d+) ngày$/, '$1 days left'], [/^Còn (\d+) Stardrop chưa tìm$/, '$1 Stardrops left to find'], [/^Con non, còn (\d+) ngày nữa trưởng thành$/, 'Baby, grows up in $1 days'], [/^Còn (\d+) lần ghé$/, '$1 visit(s) left'], [/^Vuốt ve (\d+) vật nuôi$/, 'Pet $1 animals'], [/^(\d+) con có sản phẩm để thu$/, '$1 with produce to collect'],
   [/^(\d+) ô thu hoạch được$/, '$1 tiles to harvest'], [/^(\d+) ô chưa tưới$/, '$1 tiles to water'], [/^(\d+) ô cây chết$/, '$1 dead crops'],
   [/^(\d+) máy đã xong, chờ lấy sản phẩm$/, '$1 machines ready to collect'],
   [/^(\d+) đã hoàn thành$/, '$1 completed'], [/^(\d+) hết hạn hôm nay$/, '$1 end today'],

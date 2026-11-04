@@ -31,9 +31,11 @@ function players() {
   return j?.players?.length ? j.players : null;
 }
 
-// `seen`: notes the chosen player read; `others`: [{ name, seen }] of the co-op partners
-function cardHtml(n, group, seen, others) {
+// `seen`: notes the chosen player read; `others`: [{ name, seen }] of the co-op partners;
+// `done`: notes whose secret the player has already done (as far as the save tells)
+function cardHtml(n, group, seen, others, done) {
   const read = seen?.has(n.id);
+  const did = done?.has(n.id);
   const readBy = read ? [] : others.filter(o => o.seen.has(n.id)).map(o => o.name);
   const open = read || readBy.length > 0 || revealed.has(n.id);
   const text = isEn ? (n.textEn || n.text) : (n.text || n.textEn);
@@ -43,13 +45,14 @@ function cardHtml(n, group, seen, others) {
   const reveals = new Map();
   for (const [who, id] of n.reveals || []) (reveals.get(who) || reveals.set(who, []).get(who)).push(OBJECT_NAMES[id] || id);
   return `
-    <article class="card note-card ${read ? 'is-done' : ''}">
+    <article class="card note-card ${read ? 'is-done' : ''} ${did ? 'is-solved' : ''}">
       <header class="card__head">
         <div class="card__title-row">
           <div class="icon-box">${ico(group.icon)}</div>
           <div>
             <h3 class="card__title">${group.label(n)}</h3>
-            <div class="card__sub">${seen ? (read ? `<span class="tag tag--green">${ico('check')} ${t('Đã đọc')}</span>` : `<span class="tag">${t('Chưa đọc')}</span>`) : ''}</div>
+            <div class="card__sub">${seen ? (read ? `<span class="tag tag--green">${ico('check')} ${t('Đã đọc')}</span>` : `<span class="tag">${t('Chưa đọc')}</span>`) : ''}
+              ${did ? `<span class="tag tag--gold">${ico('sparkle')} ${t('Đã thực hiện')}</span>` : ''}</div>
             ${readBy.length ? `<div class="card__sub note-card__by">${ico('members')} ${t('Đã đọc bởi')}: <strong data-no-i18n>${readBy.map(esc).join(', ')}</strong></div>` : ''}
           </div>
         </div>
@@ -85,13 +88,18 @@ function render() {
   const p = ps?.[Math.min(ui.player, ps.length - 1)];
   // Older journal snapshots only kept counts: ask for the save again
   const seen = p?.notesSeen ? new Set(p.notesSeen) : null;
+  const done = p?.notesDone ? new Set(p.notesDone) : null;
   const others = seen ? ps.filter(x => x !== p && x.notesSeen).map(x => ({ name: x.name, seen: new Set(x.notesSeen) })) : [];
-  const shown = n => ui.filter === 'all' || !seen || (ui.filter === 'read' ? seen.has(n.id) : !seen.has(n.id));
+  const shown = n => ui.filter === 'all' || !seen || (ui.filter === 'read' ? seen.has(n.id) : ui.filter === 'done' ? done?.has(n.id) : !seen.has(n.id));
   const chip = (id, label) => `<button class="chip ${ui.filter === id ? 'is-active' : ''}" type="button" data-action="note-filter" data-filter="${id}">${t(label)}</button>`;
   el.innerHTML = `
     ${seen ? `
       ${ps.length > 1 ? `<div class="journal-players">${ico('members')} ${ps.map((x, i) => `<button class="chip ${x === p ? 'is-active' : ''}" type="button" data-action="note-player" data-index="${i}" data-no-i18n>${esc(x.name)}</button>`).join('')}</div>` : ''}
-      <div class="journal-filters">${chip('all', 'Tất cả')}${chip('read', 'Đã đọc')}${chip('unread', 'Chưa đọc')}</div>`
+      <div class="journal-filters">${chip('all', 'Tất cả')}${chip('read', 'Đã đọc')}${chip('unread', 'Chưa đọc')}${done ? chip('done', 'Đã thực hiện') : ''}</div>
+      ${done ? `<p class="notes-done">${ico('sparkle')} ${t('Đã thực hiện')}: ${done.size
+        ? [...done].map(id => `<strong>${id < 1000 ? `#${id}` : `${t('Mảnh nhật ký')} #${id - 1000}`}</strong>`).join(', ')
+        : t('chưa có mật thư nào')}
+        <span class="muted">${t('(theo dấu game lưu trong save; một số bí mật không để lại dấu nên không biết được)')}</span></p>` : ''}`
     : `<p class="${ps ? 'callout callout--tip' : 'muted'}">${ico(ps ? 'warn' : 'upload')} ${ps
         ? t('File save bạn nạp trước đây được đọc bằng bản cũ của trang, chưa có danh sách mật thư đã đọc. Hãy nạp lại file save một lần.')
         : t('Nạp file save ở tab Tiến Độ để biết mẩu nào bạn đã đọc. Chưa có save thì mọi mẩu đều ẩn sau nút Xem Spoilers.')}
@@ -101,7 +109,7 @@ function render() {
       const list = all.filter(shown);
       return `
         <h3 class="journal-sub">${ico(g.icon)} ${t(g.name)}${seen ? `: ${all.filter(n => seen.has(n.id)).length}/${all.length}` : ` (${all.length})`}</h3>
-        <div class="content-grid note-grid">${list.map(n => cardHtml(n, g, seen, others)).join('') || `<p class="muted">${t('Không có mẩu nào.')}</p>`}</div>`;
+        <div class="content-grid note-grid">${list.map(n => cardHtml(n, g, seen, others, done)).join('') || `<p class="muted">${t('Không có mẩu nào.')}</p>`}</div>`;
     }).join('')}`;
 }
 

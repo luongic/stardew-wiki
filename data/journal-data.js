@@ -97,3 +97,16 @@ export const STAT_GROUPS = [
     ['piecesoftrashrecycled', 'Rác đã tái chế', 'Trash recycled'], ['mysteryboxesopened', 'Hộp Bí ẩn đã mở', 'Mystery boxes opened'],
     ['ticketprizesclaimed', 'Giải thưởng vé đã nhận', 'Prize tickets claimed'], ['goldentagsturnedin', 'Thẻ Vàng đã nộp', 'Golden tags turned in']] }
 ];
+
+// The 8 Rarecrows (big craftable ids) and where to get them (Official Stardew Valley Wiki: Rarecrow).
+// Placing all 8 on the farm brings a letter with the Deluxe Scarecrow recipe.
+export const RARECROWS = [
+  { n: 1, id: '110', source: 'Mua ở Hội chợ Stardew Valley với 800 sao.', sourceEn: 'Bought at the Stardew Valley Fair for 800 star tokens.' },
+  { n: 2, id: '113', source: 'Mua ở Đêm Hội Ma (Spirit\'s Eve) với 5.000g.', sourceEn: "Bought at Spirit's Eve for 5,000g." },
+  { n: 3, id: '126', source: 'Mua ở Sòng bạc với 10.000 Xu Qi.', sourceEn: 'Bought at the Casino for 10,000 Qi Coins.' },
+  { n: 4, id: '136', source: 'Đôi khi có ở Xe hàng rong vào Mùa Thu hoặc Đông (4.000g), hoặc mua ở Lễ hội Băng (5.000g).', sourceEn: 'Sometimes at the Traveling Cart in Fall or Winter (4,000g), or at the Festival of Ice (5,000g).' },
+  { n: 5, id: '137', source: 'Mua ở Vũ hội Hoa với 2.500g.', sourceEn: 'Bought at the Flower Dance for 2,500g.' },
+  { n: 6, id: '138', source: 'Mua của Người Lùn với 2.500g.', sourceEn: 'Bought from the Dwarf for 2,500g.' },
+  { n: 7, id: '139', source: 'Quyên góp 20 cổ vật (không tính khoáng sản) cho Bảo Tàng; sau đó mua thêm được ở Chợ Đêm.', sourceEn: 'Donate 20 artifacts (minerals do not count) to the Museum; later also sold at the Night Market.' },
+  { n: 8, id: '140', source: 'Quyên góp 40 món cho Bảo Tàng; sau đó mua thêm được ở Chợ Đêm.', sourceEn: 'Donate 40 items to the Museum; later also sold at the Night Market.' }
+];

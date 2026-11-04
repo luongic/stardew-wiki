@@ -105,6 +105,22 @@ function readPerfection(player, root, built, goals, friends) {
   };
 }
 
+// Secret notes whose secret this player has done, as far as the save tells:
+// "SecretNoteN_done" mail, the Junimo plush, the charm, Qi's tunnel, and the two
+// note quests (added on reading) once they have left the journal.
+function readNotesDone(player, notes) {
+  const mail = kids(kid(player, 'mailReceived'), 'string').map(s => s.textContent.trim());
+  const done = new Set(mail.map(m => /^secretnote(\d+)_done$/i.exec(m)?.[1]).filter(Boolean).map(Number));
+  const has = f => mail.includes(f);
+  const open = new Set(kids(kid(player, 'questLog'), 'Quest').filter(q => text(q, 'completed') !== 'true').map(q => Number(text(q, 'id'))));
+  if (has('junimoPlush')) done.add(13);
+  if (has('HasSpecialCharm')) done.add(20);
+  if (has('TH_Tunnel') || has('HasClubCard')) done.add(22);
+  if (notes.includes(10) && !open.has(30)) done.add(10);
+  if (notes.includes(23) && !open.has(29)) done.add(23);
+  return [...done].sort((a, b) => a - b);
+}
+
 function readPlayer(player, root, built, donated) {
   const friends = readFriends(player);
   const goals = readGoals(player);
@@ -126,6 +142,8 @@ function readPlayer(player, root, built, donated) {
       return { id: cleanId(k), count: count || 0, size: size > 0 ? size : 0 };
     }).filter(f => OBJECT_NAMES[f.id]),
     notesSeen: notes,
+    notesDone: readNotesDone(player, notes),
+    stardrops: STARDROPS.filter(s => kids(kid(player, 'mailReceived'), 'string').some(m => m.textContent.trim() === s.flag)).map(s => s.flag),
     notes: notes.filter(n => n < 1000).length,
     scraps: notes.filter(n => n >= 1000).length,
     perfection: readPerfection(player, root, built, goals, friends)
@@ -138,6 +156,7 @@ export function readJournal(root) {
   const machines = [];  // { name, product, minutes, ready, where, x, y }
   const crops = [];     // { harvest, days, where, x, y, dead, regrow }
   const animals = [];   // { name, type, hearts, happiness, age, where, produce }
+  const rarecrows = []; // placed Rarecrows: { id, where, x, y }
 
   for (const loc of locs) {
     for (const item of kids(kid(loc.el, 'objects'), 'item')) {
@@ -145,6 +164,7 @@ export function readJournal(root) {
       const o = kid(kid(item, 'value'), 'Object');
       if (!o) continue;
       const name = text(o, 'name');
+      if (name === 'Rarecrow') rarecrows.push({ id: cleanId(text(o, 'itemId') || text(o, 'parentSheetIndex')), where: loc.id, label: loc.label, parent: loc.parent, x, y });
       if (xsiType(o) === 'Chest' && /chest|fridge/i.test(name)) {
         storage.push({ where: loc.id, label: loc.label, parent: loc.parent, x, y, kind: 'chest', name, items: itemsIn(kid(o, 'items')) });
         continue;
@@ -208,7 +228,7 @@ export function readJournal(root) {
   }
 
   return {
-    storage, machines, crops, animals, players, perfection,
+    storage, machines, crops, animals, players, perfection, rarecrows,
     donated: donated.size,
     world: { weather: text(root, 'weatherForTomorrow') || 'Sun', luck: Number(text(root, 'dailyLuck')) || 0, lostBooks: num(root, 'lostBooksFound'), walnuts: num(root, 'goldenWalnutsFound') }
   };

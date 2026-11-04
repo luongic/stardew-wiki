@@ -2531,6 +2531,14 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 .journal-body .journal-grid + .journal-sub { margin-top: 18px; }
 .fish-records { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 4px 12px; font-size: 0.9rem; }
 .fish-record { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; border-bottom: 1px dashed var(--parch-300); padding-bottom: 3px; }
+.stardrop-list { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 4px; }
+.rarecrow-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px; margin-bottom: 12px; }
+.rarecrow-card { flex-direction: row; align-items: flex-start; gap: 10px; }
+.rarecrow-card.is-done { background: #e3f6d6; border-color: var(--green-dark); }
+.rarecrow-card h4 { margin: 0 0 4px; }
+.rarecrow-card .tag { margin: 0 4px 4px 0; }
+.rarecrow-card__img { width: 32px; height: 64px; flex-shrink: 0; image-rendering: pixelated; }
+.rarecrow-card__img.is-dim { opacity: 0.35; filter: grayscale(1); }
 .stat-list { list-style: none; display: flex; flex-direction: column; gap: 3px; font-size: 0.92rem; }
 .stat-list li { display: flex; justify-content: space-between; gap: 8px; border-bottom: 1px dashed var(--parch-300); padding-bottom: 2px; }
 .today-checklist { list-style: none; display: flex; flex-direction: column; gap: 6px; }
@@ -2739,6 +2747,9 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 .note-card .card__head { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
 .note-card__text { white-space: pre-line; line-height: 1.6; }
 .note-card__by { margin-top: 3px; font-size: 0.85rem; }
+.note-card.is-solved .card__head { background: #fbe9b0; }
+.note-card .card__sub .tag { margin-right: 4px; }
+.notes-done { margin: 0 0 10px; }
 .note-card__foot { margin: 0; padding: 6px 12px 10px; font-size: 0.85rem; font-style: italic; color: var(--wood-700); }
 .note-card__img { display: block; width: 216px; max-width: 100%; height: auto; margin: 0 auto 8px; image-rendering: pixelated; }
 .note-card__gifts > div { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; margin-top: 4px; }
