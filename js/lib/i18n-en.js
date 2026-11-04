@@ -418,6 +418,7 @@ export const UI_EN = {
   '(Google Fonts, OFL): phông chữ pixel.': '(Google Fonts, OFL): the pixel font.',
   ': đăng nhập và đồng bộ phòng Co-op.': ': sign-in and Co-op room sync.',
   // ---- Secret notes ----
+  'Trang vừa được cập nhật và đọc được thêm thông tin từ file save. Hãy nạp lại file save một lần để xem đầy đủ.': 'The site was updated and can read more from your save. Load the save file once more to see everything.',
   'Đã thực hiện': 'Done', 'chưa có mật thư nào': 'none yet',
   '(theo dấu game lưu trong save; một số bí mật không để lại dấu nên không biết được)': '(from the marks the game keeps in the save; some secrets leave none, so they cannot be told)',
   // ---- Journal: stardrops & rarecrows ----

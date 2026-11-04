@@ -20,6 +20,7 @@ import { setCaughtFish, setFishingSeason } from './fishing.js';
 import { applySaveDay } from './today.js';
 import { applySaveFarm, farmPlanIsReplaceable } from './farm.js';
 import { applySavePredict } from './predictor.js';
+import { JOURNAL_SCHEMA } from '../lib/journal-schema.js';
 import { coop } from '../sync/coop.js';
 import { SKILLS, LEVEL_XP, MASTERY_XP, PROFESSIONS } from '../../data/skills-data.js';
 import { saveJSON } from '../lib/storage.js';
@@ -361,7 +362,7 @@ function applySave(app) {
     done.push(`${t('ngày')} ${day.day} ${SEASON_VI[day.season]}${shared ? ` (${t('đã chia sẻ')})` : ''}`);
   }
   if (journal && checked('syncJournal')) {
-    saveJSON(KEYS.journal, { ...journal, day, farmName: res.farmName, at: Date.now() });
+    saveJSON(KEYS.journal, { ...journal, day, farmName: res.farmName, at: Date.now(), schema: JOURNAL_SCHEMA });
     done.push(t('sổ tay'));
   }
   // Predictions only read the save (Game ID, counters): always kept up to date

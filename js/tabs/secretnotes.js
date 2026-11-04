@@ -13,6 +13,7 @@ import { loadJSON, KEYS } from '../lib/storage.js';
 import { OBJECT_NAMES } from '../../data/item-ids.js';
 import { itemTag } from '../lib/item-lookup.js';
 import { npcTag } from '../predict/npc.js';
+import { isStale, staleNotice } from '../lib/journal-schema.js';
 
 const ui = { filter: 'all', player: 0 };
 // The notes data (~40 KB) loads the first time the tab is opened
@@ -93,6 +94,7 @@ function render() {
   const shown = n => ui.filter === 'all' || !seen || (ui.filter === 'read' ? seen.has(n.id) : ui.filter === 'done' ? done?.has(n.id) : !seen.has(n.id));
   const chip = (id, label) => `<button class="chip ${ui.filter === id ? 'is-active' : ''}" type="button" data-action="note-filter" data-filter="${id}">${t(label)}</button>`;
   el.innerHTML = `
+    ${seen && isStale(loadJSON(KEYS.journal, null)) ? staleNotice() : ''}
     ${seen ? `
       ${ps.length > 1 ? `<div class="journal-players">${ico('members')} ${ps.map((x, i) => `<button class="chip ${x === p ? 'is-active' : ''}" type="button" data-action="note-player" data-index="${i}" data-no-i18n>${esc(x.name)}</button>`).join('')}</div>` : ''}
       <div class="journal-filters">${chip('all', 'Tất cả')}${chip('read', 'Đã đọc')}${chip('unread', 'Chưa đọc')}${done ? chip('done', 'Đã thực hiện') : ''}</div>

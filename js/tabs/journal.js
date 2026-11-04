@@ -22,6 +22,7 @@ import { matches } from '../lib/templates.js';
 import { focusFarmTiles } from './farm.js';
 import { OBJECT_NAMES } from '../../data/item-ids.js';
 import { itemTag } from '../lib/item-lookup.js';
+import { isStale, staleNotice } from '../lib/journal-schema.js';
 
 const SECTIONS = [
   { id: 'friends', name: 'Tình bạn', icon: 'loved' },
@@ -488,6 +489,7 @@ function render() {
     return;
   }
   el.innerHTML = `
+    ${isStale(d) ? staleNotice() : ''}
     <p class="muted journal-meta">${t('Nông trại')} <strong data-no-i18n>${d.farmName || '?'}</strong> · ${t('cập nhật')} ${new Date(d.at).toLocaleString('vi-VN')}
       <button class="link-btn" type="button" data-action="import-save-progress">${t('Nạp lại file save')}</button></p>
     ${playersOf(d).length > 1 ? `<div class="journal-players">${ico('members')} ${playersOf(d).map((p, i) => `<button class="chip ${me(d) === p ? 'is-active' : ''}" type="button" data-action="journal-player" data-index="${i}" data-no-i18n>${p.name}</button>`).join('')}
