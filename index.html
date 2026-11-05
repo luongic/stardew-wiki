@@ -97,6 +97,9 @@
       <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="today">
         <i data-icon="calendar"></i> <span>Hôm Nay</span>
       </button>
+      <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="save">
+        <i data-icon="save"></i> <span>File Save</span>
+      </button>
       <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="recipes">
         <i data-icon="recipes"></i> <span>Công Thức Chế Biến</span> <span class="tab__badge" id="recipeTabBadge">0/0</span>
       </button>
@@ -445,6 +448,35 @@
         </div>
       </section>
 
+      <!-- ======= TAB: SAVE FILE ======= -->
+      <section id="tab-save" class="tab-panel" role="tabpanel" hidden>
+        <div class="panel">
+          <div class="panel__head">
+            <h2 class="panel__title"><i data-icon="save"></i> Nạp File Save Game</h2>
+          </div>
+          <p class="panel__hint">Nạp file save một lần ở đây là mọi tab đều cập nhật: tiến độ, hồ sơ nhân vật, ngày trong game, Sổ Tay, Mật Thư, Dự Đoán, Câu Cá và sơ đồ Nông Trại. File được đọc ngay trong trình duyệt, không gửi lên đâu cả.</p>
+          <div class="save-drop" id="saveDrop">
+            <p class="save-drop__icon" aria-hidden="true"><i data-icon="upload"></i></p>
+            <p><strong>Kéo thả file save vào đây</strong> hoặc</p>
+            <button class="btn btn--green btn--lg" type="button" data-action="import-save-progress"><i data-icon="save"></i> Chọn file save</button>
+            <input type="file" id="saveProgressInput" data-action="save-progress-file" hidden>
+          </div>
+          <details class="save-where">
+            <summary>File save nằm ở đâu?</summary>
+            <p>Mỗi nông trại là một thư mục tên dạng <code>TenNongTrai_123456789</code>. Hãy chọn file <strong>có tên giống hệt thư mục</strong> (không đuôi), không phải file <code>SaveGameInfo</code>.</p>
+            <ul>
+              <li><strong>Windows:</strong> <code>%AppData%\StardewValley\Saves</code></li>
+              <li><strong>macOS:</strong> <code>~/.config/StardewValley/Saves</code></li>
+              <li><strong>Linux / Steam Deck:</strong> <code>~/.config/StardewValley/Saves</code></li>
+              <li><strong>Android:</strong> <code>Android/data/com.chucklefish.stardewvalley/files/Saves</code></li>
+              <li><strong>iPhone / iPad:</strong> ứng dụng Tệp, thư mục Stardew Valley</li>
+            </ul>
+            <p>Co-op: chỉ máy chủ (host) có file save đầy đủ của cả nông trại.</p>
+          </details>
+        </div>
+        <div id="saveBoard"></div>
+      </section>
+
       <!-- ======= TAB: FARM JOURNAL ======= -->
       <section id="tab-journal" class="tab-panel" role="tabpanel" hidden>
         <div class="panel journal">
@@ -473,7 +505,7 @@
           <div class="panel__head">
             <h2 class="panel__title"><i data-icon="fishing"></i> Câu Được Cá Gì Lúc Này?</h2>
           </div>
-          <p class="panel__hint">Lọc 66 loài cá trong bộ sưu tập theo mùa, thời tiết, giờ và địa điểm. Bấm ô vuông để đánh dấu loài đã câu được, hoặc nạp từ file save ở tab Tiến Độ.</p>
+          <p class="panel__hint">Lọc 66 loài cá trong bộ sưu tập theo mùa, thời tiết, giờ và địa điểm. Bấm ô vuông để đánh dấu loài đã câu được, hoặc nạp từ file save ở tab File Save.</p>
           <div id="fishingBoard"></div>
         </div>
       </section>
@@ -594,10 +626,9 @@
           <div class="btn-row">
             <button class="btn btn--wood btn--lg" type="button" data-action="export-progress"><i data-icon="download"></i> Tải Xuống File Sao Lưu (JSON)</button>
             <button class="btn btn--blue btn--lg" type="button" data-action="import-progress"><i data-icon="upload"></i> Khôi Phục Từ File Sao Lưu</button>
-            <button class="btn btn--green btn--lg" type="button" data-action="import-save-progress"><i data-icon="save"></i> Nạp Tiến Độ Từ File Save Game</button>
+            <button class="btn btn--green btn--lg" type="button" data-action="goto-save"><i data-icon="save"></i> Nạp Tiến Độ Từ File Save Game</button>
             <button class="btn btn--danger btn--lg" type="button" data-action="reset-progress"><i data-icon="warn"></i> Đặt Lại Toàn Bộ Tiến Độ (Reset)</button>
             <input type="file" id="importFileInput" accept="application/json,.json" data-action="import-file" hidden>
-            <input type="file" id="saveProgressInput" data-action="save-progress-file" hidden>
           </div>
         </div>
       </section>
@@ -837,15 +868,6 @@
       <button class="modal-close-btn" type="button" data-close-modal aria-label="Đóng cửa sổ">✕</button>
       <h2 class="coop-title" id="farmPresetTitle"><i data-icon="farm"></i> Mẫu thiết kế nông trại</h2>
       <div id="farmPresetBody"></div>
-    </div>
-  </div>
-
-  <!-- ======= PROGRESS FROM SAVE FILE ======= -->
-  <div class="modal" id="saveSyncModal" hidden>
-    <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="saveSyncTitle">
-      <button class="modal-close-btn" type="button" data-close-modal aria-label="Đóng cửa sổ">✕</button>
-      <h2 class="coop-title" id="saveSyncTitle"><i data-icon="save"></i> Tiến độ trong file save</h2>
-      <div id="saveSyncBody"></div>
     </div>
   </div>
 

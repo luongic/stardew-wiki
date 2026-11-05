@@ -10,20 +10,13 @@ import { progress } from '../lib/progress.js';
 import { bundleProgress } from './bundles.js';
 import { museumProgress } from './museum.js';
 import { ico } from '../lib/icons.js';
+import { saveTabLink } from './save.js';
 import { KEYS, loadJSON } from '../lib/storage.js';
 import { restoreNote } from '../sync/notes-ui.js';
-import { openModal, closeModal } from '../lib/ui.js';
 import { nm, isEn } from '../lib/i18n.js';
 import { ITEMS_DATA } from '../../data/items-data.js';
 import { BOOTS, CLOTHES } from '../../data/save-data.js';
-import { setCaughtFish, setFishingSeason } from './fishing.js';
-import { applySaveDay } from './today.js';
-import { applySaveFarm, farmPlanIsReplaceable } from './farm.js';
-import { applySavePredict } from './predictor.js';
-import { JOURNAL_SCHEMA } from '../lib/journal-schema.js';
-import { coop } from '../sync/coop.js';
 import { SKILLS, LEVEL_XP, MASTERY_XP, PROFESSIONS } from '../../data/skills-data.js';
-import { saveJSON } from '../lib/storage.js';
 
 const BACKUP_VERSION = 3;
 
@@ -226,8 +219,8 @@ function profileHtml() {
     return `
       <section class="panel profile profile--empty">
         <h2 class="panel__title">${ico('save')} ${t('Hồ sơ nhân vật')}</h2>
-        <p class="muted">${t('Nạp file save để xem cấp độ Trồng trọt, Câu cá, Hái lượm, Khai khoáng, Chiến đấu, nghề đã chọn và độ Thành thạo của nhân vật.')}</p>
-        <button class="btn btn--green" type="button" data-action="import-save-progress">${ico('upload')} ${t('Nạp file save')}</button>
+        <p class="muted">${t('Nạp file save ở tab File Save để xem cấp độ Trồng trọt, Câu cá, Hái lượm, Khai khoáng, Chiến đấu, nghề đã chọn và độ Thành thạo của nhân vật.')}</p>
+        ${saveTabLink()}
       </section>`;
   }
   const players = data.players;
@@ -262,125 +255,6 @@ function profileHtml() {
     </section>`;
 }
 
-// ==========================================
-// ONE SAVE FILE FOR EVERY TAB
-// The save is read once, in the browser, then a summary lets the player pick
-// what to update: progress ticks (added on top, nothing unticked) and caught
-// fish, the day in the Today tab (shared with the co-op room), and the farm
-// layout in the Farm tab. Today's and the Farm tab's save buttons come here.
-// ==========================================
-let pendingSave = null;
-
-function newKeys(domain, keys) { return keys.filter(k => !progress.has(domain, k)); }
-
-const SEASON_VI = { spring: 'Mùa Xuân', summer: 'Mùa Hạ', fall: 'Mùa Thu', winter: 'Mùa Đông' };
-const DOW_VI = ['Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy', 'Chủ Nhật'];
-
-async function readSaveFile(app, file, preread = null) {
-  try {
-    const [{ parseSave, readFarmSave, readSaveDay }, { readSaveProgress }, text] = await Promise.all([
-      import('../lib/farm-save.js'), import('../lib/save-progress.js'), preread ?? file.text()]);
-    const root = parseSave(text);   // parsed once, read three ways
-    const res = readSaveProgress(root);
-    const day = readSaveDay(root);
-    let farm = null;
-    try { farm = readFarmSave(root); } catch { /* a save without a farm: skip that part */ }
-    let journal = null;
-    try { journal = (await import('../lib/save-journal.js')).readJournal(root); } catch (e) { console.warn('[journal]', e); }
-    let predict = null;
-    try { predict = (await import('../predict/context.js')).readPredictContext(root); } catch (e) { console.warn('[predict]', e); }
-    pendingSave = { res, day, farm, journal, predict };
-
-    const add = { recipes: newKeys('recipes', res.recipes), quests: newKeys('quests', res.quests), bundles: newKeys('bundles', res.bundles), museum: newKeys('museum', res.museum) };
-    const row = (icon, label, found, fresh) => `
-      <li><span>${ico(icon)} ${t(label)}</span><strong>${found}</strong><span class="muted">${fresh === null ? '' : fresh ? `+${fresh} ${t('mới')}` : t('đã có đủ')}</span></li>`;
-    const replaceable = farmPlanIsReplaceable();
-    const farmCount = farm ? farm.objects.length + Object.keys(farm.ground).length : 0;
-    document.getElementById('saveSyncBody').innerHTML = `
-      <p>${t('Nông trại')} <strong data-no-i18n>${res.farmName || '?'}</strong> · ${t('người chơi')} <strong data-no-i18n>${res.playerName || '?'}</strong></p>
-
-      <label class="save-sync__part"><input type="checkbox" class="px-check" id="syncProgress" checked>
-        <span><strong>${ico('tracker')} ${t('Tiến Độ & Hoàn Thành')}</strong></span></label>
-      <ul class="save-sync__list">
-        ${row('cooking', 'Công thức, công trình & nâng cấp', res.recipes.length, add.recipes.length)}
-        ${row('quests', 'Nhiệm vụ đã hoàn thành', res.quests.length, add.quests.length)}
-        ${row('bundles', 'Ô gói Nhà Cộng Đồng đã nộp', res.bundles.length, add.bundles.length)}
-        ${row('museum', 'Món đã quyên góp Bảo Tàng', res.museum.length, add.museum.length)}
-        ${row('fish', 'Loài cá đã câu được', `${res.fish.caught} / ${res.fish.total}`, null)}
-        ${row('save', 'Hồ sơ nhân vật (cấp kỹ năng, nghề)', res.players.map(pl => `${pl.name}: ${pl.skills.map(x => x.level).join('/')}`).join(' · '), null)}
-      </ul>
-      ${res.unmatchedBundles.length ? `<p class="muted">${ico('warn')} ${t('Một số gói (bản Remix) không có trong dữ liệu của trang nên được bỏ qua')}: ${res.unmatchedBundles.join(', ')}</p>` : ''}
-      <p class="muted">${t('Chỉ thêm dấu tick mới, không bỏ tick nào bạn đã đánh dấu. Nhiệm vụ được suy ra từ cờ và sự kiện trong file save; Tượng Lewis Vàng và các bức tượng bí ẩn không để lại dấu vết nên vẫn cần tự đánh dấu.')}</p>
-
-      <label class="save-sync__part"><input type="checkbox" class="px-check" id="syncToday" checked>
-        <span><strong>${ico('calendar')} ${t('Hôm Nay')}:</strong> ${DOW_VI[(day.day - 1) % 7]}, ${t('ngày')} ${day.day} ${SEASON_VI[day.season]}, ${t('năm')} ${day.year}
-        ${coop.code ? `<span class="muted">(${t('chia sẻ với phòng Co-op')})</span>` : ''}</span></label>
-
-      ${journal ? `
-      <label class="save-sync__part"><input type="checkbox" class="px-check" id="syncJournal" checked>
-        <span><strong>${ico('story')} ${t('Sổ Tay Nông Trại')}:</strong> ${t('tình bạn, túi & rương, máy móc, mùa vụ, vật nuôi, diệt quái, Hoàn Hảo')}</span></label>` : ''}
-
-      ${farm ? `
-      <label class="save-sync__part"><input type="checkbox" class="px-check" id="syncFarm" ${replaceable ? 'checked' : ''}>
-        <span><strong>${ico('farm')} ${t('Nông Trại')}:</strong> ${farmCount} ${t('công trình, đồ vật và ô đất')}
-        ${replaceable ? '' : `<span class="muted">· ${t('sẽ thay thiết kế bạn đang vẽ (có thể Hoàn tác ở tab Nông Trại)')}</span>`}
-        ${farm.warning ? `<span class="muted">· ${farm.warning}</span>` : ''}</span></label>` : ''}
-
-      <div class="btn-row">
-        <button class="btn btn--green" type="button" data-action="save-progress-apply">${ico('check')} ${t('Đồng bộ')}</button>
-      </div>
-      ${res.fish.missing.length ? `
-        <h3 class="save-sync__sub">${ico('fish')} ${t('Cá chưa câu được')} (${res.fish.missing.length})</h3>
-        <div class="save-sync__fish">
-          ${res.fish.missing.map(f => `<span class="tag" title="${f.location || ''}"><img src="${f.imageUrl}" alt="" class="pixel-img"> ${nm(f)}</span>`).join('')}
-        </div>` : ''}`;
-    openModal('saveSyncModal');
-  } catch (e) {
-    console.error('[save]', e);
-    app.showToast(`${ico('warn')} ${e.userMessage || t('Không đọc được file save này')}`);
-  }
-}
-
-function applySave(app) {
-  if (!pendingSave) return;
-  const { res, day, farm, journal, predict } = pendingSave;
-  const checked = id => document.getElementById(id)?.checked;
-  const done = [];
-  if (checked('syncProgress')) {
-    let n = 0;
-    for (const [domain, keys] of [['recipes', res.recipes], ['quests', res.quests], ['bundles', res.bundles], ['museum', res.museum]]) {
-      for (const k of newKeys(domain, keys)) { progress.setFlag(domain, k, true, 'bulk'); n++; }
-    }
-    setCaughtFish(res.fish.caughtEn);
-    saveJSON(KEYS.profiles, { farmName: res.farmName, at: Date.now(), players: res.players });
-    profileIndex = 0;
-    done.push(`${n} ${t('mục tiến độ')}`);
-  }
-  if (checked('syncToday')) {
-    const shared = applySaveDay(day);
-    setFishingSeason(day.season);
-    done.push(`${t('ngày')} ${day.day} ${SEASON_VI[day.season]}${shared ? ` (${t('đã chia sẻ')})` : ''}`);
-  }
-  if (journal && checked('syncJournal')) {
-    saveJSON(KEYS.journal, { ...journal, day, farmName: res.farmName, at: Date.now(), schema: JOURNAL_SCHEMA });
-    done.push(t('sổ tay'));
-  }
-  // Predictions only read the save (Game ID, counters): always kept up to date
-  if (predict) applySavePredict(predict);
-  if (farm && checked('syncFarm')) {
-    applySaveFarm(farm);
-    done.push(t('nông trại'));
-  }
-  pendingSave = null;
-  closeModal(document.getElementById('saveSyncModal'));
-  app.sfx.play('complete');
-  app.render();
-  app.showToast(`${ico('check')} ${t('Đã đồng bộ từ file save')}: ${done.join(' · ') || t('không có gì')}`);
-}
-
-// The Farm tab hands over save files it was given
-document.addEventListener('save-file', e => window.app && readSaveFile(window.app, e.detail.file, e.detail.text));
-
 export default {
   id: 'tracker',
   toggles: [],
@@ -398,13 +272,6 @@ export default {
       el.value = ''; // allow choosing the same file again
       if (file) importProgress(app, file);
     },
-    'import-save-progress': () => document.getElementById('saveProgressInput').click(),
-    'save-progress-file': (app, el) => {
-      const file = el.files?.[0];
-      el.value = '';
-      if (file) readSaveFile(app, file);
-    },
-    'save-progress-apply': (app) => applySave(app),
     'profile-player': (app, el) => { profileIndex = Number(el.dataset.i); app.render(); },
     'reset-progress': (app) => {
       if (!confirm(t('CẢNH BÁO: Thao tác này sẽ đặt lại toàn bộ tiến độ đã hoàn thành về 0. Bạn có chắc không?'))) return;

@@ -14,6 +14,7 @@ import { dateLabel, today, esc } from '../predict/core.js';
 import { ico } from '../lib/icons.js';
 import { t, nm, isEn } from '../lib/i18n.js';
 import { loadJSON, saveJSON, KEYS } from '../lib/storage.js';
+import { saveTabLink } from './save.js';
 
 const SEASONS_VI = ['Xuân', 'Hạ', 'Thu', 'Đông'];
 const view = { id: 'train', offset: null, player: 0, query: '', manual: false, ...loadJSON(KEYS.predictView, {}) };
@@ -47,9 +48,9 @@ function sourceHtml(ctx) {
   return `
     <div class="predict-source">
       ${ctx ? `<p>${ico('save')} ${ctx.source === 'save' ? t('Từ file save') : t('Nhập tay')}: <strong>Game ID ${esc(ctx.gameID)}</strong> · ${dateLabel(d)}
-        ${ctx.source === 'save' && ctx.names?.length ? ` · <span data-no-i18n>${ctx.names.map(esc).join(', ')}</span>` : ''}</p>` : `<p>${t('Nạp file save (một lần ở tab Tiến Độ) hoặc nhập Game ID để xem dự đoán.')}</p>`}
+        ${ctx.source === 'save' && ctx.names?.length ? ` · <span data-no-i18n>${ctx.names.map(esc).join(', ')}</span>` : ''}</p>` : `<p>${t('Nạp file save (một lần ở tab File Save) hoặc nhập Game ID để xem dự đoán.')}</p>`}
       <div class="predict-source__actions">
-        <button class="btn btn--green btn--sm" type="button" data-action="import-save-progress">${ico('upload')} ${ctx ? t('Nạp lại file save') : t('Nạp file save')}</button>
+        ${saveTabLink(ctx ? 'Nạp lại file save' : 'Nạp file save', 'btn btn--green btn--sm')}
         <button class="btn btn--ghost btn--sm" type="button" data-action="predict-manual">${ico('dice')} ${t('Nhập Game ID')}</button>
       </div>
       ${view.manual || !ctx ? `

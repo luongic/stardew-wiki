@@ -24,6 +24,7 @@ import { inventory } from './journal.js';
 import { trainOn } from '../predict/trains.js';
 import { weatherOn } from '../predict/weather.js';
 import { nightEvent, NIGHT_EVENTS } from '../predict/night.js';
+import { saveTabLink } from './save.js';
 
 const SEASONS = ['spring', 'summer', 'fall', 'winter'];
 const SEASON_VI = { spring: 'Mùa Xuân', summer: 'Mùa Hạ', fall: 'Mùa Thu', winter: 'Mùa Đông' };
@@ -265,7 +266,7 @@ function render() {
         <button class="btn btn--ghost btn--sm" type="button" data-action="today-step" data-step="1" aria-label="${t('Ngày sau')}">+</button>
         <label>${t('Năm')} <input type="number" class="coop-input today-num" min="1" max="99" value="${d.year}" data-action="today-year"></label>
       </div>
-      <button class="btn btn--blue btn--sm" type="button" data-action="import-save-progress" title="${t('Nạp file save một lần để đồng bộ tiến độ, ngày và nông trại')}">${ico('upload')} ${t('Lấy ngày từ file save')}</button>
+      ${saveTabLink('Lấy ngày từ file save', 'btn btn--blue btn--sm')}
     </div>
     <h3 class="today-date">${ico('calendar')} ${dateLabel(d)}</h3>
     ${d.sharedFrom ? `<p class="muted">${ico('members')} ${t('Ngày lấy từ file save của')} <strong data-no-i18n>${esc(d.sharedFrom)}</strong> ${t('trong phòng Co-op')}</p>` : ''}

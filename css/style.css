@@ -2776,3 +2776,21 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 /* ---- Item popup: related recipes, bundles, gifts ---- */
 .relation-head { margin: 18px 0 8px; font-size: 1.1rem; display: flex; align-items: center; gap: 6px; }
 .relation-box .pill-row { gap: 6px; }
+
+/* Save File tab */
+.save-drop { border: 3px dashed var(--wood-700, #8a5a2b); border-radius: 10px; padding: 24px 16px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; background: var(--parch-100, #fff8e6); transition: background .15s; }
+.save-drop.is-over { background: #e9f8dc; border-color: var(--green-dark); }
+.save-drop__icon .pixel-icon, .save-drop__icon .game-icon { width: 40px; height: 40px; }
+.save-where { margin-top: 12px; }
+.save-where summary { cursor: pointer; font-weight: bold; }
+.save-where ul { margin: 6px 0 6px 20px; }
+.save-where code { word-break: break-all; }
+.save-current p { margin: 4px 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.save-uses { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 8px; }
+.save-use .tag { flex-shrink: 0; }
+.save-use { display: flex; align-items: center; gap: 10px; text-align: left; padding: 8px 10px; border: 2px solid var(--parch-300); border-radius: 8px; background: var(--parch-100, #fff8e6); cursor: pointer; font: inherit; color: inherit; }
+.save-use:hover, .save-use:focus-visible { background: var(--parch-200); outline: none; }
+.save-use.is-done { border-color: var(--green-dark); }
+.save-use__icon .pixel-icon, .save-use__icon .game-icon { width: 28px; height: 28px; }
+.save-use__text { flex: 1; display: flex; flex-direction: column; gap: 2px; font-size: .92rem; }
+.save-sync { margin-bottom: 16px; }

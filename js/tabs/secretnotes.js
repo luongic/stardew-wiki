@@ -14,6 +14,7 @@ import { OBJECT_NAMES } from '../../data/item-ids.js';
 import { itemTag } from '../lib/item-lookup.js';
 import { npcTag } from '../predict/npc.js';
 import { isStale, staleNotice } from '../lib/journal-schema.js';
+import { saveTabLink } from './save.js';
 
 const ui = { filter: 'all', player: 0 };
 // The notes data (~40 KB) loads the first time the tab is opened
@@ -104,8 +105,8 @@ function render() {
         <span class="muted">${t('(theo dấu game lưu trong save; một số bí mật không để lại dấu nên không biết được)')}</span></p>` : ''}`
     : `<p class="${ps ? 'callout callout--tip' : 'muted'}">${ico(ps ? 'warn' : 'upload')} ${ps
         ? t('File save bạn nạp trước đây được đọc bằng bản cũ của trang, chưa có danh sách mật thư đã đọc. Hãy nạp lại file save một lần.')
-        : t('Nạp file save ở tab Tiến Độ để biết mẩu nào bạn đã đọc. Chưa có save thì mọi mẩu đều ẩn sau nút Xem Spoilers.')}
-        <button class="link-btn" type="button" data-action="import-save-progress">${t('Nạp file save')}</button></p>`}
+        : t('Nạp file save ở tab File Save để biết mẩu nào bạn đã đọc. Chưa có save thì mọi mẩu đều ẩn sau nút Xem Spoilers.')}
+        ${saveTabLink(ps ? 'Nạp lại file save' : 'Nạp file save', 'link-btn')}</p>`}
     ${GROUPS.map(g => {
       const all = SECRET_NOTES.filter(g.test);
       const list = all.filter(shown);

@@ -24,6 +24,7 @@ import { focusFarmTiles } from './farm.js';
 import { OBJECT_NAMES } from '../../data/item-ids.js';
 import { itemTag, itemInfo } from '../lib/item-lookup.js';
 import { isStale, staleNotice } from '../lib/journal-schema.js';
+import { saveTabLink } from './save.js';
 
 const SECTIONS = [
   { id: 'friends', name: 'Tình bạn', icon: 'loved' },
@@ -82,7 +83,7 @@ const playersOf = d => d.players?.length ? d.players
 const me = d => { const ps = playersOf(d); return ps[Math.min(ui.player, ps.length - 1)]; };
 // Every backpack, chest, fridge and grabber of the save
 const containers = d => [...(d.players || []).map(p => ({ ...p.backpack, owner: d.players.length > 1 ? p.name : '' })), ...d.storage];
-const reloadHint = () => `<p class="muted">${ico('upload')} ${t('Nạp lại file save ở tab Tiến Độ để xem mục này.')}</p>`;
+const reloadHint = () => `<p class="muted">${ico('upload')} ${t('Nạp lại file save ở tab File Save để xem mục này.')}</p>`;
 
 // Everything the farm owns, by English name: [{ total, places: [{ s, stack }] }]
 export function inventory(d) {
@@ -734,15 +735,15 @@ function render() {
       <div class="empty-state">
         <div class="empty-state__icon" aria-hidden="true">${ico('save')}</div>
         <h3>${t('Chưa có dữ liệu từ file save')}</h3>
-        <p>${t('Nạp file save một lần ở tab Tiến Độ để xem tình bạn, đồ trong rương, máy móc, mùa vụ, vật nuôi, mục tiêu diệt quái và Hoàn Hảo.')}</p>
-        <button class="btn btn--green" type="button" data-action="import-save-progress">${ico('upload')} ${t('Nạp file save')}</button>
+        <p>${t('Nạp file save một lần ở tab File Save để xem tình bạn, đồ trong rương, máy móc, mùa vụ, vật nuôi, mục tiêu diệt quái và Hoàn Hảo.')}</p>
+        ${saveTabLink()}
       </div>`;
     return;
   }
   el.innerHTML = `
     ${isStale(d) ? staleNotice() : ''}
     <p class="muted journal-meta">${t('Nông trại')} <strong data-no-i18n>${d.farmName || '?'}</strong> · ${t('cập nhật')} ${new Date(d.at).toLocaleString('vi-VN')}
-      <button class="link-btn" type="button" data-action="import-save-progress">${t('Nạp lại file save')}</button></p>
+      ${saveTabLink('Nạp lại file save', 'link-btn')}</p>
     ${playersOf(d).length > 1 ? `<div class="journal-players">${ico('members')} ${playersOf(d).map((p, i) => `<button class="chip ${me(d) === p ? 'is-active' : ''}" type="button" data-action="journal-player" data-index="${i}" data-no-i18n>${p.name}</button>`).join('')}
       <span class="muted">${t('Tình bạn, túi đồ, nhiệm vụ, bộ sưu tập và thống kê là của từng người.')}</span></div>` : ''}
     <div class="journal-tabs">

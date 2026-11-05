@@ -17,4 +17,4 @@ export const isStale = j => !!j && (j.schema || 0) < JOURNAL_SCHEMA;
 // The notice shown above a tab that reads an outdated snapshot
 export const staleNotice = () => `
   <p class="callout callout--tip stale-notice">${ico('warn')} ${t('Trang vừa được cập nhật và đọc được thêm thông tin từ file save. Hãy nạp lại file save một lần để xem đầy đủ.')}
-    <button class="link-btn" type="button" data-action="import-save-progress">${t('Nạp lại file save')}</button></p>`;
+    <button class="link-btn" type="button" data-action="goto-save">${t('Nạp lại file save')}</button></p>`;
