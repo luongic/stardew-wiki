@@ -3,6 +3,8 @@
 // A branch map (Community Center -> rooms -> Junimo bundle bags) on top, and
 // the in-game style item slots of the selected room below. Ticking a slot
 // marks that item as turned in; a bundle is done once `required` slots are.
+// With a save loaded, slots still to fill show whether the item is already in
+// a backpack, chest or fridge, and where.
 // ==========================================================================
 
 import { altName } from '../lib/i18n.js';
@@ -10,6 +12,10 @@ import { CC_ROOMS } from '../../data/bundles-data.js';
 import { progress } from '../lib/progress.js';
 import { emptyState, matches, pixelIcon } from '../lib/templates.js';
 import { ico } from '../lib/icons.js';
+import { loadJSON, KEYS } from '../lib/storage.js';
+import { OBJECT_NAMES } from '../../data/item-ids.js';
+import { labeledContainers } from './journal.js';
+import { saveTabLink } from './save.js';
 
 const BUNDLES = CC_ROOMS.flatMap(room => room.bundles.map(b => ({ ...b, roomId: room.id })));
 const bundleById = new Map(BUNDLES.map(b => [b.id, b]));
@@ -74,6 +80,54 @@ const QUALITY = {
 };
 
 // ==========================================
+// ITEMS ALREADY OWNED (from the last save)
+// ==========================================
+const Q_RANK = { silver: 1, gold: 2, iridium: 3 };
+// Matched by item id where the save's name differs: eggs/milk named by colour
+// or size, and artisan goods named after their fruit ("Grape Wine"), which
+// must not catch look-alikes such as River Jelly.
+const SAVE_IDS = { 'Large Egg': ['174'], 'Large Brown Egg': ['182'], 'Large Goat Milk': ['438'], Jelly: ['344'], Wine: ['348'], Honey: ['340'] };
+const holds = (item, it) => SAVE_IDS[item.nameEn] ? SAVE_IDS[item.nameEn].includes(it.id) : it.name === item.nameEn || OBJECT_NAMES[it.id] === item.nameEn;
+
+// item -> [{ s (container with .spot), n }] of stacks good enough for the slot
+function ownedFinder() {
+  const spots = labeledContainers(loadJSON(KEYS.journal, null));
+  if (!spots.length) return null;
+  return item => {
+    const need = Q_RANK[item.quality] || 0;
+    return spots.map(s => ({ s, n: s.items.filter(it => (Q_RANK[it.quality] || 0) >= need && holds(item, it)).reduce((a, it) => a + it.stack, 0) }))
+      .filter(x => x.n > 0)
+      .sort((a, b) => b.n - a.n);
+  };
+}
+const ownedTotal = spots => spots.reduce((a, x) => a + x.n, 0);
+const spotIcon = s => ico(s.kind === 'backpack' ? 'guest' : s.kind === 'fridge' ? 'cooking' : 'chest');
+
+function ownedHtml(b, find) {
+  const rows = b.items
+    .map((item, idx) => ({ item, spots: bundleProgress.done.has(slotKey(b.id, idx)) ? [] : find(item) }))
+    .filter(r => r.spots.length);
+  if (!rows.length) return '';
+  return `
+    <div class="bundle__owned">
+      <div class="bundle__owned-title">${ico('chest')} Đã có trong túi &amp; rương (theo file save):</div>
+      <ul>
+        ${rows.map(({ item, spots }) => {
+          const have = ownedTotal(spots);
+          return `
+          <li>
+            <img src="${item.icon}" alt="" class="pixel-img" loading="lazy" data-fallback="hide">
+            <strong>${item.name}</strong>
+            <span class="tag ${have >= item.count ? 'tag--green' : 'tag--gold'}" title="Đang có / cần nộp">${have}/${item.count}</span>
+            ${spots.map(({ s, n }) => `<span class="tag">${spotIcon(s)} ${s.spot} · ${n}${s.where === 'Farm' && s.x !== undefined
+              ? ` <button class="link-btn" type="button" data-action="journal-map" data-x="${s.x}" data-y="${s.y}">Bản đồ</button>` : ''}</span>`).join('')}
+          </li>`;
+        }).join('')}
+      </ul>
+    </div>`;
+}
+
+// ==========================================
 // BRANCH MAP
 // ==========================================
 function treeHtml(selected) {
@@ -118,8 +172,9 @@ function treeHtml(selected) {
 // ==========================================
 // BUNDLE CARDS (IN-GAME STYLE SLOTS)
 // ==========================================
-function slotHtml(b, item, idx, query) {
+function slotHtml(b, item, idx, query, find) {
   const done = bundleProgress.done.has(slotKey(b.id, idx));
+  const have = !done && find ? ownedTotal(find(item)) : 0;
   const q = item.quality && QUALITY[item.quality];
   const hit = query && matches(query, item.name, item.nameEn, item.source);
   return `
@@ -130,6 +185,7 @@ function slotHtml(b, item, idx, query) {
         <img src="${item.icon}" alt="" class="pixel-img" loading="lazy" data-fallback="hide">
         ${item.count > 1 ? `<span class="slot__count">${item.count}</span>` : ''}
         ${q ? `<span class="slot__quality ${q.cls}" title="Chất lượng ${q.label}">★</span>` : ''}
+        ${have ? `<span class="slot__have ${have >= item.count ? 'is-enough' : ''}" title="Đang có ${have} trong túi/rương">${ico('chest')}</span>` : ''}
         <span class="slot__tick" aria-hidden="true">✓</span>
       </span>
       <span class="slot__name">${item.name}</span>
@@ -137,7 +193,7 @@ function slotHtml(b, item, idx, query) {
     </button>`;
 }
 
-function bundleCard(b, query) {
+function bundleCard(b, query, find) {
   const done = bundleProgress.doneCount(b);
   const complete = done >= b.required;
   const optional = b.items.length > b.required;
@@ -155,8 +211,9 @@ function bundleCard(b, query) {
         </div>
       </header>
       <div class="bundle__slots">
-        ${b.items.map((item, idx) => slotHtml(b, item, idx, query)).join('')}
+        ${b.items.map((item, idx) => slotHtml(b, item, idx, query, find)).join('')}
       </div>
+      ${find && !complete ? ownedHtml(b, find) : ''}
       ${b.reward ? `
         <footer class="bundle__reward">
           <span class="bundle__reward-label">${ico('gift')} Phần thưởng:</span>
@@ -195,17 +252,19 @@ const bundlesTab = {
 
     // Searching looks across every room so "which bundle needs X?" works
     const rooms = q || selected === 'all' ? CC_ROOMS : CC_ROOMS.filter(r => r.id === selected);
+    const find = ownedFinder();
     const html = rooms.map(room => {
       const bundles = room.bundles
         .filter(b => !app.toggles.unfinished || !bundleProgress.isBundleDone(b))
         .filter(b => !q || matches(q, b.name, b.nameEn, b.items.flatMap(i => [i.name, i.nameEn, i.source])))
-        .map(b => bundleCard({ ...b, roomId: room.id }, q));
+        .map(b => bundleCard({ ...b, roomId: room.id }, q, find));
       if (!bundles.length) return '';
       return `<section class="room">${roomHeader(room)}<div class="bundle-grid">${bundles.join('')}</div></section>`;
     }).join('');
 
-    document.getElementById('ccRooms').innerHTML = html
-      || emptyState('bundles', 'Không có gói nào khớp!', 'Thử từ khóa khác hoặc tắt bộ lọc "Chưa Hoàn Thành".');
+    const hint = find ? '' : `<p class="muted cc-owned-hint">${ico('chest')} Nạp file save để xem món nào chưa nộp đã có sẵn trong túi đồ hay rương, và nằm ở đâu. ${saveTabLink('Nạp file save', 'btn btn--green btn--sm')}</p>`;
+    document.getElementById('ccRooms').innerHTML = hint + (html
+      || emptyState('bundles', 'Không có gói nào khớp!', 'Thử từ khóa khác hoặc tắt bộ lọc "Chưa Hoàn Thành".'));
   },
 
   badge() {

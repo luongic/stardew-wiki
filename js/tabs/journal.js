@@ -83,6 +83,21 @@ const playersOf = d => d.players?.length ? d.players
 const me = d => { const ps = playersOf(d); return ps[Math.min(ui.player, ps.length - 1)]; };
 // Every backpack, chest, fridge and grabber of the save
 const containers = d => [...(d.players || []).map(p => ({ ...p.backpack, owner: d.players.length > 1 ? p.name : '' })), ...d.storage];
+// The same containers, each with a spot a player can walk to. The game has no
+// chest numbers, so chests are numbered per place, row by row from the
+// top-left, next to their tile (used by the Community Center tab).
+export function labeledContainers(d) {
+  if (!d?.storage) return [];
+  const no = new Map(), byPlace = new Map();
+  for (const s of d.storage) if (s.kind === 'chest') (byPlace.get(s.where) || byPlace.set(s.where, []).get(s.where)).push(s);
+  for (const list of byPlace.values()) list.sort((a, b) => a.y - b.y || a.x - b.x).forEach((s, i) => no.set(s, i + 1));
+  const tile = s => s.x !== undefined ? ` (${s.x}, ${s.y})` : '';
+  const spot = s => s.kind === 'backpack' ? t(place(s))
+    : s.kind === 'fridge' || /fridge/i.test(s.name) ? `${t('Tủ lạnh')} · ${t(place(s))}`
+    : s.kind === 'grabber' ? `${t('Máy Gom Tự Động')} · ${t(place(s))}${tile(s)}`
+    : `${t('Rương')} #${no.get(s)} · ${t(place(s))}${tile(s)}`;
+  return containers(d).map(s => ({ ...s, spot: spot(s) }));
+}
 const reloadHint = () => `<p class="muted">${ico('upload')} ${t('Nạp lại file save ở tab File Save để xem mục này.')}</p>`;
 
 // Everything the farm owns, by English name: [{ total, places: [{ s, stack }] }]

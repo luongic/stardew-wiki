@@ -2000,6 +2000,26 @@ code {
   font-size: 1rem;
   text-shadow: 1px 1px 0 var(--ink);
 }
+/* Already in a backpack or chest (from the save): gold = some, green = enough */
+.slot__have {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  background: var(--gold);
+  border: 2px solid var(--ink);
+}
+.slot__have.is-enough { background: #7ed957; }
+.slot__have img { width: 14px; height: 14px; }
+.bundle__owned { margin-top: 10px; padding: 8px 10px; background: var(--parch-100); border: 2px dashed var(--ink); }
+.bundle__owned-title { font-weight: 700; margin-bottom: 6px; }
+.bundle__owned ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.bundle__owned li { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; }
+.bundle__owned li > img { width: 24px; height: 24px; }
+.cc-owned-hint { margin: 0 0 12px; }
 .q-silver { color: #d9e2ec; }
 .q-gold { color: var(--gold); }
 .q-iridium { color: #c77dff; }
