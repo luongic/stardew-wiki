@@ -12,6 +12,7 @@ import { FARM_ITEMS } from '../../data/farm-data.js';
 import { MUSEUM_ITEMS } from '../../data/museum-data.js';
 import { EXTRA_ITEMS, FURNITURE_VI } from '../../data/extra-items.js';
 import { CLOTHES } from '../../data/save-data.js';
+import { CRAFT_NAMES } from '../../data/craft-extra.js';
 import { isEn } from './i18n.js';
 
 // English name -> { x: entry, type: detail popup type or null }. Earlier lists win.
@@ -24,6 +25,7 @@ add(EXTRA_ITEMS, 'item');
 add(RECIPES_DATA, 'recipe');
 add(MUSEUM_ITEMS, null);
 add(FARM_ITEMS, null);
+add(CRAFT_NAMES, null);
 
 // Names the game data spells differently from the site
 const ALIASES = { 'l. goat milk': 'large goat milk', 'piã±a colada': 'piña colada', 'horse: the book': 'horse the book', 'raccoon journal': 'ways of the wild',

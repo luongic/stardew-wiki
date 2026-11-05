@@ -564,11 +564,17 @@ export const UI_EN = {
   'Cấp nông dân 15': 'Farmer level 15', 'Cấp nông dân 25': 'Farmer level 25', 'Thú cưng thương bạn hết mức': 'Pet at full friendship',
   'hôm nay Chủ Nhật là ngày cuối để tặng trong tuần': "today is Sunday, the last day of the gift week",
   'của MouseyPounds (MIT): mã sự kiện tim, Óc chó Vàng, đơn hàng đặc biệt, cách tính điểm Ông nội.': "by MouseyPounds (MIT): heart event ids, Golden Walnuts, special orders, Grandpa's scoring.",
+  // ---- Item popup: relations ----
+  'Liên quan': 'Related', 'Nấu từ': 'Cooked from', 'Chế tạo từ': 'Crafted from', 'xem công thức': 'see recipe',
+  'Gói Nhà Cộng Đồng cần': 'Needed in Community Center bundles', 'Món quà rất thích của': 'Loved gift of', 'Món quà thích của': 'Liked gift of',
+  'Quyên góp được cho Bảo Tàng của Gunther.': "Can be donated to Gunther's Museum.",
+  'chất lượng Bạc': 'silver quality', 'chất lượng Vàng': 'gold quality', 'chất lượng Iridium': 'iridium quality'
 };
 
 // Patterns for text that mixes words with numbers or names. Replacement
 // functions receive the regex groups plus `sub`, which translates a piece.
 export const PATTERNS_EN = [
+  [/^Dùng để nấu \((\d+) món\)$/, 'Used in cooking ($1 dishes)'], [/^Dùng để chế tạo \((\d+) món\)$/, 'Used in crafting ($1 items)'], [/^ra (\d+) cái$/, 'makes $1'],
   [/^Cần (\d+) tim$/, 'Needs $1 hearts'], [/^(\d+) ngày$/, '$1 days'], [/^(\d+) người chưa đủ 2 quà$/, '$1 villagers short of 2 gifts'],
   [/^Vẹt Vàng Joja nhặt hộ số còn lại với giá ([\d.]+)g\.$/, 'The Golden Joja Parrot collects the rest for $1g.'],
   [/^còn (\d+) quả để mua hết$/, '$1 walnuts to buy them all'], [/^Tổng thu nhập ([\d.]+)g$/, 'Total earnings $1g'], [/^còn ([\d.]+)g$/, '$1g to go'],

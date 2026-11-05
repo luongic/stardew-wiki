@@ -8,6 +8,7 @@ import { RECIPES_DATA } from '../../data/recipes-data.js';
 import { EXTRA_ITEMS } from '../../data/extra-items.js';
 import { emptyState, v16Badge, wikiLink, modalHeader, matches, signed } from '../lib/templates.js';
 import { ico } from '../lib/icons.js';
+import { relationsHtml } from '../lib/relations.js';
 
 const itemById = new Map(ITEMS_DATA.map(it => [it.id, it]));
 const extraById = new Map(EXTRA_ITEMS.map(it => [it.id, it]));
@@ -111,7 +112,8 @@ function extraDetail(it) {
       <div class="inset-box">
         <h4 class="inset-box__title">${ico('wiki')} ${t('Thông tin theo Official Stardew Valley Wiki')}:</h4>
         <ul class="bullet-list" lang="en">${it.info.map(([k, v]) => `<li><strong>${k}:</strong> ${v}</li>`).join('')}</ul>
-      </div>` : ''}`;
+      </div>` : ''}
+    ${relationsHtml(it.nameEn)}`;
 }
 
 export default {
@@ -195,12 +197,6 @@ export default {
         <p>${it.location}</p>
       </div>
 
-      ${it.lovedBy?.length ? `
-        <div class="callout callout--red">
-          <h4 class="callout__title">${ico('loved')} Món quà yêu thích tuyệt đối của:</h4>
-          <div class="pill-row">${it.lovedBy.map(n => `<span class="tag tag--red">${n}</span>`).join('')}</div>
-        </div>` : ''}
-
       ${it.usedIn?.length ? `
         <div class="callout callout--green">
           <h4 class="callout__title">${ico('uses')} Dùng trong công thức & Mục đích:</h4>
@@ -211,6 +207,7 @@ export default {
         <div class="callout callout--tip">
           <strong>${ico('tip')} Mẹo chuyên gia & Chiến lược khai thác:</strong>
           <p>${it.tips}</p>
-        </div>` : ''}`;
+        </div>` : ''}
+      ${relationsHtml(it.nameEn)}`;
   }
 };

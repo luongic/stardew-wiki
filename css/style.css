@@ -2772,3 +2772,7 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 .grandpa-candles span { filter: grayscale(1) brightness(.6); opacity: .5; }
 .grandpa-candles span.is-lit { filter: none; opacity: 1; }
 .grandpa-candles img { width: 32px; height: 32px; }
+
+/* ---- Item popup: related recipes, bundles, gifts ---- */
+.relation-head { margin: 18px 0 8px; font-size: 1.1rem; display: flex; align-items: center; gap: 6px; }
+.relation-box .pill-row { gap: 6px; }
