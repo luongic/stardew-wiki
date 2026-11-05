@@ -2,12 +2,16 @@
 // TAB: BẢO TÀNG (MUSEUM DONATIONS FOR GUNTHER)
 // Display-case tiles light up once donated; reward milestones track the
 // counts Gunther checks (total, artifacts, minerals, specific sets).
+// With a save loaded, pieces not donated yet show whether one is already in a
+// backpack, chest or fridge, and where.
 // ==========================================================================
 
 import { MUSEUM_ITEMS, MUSEUM_REWARDS } from '../../data/museum-data.js';
 import { progress } from '../lib/progress.js';
 import { emptyState, matches, pixelIcon } from '../lib/templates.js';
 import { ico } from '../lib/icons.js';
+import { ownedFinder, ownedRow } from '../lib/owned.js';
+import { saveTabLink } from './save.js';
 
 const itemById = new Map(MUSEUM_ITEMS.map(it => [it.id, it]));
 const ARTIFACTS = MUSEUM_ITEMS.filter(it => it.type === 'artifact');
@@ -60,18 +64,34 @@ function meter(label, done, total, mod = '') {
     </div>`;
 }
 
-function tile(it) {
+function tile(it, find) {
   const on = museumProgress.donated.has(it.id);
+  const have = !on && find && find(it).reduce((a, x) => a + x.n, 0);
   return `
     <button class="case-tile ${on ? 'is-donated' : ''}" type="button" data-action="museum-toggle" data-id="${it.id}"
             aria-pressed="${on}" title="${it.nameEn} • ${it.source}">
       <span class="case-tile__pedestal">
         <img src="${it.icon}" alt="" class="pixel-img" loading="lazy" data-fallback="hide">
         <span class="case-tile__tick" aria-hidden="true">✓</span>
+        ${have ? `<span class="case-tile__have" title="Đang có ${have} trong túi/rương">${ico('chest')}</span>` : ''}
       </span>
       <span class="case-tile__name">${it.name}</span>
       <span class="case-tile__source">${it.source}</span>
     </button>`;
+}
+
+// Pieces of the shown list that could be donated right away
+function ownedPanel(list, find) {
+  if (!find) return `<p class="muted cc-owned-hint">${ico('chest')} Nạp file save để xem món nào chưa quyên góp đã có sẵn trong túi đồ hay rương, và nằm ở đâu. ${saveTabLink('Nạp file save', 'btn btn--green btn--sm')}</p>`;
+  const rows = list.filter(it => !museumProgress.donated.has(it.id)).map(it => ({ it, spots: find(it) })).filter(r => r.spots.length);
+  if (!rows.length) return '';
+  return `
+    <section class="museum-owned">
+      <div class="owned-box">
+        <div class="owned-box__title">${ico('chest')} Có thể quyên góp ngay: ${rows.length} món chưa quyên góp đang có trong túi &amp; rương (theo file save):</div>
+        <ul>${rows.map(({ it, spots }) => ownedRow(it, spots)).join('')}</ul>
+      </div>
+    </section>`;
 }
 
 const museumTab = {
@@ -108,7 +128,8 @@ const museumTab = {
       return true;
     });
 
-    document.getElementById('museumCases').innerHTML = list.length
+    const find = ownedFinder();
+    document.getElementById('museumCases').innerHTML = ownedPanel(list, find) + (list.length
       ? GROUPS.map(g => {
         const items = list.filter(it => it.group === g);
         if (!items.length) return '';
@@ -119,10 +140,10 @@ const museumTab = {
               <h3 class="case__title">${ico(GROUP_ICONS[g] || 'box')} ${g}</h3>
               <span class="badge badge--gold">${museumProgress.count(all)}/${all.length}</span>
             </header>
-            <div class="case__grid">${items.map(tile).join('')}</div>
+            <div class="case__grid">${items.map(it => tile(it, find)).join('')}</div>
           </section>`;
       }).join('')
-      : emptyState('museum', 'Không có món nào khớp!', 'Thử từ khóa khác hoặc tắt bộ lọc "Chưa Hoàn Thành".');
+      : emptyState('museum', 'Không có món nào khớp!', 'Thử từ khóa khác hoặc tắt bộ lọc "Chưa Hoàn Thành".'));
   },
 
   badge() {

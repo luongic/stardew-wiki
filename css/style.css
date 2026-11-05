@@ -2001,7 +2001,7 @@ code {
   text-shadow: 1px 1px 0 var(--ink);
 }
 /* Already in a backpack or chest (from the save): gold = some, green = enough */
-.slot__have {
+.slot__have, .case-tile__have {
   position: absolute;
   top: -6px;
   right: -6px;
@@ -2012,14 +2012,16 @@ code {
   background: var(--gold);
   border: 2px solid var(--ink);
 }
-.slot__have.is-enough { background: #7ed957; }
-.slot__have img { width: 14px; height: 14px; }
-.bundle__owned { margin-top: 10px; padding: 8px 10px; background: var(--parch-100); border: 2px dashed var(--ink); }
-.bundle__owned-title { font-weight: 700; margin-bottom: 6px; }
-.bundle__owned ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
-.bundle__owned li { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; }
-.bundle__owned li > img { width: 24px; height: 24px; }
+.slot__have.is-enough, .case-tile__have { background: #7ed957; }
+.slot__have img, .case-tile__have img { width: 14px; height: 14px; }
+.owned-box { margin-top: 10px; padding: 8px 10px; background: var(--parch-100); border: 2px dashed var(--ink); }
+.owned-box__title { font-weight: 700; margin-bottom: 6px; }
+.owned-box ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.owned-box li { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; }
+.owned-box li > img { width: 24px; height: 24px; }
 .cc-owned-hint { margin: 0 0 12px; }
+.museum-owned { margin: 0 0 16px; }
+.museum-owned .owned-box { margin-top: 0; }
 .q-silver { color: #d9e2ec; }
 .q-gold { color: var(--gold); }
 .q-iridium { color: #c77dff; }

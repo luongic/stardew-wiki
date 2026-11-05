@@ -12,9 +12,7 @@ import { CC_ROOMS } from '../../data/bundles-data.js';
 import { progress } from '../lib/progress.js';
 import { emptyState, matches, pixelIcon } from '../lib/templates.js';
 import { ico } from '../lib/icons.js';
-import { loadJSON, KEYS } from '../lib/storage.js';
-import { OBJECT_NAMES } from '../../data/item-ids.js';
-import { labeledContainers } from './journal.js';
+import { ownedFinder, ownedTotal, ownedRow } from '../lib/owned.js';
 import { saveTabLink } from './save.js';
 
 const BUNDLES = CC_ROOMS.flatMap(room => room.bundles.map(b => ({ ...b, roomId: room.id })));
@@ -82,47 +80,16 @@ const QUALITY = {
 // ==========================================
 // ITEMS ALREADY OWNED (from the last save)
 // ==========================================
-const Q_RANK = { silver: 1, gold: 2, iridium: 3 };
-// Matched by item id where the save's name differs: eggs/milk named by colour
-// or size, and artisan goods named after their fruit ("Grape Wine"), which
-// must not catch look-alikes such as River Jelly.
-const SAVE_IDS = { 'Large Egg': ['174'], 'Large Brown Egg': ['182'], 'Large Goat Milk': ['438'], Jelly: ['344'], Wine: ['348'], Honey: ['340'] };
-const holds = (item, it) => SAVE_IDS[item.nameEn] ? SAVE_IDS[item.nameEn].includes(it.id) : it.name === item.nameEn || OBJECT_NAMES[it.id] === item.nameEn;
-
-// item -> [{ s (container with .spot), n }] of stacks good enough for the slot
-function ownedFinder() {
-  const spots = labeledContainers(loadJSON(KEYS.journal, null));
-  if (!spots.length) return null;
-  return item => {
-    const need = Q_RANK[item.quality] || 0;
-    return spots.map(s => ({ s, n: s.items.filter(it => (Q_RANK[it.quality] || 0) >= need && holds(item, it)).reduce((a, it) => a + it.stack, 0) }))
-      .filter(x => x.n > 0)
-      .sort((a, b) => b.n - a.n);
-  };
-}
-const ownedTotal = spots => spots.reduce((a, x) => a + x.n, 0);
-const spotIcon = s => ico(s.kind === 'backpack' ? 'guest' : s.kind === 'fridge' ? 'cooking' : 'chest');
-
 function ownedHtml(b, find) {
   const rows = b.items
     .map((item, idx) => ({ item, spots: bundleProgress.done.has(slotKey(b.id, idx)) ? [] : find(item) }))
     .filter(r => r.spots.length);
   if (!rows.length) return '';
   return `
-    <div class="bundle__owned">
-      <div class="bundle__owned-title">${ico('chest')} Đã có trong túi &amp; rương (theo file save):</div>
+    <div class="owned-box">
+      <div class="owned-box__title">${ico('chest')} Đã có trong túi &amp; rương (theo file save):</div>
       <ul>
-        ${rows.map(({ item, spots }) => {
-          const have = ownedTotal(spots);
-          return `
-          <li>
-            <img src="${item.icon}" alt="" class="pixel-img" loading="lazy" data-fallback="hide">
-            <strong>${item.name}</strong>
-            <span class="tag ${have >= item.count ? 'tag--green' : 'tag--gold'}" title="Đang có / cần nộp">${have}/${item.count}</span>
-            ${spots.map(({ s, n }) => `<span class="tag">${spotIcon(s)} ${s.spot} · ${n}${s.where === 'Farm' && s.x !== undefined
-              ? ` <button class="link-btn" type="button" data-action="journal-map" data-x="${s.x}" data-y="${s.y}">Bản đồ</button>` : ''}</span>`).join('')}
-          </li>`;
-        }).join('')}
+        ${rows.map(({ item, spots }) => ownedRow(item, spots, item.count)).join('')}
       </ul>
     </div>`;
 }
