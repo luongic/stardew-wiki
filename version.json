@@ -1,7 +1,9 @@
 {
-  "version": "8278bbea0a",
-  "content": "8278bbea0a",
-  "built": "2026-11-05T03:58:15.832Z",
-  "important": false,
-  "notes": []
+  "version": "cced1dfd8c",
+  "content": "a7a6462254",
+  "built": "2026-11-05T05:21:37.217Z",
+  "important": true,
+  "notes": [
+    "Trang mở ở tab Từ Điển Vật Phẩm, tải lại trang luôn bắt đầu từ đầu"
+  ]
 }

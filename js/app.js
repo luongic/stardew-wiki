@@ -64,7 +64,7 @@ export class StardewWikiApp {
     // Switching language reloads the page; come back to the same tab
     const savedTab = sessionStorage.getItem('stardew_wiki_tab');
     sessionStorage.removeItem('stardew_wiki_tab');
-    this.currentTab = this.tabById.has(savedTab) ? savedTab : 'recipes';
+    this.currentTab = this.tabById.has(savedTab) ? savedTab : 'items';
     this.searchQuery = '';
     this.filters = Object.fromEntries(this.tabs.map(t => [t.id, 'all']));
     this.toggles = { v16: false, unfinished: false, buffs: false };

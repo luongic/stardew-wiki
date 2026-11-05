@@ -28,6 +28,9 @@
       var s = localStorage.getItem('stardew_wiki_season');
       if (['spring', 'summer', 'fall', 'winter'].indexOf(s) !== -1) document.documentElement.dataset.season = s;
     } catch (e) { /* storage blocked: default season */ }
+    // Every visit starts at the top: the browser would otherwise jump back to
+    // where the last visit was scrolled, often a spot in another tab
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   </script>
 </head>
 <body>
@@ -248,12 +251,12 @@
 
     <main>
       <!-- ======= TAB: RECIPES ======= -->
-      <section id="tab-recipes" class="tab-panel" role="tabpanel">
+      <section id="tab-recipes" class="tab-panel" role="tabpanel" hidden>
         <div id="recipesGrid" class="content-grid" aria-live="polite"></div>
       </section>
 
       <!-- ======= TAB: ITEMS ======= -->
-      <section id="tab-items" class="tab-panel" role="tabpanel" hidden>
+      <section id="tab-items" class="tab-panel" role="tabpanel">
         <div id="itemsContainer" aria-live="polite"></div>
       </section>
 
