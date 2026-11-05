@@ -10,6 +10,9 @@
 //   rooms/{code}/progress/planner   { [recipeId]: { n: number, t, by } }  counts
 //   rooms/{code}/shared/today       { season, day, year, name, by, at }   the in-game
 //                                   day last read from someone's save (Today tab)
+//   rooms/{code}/shared/save        { z, farmName, name, by, at }         what the
+//                                   last save import read (profile, journal,
+//                                   predictions, caught fish), gzip + base64
 //
 // Merging is per item: two players changing different items never overwrite
 // each other. Unticking writes v:false (a tombstone) instead of deleting, so
@@ -49,6 +52,7 @@ class CoopRoom {
     this.notes = {};           // uid -> { text, name, t } (one note per member)
     this.sharedDay = null;     // latest rooms/{code}/shared/today
     this.dayListeners = new Set();
+    this.saveListeners = new Set();
     this.localNote = null;     // () => current local note text, set by the notes panel
     this.status = 'idle';      // idle | connecting | synced | pending | offline | error
     this.error = '';
@@ -72,6 +76,7 @@ class CoopRoom {
 
   onChange(fn) { this.listeners.add(fn); }
   onSharedDay(fn) { this.dayListeners.add(fn); }
+  onSharedSave(fn) { this.saveListeners.add(fn); }
   notify() { for (const fn of this.listeners) fn(this); }
   setStatus(s, error = '') { this.status = s; this.error = error; this.notify(); }
 
@@ -276,6 +281,10 @@ class CoopRoom {
       if (this.sharedDay) for (const fn of this.dayListeners) fn(this.sharedDay);
     }, e => console.warn('[co-op] shared day', e))); // a nice-to-have: never break the room over it
 
+    this.unsubs.push(fb.onSnapshot(this.saveRef(), snap => {
+      if (snap.exists()) for (const fn of this.saveListeners) fn(snap.data());
+    }, e => console.warn('[co-op] shared save', e)));
+
     this.unsubs.push(fb.onSnapshot(this.roomRef(), { includeMetadataChanges: true }, snap => {
       if (!snap.exists()) return this.fail(new Error('Phòng không còn tồn tại.'));
       this.room = snap.data();
@@ -366,6 +375,23 @@ class CoopRoom {
     if (!this.fb || !this.code) return null;
     const entry = { season, day, year, name: this.name || 'Nông dân', by: this.user.uid, at: Date.now() };
     this.fb.setDoc(this.dayRef(), entry).catch(e => console.warn('[co-op] shared day', e));
+    return entry;
+  }
+
+  // ---------- shared save ----------
+  // The snapshot of the last save import, so every device in the room (the
+  // same player at work, or a farmhand whose computer keeps no save) sees the
+  // Journal, profile and predictions without loading the file. `z` is the
+  // gzipped JSON; `at` + `by` tell the shares apart, like the shared day.
+  saveRef(code = this.code) { return this.fb.doc(this.fb.db, 'rooms', code, 'shared', 'save'); }
+
+  // `onEntry` runs before the write, since the room's snapshot of it can
+  // arrive before setDoc resolves
+  async shareSave(z, farmName, onEntry) {
+    if (!this.fb || !this.code) return null;
+    const entry = { z, farmName: String(farmName || '').slice(0, 100), name: this.name || 'Nông dân', by: this.user.uid, at: Date.now() };
+    onEntry?.(entry);
+    await this.fb.setDoc(this.saveRef(), entry);
     return entry;
   }
 

@@ -2794,3 +2794,13 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 .save-use__icon .pixel-icon, .save-use__icon .game-icon { width: 28px; height: 28px; }
 .save-use__text { flex: 1; display: flex; flex-direction: column; gap: 2px; font-size: .92rem; }
 .save-sync { margin-bottom: 16px; }
+.save-quick { display: flex; flex-direction: column; align-items: center; gap: 6px; max-width: 640px; }
+.save-quick:empty { display: none; }
+.save-path { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px; }
+.save-path code { word-break: break-all; }
+.save-drop__btns { justify-content: center; }
+.save-tree { font-family: monospace; font-size: .85rem; background: var(--parch-200); padding: 8px 10px; border-radius: 6px; overflow-x: auto; margin: 6px 0; }
+.save-choices { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 8px; }
+.save-coop { margin-top: 12px; }
+.save-coop p { margin: 4px 0; }
+.save-coop ul { margin: 4px 0 4px 20px; }

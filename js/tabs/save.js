@@ -19,6 +19,8 @@ import { applySaveFarm, farmPlanIsReplaceable } from './farm.js';
 import { applySavePredict } from './predictor.js';
 import { JOURNAL_SCHEMA, isStale } from '../lib/journal-schema.js';
 import { coop } from '../sync/coop.js';
+import { gzip64, gunzip64 } from '../lib/gzip.js';
+import { showToast } from '../lib/ui.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
@@ -140,11 +142,58 @@ function applySave(app) {
     done.push(t('nông trại'));
   }
   pendingSave = null; summary = '';
+  if (coop.code) {
+    shareWithRoom(res.farmName);
+    done.push(t('chia sẻ với phòng Co-op'));
+  }
   lastDone = done.join(' · ') || t('không có gì');
   app.sfx.play('complete');
   app.render();
   app.showToast(`${ico('check')} ${t('Đã đồng bộ từ file save')}: ${lastDone}`);
 }
+
+// ---------- Sharing the save with the co-op room ----------
+// The parts of the save each device keeps for itself (the ticks and the day
+// already go through the room on their own). The room keeps the latest; a
+// device takes it when it is newer than what it read itself.
+const SHARED_PARTS = { profiles: KEYS.profiles, journal: KEYS.journal, predict: KEYS.predict, fish: KEYS.fishCaught };
+// { stamp, name, at, mine }: the room's share this device already has
+const ROOM_SAVE = 'stardew_wiki_room_save';
+const roomSave = () => loadJSON(ROOM_SAVE, null);
+const stampOf = e => `${e.by}:${e.at}`;
+
+async function shareWithRoom(farmName) {
+  try {
+    const data = Object.fromEntries(Object.entries(SHARED_PARTS).map(([k, key]) => [k, loadJSON(key, null)]));
+    await coop.shareSave(await gzip64(JSON.stringify(data)), farmName,
+      entry => saveJSON(ROOM_SAVE, { stamp: stampOf(entry), name: entry.name, at: entry.at, mine: true }));
+    if (window.app?.currentTab === 'save') render();
+  } catch (e) {
+    console.warn('[co-op] share save', e);
+    showToast(`${ico('warn')} ${t('Chưa chia sẻ được dữ liệu save với phòng Co-op')}`);
+  }
+}
+
+coop.onSharedSave(async e => {
+  const stamp = stampOf(e);
+  if (roomSave()?.stamp === stamp || typeof e.z !== 'string') return;
+  // This device read a newer save itself: keep it
+  const local = Math.max(loadJSON(KEYS.journal, null)?.at || 0, loadJSON(KEYS.profiles, null)?.at || 0);
+  if (e.at <= local) { saveJSON(ROOM_SAVE, { stamp, name: e.name, at: e.at, mine: true }); return; }
+  try {
+    const data = JSON.parse(await gunzip64(e.z));
+    for (const [k, key] of Object.entries(SHARED_PARTS)) {
+      if (data[k] == null) continue;
+      if (k === 'fish') setCaughtFish(data.fish);
+      else if (k === 'predict') applySavePredict(data.predict);
+      else saveJSON(key, data[k]);
+    }
+    if (data.journal?.day) setFishingSeason(data.journal.day.season);
+    saveJSON(ROOM_SAVE, { stamp, name: e.name, at: e.at, mine: false });
+    window.app?.render();
+    showToast(`${ico('members')} ${t('Đã nhận dữ liệu save từ phòng Co-op')}: <span data-no-i18n>${esc(e.name)}</span> · ${when(e.at)}`);
+  } catch (err) { console.warn('[co-op] shared save', err); }
+});
 
 // What each tab takes from the save, and whether it has it yet
 function usesHtml() {
@@ -177,6 +226,15 @@ function usesHtml() {
     </div>`;
 }
 
+function roomHtml() {
+  const r = roomSave();
+  if (!coop.code) return `<p class="muted">${ico('members')} ${t('Vào phòng Co-op để dữ liệu save tự có trên máy khác và trên máy của bạn chơi chung.')}</p>`;
+  if (!r) return `<p class="muted">${ico('members')} ${t('Phòng Co-op')} <strong data-no-i18n>${coop.code}</strong>: ${t('nạp file save để chia sẻ cho cả phòng.')}</p>`;
+  return `<p class="muted">${ico('members')} ${t('Phòng Co-op')} <strong data-no-i18n>${coop.code}</strong>: ${r.mine
+    ? t('đã chia sẻ với cả phòng')
+    : `${t('nhận từ')} <strong data-no-i18n>${esc(r.name)}</strong> (${when(r.at)})`}</p>`;
+}
+
 function statusHtml() {
   const profiles = loadJSON(KEYS.profiles, null);
   const journal = loadJSON(KEYS.journal, null);
@@ -195,15 +253,193 @@ function statusHtml() {
       ${journal?.day ? `<p>${ico('calendar')} ${dayText(journal.day)}</p>` : ''}
       ${predict?.source === 'save' ? `<p>${ico('oracle')} Game ID <strong data-no-i18n>${esc(predict.gameID)}</strong></p>` : ''}
       ${at ? `<p class="muted">${t('Nạp lúc')} ${when(at)}</p>` : ''}
+      ${roomHtml()}
     </div>
     <button class="link-btn" type="button" data-action="save-forget">${t('Xóa dữ liệu save khỏi trình duyệt')}</button>`;
 }
 
+// ---------- Remembering the save file ----------
+// Browsers never let a page open the file picker in a folder of its choosing
+// (%AppData%\StardewValley\Saves...). Chrome and Edge's File System Access API
+// gets close: the picker remembers the folder of the last save picked, and the
+// file or folder handle, kept in IndexedDB, lets "Read again" reload the save
+// after playing, with one permission click. Other browsers use plain inputs.
+const canPick = typeof window.showOpenFilePicker === 'function';
+const canPickDir = typeof window.showDirectoryPicker === 'function';
+const LAST_FARM = 'stardew_wiki_save_farm';
+let lastHandle = null;
+// Farms found in a picked folder, waiting for the player to choose one
+let choices = [];
+
+function idb(mode, fn) {
+  return new Promise((resolve, reject) => {
+    const open = indexedDB.open('stardew_wiki_files', 1);
+    open.onupgradeneeded = () => open.result.createObjectStore('handles');
+    open.onerror = () => reject(open.error);
+    open.onsuccess = () => {
+      try {
+        const tx = open.result.transaction('handles', mode);
+        const req = fn(tx.objectStore('handles'));
+        tx.oncomplete = () => resolve(req?.result);
+        tx.onerror = () => reject(tx.error);
+      } catch (e) { reject(e); }
+    };
+  });
+}
+const keepHandle = h => { lastHandle = h; idb('readwrite', st => st.put(h, 'save')).catch(() => {}); };
+const dropHandle = () => { lastHandle = null; idb('readwrite', st => st.delete('save')).catch(() => {}); };
+const lastFarm = () => { try { return localStorage.getItem(LAST_FARM); } catch { return null; } };
+
+// ---------- Finding the save inside a folder ----------
+// Saves/Farm_123456789/Farm_123456789 is the save; SaveGameInfo and the _old
+// copies sit beside it. The player may pick the Saves folder, one farm's
+// folder or StardewValley itself: the site finds the save files in it.
+// A found save: { farm, file, modified }
+const isSave = (name, folder) => name === folder && /_\d+$/.test(folder);
+const goesDown = name => name === 'Saves' || /_\d+$/.test(name);
+const found = file => ({ farm: file.name, file, modified: file.lastModified });
+
+// A folder input or a list of files with their paths (Saves/Farm_1/Farm_1)
+const savesFromList = files => files
+  .filter(f => { const parts = f.webkitRelativePath.split('/'); return parts.length >= 2 && isSave(parts.at(-1), parts.at(-2)); })
+  .map(found);
+
+// A folder handle (Chrome / Edge picker or drop)
+async function savesFromDir(dir, depth = 0) {
+  const out = [];
+  for await (const [name, h] of dir.entries()) {
+    if (h.kind === 'file' && isSave(name, dir.name)) out.push(found(await h.getFile()));
+    else if (h.kind === 'directory' && depth < 2 && goesDown(name)) out.push(...await savesFromDir(h, depth + 1));
+  }
+  return out;
+}
+
+// A dropped folder in browsers without handles (webkitGetAsEntry)
+async function savesFromEntry(dir, depth = 0) {
+  const kids = await new Promise((resolve, reject) => {
+    const reader = dir.createReader(), all = [];
+    const next = () => reader.readEntries(batch => { if (batch.length) { all.push(...batch); next(); } else resolve(all); }, reject);
+    next();
+  });
+  const out = [];
+  for (const k of kids) {
+    if (k.isFile && isSave(k.name, dir.name)) out.push(found(await new Promise((res, rej) => k.file(res, rej))));
+    else if (k.isDirectory && depth < 2 && goesDown(k.name)) out.push(...await savesFromEntry(k, depth + 1));
+  }
+  return out;
+}
+
+function readFound(app, c) {
+  choices = [];
+  try { localStorage.setItem(LAST_FARM, c.farm); } catch { /* storage blocked */ }
+  readSaveFile(app, c.file);
+}
+
+// One save: read it. Several: list them (newest first), unless `prefer`
+// asks for the farm read last time ("Read again" on a folder).
+function useSaves(app, list, prefer = false) {
+  list.sort((a, b) => b.modified - a.modified);
+  lastDone = ''; lastError = '';
+  const again = prefer && list.find(c => c.farm === lastFarm());
+  if (again || list.length === 1) return readFound(app, again || list[0]);
+  choices = list;
+  if (!list.length) lastError = t('Không thấy file save nào trong thư mục này. Hãy chọn thư mục Saves hoặc thư mục của nông trại (tên dạng TenNongTrai_123456789).');
+  if (app.currentTab === 'save') app.render(); else app.switchTab('save');
+}
+
+async function pickSave(app) {
+  if (!canPick) { document.getElementById('saveProgressInput').click(); return; }
+  try {
+    // id: the picker keeps its own last folder; startIn: the last save or folder
+    const [h] = await window.showOpenFilePicker({ id: 'stardew-save', ...(lastHandle ? { startIn: lastHandle } : {}) });
+    keepHandle(h);
+    readFound(app, found(await h.getFile()));
+  } catch (e) {
+    if (e.name === 'AbortError') return;   // picker closed
+    console.warn('[save picker]', e);
+    app.showToast(`${ico('warn')} ${e.message}`);
+  }
+}
+
+async function pickFolder(app) {
+  if (!canPickDir) { document.getElementById('saveFolderInput').click(); return; }
+  try {
+    const dir = await window.showDirectoryPicker({ id: 'stardew-saves', mode: 'read', ...(lastHandle ? { startIn: lastHandle } : {}) });
+    keepHandle(dir);
+    useSaves(app, await savesFromDir(dir));
+  } catch (e) {
+    if (e.name === 'AbortError') return;
+    console.warn('[save folder]', e);
+    app.showToast(`${ico('warn')} ${e.message}`);
+  }
+}
+
+async function reopenSave(app) {
+  const h = lastHandle;
+  if (!h) return;
+  try {
+    const opts = { mode: 'read' };
+    if ((await h.queryPermission?.(opts)) !== 'granted' && (await h.requestPermission?.(opts)) !== 'granted') return;
+    if (h.kind === 'directory') useSaves(app, await savesFromDir(h), true);
+    else readFound(app, found(await h.getFile()));
+  } catch (e) {
+    console.warn('[save reopen]', e);
+    dropHandle();
+    app.showToast(`${ico('warn')} ${t('Không mở lại được file lần trước, hãy chọn lại file save.')}`);
+    app.render();
+  }
+}
+
+// The save folder of the player's system, and how to get there
+function savePath() {
+  const ua = navigator.userAgent;
+  if (/Android|iPhone|iPad/i.test(ua)) return null;
+  if (/Windows/i.test(ua)) return { path: '%AppData%\\StardewValley\\Saves', how: ['Bấm Chọn file save, dán đường dẫn vào ô "File name" (Tên tệp) rồi nhấn Enter.'] };
+  if (/Mac/i.test(ua)) return { path: '~/.config/StardewValley/Saves', how: [
+    'Trong hộp chọn file (hoặc Finder > Go > Go to Folder) nhấn Cmd + Shift + G, dán đường dẫn rồi nhấn Enter.',
+    'Thư mục .config bị ẩn: nhấn Cmd + Shift + . (dấu chấm) để hiện thư mục ẩn.',
+    'Bản mua trên Mac App Store lưu trong thư mục riêng của ứng dụng, thường là ~/Library/Containers/(Stardew Valley)/Data/.config/StardewValley/Saves.'] };
+  return { path: '~/.config/StardewValley/Saves', how: ['Trong hộp chọn file nhấn Ctrl + L, dán đường dẫn rồi nhấn Enter.'] };
+}
+
+function quickHtml() {
+  const sp = savePath();
+  const again = lastHandle && (lastHandle.kind === 'directory' ? (lastFarm() || lastHandle.name) : lastHandle.name);
+  return `
+    ${again ? `<button class="btn btn--blue" type="button" data-action="save-reopen">${ico('save')} ${t('Đọc lại')} <strong data-no-i18n>${esc(again)}</strong></button>
+      <p class="muted">${t('Chơi xong, lưu game rồi bấm Đọc lại để cập nhật, không cần chọn lại file.')}</p>` : ''}
+    ${sp ? `<p class="save-path">${t('Thư mục save')}: <code data-no-i18n>${sp.path}</code>
+      <button class="btn btn--ghost btn--sm" type="button" data-action="save-copy-path" data-path="${sp.path}">${ico('copy')} ${t('Chép')}</button></p>
+      ${sp.how.map(h => `<p class="muted">${t(h)}</p>`).join('')}
+      ${canPick ? `<p class="muted">${t('Từ lần sau hộp chọn file sẽ tự mở ở thư mục này.')}</p>` : ''}` : ''}`;
+}
+
+// The farms found in a picked folder
+function choicesHtml() {
+  if (!choices.length) return '';
+  return `
+    <section class="panel">
+      <h2 class="panel__title">${ico('farm')} ${t('Chọn nông trại')}</h2>
+      <p class="muted">${t('Thư mục này có')} ${choices.length} ${t('file save, mới nhất ở trên.')}</p>
+      <div class="save-choices">
+        ${choices.map((c, i) => `
+          <button class="save-use" type="button" data-action="save-choose" data-i="${i}">
+            <span class="save-use__icon">${ico('save')}</span>
+            <span class="save-use__text"><strong data-no-i18n>${esc(c.farm.replace(/_(\d+)$/, ''))}</strong>
+              <span class="muted">Game ID ${c.farm.match(/_(\d+)$/)?.[1] || '?'} · ${t('lưu lúc')} ${when(c.modified)}</span></span>
+          </button>`).join('')}
+      </div>
+    </section>`;
+}
+
 function render() {
+  const quick = document.getElementById('saveQuick');
+  if (quick) quick.innerHTML = quickHtml();
   const el = document.getElementById('saveBoard');
   if (!el) return;
   el.innerHTML = `
     ${lastError ? `<p class="callout callout--red">${ico('warn')} ${esc(lastError)}</p>` : ''}
+    ${choicesHtml()}
     ${lastDone ? `<p class="callout callout--green">${ico('check')} ${t('Đã đồng bộ từ file save')}: ${lastDone}</p>` : ''}
     ${summary ? `<section class="panel save-sync">
       <h2 class="panel__title">${ico('save')} ${t('Tiến độ trong file save')}</h2>
@@ -225,8 +461,24 @@ function bindDrop(app) {
   zone.addEventListener('dragleave', off);
   zone.addEventListener('drop', e => {
     e.preventDefault(); off();
-    const file = e.dataTransfer?.files?.[0];
-    if (file) readSaveFile(app, file);
+    // Both must be asked for right away, before anything waits
+    const item = e.dataTransfer?.items?.[0];
+    const handle = item?.getAsFileSystemHandle?.();
+    const entry = item?.webkitGetAsEntry?.();
+    if (handle) {
+      // Chrome / Edge: keep the dropped file or folder for "Read again"
+      handle.then(async h => {
+        if (!h) return;
+        keepHandle(h);
+        if (h.kind === 'directory') useSaves(app, await savesFromDir(h));
+        else readFound(app, found(await h.getFile()));
+      }).catch(err => { console.warn('[save drop]', err); app.showToast(`${ico('warn')} ${err.message}`); });
+    } else if (entry?.isDirectory) {
+      savesFromEntry(entry).then(list => useSaves(app, list)).catch(err => console.warn('[save drop]', err));
+    } else {
+      const file = e.dataTransfer?.files?.[0];
+      if (file) readFound(app, found(file));
+    }
   });
 }
 
@@ -236,24 +488,44 @@ document.addEventListener('save-file', e => window.app && readSaveFile(window.ap
 export default {
   id: 'save',
   toggles: [],
-  init(app) { bindDrop(app); },
+  init(app) {
+    bindDrop(app);
+    if (canPick || canPickDir) idb('readonly', st => st.get('save')).then(h => { lastHandle = h || null; if (h && app.currentTab === 'save') render(); }).catch(() => {});
+  },
   render,
   actions: {
     'goto-save': (app) => { app.switchTab('save'); app.sfx.play('click'); window.scrollTo({ top: 0, behavior: 'smooth' }); },
     'import-save-progress': (app) => {
       if (app.currentTab !== 'save') app.switchTab('save');
-      document.getElementById('saveProgressInput').click();
+      pickSave(app);
+    },
+    'save-reopen': (app) => reopenSave(app),
+    'save-pick-folder': (app) => {
+      if (app.currentTab !== 'save') app.switchTab('save');
+      pickFolder(app);
+    },
+    'save-folder-files': (app, el) => {
+      const files = [...(el.files || [])];
+      el.value = '';
+      if (files.length) useSaves(app, savesFromList(files));
+    },
+    'save-choose': (app, el) => { const c = choices[Number(el.dataset.i)]; if (c) readFound(app, c); },
+    'save-copy-path': async (app, el) => {
+      try { await navigator.clipboard.writeText(el.dataset.path); app.showToast(`${ico('check')} ${t('Đã chép đường dẫn')}`); }
+      catch { app.showToast(el.dataset.path); }
     },
     'save-progress-file': (app, el) => {
       const file = el.files?.[0];
       el.value = '';   // allow choosing the same file again
-      if (file) readSaveFile(app, file);
+      if (file) readFound(app, found(file));
     },
     'save-progress-apply': (app) => applySave(app),
     'save-cancel': (app) => { pendingSave = null; summary = ''; app.render(); },
     'save-forget': (app) => {
       if (!confirm(t('Xóa thông tin đọc từ file save (hồ sơ, sổ tay, dự đoán) khỏi trình duyệt? Các dấu tick tiến độ vẫn được giữ.'))) return;
-      for (const k of [KEYS.profiles, KEYS.journal, KEYS.predict]) { try { localStorage.removeItem(k); } catch { /* storage blocked */ } }
+      for (const k of [KEYS.profiles, KEYS.journal, KEYS.predict, ROOM_SAVE]) { try { localStorage.removeItem(k); } catch { /* storage blocked */ } }
+      dropHandle();
+      try { localStorage.removeItem(LAST_FARM); } catch { /* storage blocked */ }
       lastDone = ''; app.render();
       app.showToast(t('Đã xóa dữ liệu save'));
     }

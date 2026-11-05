@@ -458,12 +458,23 @@
           <div class="save-drop" id="saveDrop">
             <p class="save-drop__icon" aria-hidden="true"><i data-icon="upload"></i></p>
             <p><strong>Kéo thả file save vào đây</strong> hoặc</p>
-            <button class="btn btn--green btn--lg" type="button" data-action="import-save-progress"><i data-icon="save"></i> Chọn file save</button>
+            <div class="btn-row save-drop__btns">
+              <button class="btn btn--green btn--lg" type="button" data-action="import-save-progress"><i data-icon="save"></i> Chọn file save</button>
+              <button class="btn btn--blue btn--lg" type="button" data-action="save-pick-folder"><i data-icon="box"></i> Chọn thư mục Saves</button>
+            </div>
+            <p class="muted">Không biết chọn file nào? Chọn cả thư mục Saves (hoặc thư mục nông trại), trang sẽ tự tìm file save.</p>
             <input type="file" id="saveProgressInput" data-action="save-progress-file" hidden>
+            <input type="file" id="saveFolderInput" data-action="save-folder-files" webkitdirectory multiple hidden>
+            <div class="save-quick" id="saveQuick"></div>
           </div>
           <details class="save-where">
             <summary>File save nằm ở đâu?</summary>
-            <p>Mỗi nông trại là một thư mục tên dạng <code>TenNongTrai_123456789</code>. Hãy chọn file <strong>có tên giống hệt thư mục</strong> (không đuôi), không phải file <code>SaveGameInfo</code>.</p>
+            <p>Trong thư mục <code>Saves</code>, mỗi nông trại là một <strong>thư mục</strong> tên dạng <code>TenNongTrai_123456789</code>. File save nằm <strong>bên trong</strong> thư mục đó và có tên giống hệt thư mục (không đuôi):</p>
+            <pre class="save-tree" data-no-i18n>Saves/
+└─ TenNongTrai_123456789/
+   ├─ TenNongTrai_123456789      ← file save
+   ├─ TenNongTrai_123456789_old
+   └─ SaveGameInfo</pre>
             <ul>
               <li><strong>Windows:</strong> <code>%AppData%\StardewValley\Saves</code></li>
               <li><strong>macOS:</strong> <code>~/.config/StardewValley/Saves</code></li>
@@ -471,8 +482,17 @@
               <li><strong>Android:</strong> <code>Android/data/com.chucklefish.stardewvalley/files/Saves</code></li>
               <li><strong>iPhone / iPad:</strong> ứng dụng Tệp, thư mục Stardew Valley</li>
             </ul>
-            <p>Co-op: chỉ máy chủ (host) có file save đầy đủ của cả nông trại.</p>
+            <p>macOS: thư mục <code>.config</code> bị ẩn, nhấn <strong>Cmd + Shift + .</strong> trong Finder hoặc hộp chọn file để hiện. Bản Mac App Store lưu trong thư mục riêng của ứng dụng, thường là <code>~/Library/Containers/…/Data/.config/StardewValley/Saves</code>.</p>
+            <p>Thư mục Saves trống? Game chỉ lưu khi nhân vật đi ngủ qua đêm. Nếu chơi bằng Steam trên máy khác, bật Steam Cloud để file save về máy này.</p>
           </details>
+          <div class="callout callout--blue save-coop">
+            <p><strong><i data-icon="members"></i> Chơi co-op với vai khách (farmhand)?</strong></p>
+            <p>Máy của khách không có file save: game chỉ lưu nông trại co-op trên máy của chủ phòng (host), dù khách tìm ở đâu cũng không thấy. Có hai cách:</p>
+            <ul>
+              <li>Nhờ host gửi file save (file nằm trong thư mục nông trại, xem cây thư mục ở trên) qua Zalo / Messenger, rồi nạp file đó ở đây. Trang đọc được mọi người chơi trong save, ở các tab Sổ Tay, Mật Thư, Tiến Độ chỉ cần bấm chọn tên mình.</li>
+              <li>Hoặc vào chung phòng Co-op (nút Co-op ở góc trên): host nạp save là dấu tick tiến độ và ngày trong game tự chia sẻ cho cả phòng.</li>
+            </ul>
+          </div>
         </div>
         <div id="saveBoard"></div>
       </section>

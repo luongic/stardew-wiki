@@ -54,9 +54,17 @@ service cloud.firestore {
           && request.resource.data.name.size() <= 24;
       }
 
-      // The in-game day last read from a member's save (Today tab)
+      // The in-game day last read from a member's save (Today tab), and the
+      // snapshot of that save (gzip + base64, under Firestore's 1 MiB per doc)
       match /shared/{doc} {
         allow read: if isMember(code);
+        allow write: if isMember(code) && doc == 'save'
+          && request.resource.data.keys().hasOnly(['z', 'farmName', 'name', 'by', 'at'])
+          && request.resource.data.z is string && request.resource.data.z.size() <= 900000
+          && request.resource.data.farmName is string && request.resource.data.farmName.size() <= 100
+          && request.resource.data.by == request.auth.uid
+          && request.resource.data.at is int
+          && request.resource.data.name is string && request.resource.data.name.size() <= 24;
         allow write: if isMember(code)
           && doc == 'today'
           && request.resource.data.keys().hasOnly(['season', 'day', 'year', 'name', 'by', 'at'])
