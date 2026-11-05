@@ -11,8 +11,10 @@
 import { createHash } from 'node:crypto';
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { execSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 
-const ROOT = new URL('..', import.meta.url).pathname;
+// fileURLToPath, not .pathname: on Windows that gives /D:/..., which isn't a usable folder
+const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const read = f => readFileSync(ROOT + f);
 
 // Everything the site serves: files in git (incl. staged ones, so run after

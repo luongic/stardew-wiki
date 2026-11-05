@@ -264,8 +264,12 @@ function statusHtml() {
 // gets close: the picker remembers the folder of the last save picked, and the
 // file or folder handle, kept in IndexedDB, lets "Read again" reload the save
 // after playing, with one permission click. Other browsers use plain inputs.
-const canPick = typeof window.showOpenFilePicker === 'function';
-const canPickDir = typeof window.showDirectoryPicker === 'function';
+// Except on Windows: that API refuses every file under %AppData% ("contains
+// system files"), which is exactly where the saves are, while plain inputs
+// open them fine.
+const pickerBlocked = /Windows/i.test(navigator.userAgent);
+const canPick = !pickerBlocked && typeof window.showOpenFilePicker === 'function';
+const canPickDir = !pickerBlocked && typeof window.showDirectoryPicker === 'function';
 const LAST_FARM = 'stardew_wiki_save_farm';
 let lastHandle = null;
 // Farms found in a picked folder, waiting for the player to choose one
@@ -463,21 +467,24 @@ function bindDrop(app) {
     e.preventDefault(); off();
     // Both must be asked for right away, before anything waits
     const item = e.dataTransfer?.items?.[0];
-    const handle = item?.getAsFileSystemHandle?.();
+    const handle = canPick ? item?.getAsFileSystemHandle?.() : null;
     const entry = item?.webkitGetAsEntry?.();
+    const file = e.dataTransfer?.files?.[0];
+    const plain = () => {
+      if (entry?.isDirectory) savesFromEntry(entry).then(list => useSaves(app, list)).catch(err => console.warn('[save drop]', err));
+      else if (file) readFound(app, found(file));
+    };
     if (handle) {
-      // Chrome / Edge: keep the dropped file or folder for "Read again"
+      // Chrome / Edge: keep the dropped file or folder for "Read again"; when
+      // the browser refuses a handle for that folder, read it the plain way
       handle.then(async h => {
-        if (!h) return;
+        if (!h) return plain();
         keepHandle(h);
         if (h.kind === 'directory') useSaves(app, await savesFromDir(h));
         else readFound(app, found(await h.getFile()));
-      }).catch(err => { console.warn('[save drop]', err); app.showToast(`${ico('warn')} ${err.message}`); });
-    } else if (entry?.isDirectory) {
-      savesFromEntry(entry).then(list => useSaves(app, list)).catch(err => console.warn('[save drop]', err));
+      }).catch(err => { console.warn('[save drop]', err); plain(); });
     } else {
-      const file = e.dataTransfer?.files?.[0];
-      if (file) readFound(app, found(file));
+      plain();
     }
   });
 }
