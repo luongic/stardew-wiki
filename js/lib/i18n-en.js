@@ -364,7 +364,7 @@ export const UI_EN = {
   'Lọc 66 loài cá trong bộ sưu tập theo mùa, thời tiết, giờ và địa điểm. Bấm ô vuông để đánh dấu loài đã câu được, hoặc nạp từ file save ở tab File Save.': 'Filter the 66 collection fish by season, weather, time and place. Tick the box on fish you have caught, or load them from a save file in the Save File tab.',
   'Mọi thời tiết': 'Any weather', 'Trời nắng': 'Sunny', 'Trời mưa': 'Rainy', 'Cả ngày': 'All day', 'Địa điểm': 'Location', 'Mọi địa điểm': 'Any location',
   'Ẩn cá đã câu được': 'Hide caught fish', 'loài khớp bộ lọc': 'species match', 'Đã câu': 'Caught', 'Nạp từ file save': 'Load from a save file',
-  'Không có loài cá nào khớp với bộ lọc.': 'No fish match these filters.', 'Huyền thoại': 'Legendary', 'Đánh dấu đã câu được': 'Mark as caught',
+  'Không có loài cá nào khớp với bộ lọc.': 'No fish match these filters.', 'Huyền thoại': 'Legendary', 'Tất cả cá': 'All fish', 'Cá huyền thoại': 'Legendary fish', 'Đánh dấu đã câu được': 'Mark as caught',
   // ---- Farm planner ----
   'Nông Trại': 'Farm', 'Lên Kế Hoạch Nông Trại': 'Farm Planner',
   'Kéo công trình, vòi tưới, cây trồng, hàng rào... từ bảng bên trái thả vào nông trại để hình dung và sắp xếp. Mỗi món chiếm đúng số ô như trong game. Có thể nạp file save để xem đúng nông trại của bạn, và xuất thiết kế ra file JSON để gửi người khác mở lại, tham khảo hoặc chỉnh tiếp.': 'Drag buildings, sprinklers, crops, fences... from the left panel onto the farm to plan your layout. Everything takes the same number of tiles as in the game. Load a save file to see your real farm, and export the layout as JSON so others can open, reuse or edit it.',

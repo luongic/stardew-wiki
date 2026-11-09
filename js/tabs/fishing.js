@@ -19,7 +19,7 @@ const itemByEn = new Map(ITEMS_DATA.map(i => [i.nameEn, i]));
 const SEASONS = ['spring', 'summer', 'fall', 'winter'];
 const SEASON_SHORT = { spring: 'Xuân', summer: 'Hạ', fall: 'Thu', winter: 'Đông', all: 'Cả năm' };
 
-const ui = { season: 'spring', weather: 'any', hour: null, loc: 'all', hideCaught: false, ...loadJSON(KEYS.fishingView, {}) };
+const ui = { season: 'spring', weather: 'any', hour: null, loc: 'all', legendary: false, hideCaught: false, ...loadJSON(KEYS.fishingView, {}) };
 let caught = new Set(loadJSON(KEYS.fishCaught, []));
 
 const hourLabel = h => `${String(Math.floor(h) % 24).padStart(2, '0')}:${h % 1 ? '30' : '00'}`;
@@ -92,6 +92,7 @@ function cardHtml(f) {
 function filtered(app) {
   const q = app.searchQuery;
   let list = fishAvailable(ui);
+  if (ui.legendary) list = list.filter(f => f.legendary);
   if (ui.hideCaught) list = list.filter(f => !caught.has(f.en));
   if (q) list = list.filter(f => { const it = itemByEn.get(f.en); return matches(q, it?.name, f.en, f.note, ...f.loc.map(l => FISH_LOCATIONS[l].name)); });
   return list;
@@ -114,6 +115,8 @@ function render(app) {
   if (!el) return;
   el.innerHTML = `
     <div class="fish-filters">
+      <div class="seg">${[[false, ico('fish'), 'Tất cả cá'], [true, `<img src="${itemByEn.get('Legend')?.imageUrl}" alt="" class="game-icon pixel-img" aria-hidden="true">`, 'Cá huyền thoại']].map(([on, i, l]) =>
+        `<button class="seg-btn ${ui.legendary === on ? 'is-active' : ''}" type="button" data-action="fish-legendary" data-on="${on}">${i} ${t(l)}</button>`).join('')}</div>
       <div class="seg">${[...SEASONS, 'all'].map(s => `<button class="seg-btn ${ui.season === s ? 'is-active' : ''}" type="button" data-action="fish-season" data-season="${s}">${ico(s === 'all' ? 'season' : s)} ${t(SEASON_SHORT[s])}</button>`).join('')}</div>
       <div class="seg">${[['any', 'storm', 'Mọi thời tiết'], ['sun', 'sunny', 'Trời nắng'], ['rain', 'rainy', 'Trời mưa']].map(([w, i, l]) =>
         `<button class="seg-btn ${ui.weather === w ? 'is-active' : ''}" type="button" data-action="fish-weather" data-weather="${w}">${ico(i)} ${t(l)}</button>`).join('')}</div>
@@ -144,6 +147,12 @@ export default {
   detail: (app, id) => locDetail(id),
   actions: {
     'fish-season': (app, el) => { ui.season = el.dataset.season; persist(app); },
+    // Legendary: open every season, weather, hour and place so all five show
+    'fish-legendary': (app, el) => {
+      ui.legendary = el.dataset.on === 'true';
+      if (ui.legendary) Object.assign(ui, { season: 'all', weather: 'any', hour: null, loc: 'all' });
+      persist(app);
+    },
     'fish-weather': (app, el) => { ui.weather = el.dataset.weather; persist(app); },
     'fish-anytime': (app, el) => { ui.hour = el.checked ? null : 12; persist(app); },
     'fish-hour': (app, el) => { ui.hour = Number(el.value); saveJSON(KEYS.fishingView, ui); renderList(app); },
