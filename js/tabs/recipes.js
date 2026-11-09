@@ -85,6 +85,7 @@ function cardHtml(r, done) {
 
 export default {
   id: 'recipes',
+  search: true,
   detailType: 'recipe',
   toggles: ['v16', 'unfinished', 'buffs'],
 

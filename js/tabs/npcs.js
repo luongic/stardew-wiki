@@ -347,6 +347,7 @@ function giftGroup(title, list, mod, emoji) {
 
 const npcsTab = {
   id: 'npcs',
+  search: true,
   detailType: 'npc',
   toggles: [],
 

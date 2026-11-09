@@ -1,7 +1,9 @@
 {
-  "version": "fb34fb4946",
-  "content": "fb34fb4946",
-  "built": "2026-11-05T15:37:06.901Z",
-  "important": false,
-  "notes": []
+  "version": "7eb8a66516",
+  "content": "1010b02e92",
+  "built": "2026-11-09T04:11:55.842Z",
+  "important": true,
+  "notes": [
+    "Câu Cá có lựa chọn Cả năm, ô tìm kiếm tự xóa khi đổi tab"
+  ]
 }

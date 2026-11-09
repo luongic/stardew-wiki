@@ -167,7 +167,7 @@ export const UI_EN = {
   'Xem Chi Tiết': 'Details', 'Chi tiết': 'Details',
   'Tìm thấy:': 'Found:', 'Thích:': 'Loved by:', 'Dùng:': 'Used in:',
   'GIÁ BÁN CƠ BẢN': 'BASE PRICE', 'PHỤC HỒI NĂNG LƯỢNG / MÁU': 'ENERGY / HEALTH', 'MÙA VỤ XUẤT HIỆN': 'SEASON',
-  'Không bán': 'Not sold', 'Không thể bán': 'Cannot be sold', 'Không ăn được': 'Inedible', 'Quanh năm': 'All year',
+  'Không bán': 'Not sold', 'Không thể bán': 'Cannot be sold', 'Không ăn được': 'Inedible', 'Quanh năm': 'All year', 'Cả năm': 'All year', 'Tìm trong tab': 'Search in',
   'Nơi tìm thấy & Cách thu hoạch:': 'Where to find:', 'Món quà yêu thích tuyệt đối của:': 'Loved by:',
   'Dùng trong công thức & Mục đích:': 'Used in:',
   'Công Cụ Lao Động, Khai Thác & Vũ Khí': 'Tools & Weapons', 'Nông Sản & Cây Trồng Các Mùa': 'Crops',

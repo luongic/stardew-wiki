@@ -77,6 +77,7 @@ function cardHtml(q, done) {
 
 export default {
   id: 'quests',
+  search: true,
   detailType: 'quest',
   toggles: ['v16', 'unfinished'],
 

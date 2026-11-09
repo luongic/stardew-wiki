@@ -96,6 +96,7 @@ function ownedPanel(list, find) {
 
 const museumTab = {
   id: 'museum',
+  search: true,
   toggles: ['unfinished'],
 
   render(app) {

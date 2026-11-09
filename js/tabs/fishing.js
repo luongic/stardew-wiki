@@ -13,10 +13,11 @@ import { loadJSON, saveJSON, KEYS } from '../lib/storage.js';
 import { matches, modalHeader, wikiLink } from '../lib/templates.js';
 import { placeView } from '../lib/place-view.js';
 import { closeModal } from '../lib/ui.js';
+import { saveTabLink } from './save.js';
 
 const itemByEn = new Map(ITEMS_DATA.map(i => [i.nameEn, i]));
 const SEASONS = ['spring', 'summer', 'fall', 'winter'];
-const SEASON_SHORT = { spring: 'Xuân', summer: 'Hạ', fall: 'Thu', winter: 'Đông' };
+const SEASON_SHORT = { spring: 'Xuân', summer: 'Hạ', fall: 'Thu', winter: 'Đông', all: 'Cả năm' };
 
 const ui = { season: 'spring', weather: 'any', hour: null, loc: 'all', hideCaught: false, ...loadJSON(KEYS.fishingView, {}) };
 let caught = new Set(loadJSON(KEYS.fishCaught, []));
@@ -26,8 +27,9 @@ const inTime = (f, hour) => hour === null || f.time.some(([a, b]) => hour >= a &
 const inWeather = (f, w) => w === 'any' || f.weather === 'any' || f.weather === w;
 
 // Exported for the Today tab: fish catchable with these conditions
+// (season 'all' keeps every season)
 export function fishAvailable({ season, weather = 'any', hour = null, loc = 'all' }) {
-  return FISH.filter(f => f.seasons.includes(season) && inWeather(f, weather) && inTime(f, hour) && (loc === 'all' || f.loc.includes(loc)));
+  return FISH.filter(f => (season === 'all' || f.seasons.includes(season)) && inWeather(f, weather) && inTime(f, hour) && (loc === 'all' || f.loc.includes(loc)));
 }
 
 // Called after reading a save file: show the fish of the save's season
@@ -103,7 +105,7 @@ function renderList(app) {
   const hour = document.getElementById('fishHourLabel');
   if (hour) hour.textContent = ui.hour === null ? '' : hourLabel(ui.hour);
   if (sum) sum.innerHTML = `${ico('fish')} <strong>${list.length}</strong> ${t('loài khớp bộ lọc')} · ${t('Đã câu')} <strong>${caught.size} / ${FISH.length}</strong>
-      <button class="link-btn" type="button" data-action="switch-tab" data-tab="tracker">${t('Nạp từ file save')}</button>`;
+      ${saveTabLink('Nạp từ file save', 'link-btn')}`;
   if (grid) grid.innerHTML = list.map(cardHtml).join('') || `<p class="muted">${t('Không có loài cá nào khớp với bộ lọc.')}</p>`;
 }
 
@@ -112,7 +114,7 @@ function render(app) {
   if (!el) return;
   el.innerHTML = `
     <div class="fish-filters">
-      <div class="seg">${SEASONS.map(s => `<button class="seg-btn ${ui.season === s ? 'is-active' : ''}" type="button" data-action="fish-season" data-season="${s}">${ico(s)} ${t(SEASON_SHORT[s])}</button>`).join('')}</div>
+      <div class="seg">${[...SEASONS, 'all'].map(s => `<button class="seg-btn ${ui.season === s ? 'is-active' : ''}" type="button" data-action="fish-season" data-season="${s}">${ico(s === 'all' ? 'season' : s)} ${t(SEASON_SHORT[s])}</button>`).join('')}</div>
       <div class="seg">${[['any', 'storm', 'Mọi thời tiết'], ['sun', 'sunny', 'Trời nắng'], ['rain', 'rainy', 'Trời mưa']].map(([w, i, l]) =>
         `<button class="seg-btn ${ui.weather === w ? 'is-active' : ''}" type="button" data-action="fish-weather" data-weather="${w}">${ico(i)} ${t(l)}</button>`).join('')}</div>
       <label class="fish-time">
@@ -135,6 +137,7 @@ const persist = (app) => { saveJSON(KEYS.fishingView, ui); render(app); };
 
 export default {
   id: 'fishing',
+  search: true,
   toggles: [],
   render,
   detailType: 'fishloc',

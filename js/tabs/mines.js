@@ -176,6 +176,7 @@ function zoneMatches(z, q) {
 
 const minesTab = {
   id: 'mines',
+  search: true,
   toggles: [],
 
   init() {

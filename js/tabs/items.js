@@ -118,6 +118,7 @@ function extraDetail(it) {
 
 export default {
   id: 'items',
+  search: true,
   detailType: 'item',
   toggles: ['v16', 'buffs'],
 

@@ -38,7 +38,7 @@ import { coopUi } from './sync/coop-ui.js';
 import { initUpdates, applyUpdate } from './lib/updates.js';
 import { notesUi } from './sync/notes-ui.js';
 import { ico, hydrateIcons } from './lib/icons.js';
-import { isEn, setLang, registerNames, startTranslating } from './lib/i18n.js';
+import { t, isEn, setLang, registerNames, startTranslating } from './lib/i18n.js';
 import { ITEMS_DATA } from '../data/items-data.js';
 import { RECIPES_DATA } from '../data/recipes-data.js';
 import { NPCS_DATA, CALENDAR_EVENTS } from '../data/npcs-data.js';
@@ -158,10 +158,9 @@ export class StardewWikiApp {
       }
     });
 
-    let searchTimer = null;
     document.getElementById('searchInput')?.addEventListener('input', (e) => {
-      clearTimeout(searchTimer);
-      searchTimer = setTimeout(() => {
+      clearTimeout(this.searchTimer);
+      this.searchTimer = setTimeout(() => {
         this.searchQuery = e.target.value.trim().toLowerCase();
         this.render();
       }, SEARCH_DEBOUNCE_MS);
@@ -220,7 +219,12 @@ export class StardewWikiApp {
   switchTab(tabId) {
     const next = this.tabById.get(tabId);
     if (!next) return;
-    if (tabId !== this.currentTab) this.tabById.get(this.currentTab)?.onLeave?.(this);
+    if (tabId !== this.currentTab) {
+      this.tabById.get(this.currentTab)?.onLeave?.(this);
+      // A search belongs to the tab it was typed in: start each tab unfiltered
+      clearTimeout(this.searchTimer);
+      this.searchQuery = '';
+    }
     this.currentTab = tabId;
 
     document.querySelectorAll('[data-action="switch-tab"]').forEach(btn => {
@@ -233,9 +237,15 @@ export class StardewWikiApp {
     });
 
     // Toolbar: only the filter group and quick toggles this tab understands
+    // Search: only on tabs that filter by it, emptied and named for this tab
     const toolbar = document.getElementById('toolbarPanel');
     const hasFilters = !!document.querySelector(`[data-filter-group="${tabId}"]`);
-    toolbar.hidden = !hasFilters;
+    toolbar.hidden = !hasFilters && !next.search;
+    document.getElementById('searchBox').hidden = !next.search;
+    const input = document.getElementById('searchInput');
+    input.value = this.searchQuery;
+    const tabName = document.querySelector(`.tab[data-tab="${tabId}"] span`)?.textContent.trim();
+    if (tabName) input.placeholder = `${t('Tìm trong tab')} ${tabName}...`;
     document.querySelectorAll('[data-filter-group]').forEach(g => {
       g.hidden = g.dataset.filterGroup !== tabId;
     });

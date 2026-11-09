@@ -201,6 +201,7 @@ function roomHeader(room) {
 
 const bundlesTab = {
   id: 'bundles',
+  search: true,
   toggles: ['unfinished'],
 
   init() {
