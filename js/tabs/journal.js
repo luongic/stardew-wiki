@@ -686,7 +686,8 @@ function islandHtml(d) {
           </ul>
         </details>`;
     }).join('')}
-    <p class="muted">${t('Nguồn: cách đếm theo stardew-checkup (MouseyPounds), gợi ý theo Official Stardew Valley Wiki.')}</p>`;
+    <p class="muted">${t('Nguồn: cách đếm theo stardew-checkup (MouseyPounds), gợi ý theo Official Stardew Valley Wiki.')}</p>
+    <button class="btn btn--blue btn--sm" type="button" data-action="switch-tab" data-tab="island">${ico('ginger')} ${t('Hướng dẫn đầy đủ ở tab Đảo Gừng')}</button>`;
 }
 
 // ---------- Grandpa's evaluation (Utility.getGrandpaScore) ----------

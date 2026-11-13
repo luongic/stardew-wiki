@@ -13,6 +13,23 @@ const SEASON_RE = '(Mùa Xuân|Mùa Hạ|Mùa Thu|Mùa Đông)';
 const UNITS = { 'gói': 'bundles', 'mục': 'entries', 'đồ': 'items', 'món': 'items', 'xong': 'done' };
 
 export const UI_EN = {
+  // Ginger Island tab
+  'Đến đảo': 'Getting there', 'Nông sản & cá': 'Crops & fish', 'Nhân vật & nhiệm vụ': 'People & quests',
+  'Cách đến đảo, Óc Chó Vàng dùng để làm gì và tìm đủ 130 quả ở đâu, từng khu vực, nông sản, cá và nhân vật trên đảo. Theo Official Stardew Valley Wiki (bản 1.6).': 'How to get there, what Golden Walnuts are for and where all 130 are, each area, and the island crops, fish and people. Based on the Official Stardew Valley Wiki (1.6).',
+  'Ẩn quả đã tìm': 'Hide walnuts found', 'Đánh dấu đã tìm': 'Mark as found', 'quả': 'walnuts', 'Không có quả nào khớp.': 'No walnuts match.',
+  'Bấm ô vuông để đánh dấu quả đã tìm, hoặc nạp file save để tự điền.': 'Tick the box on walnuts you found, or load a save file to fill them in.',
+  'Tiến độ lấy từ file save của nông trại': 'Progress from the save of', 'và các ô bạn tự đánh dấu.': 'plus the boxes you ticked.',
+  'Óc Chó Vàng dùng để làm gì?': 'What are Golden Walnuts for?', 'Tìm 130 quả ở đâu?': 'Where are all 130?',
+  'Nên mang theo': 'Worth bringing', 'Bản đồ Đảo Gừng': 'Ginger Island map', 'Mở trong tab Bản Đồ': 'Open in the Map tab',
+  'Óc Chó ở đây': 'walnuts here', 'Chi tiết từng tầng ở tab Hầm Mỏ': 'Floor by floor in the Mines tab',
+  'Nông Trại Đảo ở Tây Đảo Gừng trồng được mọi loại cây quanh năm, không cần theo mùa.': 'The island farm in Island West grows any crop all year, whatever the season.',
+  'Cây trồng của đảo': 'Island crops', 'Dừa Vàng': 'Golden Coconut',
+  'Rung cây dừa trên đảo thỉnh thoảng rơi Dừa Vàng. Mang tới Clint ở Lò Rèn để mở; quả đầu tiên luôn có 1 Óc Chó Vàng. Bên trong có thể là:': 'Shaking palm trees on the island sometimes drops a Golden Coconut. Clint opens it at the Blacksmith; the first one always holds a Golden Walnut. Inside can be:',
+  'Cá câu được trên đảo': 'Fish on the island', 'Câu cá ở bất kỳ đâu trên đảo còn có thể ra Óc Chó Vàng (tối đa 5 quả).': 'Fishing anywhere on the island can also catch Golden Walnuts (up to 5).',
+  'Xem giờ và mùa ở tab Câu Cá': 'See times and seasons in the Fishing tab', 'Món ăn từ nông sản đảo': 'Dishes from island produce',
+  'Nhiệm vụ trên đảo': 'Island quests', 'Đơn hàng của Ông Qi': "Mr. Qi's special orders",
+  'Bảng đơn hàng trong Phòng Óc Chó, trả thưởng bằng Ngọc Qi.': 'The order board in the Walnut Room, paid in Qi Gems.',
+  'Xem đơn đang nhận ở tab Sổ Tay': 'See your active orders in the Journal tab', 'Hướng dẫn đầy đủ ở tab Đảo Gừng': 'Full guide in the Ginger Island tab',
   // Save File tab
   "Chưa chia sẻ được dữ liệu save với phòng Co-op": "Could not share the save data with the Co-op room",
   "Đã nhận dữ liệu save từ phòng Co-op": "Got the save data from the Co-op room",
@@ -658,7 +675,7 @@ export const PATTERNS_EN = [
   [/^Dùng để nấu \((\d+) món\)$/, 'Used in cooking ($1 dishes)'], [/^Dùng để chế tạo \((\d+) món\)$/, 'Used in crafting ($1 items)'], [/^ra (\d+) cái$/, 'makes $1'],
   [/^Cần (\d+) tim$/, 'Needs $1 hearts'], [/^(\d+) ngày$/, '$1 days'], [/^(\d+) người chưa đủ 2 quà$/, '$1 villagers short of 2 gifts'],
   [/^Vẹt Vàng Joja nhặt hộ số còn lại với giá ([\d.]+)g\.$/, 'The Golden Joja Parrot collects the rest for $1g.'],
-  [/^còn (\d+) quả để mua hết$/, '$1 walnuts to buy them all'], [/^Tổng thu nhập ([\d.]+)g$/, 'Total earnings $1g'], [/^còn ([\d.]+)g$/, '$1g to go'],
+  [/^còn (\d+) quả để mua hết$/, '$1 walnuts to buy them all'], [/^Đổi cho các con vẹt để mở 11 nâng cấp trên đảo, tổng cộng (\d+) quả \(xem bảng dưới\)\.$/, 'Give them to the parrots for the 11 island upgrades, $1 walnuts in all (table below).'], [/^Tổng thu nhập ([\d.]+)g$/, 'Total earnings $1g'], [/^còn ([\d.]+)g$/, '$1g to go'],
   [/^Thêm (\d+) điểm nữa để được (\d+) nến\.$/, '$1 more points for $2 candles.'],
   [/^Ông nội đã chấm (\d+) nến\. Đặt 1 Kim cương lên điện thờ để được chấm lại\.$/, 'Grandpa gave $1 candles. Put a Diamond on the shrine to be evaluated again.'],
   [/^Ông nội sẽ chấm vào sáng ngày 1 Mùa Xuân năm 3, còn (\d+) ngày\.$/, 'Grandpa evaluates on the morning of Spring 1, Year 3, in $1 days.'],

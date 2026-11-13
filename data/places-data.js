@@ -487,7 +487,7 @@ export const PLACES = {
     "closed": "Đi thuyền của Willy sau khi sửa thuyền (cần 200 gỗ cứng, 5 thỏi iridium, 5 cục pin)",
     "residents": ["leo", "birdie", "professor_snail"],
     "desc": "Hòn đảo nhiệt đới phía nam. Thu thập Quả Óc Chó Vàng để mở khoá nông trại đảo, khu nghỉ dưỡng và nhiều bí mật; Leo, Birdie và Giáo Sư Ốc Sên sống ở đây (Leo chuyển lên Núi khi đủ 6 tim).",
-    "link": { "tab": "mines", "filter": "volcano" }
+    "link": { "tab": "island" }
   },
   "island_trader": {
     "name": "Thương Nhân Trên Đảo",

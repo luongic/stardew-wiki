@@ -22,7 +22,9 @@ export const KEYS = {
   profiles: 'stardew_wiki_profiles',
   journal: 'stardew_wiki_journal',
   predict: 'stardew_wiki_predict',
-  predictView: 'stardew_wiki_predict_view'
+  predictView: 'stardew_wiki_predict_view',
+  islandView: 'stardew_wiki_island_view',
+  walnuts: 'stardew_wiki_walnuts'
 };
 
 export function loadJSON(key, fallback) {

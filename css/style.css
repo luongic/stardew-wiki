@@ -2826,3 +2826,25 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 .save-coop { margin-top: 12px; }
 .save-coop p { margin: 4px 0; }
 .save-coop ul { margin: 4px 0 4px 20px; }
+
+/* Ginger Island tab */
+.island-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.island-step { display: flex; gap: 12px; align-items: flex-start; padding: 10px 12px; background: var(--parch-50); border: 2px solid var(--parch-300); }
+.island-step__icon .game-icon, .island-step__icon .pixel-icon { width: 40px; height: 40px; }
+.island-step h3, .island-area h3, .island-person h3 { margin: 0 0 4px; font-size: 1.05rem; }
+.island-step p, .island-area p, .island-person p { margin: 0 0 6px; }
+.island-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0; }
+.island-pack, .island-uses { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.island-pack li, .island-uses li { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.island-map { margin: 0 0 12px; text-align: center; }
+.island-map img { max-width: 100%; width: 486px; border: 3px solid var(--parch-300); }
+.island-areas, .island-people { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px; }
+.island-area, .island-person { padding: 10px 12px; background: var(--parch-50); border: 2px solid var(--parch-300); }
+.island-area__foot { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.island-person { display: flex; gap: 10px; align-items: flex-start; }
+.island-person__face { width: 64px; height: 64px; flex: none; }
+.island-walnuts li { display: flex; gap: 8px; align-items: flex-start; }
+.island-walnuts li p { margin: 2px 0 0; }
+.island-walnuts .fish-card__tick { position: static; flex: none; }
+.island-walnut-tools { margin-bottom: 6px; }
+@media (max-width: 480px) { .island-areas, .island-people { grid-template-columns: 1fr; } }
