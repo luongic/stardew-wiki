@@ -29,6 +29,7 @@ import { saveTabLink } from './save.js';
 const SECTIONS = [
   { id: 'friends', name: 'Tình bạn', icon: 'loved' },
   { id: 'events', name: 'Sự kiện tim', icon: 'x_bouquet' },
+  { id: 'marriage', name: 'Hôn nhân', icon: 'marriage' },
   { id: 'quests', name: 'Nhiệm vụ', icon: 'quests' },
   { id: 'orders', name: 'Đơn hàng đặc biệt', icon: 'specialOrders' },
   { id: 'storage', name: 'Túi & Rương', icon: 'chest' },
@@ -114,6 +115,74 @@ export function inventory(d) {
 }
 
 // ---------- sections ----------
+const LOVE_LABEL = { Dating: 'Đang hẹn hò', Engaged: 'Đã đính hôn', Married: 'Đã kết hôn', Divorced: 'Đã ly hôn', Friendly: 'Bạn bè' };
+const loveTag = status => `<span class="tag ${status === 'Married' ? 'tag--green' : status === 'Divorced' ? 'tag--red' : 'tag--gold'}">${t(LOVE_LABEL[status] || status)}</span>`;
+
+// Who is married to whom: villagers per player, and co-op couples (kept once for the whole farm)
+function marriageHtml(d) {
+  if (!d.couples || !d.players?.[0]?.marriage) return reloadHint();
+  const p = me(d), m = p.marriage;
+  const nameOf = uid => d.players.find(x => x.uid === uid)?.name || t('Người chơi đã rời nông trại');
+  const since = day => (day && d.today >= day ? ` · ${d.today - day} ${t('ngày trước')}` : '');
+  const when = day => (day ? `${dateLabel(day)}${since(day)}` : '?');
+  const mine = d.couples.filter(c => c.a === p.uid || c.b === p.uid);
+  const couple = mine.find(c => ['Married', 'Engaged', 'Dating'].includes(c.status));
+  const npc = m.npcs.find(n => ['Married', 'Engaged'].includes(n.status));
+  const npcName = en => { const x = NPCS_DATA.find(n => n.nameEn === en || n.nameEn.startsWith(`${en} `) || n.nameEn.endsWith(` ${en}`)); return x ? nm(x) : en; };
+  const npcAvatar = en => NPCS_DATA.find(n => n.nameEn === en || n.nameEn.endsWith(` ${en}`))?.avatar;
+
+  // The answer first: what the save says about this player today
+  const verdict = [];
+  if (couple) {
+    const other = nameOf(couple.a === p.uid ? couple.b : couple.a);
+    verdict.push(couple.status === 'Married'
+      ? `${t('Theo file save, bạn vẫn đang kết hôn với')} <strong data-no-i18n>${esc(other)}</strong> (${t('từ')} ${when(couple.wedding)}).`
+      : couple.status === 'Engaged'
+        ? `${t('Bạn đã đính hôn với')} <strong data-no-i18n>${esc(other)}</strong>, ${t('đám cưới ngày')} ${when(couple.wedding)}.`
+        : `${t('Bạn đang hẹn hò với')} <strong data-no-i18n>${esc(other)}</strong>.`);
+  }
+  if (npc) verdict.push(`${npc.status === 'Married' ? t(npc.roommate ? 'Bạn đang ở cùng' : 'Bạn đang kết hôn với') : t('Bạn đã đính hôn với')} <strong>${npcName(npc.name)}</strong>${npc.wedding ? ` (${npc.status === 'Married' ? t('từ') : t('đám cưới ngày')} ${when(npc.wedding)})` : ''}.`);
+  if (m.divorceTonight) verdict.push(`${ico('warn')} <strong>${t('Đã ký giấy ly hôn ở nhà Thị trưởng Lewis: có hiệu lực sau đêm nay.')}</strong>`);
+  if (!verdict.length) verdict.push(t('Theo file save, bạn đang độc thân.'));
+
+  const row = (label, value) => `<p class="marriage-card__row"><span class="muted">${t(label)}:</span> ${value}</p>`;
+  const coupleCard = c => `
+    <article class="journal-card marriage-card ${c.a === p.uid || c.b === p.uid ? 'is-mine' : ''}">
+      <h3 data-no-i18n>${esc(nameOf(c.a))} &amp; ${esc(nameOf(c.b))} ${loveTag(c.status)}</h3>
+      ${c.wedding ? row(c.status === 'Engaged' ? 'Ngày cưới' : 'Cưới ngày', when(c.wedding)) : ''}
+      ${c.proposer ? row('Người cầu hôn', `<span data-no-i18n>${esc(nameOf(c.proposer))}</span>`) : ''}
+      ${row('Điểm thân thiết', `${c.points} (${Math.floor(c.points / 250)} ${t('tim')})`)}
+      ${c.rejected ? row('Lời cầu hôn', t('Từng bị từ chối')) : ''}
+    </article>`;
+  const others = d.couples.filter(c => c.status !== 'Friendly');
+  return `
+    <div class="callout ${m.divorceTonight ? 'callout--red' : 'callout--green'} marriage-verdict">
+      <p><strong data-no-i18n>${esc(p.name || '?')}</strong> · ${t('ngày lưu game')} ${dateLabel(d.today)}</p>
+      ${verdict.map(v => `<p>${v}</p>`).join('')}
+    </div>
+
+    <h3 class="journal-sub">${ico('x_wedding_ring')} ${t('Kết hôn giữa người chơi (co-op)')}</h3>
+    ${others.length ? `<div class="journal-grid">${others.map(coupleCard).join('')}</div>` : `<p class="muted">${t('Không có cặp người chơi nào đang hẹn hò, đính hôn hay kết hôn.')}</p>`}
+
+    <h3 class="journal-sub">${ico('loved')} ${t('Với dân làng')}</h3>
+    ${m.npcs.length ? `<div class="journal-grid">${m.npcs.map(n => `
+      <article class="journal-card marriage-card">
+        <h3>${npcAvatar(n.name) ? img(npcAvatar(n.name), 'friend-card__face') : ''} ${npcName(n.name)} ${loveTag(n.status)}${n.roommate ? ` <span class="tag">${t('Ở cùng nhà')}</span>` : ''}</h3>
+        ${n.wedding ? row(n.status === 'Engaged' ? 'Ngày cưới' : 'Cưới ngày', when(n.wedding)) : ''}
+        ${row('Điểm thân thiết', `${n.points} (${Math.floor(n.points / 250)} ${t('tim')})`)}
+      </article>`).join('')}</div>` : `<p class="muted">${t('Chưa hẹn hò, đính hôn hay kết hôn với dân làng nào.')}</p>`}
+
+    <details class="marriage-help">
+      <summary>${ico('story')} ${t('Trạng thái trong game không khớp với ở đây?')}</summary>
+      <ul>
+        <li>${t('File save chỉ ghi lại lúc game lưu, tức khi cả nhóm đi ngủ qua ngày. Việc xảy ra trong ngày (cầu hôn, ly hôn...) chỉ có trong file save từ sáng hôm sau: chơi qua đêm rồi nạp lại file save mới nhất.')}</li>
+        <li>${t('Hôn nhân giữa hai người chơi được lưu một chỗ chung cho cả nông trại (không nằm trong dữ liệu riêng của từng người), nên hai người luôn thấy cùng một trạng thái.')}</li>
+        <li>${t('Ly hôn làm bằng cuốn sổ trong nhà Thị trưởng Lewis và chỉ có hiệu lực sau một đêm. Nếu ở trên có cảnh báo đã ký giấy ly hôn, nghĩa là sáng mai hai người sẽ không còn là vợ chồng.')}</li>
+        <li>${t('Nạp file save của máy chủ (người tạo nông trại): file của người chơi khách chỉ là bản sao, có thể cũ hơn.')}</li>
+      </ul>
+    </details>`;
+}
+
 function friendsHtml(d) {
   const owned = inventory(d);
   const day = d.day || { season: 'spring', day: 1 };
@@ -740,7 +809,7 @@ function grandpaHtml(d) {
 
 const RENDER = { friends: friendsHtml, quests: questsHtml, storage: storageHtml, machines: machinesHtml, crops: cropsHtml, animals: animalsHtml,
   collection: collectionHtml, stats: statsHtml, monsters: monstersHtml, perfection: perfectionHtml,
-  events: eventsHtml, orders: ordersHtml, wallet: walletHtml, island: islandHtml, grandpa: grandpaHtml };
+  events: eventsHtml, marriage: marriageHtml, orders: ordersHtml, wallet: walletHtml, island: islandHtml, grandpa: grandpaHtml };
 
 function render() {
   const el = document.getElementById('journalBoard');

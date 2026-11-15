@@ -139,6 +139,37 @@ function readGrandpa(player, friends, mail, events, hostMail, petLove) {
   };
 }
 
+// ---------- Marriage ----------
+// A saved date ({ Year, DayOfMonth, Season }) as a day number (1 = Spring 1, Year 1)
+const SEASON_IDS = ['spring', 'summer', 'fall', 'winter'];
+function dayNumber(el) {
+  if (!el || text(el, 'Year') === '') return 0;
+  const s = text(el, 'Season').toLowerCase();
+  const season = /^\d+$/.test(s) ? Number(s) : Math.max(0, SEASON_IDS.indexOf(s));
+  return (num(el, 'Year') - 1) * 112 + season * 28 + num(el, 'DayOfMonth');
+}
+const LOVE = new Set(['Dating', 'Engaged', 'Married', 'Divorced']);
+// Villagers this player dates, is engaged or married to, or divorced
+function readMarriage(player) {
+  const npcs = [];
+  for (const [name, v] of dict(kid(player, 'friendshipData'))) {
+    const f = kid(v, 'Friendship');
+    const status = text(f, 'Status');
+    if (!LOVE.has(status)) continue;
+    npcs.push({ name, status, points: num(f, 'Points'), wedding: dayNumber(kid(f, 'WeddingDate')), roommate: text(f, 'RoommateMarriage') === 'true' });
+  }
+  return { spouse: text(player, 'spouse'), divorceTonight: text(player, 'divorceTonight') === 'true', npcs };
+}
+// Farmer couples (co-op): kept once for the whole farm, keyed by both players' ids
+function readCouples(root) {
+  const el = root.getElementsByTagName('farmerFriendships')[0];
+  return kids(el, 'item').map(i => {
+    const pair = kid(kid(i, 'key'), 'FarmerPair'), f = kid(kid(i, 'value'), 'Friendship');
+    return { a: text(pair, 'Farmer1'), b: text(pair, 'Farmer2'), status: text(f, 'Status') || 'Friendly', points: num(f, 'Points'),
+      wedding: dayNumber(kid(f, 'WeddingDate')), proposer: text(f, 'Proposer'), rejected: text(f, 'ProposalRejected') === 'true' };
+  });
+}
+
 function readPlayer(player, root, built, donated, hostMail, petLove) {
   const friends = readFriends(player);
   const goals = readGoals(player);
@@ -154,6 +185,8 @@ function readPlayer(player, root, built, donated, hostMail, petLove) {
     wallet: WALLET.filter(w => w.flag ? (w.host ? hostMail : mail).has(w.flag) : w.event ? events.has(w.event) : statLow[w.stat] > 0).map(w => w.id),
     grandpa: readGrandpa(player, friends, mail, events, hostMail, petLove),
     name: text(player, 'name'),
+    uid: text(player, 'UniqueMultiplayerID'),
+    marriage: readMarriage(player),
     friends, goals,
     backpack: { where: 'backpack', kind: 'backpack', items: itemsIn(kid(player, 'items')) },
     mailbox: kids(kid(player, 'mailbox'), 'string').length,
@@ -284,6 +317,9 @@ export function readJournal(root) {
       board: kids(kid(root, 'availableSpecialOrders'), 'SpecialOrder').map(quest)
     },
     grandpaScore: num(farm?.el, 'grandpaScore'),
+    couples: readCouples(root),
+    // Today in the save, as a day number
+    today: (num(root, 'year') - 1) * 112 + Math.max(0, SEASON_IDS.indexOf(text(root, 'currentSeason').toLowerCase())) * 28 + num(root, 'dayOfMonth'),
     donated: donated.size,
     world: { weather: text(root, 'weatherForTomorrow') || 'Sun', luck: Number(text(root, 'dailyLuck')) || 0, lostBooks: num(root, 'lostBooksFound'), walnuts: num(root, 'goldenWalnutsFound') }
   };

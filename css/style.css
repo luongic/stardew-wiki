@@ -2860,3 +2860,12 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 .gear-forges.is-full { background: var(--green); }
 .gear-card__list { margin: 6px 0 0; padding: 0; list-style: none; font-size: 0.88rem; line-height: 1.45; }
 .gear-card__list li + li { margin-top: 2px; }
+
+/* Journal > Marriage */
+.marriage-verdict p { margin: 2px 0; }
+.marriage-card h3 { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin: 0 0 6px; }
+.marriage-card.is-mine { border-color: var(--green-dark); box-shadow: inset 0 0 0 2px var(--green); }
+.marriage-help { margin-top: 16px; }
+.marriage-help summary { cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 6px; }
+.marriage-help ul { margin: 8px 0 0; padding-left: 20px; line-height: 1.5; }
+.marriage-card__row { margin: 2px 0; }

@@ -5,12 +5,13 @@
 // save, bump JOURNAL_SCHEMA: tabs then ask to load the save again instead of
 // silently showing less than they could.
 //   2: secret notes seen (ids)   3: secret notes done, stardrops, rarecrows
+//   5: marriage (villager and co-op couples)
 // ==========================================================================
 
 import { ico } from './icons.js';
 import { t } from './i18n.js';
 
-export const JOURNAL_SCHEMA = 4;
+export const JOURNAL_SCHEMA = 5;
 
 export const isStale = j => !!j && (j.schema || 0) < JOURNAL_SCHEMA;
 
