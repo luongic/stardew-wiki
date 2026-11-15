@@ -8,6 +8,8 @@
 import { CSRandom, seedOf, seedOfBig } from './core.js';
 import { table, esc } from './core.js';
 import { t } from '../lib/i18n.js';
+import { itemTag } from '../lib/item-lookup.js';
+import { ico } from '../lib/icons.js';
 
 const PAGE = 20;
 // Tool -> [Vietnamese label, enchantments in the game's order]
@@ -49,6 +51,68 @@ export function enchantAt(ctx, n, player = 0) {
 
 const nameOf = en => t(ENCHANT_VI[en] || en);
 
+// ==========================================
+// THE PLAYER'S WEAPONS AND TOOLS (from the save)
+// Enchantments are saved by class name: RubyEnchantment, SwiftToolEnchantment...
+// ==========================================
+// Gems forged into a weapon (up to 3 in all) and the stat each one raises per level
+const GEMS = {
+  Ruby: ['Hồng Ngọc', 'Sát thương +10%'], Aquamarine: ['Ngọc Xanh Biển', 'Tỉ lệ chí mạng +4.6%'], Jade: ['Ngọc Bích', 'Sức mạnh chí mạng +10%'],
+  Topaz: ['Hoàng Ngọc', 'Phòng thủ +1'], Amethyst: ['Thạch Anh Tím', 'Đánh văng'], Emerald: ['Ngọc Lục Bảo', 'Tốc độ']
+};
+// Innate enchantments (weapons from the Mines, Dragon Tooth at the Forge)
+const INNATE = {
+  Attack: 'Sát thương', Crit: 'Tỉ lệ chí mạng', CritPower: 'Sức mạnh chí mạng', Defense: 'Phòng thủ', WeaponSpeed: 'Tốc độ', Lightweight: 'Nhẹ tay',
+  SlimeGatherer: 'Nhặt Nhớt Slime', SlimeSlayer: 'Diệt Slime'
+};
+const MAX_FORGES = 3;
+// SwiftTool -> Swift, BugKiller -> Bug Killer
+const prismatic = cls => cls.replace(/Tool$/, '').replace(/([a-z])([A-Z])/g, '$1 $2');
+
+// As the game's tooltip shows it: half the saved value, clubs (type 2) counted from -8
+const speedOf = st => Math.trunc((st.kind === 2 ? st.speed + 8 : st.speed) / 2);
+
+function gearCard(g) {
+  const gems = g.ench.filter(([k]) => GEMS[k]);
+  const forged = gems.reduce((n, [, l]) => n + l, 0);
+  const galaxy = g.ench.find(([k]) => k === 'GalaxySoul');
+  const innate = g.ench.filter(([k]) => INNATE[k]);
+  const magic = g.ench.filter(([k]) => !GEMS[k] && !INNATE[k] && k !== 'GalaxySoul');
+  const st = g.stats;
+  const line = (label, body) => `<li><span class="muted">${t(label)}:</span> ${body}</li>`;
+  return `
+    <div class="gear-card">
+      <div class="gear-card__head">${itemTag(g.name)}
+        ${g.weapon ? `<span class="gear-forges ${forged >= MAX_FORGES ? 'is-full' : ''}">${t('Đã rèn')} ${forged}/${MAX_FORGES}</span>` : ''}</div>
+      <ul class="gear-card__list">
+        ${g.weapon ? line('Rèn đá quý', gems.length ? gems.map(([k, l]) => `<strong>${t(GEMS[k][0])} x${l}</strong> (${t(GEMS[k][1])}${l > 1 ? ` ${t('mỗi lần')}` : ''})`).join(', ') : t('Chưa rèn')) : ''}
+        ${line('Phù phép (Mảnh Ngũ Sắc)', magic.length ? magic.map(([k]) => `<strong>${nameOf(prismatic(k))}</strong>`).join(', ') : t('Chưa có'))}
+        ${innate.length ? line('Bùa chú bẩm sinh', innate.map(([k, l]) => `${t(INNATE[k])}${l > 1 ? ` ${t('cấp')} ${l}` : ''}`).join(', ')) : ''}
+        ${galaxy ? line('Linh Hồn Ngân Hà', `${galaxy[1]}/3${galaxy[1] >= 3 ? ` (${t('đã thành vũ khí Vô Cực')})` : ''}`) : ''}
+        ${st ? line('Chỉ số hiện tại', [
+          `${t('Sát thương')} ${st.min}-${st.max}`, speedOf(st) ? `${t('Tốc độ')} ${speedOf(st) > 0 ? '+' : ''}${speedOf(st)}` : '',
+          `${t('Chí mạng')} ${Math.round(st.crit * 1000) / 10}%`, `${t('Sức mạnh chí mạng')} x${Math.round(st.critMult * 100) / 100}`,
+          `${t('Đánh văng')} ${Math.round(st.knockback * 100) / 100}`, st.defense ? `${t('Phòng thủ')} +${st.defense}` : '', st.area ? `${t('Tầm đánh')} +${st.area}` : ''
+        ].filter(Boolean).join(' · ')) : ''}
+      </ul>
+    </div>`;
+}
+
+function gearHtml(ctx, player) {
+  if (ctx.source !== 'save') return '';
+  if (!ctx.gear) return `<p class="muted">${t('Nạp lại file save để xem vũ khí và dụng cụ của bạn đã được rèn, phù phép những gì.')}</p>`;
+  const mine = ctx.gear.filter(g => g.owner === player), stored = ctx.gear.filter(g => g.owner === -1);
+  const sort = list => [...list].sort((a, b) => b.weapon - a.weapon || b.ench.length - a.ench.length);
+  const group = (title, list) => list.length ? `<h4 class="journal-sub">${t(title)} (${list.length})</h4><div class="gear-grid">${sort(list).map(gearCard).join('')}</div>` : '';
+  return `
+    <details class="gear-box" open>
+      <summary>${ico('forge_enchantments')} ${t('Vũ khí & dụng cụ của bạn')} · ${t('Đã phù phép')} ${(ctx.timesEnchanted?.[player] || 0).toLocaleString('en-US')} ${t('lần')}</summary>
+      <p class="muted">${t('Đọc từ file save. Chỉ số hiện tại đã gồm phần tăng từ đá quý và bùa chú bẩm sinh. Mỗi vũ khí rèn đá quý được tối đa 3 lần; dụng cụ chỉ phù phép được, không rèn được. Chỉ liệt kê dụng cụ đã có bùa chú.')}</p>
+      ${group('Trong túi đồ', mine)}${group('Trong rương và nơi khác', stored)}
+      ${mine.length + stored.length ? '' : `<p class="muted">${t('Không thấy vũ khí nào trong file save.')}</p>`}
+    </details>`;
+}
+
 export default {
   id: 'enchant', name: 'Phù phép ở Lò Rèn', nameEn: 'Forge Enchantments', icon: 'forge_enchantments',
   intro: 'Bùa chú nhận được khi phù phép vũ khí và dụng cụ ở Lò Rèn Núi Lửa (Đảo Gừng), theo số lần người chơi này đã phù phép. Kết quả đầu là khi món đồ chưa có bùa chú; nếu đã có thì là một trong hai kết quả sau (di chuột vào (...) để xem từng trường hợp).',
@@ -69,6 +133,6 @@ export default {
       });
       rows.push({ cls: n === done + 1 ? 'is-today' : n <= done ? 'is-past' : '', cells: [n.toLocaleString('en-US'), ...cells] });
     }
-    return table([t('Lần phù phép'), ...TOOLS.map(([label]) => t(label))], rows);
+    return gearHtml(ctx, player) + table([t('Lần phù phép'), ...TOOLS.map(([label]) => t(label))], rows);
   }
 };

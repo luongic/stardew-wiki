@@ -49,6 +49,33 @@ function finish(ctx) {
   return ctx;
 }
 
+// Weapons and tools with what the Forge and innate enchantments did to them.
+// Owner: index of the farmer carrying it, or -1 for chests and other storage.
+const GEAR_TYPES = new Set(['MeleeWeapon', 'Slingshot', 'Pickaxe', 'Axe', 'Hoe', 'WateringCan', 'FishingRod', 'Pan']);
+function readGear(root, farmers) {
+  const owner = el => {
+    for (let p = el.parentElement; p; p = p.parentElement) { const i = farmers.indexOf(p); if (i >= 0) return i; }
+    return -1;
+  };
+  const gear = [];
+  for (const el of root.getElementsByTagName('Item')) {
+    const type = xsiType(el);
+    if (!GEAR_TYPES.has(type)) continue;
+    const name = text(el, 'name');
+    if (/scythe/i.test(name)) continue;
+    const ench = kids(el, 'enchantments').map(e => [xsiType(e).replace(/Enchantment$/, ''), Number(text(e, 'level')) || 1]).filter(([k]) => k);
+    const weapon = type === 'MeleeWeapon';
+    if (!weapon && !ench.length) continue;   // plain tools say nothing new
+    const num = k => Number(text(el, k)) || 0;
+    gear.push({
+      name, owner: owner(el), weapon, ench,
+      stats: weapon ? { kind: num('type'), min: num('minDamage'), max: num('maxDamage'), speed: num('speed'), crit: num('critChance'), critMult: num('critMultiplier'),
+        knockback: num('knockback'), defense: num('addedDefense'), precision: num('addedPrecision'), area: num('addedAreaOfEffect') } : null
+    });
+  }
+  return gear;
+}
+
 const statsOf = farmer => new Map(kids(kid(kid(farmer, 'stats'), 'Values'), 'item').map(i => [text(kid(i, 'key'), 'string') || kid(i, 'key')?.textContent.trim(), Number(kid(i, 'value')?.textContent) || 0]));
 
 export function readPredictContext(root) {
@@ -103,7 +130,8 @@ export function readPredictContext(root) {
     gotMysteryBook: mail.has('GotMysteryBook'), hardmodeMines: Number(text(root, 'minesDifficulty')) > 0,
     qiCropsActive: kids(kid(root, 'specialOrders'), 'SpecialOrder').some(o => /DROP_QI_BEANS/.test(text(o, 'specialRule'))),
     useLegacyRandom: text(root, 'useLegacyRandom') === 'true',
-    characters, donated: [...donated]
+    characters, donated: [...donated],
+    gear: readGear(root, farmers)
   };
   return finish(ctx);
 }
