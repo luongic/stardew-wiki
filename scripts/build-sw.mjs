@@ -36,13 +36,20 @@ for (const f of files) hash.update(f).update('\0').update(read(f)).update('\0');
 const content = hash.digest('hex').slice(0, 10);
 
 const args = process.argv.slice(2);
-const important = args.includes('--important');
-const notes = args.filter(a => !a.startsWith('--'));
+const current = existsSync(ROOT + 'version.json') ? JSON.parse(read('version.json')) : {};
 
 // Same files as last time: keep version.json as it is (also keeps the notes
 // of an important release when the pre-commit hook runs right after it)
-const current = existsSync(ROOT + 'version.json') ? JSON.parse(read('version.json')) : {};
-if (current.content === content && !important) process.exit(0);
+if (current.content === content && !args.includes('--important')) process.exit(0);
+
+// An important release not committed yet (version.json differs from HEAD) stays
+// important when files change before the commit: e.g. `npm run release` ran
+// before new files were added, so the pre-commit hook gets another hash
+let pending = false;
+try { execSync('git diff --quiet HEAD -- version.json', { cwd: ROOT, stdio: 'ignore' }); } catch { pending = true; }
+const carry = !args.includes('--important') && pending && current.important;
+const important = args.includes('--important') || carry;
+const notes = carry ? current.notes || [] : args.filter(a => !a.startsWith('--'));
 
 // An important release gets its own version even without file changes, so
 // browsers notice it and show the notes
