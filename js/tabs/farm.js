@@ -48,9 +48,11 @@ const ui = {
   zoom: 1,
   showGrid: false,
   showRanges: false,
-  // How strongly ranges are shaded: sprinklers and scarecrows separately (older saves had one value)
+  showJunimo: false,
+  // How strongly ranges are shaded: sprinklers, scarecrows and Junimo huts separately (older saves had one value)
   waterAlpha: loadJSON(KEYS.farmView, {}).waterAlpha ?? loadJSON(KEYS.farmView, {}).rangeAlpha ?? 0.3,
   guardAlpha: loadJSON(KEYS.farmView, {}).guardAlpha ?? (loadJSON(KEYS.farmView, {}).rangeAlpha ?? 0.3) * 0.6,
+  junimoAlpha: loadJSON(KEYS.farmView, {}).junimoAlpha ?? 0.3,
   paletteDrag: null,   // item being dragged from the palette
   highlight: [],       // tiles to point out (from the Journal tab)
   message: ''
@@ -268,10 +270,16 @@ function draw() {
 
 function tint(x, y, color) { octx.fillStyle = color; octx.fillRect(x * TILE, y * TILE, TILE, TILE); }
 
-// Range colours: blue for sprinklers, magenta for scarecrows, Junimo huts, bee houses (both stand out on the orange soil)
+// Range colours: blue for sprinklers, magenta for scarecrows and bee houses, green for Junimo huts
+// (all stand out on the orange soil). Junimo huts have their own layer: their 17x17 area
+// would otherwise hide the scarecrow circles.
 const WATER = [70, 140, 255];
 const GUARD = [220, 60, 200];
+const JUNIMO = [40, 200, 90];
 const isWater = it => it.id.includes('sprinkler');
+const rangeKind = it => (isWater(it) ? 'water' : it.id === 'junimo_hut' ? 'junimo' : 'guard');
+const RANGE_COLOR = { water: WATER, guard: GUARD, junimo: JUNIMO };
+const shadeRange = (it, x, y) => { const k = rangeKind(it); shadeArea(rangeTiles(it, x, y), RANGE_COLOR[k], ui[`${k}Alpha`]); };
 
 // Shade a set of tiles and outline its outer edge so the boundary is easy to read
 function shadeArea(tiles, [r, g, b], alpha) {
@@ -296,22 +304,23 @@ function drawOverlay() {
     for (let x = 1; x < MAP.w; x++) octx.fillRect(x * TILE, 0, 1, MAP.h * TILE);
     for (let y = 1; y < MAP.h; y++) octx.fillRect(0, y * TILE, MAP.w * TILE, 1);
   }
-  if (ui.showRanges) {
-    // Scarecrows / huts / bee houses first, merged into one area; sprinklers on top
-    const guarded = new Map();
+  // Each kind merged into one area: Junimo huts at the bottom, then scarecrows / bee houses, sprinklers on top
+  const merged = kind => {
+    const tiles = new Map();
     for (const o of plan.objects) {
       const it = itemById.get(o.t);
-      if (it?.range && !isWater(it)) for (const t of rangeTiles(it, o.x, o.y)) guarded.set(key(...t), t);
+      if (it?.range && rangeKind(it) === kind) for (const t of rangeTiles(it, o.x, o.y)) tiles.set(key(...t), t);
     }
-    shadeArea([...guarded.values()], GUARD, ui.guardAlpha);
-    shadeArea([...wateredSet()].map(k => k.split(',').map(Number)), WATER, ui.waterAlpha);
-  }
+    shadeArea([...tiles.values()], RANGE_COLOR[kind], ui[`${kind}Alpha`]);
+  };
+  if (ui.showJunimo) merged('junimo');
+  if (ui.showRanges) { merged('guard'); merged('water'); }
   if (ui.selected !== null && plan.objects[ui.selected]) {
     const o = plan.objects[ui.selected]; const { w, h } = sizeOf(o);
     octx.strokeStyle = '#ffe066'; octx.lineWidth = 2;
     octx.strokeRect(o.x * TILE + 1, o.y * TILE + 1, w * TILE - 2, h * TILE - 2);
     const it = itemById.get(o.t);
-    if (it?.range) shadeArea(rangeTiles(it, o.x, o.y), isWater(it) ? WATER : GUARD, isWater(it) ? ui.waterAlpha : ui.guardAlpha);
+    if (it?.range) shadeRange(it, o.x, o.y);
   }
   // Ghost of the item being placed, green if it fits and red if not
   const item = ghostItem();
@@ -319,7 +328,7 @@ function drawOverlay() {
     const { x, y } = ghostOrigin(item);
     const ok = fits(item, x, y, ui.drag?.moving ?? -1);
     for (let dy = 0; dy < item.h; dy++) for (let dx = 0; dx < item.w; dx++) tint(x + dx, y + dy, ok ? 'rgba(80,220,80,0.35)' : 'rgba(240,60,60,0.45)');
-    if (item.range) shadeArea(rangeTiles(item, x, y), isWater(item) ? WATER : GUARD, isWater(item) ? ui.waterAlpha : ui.guardAlpha);
+    if (item.range) shadeRange(item, x, y);
     const im = img(item.sprite || item.icon);
     if (im && item.kind !== 'ground' && item.kind !== 'crop') {
       octx.globalAlpha = 0.75;
@@ -468,7 +477,8 @@ function renderSide() {
   document.querySelectorAll('[data-action="farm-tool"]').forEach(b => b.classList.toggle('is-active', b.dataset.tool === (ui.tool || 'select')));
   const g = document.getElementById('farmGridToggle'); if (g) g.checked = ui.showGrid;
   const r = document.getElementById('farmRangeToggle'); if (r) r.checked = ui.showRanges;
-  for (const kind of ['water', 'guard']) {
+  const j = document.getElementById('farmJunimoToggle'); if (j) j.checked = ui.showJunimo;
+  for (const kind of ['water', 'guard', 'junimo']) {
     const a = document.querySelector(`[data-action="farm-range-alpha"][data-kind="${kind}"]`);
     if (a) { a.value = Math.round(ui[`${kind}Alpha`] * 100); a.nextElementSibling.textContent = `${a.value}%`; }
   }
@@ -868,9 +878,10 @@ const farmTab = {
     'farm-zoom': (app, el) => { if (el.dataset.step === 'fit') { ui.zoom = fitZoom(); applyZoom(); } else zoomStep(Number(el.dataset.step)); },
     'farm-grid': (app, el) => { ui.showGrid = el.checked; drawOverlay(); },
     'farm-ranges': (app, el) => { ui.showRanges = el.checked; drawOverlay(); },
+    'farm-junimo': (app, el) => { ui.showJunimo = el.checked; drawOverlay(); },
     'farm-range-alpha': (app, el) => {
       ui[`${el.dataset.kind}Alpha`] = Number(el.value) / 100;
-      saveJSON(KEYS.farmView, { waterAlpha: ui.waterAlpha, guardAlpha: ui.guardAlpha });
+      saveJSON(KEYS.farmView, { waterAlpha: ui.waterAlpha, guardAlpha: ui.guardAlpha, junimoAlpha: ui.junimoAlpha });
       el.nextElementSibling.textContent = `${el.value}%`;
       drawOverlay();
     },

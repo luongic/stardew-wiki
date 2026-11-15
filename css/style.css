@@ -2302,9 +2302,10 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 .farm-alpha { display: inline-flex; align-items: center; gap: 8px; }
 .farm-alpha .px-range { width: 120px; }
 .farm-alpha strong { min-width: 3ch; }
-.farm-alpha--water span::before, .farm-alpha--guard span::before { content: ''; display: inline-block; width: 10px; height: 10px; margin-right: 5px; border: 2px solid var(--ink); vertical-align: -1px; }
+.farm-alpha--water span::before, .farm-alpha--guard span::before, .farm-alpha--junimo span::before { content: ''; display: inline-block; width: 10px; height: 10px; margin-right: 5px; border: 2px solid var(--ink); vertical-align: -1px; }
 .farm-alpha--water span::before { background: rgb(70, 140, 255); }
 .farm-alpha--guard span::before { background: rgb(220, 60, 200); }
+.farm-alpha--junimo span::before { background: rgb(40, 200, 90); }
 
 .farm-layout {
   display: grid;

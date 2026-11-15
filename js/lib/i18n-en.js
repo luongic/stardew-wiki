@@ -392,7 +392,7 @@ export const UI_EN = {
   'Đã tải file thiết kế nông trại (JSON)': 'Farm layout downloaded (JSON)', 'Đã mở file thiết kế nông trại': 'Farm layout opened',
   'File JSON này không phải thiết kế nông trại của Cẩm Nang.': "This JSON file isn't a farm layout from this guide.", 'File JSON bị lỗi.': 'The JSON file is damaged.',
   'Chọn / Di chuyển': 'Select / Move', 'Cục tẩy': 'Eraser', 'Hoàn tác': 'Undo', 'Làm lại': 'Redo', 'Lưới ô': 'Grid',
-  'Vùng tưới & bù nhìn': 'Sprinkler & scarecrow range', 'Vùng tưới': 'Sprinklers', 'Vùng bù nhìn': 'Scarecrows', 'Độ đậm vùng máy tưới': 'Opacity of sprinkler ranges', 'Độ đậm vùng bù nhìn': 'Opacity of scarecrow ranges', 'Nạp file save': 'Load save file', 'Tải ảnh': 'Save image', 'Làm trống': 'Clear',
+  'Vùng tưới & bù nhìn': 'Sprinkler & scarecrow range', 'Vùng tưới': 'Sprinklers', 'Vùng bù nhìn': 'Scarecrows', 'Độ đậm vùng máy tưới': 'Opacity of sprinkler ranges', 'Độ đậm vùng bù nhìn': 'Opacity of scarecrow ranges', 'Vùng lều Junimo': 'Junimo hut range', 'Vùng Junimo': 'Junimo huts', 'Độ đậm vùng lều Junimo': 'Opacity of Junimo hut ranges', 'Nạp file save': 'Load save file', 'Tải ảnh': 'Save image', 'Làm trống': 'Clear',
   'Cách lấy file save': 'Where to find your save file', 'Mở thư mục mang tên nông trại (VD:': 'Open the folder named after your farm (e.g.',
   'Công trình': 'Buildings', 'Trồng trọt & Tưới': 'Farming & Watering', 'Cây trồng': 'Crops', 'Cây xanh': 'Trees',
   'Hàng rào & Cổng': 'Fences & Gates', 'Lối đi, Sàn & Cỏ': 'Paths, Floors & Grass', 'Máy móc & Rương': 'Machines & Chests', 'Đá, gốc cây & khác': 'Debris & other',
