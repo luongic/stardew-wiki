@@ -7,7 +7,6 @@
 // ==========================================================================
 
 import { FISH, FISH_LOCATIONS } from '../../data/fish-data.js';
-import { QUESTS_DATA } from '../../data/quests-data.js';
 import { NPCS_DATA } from '../../data/npcs-data.js';
 import { ico } from '../lib/icons.js';
 import { t, nm, isEn } from '../lib/i18n.js';
@@ -19,6 +18,7 @@ import { saveTabLink } from './save.js';
 const SECTIONS = [
   { id: 'start', name: 'Đến đảo', icon: 'portrait:willy' },
   { id: 'walnuts', name: 'Óc Chó Vàng', icon: 'golden_walnut' },
+  { id: 'tasks', name: 'Nhiệm vụ', icon: 'quests' },
   { id: 'areas', name: 'Khu vực', icon: 'pin' },
   { id: 'farm', name: 'Nông sản & cá', icon: 'crops' },
   { id: 'people', name: 'Nhân vật & nhiệm vụ', icon: 'members' }
@@ -188,8 +188,63 @@ function farmHtml() {
     <div class="island-tags">${data.ISLAND_DISHES.map(en => itemTag(en)).join('')}</div>`;
 }
 
+// ---------- Tasks: how to do each, done from the save or ticked by hand ----------
+function taskState(task, p) {
+  if (ticked.has(`task:${task.id}`)) return { done: true, hand: true };
+  if (task.keys) {
+    const spots = data.WALNUTS.filter(x => task.keys.includes(x.key));
+    const have = spots.reduce((a, x) => a + p.got(x), 0), all = spots.reduce((a, x) => a + x.n, 0);
+    return { done: all > 0 && have >= all, have, all, hand: spots.every(x => ticked.has(x.key)) && have >= all };
+  }
+  if (task.upgrade) return { done: p.upgrades.has(task.upgrade) };
+  if (task.walnutsFound) return { done: p.found >= task.walnutsFound, have: Math.min(p.found, task.walnutsFound), all: task.walnutsFound };
+  if (task.orders === 'qi') {
+    if (!orders) return { done: false };
+    const done = new Set(p.d?.orders?.done || []);
+    const have = orders.filter(o => done.has(o.id)).length;
+    return { done: have >= orders.length, have, all: orders.length };
+  }
+  return { done: false };
+}
+
+function tasksHtml() {
+  const p = progress();
+  if (!orders) qiOrdersHtml();   // starts loading Qi's orders for the count
+  const states = data.ISLAND_TASKS.map(task => ({ task, st: taskState(task, p) }));
+  const doneCount = states.filter(x => x.st.done).length;
+  const upgradeName = flag => { const u = data.ISLAND_UPGRADES.find(x => x.flag === flag); return u ? nm(u) : flag; };
+  return `
+    <div class="perfection-total">
+      <strong>${doneCount}/${states.length}</strong> ${ico('quests')}
+      ${bar(doneCount, states.length)}
+    </div>
+    ${saveLine(p)}
+    <div class="island-walnut-tools">
+      <label class="toggle"><input type="checkbox" class="px-check" data-action="island-hide" ${ui.hideFound ? 'checked' : ''}> <span>${t('Ẩn nhiệm vụ đã xong')}</span></label>
+    </div>
+    <div class="island-tasks">
+      ${states.filter(x => !(ui.hideFound && x.st.done)).map(({ task, st }) => {
+        const locked = task.needs && p.d && !p.upgrades.has(task.needs);
+        const count = st.all > 1 && !st.done ? ` <span class="muted">${st.have}/${st.all}</span>` : '';
+        return `
+        <article class="island-task ${st.done ? 'is-done' : ''}">
+          <header class="island-task__head">
+            <button class="island-task__tick ${st.done ? 'is-on' : ''}" type="button" data-action="island-task-tick" data-id="${task.id}"
+              aria-pressed="${st.done}" title="${t(st.done ? 'Đánh dấu chưa xong' : 'Đánh dấu đã xong')}">${st.done ? ico('check') : ''}</button>
+            ${ico(task.icon)}
+            <h3>${nm(task)}</h3>
+            <span class="tag ${st.done ? 'tag--green' : locked ? 'tag--red' : 'tag--gold'}">${st.done ? t('Đã xong') : locked ? t('Chưa mở') : t('Chưa xong')}</span>${count}
+          </header>
+          ${task.needs ? `<p class="muted island-task__needs">${t('Cần mở trước')}: ${upgradeName(task.needs)}</p>` : ''}
+          <ol class="island-task__steps" data-no-i18n>${(isEn ? task.stepsEn : task.steps).map(x => `<li>${esc(x)}</li>`).join('')}</ol>
+          <p class="island-task__reward">${ico('gift')} <span class="muted">${t('Phần thưởng')}:</span> <span data-no-i18n>${esc(tx(task, 'reward'))}</span>
+            ${task.link ? ` · <button class="link-btn" type="button" data-action="switch-tab" data-tab="${task.link.tab}">${t(task.link.label)}</button>` : ''}</p>
+        </article>`;
+      }).join('') || `<p class="muted">${t('Đã xong hết các nhiệm vụ trên đảo.')}</p>`}
+    </div>`;
+}
+
 function peopleHtml() {
-  const quests = QUESTS_DATA.filter(q => q.category === 'ginger_island');
   return `
     <div class="island-people">
       ${data.ISLAND_PEOPLE.map(p => {
@@ -205,9 +260,8 @@ function peopleHtml() {
       }).join('')}
     </div>
     <h3 class="journal-sub">${ico('quests')} ${t('Nhiệm vụ trên đảo')}</h3>
-    <div class="island-tags">
-      ${quests.map(q => `<button class="item-tag item-tag--link" type="button" data-action="open-detail" data-type="quest" data-id="${q.id}">${ico('ginger')} <span>${nm(q)}</span></button>`).join('')}
-    </div>
+    <p class="muted">${t('Cách làm từng nhiệm vụ và tình trạng hoàn thành nằm ở mục Nhiệm vụ.')}
+      <button class="link-btn" type="button" data-action="island-section" data-section="tasks">${t('Mở mục Nhiệm vụ')}</button></p>
     <h3 class="journal-sub">${ico('qi_gem')} ${t('Đơn hàng của Ông Qi')}</h3>
     <p class="muted">${t('Bảng đơn hàng trong Phòng Óc Chó, trả thưởng bằng Ngọc Qi.')}
       <button class="link-btn" type="button" data-action="switch-tab" data-tab="journal">${t('Xem đơn đang nhận ở tab Sổ Tay')}</button></p>
@@ -222,6 +276,7 @@ function qiOrdersHtml() {
       orders = m.SPECIAL_ORDERS.filter(o => o.board === 'qi');
       const el = document.getElementById('islandQiOrders');
       if (el) el.innerHTML = qiOrdersHtml();
+      if (ui.section === 'tasks') render();
     }).catch(e => console.error('[island] orders', e));
     return `<p class="muted">${ico('hourglass')} ${t('Đang tải...')}</p>`;
   }
@@ -234,9 +289,11 @@ function qiOrdersHtml() {
     </div>`).join('');
 }
 
-const RENDER = { start: startHtml, walnuts: walnutsHtml, areas: areasHtml, farm: farmHtml, people: peopleHtml };
+const RENDER = { start: startHtml, walnuts: walnutsHtml, tasks: tasksHtml, areas: areasHtml, farm: farmHtml, people: peopleHtml };
 
-function render(app) {
+let lastApp = null;
+function render(app = lastApp) {
+  lastApp = app;
   const el = document.getElementById('islandBoard');
   if (!el) return;
   if (!need(app)) { el.innerHTML = `<p class="muted">${ico('hourglass')} ${t('Đang tải...')}</p>`; return; }
@@ -263,6 +320,23 @@ export default {
     'island-area-walnuts': (app, el) => {
       ui.section = 'walnuts'; ui.open = el.dataset.area; persist(); render(app);
       document.getElementById(`walnuts-${el.dataset.area}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    },
+    'island-task-tick': (app, el) => {
+      const task = data.ISLAND_TASKS.find(x => x.id === el.dataset.id);
+      if (!task) return;
+      const st = taskState(task, progress());
+      const id = `task:${task.id}`;
+      if (st.done) {
+        // Undo a hand tick (and the walnut spots it ticked); what the save says stays
+        ticked.delete(id);
+        for (const k of task.keys || []) ticked.delete(k);
+      } else {
+        ticked.add(id);
+        for (const k of task.keys || []) ticked.add(k);
+        app.sfx.play('complete');
+      }
+      saveJSON(KEYS.walnuts, [...ticked]);
+      render(app);
     },
     'island-tick': (app, el) => {
       const key = el.dataset.key;

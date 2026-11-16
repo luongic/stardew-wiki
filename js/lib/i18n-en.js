@@ -394,6 +394,16 @@ export const UI_EN = {
   'Chọn / Di chuyển': 'Select / Move', 'Cục tẩy': 'Eraser', 'Hoàn tác': 'Undo', 'Làm lại': 'Redo', 'Lưới ô': 'Grid',
   'Vùng tưới & bù nhìn': 'Sprinkler & scarecrow range', 'Vùng tưới': 'Sprinklers', 'Vùng bù nhìn': 'Scarecrows', 'Độ đậm vùng máy tưới': 'Opacity of sprinkler ranges', 'Độ đậm vùng bù nhìn': 'Opacity of scarecrow ranges', 'Vùng lều Junimo': 'Junimo hut range', 'Vùng Junimo': 'Junimo huts', 'Độ đậm vùng lều Junimo': 'Opacity of Junimo hut ranges', 'Nạp file save': 'Load save file', 'Tải ảnh': 'Save image', 'Làm trống': 'Clear',
   // Predictor > Forge: the player's weapons
+  // Ginger Island > Tasks
+  'Ẩn nhiệm vụ đã xong': 'Hide finished tasks',
+  'Đánh dấu chưa xong': 'Mark as not done',
+  'Đánh dấu đã xong': 'Mark as done',
+  'Chưa xong': 'Not done',
+  'Cần mở trước': 'Unlock first',
+  'Đã xong hết các nhiệm vụ trên đảo.': 'Every island task is done.',
+  'Xem trước màu chim ở tab Dự Đoán': 'See the bird colours ahead in the Predictor tab',
+  'Cách làm từng nhiệm vụ và tình trạng hoàn thành nằm ở mục Nhiệm vụ.': 'How to do each task, and whether it is done, is in the Tasks section.',
+  'Mở mục Nhiệm vụ': 'Open Tasks',
   // Journal > Marriage
   'Hôn nhân': 'Marriage',
   'Bạn bè': 'Friends',

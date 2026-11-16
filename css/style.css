@@ -2869,3 +2869,17 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 .marriage-help summary { cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 6px; }
 .marriage-help ul { margin: 8px 0 0; padding-left: 20px; line-height: 1.5; }
 .marriage-card__row { margin: 2px 0; }
+
+/* Ginger Island > Tasks */
+.island-tasks { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 10px; }
+.island-task { padding: 10px 12px; border: 2px solid var(--ink); border-radius: 4px; background: var(--parch-50); min-width: 0; }
+.island-task.is-done { background: #eef9e4; }
+.island-task__head { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.island-task__head h3 { margin: 0; font-size: 1rem; flex: 1 1 140px; }
+.island-task__tick { width: 22px; height: 22px; flex: none; padding: 0; border: 2px solid var(--ink); border-radius: 3px; background: var(--parch-50); cursor: pointer; display: grid; place-items: center; }
+.island-task__tick.is-on { background: var(--green); }
+.island-task__tick img { width: 14px; height: 14px; }
+.island-task__needs { margin: 4px 0 0; font-size: 0.85rem; }
+.island-task__steps { margin: 8px 0; padding-left: 20px; font-size: 0.9rem; line-height: 1.5; }
+.island-task__reward { margin: 0; font-size: 0.9rem; display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+@media (max-width: 480px) { .island-tasks { grid-template-columns: 1fr; } }
