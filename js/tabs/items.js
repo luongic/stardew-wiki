@@ -9,10 +9,47 @@ import { EXTRA_ITEMS } from '../../data/extra-items.js';
 import { emptyState, v16Badge, wikiLink, modalHeader, matches, signed } from '../lib/templates.js';
 import { ico } from '../lib/icons.js';
 import { relationsHtml } from '../lib/relations.js';
+import { loadJSON, KEYS } from '../lib/storage.js';
+import { OBJECT_NAMES } from '../../data/item-ids.js';
+import { saveTabLink } from './save.js';
 
 const itemById = new Map(ITEMS_DATA.map(it => [it.id, it]));
 const extraById = new Map(EXTRA_ITEMS.map(it => [it.id, it]));
 const PLACEHOLDER = 'assets/pixel-box.svg';
+
+// ---------- Books read (from the last save) ----------
+// The game counts each read in the player's stats under the book's id
+// (Book_Speed, SkillBook_0...). Skill books give experience every time;
+// a power book unlocks on the first read, later reads give experience.
+const BOOK_IDS = {
+  ...Object.fromEntries(Object.entries(OBJECT_NAMES).filter(([k]) => /^(Book_|SkillBook_)/.test(k)).map(([k, v]) => [v, k])),
+  'Ways Of The Wild': 'Book_WildSeeds', 'Horse The Book': 'Book_Horse'
+};
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+// null without a save; otherwise book -> [{ name, n }] for every player
+function bookReads() {
+  const players = (loadJSON(KEYS.journal, null)?.players || []).filter(p => p.stats);
+  if (!players.length) return null;
+  return it => BOOK_IDS[it.nameEn] ? players.map(p => ({ name: players.length > 1 ? p.name : '', n: p.stats[BOOK_IDS[it.nameEn]] || 0 })) : null;
+}
+
+function readTags(reads) {
+  return reads.map(r => `<span class="tag ${r.n ? 'tag--green' : 'is-dim'}">${ico('books')} ${r.name ? `<strong data-no-i18n>${esc(r.name)}:</strong> ` : ''}${r.n ? `Đã đọc ×${r.n}` : 'Chưa đọc'}</span>`).join('');
+}
+
+// "Đã học 8/24" per player, under the Books heading
+function booksSummary(reads) {
+  if (!reads) return `<p class="muted">${ico('books')} Nạp file save để xem những sách đã đọc và số lần đọc. ${saveTabLink('Nạp file save', 'btn btn--green btn--sm')}</p>`;
+  const books = ITEMS_DATA.filter(it => it.category === 'books' && BOOK_IDS[it.nameEn]);
+  const per = books.map(reads);
+  const names = per[0] || [];
+  return `<div class="pill-row">${names.map((p, i) => {
+    const read = per.filter(r => r[i].n > 0).length;
+    const times = per.reduce((a, r) => a + r[i].n, 0);
+    return `<span class="tag ${read === books.length ? 'tag--green' : 'tag--gold'}">${ico('books')} ${p.name ? `<strong data-no-i18n>${esc(p.name)}:</strong> ` : ''}Đã học ${read}/${books.length} sách · ${times} lần đọc</span>`;
+  }).join('')}</div>`;
+}
 
 const GROUPS = [
   { category: 'tools', icon: 'tools', title: 'Công Cụ Lao Động, Khai Thác & Vũ Khí',
@@ -49,7 +86,8 @@ const isEdible = it => it.energy !== null && it.energy > 0;
 const isHarmful = it => it.energy !== null && it.energy < 0;
 const price = it => it.priceText || (it.sellPrice > 0 ? `${it.sellPrice.toLocaleString()}g` : 'Không bán');
 
-function cardHtml(it) {
+function cardHtml(it, reads) {
+  const read = it.category === 'books' && reads?.(it);
   return `
     <article class="card card--clickable" role="button" tabindex="0"
              data-action="open-detail" data-type="item" data-id="${it.id}">
@@ -71,6 +109,7 @@ function cardHtml(it) {
           ${isEdible(it) ? `<span class="tag tag--green">${ico('energy')} +${it.energy}</span>` : ''}
           ${isHarmful(it) ? `<span class="tag tag--red">${ico('energy')} ${it.energy}</span>` : ''}
         </div>
+        ${read ? `<div class="pill-row">${readTags(read)}</div>` : ''}
 
         <p class="card__desc">${it.desc}</p>
 
@@ -144,6 +183,7 @@ export default {
       return;
     }
 
+    const reads = list.some(it => it.category === 'books') ? bookReads() : null;
     container.innerHTML = GROUPS.map(grp => {
       const items = list.filter(it => it.category === grp.category);
       if (!items.length) return '';
@@ -155,8 +195,9 @@ export default {
               <span class="badge badge--gold">${items.length} vật phẩm</span>
             </div>
             <p class="group__desc">${grp.desc}</p>
+            ${grp.category === 'books' ? booksSummary(reads) : ''}
           </header>
-          <div class="content-grid">${items.map(cardHtml).join('')}</div>
+          <div class="content-grid">${items.map(it => cardHtml(it, reads)).join('')}</div>
         </section>`;
     }).join('');
   },
@@ -169,6 +210,7 @@ export default {
     const it = itemById.get(id);
     if (!it) return extraById.has(id) ? extraDetail(extraById.get(id)) : '';
     const page = it.wikiFile ? it.wikiFile.replace('.png', '') : undefined;
+    const read = it.category === 'books' && bookReads()?.(it);
     return `
       ${modalHeader({
         icon: `<div class="icon-box icon-box--lg"><img src="${it.imageUrl}" alt="${it.name}" class="pixel-img" data-fallback="${PLACEHOLDER}"></div>`,
@@ -177,6 +219,7 @@ export default {
         extra: wikiLink(it.nameEn, 'Xem bài viết chi tiết trên Official Stardew Valley Wiki', page)
       })}
       <p class="detail-lead">${it.desc}</p>
+      ${read ? `<div class="pill-row">${readTags(read)}</div>` : ''}
 
       <div class="spec-grid">
         <div class="spec spec--gold">
