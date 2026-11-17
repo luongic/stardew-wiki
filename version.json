@@ -1,7 +1,9 @@
 {
-  "version": "27017345de",
-  "content": "27017345de",
-  "built": "2026-11-16T16:50:29.366Z",
-  "important": false,
-  "notes": []
+  "version": "7eb50528c3",
+  "content": "c810192c24",
+  "built": "2026-11-17T03:44:47.442Z",
+  "important": true,
+  "notes": [
+    "Tab mới Loại Nông Trại: 8 bản đồ nông trại theo wiki, so sánh diện tích và lọc theo lối chơi"
+  ]
 }

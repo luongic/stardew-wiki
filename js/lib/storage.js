@@ -24,6 +24,7 @@ export const KEYS = {
   predict: 'stardew_wiki_predict',
   predictView: 'stardew_wiki_predict_view',
   islandView: 'stardew_wiki_island_view',
+  farmMapsView: 'stardew_wiki_farm_maps_view',
   walnuts: 'stardew_wiki_walnuts'
 };
 

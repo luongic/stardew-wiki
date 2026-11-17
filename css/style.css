@@ -2883,3 +2883,41 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 .island-task__steps { margin: 8px 0; padding-left: 20px; font-size: 0.9rem; line-height: 1.5; }
 .island-task__reward { margin: 0; font-size: 0.9rem; display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
 @media (max-width: 480px) { .island-tasks { grid-template-columns: 1fr; } }
+
+/* Farm Maps tab */
+.farmmap-intro { display: grid; grid-template-columns: minmax(0, 340px) 1fr; gap: 16px; align-items: start; }
+.farmmap-intro__fig { margin: 0; }
+.farmmap-intro__fig img { width: 100%; height: auto; border: 2px solid var(--ink); border-radius: 4px; }
+.farmmap-intro ul { padding-left: 20px; line-height: 1.5; }
+.farmmap-compare { display: grid; gap: 4px; }
+.farmmap-compare__row { display: grid; grid-template-columns: 210px 1fr 110px; gap: 8px; align-items: center; padding: 3px 6px; border: 0; background: none; text-align: left; font: inherit; color: inherit; cursor: pointer; border-radius: 3px; }
+.farmmap-compare__row:hover { background: var(--parch-100); }
+.farmmap-compare__name { display: flex; align-items: center; gap: 6px; font-weight: bold; }
+.farmmap-compare__name img { width: 22px; height: auto; }
+.farmmap-compare__bar { display: flex; height: 14px; border: 2px solid var(--ink); background: var(--parch-50); }
+.farmmap-compare__bar .is-till, .farmmap-swatch.is-till { background: var(--green); }
+.farmmap-compare__bar .is-build, .farmmap-swatch.is-build { background: var(--wood-300); }
+.farmmap-compare__num { font-size: 0.85rem; text-align: right; white-space: nowrap; }
+.farmmap-swatch { display: inline-block; width: 12px; height: 12px; border: 2px solid var(--ink); vertical-align: -2px; margin-left: 8px; }
+.farmmap-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 12px; margin-top: 10px; }
+.farmmap-card { padding: 12px; border: 2px solid var(--ink); border-radius: 4px; background: var(--parch-50); min-width: 0; scroll-margin-top: 80px; }
+.farmmap-card__head { display: flex; align-items: center; gap: 10px; }
+.farmmap-card__head h3 { margin: 0; }
+.farmmap-card__head p { margin: 2px 0 0; font-size: 0.85rem; }
+.farmmap-card__icon { width: 40px; height: auto; flex: none; }
+.farmmap-card__map { display: block; margin: 10px 0; border: 2px solid var(--ink); border-radius: 4px; overflow: hidden; background: #3b6b2a; aspect-ratio: 16 / 13; }
+.farmmap-card__map img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.farmmap-card__skills { display: flex; flex-wrap: wrap; gap: 4px; }
+.farmmap-skill img { width: 16px; height: 16px; vertical-align: -3px; }
+.farmmap-card__summary { margin: 8px 0 4px; }
+.farmmap-card__tiles { margin: 0 0 6px; font-size: 0.88rem; }
+.farmmap-card__points { margin: 0 0 6px; padding-left: 18px; font-size: 0.88rem; line-height: 1.5; }
+.farmmap-quarry { margin-top: 16px; }
+.farmmap-quarry summary { cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 6px; }
+.farmmap-credit { margin-top: 16px; }
+@media (max-width: 640px) {
+  .farmmap-intro { grid-template-columns: 1fr; }
+  .farmmap-compare__row { grid-template-columns: 1fr 70px; }
+  .farmmap-compare__bar { grid-column: 1 / -1; grid-row: 2; }
+  .farmmap-grid { grid-template-columns: 1fr; }
+}

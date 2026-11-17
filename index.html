@@ -136,6 +136,9 @@
       <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="farm">
         <i data-icon="farm"></i> <span>Nông Trại</span>
       </button>
+      <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="farmmaps">
+        <i data-icon="map"></i> <span>Loại Nông Trại</span>
+      </button>
       <button class="tab" type="button" role="tab" data-action="switch-tab" data-tab="journal">
         <i data-icon="story"></i> <span>Sổ Tay Nông Trại</span>
       </button>
@@ -547,6 +550,16 @@
       </section>
 
       <!-- ======= TAB: FARM PLANNER ======= -->
+      <section id="tab-farmmaps" class="tab-panel" role="tabpanel" hidden>
+        <div class="panel">
+          <div class="panel__head">
+            <h2 class="panel__title"><i data-icon="map"></i> Các Loại Nông Trại (Farm Maps)</h2>
+          </div>
+          <p class="panel__hint">Tám loại bản đồ nông trại khi bắt đầu game mới: mỗi loại hợp với một lối chơi. So sánh diện tích, lọc theo kỹ năng bạn thích. Theo Official Stardew Valley Wiki (bản 1.6).</p>
+          <div id="farmMapsBoard"></div>
+        </div>
+      </section>
+
       <section id="tab-farm" class="tab-panel" role="tabpanel" hidden>
         <div class="panel farm-panel">
           <div class="panel__head">
