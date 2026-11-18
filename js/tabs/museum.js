@@ -12,6 +12,49 @@ import { emptyState, matches, pixelIcon } from '../lib/templates.js';
 import { ico } from '../lib/icons.js';
 import { ownedFinder, ownedRow } from '../lib/owned.js';
 import { saveTabLink } from './save.js';
+import { LOST_BOOKS, LOST_BOOKS_INTRO } from '../../data/lost-books-data.js';
+import { loadJSON, KEYS } from '../lib/storage.js';
+import { t, isEn } from '../lib/i18n.js';
+
+// ---------- Library: the Lost Books (Tips on Farming from the start, then found in order) ----------
+const libUi = { showAll: false };
+const escB = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+// The save counts 21 (Journal tab too), the same as the 21 entries of the wiki's list
+const LOST_TOTAL = LOST_BOOKS.length;
+function libraryHtml(q) {
+  const found = loadJSON(KEYS.journal, null)?.world?.lostBooks;
+  const known = typeof found === 'number';
+  const isRead = (b, i) => b.start || (known && i < found);
+  const books = LOST_BOOKS.map((b, i) => ({ b, i, read: isRead(b, i) }))
+    .filter(({ b }) => !q || matches(q, b.title, b.titleEn, b.text, b.textEn));
+  const body = b => escB(isEn ? b.textEn : b.text).replace(/\n/g, '<br>');
+  return `
+    <section class="case library">
+      <header class="case__head">
+        <h3 class="case__title">${ico('books')} ${t('Thư Viện: Sách Thất Lạc')}</h3>
+        <span class="badge badge--gold">${known ? `${Math.min(found, LOST_TOTAL)}/${LOST_TOTAL}` : `?/${LOST_TOTAL}`}</span>
+      </header>
+      <p class="muted">${escB(isEn ? LOST_BOOKS_INTRO.textEn : LOST_BOOKS_INTRO.text)}</p>
+      ${known ? `<div class="museum-meter"><div class="skill-bar"><span style="width:${Math.min(100, (found / LOST_TOTAL) * 100)}%"></span></div></div>`
+        : `<p class="muted">${ico('save')} ${t('Nạp file save để biết những cuốn nào đã tìm thấy và đã đọc được.')} ${saveTabLink('Nạp file save', 'link-btn')}</p>`}
+      <label class="toggle"><input type="checkbox" class="px-check" data-action="library-all" ${libUi.showAll ? 'checked' : ''}> <span>${t('Hiện nội dung cả những cuốn chưa tìm thấy')}</span></label>
+      <div class="library__list">
+        ${books.map(({ b, i, read }) => `
+          <details class="library-book ${read ? 'is-read' : ''}" ${read && q ? 'open' : ''}>
+            <summary>
+              <span class="library-book__no">#${i + 1}</span>
+              <strong data-no-i18n>${escB(isEn ? b.titleEn : b.title)}</strong>
+              ${isEn ? '' : `<span class="muted" data-no-i18n>${escB(b.titleEn)}</span>`}
+              <span class="tag ${read ? 'tag--green' : 'is-dim'}">${read ? (b.start ? t('Có sẵn từ đầu') : t('Đã đọc')) : known ? t('Chưa tìm thấy') : t('Chưa rõ')}</span>
+            </summary>
+            ${read || libUi.showAll ? `<div class="library-book__text" data-no-i18n>${body(b)}</div>
+              ${b.hint ? `<p class="callout callout--tip">${ico('tip')} ${escB(isEn ? b.hintEn : b.hint)}</p>` : ''}`
+              : `<p class="muted">${t('Tìm thêm Sách Thất Lạc để mở cuốn này, hoặc bật "Hiện nội dung" ở trên.')}</p>`}
+          </details>`).join('') || `<p class="muted">${t('Không có cuốn sách nào khớp.')}</p>`}
+      </div>
+      <p class="muted">${t('Nội dung dịch từ Official Stardew Valley Wiki (Lost Books).')}</p>
+    </section>`;
+}
 
 const itemById = new Map(MUSEUM_ITEMS.map(it => [it.id, it]));
 const ARTIFACTS = MUSEUM_ITEMS.filter(it => it.type === 'artifact');
@@ -122,6 +165,7 @@ const museumTab = {
 
     const filter = app.filters.museum;
     const q = app.searchQuery;
+    if (filter === 'books') { document.getElementById('museumCases').innerHTML = libraryHtml(q); return; }
     const list = MUSEUM_ITEMS.filter(it => {
       if (filter !== 'all' && it.type !== filter) return false;
       if (app.toggles.unfinished && museumProgress.donated.has(it.id)) return false;
@@ -153,6 +197,7 @@ const museumTab = {
   },
 
   actions: {
+    'library-all': (app, el) => { libUi.showAll = el.checked; app.render(); },
     'museum-toggle': (app, el) => {
       const id = el.dataset.id;
       if (progress.toggle('museum', id)) {
