@@ -13,6 +13,7 @@ import { loadJSON, KEYS } from '../lib/storage.js';
 import { OBJECT_NAMES } from '../../data/item-ids.js';
 import { saveTabLink } from './save.js';
 import { WEAPONS, WEAPON_TYPES } from '../../data/weapons-data.js';
+import { TRINKETS, TRINKETS_INTRO } from '../../data/trinkets-data.js';
 import { labeledContainers } from './journal.js';
 import { compareTable, enchantList, forgeCount, MAX_FORGES } from '../lib/weapon-stats.js';
 import { isStale } from '../lib/journal-schema.js';
@@ -21,6 +22,8 @@ const itemById = new Map(ITEMS_DATA.map(it => [it.id, it]));
 const weaponId = w => `weapon:${w.nameEn.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`;
 const weaponById = new Map(WEAPONS.map(w => [weaponId(w), w]));
 const weaponNames = new Set(WEAPONS.map(w => w.nameEn));
+const trinketId = x => `trinket:${x.nameEn.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`;
+const trinketById = new Map(TRINKETS.map(x => [trinketId(x), x]));
 
 // ---------- Weapons and rings the farm has (from the last save) ----------
 // Every copy: { spot (where to find it), slot (backpack), ench, parts, worn: 'left'|'right', who, inside (combined ring) }
@@ -38,10 +41,11 @@ function ownedCopies(nameEn) {
     if (r.name === nameEn) out.push({ worn: hand, who: p.name, parts: r.parts });
     else if (r.parts?.includes(nameEn)) out.push({ worn: hand, who: p.name, inside: r.parts });
   }));
+  d.players.forEach(p => (p.trinkets || []).forEach(x => { if (x.name === nameEn) out.push({ worn: 'trinket', who: p.name }); }));
   return out;
 }
 const needsReload = () => { const d = loadJSON(KEYS.journal, null); return !!d && (isStale(d) || !d.players?.[0]?.rings); };
-const handName = h => (h === 'left' ? 'tay trái' : 'tay phải');
+const handName = h => (h === 'left' ? 'tay trái' : h === 'trinket' ? 'ô trang sức' : 'tay phải');
 function copyLabel(c) {
   if (c.worn) return `${ico('rings')} <strong>${t('Đang đeo')}</strong> · <span data-no-i18n>${esc(c.who)}</span> (${t(handName(c.worn))})${c.inside ? ` · ${t('trong Nhẫn Ghép')}` : ''}`;
   const bar = c.slot !== undefined && c.slot < 12 ? ` · ${t('trên thanh công cụ')}` : '';
@@ -299,6 +303,64 @@ function weaponDetail(w) {
     ${ownedBox(ownedCopies(w.nameEn), w)}`;
 }
 
+// ---------- Trinkets (1.6, after Combat Mastery) ----------
+const tName = x => (isEn ? x.nameEn : x.name);
+function trinketCard(x) {
+  return `
+    <article class="card card--clickable" role="button" tabindex="0" data-action="open-detail" data-type="item" data-id="${trinketId(x)}">
+      <header class="card__head">
+        <div class="card__title-row">
+          <div class="icon-box"><img src="${x.icon}" alt="" class="pixel-img" loading="lazy" data-fallback="${PLACEHOLDER}"></div>
+          <div><h3 class="card__title">${tName(x)}</h3><div class="card__sub">${isEn ? x.name : x.nameEn} ${v16Badge(true)}</div></div>
+        </div>
+      </header>
+      <div class="card__body">
+        <div class="pill-row">
+          <span class="tag tag--gold">${ico('money')} 1,000g</span>
+          ${x.reforge ? `<span class="tag">${t('Rèn lại')}: ${isEn ? x.reforgeEn : x.reforge}</span>` : `<span class="tag is-dim">${t('Không rèn lại được')}</span>`}
+          ${ownedTag(ownedCopies(x.nameEn))}
+        </div>
+        <p class="card__desc">"${esc(isEn ? x.descEn : x.desc)}"</p>
+        <p class="card__desc">${esc(isEn ? x.howEn : x.how)}</p>
+      </div>
+    </article>`;
+}
+function trinketsHtml(list) {
+  if (!list.length) return '';
+  return `
+    <section class="group" id="group-trinkets">
+      <header class="group__head">
+        <div class="group__title-row">
+          <h3 class="group__title">${ico('rings')} ${t('Trang Sức (Trinket)')}</h3>
+          <span class="badge badge--gold">${list.length} ${t('vật phẩm')}</span>
+        </div>
+        <p class="group__desc">${esc(isEn ? TRINKETS_INTRO.textEn : TRINKETS_INTRO.text)}</p>
+        <p class="group__desc">${esc(isEn ? TRINKETS_INTRO.anvilEn : TRINKETS_INTRO.anvil)}</p>
+      </header>
+      <div class="content-grid">${list.map(trinketCard).join('')}</div>
+    </section>`;
+}
+function trinketDetail(x) {
+  const tb = x.table;
+  return `
+    ${modalHeader({
+      icon: `<div class="icon-box icon-box--lg"><img src="${x.icon}" alt="" class="pixel-img" data-fallback="${PLACEHOLDER}"></div>`,
+      title: `${tName(x)} ${v16Badge(true, 'Bản 1.6 Mới')}`,
+      sub: `${isEn ? x.name : x.nameEn} • <b>${t('Trang Sức (Trinket)')}</b>`,
+      extra: wikiLink(x.nameEn, 'Xem bài viết chi tiết trên Official Stardew Valley Wiki', x.nameEn.replace(/ /g, '_'))
+    })}
+    <p class="detail-lead">"${esc(isEn ? x.descEn : x.desc)}"</p>
+    <div class="spec-grid">
+      <div class="spec spec--gold"><div class="spec__label">${ico('money')} ${t('GIÁ BÁN CƠ BẢN')}</div><div class="spec__value">1,000g</div></div>
+      <div class="spec spec--blue"><div class="spec__label">${t('RÈN LẠI Ở ĐE RÈN')}</div><div class="spec__value">${x.reforge ? (isEn ? x.reforgeEn : x.reforge) : t('Không rèn lại được')}</div></div>
+    </div>
+    <div class="inset-box"><h4 class="inset-box__title">${ico('wiki')} ${t('Cách hoạt động')}:</h4><p>${esc(isEn ? x.howEn : x.how)}</p></div>
+    ${tb ? `<div class="predict-table-wrap"><table class="predict-table"><thead><tr>${(isEn ? tb.headEn : tb.head).map(h => `<th>${h}</th>`).join('')}</tr></thead>
+      <tbody>${(isEn ? tb.rowsEn : tb.rows).map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table></div>` : ''}
+    <div class="inset-box"><h4 class="inset-box__title">${ico('pin')} ${t('Nơi tìm thấy')}:</h4><p>${esc(isEn ? x.sourceEn : x.source)}</p></div>
+    ${ownedBox(ownedCopies(x.nameEn))}`;
+}
+
 export default {
   id: 'items',
   search: true,
@@ -319,9 +381,11 @@ export default {
       return true;
     });
 
+    const trinkets = (filter === 'all' || filter === 'trinkets') && !app.toggles.v16 && !app.toggles.buffs
+      ? TRINKETS.filter(x => !q || matches(q, x.name, x.nameEn, x.desc, x.how)) : [];
     const weapons = (filter === 'all' || filter === 'weapons') && !app.toggles.v16 && !app.toggles.buffs
       ? WEAPONS.filter(w => !q || matches(q, w.name, w.nameEn, w.where, w.whereEn, WEAPON_TYPES[w.type].name)) : [];
-    if (!list.length && !weapons.length) {
+    if (!list.length && !weapons.length && !trinkets.length) {
       // Dishes and crafted goods live in the Recipes tab: point there when they match
       const recipeHits = q ? RECIPES_DATA.filter(r => matches(q, r.name, r.nameEn)).length : 0;
       container.innerHTML = emptyState('search', 'Không tìm thấy vật phẩm nào khớp với tìm kiếm!',
@@ -331,7 +395,7 @@ export default {
     }
 
     const reads = list.some(it => it.category === 'books') ? bookReads() : null;
-    container.innerHTML = weaponsHtml(weapons, filter === 'weapons') + GROUPS.map(grp => {
+    container.innerHTML = weaponsHtml(weapons, filter === 'weapons') + trinketsHtml(trinkets) + GROUPS.map(grp => {
       const items = list.filter(it => it.category === grp.category);
       if (!items.length) return '';
       return `
@@ -350,11 +414,12 @@ export default {
   },
 
   badge() {
-    document.getElementById('itemTabBadge').textContent = ITEMS_DATA.filter(it => !weaponNames.has(it.nameEn)).length + WEAPONS.length;
+    document.getElementById('itemTabBadge').textContent = ITEMS_DATA.filter(it => !weaponNames.has(it.nameEn)).length + WEAPONS.length + TRINKETS.length;
   },
 
   detail(app, id) {
     if (weaponById.has(id)) return weaponDetail(weaponById.get(id));
+    if (trinketById.has(id)) return trinketDetail(trinketById.get(id));
     const it = itemById.get(id);
     if (!it) return extraById.has(id) ? extraDetail(extraById.get(id)) : '';
     const page = it.wikiFile ? it.wikiFile.replace('.png', '') : undefined;

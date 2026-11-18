@@ -2969,3 +2969,11 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 .weapon-compare tr.is-up td:last-child { color: var(--green-dark); background: #e9f8dc; }
 .weapon-compare tr.is-down td:last-child { color: var(--red-dark); }
 @media (max-width: 640px) { .weapon-copy__grid { grid-template-columns: 1fr; } }
+
+/* Museum: library of Lost Books */
+.library__list { display: grid; gap: 6px; margin-top: 10px; }
+.library-book { border: 2px solid var(--ink); border-radius: 4px; background: var(--parch-50); padding: 6px 10px; }
+.library-book.is-read { background: #f3fbea; }
+.library-book summary { cursor: pointer; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.library-book__no { min-width: 28px; font-weight: bold; color: var(--text-muted); }
+.library-book__text { margin: 8px 0 4px; line-height: 1.6; white-space: normal; }

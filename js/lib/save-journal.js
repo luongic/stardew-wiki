@@ -34,6 +34,8 @@ function itemOf(el) {
   return it;
 }
 const itemsIn = el => kids(el, 'Item').map(itemOf).filter(Boolean);
+// The trinket slot (1.6): the farmer's trinketItems list (matched loosely, any case)
+const trinketList = el => [...([...(el?.children || [])].find(c => /^trinket/i.test(c.localName))?.children || [])];
 // The backpack keeps the slot (the first 12 are the toolbar)
 const slotsIn = el => kids(el, 'Item').map((e, slot) => { const it = itemOf(e); return it && { ...it, slot }; }).filter(Boolean);
 
@@ -202,6 +204,8 @@ function readPlayer(player, root, built, donated, hostMail, petLove) {
     backpack: { where: 'backpack', kind: 'backpack', items: slotsIn(kid(player, 'items')) },
     // Rings worn (left, right); null for an empty hand
     rings: [itemOf(kid(player, 'leftRing')), itemOf(kid(player, 'rightRing'))],
+    // Trinkets worn (1.6, after Combat Mastery)
+    trinkets: trinketList(player).map(itemOf).filter(Boolean),
     mailbox: kids(kid(player, 'mailbox'), 'string').length,
     quests: readQuests(player),
     stats,

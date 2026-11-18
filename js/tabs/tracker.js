@@ -15,6 +15,7 @@ import { KEYS, loadJSON } from '../lib/storage.js';
 import { restoreNote } from '../sync/notes-ui.js';
 import { nm, isEn } from '../lib/i18n.js';
 import { ITEMS_DATA } from '../../data/items-data.js';
+import { TRINKETS } from '../../data/trinkets-data.js';
 import { BOOTS, CLOTHES } from '../../data/save-data.js';
 import { SKILLS, LEVEL_XP, MASTERY_XP, PROFESSIONS } from '../../data/skills-data.js';
 
@@ -177,6 +178,7 @@ function masteryCard(p) {
 }
 
 // ---------- What the character is wearing ----------
+const TRINKET_BY_EN = new Map(TRINKETS.map(x => [x.nameEn, x]));
 const RINGS = new Map(ITEMS_DATA.filter(i => i.category === 'rings').map(i => [i.nameEn, i]));
 const bootIcon = en => `assets/icons/${en.toLowerCase().replace(/'/g, '').replace(/[^a-z0-9]+/g, '_')}.png`;
 
@@ -208,6 +210,12 @@ function wearHtml(p) {
       b ? [b.defense && `+${b.defense} ${t('Phòng thủ')}`, b.immunity && `+${b.immunity} ${t('Miễn nhiễm')}`].filter(Boolean).join(' · ') : ''));
   }
   for (const [label, r] of [['Nhẫn trái', ring(w.leftRing)], ['Nhẫn phải', ring(w.rightRing)]]) if (r) out.push(slot(label, r.icon, r.name, r.note));
+  // Trinket slot: opened by Combat Mastery (1.6)
+  for (const x of w.trinkets || []) {
+    const info = TRINKET_BY_EN.get(x.name);
+    out.push(slot('Trang sức', info?.icon || 'assets/pixel-ring.svg', { text: info ? (isEn ? info.nameEn : info.name) : x.name, raw: true }, info ? (isEn ? info.descEn : info.desc) : ''));
+  }
+  if (w.trinkets && !w.trinkets.length && p.masteryClaimed?.includes(4)) out.push(slot('Trang sức', 'assets/pixel-ring.svg', { text: t('(trống)'), raw: false }, t('Ô trang sức mở khi nhận Thành Thạo Chiến Đấu.')));
   return out.length ? `
     <h3 class="journal-sub">${ico('rings')} ${t('Trang bị')}</h3>
     <div class="wear-grid">${out.join('')}</div>` : '';

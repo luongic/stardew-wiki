@@ -394,6 +394,28 @@ export const UI_EN = {
   'Chọn / Di chuyển': 'Select / Move', 'Cục tẩy': 'Eraser', 'Hoàn tác': 'Undo', 'Làm lại': 'Redo', 'Lưới ô': 'Grid',
   'Vùng tưới & bù nhìn': 'Sprinkler & scarecrow range', 'Vùng tưới': 'Sprinklers', 'Vùng bù nhìn': 'Scarecrows', 'Độ đậm vùng máy tưới': 'Opacity of sprinkler ranges', 'Độ đậm vùng bù nhìn': 'Opacity of scarecrow ranges', 'Vùng lều Junimo': 'Junimo hut range', 'Vùng Junimo': 'Junimo huts', 'Độ đậm vùng lều Junimo': 'Opacity of Junimo hut ranges', 'Nạp file save': 'Load save file', 'Tải ảnh': 'Save image', 'Làm trống': 'Clear',
   // Predictor > Forge: the player's weapons
+  // Museum: library
+  'Thư Viện: Sách Thất Lạc': 'Library: Lost Books',
+  'Nạp file save để biết những cuốn nào đã tìm thấy và đã đọc được.': 'Load a save file to see which books were found and can be read.',
+  'Hiện nội dung cả những cuốn chưa tìm thấy': 'Show the text of books not found yet',
+  'Có sẵn từ đầu': 'There from the start',
+  'Chưa tìm thấy': 'Not found yet',
+  'Chưa rõ': 'Unknown',
+  'Tìm thêm Sách Thất Lạc để mở cuốn này, hoặc bật "Hiện nội dung" ở trên.': 'Find more Lost Books to unlock this one, or turn on "Show the text" above.',
+  'Không có cuốn sách nào khớp.': 'No book matches.',
+  'Nội dung dịch từ Official Stardew Valley Wiki (Lost Books).': 'Text from the Official Stardew Valley Wiki (Lost Books).',
+  'Thư Viện (Sách Thất Lạc)': 'Library (Lost Books)',
+  // Items: trinkets
+  'Trang sức': 'Trinket',
+  '(trống)': '(empty)',
+  'Ô trang sức mở khi nhận Thành Thạo Chiến Đấu.': 'The trinket slot opens with Combat Mastery.',
+  'ô trang sức': 'trinket slot',
+  'Trang Sức (Trinket)': 'Trinkets',
+  'Rèn lại': 'Re-forge',
+  'Không rèn lại được': 'Cannot be re-forged',
+  'RÈN LẠI Ở ĐE RÈN': 'RE-FORGE ON THE ANVIL',
+  'Cách hoạt động': 'How it works',
+  'vật phẩm': 'items',
   // Items: weapons & owned rings
   'Vũ Khí': 'Weapons',
   'vũ khí': 'weapons',
