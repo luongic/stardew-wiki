@@ -14,6 +14,7 @@ import { loadJSON, saveJSON, KEYS } from '../lib/storage.js';
 import { matches } from '../lib/templates.js';
 import { itemTag } from '../lib/item-lookup.js';
 import { saveTabLink } from './save.js';
+import { dateLabel } from '../predict/core.js';
 
 const SECTIONS = [
   { id: 'start', name: 'Đến đảo', icon: 'portrait:willy' },
@@ -263,9 +264,9 @@ function peopleHtml() {
     <p class="muted">${t('Cách làm từng nhiệm vụ và tình trạng hoàn thành nằm ở mục Nhiệm vụ.')}
       <button class="link-btn" type="button" data-action="island-section" data-section="tasks">${t('Mở mục Nhiệm vụ')}</button></p>
     <h3 class="journal-sub">${ico('qi_gem')} ${t('Đơn hàng của Ông Qi')}</h3>
-    <p class="muted">${t('Bảng đơn hàng trong Phòng Óc Chó, trả thưởng bằng Ngọc Qi.')}
+    <p class="muted">${t('Cách làm, đồ nên chuẩn bị và tình trạng từng đơn trong Phòng Óc Chó, thưởng bằng Ngọc Qi.')}
       <button class="link-btn" type="button" data-action="switch-tab" data-tab="journal">${t('Xem đơn đang nhận ở tab Sổ Tay')}</button></p>
-    <div class="goal-list" id="islandQiOrders">${qiOrdersHtml()}</div>`;
+    <div id="islandQiOrders">${qiOrdersHtml()}</div>`;
 }
 
 // Qi's board comes from the special-orders data (also used by the Journal)
@@ -280,13 +281,36 @@ function qiOrdersHtml() {
     }).catch(e => console.error('[island] orders', e));
     return `<p class="muted">${ico('hourglass')} ${t('Đang tải...')}</p>`;
   }
-  return orders.map(o => `
-    <div class="goal-row">
-      <div class="goal-row__body">
-        <div class="goal-row__head"><strong>${nm(o)}</strong> <span>${ico('qi_gem')} <span data-no-i18n>${esc(tx(o, 'reward'))}</span></span></div>
-        <p class="goal-row__reward" data-no-i18n>${esc(tx(o, 'task'))}</p>
-      </div>
-    </div>`).join('');
+  const so = journal()?.orders;
+  const done = new Set(so?.done || []), active = new Map((so?.active || []).map(a => [a.key, a])), board = new Set((so?.board || []).map(b => b.key));
+  const doneCount = orders.filter(o => done.has(o.id)).length;
+  const head = so
+    ? `<p class="muted">${ico('save')} ${t('Đã hoàn thành')} <strong>${doneCount}/${orders.length}</strong> ${t('đơn (theo file save).')}</p>`
+    : `<p class="muted">${ico('save')} ${t('Nạp file save để xem đơn nào đã xong hoặc đang nhận.')} ${saveTabLink('Nạp file save', 'link-btn')}</p>`;
+  return head + `<div class="island-tasks">${orders.map(o => {
+    const g = data?.QI_ORDER_GUIDE?.[o.id], a = active.get(o.id), ok = done.has(o.id);
+    const tags = [
+      ok ? `<span class="tag tag--green">${ico('check')} ${t('Đã hoàn thành')}</span>` : '',
+      a ? `<span class="tag tag--gold">${ico('hourglass')} ${t('Đang làm')} · ${t('hạn')} ${dateLabel(a.due)}</span>`
+        : board.has(o.id) ? `<span class="tag tag--gold">${ico('quests')} ${t('Đang có trên bảng')}</span>` : '',
+      so && !ok && !a && !board.has(o.id) ? `<span class="tag">${t('Chưa làm')}</span>` : ''
+    ].join('');
+    const steps = g ? (isEn ? g.stepsEn : g.steps) : [tx(o, 'task')];
+    return `
+    <article class="island-task ${ok ? 'is-done' : ''}">
+      <header class="island-task__head">
+        ${ico('qi_gem')}
+        <h3 data-no-i18n>${esc(tx(o, 'name'))}</h3>
+        ${tags}
+      </header>
+      <p class="muted island-task__needs" data-no-i18n>${esc(tx(o, 'task'))}</p>
+      <p class="island-task__needs">${ico('hourglass')} <span class="muted">${t('Thời hạn')}:</span> ${t(`${o.days} ngày`)}${g && tx(g, 'prep') ? ` · ${ico('planner')} <span class="muted">${t('Nên chuẩn bị')}:</span> <span data-no-i18n>${esc(tx(g, 'prep'))}</span>` : ''}</p>
+      <ol class="island-task__steps" data-no-i18n>${steps.map(x => `<li>${esc(x)}</li>`).join('')}</ol>
+      <p class="island-task__reward">${ico('gift')} <span class="muted">${t('Phần thưởng')}:</span> <span data-no-i18n>${esc(tx(o, 'reward'))}</span>
+        ${o.site ? ` · <button class="link-btn" type="button" data-action="open-detail" data-type="quest" data-id="${o.site}">${ico('search')} ${t('Xem hướng dẫn chi tiết')}</button>` : ''}</p>
+    </article>`;
+  }).join('')}</div>
+  <p class="muted">${t('Nguồn: Official Stardew Valley Wiki (Quests, Qi Bean, Junimo Kart, Prismatic Shard).')}</p>`;
 }
 
 const RENDER = { start: startHtml, walnuts: walnutsHtml, tasks: tasksHtml, areas: areasHtml, farm: farmHtml, people: peopleHtml };

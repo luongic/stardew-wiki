@@ -1076,6 +1076,12 @@ export const NAMES_EN = {
   'Bảng Đơn Hàng Lớn của Lewis': 'Special Orders board', 'Bảng Đơn Hàng Lớn của Lewis vào Mùa Xuân': 'Special Orders board (Spring)',
   'Phòng Óc Chó Mr. Qi': "Qi's Walnut Room", 'Nhiệm vụ Extended Family của Mr. Qi': "Mr. Qi's Extended Family quest",
 
+  // Island tab: Mr. Qi's order guide
+  'Chưa làm': 'Not done', 'Thời hạn': 'Time limit', 'Nên chuẩn bị': 'Bring', 'Xem hướng dẫn chi tiết': 'Full guide',
+  'đơn (theo file save).': 'orders (from the save).', 'Nạp file save để xem đơn nào đã xong hoặc đang nhận.': 'Load a save to see which orders are done or in progress.',
+  'Nguồn: Official Stardew Valley Wiki (Quests, Qi Bean, Junimo Kart, Prismatic Shard).': 'Source: Official Stardew Valley Wiki (Quests, Qi Bean, Junimo Kart, Prismatic Shard).',
+  'Cách làm, đồ nên chuẩn bị và tình trạng từng đơn trong Phòng Óc Chó, thưởng bằng Ngọc Qi.': "How to do each order in the Walnut Room, what to bring and where you stand. Rewards are Qi Gems.",
+
   // Buff stat labels
   'Câu cá': 'Fishing', 'Phòng thủ': 'Defense', 'May mắn': 'Luck', 'Khai mỏ': 'Mining', 'Canh tác': 'Farming', 'Tốc độ chạy': 'Speed',
   'Hái lượm': 'Foraging', 'Sức tấn công': 'Attack', 'Nam châm hút đồ': 'Magnetism', 'Nam châm hút quặng': 'Magnetism', 'Năng lượng tối đa': 'Max Energy',
