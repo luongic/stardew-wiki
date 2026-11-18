@@ -109,3 +109,73 @@ export const FISH = [
   { en: 'Snail', loc: ['crabpot_fresh'], time: ANY, seasons: ALL, weather: 'any', crabpot: true },
   { en: 'Periwinkle', loc: ['crabpot_fresh'], time: ANY, seasons: ALL, weather: 'any', crabpot: true }
 ];
+
+// Fishing minigame (Official Stardew Valley Wiki, each fish's infobox): [difficulty, behavior].
+// Difficulty runs from 15 (Carp) to 110 (Legend); crab pot catches have no minigame.
+export const FISH_DIFFICULTY = {
+  "Albacore": [60, 'mixed'],
+  "Anchovy": [30, 'dart'],
+  "Angler": [85, 'smooth'],
+  "Blobfish": [75, 'floater'],
+  "Blue Discus": [60, 'dart'],
+  "Bream": [35, 'smooth'],
+  "Bullhead": [46, 'smooth'],
+  "Carp": [15, 'mixed'],
+  "Catfish": [75, 'mixed'],
+  "Chub": [35, 'dart'],
+  "Crimsonfish": [95, 'mixed'],
+  "Dorado": [78, 'mixed'],
+  "Eel": [70, 'smooth'],
+  "Flounder": [50, 'sinker'],
+  "Ghostfish": [50, 'mixed'],
+  "Glacierfish": [100, 'mixed'],
+  "Goby": [55, 'dart'],
+  "Halibut": [50, 'sinker'],
+  "Herring": [25, 'dart'],
+  "Ice Pip": [85, 'dart'],
+  "Largemouth Bass": [50, 'mixed'],
+  "Lava Eel": [90, 'mixed'],
+  "Legend": [110, 'mixed'],
+  "Lingcod": [85, 'mixed'],
+  "Lionfish": [50, 'smooth'],
+  "Midnight Carp": [55, 'mixed'],
+  "Midnight Squid": [55, 'sinker'],
+  "Mutant Carp": [80, 'dart'],
+  "Octopus": [95, 'sinker'],
+  "Perch": [35, 'dart'],
+  "Pike": [60, 'dart'],
+  "Pufferfish": [80, 'floater'],
+  "Rainbow Trout": [45, 'mixed'],
+  "Red Mullet": [55, 'smooth'],
+  "Red Snapper": [40, 'mixed'],
+  "Salmon": [50, 'mixed'],
+  "Sandfish": [65, 'mixed'],
+  "Sardine": [30, 'dart'],
+  "Scorpion Carp": [90, 'dart'],
+  "Sea Cucumber": [40, 'sinker'],
+  "Shad": [45, 'smooth'],
+  "Slimejack": [55, 'dart'],
+  "Smallmouth Bass": [28, 'mixed'],
+  "Spook Fish": [60, 'dart'],
+  "Squid": [75, 'sinker'],
+  "Stingray": [80, 'sinker'],
+  "Stonefish": [65, 'sinker'],
+  "Sturgeon": [78, 'mixed'],
+  "Sunfish": [30, 'mixed'],
+  "Super Cucumber": [80, 'sinker'],
+  "Tiger Trout": [60, 'dart'],
+  "Tilapia": [50, 'mixed'],
+  "Tuna": [70, 'smooth'],
+  "Void Salmon": [80, 'mixed'],
+  "Walleye": [45, 'smooth'],
+  "Woodskip": [50, 'mixed']
+};
+
+// How the fish moves in the minigame (Fish page of the wiki, "Behavior")
+export const FISH_BEHAVIORS = {
+  mixed: { name: 'Hỗn hợp', nameEn: 'Mixed', desc: 'Kiểu di chuyển cơ bản.', descEn: 'The basic movement pattern.' },
+  smooth: { name: 'Êm', nameEn: 'Smooth', desc: 'Di chuyển đều đặn hơn.', descEn: 'A more steady movement pattern.' },
+  sinker: { name: 'Chìm', nameEn: 'Sinker', desc: 'Lao xuống nhanh hơn.', descEn: 'A faster downwards acceleration.' },
+  floater: { name: 'Nổi', nameEn: 'Floater', desc: 'Ngoi lên nhanh hơn.', descEn: 'A faster upwards acceleration.' },
+  dart: { name: 'Giật cục', nameEn: 'Dart', desc: 'Di chuyển ngẫu nhiên hơn, biên độ có thể lớn hơn [2 x độ khó]% theo cả hai chiều, giật lên giật xuống thất thường trên thanh câu.', descEn: 'Moves more randomly with a [2 x difficulty]% higher possible amplitude in both directions, moving erratically up and down the fishing bar.' }
+};

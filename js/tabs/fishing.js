@@ -5,7 +5,7 @@
 // and hidden, to see what is left for the Master Angler goal.
 // ==========================================================================
 
-import { FISH, FISH_LOCATIONS } from '../../data/fish-data.js';
+import { FISH, FISH_LOCATIONS, FISH_DIFFICULTY, FISH_BEHAVIORS } from '../../data/fish-data.js';
 import { ITEMS_DATA } from '../../data/items-data.js';
 import { ico } from '../lib/icons.js';
 import { t, nm, isEn } from '../lib/i18n.js';
@@ -19,7 +19,7 @@ const itemByEn = new Map(ITEMS_DATA.map(i => [i.nameEn, i]));
 const SEASONS = ['spring', 'summer', 'fall', 'winter'];
 const SEASON_SHORT = { spring: 'Xuân', summer: 'Hạ', fall: 'Thu', winter: 'Đông', all: 'Cả năm' };
 
-const ui = { season: 'spring', weather: 'any', hour: null, loc: 'all', legendary: false, hideCaught: false, ...loadJSON(KEYS.fishingView, {}) };
+const ui = { season: 'spring', weather: 'any', hour: null, loc: 'all', legendary: false, hideCaught: false, sort: 'default', ...loadJSON(KEYS.fishingView, {}) };
 let caught = new Set(loadJSON(KEYS.fishCaught, []));
 
 const hourLabel = h => `${String(Math.floor(h) % 24).padStart(2, '0')}:${h % 1 ? '30' : '00'}`;
@@ -43,6 +43,19 @@ export function setFishingSeason(season) {
 export function setCaughtFish(namesEn) {
   caught = new Set(namesEn);
   saveJSON(KEYS.fishCaught, [...caught]);
+}
+
+// Difficulty bands (the site's own grouping of the game's 15-110 scale)
+const LEVELS = [[90, 'Rất khó', 'very-hard'], [70, 'Khó', 'hard'], [40, 'Trung bình', 'medium'], [0, 'Dễ', 'easy']];
+const levelOf = d => LEVELS.find(([min]) => d >= min);
+function difficultyHtml(f) {
+  const d = FISH_DIFFICULTY[f.en];
+  if (!d) return `<p class="fish-card__row muted">${ico('fishing')} ${t('Bắt bằng Lồng bẫy cua, không có mini-game câu')}</p>`;
+  const [score, kind] = d, [, label, cls] = levelOf(score), b = FISH_BEHAVIORS[kind];
+  return `
+    <p class="fish-card__row fish-diff" title="${t(b.desc)}">${ico('fishing')} ${t('Độ khó')} <strong>${score}</strong>
+      <span class="fish-diff__bar fish-diff--${cls}"><span style="width:${Math.min(100, (score / 110) * 100)}%"></span></span>
+      <span class="tag fish-diff__tag fish-diff--${cls}">${t(label)}</span> · ${t('Kiểu')}: <strong>${nm(b)}</strong></p>`;
 }
 
 const timeText = f => f.time.map(([a, b]) => (a === 6 && b === 26 ? t('Cả ngày') : `${hourLabel(a)} – ${hourLabel(b)}`)).join(', ');
@@ -84,6 +97,7 @@ function cardHtml(f) {
         <p class="fish-card__row">${ico('pin')} ${f.loc.map(locLink).join(', ')}</p>
         <p class="fish-card__row">${ico('clock')} ${timeText(f)} · ${f.weather === 'any' ? `${ico('sunny')}${ico('rainy')}` : ico(f.weather === 'rain' ? 'rainy' : 'sunny')} ${t(weatherText[f.weather])}</p>
         <p class="fish-card__row">${ico('season')} ${f.seasons.length === 4 ? t('Quanh năm') : f.seasons.map(s => t(SEASON_SHORT[s])).join(', ')}${it?.sellPrice ? ` · ${ico('money')} ${it.sellPrice}g` : ''}</p>
+        ${difficultyHtml(f)}
         ${f.note ? `<p class="fish-card__note muted">${f.note}</p>` : ''}
       </div>
     </article>`;
@@ -95,6 +109,10 @@ function filtered(app) {
   if (ui.legendary) list = list.filter(f => f.legendary);
   if (ui.hideCaught) list = list.filter(f => !caught.has(f.en));
   if (q) list = list.filter(f => { const it = itemByEn.get(f.en); return matches(q, it?.name, f.en, f.note, ...f.loc.map(l => FISH_LOCATIONS[l].name)); });
+  // Crab pot catches (no difficulty) go last either way
+  const score = f => FISH_DIFFICULTY[f.en]?.[0];
+  if (ui.sort === 'easy') list = [...list].sort((a, b) => (score(a) ?? 999) - (score(b) ?? 999));
+  if (ui.sort === 'hard') list = [...list].sort((a, b) => (score(b) ?? -1) - (score(a) ?? -1));
   return list;
 }
 
@@ -129,8 +147,18 @@ function render(app) {
         <option value="all">${t('Mọi địa điểm')}</option>
         ${Object.entries(FISH_LOCATIONS).map(([k, l]) => `<option value="${k}" ${ui.loc === k ? 'selected' : ''}>${nm(l)}</option>`).join('')}
       </select>
+      <select class="coop-input fish-loc" data-action="fish-sort" aria-label="${t('Sắp xếp')}">
+        ${[['default', 'Thứ tự mặc định'], ['easy', 'Dễ câu trước'], ['hard', 'Khó câu trước']].map(([k, l]) => `<option value="${k}" ${ui.sort === k ? 'selected' : ''}>${t(l)}</option>`).join('')}
+      </select>
       <label class="toggle"><input type="checkbox" class="px-check" data-action="fish-hide" ${ui.hideCaught ? 'checked' : ''}> <span>${t('Ẩn cá đã câu được')}</span></label>
     </div>
+    <details class="fish-diff-help">
+      <summary>${ico('fishing')} ${t('Độ khó và kiểu di chuyển của cá là gì?')}</summary>
+      <p>${t('Độ khó (từ 15 đến 110) quyết định cá vùng vẫy mạnh cỡ nào trong mini-game câu cá: số càng cao, cá càng hay đổi hướng và lao nhanh. Độ khó cũng cộng thêm kinh nghiệm Câu Cá: mỗi con được (chất lượng + 1) x 3 + độ khó / 3 điểm.')}</p>
+      <p class="muted">${t('Mức Dễ / Trung bình / Khó / Rất khó là cách chia của trang: dưới 40, 40-69, 70-89, từ 90 trở lên.')}</p>
+      <ul>${Object.values(FISH_BEHAVIORS).map(b => `<li><strong>${nm(b)}</strong>: ${t(b.desc)}</li>`).join('')}</ul>
+      <p class="muted">${t('Theo Official Stardew Valley Wiki (trang Fish và Fishing).')}</p>
+    </details>
     <p class="fish-summary" id="fishSummary"></p>
     <div class="fish-grid" id="fishGrid"></div>`;
   renderList(app);
@@ -159,6 +187,7 @@ export default {
     'fish-loc': (app, el) => { ui.loc = el.value; persist(app); },
     'fish-loc-pick': (app, el) => { ui.loc = el.dataset.loc; closeModal(document.getElementById('detailModal')); persist(app); },
     'fish-hide': (app, el) => { ui.hideCaught = el.checked; persist(app); },
+    'fish-sort': (app, el) => { ui.sort = el.value; persist(app); },
     'fish-caught': (app, el) => {
       const en = el.dataset.fish;
       if (caught.has(en)) caught.delete(en); else { caught.add(en); app.sfx.play('complete'); }

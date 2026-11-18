@@ -2921,3 +2921,16 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
   .farmmap-compare__bar { grid-column: 1 / -1; grid-row: 2; }
   .farmmap-grid { grid-template-columns: 1fr; }
 }
+
+/* Fishing: difficulty */
+.fish-diff { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+.fish-diff__bar { display: inline-block; width: 60px; height: 8px; border: 2px solid var(--ink); background: var(--parch-50); vertical-align: middle; }
+.fish-diff__bar > span { display: block; height: 100%; }
+.fish-diff__tag { font-size: 0.75rem; padding: 0 4px; }
+.fish-diff--easy > span, .fish-diff__tag.fish-diff--easy { background: #9be08c; }
+.fish-diff--medium > span, .fish-diff__tag.fish-diff--medium { background: var(--gold); }
+.fish-diff--hard > span, .fish-diff__tag.fish-diff--hard { background: #f39a4c; }
+.fish-diff--very-hard > span, .fish-diff__tag.fish-diff--very-hard { background: var(--red); color: var(--text-light); }
+.fish-diff-help { margin: 0 0 10px; }
+.fish-diff-help summary { cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 6px; }
+.fish-diff-help ul { padding-left: 20px; line-height: 1.5; }
