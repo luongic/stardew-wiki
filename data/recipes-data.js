@@ -3494,12 +3494,6 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_wood.png"
       },
       {
-        "name": "Đất sét",
-        "count": 1,
-        "nameEn": "Clay",
-        "iconUrl": "assets/icons/ing_clay.png"
-      },
-      {
         "name": "Thỏi Đồng",
         "count": 1,
         "nameEn": "Copper Bar",
@@ -3637,17 +3631,23 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_hardwood.png"
       },
       {
-        "name": "Than đá",
-        "count": 10,
-        "nameEn": "Coal",
-        "iconUrl": "assets/icons/ing_coal.png"
+        "name": "Thạch Biển",
+        "count": 1,
+        "nameEn": "Sea Jelly",
+        "iconUrl": "assets/icons/x_sea_jelly.png"
       },
       {
-          "name": "Thạch anh Lửa",
-          "count": 1,
-          "nameEn": "Fire Quartz",
-          "iconUrl": "assets/icons/ing_fire_quartz.png"
-        }
+        "name": "Thạch Sông",
+        "count": 1,
+        "nameEn": "River Jelly",
+        "iconUrl": "assets/icons/x_river_jelly.png"
+      },
+      {
+        "name": "Thạch Hang",
+        "count": 1,
+        "nameEn": "Cave Jelly",
+        "iconUrl": "assets/icons/x_cave_jelly.png"
+      }
     ],
     "desc": "MÁY MỚI CỦA 1.6: Đưa 1 con cá bất kỳ + 1 than đá vào máy để hun khói. NHÂN ĐÔI GIÁ TRỊ CÁ BÁN RA VÀ VẪN GIỮ NGUYÊN CHẤT LƯỢNG SAO CỦA CÁ!",
     "tips": "Biến cá huyền thoại thành cá hun khói sao Iridium bán hàng chục nghìn vàng.",
@@ -3701,26 +3701,20 @@ export const RECIPES_DATA = [
     "source": "Đạt cấp độ Câu Cá (Fishing) Cấp 6",
     "ingredients": [
       {
-        "name": "Gỗ",
-        "count": 30,
-        "nameEn": "Wood",
-        "iconUrl": "assets/icons/ing_wood.png"
-      },
-      {
         "name": "Thỏi Sắt",
-        "count": 1,
+        "count": 3,
         "nameEn": "Iron Bar",
         "iconUrl": "assets/icons/ing_iron_bar.png"
       },
       {
         "name": "San hô",
-        "count": 1,
+        "count": 3,
         "nameEn": "Coral",
         "iconUrl": "assets/icons/item_coral.png"
       },
       {
         "name": "Nhím Biển",
-        "count": 3,
+        "count": 1,
         "nameEn": "Sea Urchin",
         "iconUrl": "assets/icons/item_sea_urchin.png"
       }
@@ -3743,7 +3737,7 @@ export const RECIPES_DATA = [
     "ingredients": [
       {
         "name": "Gỗ Cứng",
-        "count": 45,
+        "count": 10,
         "nameEn": "Hardwood",
         "iconUrl": "assets/icons/ing_hardwood.png"
       },
@@ -4003,17 +3997,29 @@ export const RECIPES_DATA = [
     "source": "Mở khóa Mining Mastery tại Căn Hang Bậc Thầy",
     "ingredients": [
       {
+        "name": "Răng Rồng",
+        "count": 5,
+        "nameEn": "Dragon Tooth",
+        "iconUrl": "assets/icons/ing_dragon_tooth.png"
+      },
+      {
         "name": "Thỏi Sắt",
         "count": 10,
         "nameEn": "Iron Bar",
         "iconUrl": "assets/icons/ing_iron_bar.png"
       },
       {
-          "name": "Mảnh Nham thạch",
-          "count": 200,
-          "nameEn": "Cinder Shard",
-          "iconUrl": "assets/icons/item_cinder_shard.png"
-        }
+        "name": "Thỏi Vàng",
+        "count": 10,
+        "nameEn": "Gold Bar",
+        "iconUrl": "assets/icons/ing_gold_bar.png"
+      },
+      {
+        "name": "Thỏi Iridium",
+        "count": 5,
+        "nameEn": "Iridium Bar",
+        "iconUrl": "assets/icons/ing_iridium_bar.png"
+      }
     ],
     "desc": "Đặt lò rèn ma thuật ngay tại nhà hoặc nông trại để ghép nhẫn và phù phép vũ khí mà không cần trèo lên tận miệng núi lửa Đảo Gừng!",
     "tips": "Vô cùng tiện lợi cuối game.",
@@ -4429,22 +4435,28 @@ export const RECIPES_DATA = [
     "source": "Mở khóa Farming Mastery tại Hang Bậc Thầy",
     "ingredients": [
       {
-          "name": "Đá",
-          "count": 999,
-          "nameEn": "Stone",
-          "iconUrl": "assets/icons/ing_stone.png"
-        },
+        "name": "Nhựa cây",
+        "count": 999,
+        "nameEn": "Sap",
+        "iconUrl": "assets/icons/ing_sap.png"
+      },
       {
-          "name": "Nhựa cây",
-          "count": 333,
-          "nameEn": "Sap",
-          "iconUrl": "assets/icons/ing_sap.png"
-        },
+        "name": "Sợi",
+        "count": 999,
+        "nameEn": "Fiber",
+        "iconUrl": "assets/icons/ing_fiber.png"
+      },
       {
-        "name": "Thỏi Vàng",
-        "count": 33,
-        "nameEn": "Gold Bar",
-        "iconUrl": "assets/icons/ing_gold_bar.png"
+        "name": "Đá",
+        "count": 999,
+        "nameEn": "Stone",
+        "iconUrl": "assets/icons/ing_stone.png"
+      },
+      {
+        "name": "Rêu",
+        "count": 333,
+        "nameEn": "Moss",
+        "iconUrl": "assets/icons/ing_moss.png"
       }
     ],
     "desc": "CỰC PHẨM 1.6: Mỗi ngày tương tác với tượng để nhận một phước lành thần kỳ ngẫu nhiên: Tăng tốc chạy, vô hạn thể lực, nhân đôi quặng, rơi kho báu...",
@@ -4464,20 +4476,8 @@ export const RECIPES_DATA = [
     "source": "Mở khóa Mining Mastery tại Hang Bậc Thầy",
     "ingredients": [
       {
-          "name": "Đá",
-          "count": 80,
-          "nameEn": "Stone",
-          "iconUrl": "assets/icons/ing_stone.png"
-        },
-      {
-        "name": "Thỏi Vàng",
-        "count": 10,
-        "nameEn": "Gold Bar",
-        "iconUrl": "assets/icons/ing_gold_bar.png"
-      },
-      {
         "name": "Thỏi Iridium",
-        "count": 10,
+        "count": 20,
         "nameEn": "Iridium Bar",
         "iconUrl": "assets/icons/ing_iridium_bar.png"
       }
@@ -4527,19 +4527,19 @@ export const RECIPES_DATA = [
     "ingredients": [
       {
         "name": "Gỗ",
-        "count": 8,
+        "count": 10,
         "nameEn": "Wood",
         "iconUrl": "assets/icons/ing_wood.png"
       },
       {
         "name": "Gỗ Cứng",
-        "count": 10,
+        "count": 5,
         "nameEn": "Hardwood",
         "iconUrl": "assets/icons/ing_hardwood.png"
       },
       {
         "name": "Thạch Xà-lam",
-        "count": 5,
+        "count": 10,
         "nameEn": "Slime",
         "iconUrl": "assets/icons/ing_slime.png"
       }
@@ -4709,7 +4709,7 @@ export const RECIPES_DATA = [
     "ingredients": [
       {
         "name": "Gỗ Cứng",
-        "count": 25,
+        "count": 15,
         "nameEn": "Hardwood",
         "iconUrl": "assets/icons/ing_hardwood.png"
       },
@@ -4784,7 +4784,7 @@ export const RECIPES_DATA = [
       },
       {
         "name": "Tinh chất Mặt trời",
-        "count": 30,
+        "count": 50,
         "nameEn": "Solar Essence",
         "iconUrl": "assets/icons/ing_solar_essence.png"
       },
@@ -5057,17 +5057,17 @@ export const RECIPES_DATA = [
         "iconUrl": "assets/icons/ing_hardwood.png"
       },
       {
-        "name": "Quặng Sắt",
+        "name": "Thỏi Sắt",
         "count": 1,
-        "nameEn": "Iron Ore",
-        "iconUrl": "assets/icons/ing_iron_ore.png"
+        "nameEn": "Iron Bar",
+        "iconUrl": "assets/icons/ing_iron_bar.png"
       },
       {
-          "name": "Đá",
-          "count": 25,
-          "nameEn": "Stone",
-          "iconUrl": "assets/icons/ing_stone.png"
-        }
+        "name": "Đá",
+        "count": 25,
+        "nameEn": "Stone",
+        "iconUrl": "assets/icons/ing_stone.png"
+      }
     ],
     "desc": "Dịch chuyển tức thì đến ngay trước cửa Hầm mỏ và Hội Mạo Hiểm.",
     "tips": "Giúp tiết kiệm nửa tiếng đi bộ lên núi cày quặng.",
@@ -5573,16 +5573,16 @@ export const RECIPES_DATA = [
     "ingredients": [
       {
         "name": "Gỗ Cứng",
-        "count": 150,
+        "count": 100,
         "nameEn": "Hardwood",
         "iconUrl": "assets/icons/ing_hardwood.png"
       },
       {
-          "name": "Tiền vàng",
-          "count": 50000,
-          "nameEn": "Gold",
-          "iconUrl": "assets/icons/gold_coin.png"
-        }
+        "name": "Tiền vàng",
+        "count": 65000,
+        "nameEn": "Gold",
+        "iconUrl": "assets/icons/gold_coin.png"
+      }
     ],
     "desc": "Thêm 2 căn phòng mới: 1 phòng ngủ trẻ em có sẵn cũi em bé và 2 giường đơn (cho phép bạn sinh hoặc nhận nuôi 2 đứa con cùng vợ/chồng), và 1 phòng khách sinh hoạt rộng rãi.",
     "tips": "Hãy tích trữ Hardwood từ Secret Woods và cây Mahogany.",
@@ -6231,11 +6231,11 @@ export const RECIPES_DATA = [
     "source": "Cuốn sách ma thuật tại Tháp Pháp Sư",
     "ingredients": [
       {
-          "name": "Đá",
-          "count": 100,
-          "nameEn": "Stone",
-          "iconUrl": "assets/icons/ing_stone.png"
-        },
+        "name": "Đá",
+        "count": 200,
+        "nameEn": "Stone",
+        "iconUrl": "assets/icons/ing_stone.png"
+      },
       {
         "name": "Khế",
         "count": 9,
@@ -6244,16 +6244,16 @@ export const RECIPES_DATA = [
       },
       {
         "name": "Sợi",
-        "count": 200,
+        "count": 100,
         "nameEn": "Fiber",
         "iconUrl": "assets/icons/ing_fiber.png"
       },
       {
-          "name": "Tiền vàng",
-          "count": 20000,
-          "nameEn": "Gold",
-          "iconUrl": "assets/icons/gold_coin.png"
-        }
+        "name": "Tiền vàng",
+        "count": 20000,
+        "nameEn": "Gold",
+        "iconUrl": "assets/icons/gold_coin.png"
+      }
     ],
     "desc": "Các chú thần rừng Junimo đáng yêu sẽ sống trong túp lều này và TỰ ĐỘNG THU HOẠCH TẤT CẢ NÔNG SẢN CHÍN trong bán kính 17x17 ô xung quanh lều vào giỏ đựng!",
     "tips": "Tự động hóa 100% việc gặt hái nông trại.",
