@@ -394,6 +394,8 @@ export const UI_EN = {
   'Chọn / Di chuyển': 'Select / Move', 'Cục tẩy': 'Eraser', 'Hoàn tác': 'Undo', 'Làm lại': 'Redo', 'Lưới ô': 'Grid',
   'Vùng tưới & bù nhìn': 'Sprinkler & scarecrow range', 'Vùng tưới': 'Sprinklers', 'Vùng bù nhìn': 'Scarecrows', 'Độ đậm vùng máy tưới': 'Opacity of sprinkler ranges', 'Độ đậm vùng bù nhìn': 'Opacity of scarecrow ranges', 'Vùng lều Junimo': 'Junimo hut range', 'Vùng Junimo': 'Junimo huts', 'Độ đậm vùng lều Junimo': 'Opacity of Junimo hut ranges', 'Nạp file save': 'Load save file', 'Tải ảnh': 'Save image', 'Làm trống': 'Clear',
   // Predictor > Forge: the player's weapons
+  // Fishing: per player
+  'Mỗi người chơi có bộ sưu tập cá riêng.': 'Each player has their own fish collection.',
   // Fishing: bait & tackle
   'Nên dùng': 'Suggested',
   'Mồi câu': 'Bait',

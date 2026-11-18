@@ -233,6 +233,11 @@ export function readSaveProgress(xml) {
   // Fish collection: every fish incl. crab pot catches; the Extended Family legends don't count
   const fish = ITEMS_DATA.filter(i => i.category === 'fish' && !i.subCategory?.includes('Extended Family'));
   const missingFish = fish.filter(f => !caught.has(norm(f.nameEn)));
+  // Each player keeps their own collection (co-op): host first, then farmhands
+  const fishBy = [player, ...kids(kid(root, 'farmhands'), 'Farmer').filter(f => text(f, 'name'))].map(f => {
+    const got = new Set(dict(kid(f, 'fishCaught')).map(([k]) => norm(nameOf(k))));
+    return { name: text(f, 'name'), caughtEn: fish.filter(x => got.has(norm(x.nameEn))).map(x => x.nameEn) };
+  });
 
   return {
     farmName: text(player, 'farmName'),
@@ -242,7 +247,7 @@ export function readSaveProgress(xml) {
     museum: [...museum],
     quests: readQuests(root, player, mail, built),
     players: readPlayers(root),
-    fish: { caught: fish.length - missingFish.length, total: fish.length, missing: missingFish, caughtEn: fish.filter(f => caught.has(norm(f.nameEn))).map(f => f.nameEn) },
+    fish: { caught: fish.length - missingFish.length, total: fish.length, missing: missingFish, caughtEn: fish.filter(f => caught.has(norm(f.nameEn))).map(f => f.nameEn), byPlayer: fishBy },
     unmatchedBundles
   };
 }

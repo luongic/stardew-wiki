@@ -73,7 +73,9 @@ async function readSaveFile(app, file, preread = null) {
         ${row('quests', 'Nhiệm vụ đã hoàn thành', res.quests.length, add.quests.length)}
         ${row('bundles', 'Ô gói Nhà Cộng Đồng đã nộp', res.bundles.length, add.bundles.length)}
         ${row('museum', 'Món đã quyên góp Bảo Tàng', res.museum.length, add.museum.length)}
-        ${row('fish', 'Loài cá đã câu được', `${res.fish.caught} / ${res.fish.total}`, null)}
+        ${row('fish', 'Loài cá đã câu được', res.fish.byPlayer?.length > 1
+          ? res.fish.byPlayer.map(p => `<span data-no-i18n>${esc(p.name)}</span> ${p.caughtEn.length} / ${res.fish.total}`).join(' · ')
+          : `${res.fish.caught} / ${res.fish.total}`, null)}
         ${row('save', 'Hồ sơ nhân vật (cấp kỹ năng, nghề)', res.players.map(pl => `${esc(pl.name)}: ${pl.skills.map(x => x.level).join('/')}`).join(' · '), null)}
       </ul>
       ${res.unmatchedBundles.length ? `<p class="muted">${ico('warn')} ${t('Một số gói (bản Remix) không có trong dữ liệu của trang nên được bỏ qua')}: ${res.unmatchedBundles.join(', ')}</p>` : ''}
@@ -122,7 +124,7 @@ function applySave(app) {
     for (const [domain, keys] of [['recipes', res.recipes], ['quests', res.quests], ['bundles', res.bundles], ['museum', res.museum]]) {
       for (const k of newKeys(domain, keys)) { progress.setFlag(domain, k, true, 'bulk'); n++; }
     }
-    setCaughtFish(res.fish.caughtEn);
+    setCaughtFish(res.fish.byPlayer?.length ? { players: res.fish.byPlayer.map(p => ({ name: p.name, fish: p.caughtEn })) } : res.fish.caughtEn);
     saveJSON(KEYS.profiles, { farmName: res.farmName, at: Date.now(), players: res.players });
     done.push(`${n} ${t('mục tiến độ')}`);
   }

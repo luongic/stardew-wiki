@@ -21,7 +21,19 @@ const SEASONS = ['spring', 'summer', 'fall', 'winter'];
 const SEASON_SHORT = { spring: 'Xuân', summer: 'Hạ', fall: 'Thu', winter: 'Đông', all: 'Cả năm' };
 
 const ui = { season: 'spring', weather: 'any', hour: null, loc: 'all', legendary: false, hideCaught: false, sort: 'default', view: 'fish', ...loadJSON(KEYS.fishingView, {}) };
-let caught = new Set(loadJSON(KEYS.fishCaught, []));
+// Fish caught: one list, or one per player after reading a co-op save
+// (stored as [names] or { players: [{ name, fish: [names] }] })
+let caught = new Set(), players = null;
+function loadCaught(v) {
+  if (Array.isArray(v?.players) && v.players.length) {
+    players = v.players.map(p => ({ name: p.name || '?', caught: new Set(p.fish || []) }));
+    caught = players[0].caught;
+  } else { players = null; caught = new Set(Array.isArray(v) ? v : []); }
+}
+loadCaught(loadJSON(KEYS.fishCaught, []));
+const storeCaught = () => saveJSON(KEYS.fishCaught, players ? { players: players.map(p => ({ name: p.name, fish: [...p.caught] })) } : [...caught]);
+// The list being shown: the chosen player's in co-op
+const mine = () => (players ? players[Math.min(ui.player || 0, players.length - 1)].caught : caught);
 
 const hourLabel = h => `${String(Math.floor(h) % 24).padStart(2, '0')}:${h % 1 ? '30' : '00'}`;
 const inTime = (f, hour) => hour === null || f.time.some(([a, b]) => hour >= a && hour < b);
@@ -41,9 +53,11 @@ export function setFishingSeason(season) {
 }
 
 // Called after reading a save file: replace the caught list
-export function setCaughtFish(namesEn) {
-  caught = new Set(namesEn);
-  saveJSON(KEYS.fishCaught, [...caught]);
+// (a list of English names, or { players: [{ name, fish }] } for every player of the save)
+export function setCaughtFish(v) {
+  loadCaught(v);
+  if (players && ui.player >= players.length) ui.player = 0;
+  storeCaught();
 }
 
 // Difficulty bands (the site's own grouping of the game's 15-110 scale)
@@ -129,14 +143,14 @@ function locDetail(id) {
     ${placeView(l, nm(l))}
     <h4 class="journal-sub">${ico('fish')} ${t('Cá câu được ở đây')}</h4>
     <div class="fish-place__list">
-      ${here.map(f => { const it = itemByEn.get(f.en); return `<span class="tag ${caught.has(f.en) ? 'tag--green' : ''}">${it ? `<img src="${it.imageUrl}" alt="" class="pixel-img">` : ''} ${it ? nm(it) : f.en}</span>`; }).join('')}
+      ${here.map(f => { const it = itemByEn.get(f.en); return `<span class="tag ${mine().has(f.en) ? 'tag--green' : ''}">${it ? `<img src="${it.imageUrl}" alt="" class="pixel-img">` : ''} ${it ? nm(it) : f.en}</span>`; }).join('')}
     </div>
     <button class="btn btn--blue btn--sm" type="button" data-action="fish-loc-pick" data-loc="${id}">${ico('fishing')} ${t('Lọc theo địa điểm này')}</button>`;
 }
 
 function cardHtml(f) {
   const it = itemByEn.get(f.en);
-  const done = caught.has(f.en);
+  const done = mine().has(f.en);
   return `
     <article class="fish-card ${done ? 'is-caught' : ''}">
       <button class="fish-card__tick" type="button" data-action="fish-caught" data-fish="${f.en}" aria-pressed="${done}" title="${t('Đánh dấu đã câu được')}">${done ? ico('check') : ''}</button>
@@ -157,7 +171,7 @@ function filtered(app) {
   const q = app.searchQuery;
   let list = fishAvailable(ui);
   if (ui.legendary) list = list.filter(f => f.legendary);
-  if (ui.hideCaught) list = list.filter(f => !caught.has(f.en));
+  if (ui.hideCaught) list = list.filter(f => !mine().has(f.en));
   if (q) list = list.filter(f => { const it = itemByEn.get(f.en); return matches(q, it?.name, f.en, f.note, ...f.loc.map(l => FISH_LOCATIONS[l].name)); });
   // Crab pot catches (no difficulty) go last either way
   const score = f => FISH_DIFFICULTY[f.en]?.[0];
@@ -173,7 +187,7 @@ function renderList(app) {
   const grid = document.getElementById('fishGrid');
   const hour = document.getElementById('fishHourLabel');
   if (hour) hour.textContent = ui.hour === null ? '' : hourLabel(ui.hour);
-  if (sum) sum.innerHTML = `${ico('fish')} <strong>${list.length}</strong> ${t('loài khớp bộ lọc')} · ${t('Đã câu')} <strong>${caught.size} / ${FISH.length}</strong>
+  if (sum) sum.innerHTML = `${ico('fish')} <strong>${list.length}</strong> ${t('loài khớp bộ lọc')} · ${t('Đã câu')}${players ? ` (<span data-no-i18n>${esc(players[Math.min(ui.player || 0, players.length - 1)].name)}</span>)` : ''} <strong>${mine().size} / ${FISH.length}</strong>
       ${saveTabLink('Nạp từ file save', 'link-btn')}`;
   if (grid) grid.innerHTML = list.map(cardHtml).join('') || `<p class="muted">${t('Không có loài cá nào khớp với bộ lọc.')}</p>`;
 }
@@ -212,6 +226,8 @@ function render(app) {
       <ul>${Object.values(FISH_BEHAVIORS).map(b => `<li><strong>${nm(b)}</strong>: ${t(b.desc)}</li>`).join('')}</ul>
       <p class="muted">${t('Theo Official Stardew Valley Wiki (trang Fish và Fishing).')}</p>
     </details>
+    ${players && players.length > 1 ? `<div class="journal-players">${ico('members')} ${players.map((p, i) => `<button class="chip ${Math.min(ui.player || 0, players.length - 1) === i ? 'is-active' : ''}" type="button" data-action="fish-player" data-index="${i}" data-no-i18n>${esc(p.name)} <span class="muted">${p.caught.size}/${FISH.length}</span></button>`).join('')}
+      <span class="muted">${t('Mỗi người chơi có bộ sưu tập cá riêng.')}</span></div>` : ''}
     <p class="fish-summary" id="fishSummary"></p>
     <div class="fish-grid" id="fishGrid"></div>`;
   renderList(app);
@@ -241,6 +257,7 @@ export default {
     'fish-loc-pick': (app, el) => { ui.loc = el.dataset.loc; closeModal(document.getElementById('detailModal')); persist(app); },
     'fish-hide': (app, el) => { ui.hideCaught = el.checked; persist(app); },
     'fish-sort': (app, el) => { ui.sort = el.value; persist(app); },
+    'fish-player': (app, el) => { ui.player = Number(el.dataset.index) || 0; persist(app); },
     'fish-view': (app, el) => { ui.view = el.dataset.view; persist(app); },
     'fish-gear-open': (app, el) => {
       ui.view = 'gear'; persist(app);
@@ -250,9 +267,10 @@ export default {
     },
     'fish-caught': (app, el) => {
       const en = el.dataset.fish;
-      if (caught.has(en)) caught.delete(en); else { caught.add(en); app.sfx.play('complete'); }
-      saveJSON(KEYS.fishCaught, [...caught]);
-      renderList(app);
+      const set = mine();
+      if (set.has(en)) set.delete(en); else { set.add(en); app.sfx.play('complete'); }
+      storeCaught();
+      if (players && players.length > 1) render(app); else renderList(app);
     }
   }
 };
