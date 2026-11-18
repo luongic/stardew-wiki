@@ -10,6 +10,28 @@ import { table, esc } from './core.js';
 import { t } from '../lib/i18n.js';
 import { itemTag } from '../lib/item-lookup.js';
 import { ico } from '../lib/icons.js';
+import { WEAPONS } from '../../data/weapons-data.js';
+import { baseStats, forgedStats } from '../lib/weapon-stats.js';
+
+const weaponData = new Map(WEAPONS.map(w => [w.nameEn, w]));
+// The save keeps base stats; the forge and innate enchantments are added while playing
+function statsLine(g, st, line) {
+  const w = weaponData.get(g.name);
+  if (!w || !w.damage) {
+    return line('Chỉ số gốc', `${t('Sát thương')} ${st.min}-${st.max} · ${t('Chí mạng')} ${Math.round(st.crit * 1000) / 10}%${st.defense ? ` · ${t('Phòng thủ')} +${st.defense}` : ''}`);
+  }
+  const a = baseStats(w), b = forgedStats(w, g.ench);
+  const pair = (x, y) => (x === y ? `${y}` : `${x} → <strong>${y}</strong>`);
+  const sg = n => (n > 0 ? `+${n}` : `${n}`);
+  return line('Chỉ số', [
+    `${t('Sát thương')} ${pair(`${a.min}-${a.max}`, `${b.min}-${b.max}`)}`,
+    `${t('Chí mạng')} ${pair(`${Math.round(a.critChance * 10) / 10}%`, `${Math.round(b.critChance * 10) / 10}%`)}`,
+    a.speed || b.speed ? `${t('Tốc độ')} ${pair(sg(a.speed), sg(b.speed))}` : '',
+    a.critPower || b.critPower ? `${t('Sức mạnh chí mạng')} ${pair(sg(a.critPower), sg(b.critPower))}` : '',
+    a.defense || b.defense ? `${t('Phòng thủ')} ${pair(sg(a.defense), sg(b.defense))}` : '',
+    a.weight || b.weight ? `${t('Trọng lượng')} ${pair(sg(a.weight), sg(b.weight))}` : ''
+  ].filter(Boolean).join(' · ') + ` <button class="link-btn" type="button" data-action="open-detail" data-type="item" data-id="weapon:${w.nameEn.toLowerCase().replace(/[^a-z0-9]+/g, '_')}">${t('So sánh chi tiết')}</button>`);
+}
 
 const PAGE = 20;
 // Tool -> [Vietnamese label, enchantments in the game's order]
@@ -70,7 +92,6 @@ const MAX_FORGES = 3;
 const prismatic = cls => cls.replace(/Tool$/, '').replace(/([a-z])([A-Z])/g, '$1 $2');
 
 // As the game's tooltip shows it: half the saved value, clubs (type 2) counted from -8
-const speedOf = st => Math.trunc((st.kind === 2 ? st.speed + 8 : st.speed) / 2);
 
 function gearCard(g) {
   const gems = g.ench.filter(([k]) => GEMS[k]);
@@ -89,11 +110,7 @@ function gearCard(g) {
         ${line('Phù phép (Mảnh Ngũ Sắc)', magic.length ? magic.map(([k]) => `<strong>${nameOf(prismatic(k))}</strong>`).join(', ') : t('Chưa có'))}
         ${innate.length ? line('Bùa chú bẩm sinh', innate.map(([k, l]) => `${t(INNATE[k])}${l > 1 ? ` ${t('cấp')} ${l}` : ''}`).join(', ')) : ''}
         ${galaxy ? line('Linh Hồn Ngân Hà', `${galaxy[1]}/3${galaxy[1] >= 3 ? ` (${t('đã thành vũ khí Vô Cực')})` : ''}`) : ''}
-        ${st ? line('Chỉ số hiện tại', [
-          `${t('Sát thương')} ${st.min}-${st.max}`, speedOf(st) ? `${t('Tốc độ')} ${speedOf(st) > 0 ? '+' : ''}${speedOf(st)}` : '',
-          `${t('Chí mạng')} ${Math.round(st.crit * 1000) / 10}%`, `${t('Sức mạnh chí mạng')} x${Math.round(st.critMult * 100) / 100}`,
-          `${t('Đánh văng')} ${Math.round(st.knockback * 100) / 100}`, st.defense ? `${t('Phòng thủ')} +${st.defense}` : '', st.area ? `${t('Tầm đánh')} +${st.area}` : ''
-        ].filter(Boolean).join(' · ')) : ''}
+        ${st ? statsLine(g, st, line) : ''}
       </ul>
     </div>`;
 }
@@ -107,7 +124,7 @@ function gearHtml(ctx, player) {
   return `
     <details class="gear-box" open>
       <summary>${ico('forge_enchantments')} ${t('Vũ khí & dụng cụ của bạn')} · ${t('Đã phù phép')} ${(ctx.timesEnchanted?.[player] || 0).toLocaleString('en-US')} ${t('lần')}</summary>
-      <p class="muted">${t('Đọc từ file save. Chỉ số hiện tại đã gồm phần tăng từ đá quý và bùa chú bẩm sinh. Mỗi vũ khí rèn đá quý được tối đa 3 lần; dụng cụ chỉ phù phép được, không rèn được. Chỉ liệt kê dụng cụ đã có bùa chú.')}</p>
+      <p class="muted">${t('Đọc từ file save. File save chỉ lưu chỉ số gốc; phần tăng từ đá quý và bùa chú bẩm sinh được tính theo công thức của wiki (gốc → sau khi rèn). Mỗi vũ khí rèn đá quý được tối đa 3 lần; dụng cụ chỉ phù phép được, không rèn được. Chỉ liệt kê dụng cụ đã có bùa chú.')}</p>
       ${group('Trong túi đồ', mine)}${group('Trong rương và nơi khác', stored)}
       ${mine.length + stored.length ? '' : `<p class="muted">${t('Không thấy vũ khí nào trong file save.')}</p>`}
     </details>`;

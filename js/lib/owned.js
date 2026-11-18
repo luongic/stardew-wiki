@@ -45,7 +45,7 @@ export function ownedRow(item, spots, need = 1) {
       <img src="${item.icon}" alt="" class="pixel-img" loading="lazy" data-fallback="hide">
       <strong>${item.name}</strong>
       <span class="tag ${have >= need ? 'tag--green' : 'tag--gold'}" title="Đang có / cần">${have}/${need}</span>
-      ${spots.map(({ s, n }) => `<span class="tag">${spotIcon(s)} ${s.spot} · ${n}${s.where === 'Farm' && s.x !== undefined
+      ${spots.map(({ s, n }) => `<span class="tag">${spotIcon(s)} <span data-no-i18n>${s.spot}</span> · ${n}${s.where === 'Farm' && s.x !== undefined
         ? ` <button class="link-btn" type="button" data-action="journal-map" data-x="${s.x}" data-y="${s.y}">Bản đồ</button>` : ''}</span>`).join('')}
     </li>`;
 }

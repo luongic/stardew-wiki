@@ -18,13 +18,24 @@ const dict = el => kids(el, 'item').map(i => [kid(i, 'key')?.textContent.trim(),
 const vec = el => ({ x: Math.round(num(el, 'X')), y: Math.round(num(el, 'Y')) });
 const QUALITY = ['', 'silver', 'gold', '', 'iridium'];
 
-// One stack of items: { name (English), id, stack, quality }
+// One stack of items: { name (English), id, stack, quality }; weapons add
+// ench ([[class without "Enchantment", level]]: forged gems, innate and
+// Prismatic Shard enchantments), combined rings add parts (the two rings)
 function itemOf(el) {
   const name = text(el, 'name') || text(el, 'Name');
   if (!name) return null;
-  return { name, id: cleanId(text(el, 'itemId') || text(el, 'parentSheetIndex')), stack: num(el, 'stack') || 1, quality: QUALITY[num(el, 'quality')] || '' };
+  const it = { name, id: cleanId(text(el, 'itemId') || text(el, 'parentSheetIndex')), stack: num(el, 'stack') || 1, quality: QUALITY[num(el, 'quality')] || '' };
+  const type = xsiType(el);
+  if (type === 'MeleeWeapon' || type === 'Slingshot') {
+    const ench = kids(el, 'enchantments').map(e => [xsiType(e).replace(/Enchantment$/, ''), num(e, 'level') || 1]).filter(([k]) => k);
+    if (ench.length) it.ench = ench;
+  }
+  if (type === 'CombinedRing') it.parts = [...(kid(el, 'combinedRings')?.children || [])].map(r => text(r, 'name')).filter(Boolean);
+  return it;
 }
 const itemsIn = el => kids(el, 'Item').map(itemOf).filter(Boolean);
+// The backpack keeps the slot (the first 12 are the toolbar)
+const slotsIn = el => kids(el, 'Item').map((e, slot) => { const it = itemOf(e); return it && { ...it, slot }; }).filter(Boolean);
 
 // Every location of the save with a readable label, building interiors included
 function locations(root) {
@@ -188,7 +199,9 @@ function readPlayer(player, root, built, donated, hostMail, petLove) {
     uid: text(player, 'UniqueMultiplayerID'),
     marriage: readMarriage(player),
     friends, goals,
-    backpack: { where: 'backpack', kind: 'backpack', items: itemsIn(kid(player, 'items')) },
+    backpack: { where: 'backpack', kind: 'backpack', items: slotsIn(kid(player, 'items')) },
+    // Rings worn (left, right); null for an empty hand
+    rings: [itemOf(kid(player, 'leftRing')), itemOf(kid(player, 'rightRing'))],
     mailbox: kids(kid(player, 'mailbox'), 'string').length,
     quests: readQuests(player),
     stats,

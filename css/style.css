@@ -2952,3 +2952,20 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 .fish-gear-card header p { margin: 0; font-size: 0.8rem; }
 .fish-gear-card p { margin: 6px 0 0; font-size: 0.88rem; line-height: 1.45; }
 .fish-gear-card__desc { font-style: italic; }
+
+/* Items: weapons and owned copies */
+.spec--red { background: #ffe3dd; }
+.weapon-type { margin-top: 14px; }
+.weapon-type__title { display: flex; align-items: center; gap: 8px; margin: 0 0 4px; font-size: 1.05rem; }
+.weapon-type__title img { width: 28px; height: 28px; }
+.weapon-copy { padding: 8px 0; border-top: 2px dashed var(--parch-300); }
+.weapon-copy:first-of-type { border-top: 0; }
+.weapon-copy > p { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0 0 6px; }
+.weapon-copy__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.weapon-copy__grid h5 { margin: 0 0 4px; font-size: 0.9rem; }
+.weapon-ench { margin: 0; padding-left: 18px; font-size: 0.88rem; line-height: 1.6; }
+.weapon-compare { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+.weapon-compare th, .weapon-compare td { padding: 3px 6px; border-bottom: 1px solid var(--parch-300); text-align: left; }
+.weapon-compare tr.is-up td:last-child { color: var(--green-dark); background: #e9f8dc; }
+.weapon-compare tr.is-down td:last-child { color: var(--red-dark); }
+@media (max-width: 640px) { .weapon-copy__grid { grid-template-columns: 1fr; } }

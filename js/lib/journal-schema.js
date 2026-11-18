@@ -6,12 +6,13 @@
 // silently showing less than they could.
 //   2: secret notes seen (ids)   3: secret notes done, stardrops, rarecrows
 //   5: marriage (villager and co-op couples)
+//   6: weapon enchantments, combined rings, rings worn, backpack slots
 // ==========================================================================
 
 import { ico } from './icons.js';
 import { t } from './i18n.js';
 
-export const JOURNAL_SCHEMA = 5;
+export const JOURNAL_SCHEMA = 6;
 
 export const isStale = j => !!j && (j.schema || 0) < JOURNAL_SCHEMA;
 

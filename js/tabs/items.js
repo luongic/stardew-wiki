@@ -2,7 +2,7 @@
 // TAB: TỪ ĐIỂN VẬT PHẨM (ITEMS ENCYCLOPEDIA, GROUPED BY CATEGORY)
 // ==========================================================================
 
-import { altName, isEn, t } from '../lib/i18n.js';
+import { altName, isEn, t, nm } from '../lib/i18n.js';
 import { ITEMS_DATA } from '../../data/items-data.js';
 import { RECIPES_DATA } from '../../data/recipes-data.js';
 import { EXTRA_ITEMS } from '../../data/extra-items.js';
@@ -12,8 +12,69 @@ import { relationsHtml } from '../lib/relations.js';
 import { loadJSON, KEYS } from '../lib/storage.js';
 import { OBJECT_NAMES } from '../../data/item-ids.js';
 import { saveTabLink } from './save.js';
+import { WEAPONS, WEAPON_TYPES } from '../../data/weapons-data.js';
+import { labeledContainers } from './journal.js';
+import { compareTable, enchantList, forgeCount, MAX_FORGES } from '../lib/weapon-stats.js';
+import { isStale } from '../lib/journal-schema.js';
 
 const itemById = new Map(ITEMS_DATA.map(it => [it.id, it]));
+const weaponId = w => `weapon:${w.nameEn.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`;
+const weaponById = new Map(WEAPONS.map(w => [weaponId(w), w]));
+const weaponNames = new Set(WEAPONS.map(w => w.nameEn));
+
+// ---------- Weapons and rings the farm has (from the last save) ----------
+// Every copy: { spot (where to find it), slot (backpack), ench, parts, worn: 'left'|'right', who, inside (combined ring) }
+function ownedCopies(nameEn) {
+  const d = loadJSON(KEYS.journal, null);
+  if (!d?.players) return null;
+  const out = [];
+  for (const s of labeledContainers(d)) for (const it of s.items) {
+    if (it.name === nameEn) out.push({ spot: s.spot, s, slot: s.kind === 'backpack' ? it.slot : undefined, ench: it.ench || [], parts: it.parts });
+    else if (it.parts?.includes(nameEn)) out.push({ spot: s.spot, s, inside: it.parts });
+  }
+  d.players.forEach(p => (p.rings || []).forEach((r, i) => {
+    if (!r) return;
+    const hand = i ? 'right' : 'left';
+    if (r.name === nameEn) out.push({ worn: hand, who: p.name, parts: r.parts });
+    else if (r.parts?.includes(nameEn)) out.push({ worn: hand, who: p.name, inside: r.parts });
+  }));
+  return out;
+}
+const needsReload = () => { const d = loadJSON(KEYS.journal, null); return !!d && (isStale(d) || !d.players?.[0]?.rings); };
+const handName = h => (h === 'left' ? 'tay trái' : 'tay phải');
+function copyLabel(c) {
+  if (c.worn) return `${ico('rings')} <strong>${t('Đang đeo')}</strong> · <span data-no-i18n>${esc(c.who)}</span> (${t(handName(c.worn))})${c.inside ? ` · ${t('trong Nhẫn Ghép')}` : ''}`;
+  const bar = c.slot !== undefined && c.slot < 12 ? ` · ${t('trên thanh công cụ')}` : '';
+  return `${ico(c.s.kind === 'backpack' ? 'guest' : 'chest')} <span data-no-i18n>${c.spot}</span>${bar}${c.inside ? ` · ${t('trong Nhẫn Ghép')}` : ''}${c.s.where === 'Farm' && c.s.x !== undefined
+    ? ` <button class="link-btn" type="button" data-action="journal-map" data-x="${c.s.x}" data-y="${c.s.y}">${t('Bản đồ')}</button>` : ''}`;
+}
+// Card tag: worn / owned / not yet
+function ownedTag(copies) {
+  if (!copies) return '';
+  if (!copies.length) return `<span class="tag is-dim">${ico('box')} ${t('Chưa có')}</span>`;
+  const worn = copies.find(c => c.worn);
+  return worn ? `<span class="tag tag--green">${ico('rings')} ${t('Đang đeo')} · <span data-no-i18n>${esc(worn.who)}</span></span>`
+    : `<span class="tag tag--green">${ico('check')} ${t('Đã có')}${copies.length > 1 ? ` ×${copies.length}` : ''}</span>`;
+}
+function ownedBox(copies, weapon) {
+  if (!copies) return `<div class="inset-box"><p class="muted">${ico('save')} ${t('Nạp file save để biết bạn đã có món này chưa và nó đang nằm ở đâu.')} ${saveTabLink('Nạp file save', 'link-btn')}</p></div>`;
+  const reload = needsReload() ? `<p class="muted">${ico('warn')} ${t('Nạp lại file save để xem đủ (nhẫn đang đeo, bùa chú vũ khí).')} ${saveTabLink('Nạp lại file save', 'link-btn')}</p>` : '';
+  if (!copies.length) return `<div class="inset-box"><h4 class="inset-box__title">${ico('box')} ${t('Chưa có trong túi đồ, rương hay trên người ai.')}</h4>${reload}</div>`;
+  return `
+    <div class="inset-box">
+      <h4 class="inset-box__title">${ico('check')} ${t('Bạn đang có')} ${copies.length} ${t('cái')}:</h4>
+      ${reload}
+      ${weapon && weapon.type !== 'slingshot' ? copies.map((c, i) => `
+        <div class="weapon-copy">
+          <p>${copies.length > 1 ? `<strong>#${i + 1}</strong> ` : ''}${copyLabel(c)} <span class="tag ${forgeCount(c.ench) >= MAX_FORGES ? 'tag--green' : ''}">${t('Đã rèn')} ${forgeCount(c.ench)}/${MAX_FORGES}</span></p>
+          <div class="weapon-copy__grid">
+            <div><h5>${t('Rèn & phù phép')}</h5>${enchantList(c.ench)}</div>
+            <div><h5>${t('So với chỉ số gốc')}</h5>${compareTable(weapon, c.ench)}</div>
+          </div>
+        </div>`).join('') : `<ul class="bullet-list">${copies.map(c => `<li>${copyLabel(c)}</li>`).join('')}</ul>`}
+      ${weapon ? `<p class="muted">${t('Game không lưu món đang cầm trên tay; vũ khí trong túi đồ là đang mang theo (12 ô đầu là thanh công cụ). Chỉ số sau rèn được tính theo công thức của wiki, có thể lệch 1 do làm tròn.')}</p>` : ''}
+    </div>`;
+}
 const extraById = new Map(EXTRA_ITEMS.map(it => [it.id, it]));
 const PLACEHOLDER = 'assets/pixel-box.svg';
 
@@ -110,6 +171,7 @@ function cardHtml(it, reads) {
           ${isHarmful(it) ? `<span class="tag tag--red">${ico('energy')} ${it.energy}</span>` : ''}
         </div>
         ${read ? `<div class="pill-row">${readTags(read)}</div>` : ''}
+        ${it.category === 'rings' ? `<div class="pill-row">${ownedTag(ownedCopies(it.nameEn))}</div>` : ''}
 
         <p class="card__desc">${it.desc}</p>
 
@@ -155,6 +217,88 @@ function extraDetail(it) {
     ${relationsHtml(it.nameEn)}`;
 }
 
+// ---------- Weapons ----------
+const weaponName = w => (isEn ? w.nameEn : w.name);
+const modTags = w => [
+  w.mods.speed ? `${t('Tốc độ')} ${signed(w.mods.speed)}` : '', w.mods.defense ? `${t('Phòng thủ')} ${signed(w.mods.defense)}` : '',
+  w.mods.weight ? `${t('Trọng lượng')} ${signed(w.mods.weight)}` : '',
+  w.mods.critPower ? `${t('Sức mạnh chí mạng')} ${signed(w.mods.critPower)}` : ''
+].filter(Boolean).map(x => `<span class="tag">${x}</span>`).join('');
+
+function weaponCard(w) {
+  return `
+    <article class="card card--clickable weapon-card" role="button" tabindex="0" data-action="open-detail" data-type="item" data-id="${weaponId(w)}">
+      <header class="card__head">
+        <div class="card__title-row">
+          <div class="icon-box"><img src="${w.icon}" alt="" class="pixel-img" loading="lazy" data-fallback="${PLACEHOLDER}"></div>
+          <div>
+            <h3 class="card__title">${weaponName(w)}</h3>
+            <div class="card__sub">${isEn ? w.name : w.nameEn}${w.level ? ` · ${t('Cấp')} ${w.level}` : ''}</div>
+          </div>
+        </div>
+      </header>
+      <div class="card__body">
+        <div class="pill-row">
+          <span class="tag tag--red">${ico('weapons')} ${w.damage ? `${w.damage[0]}-${w.damage[1]}` : t('Tùy loại đạn')}</span>
+          ${w.crit !== null ? `<span class="tag tag--gold">${t('Chí mạng')} ${Math.round(w.crit * 1000) / 10}%</span>` : ''}
+          ${modTags(w)}
+          ${ownedTag(ownedCopies(w.nameEn))}
+        </div>
+        <p class="card__desc">${esc(isEn ? w.descEn : w.desc)}</p>
+        <div class="info-row">${ico('pin')}<span>${esc((isEn ? w.whereEn : w.where).join(' · '))}</span></div>
+      </div>
+    </article>`;
+}
+
+function weaponsHtml(list, only) {
+  if (!list.length) return '';
+  return `
+    <section class="group" id="group-weapons">
+      <header class="group__head">
+        <div class="group__title-row">
+          <h3 class="group__title">${ico('weapons')} ${t('Vũ Khí')}</h3>
+          <span class="badge badge--gold">${list.length} ${t('vũ khí')}</span>
+        </div>
+        <p class="group__desc">${t('Vũ khí không tốn năng lượng và không nâng cấp ở thợ rèn; tìm thấy trong Hầm Mỏ, mua ở Hội Thám Hiểm hoặc nhặt từ quái. Ở Lò Rèn Núi Lửa có thể rèn đá quý (tối đa 3 lần) và phù phép. Theo Official Stardew Valley Wiki.')}</p>
+        ${loadJSON(KEYS.journal, null) ? '' : `<p class="muted">${ico('save')} ${t('Nạp file save để biết vũ khí nào đã có, nằm ở đâu và đã rèn những gì.')} ${saveTabLink('Nạp file save', 'link-btn')}</p>`}
+      </header>
+      ${Object.entries(WEAPON_TYPES).map(([type, g]) => {
+        const items = list.filter(w => w.type === type);
+        if (!items.length) return '';
+        return `
+          <div class="weapon-type">
+            <h4 class="weapon-type__title"><img src="${g.icon}" alt="" class="pixel-img"> ${nm(g)} <span class="badge">${items.length}</span></h4>
+            <p class="group__desc">${esc(isEn ? g.descEn : g.desc)}</p>
+            <div class="content-grid">${items.map(weaponCard).join('')}</div>
+          </div>`;
+      }).join('')}
+    </section>`;
+}
+
+function weaponDetail(w) {
+  const g = WEAPON_TYPES[w.type];
+  return `
+    ${modalHeader({
+      icon: `<div class="icon-box icon-box--lg"><img src="${w.icon}" alt="" class="pixel-img" data-fallback="${PLACEHOLDER}"></div>`,
+      title: weaponName(w),
+      sub: `${isEn ? w.name : w.nameEn} • <b>${nm(g)}</b>${w.level ? ` • ${t('Cấp')} ${w.level}` : ''}`,
+      extra: wikiLink(w.nameEn, 'Xem bài viết chi tiết trên Official Stardew Valley Wiki', w.nameEn.replace(/ /g, '_'))
+    })}
+    <p class="detail-lead">${esc(isEn ? w.descEn : w.desc)}</p>
+    <div class="spec-grid">
+      <div class="spec spec--red"><div class="spec__label">${ico('weapons')} ${t('SÁT THƯƠNG')}</div><div class="spec__value">${w.damage ? `${w.damage[0]}-${w.damage[1]}` : t('Tùy loại đạn')}</div></div>
+      <div class="spec spec--gold"><div class="spec__label">${t('TỈ LỆ CHÍ MẠNG')}</div><div class="spec__value">${w.crit !== null ? `${Math.round(w.crit * 1000) / 10}%` : '-'}</div></div>
+      <div class="spec spec--blue"><div class="spec__label">${ico('money')} ${t('MUA / BÁN')}</div><div class="spec__value">${w.buy ? `${w.buy.toLocaleString()}g` : '-'} / ${w.sell ? `${w.sell.toLocaleString()}g` : '-'}</div></div>
+    </div>
+    ${modTags(w) ? `<div class="pill-row">${modTags(w)}</div>` : ''}
+    <div class="inset-box">
+      <h4 class="inset-box__title">${ico('pin')} ${t('Nơi tìm thấy')}:</h4>
+      <ul class="bullet-list">${(isEn ? w.whereEn : w.where).map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+    </div>
+    <p class="muted">${esc(isEn ? g.descEn : g.desc)}</p>
+    ${ownedBox(ownedCopies(w.nameEn), w)}`;
+}
+
 export default {
   id: 'items',
   search: true,
@@ -167,6 +311,7 @@ export default {
     const q = app.searchQuery;
 
     const list = ITEMS_DATA.filter(it => {
+      if (weaponNames.has(it.nameEn)) return false;   // shown with the weapons
       if (filter !== 'all' && it.category !== filter) return false;
       if (app.toggles.v16 && !it.version16) return false;
       if (app.toggles.buffs && !isEdible(it) && !it.buffs?.length) return false;
@@ -174,7 +319,9 @@ export default {
       return true;
     });
 
-    if (!list.length) {
+    const weapons = (filter === 'all' || filter === 'weapons') && !app.toggles.v16 && !app.toggles.buffs
+      ? WEAPONS.filter(w => !q || matches(q, w.name, w.nameEn, w.where, w.whereEn, WEAPON_TYPES[w.type].name)) : [];
+    if (!list.length && !weapons.length) {
       // Dishes and crafted goods live in the Recipes tab: point there when they match
       const recipeHits = q ? RECIPES_DATA.filter(r => matches(q, r.name, r.nameEn)).length : 0;
       container.innerHTML = emptyState('search', 'Không tìm thấy vật phẩm nào khớp với tìm kiếm!',
@@ -184,7 +331,7 @@ export default {
     }
 
     const reads = list.some(it => it.category === 'books') ? bookReads() : null;
-    container.innerHTML = GROUPS.map(grp => {
+    container.innerHTML = weaponsHtml(weapons, filter === 'weapons') + GROUPS.map(grp => {
       const items = list.filter(it => it.category === grp.category);
       if (!items.length) return '';
       return `
@@ -203,10 +350,11 @@ export default {
   },
 
   badge() {
-    document.getElementById('itemTabBadge').textContent = ITEMS_DATA.length;
+    document.getElementById('itemTabBadge').textContent = ITEMS_DATA.filter(it => !weaponNames.has(it.nameEn)).length + WEAPONS.length;
   },
 
   detail(app, id) {
+    if (weaponById.has(id)) return weaponDetail(weaponById.get(id));
     const it = itemById.get(id);
     if (!it) return extraById.has(id) ? extraDetail(extraById.get(id)) : '';
     const page = it.wikiFile ? it.wikiFile.replace('.png', '') : undefined;
@@ -220,6 +368,7 @@ export default {
       })}
       <p class="detail-lead">${it.desc}</p>
       ${read ? `<div class="pill-row">${readTags(read)}</div>` : ''}
+      ${it.category === 'rings' ? ownedBox(ownedCopies(it.nameEn)) : ''}
 
       <div class="spec-grid">
         <div class="spec spec--gold">
