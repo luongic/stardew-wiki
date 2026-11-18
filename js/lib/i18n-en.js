@@ -394,6 +394,21 @@ export const UI_EN = {
   'Chọn / Di chuyển': 'Select / Move', 'Cục tẩy': 'Eraser', 'Hoàn tác': 'Undo', 'Làm lại': 'Redo', 'Lưới ô': 'Grid',
   'Vùng tưới & bù nhìn': 'Sprinkler & scarecrow range', 'Vùng tưới': 'Sprinklers', 'Vùng bù nhìn': 'Scarecrows', 'Độ đậm vùng máy tưới': 'Opacity of sprinkler ranges', 'Độ đậm vùng bù nhìn': 'Opacity of scarecrow ranges', 'Vùng lều Junimo': 'Junimo hut range', 'Vùng Junimo': 'Junimo huts', 'Độ đậm vùng lều Junimo': 'Opacity of Junimo hut ranges', 'Nạp file save': 'Load save file', 'Tải ảnh': 'Save image', 'Làm trống': 'Clear',
   // Predictor > Forge: the player's weapons
+  // Fishing: bait & tackle
+  'Nên dùng': 'Suggested',
+  'Mồi câu': 'Bait',
+  'Đồ câu (phao, mồi giả, lưỡi câu)': 'Tackle (bobbers, lures, hooks)',
+  'Danh sách cá': 'Fish list',
+  'Mồi & đồ câu': 'Bait & tackle',
+  'Theo Official Stardew Valley Wiki (trang Bait và Tackle). Gợi ý cho từng loài cá ở danh sách cá là của trang, dựa trên độ khó, kiểu di chuyển và tác dụng của từng món.': 'From the Official Stardew Valley Wiki (Bait and Tackle pages). The suggestion for each fish in the fish list is this site\'s own, based on difficulty, behavior and what each item does.',
+  'Lồng bẫy cua: Mồi Cao Cấp cho cá chất lượng bạc; Mồi Chỉ Định tăng cơ hội ra đúng loài này.': 'Crab Pot: Deluxe Bait gives silver quality; Targeted Bait raises the chance of this exact catch.',
+  'Cá huyền thoại: Mồi Tò Mò tăng cơ hội cá hiếm, Phao Hút giữ tiến độ khi cá vùng ra. Mồi Cao Cấp nới rộng thanh câu; tay vững thì Mồi Thử Thách có thể ra tới 3 con.': 'Legendary: the Curiosity Lure raises the chance of rare fish, the Trap Bobber holds progress when it breaks away. Deluxe Bait widens the bar; with a steady hand Challenge Bait can give up to 3.',
+  'Cá hiếm xuất hiện: Mồi Tò Mò và Mồi Chỉ Định giúp gặp nó, Phao Hút bù cho độ khó cao.': 'A rare spawn: the Curiosity Lure and Targeted Bait help find it, the Trap Bobber makes up for the high difficulty.',
+  'Cá khó: thanh câu rộng hơn (Mồi Cao Cấp, Phao Nút Chai) và thanh tiến độ tụt chậm hơn (Phao Hút).': 'A hard fish: a wider bar (Deluxe Bait, Cork Bobber) and slower-dropping progress (Trap Bobber).',
+  'Cá giật cục hay vọt khỏi thanh câu: Phao Hút và Phao Nút Chai bù lại; Lưỡi Câu Có Ngạnh kém hiệu quả với kiểu này.': 'Darting fish often leave the bar: the Trap Bobber and Cork Bobber make up for it; the Barbed Hook works poorly on them.',
+  'Cá dễ: Lưỡi Câu Có Ngạnh hợp nhất với cá chậm, yếu; Phao Chất Lượng nâng chất lượng cá. Mồi Dân Dã có cơ hội ra 2 con.': 'An easy fish: the Barbed Hook works best on slow, weak fish; the Quality Bobber raises quality. Wild Bait may give 2.',
+  'Cá di chuyển đều: Lưỡi Câu Có Ngạnh bám theo tốt, Phao Nút Chai cho thanh câu rộng hơn.': 'A smooth mover: the Barbed Hook keeps up with it, the Cork Bobber widens the bar.',
+  'Độ khó vừa phải: Phao Nút Chai và Phao Hút giúp câu hoàn hảo dễ hơn.': 'Medium difficulty: the Cork Bobber and Trap Bobber make perfect catches easier.',
   // Fishing: difficulty
   'Trung bình': 'Medium',
   'Bắt bằng Lồng bẫy cua, không có mini-game câu': 'Caught in a Crab Pot, no fishing minigame',

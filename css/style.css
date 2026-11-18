@@ -2934,3 +2934,21 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 .fish-diff-help { margin: 0 0 10px; }
 .fish-diff-help summary { cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 6px; }
 .fish-diff-help ul { padding-left: 20px; line-height: 1.5; }
+
+/* Fishing: bait & tackle */
+.fish-views { margin-bottom: 10px; }
+.fish-gear { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.fish-gear__item { padding: 1px; border: 2px solid var(--ink); border-radius: 3px; background: var(--parch-100); cursor: pointer; line-height: 0; }
+.fish-gear__item:hover { background: var(--gold); }
+.fish-gear__item img { width: 22px; height: 22px; }
+.fish-gear__sep { width: 2px; height: 20px; background: var(--parch-300); margin: 0 3px; }
+.fish-gear__why { font-size: 0.8rem; }
+.fish-gear-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; margin-bottom: 14px; }
+.fish-gear-card { padding: 10px 12px; border: 2px solid var(--ink); border-radius: 4px; background: var(--parch-50); min-width: 0; transition: box-shadow 0.3s; }
+.fish-gear-card.is-flash { box-shadow: 0 0 0 4px var(--gold); }
+.fish-gear-card header { display: flex; align-items: center; gap: 10px; }
+.fish-gear-card header img { width: 36px; height: 36px; flex: none; }
+.fish-gear-card h3 { margin: 0; font-size: 1rem; }
+.fish-gear-card header p { margin: 0; font-size: 0.8rem; }
+.fish-gear-card p { margin: 6px 0 0; font-size: 0.88rem; line-height: 1.45; }
+.fish-gear-card__desc { font-style: italic; }
