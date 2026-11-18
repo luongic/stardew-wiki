@@ -65,6 +65,9 @@ function readFriends(player) {
 
 const norm = s => String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 const museumOf = new Map(MUSEUM_ITEMS.map(m => [norm(m.nameEn), m.id]));
+// Museum piece of a save item id (the two Strange Dolls share one name in the save)
+const DOLLS = { 126: 'strange_doll_green', 127: 'strange_doll_yellow' };
+const museumIdOf = id => (DOLLS[id] && MUSEUM_ITEMS.some(m => m.id === DOLLS[id]) ? DOLLS[id] : museumOf.get(norm(OBJECT_NAMES[id])));
 
 // Marlon's goals from the player's own kill counts
 function readGoals(player) {
@@ -88,7 +91,7 @@ function readFound(player, donated) {
   for (const [field, kind] of [['archaeologyFound', 'artifact'], ['mineralsFound', 'mineral']]) {
     for (const [k, v] of dict(kid(player, field))) {
       const id = cleanId(k), name = OBJECT_NAMES[id] || '';
-      const museum = museumOf.get(norm(name));
+      const museum = museumIdOf(id);
       if (museum) found.push({ id, name, kind, count: Number(kids(kid(v, 'ArrayOfInt') || v, 'int')[0]?.textContent) || 1, museum, donated: donated.has(museum) });
     }
   }
@@ -290,7 +293,7 @@ export function readJournal(root) {
   const farm = locs.find(l => l.id === 'Farm');
   const built = kids(kid(farm?.el, 'buildings'), 'Building').map(b => text(b, 'buildingType'));
   const donated = new Set(kids(kid(location(root, 'LibraryMuseum'), 'museumPieces'), 'item')
-    .map(i => museumOf.get(norm(OBJECT_NAMES[cleanId(text(i, 'value'))]))).filter(Boolean));
+    .map(i => museumIdOf(cleanId(text(i, 'value')))).filter(Boolean));
   const host = kid(root, 'player');
   const hostMail = mailOf(host);
   // The pet's love (Grandpa counts a pet at full friendship)
@@ -338,6 +341,7 @@ export function readJournal(root) {
     // Today in the save, as a day number
     today: (num(root, 'year') - 1) * 112 + Math.max(0, SEASON_IDS.indexOf(text(root, 'currentSeason').toLowerCase())) * 28 + num(root, 'dayOfMonth'),
     donated: donated.size,
+    donatedIds: [...donated],
     world: { weather: text(root, 'weatherForTomorrow') || 'Sun', luck: Number(text(root, 'dailyLuck')) || 0, lostBooks: num(root, 'lostBooksFound'), walnuts: num(root, 'goldenWalnutsFound') }
   };
 }

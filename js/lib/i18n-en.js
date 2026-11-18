@@ -394,6 +394,15 @@ export const UI_EN = {
   'Chọn / Di chuyển': 'Select / Move', 'Cục tẩy': 'Eraser', 'Hoàn tác': 'Undo', 'Làm lại': 'Redo', 'Lưới ô': 'Grid',
   'Vùng tưới & bù nhìn': 'Sprinkler & scarecrow range', 'Vùng tưới': 'Sprinklers', 'Vùng bù nhìn': 'Scarecrows', 'Độ đậm vùng máy tưới': 'Opacity of sprinkler ranges', 'Độ đậm vùng bù nhìn': 'Opacity of scarecrow ranges', 'Vùng lều Junimo': 'Junimo hut range', 'Vùng Junimo': 'Junimo huts', 'Độ đậm vùng lều Junimo': 'Opacity of Junimo hut ranges', 'Nạp file save': 'Load save file', 'Tải ảnh': 'Save image', 'Làm trống': 'Clear',
   // Predictor > Forge: the player's weapons
+  // Museum: save mismatch
+  'Khác với file save gần nhất': 'Different from the last save file',
+  'file save ghi': 'the save has',
+  'món đã quyên góp, tab này đang đánh dấu': 'pieces donated, this tab has ticked',
+  'Đang đánh dấu nhưng trong game chưa quyên góp': 'Ticked here but not donated in the game',
+  'Đã quyên góp trong game nhưng chưa đánh dấu': 'Donated in the game but not ticked here',
+  'Dấu tick có thể do bấm tay hoặc do người chơi co-op đánh dấu. Nếu file save đã là bản mới nhất, hãy đồng bộ lại cho khớp.': 'Ticks can come from clicking by hand or from a co-op partner. If the save file is the newest one, sync to match it.',
+  'Đồng bộ theo file save': 'Sync with the save file',
+  'Đã đồng bộ Bảo Tàng theo file save': 'Museum synced with the save file',
   // Museum: library
   'Thư Viện: Sách Thất Lạc': 'Library: Lost Books',
   'Nạp file save để biết những cuốn nào đã tìm thấy và đã đọc được.': 'Load a save file to see which books were found and can be read.',

@@ -124,6 +124,26 @@ function tile(it, find) {
 }
 
 // Pieces of the shown list that could be donated right away
+// The ticks here only ever grow when a save is read (and can be ticked by hand
+// or by a co-op partner); the save is what the game really has. Point out the difference.
+function saveMismatchHtml() {
+  const ids = loadJSON(KEYS.journal, null)?.donatedIds;
+  if (!ids) return '';
+  const inSave = new Set(ids), ticked = museumProgress.donated;
+  const extra = MUSEUM_ITEMS.filter(it => ticked.has(it.id) && !inSave.has(it.id));
+  const missing = MUSEUM_ITEMS.filter(it => !ticked.has(it.id) && inSave.has(it.id));
+  if (!extra.length && !missing.length) return '';
+  const names = list => list.map(it => `<strong>${it.name}</strong>`).join(', ');
+  return `
+    <div class="callout callout--red museum-mismatch">
+      <p>${ico('warn')} ${t('Khác với file save gần nhất')}: ${t('file save ghi')} <strong>${inSave.size}</strong> ${t('món đã quyên góp, tab này đang đánh dấu')} <strong>${museumProgress.count(MUSEUM_ITEMS)}</strong>.</p>
+      ${extra.length ? `<p>${t('Đang đánh dấu nhưng trong game chưa quyên góp')}: ${names(extra)}</p>` : ''}
+      ${missing.length ? `<p>${t('Đã quyên góp trong game nhưng chưa đánh dấu')}: ${names(missing)}</p>` : ''}
+      <p class="muted">${t('Dấu tick có thể do bấm tay hoặc do người chơi co-op đánh dấu. Nếu file save đã là bản mới nhất, hãy đồng bộ lại cho khớp.')}</p>
+      <button class="btn btn--blue btn--sm" type="button" data-action="museum-sync-save">${ico('save')} ${t('Đồng bộ theo file save')}</button>
+    </div>`;
+}
+
 function ownedPanel(list, find) {
   if (!find) return `<p class="muted cc-owned-hint">${ico('chest')} Nạp file save để xem món nào chưa quyên góp đã có sẵn trong túi đồ hay rương, và nằm ở đâu. ${saveTabLink('Nạp file save', 'btn btn--green btn--sm')}</p>`;
   const rows = list.filter(it => !museumProgress.donated.has(it.id)).map(it => ({ it, spots: find(it) })).filter(r => r.spots.length);
@@ -174,7 +194,7 @@ const museumTab = {
     });
 
     const find = ownedFinder();
-    document.getElementById('museumCases').innerHTML = ownedPanel(list, find) + (list.length
+    document.getElementById('museumCases').innerHTML = saveMismatchHtml() + ownedPanel(list, find) + (list.length
       ? GROUPS.map(g => {
         const items = list.filter(it => it.group === g);
         if (!items.length) return '';
@@ -198,6 +218,13 @@ const museumTab = {
 
   actions: {
     'library-all': (app, el) => { libUi.showAll = el.checked; app.render(); },
+    'museum-sync-save': (app) => {
+      const ids = loadJSON(KEYS.journal, null)?.donatedIds;
+      if (!ids) return;
+      progress.replace('museum', museumProgress.validKeys(ids));
+      app.showToast(`${ico('museum')} ${t('Đã đồng bộ Bảo Tàng theo file save')}`);
+      app.render();
+    },
     'museum-toggle': (app, el) => {
       const id = el.dataset.id;
       if (progress.toggle('museum', id)) {

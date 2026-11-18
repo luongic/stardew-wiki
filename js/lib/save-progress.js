@@ -24,6 +24,7 @@ import { ITEMS_DATA } from '../../data/items-data.js';
 // "Large Egg (White)", "Cookies", "Wild Horseradish" -> comparable keys
 const norm = s => String(s || '').toLowerCase().replace(/\(.*?\)/g, '').replace(/[^a-z0-9]/g, '');
 const nameOf = id => OBJECT_NAMES[cleanId(id)] || '';
+const DOLLS = { 126: 'Strange Doll (green)', 127: 'Strange Doll (yellow)' };
 const ALIASES = { cookie: 'cookies', cranberries: 'cranberries' };
 const same = (a, b) => { const x = norm(a), y = norm(b); return x === y || ALIASES[x] === y || ALIASES[y] === x || x + 's' === y || y + 's' === x; };
 
@@ -227,8 +228,9 @@ export function readSaveProgress(xml) {
   const museum = new Set();
   const lib = location(root, 'LibraryMuseum');
   for (const [, v] of kids(kid(lib, 'museumPieces'), 'item').map(i => [null, kid(i, 'value')])) {
-    const name = nameOf(v?.textContent.trim());
-    const m = MUSEUM_ITEMS.find(x => same(x.nameEn, name));
+    // The two Strange Dolls share one name in the save: tell them apart by id
+    const id = cleanId(v?.textContent.trim());
+    const m = DOLLS[id] ? MUSEUM_ITEMS.find(x => x.nameEn === DOLLS[id]) : MUSEUM_ITEMS.find(x => same(x.nameEn, nameOf(id)));
     if (m) museum.add(m.id);
   }
 
