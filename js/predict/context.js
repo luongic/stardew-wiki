@@ -116,6 +116,9 @@ export function readPredictContext(root) {
     source: 'save', gameID: Number(text(root, 'uniqueIDForThisGame')), version: text(root, 'gameVersion') || '1.6',
     daysPlayed: stats[0].get('daysPlayed') || 1, dayAdjust: 0,
     names: farmers.map(f => text(f, 'name')), genders: farmers.map(f => text(f, 'gender') || 'Female'), mpIds: farmers.map(f => text(f, 'UniqueMultiplayerID') || '0'),
+    // Casino: Qi coins on hand and the Club Card (per farmer)
+    clubCoins: farmers.map(f => Number(text(f, 'clubCoins')) || 0),
+    clubCard: farmers.map(f => kids(kid(f, 'mailReceived'), 'string').some(m => m.textContent.trim() === 'HasClubCard')),
     geodesCracked: stat('geodesCracked'), mysteryBoxesOpened: stat('MysteryBoxesOpened'), ticketPrizesClaimed: stat('ticketPrizesClaimed'),
     timesEnchanted: stat('timesEnchanted'), trashCansChecked: stat('trashCansChecked'),
     deepestMineLevel: Number(text(host, 'deepestMineLevel')) || 0, timesFedRaccoons: Number(text(root, 'timesFedRaccoons')) || 0,

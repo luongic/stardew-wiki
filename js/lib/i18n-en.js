@@ -1089,6 +1089,28 @@ export const NAMES_EN = {
   'Nạp file save để đánh dấu những mục đã nhận.': 'Load a save to mark the ones claimed.',
   'Nhận đủ 5 mục thì nến trên các cột sáng lên và một chiếc mũ xuất hiện trên bệ. Nguồn: Official Stardew Valley Wiki (Mastery Cave).': 'Claim all 5 and candles light above the pillars and a hat appears on the pedestal. Source: Official Stardew Valley Wiki (Mastery Cave).',
 
+  // Predictor: Qi Coin shop guide
+  'xu Qi': 'Qi coins',
+  'đã có Thẻ Hội viên': 'has the Club Card',
+  'chưa có Thẻ Hội viên': 'no Club Card yet',
+  'Nên mua': 'Worth buying',
+  'Không giới hạn': 'Unlimited',
+  'Cách vào và đổi xu': 'Getting in and buying coins',
+  'Làm chuỗi nhiệm vụ "Ông Qi Bí Ẩn" để nhận Thẻ Hội viên: bắt đầu bằng cách đặt 1 Pin Năng Lượng vào hộp điện trong Đường hầm cạnh Trạm xe buýt; xong 5 bước thì thẻ nằm trong đống củi cạnh nhà bạn. Không có thẻ thì người bảo vệ chặn cửa.': 'Finish "The Mysterious Qi" for the Club Card: it starts by putting a Battery Pack in the panel in the Tunnel next to the Bus Stop; after 5 steps the card is in the woodpile by your house. Without it the bouncer blocks the door.',
+  'Sòng bạc mở từ 9:00 đến 23:50, cửa ở phòng sau tiệm Oasis của Sandy.': "The Casino is open 9:00am to 11:50pm, through the back room of Sandy's Oasis.",
+  'Máy cạnh Ông Qi đổi 1.000g ra 100 xu Qi (10g một xu). Xu Qi không đổi ngược lại ra tiền được.': 'The machine next to Mr. Qi turns 1,000g into 100 Qi coins (10g each). Qi coins cannot be turned back into gold.',
+  'Chơi Calico Jack: bàn trái cược 100 xu, bàn phải cược 1.000 xu. Máy kéo xèng không dự đoán được.': 'Play Calico Jack: the left table bets 100 coins, the right one 1,000. The slot machines cannot be predicted.',
+  'Mở dự đoán Calico Jack': 'Open the Calico Jack prediction',
+  'Hàng trong cửa hàng': 'Shop stock',
+  'Giá quy ra vàng tính theo tỉ lệ đổi 10g một xu Qi. Từ bản 1.6 một số món có số lượng giới hạn.': 'Gold prices use the 10g per Qi coin exchange rate. Since 1.6 some items have a limited stock.',
+  'Tượng Vận May Vô Tận': 'Statue Of Endless Fortune',
+  'Người đứng cạnh chậu cây ở góc trên bên phải bán Tượng Vận May Vô Tận với giá 1.000.000g (trả bằng vàng, không phải xu Qi), mua bao nhiêu cũng được.': 'The shady man by the potted plant in the top right sells Statues Of Endless Fortune for 1,000,000g (gold, not Qi coins), as many as you like.',
+  'Ngày thường: mỗi ngày tạo ra một trong bốn món với tỉ lệ ngang nhau: Kim cương, Thỏi Iridium, Hốc tinh Toàn năng hoặc Thỏi Vàng.': 'Normal days: it makes one of four items each day, equally likely: Diamond, Iridium Bar, Omni Geode or Gold Bar.',
+  'Ngày sinh nhật dân làng: tạo ra một món người đó yêu thích (chất lượng thường), nếu bạn đã gặp người đó.': "On a villager's birthday: one of their loved items (normal quality), if you have met them.",
+  'Không lấy thì hôm sau món cũ bị thay bằng món mới. Đây là một trong những cách dễ nhất để có Thỏi Iridium.': 'An item left uncollected is replaced the next day. It is one of the easiest ways to get Iridium Bars.',
+  'Nguồn: Official Stardew Valley Wiki (Casino, Statue Of Endless Fortune, Magnet, Scarecrow).': 'Source: Official Stardew Valley Wiki (Casino, Statue Of Endless Fortune, Magnet, Scarecrow).',
+  'Sòng bạc của Ông Qi: quầy cửa hàng ở góc trên bên phải.': "Mr. Qi's Casino: the shop counter is in the top right.",
+
   // Buff stat labels
   'Câu cá': 'Fishing', 'Phòng thủ': 'Defense', 'May mắn': 'Luck', 'Khai mỏ': 'Mining', 'Canh tác': 'Farming', 'Tốc độ chạy': 'Speed',
   'Hái lượm': 'Foraging', 'Sức tấn công': 'Attack', 'Nam châm hút đồ': 'Magnetism', 'Nam châm hút quặng': 'Magnetism', 'Năng lượng tối đa': 'Max Energy',

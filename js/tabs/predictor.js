@@ -113,6 +113,9 @@ function render() {
         <button class="btn btn--blue btn--sm" type="submit">${t('Tìm')}</button>${view.query ? `<button class="btn btn--ghost btn--sm" type="button" data-action="predict-clear">${t('Xóa tìm kiếm')}</button>` : ''}</form>` : ''}
       ${view.query && p.search ? '' : navHtml(p, ctx, offset, opts)}
       <div class="predict-out">${body}</div>`;
+  } else if (p.static) {
+    // A guide (no prediction): readable before any save is loaded
+    body = `<div class="predict-out">${p.render(null, 0, {})}</div>`;
   }
   el.innerHTML = `
     ${sourceHtml(ctx)}

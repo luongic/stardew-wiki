@@ -2995,3 +2995,10 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 .tag--purple { background: #6b3fb8; color: #fff; }
 .mastery-reward:not(.is-claimed) .tag { background: #dcd9d4; border-color: #8f8a83; color: #5f5a54; }
 @media (max-width: 480px) { .mastery-grid { grid-template-columns: 1fr; } }
+
+/* Predictor: Qi Coin shop guide */
+.casino-shop__icon { width: 28px; height: 28px; object-fit: contain; vertical-align: middle; margin-right: 4px; }
+.casino-shop td:first-child { min-width: 170px; }
+.casino-shop td:last-child { min-width: 220px; }
+.casino-steps { margin: 6px 0 12px; padding-left: 28px; line-height: 1.55; }
+.casino-shop td:nth-child(2), .casino-shop td:nth-child(3) { white-space: nowrap; }

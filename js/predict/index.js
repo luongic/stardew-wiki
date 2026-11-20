@@ -1,6 +1,6 @@
 // ==========================================================================
 // PREDICTIONS: THE LIST SHOWN IN THE PREDICTOR TAB
-// Each module: { id, name, nameEn, icon, intro, introEn?, figure?: { src[], alt, caption, small? }, nav?, players?,
+// Each module: { id, name, nameEn, icon, intro, introEn?, static? (a guide shown without a save), figure?: { src[], alt, caption, small? }, nav?, players?,
 //   search?: { placeholder, run(ctx, query, opts) }, render(ctx, offset, opts) }
 // `nav`: { step, big?, start(ctx, opts), min? } browses by `offset` (a day number
 // for calendars, a count for geodes and boxes...).
@@ -26,8 +26,9 @@ import raccoon from './raccoon.js';
 import gembirds from './gembirds.js';
 import crane from './crane.js';
 import calico from './calico.js';
+import casino from './casino.js';
 import desert from './desert.js';
 import winterstar from './winterstar.js';
 
 export const PREDICTIONS = [weather, trains, night, cart, krobus, sandy, bookseller, wallpaper, geodes, mystery, prize, mines, minechest,
-  trash, enchant, statue, raccoon, gembirds, crane, calico, desert, winterstar];
+  trash, enchant, statue, raccoon, gembirds, crane, calico, casino, desert, winterstar];
