@@ -4,7 +4,8 @@
 // festivals, the Traveling Cart, the Queen of Sauce recipe, shops that are
 // closed, and the crops that can still be planted before the season ends.
 // When the last save file is from the chosen day, a morning checklist comes
-// first: mail, tomorrow's weather and luck, animals, crops and machines.
+// first: mail, tomorrow's weather and luck, animals, crops and machines,
+// then the experience each player gained since the save before.
 // The day is chosen here, or read from a save file (through the shared save
 // import, see applySaveDay). Inside a co-op room a day read from a save is
 // shared with everyone (see coop.shareDay).
@@ -25,6 +26,7 @@ import { trainOn } from '../predict/trains.js';
 import { weatherOn } from '../predict/weather.js';
 import { nightEvent, NIGHT_EVENTS } from '../predict/night.js';
 import { saveTabLink } from './save.js';
+import { dayIndex } from '../lib/day-gains.js';
 
 const SEASONS = ['spring', 'summer', 'fall', 'winter'];
 const SEASON_VI = { spring: 'Mùa Xuân', summer: 'Mùa Hạ', fall: 'Mùa Thu', winter: 'Mùa Đông' };
@@ -230,6 +232,34 @@ function morningCard(d) {
     <ul class="today-checklist">${lines.map(l => `<li>${l}</li>`).join('')}</ul>`);
 }
 
+// ---------- Experience gained since the save before (see lib/day-gains.js) ----------
+const SKILLS = [['skill_farming', 'Canh tác'], ['skill_fishing', 'Câu cá'], ['skill_foraging', 'Hái lượm'], ['skill_mining', 'Khai mỏ'], ['skill_combat', 'Chiến đấu']];
+const shortDay = d => `${d.day} ${SEASON_SHORT[d.season]}`;
+
+function gainsCard(d) {
+  const g = loadJSON(KEYS.gains, null);
+  if (!g || !sameDay(g.to, d)) return '';
+  // The save of day N holds what was done up to the night before
+  const days = dayIndex(g.to) - dayIndex(g.from);
+  const span = days === 1 ? `${t('ngày')} ${shortDay(g.from)} (${t('hôm qua')})`
+    : `${t('ngày')} ${shortDay(g.from)} → ${shortDay(shift(g.to, -1))} (${days} ${t('ngày')})`;
+  // Shared money in co-op: everyone has the same total, show it once
+  const team = g.players.length > 1 && g.players.every(p => p.earned === g.players[0].earned) ? g.players[0].earned : null;
+  const rows = g.players.map(p => {
+    const tags = p.skills.map((s, i) => `<span class="tag ${s.xp ? 'tag--green' : 'is-dim'}" title="${t(SKILLS[i][1])}">${ico(SKILLS[i][0])} +${s.xp.toLocaleString('vi-VN')}${s.to > s.from ? ` · <strong>${t('lên cấp')} ${s.to}</strong>` : ''}</span>`);
+    if (p.mastery) tags.push(`<span class="tag tag--gold" title="${t('Kinh nghiệm Bậc Thầy')}">${ico('skill_mastery')} +${p.mastery.toLocaleString('vi-VN')}</span>`);
+    const more = [team === null && p.earned && `${ico('money')} +${p.earned.toLocaleString('vi-VN')}g`, p.fish && `${ico('fish')} ${p.fish} ${t('con cá')}`, p.monsters && `${ico('skill_combat')} ${p.monsters} ${t('quái')}`].filter(Boolean);
+    return `<li><div>
+      ${g.players.length > 1 ? `<strong data-no-i18n>${esc(p.name)}</strong>` : ''}
+      <div class="pill-row">${tags.join('')}</div>
+      ${more.length ? `<div class="muted">${more.join(' · ')}</div>` : ''}</div></li>`;
+  });
+  return card('skill_mastery', 'Kinh nghiệm kiếm được', `
+    <p class="muted">${span} · ${t(g.source === 'old' ? 'so với bản save trước mà game giữ lại (_old)' : 'so với lần nạp save trước trên trang')}</p>
+    <ul class="today-checklist">${rows.join('')}</ul>
+    ${team ? `<p class="muted">${ico('money')} ${t('Cả nông trại')}: +${team.toLocaleString('vi-VN')}g</p>` : ''}`);
+}
+
 // ---------- Predictions for the chosen day (needs the Game ID from a save) ----------
 const WEATHER_PREDICT = { Sun: ['sunny', 'Nắng'], Rain: ['rainy', 'Mưa'], Storm: ['storm', 'Giông bão'], 'Green Rain': ['rainy', 'Mưa Xanh'] };
 
@@ -272,6 +302,7 @@ function render() {
     ${d.sharedFrom ? `<p class="muted">${ico('members')} ${t('Ngày lấy từ file save của')} <strong data-no-i18n>${esc(d.sharedFrom)}</strong> ${t('trong phòng Co-op')}</p>` : ''}
     <div class="today-grid">
       ${morningCard(d)}
+      ${gainsCard(d)}
       ${predictCard(d)}
       ${birthdayCard(d)}
       ${festivalCard(d)}

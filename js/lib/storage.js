@@ -21,6 +21,7 @@ export const KEYS = {
   fishCaught: 'stardew_wiki_fish_caught',
   profiles: 'stardew_wiki_profiles',
   journal: 'stardew_wiki_journal',
+  gains: 'stardew_wiki_day_gains',
   predict: 'stardew_wiki_predict',
   predictView: 'stardew_wiki_predict_view',
   islandView: 'stardew_wiki_island_view',

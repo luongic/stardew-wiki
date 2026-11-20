@@ -21,6 +21,7 @@ import { JOURNAL_SCHEMA, isStale } from '../lib/journal-schema.js';
 import { coop } from '../sync/coop.js';
 import { gzip64, gunzip64 } from '../lib/gzip.js';
 import { showToast } from '../lib/ui.js';
+import { dayGains } from '../lib/day-gains.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
@@ -41,10 +42,24 @@ const dayText = d => isEn
   : `${DOW_VI[(d.day - 1) % 7]}, ngày ${d.day} ${SEASON_VI[d.season]}, năm ${d.year}`;
 const when = at => new Date(at).toLocaleString(isEn ? 'en-US' : 'vi-VN');
 
-async function readSaveFile(app, file, preread = null) {
+// What the save before brought (Today tab): from the _old copy beside the save
+// when the player picked a folder, otherwise from what was read last time
+async function readGains(now, oldFile, farmName, readers) {
+  const { parseSave, readSaveDay, readPlayers } = readers;
+  if (oldFile) {
+    try {
+      const root = parseSave(await oldFile.text());
+      return dayGains(now, { day: readSaveDay(root), players: readPlayers(root) }, 'old');
+    } catch (e) { console.warn('[save _old]', e); }
+  }
+  const prev = loadJSON(KEYS.profiles, null);
+  return prev?.farmName === farmName ? dayGains(now, { day: prev.day || loadJSON(KEYS.journal, null)?.day, players: prev.players }, 'last') : null;
+}
+
+async function readSaveFile(app, file, preread = null, oldFile = null) {
   lastDone = ''; lastError = '';
   try {
-    const [{ parseSave, readFarmSave, readSaveDay }, { readSaveProgress }, text] = await Promise.all([
+    const [{ parseSave, readFarmSave, readSaveDay }, { readSaveProgress, readPlayers }, text] = await Promise.all([
       import('../lib/farm-save.js'), import('../lib/save-progress.js'), preread ?? file.text()]);
     const root = parseSave(text);   // parsed once, read several ways
     const res = readSaveProgress(root);
@@ -55,7 +70,9 @@ async function readSaveFile(app, file, preread = null) {
     try { journal = (await import('../lib/save-journal.js')).readJournal(root); } catch (e) { console.warn('[journal]', e); }
     let predict = null;
     try { predict = (await import('../predict/context.js')).readPredictContext(root); } catch (e) { console.warn('[predict]', e); }
-    pendingSave = { res, day, farm, journal, predict };
+    const gains = await readGains({ day, players: res.players }, oldFile, res.farmName,
+      { parseSave, readSaveDay, readPlayers });
+    pendingSave = { res, day, farm, journal, predict, gains };
 
     const add = { recipes: newKeys('recipes', res.recipes), quests: newKeys('quests', res.quests), bundles: newKeys('bundles', res.bundles), museum: newKeys('museum', res.museum) };
     const row = (icon, label, found, fresh) => `
@@ -83,7 +100,8 @@ async function readSaveFile(app, file, preread = null) {
 
       <label class="save-sync__part"><input type="checkbox" class="px-check" id="syncToday" checked>
         <span><strong>${ico('calendar')} ${t('Hôm Nay')}:</strong> ${dayText(day)}
-        ${coop.code ? `<span class="muted">(${t('chia sẻ với phòng Co-op')})</span>` : ''}</span></label>
+        ${coop.code ? `<span class="muted">(${t('chia sẻ với phòng Co-op')})</span>` : ''}
+        ${gains ? `<br><span class="muted">${ico('skill_mastery')} ${t('Kinh nghiệm tăng thêm so với ngày')} ${gains.from.day} ${SEASON_VI[gains.from.season]}${gains.source === 'old' ? ` (${t('bản _old game giữ lại')})` : ` (${t('lần nạp save trước')})`}</span>` : ''}</span></label>
 
       ${journal ? `
       <label class="save-sync__part"><input type="checkbox" class="px-check" id="syncJournal" checked>
@@ -116,7 +134,7 @@ async function readSaveFile(app, file, preread = null) {
 
 function applySave(app) {
   if (!pendingSave) return;
-  const { res, day, farm, journal, predict } = pendingSave;
+  const { res, day, farm, journal, predict, gains } = pendingSave;
   const checked = id => document.getElementById(id)?.checked;
   const done = [];
   if (checked('syncProgress')) {
@@ -125,10 +143,12 @@ function applySave(app) {
       for (const k of newKeys(domain, keys)) { progress.setFlag(domain, k, true, 'bulk'); n++; }
     }
     setCaughtFish(res.fish.byPlayer?.length ? { players: res.fish.byPlayer.map(p => ({ name: p.name, fish: p.caughtEn })) } : res.fish.caughtEn);
-    saveJSON(KEYS.profiles, { farmName: res.farmName, at: Date.now(), schema: JOURNAL_SCHEMA, players: res.players });
+    saveJSON(KEYS.profiles, { farmName: res.farmName, day, at: Date.now(), schema: JOURNAL_SCHEMA, players: res.players });
     done.push(`${n} ${t('mục tiến độ')}`);
   }
   if (checked('syncToday')) {
+    // A save read again (same day, no _old) keeps the gains found before
+    if (gains) saveJSON(KEYS.gains, gains);
     const shared = applySaveDay(day);
     setFishingSeason(day.season);
     done.push(`${t('ngày')} ${day.day} ${SEASON_VI[day.season]}${shared ? ` (${t('đã chia sẻ')})` : ''}`);
@@ -158,7 +178,7 @@ function applySave(app) {
 // The parts of the save each device keeps for itself (the ticks and the day
 // already go through the room on their own). The room keeps the latest; a
 // device takes it when it is newer than what it read itself.
-const SHARED_PARTS = { profiles: KEYS.profiles, journal: KEYS.journal, predict: KEYS.predict, fish: KEYS.fishCaught };
+const SHARED_PARTS = { profiles: KEYS.profiles, journal: KEYS.journal, predict: KEYS.predict, fish: KEYS.fishCaught, gains: KEYS.gains };
 // { stamp, name, at, mine }: the room's share this device already has
 const ROOM_SAVE = 'stardew_wiki_room_save';
 const roomSave = () => loadJSON(ROOM_SAVE, null);
@@ -300,21 +320,24 @@ const lastFarm = () => { try { return localStorage.getItem(LAST_FARM); } catch {
 // Saves/Farm_123456789/Farm_123456789 is the save; SaveGameInfo and the _old
 // copies sit beside it. The player may pick the Saves folder, one farm's
 // folder or StardewValley itself: the site finds the save files in it.
-// A found save: { farm, file, modified }
+// A found save: { farm, file, old (the _old copy, when there), modified }
 const isSave = (name, folder) => name === folder && /_\d+$/.test(folder);
 const goesDown = name => name === 'Saves' || /_\d+$/.test(name);
-const found = file => ({ farm: file.name, file, modified: file.lastModified });
+const found = (file, old = null) => ({ farm: file.name, file, old, modified: file.lastModified });
 
 // A folder input or a list of files with their paths (Saves/Farm_1/Farm_1)
 const savesFromList = files => files
   .filter(f => { const parts = f.webkitRelativePath.split('/'); return parts.length >= 2 && isSave(parts.at(-1), parts.at(-2)); })
-  .map(found);
+  .map(f => found(f, files.find(o => o.webkitRelativePath === `${f.webkitRelativePath}_old`)));
 
 // A folder handle (Chrome / Edge picker or drop)
 async function savesFromDir(dir, depth = 0) {
   const out = [];
   for await (const [name, h] of dir.entries()) {
-    if (h.kind === 'file' && isSave(name, dir.name)) out.push(found(await h.getFile()));
+    if (h.kind === 'file' && isSave(name, dir.name)) {
+      const old = await dir.getFileHandle(`${name}_old`).then(o => o.getFile()).catch(() => null);
+      out.push(found(await h.getFile(), old));
+    }
     else if (h.kind === 'directory' && depth < 2 && goesDown(name)) out.push(...await savesFromDir(h, depth + 1));
   }
   return out;
@@ -329,7 +352,10 @@ async function savesFromEntry(dir, depth = 0) {
   });
   const out = [];
   for (const k of kids) {
-    if (k.isFile && isSave(k.name, dir.name)) out.push(found(await new Promise((res, rej) => k.file(res, rej))));
+    if (k.isFile && isSave(k.name, dir.name)) {
+      const o = kids.find(x => x.isFile && x.name === `${k.name}_old`);
+      out.push(found(await new Promise((res, rej) => k.file(res, rej)), o ? await new Promise(res => o.file(res, () => res(null))) : null));
+    }
     else if (k.isDirectory && depth < 2 && goesDown(k.name)) out.push(...await savesFromEntry(k, depth + 1));
   }
   return out;
@@ -338,7 +364,7 @@ async function savesFromEntry(dir, depth = 0) {
 function readFound(app, c) {
   choices = [];
   try { localStorage.setItem(LAST_FARM, c.farm); } catch { /* storage blocked */ }
-  readSaveFile(app, c.file);
+  readSaveFile(app, c.file, null, c.old);
 }
 
 // One save: read it. Several: list them (newest first), unless `prefer`
@@ -532,7 +558,7 @@ export default {
     'save-cancel': (app) => { pendingSave = null; summary = ''; app.render(); },
     'save-forget': (app) => {
       if (!confirm(t('Xóa thông tin đọc từ file save (hồ sơ, sổ tay, dự đoán) khỏi trình duyệt? Các dấu tick tiến độ vẫn được giữ.'))) return;
-      for (const k of [KEYS.profiles, KEYS.journal, KEYS.predict, ROOM_SAVE]) { try { localStorage.removeItem(k); } catch { /* storage blocked */ } }
+      for (const k of [KEYS.profiles, KEYS.journal, KEYS.predict, KEYS.gains, ROOM_SAVE]) { try { localStorage.removeItem(k); } catch { /* storage blocked */ } }
       dropHandle();
       try { localStorage.removeItem(LAST_FARM); } catch { /* storage blocked */ }
       lastDone = ''; app.render();
