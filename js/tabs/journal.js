@@ -464,14 +464,15 @@ const PREDICT_NAME = { book: 'Xem ngày Người bán sách ghé', mystery: 'D�
 function bookDetailHtml(id, en, d, p) {
   const b = POWER_BOOKS_INFO[id];
   if (!b) return '';
-  const readers = (d.players || []).filter(x => x.books?.includes(id)).map(x => x.name);
-  const read = p.books.includes(id);
+  const reads = x => x.stats?.[id] || (x.books?.includes(id) ? 1 : 0);
+  const readers = (d.players || []).filter(reads).map(x => `${x.name} ×${reads(x)}`);
+  const read = reads(p);
   return `
     <article class="book-detail ${read ? 'is-read' : ''}">
       <header class="book-detail__head">
         ${img(itemIcon(en), 'book-detail__icon')}
         <div><h4 data-no-i18n>${bookLabel(id, en)}</h4><small class="muted" data-no-i18n>${isEn ? '' : en}</small></div>
-        <span class="tag ${read ? 'tag--green' : ''}">${read ? `${ico('check')} ${t('Đã đọc')}` : t('Chưa đọc')}</span>
+        <span class="tag ${read ? 'tag--green' : ''}">${read ? `${ico('check')} ${t('Đã đọc')} <span data-no-i18n>×${read}</span>` : t('Chưa đọc')}</span>
         <button class="link-btn" type="button" data-action="journal-book" data-id="${id}">${t('Đóng')}</button>
       </header>
       <p><strong>${t('Công dụng')}:</strong> <span data-no-i18n>${isEn ? b.effectEn : b.effect}</span></p>
@@ -563,8 +564,11 @@ function collectionHtml(d) {
     <h3 class="journal-sub">${ico('books')} ${t('Sách năng lực')}: ${p.books.length}/${POWER_BOOKS.length}</h3>
     <p class="muted">${t('Bấm vào một cuốn sách để xem công dụng và cách tìm.')}</p>
     <div class="book-grid">
-      ${POWER_BOOKS.map(id => `<button type="button" class="tag book-tag ${p.books.includes(id) ? 'tag--green' : 'is-dim'} ${ui.book === id ? 'is-open' : ''}" data-action="journal-book" data-id="${id}"
-        aria-expanded="${ui.book === id}" title="${p.books.includes(id) ? t('Đã đọc') : t('Chưa đọc')}">${img(itemIcon(bookName(id)))} ${bookLabel(id, bookName(id))}</button>`).join('')}
+      ${POWER_BOOKS.map(id => {
+        const n = p.stats?.[id] || (p.books.includes(id) ? 1 : 0);
+        return `<button type="button" class="tag book-tag ${n ? 'tag--green' : 'is-dim'} ${ui.book === id ? 'is-open' : ''}" data-action="journal-book" data-id="${id}"
+        aria-expanded="${ui.book === id}" title="${n ? `${t('Đã đọc')} ×${n}` : t('Chưa đọc')}">${img(itemIcon(bookName(id)))} ${bookLabel(id, bookName(id))}${n ? ` <span class="book-tag__n" data-no-i18n>×${n}</span>` : ''}</button>`;
+      }).join('')}
     </div>
     ${ui.book ? bookDetailHtml(ui.book, bookName(ui.book), d, p) : ''}
 

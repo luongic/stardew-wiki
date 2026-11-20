@@ -3006,6 +3006,7 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 /* Journal: power book guide */
 .book-tag { cursor: pointer; font: inherit; }
 .book-tag.is-open { outline: 2px solid var(--ink); outline-offset: 1px; opacity: 1; }
+.book-tag__n { font-weight: 700; opacity: .8; }
 .book-detail { padding: 10px 12px; margin-bottom: 8px; border: var(--px) solid var(--parch-300); background: var(--parch-50); }
 .book-detail.is-read { border-color: #6aa84f; }
 .book-detail__head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; }
