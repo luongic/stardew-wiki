@@ -8,12 +8,13 @@
 //   5: marriage (villager and co-op couples)
 //   6: weapon enchantments, combined rings, rings worn, backpack slots
 //   7: museum pieces donated (ids), Strange Dolls told apart
+//   8: worn trinket (single trinketItem), trinket names from internal ids
 // ==========================================================================
 
 import { ico } from './icons.js';
 import { t } from './i18n.js';
 
-export const JOURNAL_SCHEMA = 7;
+export const JOURNAL_SCHEMA = 8;
 
 export const isStale = j => !!j && (j.schema || 0) < JOURNAL_SCHEMA;
 

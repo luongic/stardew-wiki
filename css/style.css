@@ -2977,3 +2977,21 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 .library-book summary { cursor: pointer; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .library-book__no { min-width: 28px; font-weight: bold; color: var(--text-muted); }
 .library-book__text { margin: 8px 0 4px; line-height: 1.6; white-space: normal; }
+
+/* Mastery rewards: grey until claimed, purple once claimed */
+.mastery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; margin-bottom: 12px; }
+.mastery-reward { padding: 10px 12px; border: var(--px) solid #b9b4ad; background: #eeece8; color: #5f5a54; min-width: 0; }
+.mastery-reward.is-claimed { border-color: #6b3fb8; background: #efe6ff; color: var(--wood-900); }
+.mastery-reward__head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.mastery-reward__head > img { width: 28px; height: 28px; }
+.mastery-reward:not(.is-claimed) .mastery-reward__head > img, .mastery-reward:not(.is-claimed) li > img { filter: grayscale(1); opacity: 0.7; }
+.mastery-reward__head h4 { margin: 0; flex: 1 1 120px; font-size: 1rem; }
+.mastery-reward.is-claimed h4 { color: #6b3fb8; }
+.mastery-reward ul { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 8px; }
+.mastery-reward li { display: flex; gap: 8px; align-items: flex-start; }
+.mastery-reward li > img { width: 28px; height: 28px; flex: none; }
+.mastery-reward li p { margin: 2px 0 0; font-size: 0.85rem; line-height: 1.4; }
+.mastery-reward li .tag { font-size: 0.75rem; }
+.tag--purple { background: #6b3fb8; color: #fff; }
+.mastery-reward:not(.is-claimed) .tag { background: #dcd9d4; border-color: #8f8a83; color: #5f5a54; }
+@media (max-width: 480px) { .mastery-grid { grid-template-columns: 1fr; } }

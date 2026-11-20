@@ -12,6 +12,7 @@ import { kids, kid, text, xsiType, cleanId, location } from './farm-save.js';
 import { OBJECT_NAMES, OBJECT_KINDS } from '../../data/item-ids.js';
 import { MONSTER_GOALS, PERFECTION_VILLAGERS, DATABLE, STARDROPS, SHIPPED_CATEGORIES, WALLET } from '../../data/journal-data.js';
 import { MUSEUM_ITEMS } from '../../data/museum-data.js';
+import { trinketNameEn } from './trinket-name.js';
 
 const num = (el, name) => Number(text(el, name)) || 0;
 const dict = el => kids(el, 'item').map(i => [kid(i, 'key')?.textContent.trim(), kid(i, 'value')]);
@@ -26,6 +27,7 @@ function itemOf(el) {
   if (!name) return null;
   const it = { name, id: cleanId(text(el, 'itemId') || text(el, 'parentSheetIndex')), stack: num(el, 'stack') || 1, quality: QUALITY[num(el, 'quality')] || '' };
   const type = xsiType(el);
+  if (type === 'Trinket' || /^trinket/i.test(el.localName)) it.name = trinketNameEn(name);
   if (type === 'MeleeWeapon' || type === 'Slingshot') {
     const ench = kids(el, 'enchantments').map(e => [xsiType(e).replace(/Enchantment$/, ''), num(e, 'level') || 1]).filter(([k]) => k);
     if (ench.length) it.ench = ench;
@@ -34,8 +36,10 @@ function itemOf(el) {
   return it;
 }
 const itemsIn = el => kids(el, 'Item').map(itemOf).filter(Boolean);
-// The trinket slot (1.6): the farmer's trinketItems list (matched loosely, any case)
-const trinketList = el => [...([...(el?.children || [])].find(c => /^trinket/i.test(c.localName))?.children || [])];
+// The trinket slot (1.6, opened by Combat Mastery)
+// 1.6 saves keep the worn trinket as a single <trinketItem>; a list form is read too
+const trinketList = el => [...(el?.children || [])].filter(c => /^trinket/i.test(c.localName) && c.getAttribute('xsi:nil') !== 'true')
+  .flatMap(c => (kid(c, 'name') ? [c] : [...c.children]));
 // The backpack keeps the slot (the first 12 are the toolbar)
 const slotsIn = el => kids(el, 'Item').map((e, slot) => { const it = itemOf(e); return it && { ...it, slot }; }).filter(Boolean);
 

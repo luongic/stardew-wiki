@@ -20,6 +20,52 @@ export const LEVEL_XP = [100, 380, 770, 1300, 2150, 3300, 4800, 6900, 10000, 150
 // Mastery (1.6): earned after every skill reaches 10; total needed for mastery level 1..5
 export const MASTERY_XP = [10000, 25000, 45000, 70000, 100000];
 
+// What each mastery gives, by skill (`mastery` id above). From the Official
+// Stardew Valley Wiki, "Mastery Cave" > Masteries, version 1.6.
+// kind: 'tool' (given at the pillar), 'recipe' (crafting recipe) or 'perk'.
+export const MASTERY_REWARDS = {
+  0: [
+    { kind: 'tool', en: 'Iridium Scythe', name: 'Liềm Iridium', icon: 'assets/icons/item_iridium_scythe.png',
+      text: 'Thu hoạch được mọi loại cây trồng, cắt cỏ khô rất tốt.', textEn: "Can be used to harvest any crops. It's also excellent at gathering hay." },
+    { kind: 'recipe', en: 'Statue of Blessings', name: 'Tượng Phước Lành', icon: 'assets/icons/statue_of_blessings.png',
+      text: 'Chạm vào tượng mỗi ngày nhận một phước lành khác nhau.', textEn: 'Touching the statue gives a unique blessing every day.' },
+    { kind: 'perk', en: 'Golden Animal Cracker', name: 'Bánh thú Vàng', icon: 'assets/icons/x_golden_animal_cracker.png',
+      text: 'Bắt đầu tìm được Bánh thú Vàng: cho vật nuôi ăn thì sản phẩm tăng gấp đôi vĩnh viễn (trừ heo).', textEn: "You can now find Golden Animal Crackers, which permanently double a farm animal's produce. Doesn't work on pigs." }
+  ],
+  1: [
+    { kind: 'tool', en: 'Advanced Iridium Rod', name: 'Cần câu Iridium Cao Cấp', icon: 'assets/icons/item_advanced_iridium_rod.png',
+      text: 'Gắn được cùng lúc hai phao câu.', textEn: 'Use in the water to catch fish. Up to two bobbers can be attached at once.' },
+    { kind: 'recipe', en: 'Challenge Bait', name: 'Mồi thử thách', icon: 'assets/icons/challenge_bait.png',
+      text: 'Câu "hoàn hảo" được gấp ba số cá; mỗi lần cá thoát khỏi thanh câu thì số cá giảm.', textEn: 'A "perfect" catch yields triple the fish. Each time a fish escapes the fishing bar, the catch is reduced.' },
+    { kind: 'perk', en: 'Golden Treasure Chests', name: 'Rương kho báu Vàng', icon: 'assets/icons/treasure_chest.png',
+      text: 'Khi câu cá có thể gặp Rương kho báu Vàng.', textEn: 'You can now encounter Golden Fishing Treasure Chests.' }
+  ],
+  2: [
+    { kind: 'recipe', en: 'Mystic Tree Seed', name: 'Hạt Cây Kỳ bí', icon: 'assets/icons/mystic_tree_seed.png',
+      text: 'Trồng ra một loại cây đặc biệt.', textEn: 'This can be planted to grow a special tree.' },
+    { kind: 'recipe', en: 'Treasure Totem', name: 'Vật tổ Kho báu', icon: 'assets/icons/x_treasure_totem.png',
+      text: 'Dùng trên đất đào được để gọi ra một vòng điểm kho báu.', textEn: 'Use on diggable terrain to summon a ring of treasure spots.' },
+    { kind: 'perk', en: 'Golden Mystery Box', name: 'Hộp Kỳ bí Vàng', icon: 'assets/icons/x_golden_mystery_box.png',
+      text: 'Bắt đầu tìm được Hộp Kỳ bí Vàng, chứa đồ tốt hơn.', textEn: 'You can now find Golden Mystery Boxes, which contain superior items.' }
+  ],
+  3: [
+    { kind: 'recipe', en: 'Statue Of The Dwarf King', name: 'Tượng Vua người Lùn', icon: 'assets/icons/statue_of_the_dwarf_king.png',
+      text: 'Mỗi ngày chọn một trong hai năng lực khai khoáng.', textEn: 'Choose from two mining-related powers each day.' },
+    { kind: 'recipe', en: 'Heavy Furnace', name: 'Lò nung năng suất', icon: 'assets/icons/heavy_furnace.png',
+      text: 'Hiệu quả hơn lò nung thường: mỗi lần dùng 25 quặng và 3 than.', textEn: "It's more efficient than a regular furnace. Requires 25 pieces of ore and 3 coal per use." },
+    { kind: 'perk', en: 'Double gems', name: 'Gấp đôi đá quý', icon: 'assets/icons/diamond.png',
+      text: 'Đá có chứa đá quý cho gấp đôi số đá quý.', textEn: 'Gem-bearing rocks now grant twice the gems.' }
+  ],
+  4: [
+    { kind: 'recipe', en: 'Anvil', name: 'Đe', icon: 'assets/icons/anvil.png',
+      text: 'Rèn lại trang sức (trinket) để đổi ngẫu nhiên chỉ số; mỗi lần tốn 3 Thỏi Iridium.', textEn: 'Allows you to re-forge trinkets, randomizing their stats. Costs 3 iridium bars per use.' },
+    { kind: 'recipe', en: 'Mini-Forge', name: 'Lò rèn cỡ nhỏ', icon: 'assets/icons/mini_forge.png',
+      text: 'Dùng lò rèn của Người Lùn ngay tại nhà.', textEn: 'Now, you can use a dwarvish forge from the convenience of your home.' },
+    { kind: 'perk', en: 'Trinket slot', name: 'Ô trang sức', icon: 'assets/trinkets/fairy_box.png',
+      text: 'Mở thêm một ô trang bị cho trang sức (trinket), tìm được khi phiêu lưu và cho năng lực đặc biệt.', textEn: 'Unlocks a new equipment slot for trinkets. Trinkets can be found while adventuring and grant special powers.' }
+  ]
+};
+
 // Profession ids as stored in the save. `from`: the level-5 profession it follows
 export const PROFESSIONS = {
   0: { skill: 'farming', level: 5, name: "Quản trại", nameEn: 'Rancher', desc: "Sản phẩm từ Động vật tăng thêm 20% giá trị." },

@@ -1082,6 +1082,13 @@ export const NAMES_EN = {
   'Nguồn: Official Stardew Valley Wiki (Quests, Qi Bean, Junimo Kart, Prismatic Shard).': 'Source: Official Stardew Valley Wiki (Quests, Qi Bean, Junimo Kart, Prismatic Shard).',
   'Cách làm, đồ nên chuẩn bị và tình trạng từng đơn trong Phòng Óc Chó, thưởng bằng Ngọc Qi.': "How to do each order in the Walnut Room, what to bring and where you stand. Rewards are Qi Gems.",
 
+  // Tracker: mastery rewards
+  'Phần thưởng Thành thạo': 'Mastery rewards', 'Công cụ': 'Tool', 'Công thức': 'Recipe', 'Năng lực': 'Perk', 'Đã nhận': 'Claimed', 'Chưa nhận': 'Not claimed',
+  'Nhận ở các cột đá trong Hang Thành Thạo (Rừng Cindersap), chọn kỹ năng theo thứ tự tùy ý. Mỗi lần nhận tốn nhiều điểm hơn lần trước: 10.000, 15.000, 20.000, 25.000, 30.000 (tổng 100.000).': 'Claimed at the pillars in the Mastery Cave (Cindersap Forest), in any order. Each claim costs more points than the last: 10,000, 15,000, 20,000, 25,000, 30,000 (100,000 in all).',
+  'Màu tím là đã nhận, màu xám là chưa nhận.': 'Purple is claimed, grey is not yet claimed.',
+  'Nạp file save để đánh dấu những mục đã nhận.': 'Load a save to mark the ones claimed.',
+  'Nhận đủ 5 mục thì nến trên các cột sáng lên và một chiếc mũ xuất hiện trên bệ. Nguồn: Official Stardew Valley Wiki (Mastery Cave).': 'Claim all 5 and candles light above the pillars and a hat appears on the pedestal. Source: Official Stardew Valley Wiki (Mastery Cave).',
+
   // Buff stat labels
   'Câu cá': 'Fishing', 'Phòng thủ': 'Defense', 'May mắn': 'Luck', 'Khai mỏ': 'Mining', 'Canh tác': 'Farming', 'Tốc độ chạy': 'Speed',
   'Hái lượm': 'Foraging', 'Sức tấn công': 'Attack', 'Nam châm hút đồ': 'Magnetism', 'Nam châm hút quặng': 'Magnetism', 'Năng lượng tối đa': 'Max Energy',

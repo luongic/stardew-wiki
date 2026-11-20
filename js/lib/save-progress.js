@@ -20,6 +20,7 @@ import { RECIPES_DATA } from '../../data/recipes-data.js';
 import { CC_ROOMS } from '../../data/bundles-data.js';
 import { MUSEUM_ITEMS } from '../../data/museum-data.js';
 import { ITEMS_DATA } from '../../data/items-data.js';
+import { trinketNameEn } from './trinket-name.js';
 
 // "Large Egg (White)", "Cookies", "Wild Horseradish" -> comparable keys
 const norm = s => String(s || '').toLowerCase().replace(/\(.*?\)/g, '').replace(/[^a-z0-9]/g, '');
@@ -115,8 +116,10 @@ function readQuests(root, player, mail, built) {
 // ---------- Player profiles: skills, professions, mastery, a few totals ----------
 const SKILL_FIELDS = ['farmingLevel', 'fishingLevel', 'foragingLevel', 'miningLevel', 'combatLevel'];
 
-// The trinket slot (1.6): the farmer's trinketItems list (matched loosely, any case)
-const trinketList = el => [...([...(el?.children || [])].find(c => /^trinket/i.test(c.localName))?.children || [])];
+// The trinket slot (1.6, opened by Combat Mastery)
+// 1.6 saves keep the worn trinket as a single <trinketItem>; a list form is read too
+const trinketList = el => [...(el?.children || [])].filter(c => /^trinket/i.test(c.localName) && c.getAttribute('xsi:nil') !== 'true')
+  .flatMap(c => (kid(c, 'name') ? [c] : [...c.children]));
 // What the player is wearing: { slot: { name (English), id } }; a Combined Ring lists both rings
 function readWear(el) {
   const piece = e => e && e.getAttribute('xsi:nil') !== 'true' && text(e, 'name') ? { name: text(e, 'name'), id: cleanId(text(e, 'itemId')) } : null;
@@ -128,7 +131,10 @@ function readWear(el) {
   return { hat: piece(kid(el, 'hat')), shirt: piece(kid(el, 'shirtItem')), pants: piece(kid(el, 'pantsItem')), boots: piece(kid(el, 'boots')),
     leftRing: ring(kid(el, 'leftRing')), rightRing: ring(kid(el, 'rightRing')),
     // Trinket slot (1.6, opened by Combat Mastery)
-    trinkets: trinketList(el).map(piece).filter(Boolean) };
+    trinkets: trinketList(el).map(e => {
+      const x = piece(e);
+      return x && { ...x, name: trinketNameEn(x.name), stats: kids(kid(e, 'descriptionSubstitutionTemplates'), 'string').map(v => v.textContent.trim()).filter(v => /^[\d.]+$/.test(v)) };
+    }).filter(Boolean) };
 }
 
 function readPlayer(el, root) {

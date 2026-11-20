@@ -16,8 +16,9 @@ import { restoreNote } from '../sync/notes-ui.js';
 import { nm, isEn } from '../lib/i18n.js';
 import { ITEMS_DATA } from '../../data/items-data.js';
 import { TRINKETS } from '../../data/trinkets-data.js';
+import { TRINKET_STATS } from '../lib/trinket-name.js';
 import { BOOTS, CLOTHES } from '../../data/save-data.js';
-import { SKILLS, LEVEL_XP, MASTERY_XP, PROFESSIONS } from '../../data/skills-data.js';
+import { SKILLS, LEVEL_XP, MASTERY_XP, PROFESSIONS, MASTERY_REWARDS } from '../../data/skills-data.js';
 
 const BACKUP_VERSION = 3;
 
@@ -177,6 +178,36 @@ function masteryCard(p) {
     </article>`;
 }
 
+// ---------- What each mastery gives (shown before any save is loaded) ----------
+const KIND = { tool: 'Công cụ', recipe: 'Công thức', perk: 'Năng lực' };
+function masteryRewardsHtml(p) {
+  const claimed = new Set(p?.masteryClaimed || []);
+  return `
+    <h3 class="journal-sub">${ico('sparkle')} ${t('Phần thưởng Thành thạo')}${p ? `: ${claimed.size}/5` : ''}</h3>
+    <p class="muted">${t('Nhận ở các cột đá trong Hang Thành Thạo (Rừng Cindersap), chọn kỹ năng theo thứ tự tùy ý. Mỗi lần nhận tốn nhiều điểm hơn lần trước: 10.000, 15.000, 20.000, 25.000, 30.000 (tổng 100.000).')}
+      ${p ? t('Màu tím là đã nhận, màu xám là chưa nhận.') : t('Nạp file save để đánh dấu những mục đã nhận.')}</p>
+    <div class="mastery-grid">
+      ${SKILLS.map(sk => {
+        const on = claimed.has(sk.mastery);
+        return `
+        <article class="mastery-reward ${on ? 'is-claimed' : ''}">
+          <header class="mastery-reward__head">
+            <img src="${sk.icon}" alt="" class="pixel-img">
+            <h4>${t(sk.masteryName)}</h4>
+            ${p ? `<span class="tag ${on ? 'tag--purple' : ''}">${on ? t('Đã nhận') : t('Chưa nhận')}</span>` : ''}
+          </header>
+          <ul>${MASTERY_REWARDS[sk.mastery].map(r => `
+            <li>
+              <img src="${r.icon}" alt="" class="pixel-img" loading="lazy" data-fallback="hide">
+              <div><strong data-no-i18n>${isEn ? r.en : r.name}</strong> <small class="tag">${t(KIND[r.kind])}</small>
+                <p data-no-i18n>${isEn ? r.textEn : r.text}</p></div>
+            </li>`).join('')}</ul>
+        </article>`;
+      }).join('')}
+    </div>
+    <p class="muted">${t('Nhận đủ 5 mục thì nến trên các cột sáng lên và một chiếc mũ xuất hiện trên bệ. Nguồn: Official Stardew Valley Wiki (Mastery Cave).')}</p>`;
+}
+
 // ---------- What the character is wearing ----------
 const TRINKET_BY_EN = new Map(TRINKETS.map(x => [x.nameEn, x]));
 const RINGS = new Map(ITEMS_DATA.filter(i => i.category === 'rings').map(i => [i.nameEn, i]));
@@ -213,7 +244,10 @@ function wearHtml(p) {
   // Trinket slot: opened by Combat Mastery (1.6)
   for (const x of w.trinkets || []) {
     const info = TRINKET_BY_EN.get(x.name);
-    out.push(slot('Trang sức', info?.icon || 'assets/pixel-ring.svg', { text: info ? (isEn ? info.nameEn : info.name) : x.name, raw: true }, info ? (isEn ? info.descEn : info.desc) : ''));
+    const stats = (TRINKET_STATS[x.name] || []).map(([vi, en, unit], i) => x.stats?.[i] ? `${isEn ? en : vi} ${x.stats[i]}${unit}` : '').filter(Boolean).join(' · ');
+    const desc = info ? (isEn ? info.descEn : info.desc) : '';
+    out.push(slot('Trang sức', info?.icon || 'assets/pixel-ring.svg', { text: info ? (isEn ? info.nameEn : info.name) : x.name, raw: true },
+      `${stats ? `<b data-no-i18n>${stats}</b> ` : ''}<span data-no-i18n>${desc}</span>`));
   }
   if (w.trinkets && !w.trinkets.length && p.masteryClaimed?.includes(4)) out.push(slot('Trang sức', 'assets/pixel-ring.svg', { text: t('(trống)'), raw: false }, t('Ô trang sức mở khi nhận Thành Thạo Chiến Đấu.')));
   return out.length ? `
@@ -229,6 +263,7 @@ function profileHtml() {
         <h2 class="panel__title">${ico('save')} ${t('Hồ sơ nhân vật')}</h2>
         <p class="muted">${t('Nạp file save ở tab File Save để xem cấp độ Trồng trọt, Câu cá, Hái lượm, Khai khoáng, Chiến đấu, nghề đã chọn và độ Thành thạo của nhân vật.')}</p>
         ${saveTabLink()}
+        ${masteryRewardsHtml(null)}
       </section>`;
   }
   const players = data.players;
@@ -259,6 +294,7 @@ function profileHtml() {
         ${SKILLS.map(sk => skillCard(sk, p)).join('')}
         ${masteryCard(p)}
       </div>
+      ${masteryRewardsHtml(p)}
       ${wearHtml(p)}
     </section>`;
 }
