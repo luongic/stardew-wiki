@@ -1111,6 +1111,21 @@ export const NAMES_EN = {
   'Nguồn: Official Stardew Valley Wiki (Casino, Statue Of Endless Fortune, Magnet, Scarecrow).': 'Source: Official Stardew Valley Wiki (Casino, Statue Of Endless Fortune, Magnet, Scarecrow).',
   'Sòng bạc của Ông Qi: quầy cửa hàng ở góc trên bên phải.': "Mr. Qi's Casino: the shop counter is in the top right.",
 
+  // Journal: power book guide
+  'Bấm vào một cuốn sách để xem công dụng và cách tìm.': 'Click a book to see what it does and where to find it.',
+  'Công dụng': 'Effect',
+  'Đọc lại': 'Reading again',
+  'Cách tìm': 'Where to find',
+  'Đã đọc trong nông trại': 'Read on this farm by',
+  'chưa ai': 'nobody yet',
+  'Đóng': 'Close',
+  'Xem ngày Người bán sách ghé': 'See when the Bookseller visits',
+  'Dự đoán Hộp Kỳ bí': 'Mystery Box prediction',
+  'Dự đoán thùng rác': 'Garbage can prediction',
+  'Dự đoán Máy đổi vé thưởng': 'Prize machine prediction',
+  'Dự đoán yêu cầu của Gấu Mèo': 'Raccoon request prediction',
+  'Nguồn: Official Stardew Valley Wiki (Books).': 'Source: Official Stardew Valley Wiki (Books).',
+
   // Buff stat labels
   'Câu cá': 'Fishing', 'Phòng thủ': 'Defense', 'May mắn': 'Luck', 'Khai mỏ': 'Mining', 'Canh tác': 'Farming', 'Tốc độ chạy': 'Speed',
   'Hái lượm': 'Foraging', 'Sức tấn công': 'Attack', 'Nam châm hút đồ': 'Magnetism', 'Nam châm hút quặng': 'Magnetism', 'Năng lượng tối đa': 'Max Energy',

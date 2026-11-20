@@ -3002,3 +3002,15 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 .casino-shop td:last-child { min-width: 220px; }
 .casino-steps { margin: 6px 0 12px; padding-left: 28px; line-height: 1.55; }
 .casino-shop td:nth-child(2), .casino-shop td:nth-child(3) { white-space: nowrap; }
+
+/* Journal: power book guide */
+.book-tag { cursor: pointer; font: inherit; }
+.book-tag.is-open { outline: 2px solid var(--ink); outline-offset: 1px; opacity: 1; }
+.book-detail { padding: 10px 12px; margin-bottom: 8px; border: var(--px) solid var(--parch-300); background: var(--parch-50); }
+.book-detail.is-read { border-color: #6aa84f; }
+.book-detail__head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; }
+.book-detail__head > div { flex: 1 1 160px; min-width: 0; }
+.book-detail__head h4 { margin: 0; font-size: 1.05rem; }
+.book-detail__icon { width: 36px; height: 36px; }
+.book-detail p { margin: 4px 0; }
+.book-detail__find { margin: 2px 0 8px; padding-left: 22px; line-height: 1.5; }

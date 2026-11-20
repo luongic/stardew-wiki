@@ -155,6 +155,8 @@ export default {
   init() { document.addEventListener('submit', onSubmit); },
   render,
   actions: {
+    // From other tabs: open the predictor on one module
+    'predict-open': (app, el) => { view.id = el.dataset.id; view.offset = null; view.query = ''; saveView(); app.switchTab('predictor'); app.sfx.play('click'); },
     'predict-tab': (app, el) => { view.id = el.dataset.id; view.offset = null; view.query = ''; saveView(); render(); app.sfx.play('click'); },
     'predict-go': (app, el) => { view.offset = Number(el.dataset.offset); render(); },
     'predict-player': (app, el) => { view.player = Number(el.dataset.index) || 0; saveView(); render(); },

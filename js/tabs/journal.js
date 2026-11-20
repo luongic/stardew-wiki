@@ -16,6 +16,7 @@ import { MONSTER_GOALS, PERFECTION, STARDROPS, STAT_GROUPS, RARECROWS, WALLET } 
 import { dateLabel } from '../predict/core.js';
 import { QUEST_INFO, ACHIEVEMENTS } from '../../data/save-data.js';
 import { MUSEUM_ITEMS } from '../../data/museum-data.js';
+import { POWER_BOOKS_INFO, BOOK_VI, READ_ALL_NOTE } from '../../data/power-books-data.js';
 import { ico } from '../lib/icons.js';
 import { t, nm, isEn } from '../lib/i18n.js';
 import { loadJSON, KEYS } from '../lib/storage.js';
@@ -47,7 +48,7 @@ const SECTIONS = [
 const SEASONS = ['spring', 'summer', 'fall', 'winter'];
 const SEASON_WORD = { spring: 'Xuân', summer: 'Hạ', fall: 'Thu', winter: 'Đông' };
 
-const ui = { section: 'friends', friendFilter: 'all', eventFilter: 'all', search: '', hints: false, walnutHints: false, player: 0 };
+const ui = { book: null, section: 'friends', friendFilter: 'all', eventFilter: 'all', search: '', hints: false, walnutHints: false, player: 0 };
 
 // ---------- names & icons for the game's English names ----------
 const byEn = new Map();
@@ -457,6 +458,32 @@ const POWER_BOOKS = Object.keys(OBJECT_NAMES).filter(k => k.startsWith('Book_'))
 const museumById = new Map(MUSEUM_ITEMS.map(m => [m.id, m]));
 const bar = (have, total) => `<div class="skill-bar"><span style="width:${Math.min(100, (have / total) * 100)}%"></span></div>`;
 
+// Power book: its name, and the panel shown when it is clicked
+const bookLabel = (id, en) => (!isEn && BOOK_VI[id]) || itemName(en);
+const PREDICT_NAME = { book: 'Xem ngày Người bán sách ghé', mystery: 'Dự đoán Hộp Kỳ bí', trash: 'Dự đoán thùng rác', prize: 'Dự đoán Máy đổi vé thưởng', raccoon: 'Dự đoán yêu cầu của Gấu Mèo' };
+function bookDetailHtml(id, en, d, p) {
+  const b = POWER_BOOKS_INFO[id];
+  if (!b) return '';
+  const readers = (d.players || []).filter(x => x.books?.includes(id)).map(x => x.name);
+  const read = p.books.includes(id);
+  return `
+    <article class="book-detail ${read ? 'is-read' : ''}">
+      <header class="book-detail__head">
+        ${img(itemIcon(en), 'book-detail__icon')}
+        <div><h4 data-no-i18n>${bookLabel(id, en)}</h4><small class="muted" data-no-i18n>${isEn ? '' : en}</small></div>
+        <span class="tag ${read ? 'tag--green' : ''}">${read ? `${ico('check')} ${t('Đã đọc')}` : t('Chưa đọc')}</span>
+        <button class="link-btn" type="button" data-action="journal-book" data-id="${id}">${t('Đóng')}</button>
+      </header>
+      <p><strong>${t('Công dụng')}:</strong> <span data-no-i18n>${isEn ? b.effectEn : b.effect}</span></p>
+      <p><strong>${t('Đọc lại')}:</strong> <span data-no-i18n>${isEn ? b.rereadEn : b.reread}</span></p>
+      <p><strong>${t('Cách tìm')}:</strong></p>
+      <ul class="book-detail__find" data-no-i18n>${(isEn ? b.findEn : b.find).map(x => `<li>${x}</li>`).join('')}</ul>
+      ${(d.players || []).length > 1 ? `<p class="muted">${ico('members')} ${t('Đã đọc trong nông trại')}: <span data-no-i18n>${readers.join(', ') || t('chưa ai')}</span></p>` : ''}
+      ${b.predict ? `<button class="btn btn--ghost btn--sm" type="button" data-action="predict-open" data-id="${b.predict}">${ico('search')} ${t(PREDICT_NAME[b.predict])}</button>` : ''}
+    </article>
+    <p class="muted">${isEn ? READ_ALL_NOTE.textEn : READ_ALL_NOTE.text} ${t('Nguồn: Official Stardew Valley Wiki (Books).')}</p>`;
+}
+
 // Stardrops this player has eaten (the missing ones stay behind the hint toggle)
 function stardropsHtml(p) {
   if (!p.stardrops) return '';
@@ -534,9 +561,12 @@ function collectionHtml(d) {
     ${rarecrowsHtml(d)}
 
     <h3 class="journal-sub">${ico('books')} ${t('Sách năng lực')}: ${p.books.length}/${POWER_BOOKS.length}</h3>
+    <p class="muted">${t('Bấm vào một cuốn sách để xem công dụng và cách tìm.')}</p>
     <div class="book-grid">
-      ${POWER_BOOKS.map(id => `<span class="tag ${p.books.includes(id) ? 'tag--green' : 'is-dim'}" title="${p.books.includes(id) ? t('Đã đọc') : t('Chưa đọc')}">${img(itemIcon(bookName(id)))} ${itemName(bookName(id))}</span>`).join('')}
+      ${POWER_BOOKS.map(id => `<button type="button" class="tag book-tag ${p.books.includes(id) ? 'tag--green' : 'is-dim'} ${ui.book === id ? 'is-open' : ''}" data-action="journal-book" data-id="${id}"
+        aria-expanded="${ui.book === id}" title="${p.books.includes(id) ? t('Đã đọc') : t('Chưa đọc')}">${img(itemIcon(bookName(id)))} ${bookLabel(id, bookName(id))}</button>`).join('')}
     </div>
+    ${ui.book ? bookDetailHtml(ui.book, bookName(ui.book), d, p) : ''}
 
     <div class="journal-grid">
       <article class="journal-card">
@@ -858,6 +888,7 @@ export default {
   render,
   actions: {
     'journal-section': (app, el) => { ui.section = el.dataset.section; render(); },
+    'journal-book': (app, el) => { ui.book = ui.book === el.dataset.id ? null : el.dataset.id; render(); },
     'journal-friends': (app, el) => { ui.friendFilter = el.dataset.filter; render(); },
     'journal-player': (app, el) => { ui.player = Number(el.dataset.index) || 0; render(); },
     // From other tabs: open the journal on one section
