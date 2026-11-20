@@ -125,7 +125,7 @@ function applySave(app) {
       for (const k of newKeys(domain, keys)) { progress.setFlag(domain, k, true, 'bulk'); n++; }
     }
     setCaughtFish(res.fish.byPlayer?.length ? { players: res.fish.byPlayer.map(p => ({ name: p.name, fish: p.caughtEn })) } : res.fish.caughtEn);
-    saveJSON(KEYS.profiles, { farmName: res.farmName, at: Date.now(), players: res.players });
+    saveJSON(KEYS.profiles, { farmName: res.farmName, at: Date.now(), schema: JOURNAL_SCHEMA, players: res.players });
     done.push(`${n} ${t('mục tiến độ')}`);
   }
   if (checked('syncToday')) {

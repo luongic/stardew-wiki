@@ -17,6 +17,7 @@ import { nm, isEn } from '../lib/i18n.js';
 import { ITEMS_DATA } from '../../data/items-data.js';
 import { TRINKETS } from '../../data/trinkets-data.js';
 import { TRINKET_STATS } from '../lib/trinket-name.js';
+import { isStale, staleNotice } from '../lib/journal-schema.js';
 import { BOOTS, CLOTHES } from '../../data/save-data.js';
 import { SKILLS, LEVEL_XP, MASTERY_XP, PROFESSIONS, MASTERY_REWARDS } from '../../data/skills-data.js';
 
@@ -277,6 +278,7 @@ function profileHtml() {
         ${players.length > 1 ? `<div class="seg">${players.map((pl, i) => `<button class="seg-btn ${pl === p ? 'is-active' : ''}" type="button" data-action="profile-player" data-i="${i}" data-no-i18n>${ico(i ? 'guest' : 'crown')} ${pl.name}</button>`).join('')}</div>` : ''}
         <span class="muted">${t('Nông trại')} <strong data-no-i18n>${data.farmName || '?'}</strong> · ${t('cập nhật')} ${new Date(data.at).toLocaleString('vi-VN')}</span>
       </div>
+      ${isStale(data) ? staleNotice() : ''}
       <div class="profile__stats">
         ${stat('money', 'Tiền', `${fmt(p.money)}g`)}
         ${stat('medal', 'Tổng thu nhập', `${fmt(p.earned)}g`)}
