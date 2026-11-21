@@ -319,6 +319,7 @@ code {
   font-size: 0.85rem;
   line-height: 1.5;
   background: var(--parch-100);
+  color: var(--ink); /* light chips keep dark text, also inside wood-coloured headers */
   border: 2px solid var(--ink);
 }
 .badge { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; }
