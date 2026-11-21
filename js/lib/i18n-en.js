@@ -674,7 +674,7 @@ export const UI_EN = {
   'hoặc nạp file save mới để có danh sách việc sáng nay.': "or load a newer save for this morning's checklist.", 'Xem': 'View',
   'Có thư trong hộp thư': 'Mail waiting', 'Thời tiết ngày mai': "Tomorrow's weather", 'Trời nắng': 'Sunny', 'Mưa (cây tự được tưới)': 'Rain (crops get watered)',
   'Giông bão (cây tự được tưới)': 'Storm (crops get watered)', 'Có tuyết': 'Snow', 'Có gió': 'Windy', 'Mưa Xanh': 'Green Rain', 'Ngày lễ hội': 'Festival day', 'Lễ cưới': 'Wedding',
-  'Vận may hôm nay': "Today's luck", 'Các linh hồn đang rất vui (rất may mắn)': 'The spirits are very happy (great luck)', 'Các linh hồn đang vui (may mắn)': 'The spirits are in good humor (good luck)',
+  'Vận may hôm nay': "Today's luck", 'Thang vận may từ −0,100 đến +0,100': 'Daily luck ranges from −0.100 to +0.100','Các linh hồn đang rất vui (rất may mắn)': 'The spirits are very happy (great luck)', 'Các linh hồn đang vui (may mắn)': 'The spirits are in good humor (good luck)',
   'Các linh hồn bình thường': 'The spirits feel neutral', 'Các linh hồn hơi bực (hơi xui)': 'The spirits are somewhat annoyed (bad luck)', 'Các linh hồn đang giận (rất xui)': 'The spirits are very displeased (terrible luck)',
   'Nhiệm vụ đang làm': 'Quests in progress', 'bạn đang có': 'you have', 'chưa có món họ rất thích trong túi hay rương': 'no loved gift in your backpack or chests yet', 'Theo file save của nông trại': 'From the save file of',
   // ---- Profile: equipment ----

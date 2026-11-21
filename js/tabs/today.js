@@ -16,7 +16,7 @@ import { PLACES } from '../../data/places-data.js';
 import { RECIPES_DATA } from '../../data/recipes-data.js';
 import { ITEMS_DATA } from '../../data/items-data.js';
 import { ico } from '../lib/icons.js';
-import { t, nm } from '../lib/i18n.js';
+import { t, nm, isEn } from '../lib/i18n.js';
 import { loadJSON, saveJSON, KEYS } from '../lib/storage.js';
 import { showToast } from '../lib/ui.js';
 import { coop } from '../sync/coop.js';
@@ -181,6 +181,9 @@ const WEATHER = { Sun: ['sunny', 'Trời nắng'], Rain: ['rainy', 'Mưa (cây t
 // The fortune teller's wording on the TV, from the save's daily luck
 const luckLabel = v => v > 0.07 ? 'Các linh hồn đang rất vui (rất may mắn)' : v > 0.02 ? 'Các linh hồn đang vui (may mắn)'
   : v >= -0.02 ? 'Các linh hồn bình thường' : v >= -0.07 ? 'Các linh hồn hơi bực (hơi xui)' : 'Các linh hồn đang giận (rất xui)';
+// The number behind it: the game rolls -0.100 to +0.100 each night
+const luckNumber = v => `${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(v).toLocaleString(isEn ? 'en-US' : 'vi-VN', { minimumFractionDigits: 3, maximumFractionDigits: 3 })}`;
+const luckTone = v => v > 0.07 ? 'best' : v > 0.02 ? 'good' : v >= -0.02 ? 'neutral' : v >= -0.07 ? 'bad' : 'worst';
 const sameDay = (a, b) => a && b && a.season === b.season && a.day === b.day && a.year === b.year;
 
 function morningCard(d) {
@@ -196,7 +199,8 @@ function morningCard(d) {
   if (mail.length) lines.push(`${ico('letter')} <span>${t('Có thư trong hộp thư')}: ${mail.map(p => `<strong data-no-i18n>${esc(p.name)}</strong> ${p.mailbox}`).join(' · ')}</span>`);
   const [wIcon, wText] = WEATHER[j.world.weather] || WEATHER.Sun;
   lines.push(`${ico(wIcon)} <span>${t('Thời tiết ngày mai')}: <strong>${t(wText)}</strong></span>`);
-  lines.push(`${ico('luck')} <span>${t('Vận may hôm nay')}: <strong>${t(luckLabel(j.world.luck))}</strong></span>`);
+  lines.push(`${ico('luck')} <span>${t('Vận may hôm nay')}: <strong>${t(luckLabel(j.world.luck))}</strong>
+    <span class="luck-num luck-num--${luckTone(j.world.luck)}" data-no-i18n title="${t('Thang vận may từ −0,100 đến +0,100')}">${luckNumber(j.world.luck)}</span></span>`);
   const produce = j.animals.filter(a => a.produce).length;
   if (j.animals.length) lines.push(`${ico('animal')} <span>${t(`Vuốt ve ${j.animals.length} vật nuôi`)}${produce ? ` · ${t(`${produce} con có sản phẩm để thu`)}` : ''}
     <button class="link-btn" type="button" data-action="journal-open" data-section="animals">${t('Xem')}</button></span>`);
