@@ -8,9 +8,10 @@
 
 import { rngOf, table } from './core.js';
 import { t } from '../lib/i18n.js';
+import { ico } from '../lib/icons.js';
 import { P_OBJECTS, P_GEODE_CONTENTS } from '../../data/predictor-data.js';
 import { itemTag } from '../lib/item-lookup.js';
-import { PAGE, playerOf, countOf, navFor, mpHalf, rowClass, nameTag, qtyText, mark, searchTable } from './crack-helpers.js';
+import { PAGE, playerOf, countOf, navFor, mpHalf, rowClass, nameTag, qtyText, mark, searchTable, savedFarm, firstTable } from './crack-helpers.js';
 
 const N = id => P_OBJECTS[id][0];
 const pick = (list, roll) => N(list[Math.floor(roll * list.length)]);
@@ -68,6 +69,22 @@ export function geodeAt(ctx, n, player) {
 }
 
 const head = () => TYPES.map(en => itemTag(en));
+
+// Museum pieces a geode or trove can give (Golden Coconuts give none)
+const MUSEUM_POOL = [...new Set([535, 536, 537, 749, 275].flatMap(k => P_GEODE_CONTENTS[k]).map(N).concat(N('74')))];
+
+// Pieces not donated yet and not in any backpack or chest: the first geode
+// of each type (from the next one) that gives them
+function missingHtml(ctx, player, done) {
+  const farm = savedFarm(ctx);
+  const want = MUSEUM_POOL.filter(en => !ctx.donated.includes(en) && !farm?.held.has(en));
+  const head3 = `<h3 class="journal-sub">${ico('museum')} ${t('Món chưa có')}: ${want.length}</h3>`;
+  if (!want.length) return `${head3}<p class="muted">${t('Đã tặng hoặc đang giữ mọi món Bảo tàng mà hốc đá có thể ra.')}</p>`;
+  return `${head3}
+    <p class="muted">${t('Món Bảo tàng chưa tặng và không có trong túi hay rương nào, cùng hốc đá thứ mấy sẽ ra (tính từ hốc tiếp theo; số nhỏ là còn bao nhiêu hốc nữa).')}
+      ${farm ? '' : t('Nạp file save để bỏ qua những món đang có trong rương.')}</p>
+    ${firstTable({ want, done, cols: head().slice(0, 5), unit: 'hốc đá', resultsAt: n => geodeAt(ctx, n, player).item.slice(0, 5) })}`;
+}
 const NEED = 'Cần tặng Bảo tàng', BEANS = 'Có thể ra Đậu Qi (khi có Thử thách Cây Qi)', HAT = 'Có thể ra Mũ Bảo Hiểm Vàng (nếu chưa có)';
 
 export default {
@@ -104,6 +121,7 @@ export default {
       });
     }
     return table([t('Thứ'), ...head()], rows) +
-      `<p class="muted">${mark('item_qi_bean', BEANS)} ${t(BEANS)}. ${mark('crown', HAT)} ${t(HAT)}.</p>`;
+      `<p class="muted">${mark('item_qi_bean', BEANS)} ${t(BEANS)}. ${mark('crown', HAT)} ${t(HAT)}.</p>` +
+      missingHtml(ctx, player, done);
   }
 };

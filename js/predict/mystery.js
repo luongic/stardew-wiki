@@ -8,9 +8,10 @@
 
 import { rngOf, table } from './core.js';
 import { t } from '../lib/i18n.js';
+import { ico } from '../lib/icons.js';
 import { P_OBJECTS } from '../../data/predictor-data.js';
 import { itemTag } from '../lib/item-lookup.js';
-import { PAGE, playerOf, countOf, navFor, mpHalf, rowClass, nameTag, qtyText, mark, searchTable } from './crack-helpers.js';
+import { PAGE, playerOf, countOf, navFor, mpHalf, rowClass, nameTag, qtyText, mark, searchTable, savedFarm, firstTable } from './crack-helpers.js';
 
 const N = id => P_OBJECTS[id][0];
 // Cork Bobber / Dressed Spinner need Fishing 6, else the box gives Dish O' The Sea x2
@@ -94,6 +95,26 @@ export const boxesAt = (ctx, n, player) => [0, 1, 2].map(c => boxAt(ctx, n, play
 const head = () => [itemTag('Mystery Box'), `${itemTag('Golden Mystery Box')}<br><small>(${t('chưa có Tinh thông Trồng trọt')})</small>`,
   `${itemTag('Golden Mystery Box')}<br><small>(${t('có Tinh thông Trồng trọt')})</small>`];
 
+// Box results worth hunting (not the food, bombs, fertilizer or seeds handed
+// out in bulk), by save item id; books count as owned once read
+const WANTED = ['74', '279', '166', 'Book_Mystery', 'PurpleBook', '797', '373', '687', '695', '773', '621', '628', '629', '630', '631', '632', '633',
+  '525', '529', '531', '532', '533', '534', '888', 'SkillBook_0', 'SkillBook_1', 'SkillBook_2', 'SkillBook_3', 'SkillBook_4'];
+const WANTED_EXTRA = ['Golden Animal Cracker', 'Auto-Petter', 'Ossified Blade'];
+
+function missingHtml(ctx, player, done) {
+  const farm = savedFarm(ctx);
+  const stats = farm?.statsOf(ctx.names?.[player]) || {};
+  const owned = (en, id) => farm?.held.has(en) || (id && stats[id] > 0);
+  const want = [...WANTED.map(id => [N(id), id]), ...WANTED_EXTRA.map(en => [en, null])].filter(([en, id]) => !owned(en, id)).map(([en]) => en);
+  const head3 = `<h3 class="journal-sub">${ico('mystery_box')} ${t('Món chưa có')}: ${want.length}</h3>`;
+  if (!want.length) return `${head3}<p class="muted">${t('Đã có mọi món đáng săn trong Hộp bí ẩn.')}</p>`;
+  return `${head3}
+    <p class="muted">${t('Món đáng săn trong hộp (đá quý hiếm, nhẫn, cây giống, sách...) không có trong túi hay rương nào, sách thì chưa đọc, cùng hộp thứ mấy sẽ ra (tính từ hộp tiếp theo; số nhỏ là còn bao nhiêu hộp nữa).')}
+      ${farm ? '' : t('Nạp file save để bỏ qua những món đang có trong rương.')}</p>
+    ${firstTable({ want, done, cols: head(), unit: 'hộp', resultsAt: n => boxesAt(ctx, n, player).map(b => b.item),
+      itemExtra: en => (en === 'Cork Bobber' || en === 'Dressed Spinner' ? mark('skill_fishing', SKILL) : '') })}`;
+}
+
 export default {
   id: 'mystery', name: 'Hộp bí ẩn', nameEn: 'Mystery Boxes', icon: 'mystery_box',
   intro: 'Hộp Bí Ẩn và Hộp Bí Ẩn Vàng thứ N mà Clint mở cho bạn sẽ ra gì. Số hộp đã mở tính chung hai loại và riêng từng người chơi. Hộp Vàng ra khác đi khi đã mở khóa Tinh thông Trồng trọt nên có hai cột.',
@@ -125,6 +146,6 @@ export default {
         })]
       });
     }
-    return table([t('Thứ'), ...head()], rows) + `<p class="muted">${mark('skill_fishing', SKILL)} ${t(SKILL)} ${itemTag(N('242'))} ×2.</p>`;
+    return table([t('Thứ'), ...head()], rows) + `<p class="muted">${mark('skill_fishing', SKILL)} ${t(SKILL)} ${itemTag(N('242'))} ×2.</p>` + missingHtml(ctx, player, done);
   }
 };

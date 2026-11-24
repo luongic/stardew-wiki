@@ -788,6 +788,14 @@ export const UI_EN = {
   'Đêm nay': 'Tonight', 'không có sự kiện': 'no event', 'Xem thêm ở tab Dự Đoán': 'More in the Predictor tab', '20 trước': 'Previous 20',
   '20 sau': 'Next 20', '100 trước': 'Previous 100', '100 sau': 'Next 100', 'Mũ ngẫu nhiên': 'Mystery Hat', 'Áo ngẫu nhiên': 'Mystery Shirt',
   'Giấy dán tường ngẫu nhiên': 'Mystery Wallpaper', 'Hạt giống theo mùa': 'Seasonal Seeds', 'Kết quả tìm': 'Results for', 'tiếp theo': 'next',
+  'Món chưa có': 'Not owned yet', 'Không ra trong': 'Not given in the', 'Số lần nữa tính từ bây giờ': 'How many more from now',
+  'Nạp file save để bỏ qua những món đang có trong rương.': 'Load a save to leave out what is already in your chests.',
+  'Đã tặng hoặc đang giữ mọi món Bảo tàng mà hốc đá có thể ra.': 'Every museum piece a geode can give is donated or on hand.',
+  'Món Bảo tàng chưa tặng và không có trong túi hay rương nào, cùng hốc đá thứ mấy sẽ ra (tính từ hốc tiếp theo; số nhỏ là còn bao nhiêu hốc nữa).':
+    'Museum pieces not donated and not in any backpack or chest, with the geode number that gives each (from the next one; the small number is how many more to crack).',
+  'Đã có mọi món đáng săn trong Hộp bí ẩn.': 'You already have every Mystery Box item worth hunting.',
+  'Món đáng săn trong hộp (đá quý hiếm, nhẫn, cây giống, sách...) không có trong túi hay rương nào, sách thì chưa đọc, cùng hộp thứ mấy sẽ ra (tính từ hộp tiếp theo; số nhỏ là còn bao nhiêu hộp nữa).':
+    'Box items worth hunting (rare gems, rings, saplings, books...) not in any backpack or chest, books not read yet, with the box number that gives each (from the next one; the small number is how many more to open).',
   'Món': 'Item', 'Tìm thấy': 'Found', 'hốc đá': 'geodes', 'hộp': 'boxes', 'vé': 'tickets', 'Thứ': 'No.', 'Cần tặng Bảo tàng': 'Needed for the Museum',
   'Có thể ra Đậu Qi (khi có Thử thách Cây Qi)': "Could be Qi Beans (during Qi's Crop challenge)",
   'Có thể ra Mũ Bảo Hiểm Vàng (nếu chưa có)': "Could be the Golden Helmet (if you don't have it yet)",

@@ -11,6 +11,9 @@ import { esc, table, toInt32 } from './core.js';
 import { t } from '../lib/i18n.js';
 import { ico } from '../lib/icons.js';
 import { itemTag, itemName } from '../lib/item-lookup.js';
+import { loadJSON, KEYS } from '../lib/storage.js';
+import { OBJECT_NAMES } from '../../data/item-ids.js';
+import { labeledContainers } from '../tabs/journal.js';
 
 export const PAGE = 20, SEARCH_RANGE = 200;
 
@@ -80,4 +83,45 @@ export function searchTable(ctx, { query, done, cols, resultsAt, unit, itemExtra
   return `<p class="muted">${t('Kết quả tìm')} "${esc(query)}" · ${SEARCH_RANGE} ${t(unit)} ${t('tiếp theo')}</p>
     ${keys.length ? table([t('Món'), ...cols], keys.map(en => [nameTag(en, itemExtra(en)), ...found[en].map(cell)])) : ''}
     <p class="muted">${t('Tìm thấy')} ${count} ${t('lần')}, ${keys.length} ${t('món')}</p>`;
+}
+
+// ---------- Items not owned yet: the first count that gives each ----------
+export const FIRST_RANGE = 1000;
+
+// The last save read, when it is the save behind this context: what the
+// farm's backpacks and chests hold (English names) and each player's stats
+// (books read). null for a context made from a Game ID alone.
+export function savedFarm(ctx) {
+  const j = ctx?.source === 'save' ? loadJSON(KEYS.journal, null) : null;
+  if (!j) return null;
+  const held = new Set();
+  for (const s of labeledContainers(j)) for (const it of s.items) {
+    held.add(it.name);
+    if (OBJECT_NAMES[it.id]) held.add(OBJECT_NAMES[it.id]);
+  }
+  const statsOf = name => (j.players || []).find(p => p.name === name)?.stats || {};
+  return { held, statsOf };
+}
+
+// want: English names still missing; resultsAt(n): the English result per
+// column. One row per item, the first count from the next one on that gives
+// it in each column, soonest first; items not given within FIRST_RANGE are
+// named under the table.
+export function firstTable({ want, done, cols, resultsAt, unit, itemExtra = () => '' }) {
+  const first = new Map(want.map(en => [en, cols.map(() => 0)]));
+  let left = want.length * cols.length;
+  for (let n = done + 1; n <= done + FIRST_RANGE && left; n++) {
+    resultsAt(n).forEach((en, c) => {
+      const f = first.get(en);
+      if (f && c < cols.length && !f[c]) { f[c] = n; left--; }
+    });
+  }
+  // Soonest in the first column (the common geode / box) first, then in any other
+  const key = f => [f[0] || Infinity, Math.min(...f.filter(Boolean))];
+  const order = (a, b) => { const [x, y] = [key(a[1]), key(b[1])]; return x[0] - y[0] || x[1] - y[1] || a[0].localeCompare(b[0]); };
+  const hit = [...first].filter(([, f]) => f.some(Boolean)).sort(order);
+  const miss = [...first].filter(([, f]) => !f.some(Boolean)).map(([en]) => en);
+  const cell = n => (n ? `<strong>#${n}</strong> <small class="muted" title="${esc(t('Số lần nữa tính từ bây giờ'))}">+${n - done}</small>` : '<span class="predict-none">—</span>');
+  return `${hit.length ? table([t('Món'), ...cols], hit.map(([en, f]) => [nameTag(en, itemExtra(en)), ...f.map(cell)])) : ''}
+    ${miss.length ? `<p class="muted">${t('Không ra trong')} ${FIRST_RANGE} ${t(unit)} ${t('tiếp theo')}: <span data-no-i18n>${miss.map(displayName).join(', ')}</span></p>` : ''}`;
 }
