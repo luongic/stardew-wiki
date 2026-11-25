@@ -204,8 +204,13 @@ coop.onSharedSave(async e => {
   if (e.at <= local) { saveJSON(ROOM_SAVE, { stamp, name: e.name, at: e.at, mine: true }); return; }
   try {
     const data = JSON.parse(await gunzip64(e.z));
+    // A device on an older version of the site reads less from the save (the
+    // worn trinket, say): don't let its share replace a fuller local read
+    const older = k => (k === 'profiles' || k === 'journal') && isStale(data[k]) && !isStale(loadJSON(SHARED_PARTS[k], null)) && loadJSON(SHARED_PARTS[k], null);
+    const kept = [];
     for (const [k, key] of Object.entries(SHARED_PARTS)) {
       if (data[k] == null) continue;
+      if (older(k)) { kept.push(k); continue; }
       if (k === 'fish') setCaughtFish(data.fish);
       else if (k === 'predict') applySavePredict(data.predict);
       else saveJSON(key, data[k]);
@@ -214,6 +219,7 @@ coop.onSharedSave(async e => {
     saveJSON(ROOM_SAVE, { stamp, name: e.name, at: e.at, mine: false });
     window.app?.render();
     showToast(`${ico('members')} ${t('Đã nhận dữ liệu save từ phòng Co-op')}: <span data-no-i18n>${esc(e.name)}</span> · ${when(e.at)}`);
+    if (kept.length) showToast(`${ico('warn')} <span data-no-i18n>${esc(e.name)}</span> ${t('đang dùng bản trang cũ nên đọc file save thiếu thông tin; máy này giữ hồ sơ và sổ tay đầy đủ hơn của mình. Hãy tải lại trang trên máy kia rồi nạp lại save.')}`);
   } catch (err) { console.warn('[co-op] shared save', err); }
 });
 

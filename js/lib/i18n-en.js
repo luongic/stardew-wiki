@@ -1138,6 +1138,9 @@ export const NAMES_EN = {
   'Dự đoán yêu cầu của Gấu Mèo': 'Raccoon request prediction',
   'Nguồn: Official Stardew Valley Wiki (Books).': 'Source: Official Stardew Valley Wiki (Books).',
 
+  // Co-op: an older device's share is not applied over a fuller local read
+  'đang dùng bản trang cũ nên đọc file save thiếu thông tin; máy này giữ hồ sơ và sổ tay đầy đủ hơn của mình. Hãy tải lại trang trên máy kia rồi nạp lại save.': 'is on an older version of the site, so their save read is missing things; this device keeps its fuller profile and Journal. Reload the site on that device and load the save again.',
+
   // Buff stat labels
   'Câu cá': 'Fishing', 'Phòng thủ': 'Defense', 'May mắn': 'Luck', 'Khai mỏ': 'Mining', 'Canh tác': 'Farming', 'Tốc độ chạy': 'Speed',
   'Hái lượm': 'Foraging', 'Sức tấn công': 'Attack', 'Nam châm hút đồ': 'Magnetism', 'Nam châm hút quặng': 'Magnetism', 'Năng lượng tối đa': 'Max Energy',
