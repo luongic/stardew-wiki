@@ -3019,3 +3019,24 @@ h2 .pixel-icon, h3 .pixel-icon, .panel__title .pixel-icon { width: 27px; height:
 .book-detail__icon { width: 36px; height: 36px; }
 .book-detail p { margin: 4px 0; }
 .book-detail__find { margin: 2px 0 8px; padding-left: 22px; line-height: 1.5; }
+
+/* Community Center tab: Robin's Community Upgrades */
+.cc-upgrades { margin-top: 18px; padding: 14px 16px; background: var(--parch-100, #fbf1d9); border: var(--px) solid var(--wood-700); color: var(--wood-900); }
+.cc-upgrades > p { margin: 0 0 6px; }
+.cc-upgrades__title { margin: 0 0 6px; font-size: 1.3rem; display: flex; align-items: center; gap: 8px; }
+.cc-upgrade__needs { list-style: none; padding: 0; margin: 6px 0 12px; display: flex; flex-wrap: wrap; gap: 6px 16px; }
+.cc-upgrade__needs li { display: flex; align-items: center; gap: 4px; opacity: 0.8; }
+.cc-upgrade__needs li.is-ok { opacity: 1; color: #3f7a2a; }
+.cc-upgrade { padding: 12px 14px; margin-bottom: 12px; border: var(--px) solid var(--parch-300); background: var(--parch-50); }
+.cc-upgrade.is-done { border-color: #6aa84f; background: #eef9e4; }
+.cc-upgrade__head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.cc-upgrade__head h3 { margin: 0; flex: 1 1 220px; font-size: 1.1rem; }
+.cc-upgrade__cost { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 8px 0; }
+.cc-upgrade__list, .cc-upgrade__notes { padding-left: 22px; line-height: 1.5; }
+.cc-upgrade__list > li { margin-bottom: 10px; }
+.cc-upgrade__pair, .cc-upgrade__pics { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+.cc-upgrade__pair figure, .cc-upgrade__pics figure { margin: 0; text-align: center; }
+.cc-upgrade__pair img { width: 160px; height: 160px; image-rendering: pixelated; border: 2px solid var(--parch-300); }
+.cc-upgrade__pics img { max-height: 200px; max-width: 100%; image-rendering: pixelated; border: 2px solid var(--parch-300); }
+.cc-upgrade figcaption { font-size: 0.8rem; color: var(--wood-700); }
+@media (max-width: 480px) { .cc-upgrade__pair img { width: 130px; height: 130px; } }

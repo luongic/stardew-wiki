@@ -334,6 +334,12 @@ export function readJournal(root) {
 
   return {
     storage, machines, crops, animals, players, perfection, rarecrows, fishPonds, walnuts,
+    // Robin's two Community Upgrades (host's mail) and what they need first
+    community: {
+      pam: hostMail.has('pamHouseUpgrade'), shortcuts: hostMail.has('communityUpgradeShortcuts'),
+      daysLeft: num(location(root, 'Town'), 'daysUntilCommunityUpgrade'), houseLevel: num(host, 'houseUpgradeLevel'),
+      cc: hostMail.has('ccIsComplete') || hostMail.has('JojaMember')
+    },
     island: { open: hostMail.has('willyBoatFixed'), upgrades: [...hostMail].filter(f => f.startsWith('Island_')) },
     orders: {
       done: kids(kid(root, 'completedSpecialOrders'), 'string').map(s => s.textContent.trim()),

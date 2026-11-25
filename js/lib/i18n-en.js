@@ -1141,6 +1141,22 @@ export const NAMES_EN = {
   // Co-op: an older device's share is not applied over a fuller local read
   'đang dùng bản trang cũ nên đọc file save thiếu thông tin; máy này giữ hồ sơ và sổ tay đầy đủ hơn của mình. Hãy tải lại trang trên máy kia rồi nạp lại save.': 'is on an older version of the site, so their save read is missing things; this device keeps its fuller profile and Journal. Reload the site on that device and load the save again.',
 
+  // Community Center tab: Community Upgrades
+  'Đã xây xong': 'Built',
+  'Robin đang xây': 'Robin is building',
+  'Cần xong lần 1 trước': 'Needs the first upgrade',
+  'Mua được ở chỗ Robin': 'Ready to buy from Robin',
+  'Chưa đủ điều kiện': 'Not available yet',
+  'Hoàn thành Nhà Cộng Đồng hoặc dự án Joja': 'Community Center or Joja projects finished',
+  'Nhà nâng cấp tối đa': 'Farmhouse fully upgraded',
+  'Nạp file save để xem bạn đã đủ điều kiện và đã xây chưa.': 'Load a save to see whether you qualify and what is built.',
+  'Nâng cấp Cộng đồng (Robin)': 'Community Upgrades (Robin)',
+  'Công trình được nâng cấp': 'What gets built',
+  'Trước': 'Before',
+  'Sau': 'After',
+  "Nguồn và ảnh: Official Stardew Valley Wiki (Carpenter's Shop, Trailer).": "Source and pictures: Official Stardew Valley Wiki (Carpenter's Shop, Trailer).",
+  'Đang có / cần': 'Have / need',
+
   // Buff stat labels
   'Câu cá': 'Fishing', 'Phòng thủ': 'Defense', 'May mắn': 'Luck', 'Khai mỏ': 'Mining', 'Canh tác': 'Farming', 'Tốc độ chạy': 'Speed',
   'Hái lượm': 'Foraging', 'Sức tấn công': 'Attack', 'Nam châm hút đồ': 'Magnetism', 'Nam châm hút quặng': 'Magnetism', 'Năng lượng tối đa': 'Max Energy',

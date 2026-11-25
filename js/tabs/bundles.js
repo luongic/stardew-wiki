@@ -7,7 +7,10 @@
 // a backpack, chest or fridge, and where.
 // ==========================================================================
 
-import { altName } from '../lib/i18n.js';
+import { altName, t, isEn } from '../lib/i18n.js';
+import { COMMUNITY_UPGRADES, COMMUNITY_NEEDS } from '../../data/community-upgrades-data.js';
+import { itemTag } from '../lib/item-lookup.js';
+import { loadJSON, KEYS } from '../lib/storage.js';
 import { CC_ROOMS } from '../../data/bundles-data.js';
 import { progress } from '../lib/progress.js';
 import { emptyState, matches, pixelIcon } from '../lib/templates.js';
@@ -23,6 +26,55 @@ const roomById = new Map(CC_ROOMS.map(r => [r.id, r]));
 const slotKey = (bundleId, idx) => `${bundleId}:${idx}`;
 
 const VALID_SLOTS = new Set(BUNDLES.flatMap(b => b.items.map((_, i) => slotKey(b.id, i))));
+
+// ---------- Robin's Community Upgrades (after the Community Center) ----------
+const fmtG = n => `${n.toLocaleString(isEn ? 'en-US' : 'vi-VN')}g`;
+function upgradeState(u, c) {
+  if (!c) return null;
+  if (c[u.id]) return ['tag--green', t('Đã xây xong')];
+  const prev = u.after && !c[u.after];
+  if (c.daysLeft > 0 && !prev && (u.id === 'pam' ? true : c.pam)) return ['tag--gold', `${t('Robin đang xây')} · ${t(`Còn ${c.daysLeft} ngày`)}`];
+  if (prev) return ['', t('Cần xong lần 1 trước')];
+  const ready = c.cc && c.houseLevel >= 3;
+  return [ready ? 'tag--gold' : '', ready ? t('Mua được ở chỗ Robin') : t('Chưa đủ điều kiện')];
+}
+function upgradesHtml(find) {
+  const d = loadJSON(KEYS.journal, null), c = d?.community;
+  const tx = (x, f) => (isEn ? x[`${f}En`] : x[f]);
+  const need = c ? `
+    <ul class="cc-upgrade__needs">
+      <li class="${c.cc ? 'is-ok' : ''}">${ico(c.cc ? 'check' : 'warn')} ${t('Hoàn thành Nhà Cộng Đồng hoặc dự án Joja')}</li>
+      <li class="${c.houseLevel >= 3 ? 'is-ok' : ''}">${ico(c.houseLevel >= 3 ? 'check' : 'warn')} ${t('Nhà nâng cấp tối đa')}: ${t('cấp')} ${c.houseLevel}/3</li>
+    </ul>` : `<p class="muted">${ico('save')} ${t('Nạp file save để xem bạn đã đủ điều kiện và đã xây chưa.')} ${saveTabLink('Nạp file save', 'link-btn')}</p>`;
+  return `
+    <section class="cc-upgrades">
+      <h2 class="cc-upgrades__title">${ico('farm')} ${t('Nâng cấp Cộng đồng (Robin)')}</h2>
+      <p>${tx(COMMUNITY_NEEDS, 'text')}</p>
+      ${need}
+      ${COMMUNITY_UPGRADES.map(u => {
+        const st = upgradeState(u, c);
+        return `
+        <article class="cc-upgrade ${c?.[u.id] ? 'is-done' : ''}">
+          <header class="cc-upgrade__head"><h3>${tx(u, 'name')}</h3>${st ? `<span class="tag ${st[0]}">${st[1]}</span>` : ''}</header>
+          <div class="cc-upgrade__cost">
+            <span class="tag">${ico('money')} <strong>${fmtG(u.gold)}</strong></span>
+            ${u.items.map(([en, n]) => {
+              const have = find ? ownedTotal(find({ nameEn: en })) : null;
+              return itemTag(en, ` × ${n.toLocaleString(isEn ? 'en-US' : 'vi-VN')}${have !== null ? ` <span class="tag ${have >= n ? 'tag--green' : 'tag--gold'}" title="${t('Đang có / cần')}">${have}/${n}</span>` : ''}`);
+            }).join('')}
+            <span class="tag">${ico('hourglass')} ${t(`${u.days} ngày`)}</span>
+          </div>
+          <p><strong>${t('Công trình được nâng cấp')}:</strong> ${tx(u, 'builds')}</p>
+          ${u.shortcuts ? `<ol class="cc-upgrade__list">${u.shortcuts.map(x => `<li>${isEn ? x[1] : x[0]}${x[2] ? `
+            <div class="cc-upgrade__pair"><figure><img src="assets/community/${x[2]}_before.png" alt="" class="pixel-img" loading="lazy"><figcaption>${t('Trước')}</figcaption></figure>
+              <figure><img src="assets/community/${x[2]}_after.png" alt="" class="pixel-img" loading="lazy"><figcaption>${t('Sau')}</figcaption></figure></div>` : ''}</li>`).join('')}</ol>` : ''}
+          ${u.pics ? `<div class="cc-upgrade__pics">${u.pics.map(([src, vi, en]) => `<figure><img src="${src}" alt="" class="pixel-img" loading="lazy"><figcaption>${isEn ? en : vi}</figcaption></figure>`).join('')}</div>` : ''}
+          <ul class="cc-upgrade__notes">${u.notes.map(x => `<li>${isEn ? x[1] : x[0]}</li>`).join('')}</ul>
+        </article>`;
+      }).join('')}
+      <p class="muted">${t("Nguồn và ảnh: Official Stardew Valley Wiki (Carpenter's Shop, Trailer).")}</p>
+    </section>`;
+}
 
 export const bundleProgress = {
   get done() { return progress.set('bundles'); },
@@ -233,6 +285,7 @@ const bundlesTab = {
     const hint = find ? '' : `<p class="muted cc-owned-hint">${ico('chest')} Nạp file save để xem món nào chưa nộp đã có sẵn trong túi đồ hay rương, và nằm ở đâu. ${saveTabLink('Nạp file save', 'btn btn--green btn--sm')}</p>`;
     document.getElementById('ccRooms').innerHTML = hint + (html
       || emptyState('bundles', 'Không có gói nào khớp!', 'Thử từ khóa khác hoặc tắt bộ lọc "Chưa Hoàn Thành".'));
+    document.getElementById('ccUpgrades').innerHTML = q ? '' : upgradesHtml(find);
   },
 
   badge() {
